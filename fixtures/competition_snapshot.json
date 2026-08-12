@@ -1,0 +1,40 @@
+{
+  "snapshot_version": "demo-2026-08-11",
+  "generated_at": "2026-08-11T09:00:00+08:00",
+  "items": [
+    {
+      "external_key": "demo-innovation-2026",
+      "name": "2026 校园创新应用大赛",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-09-01T23:59:00+08:00",
+      "submission_deadline": "2026-10-15T23:59:00+08:00",
+      "stages": [
+        {"name": "初赛", "at": "2026-10-15"},
+        {"name": "决赛", "at": "2026-11-15"}
+      ],
+      "mode": "hybrid",
+      "location": "珠海校区",
+      "rewards": "校级证书与孵化支持",
+      "registration_url": "https://example.edu.cn/competition/register",
+      "source_url": "https://example.edu.cn/competition/notice",
+      "priority": 90,
+      "tracks": ["AI 应用", "Web 产品", "视觉设计"],
+      "required_skills": ["backend", "frontend", "machine_learning", "product", "visual_design"],
+      "team_size_min": 3,
+      "team_size_max": 5,
+      "eligibility": ["在校学生"]
+    },
+    {
+      "external_key": "unverified-lead",
+      "name": "未核验线索",
+      "verification_status": "待核验",
+      "registration_url": "https://example.com/unverified",
+      "source_url": "https://example.com/source",
+      "tracks": [],
+      "required_skills": [],
+      "team_size_min": 1,
+      "team_size_max": 1
+    }
+  ]
+}
+

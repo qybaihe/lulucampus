@@ -1,0 +1,1343 @@
+{
+  "snapshot_version": "competition-radar-cn-v1-2026-08-11",
+  "generated_at": "2026-08-11T20:04:54+08:00",
+  "items": [
+    {
+      "external_key": "cumcm_guangdong_2026",
+      "name": "2026高教社杯全国大学生数学建模竞赛（广东赛区）",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-09-01T18:00:00+08:00",
+      "submission_deadline": "2026-09-13T20:00:00+08:00",
+      "stages": [
+        {
+          "name": "中山大学校内报名",
+          "start_at": "2026-06-17T00:00:00+08:00",
+          "end_at": "2026-09-01T18:00:00+08:00",
+          "mode": "online",
+          "location": "中山大学线上校内报名",
+          "note": "中山大学数学学院通知明确的校内截止时间"
+        },
+        {
+          "name": "题目发布及广东赛区竞赛",
+          "start_at": "2026-09-10T18:00:00+08:00",
+          "end_at": "2026-09-13T20:00:00+08:00",
+          "mode": "online",
+          "location": "线上（广东赛区）"
+        }
+      ],
+      "mode": "online",
+      "location": "线上（广东赛区）",
+      "rewards": "广东赛区一等奖、二等奖、三等奖及全国赛相应奖项；中山大学通知另说明按赛区规则组织评奖。",
+      "registration_url": "https://cumcm.cnki.net/",
+      "source_url": "https://math.sysu.edu.cn/article/3910",
+      "priority": 98,
+      "tracks": [
+        "数学建模",
+        "数据分析",
+        "算法"
+      ],
+      "required_skills": [
+        "data_analysis",
+        "machine_learning"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 3,
+      "eligibility": [
+        "中山大学在读本科生；每队成员须来自中山大学；可自带或由组委会统一安排指导教师；广东赛区报名费按官方通知执行"
+      ]
+    },
+    {
+      "external_key": "cnmc_guangdong_2026",
+      "name": "第十八届全国大学生数学竞赛广东赛区初赛暨第十六届广东省大学生数学竞赛",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-09-30T23:59:00+08:00",
+      "submission_deadline": null,
+      "stages": [
+        {
+          "name": "广东赛区初赛",
+          "start_at": "2026-11-14T09:00:00+08:00",
+          "end_at": "2026-11-14T11:30:00+08:00",
+          "mode": "offline",
+          "location": "广东省各地市考场（考场根据报名情况确定）"
+        },
+        {
+          "name": "全国竞赛决赛",
+          "start_at": "2027-04-01T00:00:00+08:00",
+          "end_at": "2027-04-30T23:59:59+08:00",
+          "date_precision": "month",
+          "mode": "offline",
+          "location": "大连理工大学",
+          "note": "官方通知明确为2027年4月预计举行，具体时间将在2027年1月通知"
+        }
+      ],
+      "mode": "offline",
+      "location": "广东省各地市考场（考场根据报名情况确定）",
+      "rewards": "广东赛区按类别评定一、二、三等奖，获奖总人数不超过赛区总参赛人数的30%；全国赛另按全国组委会规则评奖。",
+      "registration_url": "https://math.sysu.edu.cn/article/3913",
+      "source_url": "https://math.sysu.edu.cn/article/3913",
+      "priority": 96,
+      "tracks": [
+        "数学竞赛",
+        "数学分析",
+        "高等代数"
+      ],
+      "required_skills": [
+        "data_analysis"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 1,
+      "eligibility": [
+        "全日制在校大学生；按数学专业类、非数学专业类、高职高专类或广东省民办本科类规则报名；由学校汇总报名并提交报名信息表；报名费每人100元"
+      ]
+    },
+    {
+      "external_key": "ncccu_office_2026",
+      "name": "2026年第八届全国高校计算机能力挑战赛——办公软件高级应用赛",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-11-25T23:59:00+08:00",
+      "submission_deadline": null,
+      "stages": [
+        {
+          "name": "区域赛/省赛报名",
+          "start_at": "2026-07-09T00:00:00+08:00",
+          "end_at": "2026-11-25T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上报名"
+        },
+        {
+          "name": "区域赛/省赛考试",
+          "start_at": "2026-11-28T00:00:00+08:00",
+          "end_at": "2026-11-28T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上考试"
+        },
+        {
+          "name": "国赛考试",
+          "start_at": "2026-12-19T00:00:00+08:00",
+          "end_at": "2026-12-19T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上考试"
+        }
+      ],
+      "mode": "online",
+      "location": "线上考试",
+      "rewards": "区域赛/省赛和国赛按科目评定一、二、三等奖并颁发电子荣誉证书；国赛各科目前三名学生税前奖金600元/人。",
+      "registration_url": "https://www.ncccu.org.cn/index/Paper/case3.html",
+      "source_url": "https://www.ncccu.org.cn/index/Paper/case3.html",
+      "priority": 84,
+      "tracks": [
+        "办公软件应用",
+        "文字处理",
+        "数据分析",
+        "演示设计"
+      ],
+      "required_skills": [
+        "data_analysis",
+        "design",
+        "visual_design"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 1,
+      "eligibility": [
+        "高校所有专业在校生；本科、研究生和高职高专分别评奖；文字处理、电子表格、演示文稿和智能办公软件可单独或多科报名；个人赛"
+      ]
+    },
+    {
+      "external_key": "ncccu_programming_2026",
+      "name": "2026年第八届全国高校计算机能力挑战赛——程序设计挑战赛",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-11-25T23:59:00+08:00",
+      "submission_deadline": null,
+      "stages": [
+        {
+          "name": "区域赛/省赛报名",
+          "start_at": "2026-07-09T00:00:00+08:00",
+          "end_at": "2026-11-25T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上报名"
+        },
+        {
+          "name": "区域赛/省赛考试",
+          "start_at": "2026-11-29T00:00:00+08:00",
+          "end_at": "2026-11-29T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上考试"
+        },
+        {
+          "name": "国赛考试",
+          "start_at": "2026-12-20T00:00:00+08:00",
+          "end_at": "2026-12-20T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上考试"
+        }
+      ],
+      "mode": "online",
+      "location": "线上考试",
+      "rewards": "区域赛/省赛和国赛按科目评定一、二、三等奖并颁发电子荣誉证书；各科目前三名队伍税前奖金1000元/队。",
+      "registration_url": "https://www.ncccu.org.cn/index/Paper/case4.html",
+      "source_url": "https://www.ncccu.org.cn/index/Paper/case4.html",
+      "priority": 88,
+      "tracks": [
+        "软件开发",
+        "程序设计",
+        "算法与数据结构"
+      ],
+      "required_skills": [
+        "backend",
+        "machine_learning"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 1,
+      "eligibility": [
+        "高校所有专业在校生；本科、研究生和高职高专分别评奖；支持多种主流程序设计语言；个人赛"
+      ]
+    },
+    {
+      "external_key": "ncccu_ai_2026",
+      "name": "2026年第八届全国高校计算机能力挑战赛——人工智能挑战赛",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-11-13T23:59:00+08:00",
+      "submission_deadline": "2026-11-13T23:59:00+08:00",
+      "stages": [
+        {
+          "name": "区域赛/省赛作品提交",
+          "start_at": "2026-10-15T15:00:00+08:00",
+          "end_at": "2026-11-13T23:59:00+08:00",
+          "mode": "online",
+          "location": "线上平台"
+        },
+        {
+          "name": "晋级国赛公示",
+          "start_at": "2026-11-18T00:00:00+08:00",
+          "end_at": "2026-11-18T23:59:59+08:00",
+          "mode": "online",
+          "location": "官网公示"
+        },
+        {
+          "name": "国赛/决赛",
+          "start_at": "2026-11-19T17:00:00+08:00",
+          "end_at": "2026-11-24T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上平台"
+        }
+      ],
+      "mode": "online",
+      "location": "线上平台",
+      "rewards": "区域赛/国赛分别评定一、二、三等奖并颁发电子荣誉证书；各赛项国赛前三名队伍税前奖金1000元/队。",
+      "registration_url": "https://www.ncccu.org.cn/index/Paper/case1.html",
+      "source_url": "https://www.ncccu.org.cn/index/Paper/case1.html",
+      "priority": 93,
+      "tracks": [
+        "人工智能",
+        "医学影像",
+        "数据分析"
+      ],
+      "required_skills": [
+        "machine_learning",
+        "data_analysis"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 3,
+      "eligibility": [
+        "高校所有专业在校生；本科、研究生和高职组分别评奖；允许跨校组队；围绕胸部X光片多标签分类算法参赛"
+      ]
+    },
+    {
+      "external_key": "ncccu_bigdata_2026",
+      "name": "2026年第八届全国高校计算机能力挑战赛——大数据挑战赛",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-11-06T23:59:00+08:00",
+      "submission_deadline": "2026-11-06T23:59:00+08:00",
+      "stages": [
+        {
+          "name": "区域赛/省赛作品提交",
+          "start_at": "2026-10-13T15:00:00+08:00",
+          "end_at": "2026-11-06T23:59:00+08:00",
+          "mode": "online",
+          "location": "线上平台"
+        },
+        {
+          "name": "晋级国赛公示",
+          "start_at": "2026-11-12T00:00:00+08:00",
+          "end_at": "2026-11-12T23:59:59+08:00",
+          "mode": "online",
+          "location": "官网公示"
+        },
+        {
+          "name": "国赛/决赛",
+          "start_at": "2026-11-13T17:00:00+08:00",
+          "end_at": "2026-11-18T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上平台"
+        }
+      ],
+      "mode": "online",
+      "location": "线上平台",
+      "rewards": "区域赛/国赛分别评定一、二、三等奖并颁发电子荣誉证书；各赛项国赛前三名队伍税前奖金1000元/队。",
+      "registration_url": "https://www.ncccu.org.cn/index/Paper/case2.html",
+      "source_url": "https://www.ncccu.org.cn/index/Paper/case2.html",
+      "priority": 93,
+      "tracks": [
+        "大数据",
+        "机器学习",
+        "医学影像"
+      ],
+      "required_skills": [
+        "machine_learning",
+        "data_analysis"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 3,
+      "eligibility": [
+        "高校所有专业在校生；本科、研究生和高职组分别评奖；允许跨校组队；围绕眼底图像与青光眼类别不平衡问题参赛"
+      ]
+    },
+    {
+      "external_key": "aiadc_smart_application_2026",
+      "name": "2026全国大学生智能应用开发大赛",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-09-30T23:59:00+08:00",
+      "submission_deadline": "2026-10-08T23:59:00+08:00",
+      "stages": [
+        {
+          "name": "报名征集与确认",
+          "start_at": "2026-07-01T00:00:00+08:00",
+          "end_at": "2026-09-30T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上报名系统"
+        },
+        {
+          "name": "初赛材料提交与资格审核",
+          "start_at": "2026-10-01T00:00:00+08:00",
+          "end_at": "2026-10-08T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上平台"
+        },
+        {
+          "name": "初赛评审与入围确认",
+          "start_at": "2026-10-09T00:00:00+08:00",
+          "end_at": "2026-10-13T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上评审"
+        },
+        {
+          "name": "线下决赛与成果展示",
+          "start_at": "2026-10-18T00:00:00+08:00",
+          "end_at": "2026-10-31T23:59:59+08:00",
+          "mode": "offline",
+          "location": "地点和具体日期以组委会后续通知为准"
+        }
+      ],
+      "mode": "hybrid",
+      "location": "线上报名与初审；线下决赛地点以组委会后续通知为准",
+      "rewards": "官网当前未公布固定奖金金额；按组委会规则进行赛道评审、决赛路演和结果确认，获奖及证书以正式通知为准。",
+      "registration_url": "https://bm.aiadc.org.cn/",
+      "source_url": "https://aiadc.org.cn/docs/participation/",
+      "priority": 95,
+      "tracks": [
+        "人工智能应用",
+        "产品原型",
+        "社会治理",
+        "校园服务",
+        "智能硬件"
+      ],
+      "required_skills": [
+        "machine_learning",
+        "product",
+        "design",
+        "operations"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 10,
+      "eligibility": [
+        "普通高等学校全日制在校生可参加高校组；个人或团队均可申报；不设最低人数；团队原则上不超过10人，复杂项目经说明最多可放宽至15人；允许跨校组队"
+      ]
+    },
+    {
+      "external_key": "aic_algorithm_application_2026",
+      "name": "第八届全球校园人工智能算法精英大赛——算法应用赛道（赛区制赛题）",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-10-15T20:00:00+08:00",
+      "submission_deadline": null,
+      "stages": [
+        {
+          "name": "校赛（初赛）",
+          "start_at": "2026-04-28T00:00:00+08:00",
+          "end_at": "2026-10-10T23:59:59+08:00",
+          "mode": "online",
+          "location": "各参赛高校组织"
+        },
+        {
+          "name": "省赛/区域赛报名截止",
+          "start_at": "2026-10-15T20:00:00+08:00",
+          "end_at": "2026-10-15T20:00:00+08:00",
+          "mode": "online",
+          "location": "线上报名系统"
+        },
+        {
+          "name": "省赛/区域赛",
+          "start_at": "2026-10-16T00:00:00+08:00",
+          "end_at": "2026-11-01T23:59:59+08:00",
+          "mode": "online",
+          "location": "各赛区安排",
+          "note": "官方通知要求最迟于2026年11月1日前完成，具体时间由赛区决定"
+        },
+        {
+          "name": "总决赛",
+          "start_at": "2026-11-01T00:00:00+08:00",
+          "end_at": "2026-11-30T23:59:59+08:00",
+          "date_precision": "month",
+          "mode": "hybrid",
+          "location": "时间地点另行通知",
+          "note": "官方通知计划于2026年11月中下旬举办"
+        }
+      ],
+      "mode": "hybrid",
+      "location": "校赛和区域赛按赛区安排；总决赛时间地点以官网通知为准",
+      "rewards": "省赛/区域赛和总决赛均设一、二、三等奖，按有效作品数量比例评定并颁发省级或国赛获奖证书。",
+      "registration_url": "https://reg.aicomp.cn/",
+      "source_url": "https://www.aicomp.cn/notice/notice-1/3655.html",
+      "priority": 92,
+      "tracks": [
+        "人工智能",
+        "算法应用",
+        "机器人",
+        "公共治理",
+        "智能驾驶"
+      ],
+      "required_skills": [
+        "machine_learning",
+        "backend",
+        "product"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 3,
+      "eligibility": [
+        "全球高校和科研机构拥有正式学籍的在读学生；可单人或组队；每队最多3名学生；同一学校内组队，不支持跨校组队；本条按官网可确认的赛区制赛题安排核验，赛马制赛题报名时间另行通知"
+      ]
+    },
+    {
+      "external_key": "aic_digital_economy_decision_2026",
+      "name": "第八届全球校园人工智能算法精英大赛——数字经济分析与智能决策应用赛",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-09-10T23:59:00+08:00",
+      "submission_deadline": null,
+      "stages": [
+        {
+          "name": "竞赛报名",
+          "start_at": "2026-04-28T00:00:00+08:00",
+          "end_at": "2026-09-10T23:59:00+08:00",
+          "mode": "online",
+          "location": "线上报名系统"
+        },
+        {
+          "name": "复赛",
+          "start_at": "2026-09-01T00:00:00+08:00",
+          "end_at": "2026-09-30T23:59:59+08:00",
+          "date_precision": "month",
+          "mode": "online",
+          "location": "数字经济分析平台",
+          "note": "官方通知仅明确为2026年9月，具体日期另行通知"
+        },
+        {
+          "name": "总决赛",
+          "start_at": "2026-11-01T00:00:00+08:00",
+          "end_at": "2026-11-30T23:59:59+08:00",
+          "date_precision": "month",
+          "mode": "offline",
+          "location": "地点以组委会通知为准",
+          "note": "官方通知仅明确为2026年11月，含现场答辩"
+        }
+      ],
+      "mode": "hybrid",
+      "location": "线上报名和复赛；总决赛现场答辩地点以组委会通知为准",
+      "rewards": "复赛和总决赛分别设一、二、三等奖并颁发省级或国赛获奖证书；优秀指导教师按官方规则表彰。",
+      "registration_url": "https://reg.aicomp.cn/",
+      "source_url": "https://www.aicomp.cn/notice/notice-3/3635.html",
+      "priority": 94,
+      "tracks": [
+        "商业分析",
+        "数字经济",
+        "数据分析",
+        "人工智能应用",
+        "智能决策"
+      ],
+      "required_skills": [
+        "data_analysis",
+        "machine_learning",
+        "business_analysis"
+      ],
+      "team_size_min": 2,
+      "team_size_max": 3,
+      "eligibility": [
+        "全球高校和科研机构拥有正式学籍的在读学生；本科、研究生和高职分别评奖；每队2至3名学生；不得跨校组队；每队最多2名指导教师"
+      ]
+    },
+    {
+      "external_key": "aic_indoor_agriculture_transplant_2026",
+      "name": "第八届全球校园人工智能算法精英大赛——室内农业·智公移苗任务赛",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-09-13T20:00:00+08:00",
+      "submission_deadline": null,
+      "stages": [
+        {
+          "name": "报名",
+          "start_at": "2026-07-20T00:00:00+08:00",
+          "end_at": "2026-09-13T20:00:00+08:00",
+          "mode": "online",
+          "location": "大赛官网报名系统"
+        },
+        {
+          "name": "全国选拔赛",
+          "start_at": "2026-09-19T00:00:00+08:00",
+          "end_at": "2026-09-20T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上腾讯会议"
+        },
+        {
+          "name": "全国总决赛",
+          "start_at": "2026-10-17T00:00:00+08:00",
+          "end_at": "2026-10-18T23:59:59+08:00",
+          "mode": "offline",
+          "location": "山东寿光蔬菜高科技示范园、潍坊科技学院体育馆"
+        }
+      ],
+      "mode": "hybrid",
+      "location": "线上选拔；山东寿光蔬菜高科技示范园、潍坊科技学院体育馆",
+      "rewards": "全国选拔赛和全国总决赛分别设一、二、三等奖，按有效作品数量比例评定并颁发相应获奖证书。",
+      "registration_url": "https://reg.aicomp.cn/",
+      "source_url": "https://www.aicomp.cn/notice/notice-3/4784.html",
+      "priority": 95,
+      "tracks": [
+        "人工智能",
+        "算法",
+        "机器人",
+        "电子",
+        "智能硬件",
+        "室内农业"
+      ],
+      "required_skills": [
+        "machine_learning",
+        "backend",
+        "product",
+        "design"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 3,
+      "eligibility": [
+        "全球高校和科研院所正式学籍在读学生，包括研究生、本科生、专科生；可单人或组队；每队最多3名学生；同一赛题每人只能加入一队；每队最多2名指导教师"
+      ]
+    },
+    {
+      "external_key": "aic_indoor_agriculture_harvest_2026",
+      "name": "第八届全球校园人工智能算法精英大赛——室内农业·满载而归对抗赛",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-09-13T20:00:00+08:00",
+      "submission_deadline": null,
+      "stages": [
+        {
+          "name": "报名",
+          "start_at": "2026-07-20T00:00:00+08:00",
+          "end_at": "2026-09-13T20:00:00+08:00",
+          "mode": "online",
+          "location": "大赛官网报名系统"
+        },
+        {
+          "name": "全国选拔赛",
+          "start_at": "2026-09-19T00:00:00+08:00",
+          "end_at": "2026-09-20T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上腾讯会议"
+        },
+        {
+          "name": "全国总决赛",
+          "start_at": "2026-10-17T00:00:00+08:00",
+          "end_at": "2026-10-18T23:59:59+08:00",
+          "mode": "offline",
+          "location": "山东寿光蔬菜高科技示范园、潍坊科技学院体育馆"
+        }
+      ],
+      "mode": "hybrid",
+      "location": "线上选拔；山东寿光蔬菜高科技示范园、潍坊科技学院体育馆",
+      "rewards": "全国选拔赛和全国总决赛分别设一、二、三等奖，按有效作品数量比例评定并颁发相应获奖证书。",
+      "registration_url": "https://reg.aicomp.cn/",
+      "source_url": "https://www.aicomp.cn/notice/notice-3/4784.html",
+      "priority": 95,
+      "tracks": [
+        "人工智能",
+        "算法",
+        "机器人",
+        "机械电子",
+        "智能硬件",
+        "室内农业"
+      ],
+      "required_skills": [
+        "machine_learning",
+        "backend",
+        "product",
+        "design"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 3,
+      "eligibility": [
+        "全球高校和科研院所正式学籍在读学生，包括研究生、本科生、专科生；可单人或组队；每队最多3名学生；同一赛题每人只能加入一队；每队最多2名指导教师"
+      ]
+    },
+    {
+      "external_key": "cubec_circulation_simulation_2026",
+      "name": "2026年第十四届全国高校商业精英挑战赛创新创业竞赛——流通业经营模拟赛道",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-09-11T23:59:00+08:00",
+      "submission_deadline": "2026-09-17T23:59:00+08:00",
+      "stages": [
+        {
+          "name": "院校报名登记",
+          "start_at": "2026-01-16T00:00:00+08:00",
+          "end_at": "2026-09-11T23:59:00+08:00",
+          "mode": "online",
+          "location": "赛事一体化平台",
+          "note": "由参赛院校负责人完成登记"
+        },
+        {
+          "name": "知识赛及校赛",
+          "start_at": "2026-09-11T00:00:00+08:00",
+          "end_at": "2026-09-15T23:59:59+08:00",
+          "mode": "online",
+          "location": "各参赛院校"
+        },
+        {
+          "name": "全国预选赛作品提交",
+          "start_at": "2026-09-15T00:00:00+08:00",
+          "end_at": "2026-09-17T23:59:00+08:00",
+          "mode": "online",
+          "location": "线上平台"
+        },
+        {
+          "name": "全国总决赛",
+          "start_at": "2026-11-07T00:00:00+08:00",
+          "end_at": "2026-11-08T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上竞赛"
+        },
+        {
+          "name": "全国精英赛",
+          "start_at": "2026-11-27T00:00:00+08:00",
+          "end_at": "2026-11-29T23:59:59+08:00",
+          "mode": "offline",
+          "location": "地点以组委会通知为准",
+          "note": "官方通知标注为暂定"
+        }
+      ],
+      "mode": "hybrid",
+      "location": "线上校赛、预选赛和全国总决赛；精英赛地点以组委会通知为准",
+      "rewards": "省级和全国一、二、三等奖证书；本赛道另设全国冠军、亚军、季军各1名，税前奖金5000元、3000元、2000元并颁发奖杯；晋级精英赛可获相关国际赛事资格。",
+      "registration_url": "https://ssyth.cubec.org.cn/single?id=2",
+      "source_url": "https://www.ccpitcsc.org/eduxq/4857",
+      "priority": 93,
+      "tracks": [
+        "流通业经营模拟",
+        "商业案例分析",
+        "供应链",
+        "经营决策"
+      ],
+      "required_skills": [
+        "business_analysis",
+        "operations"
+      ],
+      "team_size_min": 3,
+      "team_size_max": 5,
+      "eligibility": [
+        "中国境内高等院校全日制在校大学生，含研究生、本科生、高职高专学生和在华留学生；不限专业；学生不得跨校组队；每队3至5名学生；需由院校负责人完成报名登记"
+      ]
+    },
+    {
+      "external_key": "cubec_marketing_decision_2026",
+      "name": "2026年第十四届全国高校商业精英挑战赛创新创业竞赛——营销模拟决策赛道",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-09-16T23:59:00+08:00",
+      "submission_deadline": "2026-09-21T23:59:00+08:00",
+      "stages": [
+        {
+          "name": "院校报名注册",
+          "start_at": "2026-01-01T00:00:00+08:00",
+          "end_at": "2026-09-16T23:59:00+08:00",
+          "mode": "online",
+          "location": "赛事一体化平台",
+          "note": "由参赛院校负责人完成登记"
+        },
+        {
+          "name": "知识赛及团队信息提交",
+          "start_at": "2026-09-16T00:00:00+08:00",
+          "end_at": "2026-09-21T23:59:00+08:00",
+          "mode": "online",
+          "location": "线上平台"
+        },
+        {
+          "name": "全国预选赛",
+          "start_at": "2026-10-11T00:00:00+08:00",
+          "end_at": "2026-10-11T23:59:59+08:00",
+          "mode": "online",
+          "location": "远程竞赛"
+        },
+        {
+          "name": "全国总决赛",
+          "start_at": "2026-11-08T00:00:00+08:00",
+          "end_at": "2026-11-08T23:59:59+08:00",
+          "mode": "online",
+          "location": "远程竞赛"
+        },
+        {
+          "name": "全国精英赛",
+          "start_at": "2026-11-27T00:00:00+08:00",
+          "end_at": "2026-11-29T23:59:59+08:00",
+          "mode": "offline",
+          "location": "地点以组委会通知为准",
+          "note": "官方通知标注为暂定"
+        }
+      ],
+      "mode": "hybrid",
+      "location": "线上报名和比赛；精英赛地点以组委会通知为准",
+      "rewards": "省级和全国一、二、三等奖证书；本赛道另设全国冠军、亚军、季军各1名，税前奖金5000元、3000元、2000元并颁发奖杯。",
+      "registration_url": "https://ssyth.cubec.org.cn/single?id=2",
+      "source_url": "https://www.ccpitcsc.org/eduxq/4857",
+      "priority": 92,
+      "tracks": [
+        "营销模拟",
+        "市场分析",
+        "商业分析",
+        "决策"
+      ],
+      "required_skills": [
+        "business_analysis",
+        "data_analysis",
+        "operations"
+      ],
+      "team_size_min": 3,
+      "team_size_max": 5,
+      "eligibility": [
+        "中国境内高等院校全日制在校大学生，含研究生、本科生、高职高专学生和在华留学生；不限专业；学生不得跨校组队；每队3至5名学生；需由院校负责人完成报名注册"
+      ]
+    },
+    {
+      "external_key": "cubec_entrepreneurship_research_2026",
+      "name": "2026年第十四届全国高校商业精英挑战赛创新创业竞赛——创业研究专题赛道",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-09-16T23:59:00+08:00",
+      "submission_deadline": "2026-10-09T23:59:00+08:00",
+      "stages": [
+        {
+          "name": "院校报名",
+          "start_at": "2026-01-16T00:00:00+08:00",
+          "end_at": "2026-09-16T23:59:00+08:00",
+          "mode": "online",
+          "location": "赛事一体化平台"
+        },
+        {
+          "name": "知识赛及校赛",
+          "start_at": "2026-09-16T00:00:00+08:00",
+          "end_at": "2026-09-23T23:59:00+08:00",
+          "mode": "online",
+          "location": "各参赛院校"
+        },
+        {
+          "name": "省赛/全国预选赛材料提交",
+          "start_at": "2026-09-23T00:00:00+08:00",
+          "end_at": "2026-10-09T23:59:00+08:00",
+          "mode": "online",
+          "location": "线上平台"
+        },
+        {
+          "name": "全国总决赛资料提交",
+          "start_at": "2026-11-01T00:00:00+08:00",
+          "end_at": "2026-11-16T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上平台",
+          "note": "官方通知分别明确11月10日和11月16日前提交不同材料"
+        },
+        {
+          "name": "全国总决赛结果公布",
+          "start_at": "2026-12-07T00:00:00+08:00",
+          "end_at": "2026-12-07T23:59:59+08:00",
+          "mode": "online",
+          "location": "官网公布"
+        }
+      ],
+      "mode": "online",
+      "location": "线上评审与材料提交",
+      "rewards": "省级和全国一、二、三等奖证书；本赛道按官方通知不设置全国冠军、亚军、季军现金奖。",
+      "registration_url": "https://ssyth.cubec.org.cn/single?id=2",
+      "source_url": "https://www.ccpitcsc.org/eduxq/4857",
+      "priority": 91,
+      "tracks": [
+        "创业研究",
+        "社会创新",
+        "调研",
+        "商业分析"
+      ],
+      "required_skills": [
+        "business_analysis",
+        "data_analysis",
+        "operations"
+      ],
+      "team_size_min": 3,
+      "team_size_max": 5,
+      "eligibility": [
+        "中国境内高等院校全日制在校大学生，含本科、研究生、高职高专和在华留学生；每队3至5名学生；不得跨校或交叉组队；需提交创业研究专题论文"
+      ]
+    },
+    {
+      "external_key": "cubec_data_agent_2026",
+      "name": "2026年第十四届全国高校商业精英挑战赛创新创业竞赛——数据智能体应用赛道",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-09-15T23:59:00+08:00",
+      "submission_deadline": "2026-09-23T23:59:00+08:00",
+      "stages": [
+        {
+          "name": "院校报名登记",
+          "start_at": "2026-01-16T00:00:00+08:00",
+          "end_at": "2026-09-15T23:59:00+08:00",
+          "mode": "online",
+          "location": "赛事一体化平台"
+        },
+        {
+          "name": "知识赛及校赛",
+          "start_at": "2026-09-15T00:00:00+08:00",
+          "end_at": "2026-09-18T23:59:00+08:00",
+          "mode": "online",
+          "location": "各参赛院校"
+        },
+        {
+          "name": "全国预选赛作品提交",
+          "start_at": "2026-09-18T00:00:00+08:00",
+          "end_at": "2026-09-23T23:59:00+08:00",
+          "mode": "online",
+          "location": "线上平台"
+        },
+        {
+          "name": "全国预选赛",
+          "start_at": "2026-10-11T00:00:00+08:00",
+          "end_at": "2026-10-11T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上竞赛",
+          "note": "官方通知标注为暂定"
+        },
+        {
+          "name": "全国总决赛",
+          "start_at": "2026-10-25T00:00:00+08:00",
+          "end_at": "2026-10-25T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上竞赛",
+          "note": "官方通知标注为暂定"
+        },
+        {
+          "name": "全国精英赛",
+          "start_at": "2026-11-27T00:00:00+08:00",
+          "end_at": "2026-11-29T23:59:59+08:00",
+          "mode": "offline",
+          "location": "地点以组委会通知为准",
+          "note": "官方通知标注为暂定"
+        }
+      ],
+      "mode": "hybrid",
+      "location": "线上报名、校赛、预选赛和总决赛；精英赛地点以组委会通知为准",
+      "rewards": "省级和全国一、二、三等奖证书；本赛道另设全国冠军、亚军、季军各1名，税前奖金5000元、3000元、2000元并颁发奖杯；晋级精英赛可获相关国际赛事资格。",
+      "registration_url": "https://ssyth.cubec.org.cn/single?id=2",
+      "source_url": "https://www.ccpitcsc.org/eduxq/4857",
+      "priority": 94,
+      "tracks": [
+        "数据智能体",
+        "数据分析",
+        "人工智能应用",
+        "商业分析"
+      ],
+      "required_skills": [
+        "data_analysis",
+        "machine_learning",
+        "business_analysis"
+      ],
+      "team_size_min": 3,
+      "team_size_max": 5,
+      "eligibility": [
+        "中国境内高等院校全日制在校大学生，含本科、研究生和高职高专学生；不限专业；学生不得跨校组队；每队3至5名学生；需由院校负责人完成报名登记"
+      ]
+    },
+    {
+      "external_key": "jingkaibei_smart_innovation_2026",
+      "name": "2026年“经开杯”全国大学生创新创业大赛——智能创新赛道",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-09-30T23:59:00+08:00",
+      "submission_deadline": "2026-09-30T23:59:00+08:00",
+      "stages": [
+        {
+          "name": "分赛区赛第二批材料提交",
+          "start_at": "2026-08-11T00:00:00+08:00",
+          "end_at": "2026-09-30T23:59:00+08:00",
+          "mode": "online",
+          "location": "线上参赛系统"
+        },
+        {
+          "name": "第二批分赛区赛结果公示",
+          "start_at": "2026-10-15T00:00:00+08:00",
+          "end_at": "2026-10-15T23:59:59+08:00",
+          "mode": "online",
+          "location": "官网公示"
+        },
+        {
+          "name": "全国总决赛材料提交",
+          "start_at": "2026-10-25T00:00:00+08:00",
+          "end_at": "2026-11-25T23:59:00+08:00",
+          "mode": "online",
+          "location": "线上参赛系统"
+        },
+        {
+          "name": "全国总决赛结果公示",
+          "start_at": "2026-12-10T00:00:00+08:00",
+          "end_at": "2026-12-10T23:59:59+08:00",
+          "mode": "online",
+          "location": "官网公示"
+        }
+      ],
+      "mode": "online",
+      "location": "线上评审和材料提交",
+      "rewards": "分赛区一等奖、二等奖、三等奖、优秀奖；全国总决赛金奖、银奖、铜奖；每个赛道另设最佳创新创业奖和最具商业价值奖，各奖励团队奖金1000元并提供项目对接权益。",
+      "registration_url": "https://www.edu.newunivs.com/event/63",
+      "source_url": "https://www.cxcyds.org.cn/401.html",
+      "priority": 93,
+      "tracks": [
+        "创新创业",
+        "人工智能",
+        "智能硬件",
+        "社会服务",
+        "社会治理"
+      ],
+      "required_skills": [
+        "machine_learning",
+        "product",
+        "business_analysis",
+        "operations"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 8,
+      "eligibility": [
+        "全国高职高专、本科及研究生；专业不限；可个人或组队；每队不超过8人；可跨学科、跨年级和跨专业组队；每队最多2名指导教师；项目需提交项目计划书"
+      ]
+    },
+    {
+      "external_key": "jingkaibei_youth_entrepreneurship_2026",
+      "name": "2026年“经开杯”全国大学生创新创业大赛——青年创业赛道",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-09-30T23:59:00+08:00",
+      "submission_deadline": "2026-09-30T23:59:00+08:00",
+      "stages": [
+        {
+          "name": "分赛区赛第二批材料提交",
+          "start_at": "2026-08-11T00:00:00+08:00",
+          "end_at": "2026-09-30T23:59:00+08:00",
+          "mode": "online",
+          "location": "线上参赛系统"
+        },
+        {
+          "name": "第二批分赛区赛结果公示",
+          "start_at": "2026-10-15T00:00:00+08:00",
+          "end_at": "2026-10-15T23:59:59+08:00",
+          "mode": "online",
+          "location": "官网公示"
+        },
+        {
+          "name": "全国总决赛材料提交",
+          "start_at": "2026-10-25T00:00:00+08:00",
+          "end_at": "2026-11-25T23:59:00+08:00",
+          "mode": "online",
+          "location": "线上参赛系统"
+        },
+        {
+          "name": "全国总决赛结果公示",
+          "start_at": "2026-12-10T00:00:00+08:00",
+          "end_at": "2026-12-10T23:59:59+08:00",
+          "mode": "online",
+          "location": "官网公示"
+        }
+      ],
+      "mode": "online",
+      "location": "线上评审和材料提交",
+      "rewards": "分赛区一等奖、二等奖、三等奖、优秀奖；全国总决赛金奖、银奖、铜奖；每个赛道另设最佳创新创业奖和最具商业价值奖，各奖励团队奖金1000元并提供项目对接权益。",
+      "registration_url": "https://www.edu.newunivs.com/event/63",
+      "source_url": "https://www.cxcyds.org.cn/401.html",
+      "priority": 93,
+      "tracks": [
+        "青年创业",
+        "商业计划",
+        "社会创新",
+        "绿色科技",
+        "乡村振兴"
+      ],
+      "required_skills": [
+        "product",
+        "business_analysis",
+        "operations"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 8,
+      "eligibility": [
+        "全国高职高专、本科及研究生；专业不限；可个人或组队；每队不超过8人；可跨学科、跨年级和跨专业组队；每队最多2名指导教师；项目需提交项目计划书"
+      ]
+    },
+    {
+      "external_key": "jingkaibei_innovation_entrepreneurship_ability_2026",
+      "name": "2026年“经开杯”全国大学生双创能力挑战赛",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-12-31T23:59:00+08:00",
+      "submission_deadline": null,
+      "stages": [
+        {
+          "name": "测试赛",
+          "start_at": "2026-01-01T00:00:00+08:00",
+          "end_at": "2026-12-31T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上平台"
+        },
+        {
+          "name": "正式赛",
+          "start_at": "2026-01-01T00:00:00+08:00",
+          "end_at": "2026-12-31T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上平台"
+        }
+      ],
+      "mode": "online",
+      "location": "线上闭卷答题",
+      "rewards": "正式赛按成绩评定金奖、银奖、铜奖、优胜奖并提供电子或纸质证书；测试赛仅提供完赛证明。",
+      "registration_url": "https://www.chuangsaiyun.com/#/diy?id=2",
+      "source_url": "https://www.cxcyds.org.cn/30.html",
+      "priority": 82,
+      "tracks": [
+        "创新创业知识",
+        "创业政策",
+        "创新思维"
+      ],
+      "required_skills": [
+        "operations",
+        "business_analysis"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 1,
+      "eligibility": [
+        "全国高职高专、本科及研究生；专业不限；个人参赛；最多1名指导教师；正式赛报名费每项50元"
+      ]
+    },
+    {
+      "external_key": "jingkaibei_english_vocabulary_2026",
+      "name": "2026年“经开杯”全国大学生双创英语词汇大赛",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-12-31T23:59:00+08:00",
+      "submission_deadline": null,
+      "stages": [
+        {
+          "name": "第二季线上竞赛",
+          "start_at": "2026-07-01T00:00:00+08:00",
+          "end_at": "2026-12-31T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上闭卷答题平台"
+        }
+      ],
+      "mode": "online",
+      "location": "线上闭卷答题",
+      "rewards": "按成绩评定金奖（90—100分）、银奖（80—89分）、铜奖（70—79分）、优胜奖（60—69分），合格者可获得电子证书。",
+      "registration_url": "https://www.chuangsaiyun.com/#/diy?id=64",
+      "source_url": "https://www.cxcyds.org.cn/36.html",
+      "priority": 81,
+      "tracks": [
+        "创新创业英语",
+        "专业词汇",
+        "外语传播"
+      ],
+      "required_skills": [
+        "operations"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 1,
+      "eligibility": [
+        "全国高职高专、本科及研究生；专业不限；个人参赛；线上闭卷答题；最多1名指导教师；第二季时间为2026年7月1日至12月31日"
+      ]
+    },
+    {
+      "external_key": "shuzhilian_application_2026",
+      "name": "2026年全国大学生数智链应用大赛",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-10-09T23:59:00+08:00",
+      "submission_deadline": "2026-10-09T23:59:00+08:00",
+      "stages": [
+        {
+          "name": "线上报名及作品提交",
+          "start_at": "2026-05-01T00:00:00+08:00",
+          "end_at": "2026-10-09T23:59:00+08:00",
+          "mode": "online",
+          "location": "大赛官网"
+        },
+        {
+          "name": "初赛评审",
+          "start_at": "2026-10-16T00:00:00+08:00",
+          "end_at": "2026-10-30T23:59:59+08:00",
+          "mode": "online",
+          "location": "各赛区线上评审"
+        },
+        {
+          "name": "主体赛道作品决赛评比",
+          "start_at": "2026-11-01T00:00:00+08:00",
+          "end_at": "2026-11-30T23:59:59+08:00",
+          "date_precision": "month",
+          "mode": "hybrid",
+          "location": "具体日期和地点以大赛官网通知为准",
+          "note": "官方通知明确为2026年11月左右"
+        }
+      ],
+      "mode": "hybrid",
+      "location": "线上报名、作品提交和初评；主体赛道决赛安排以官网通知为准",
+      "rewards": "常规赛道按类别评定各级奖项并颁发获奖证书；AI＋动漫游戏专项赛设一、二、三等奖及优秀奖，一等奖可直通厦门国际动漫节相关评选并获得产业对接权益；具体比例以官网公示为准。",
+      "registration_url": "https://www.dabc.org.cn/",
+      "source_url": "https://ccad.usst.edu.cn/2026/0617/c6911a367167/page.htm",
+      "priority": 90,
+      "tracks": [
+        "数字媒体",
+        "人工智能",
+        "大数据",
+        "区块链",
+        "智能体"
+      ],
+      "required_skills": [
+        "machine_learning",
+        "data_analysis",
+        "backend",
+        "visual_design"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 5,
+      "eligibility": [
+        "在校本科生及专升本学生等，专业不限；每队1至5名学生；每队1至2名指导教师；允许跨校组队；作品在线提交"
+      ]
+    },
+    {
+      "external_key": "waiyanshe_international_communication_sysu_2026",
+      "name": "2026“外研社·国才杯”“理解当代中国”全国大学生外语能力大赛——中山大学国际传播综合能力赛项",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-09-20T23:59:00+08:00",
+      "submission_deadline": "2026-09-20T23:59:00+08:00",
+      "stages": [
+        {
+          "name": "省赛及全国决赛",
+          "start_at": "2026-09-01T00:00:00+08:00",
+          "end_at": "2026-12-31T23:59:59+08:00",
+          "date_precision": "month",
+          "mode": "hybrid",
+          "location": "按省赛及国赛组委会安排",
+          "note": "全国通知明确省赛为9月至11月、国赛为10月至12月"
+        },
+        {
+          "name": "演讲视频提交",
+          "start_at": "2026-09-20T00:00:00+08:00",
+          "end_at": "2026-09-20T23:59:00+08:00",
+          "mode": "online",
+          "location": "大赛官网"
+        },
+        {
+          "name": "中山大学线上初赛",
+          "start_at": "2026-09-20T09:30:00+08:00",
+          "end_at": "2026-09-20T11:30:00+08:00",
+          "mode": "online",
+          "location": "线上考试"
+        },
+        {
+          "name": "中山大学校内决赛",
+          "start_at": "2026-10-11T00:00:00+08:00",
+          "end_at": "2026-10-11T23:59:59+08:00",
+          "mode": "offline",
+          "location": "中山大学"
+        }
+      ],
+      "mode": "hybrid",
+      "location": "中山大学；省赛和国赛地点按组委会安排",
+      "rewards": "校赛、省赛设置金银铜奖；国赛设置冠、亚、季军和金银铜奖，英语组约设置2850名奖项，并设指导教师奖和优秀组织奖。",
+      "registration_url": "https://ucc.fltrp.com/",
+      "source_url": "https://fls.sysu.edu.cn/article/4445",
+      "priority": 89,
+      "tracks": [
+        "英语演讲",
+        "国际传播",
+        "口语表达",
+        "写作与传播"
+      ],
+      "required_skills": [
+        "operations",
+        "visual_design",
+        "design"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 1,
+      "eligibility": [
+        "全国普通高等学校全日制在校本科生和硕士研究生，包括来华留学生；往届国赛冠、亚、季军不得继续参加同语种同赛项；按中山大学校内通知报名"
+      ]
+    },
+    {
+      "external_key": "waiyanshe_short_video_sysu_2026",
+      "name": "2026“外研社·国才杯”“理解当代中国”全国大学生外语能力大赛——中山大学英语短视频赛项",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-09-13T23:59:00+08:00",
+      "submission_deadline": "2026-09-13T23:59:00+08:00",
+      "stages": [
+        {
+          "name": "中山大学校内作品提交",
+          "start_at": "2026-07-13T00:00:00+08:00",
+          "end_at": "2026-09-13T23:59:00+08:00",
+          "mode": "online",
+          "location": "大赛官网"
+        },
+        {
+          "name": "省赛线上评审",
+          "start_at": "2026-09-01T00:00:00+08:00",
+          "end_at": "2026-11-30T23:59:59+08:00",
+          "date_precision": "month",
+          "mode": "online",
+          "location": "线上评审",
+          "note": "全国通知明确短视频省赛由大赛组委会线上承办"
+        },
+        {
+          "name": "全国决赛",
+          "start_at": "2026-10-01T00:00:00+08:00",
+          "end_at": "2026-12-31T23:59:59+08:00",
+          "date_precision": "month",
+          "mode": "hybrid",
+          "location": "按组委会安排"
+        }
+      ],
+      "mode": "online",
+      "location": "线上作品提交与评审",
+      "rewards": "校赛、 省赛设置金银铜奖；国赛设置冠、亚、季军和金银铜奖，英语组约设置2850名奖项，并设指导教师奖和优秀组织奖。",
+      "registration_url": "https://ucc.fltrp.com/",
+      "source_url": "https://fls.sysu.edu.cn/article/4445",
+      "priority": 88,
+      "tracks": [
+        "英语短视频",
+        "数字媒体",
+        "国际传播",
+        "视觉表达"
+      ],
+      "required_skills": [
+        "visual_design",
+        "design",
+        "operations"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 5,
+      "eligibility": [
+        "全国普通高等学校全日制在校本科生和硕士研究生，包括来华留学生；个人或团队；每队最多5名学生；作品主题为“数说中国”；按中山大学校内通知提交"
+      ]
+    },
+    {
+      "external_key": "waiyanshe_four_new_sysu_2026",
+      "name": "2026“外研社·国才杯”“理解当代中国”全国大学生外语能力大赛——中山大学“四新”专项",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-09-13T23:59:00+08:00",
+      "submission_deadline": "2026-09-13T23:59:00+08:00",
+      "stages": [
+        {
+          "name": "中山大学校内作品提交",
+          "start_at": "2026-06-02T00:00:00+08:00",
+          "end_at": "2026-09-13T23:59:00+08:00",
+          "mode": "online",
+          "location": "大赛官网"
+        },
+        {
+          "name": "省赛线上评审",
+          "start_at": "2026-09-16T00:00:00+08:00",
+          "end_at": "2026-09-23T23:59:59+08:00",
+          "mode": "online",
+          "location": "线上评审"
+        },
+        {
+          "name": "全国决赛",
+          "start_at": "2026-10-01T00:00:00+08:00",
+          "end_at": "2026-12-31T23:59:59+08:00",
+          "date_precision": "month",
+          "mode": "hybrid",
+          "location": "按组委会安排"
+        }
+      ],
+      "mode": "online",
+      "location": "线上作品提交与评审",
+      "rewards": "校赛、 省赛设置金银铜奖；专项国赛设置金奖60名、银奖300名、铜奖若干，并设指导教师奖和优秀组织奖。",
+      "registration_url": "https://ucc.fltrp.com/",
+      "source_url": "https://fls.sysu.edu.cn/article/4445",
+      "priority": 87,
+      "tracks": [
+        "外语写作",
+        "学术表达",
+        "国际传播",
+        "调研分析"
+      ],
+      "required_skills": [
+        "data_analysis",
+        "business_analysis",
+        "visual_design",
+        "operations"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 5,
+      "eligibility": [
+        "全国普通高等学校全日制在校本科生和硕士研究生；个人或团队；每队最多5名学生；同校组队；按中山大学校内通知提交2000至3000字报告"
+      ]
+    },
+    {
+      "external_key": "waiyanshe_multilingual_sysu_2026",
+      "name": "2026“外研社·国才杯”“理解当代中国”全国大学生外语能力大赛——中山大学多语种组",
+      "verification_status": "可行动",
+      "registration_deadline": "2026-09-13T23:59:00+08:00",
+      "submission_deadline": null,
+      "stages": [
+        {
+          "name": "中山大学校内报名",
+          "start_at": "2026-07-13T00:00:00+08:00",
+          "end_at": "2026-09-13T23:59:00+08:00",
+          "mode": "online",
+          "location": "大赛官网"
+        },
+        {
+          "name": "省赛线上承办",
+          "start_at": "2026-09-01T00:00:00+08:00",
+          "end_at": "2026-11-30T23:59:59+08:00",
+          "date_precision": "month",
+          "mode": "online",
+          "location": "线上评审",
+          "note": "全国通知明确多语种组省赛由大赛组委会线上承办"
+        },
+        {
+          "name": "全国决赛",
+          "start_at": "2026-10-01T00:00:00+08:00",
+          "end_at": "2026-12-31T23:59:59+08:00",
+          "date_precision": "month",
+          "mode": "hybrid",
+          "location": "按组委会安排"
+        }
+      ],
+      "mode": "online",
+      "location": "线上报名与评审",
+      "rewards": "校赛、省赛设置金银铜奖；多语种组国赛约设置650名奖项，并设指导教师奖和优秀组织奖。",
+      "registration_url": "https://ucc.fltrp.com/",
+      "source_url": "https://fls.sysu.edu.cn/article/4445",
+      "priority": 85,
+      "tracks": [
+        "多语种",
+        "外语表达",
+        "国际传播"
+      ],
+      "required_skills": [
+        "operations",
+        "visual_design"
+      ],
+      "team_size_min": 1,
+      "team_size_max": 1,
+      "eligibility": [
+        "全国普通高等学校全日制在校本科生和硕士研究生；覆盖俄语、德语、法语、西班牙语、阿拉伯语、日语、意大利语、葡萄牙语、韩国语等语种；个人参赛；按中山大学校内通知报名"
+      ]
+    }
+  ]
+}
