@@ -1,0 +1,38 @@
+
+>>> /Users/baihe/.local/bin/sysu-anything usc reserve-config --json
+{
+  "id": 30,
+  "type": 37,
+  "enable_notice": 0,
+  "config": {
+    "host": "http://processrc_nginx",
+    "appid": "9",
+    "appsecret": "0bnqh3jtqd1vx42q48c3qf4slx6j0219"
+  },
+  "created": "2024-08-26 16:14:51",
+  "creator": 0,
+  "enable": 1,
+  "modified": "2025-01-11 20:36:22",
+  "name": "预约平台",
+  "default_receive": 0,
+  "config_field": [
+    {
+      "key": "host",
+      "type": "Input",
+      "key_name": "域名"
+    },
+    {
+      "key": "appid",
+      "type": "Input",
+      "key_name": "appid"
+    },
+    {
+      "key": "appsecret",
+      "type": "Input",
+      "key_name": "appsecret"
+    }
+  ],
+  "classname": "Reserve"
+}
+
+[exit=]

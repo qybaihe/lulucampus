@@ -1,0 +1,3968 @@
+{
+  "version": "v1",
+  "verified_at": "2026-08-11",
+  "venues": [
+    {
+      "id": "south_public_001",
+      "campus_id": "guangzhou_south",
+      "place_id": "huishitang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "怀士堂（492栋）小礼堂",
+      "aliases": [],
+      "capacity": 250,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_002",
+      "campus_id": "guangzhou_south",
+      "place_id": "liangqiujutang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "梁銶琚堂（487栋）大礼堂-会议",
+      "aliases": [],
+      "capacity": 1433,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_003",
+      "campus_id": "guangzhou_south",
+      "place_id": "liangqiujutang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "梁銶琚堂（487栋）大礼堂-演出",
+      "aliases": [],
+      "capacity": 1433,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_004",
+      "campus_id": "guangzhou_south",
+      "place_id": "liangqiujutang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "梁銶琚堂（487栋）第一会议室",
+      "aliases": [],
+      "capacity": 53,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_005",
+      "campus_id": "guangzhou_south",
+      "place_id": "liangqiujutang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "梁銶琚堂（487栋）第二会议室",
+      "aliases": [],
+      "capacity": 38,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_006",
+      "campus_id": "guangzhou_south",
+      "place_id": "fulantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "芙兰堂（262栋）一楼讲学厅",
+      "aliases": [],
+      "capacity": 365,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_007",
+      "campus_id": "guangzhou_south",
+      "place_id": "fulantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "芙兰堂（262栋）213讲学厅",
+      "aliases": [],
+      "capacity": 148,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_008",
+      "campus_id": "guangzhou_south",
+      "place_id": "xianweijiantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "冼为坚堂（260栋）一楼117多媒体室",
+      "aliases": [],
+      "capacity": 60,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_009",
+      "campus_id": "guangzhou_south",
+      "place_id": "xianweijiantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "冼为坚堂（260栋）一楼讲学厅",
+      "aliases": [],
+      "capacity": 210,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_010",
+      "campus_id": "guangzhou_south",
+      "place_id": "xianweijiantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "冼为坚堂（260栋）一楼111多媒体室",
+      "aliases": [],
+      "capacity": 50,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_011",
+      "campus_id": "guangzhou_south",
+      "place_id": "xianweijiantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "冼为坚堂（260栋）一楼112多媒体室",
+      "aliases": [],
+      "capacity": 30,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_012",
+      "campus_id": "guangzhou_south",
+      "place_id": "yebaodingtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "叶葆定堂（394栋）三楼讲学厅（含大堂、贵宾室）",
+      "aliases": [],
+      "capacity": 400,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_013",
+      "campus_id": "guangzhou_south",
+      "place_id": "lingnantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "岭南堂（577栋）101汪道涵会议室",
+      "aliases": [],
+      "capacity": 40,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_014",
+      "campus_id": "guangzhou_south",
+      "place_id": "lingnantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "岭南堂（577栋）102黄华会议室",
+      "aliases": [],
+      "capacity": 12,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_015",
+      "campus_id": "guangzhou_south",
+      "place_id": "lingnantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "岭南堂（577栋）103林植宣会议室",
+      "aliases": [],
+      "capacity": "内14 外6",
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_016",
+      "campus_id": "guangzhou_south",
+      "place_id": "lingnantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "岭南堂（577栋）104贵宾室",
+      "aliases": [],
+      "capacity": "内12 外6",
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_017",
+      "campus_id": "guangzhou_south",
+      "place_id": "lingnantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "岭南堂（577栋）106值班会议室",
+      "aliases": [],
+      "capacity": 10,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_018",
+      "campus_id": "guangzhou_south",
+      "place_id": "lingnantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "岭南堂（577栋）201咖啡厅",
+      "aliases": [],
+      "capacity": "内24 外19",
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_019",
+      "campus_id": "guangzhou_south",
+      "place_id": "lingnantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "岭南堂（577栋）202叶葆定会议室",
+      "aliases": [],
+      "capacity": "内12 外6",
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_020",
+      "campus_id": "guangzhou_south",
+      "place_id": "lingnantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "岭南堂（577栋）203黄炳礼会议室",
+      "aliases": [],
+      "capacity": "内14 外10",
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_021",
+      "campus_id": "guangzhou_south",
+      "place_id": "lingnantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "岭南堂（577栋）204伍沾德会议室",
+      "aliases": [],
+      "capacity": "内20 外10",
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_022",
+      "campus_id": "guangzhou_south",
+      "place_id": "lingnantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "岭南堂（577栋）205伍舜德会议室",
+      "aliases": [],
+      "capacity": "内12 外7",
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_023",
+      "campus_id": "guangzhou_south",
+      "place_id": "lingnantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "岭南堂（577栋）302陈荣捷讲学厅",
+      "aliases": [],
+      "capacity": 120,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_024",
+      "campus_id": "guangzhou_south",
+      "place_id": "lingnantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "岭南堂（577栋）三楼大堂",
+      "aliases": [],
+      "capacity": 50,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_025",
+      "campus_id": "guangzhou_south",
+      "place_id": "mba_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "MBA大楼（395栋）1001贵宾厅",
+      "aliases": [],
+      "capacity": 14,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_026",
+      "campus_id": "guangzhou_south",
+      "place_id": "mba_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "MBA大楼（395栋）1002多功能厅",
+      "aliases": [],
+      "capacity": 160,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_027",
+      "campus_id": "guangzhou_south",
+      "place_id": "mba_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "MBA大楼（395栋）501-504讨论室",
+      "aliases": [],
+      "capacity": 8,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_028",
+      "campus_id": "guangzhou_south",
+      "place_id": "mba_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "MBA大楼（395栋）505-509讨论室",
+      "aliases": [],
+      "capacity": 6,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_029",
+      "campus_id": "guangzhou_south",
+      "place_id": "mba_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "MBA大楼（395栋）402讲学厅",
+      "aliases": [],
+      "capacity": 168,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_030",
+      "campus_id": "guangzhou_south",
+      "place_id": "mba_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "MBA大楼201课室",
+      "aliases": [],
+      "capacity": 66,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_031",
+      "campus_id": "guangzhou_south",
+      "place_id": "mba_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "MBA大楼202课室",
+      "aliases": [],
+      "capacity": 70,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_032",
+      "campus_id": "guangzhou_south",
+      "place_id": "mba_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "MBA大楼701课室",
+      "aliases": [],
+      "capacity": 61,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_033",
+      "campus_id": "guangzhou_south",
+      "place_id": "mba_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "MBA大楼702课室",
+      "aliases": [],
+      "capacity": 141,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_034",
+      "campus_id": "guangzhou_south",
+      "place_id": "yebaodingtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "叶葆定堂101课室",
+      "aliases": [],
+      "capacity": 64,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_035",
+      "campus_id": "guangzhou_south",
+      "place_id": "yebaodingtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "叶葆定堂102课室",
+      "aliases": [],
+      "capacity": 64,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_036",
+      "campus_id": "guangzhou_south",
+      "place_id": "yebaodingtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "叶葆定堂103课室",
+      "aliases": [],
+      "capacity": 88,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_037",
+      "campus_id": "guangzhou_south",
+      "place_id": "yebaodingtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "叶葆定堂201课室",
+      "aliases": [],
+      "capacity": 64,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_038",
+      "campus_id": "guangzhou_south",
+      "place_id": "yebaodingtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "叶葆定堂202课室",
+      "aliases": [],
+      "capacity": 64,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_039",
+      "campus_id": "guangzhou_south",
+      "place_id": "yebaodingtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "叶葆定堂203课室",
+      "aliases": [],
+      "capacity": 50,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_040",
+      "campus_id": "guangzhou_south",
+      "place_id": "yebaodingtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "叶葆定堂204课室",
+      "aliases": [],
+      "capacity": 60,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_041",
+      "campus_id": "guangzhou_south",
+      "place_id": "math_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "数学楼（266栋）301会议室",
+      "aliases": [],
+      "capacity": 14,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_042",
+      "campus_id": "guangzhou_south",
+      "place_id": "math_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "数学楼（266栋）519会议室",
+      "aliases": [],
+      "capacity": 15,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_043",
+      "campus_id": "guangzhou_south",
+      "place_id": "math_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "数学楼（266栋）810会议室",
+      "aliases": [],
+      "capacity": 22,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_044",
+      "campus_id": "guangzhou_south",
+      "place_id": "math_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "数学楼（266栋）415、416讲学室",
+      "aliases": [],
+      "capacity": 48,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_045",
+      "campus_id": "guangzhou_south",
+      "place_id": "math_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "数学楼（266栋）209报告厅",
+      "aliases": [],
+      "capacity": 149,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_046",
+      "campus_id": "guangzhou_south",
+      "place_id": "zhenhuantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "震寰堂（629栋）C218课室",
+      "aliases": [],
+      "capacity": 47,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_047",
+      "campus_id": "guangzhou_south",
+      "place_id": "zhenhuantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "震寰堂（629栋）C219课室",
+      "aliases": [],
+      "capacity": 52,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_048",
+      "campus_id": "guangzhou_south",
+      "place_id": "zhenhuantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "震寰堂（629栋）C318课室",
+      "aliases": [],
+      "capacity": 63,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_049",
+      "campus_id": "guangzhou_south",
+      "place_id": "zhenhuantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "震寰堂（629栋）C319课室",
+      "aliases": [],
+      "capacity": 35,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_050",
+      "campus_id": "guangzhou_south",
+      "place_id": "zhenhuantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "震寰堂（629栋）C418课室",
+      "aliases": [],
+      "capacity": 49,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_051",
+      "campus_id": "guangzhou_south",
+      "place_id": "zhenhuantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "震寰堂（629栋）C419课室",
+      "aliases": [],
+      "capacity": 58,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_052",
+      "campus_id": "guangzhou_south",
+      "place_id": "xiongdellong_center",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "熊德龙学生活动中心（301栋）205音乐厅",
+      "aliases": [],
+      "capacity": 450,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_053",
+      "campus_id": "guangzhou_south",
+      "place_id": "xiongdellong_center",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "熊德龙学生活动中心（301栋）105报告厅",
+      "aliases": [],
+      "capacity": 150,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_054",
+      "campus_id": "guangzhou_south",
+      "place_id": "xiongdellong_center",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "activity_room",
+      "canonical_name": "熊德龙学生活动中心（301栋）313舞蹈室",
+      "aliases": [],
+      "capacity": 25,
+      "services": [
+        "活动空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_055",
+      "campus_id": "guangzhou_south",
+      "place_id": "xiongdellong_center",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "activity_room",
+      "canonical_name": "熊德龙学生活动中心（301栋）203画室",
+      "aliases": [],
+      "capacity": 60,
+      "services": [
+        "活动空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_056",
+      "campus_id": "guangzhou_south",
+      "place_id": "arts_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "activity_room",
+      "canonical_name": "艺术学院楼（104栋）301电钢琴室",
+      "aliases": [],
+      "capacity": 40,
+      "services": [
+        "活动空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_057",
+      "campus_id": "guangzhou_south",
+      "place_id": "arts_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "艺术学院楼（104栋）206报告厅",
+      "aliases": [],
+      "capacity": 154,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_058",
+      "campus_id": "guangzhou_south",
+      "place_id": "arts_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "activity_room",
+      "canonical_name": "艺术学院楼（104栋）303排练厅",
+      "aliases": [],
+      "capacity": 50,
+      "services": [
+        "活动空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_059",
+      "campus_id": "guangzhou_south",
+      "place_id": "arts_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "studio",
+      "canonical_name": "艺术学院楼（104栋）701、702录音棚",
+      "aliases": [],
+      "capacity": null,
+      "services": [
+        "录音室",
+        "监听控制室",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_060",
+      "campus_id": "guangzhou_south",
+      "place_id": "yongfangtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "永芳堂（503栋）433讲学厅",
+      "aliases": [],
+      "capacity": 70,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_061",
+      "campus_id": "guangzhou_south",
+      "place_id": "yongfangtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "永芳堂（503栋）233讲学厅",
+      "aliases": [],
+      "capacity": 190,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_062",
+      "campus_id": "guangzhou_south",
+      "place_id": "yongfangtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "永芳堂（503栋）201研讨室",
+      "aliases": [],
+      "capacity": 20,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_063",
+      "campus_id": "guangzhou_south",
+      "place_id": "yongfangtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "永芳堂（503栋）202研讨室",
+      "aliases": [],
+      "capacity": 20,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_064",
+      "campus_id": "guangzhou_south",
+      "place_id": "yongfangtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "永芳堂（503栋）231研讨室",
+      "aliases": [],
+      "capacity": 20,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_065",
+      "campus_id": "guangzhou_south",
+      "place_id": "yongfangtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "永芳堂（503栋）232研讨室",
+      "aliases": [],
+      "capacity": 20,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_066",
+      "campus_id": "guangzhou_south",
+      "place_id": "yongfangtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "永芳堂（503栋）333研讨室",
+      "aliases": [],
+      "capacity": 20,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_067",
+      "campus_id": "guangzhou_south",
+      "place_id": "yongfangtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "永芳堂（503栋）431研讨室",
+      "aliases": [],
+      "capacity": 20,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_068",
+      "campus_id": "guangzhou_south",
+      "place_id": "yongfangtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "永芳堂（503栋）437研讨室",
+      "aliases": [],
+      "capacity": 20,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_069",
+      "campus_id": "guangzhou_south",
+      "place_id": "teaching_2",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "第二教学楼（389栋）414讲学厅",
+      "aliases": [],
+      "capacity": 68,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_070",
+      "campus_id": "guangzhou_south",
+      "place_id": "teaching_2",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "第二教学楼（389栋）405会议室",
+      "aliases": [],
+      "capacity": 40,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_071",
+      "campus_id": "guangzhou_south",
+      "place_id": "teaching_2",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "第二教学楼（389栋）506会议室",
+      "aliases": [],
+      "capacity": 45,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_072",
+      "campus_id": "guangzhou_south",
+      "place_id": "teaching_2",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "第二教学楼（389栋）631会议室",
+      "aliases": [],
+      "capacity": 35,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_073",
+      "campus_id": "guangzhou_south",
+      "place_id": "teaching_2",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "第二教学楼（389栋）720会议室",
+      "aliases": [],
+      "capacity": 35,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_074",
+      "campus_id": "guangzhou_south",
+      "place_id": "life_science_1",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "生命科学楼1号楼（408栋）124国际会议厅",
+      "aliases": [],
+      "capacity": 298,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_075",
+      "campus_id": "guangzhou_south",
+      "place_id": "life_science_2",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "生命科学楼2号楼（408栋）102讲学厅",
+      "aliases": [],
+      "capacity": 89,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_076",
+      "campus_id": "guangzhou_south",
+      "place_id": "hedanqingtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "贺丹青堂（478栋）101讲学厅",
+      "aliases": [],
+      "capacity": 250,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_077",
+      "campus_id": "guangzhou_south",
+      "place_id": "life_science_2",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "生命科学楼2号楼（408栋）1017会议室",
+      "aliases": [],
+      "capacity": 50,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_078",
+      "campus_id": "guangzhou_south",
+      "place_id": "life_science_2",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "生命科学楼2号楼（408栋）403会议室",
+      "aliases": [],
+      "capacity": 38,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_079",
+      "campus_id": "guangzhou_south",
+      "place_id": "life_science_2",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "生命科学楼2号楼（408栋）503会议室",
+      "aliases": [],
+      "capacity": 38,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_080",
+      "campus_id": "guangzhou_south",
+      "place_id": "life_science_2",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "生命科学楼2号楼（408栋）601会议室",
+      "aliases": [],
+      "capacity": 40,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_081",
+      "campus_id": "guangzhou_south",
+      "place_id": "life_science_2",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "生命科学楼2号楼（408栋）701会议室",
+      "aliases": [],
+      "capacity": 40,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_082",
+      "campus_id": "guangzhou_south",
+      "place_id": "life_science_2",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "生命科学楼2号楼（408栋）801会议室",
+      "aliases": [],
+      "capacity": 40,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_083",
+      "campus_id": "guangzhou_south",
+      "place_id": "life_science_2",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "生命科学楼2号楼（408栋）901会议室",
+      "aliases": [],
+      "capacity": 40,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_084",
+      "campus_id": "guangzhou_south",
+      "place_id": "hedanqingtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "贺丹青堂（478栋）103会议室",
+      "aliases": [],
+      "capacity": 40,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_085",
+      "campus_id": "guangzhou_south",
+      "place_id": "shansitang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "善思堂（386栋）M203多功能国际会议厅",
+      "aliases": [],
+      "capacity": 410,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_086",
+      "campus_id": "guangzhou_south",
+      "place_id": "shanhengtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "善衡堂（387栋）南座S109会议室",
+      "aliases": [],
+      "capacity": "44-50",
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_087",
+      "campus_id": "guangzhou_south",
+      "place_id": "shanhengtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "善衡堂（387栋）南座S201会议室",
+      "aliases": [],
+      "capacity": "64-100",
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_088",
+      "campus_id": "guangzhou_south",
+      "place_id": "xichang_tang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "锡昌堂（269栋）801讲学厅",
+      "aliases": [],
+      "capacity": 240,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_089",
+      "campus_id": "guangzhou_south",
+      "place_id": "xichang_tang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "锡昌堂（269栋）103讲学厅",
+      "aliases": [],
+      "capacity": 90,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_090",
+      "campus_id": "guangzhou_south",
+      "place_id": "xichang_tang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "锡昌堂（269栋）1楼多功能厅",
+      "aliases": [],
+      "capacity": 50,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_091",
+      "campus_id": "guangzhou_south",
+      "place_id": "xichang_tang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "锡昌堂（269栋）515会议室",
+      "aliases": [],
+      "capacity": 35,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_092",
+      "campus_id": "guangzhou_south",
+      "place_id": "xichang_tang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "锡昌堂（269栋）504会议室",
+      "aliases": [],
+      "capacity": 20,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_093",
+      "campus_id": "guangzhou_south",
+      "place_id": "xichang_tang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "锡昌堂（269栋）727会议室",
+      "aliases": [],
+      "capacity": 25,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_094",
+      "campus_id": "guangzhou_south",
+      "place_id": "xichang_tang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "锡昌堂（269栋）513会议室",
+      "aliases": [],
+      "capacity": 12,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_095",
+      "campus_id": "guangzhou_south",
+      "place_id": "xichang_tang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "锡昌堂（269栋）202-204、208-210课室",
+      "aliases": [],
+      "capacity": 20,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_096",
+      "campus_id": "guangzhou_south",
+      "place_id": "liberal_arts_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "文科楼（275栋）223课室",
+      "aliases": [],
+      "capacity": 60,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_097",
+      "campus_id": "guangzhou_south",
+      "place_id": "liberal_arts_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "文科楼（275栋）225讲学厅",
+      "aliases": [],
+      "capacity": 169,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_098",
+      "campus_id": "guangzhou_south",
+      "place_id": "liberal_arts_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "文科楼（275栋）310讲学厅",
+      "aliases": [],
+      "capacity": 35,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_099",
+      "campus_id": "guangzhou_south",
+      "place_id": "liberal_arts_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "文科楼（275栋）307讲学厅",
+      "aliases": [],
+      "capacity": 30,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_100",
+      "campus_id": "guangzhou_south",
+      "place_id": "shanhengtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "善衡堂（387栋）S131党校讲学厅",
+      "aliases": [],
+      "capacity": 193,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_101",
+      "campus_id": "guangzhou_south",
+      "place_id": "shansitang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "善思堂（386栋）M201党校课室",
+      "aliases": [],
+      "capacity": 56,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_102",
+      "campus_id": "guangzhou_south",
+      "place_id": "shanhengtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "善衡堂（387栋）S412会议室",
+      "aliases": [],
+      "capacity": 40,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_103",
+      "campus_id": "guangzhou_south",
+      "place_id": "shanhengtang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "善衡堂（387栋）S502会议室",
+      "aliases": [],
+      "capacity": 25,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_104",
+      "campus_id": "guangzhou_south",
+      "place_id": "chinese_hall",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "中文堂（274栋）206会议厅",
+      "aliases": [],
+      "capacity": 143,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_105",
+      "campus_id": "guangzhou_south",
+      "place_id": "chinese_hall",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "中文堂（274栋）301会议厅",
+      "aliases": [],
+      "capacity": 66,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_106",
+      "campus_id": "guangzhou_south",
+      "place_id": "chinese_hall",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "中文堂（274栋）201课室",
+      "aliases": [],
+      "capacity": 93,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_107",
+      "campus_id": "guangzhou_south",
+      "place_id": "chinese_hall",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "中文堂（274栋）105讲学厅",
+      "aliases": [],
+      "capacity": 382,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_108",
+      "campus_id": "guangzhou_south",
+      "place_id": "chinese_hall",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "中文堂（274栋）207课室",
+      "aliases": [],
+      "capacity": 193,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_109",
+      "campus_id": "guangzhou_south",
+      "place_id": "chinese_hall",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "中文堂（274栋）203课室",
+      "aliases": [],
+      "capacity": 48,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_110",
+      "campus_id": "guangzhou_south",
+      "place_id": "chinese_hall",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "中文堂（274栋）204课室",
+      "aliases": [],
+      "capacity": 54,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_111",
+      "campus_id": "guangzhou_south",
+      "place_id": "chinese_hall",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "中文堂（274栋）305课室",
+      "aliases": [],
+      "capacity": 60,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_112",
+      "campus_id": "guangzhou_south",
+      "place_id": "xianweijiantang",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "冼为坚堂（260栋）3楼会议室",
+      "aliases": [],
+      "capacity": 60,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_113",
+      "campus_id": "guangzhou_south",
+      "place_id": "small_red_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "小红楼（261栋）206会议室",
+      "aliases": [],
+      "capacity": 58,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_114",
+      "campus_id": "guangzhou_south",
+      "place_id": "foreign_language_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "外国语学院（258栋）101讲学厅",
+      "aliases": [],
+      "capacity": 268,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_115",
+      "campus_id": "guangzhou_south",
+      "place_id": "foreign_language_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "外国语学院（258栋）315讲学厅",
+      "aliases": [],
+      "capacity": 138,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_116",
+      "campus_id": "guangzhou_south",
+      "place_id": "foreign_language_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "外国语学院（258栋）210讲学厅",
+      "aliases": [],
+      "capacity": 50,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_117",
+      "campus_id": "guangzhou_south",
+      "place_id": "foreign_language_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "外国语学院（258栋）406、408、409课室",
+      "aliases": [],
+      "capacity": 60,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_118",
+      "campus_id": "guangzhou_south",
+      "place_id": "foreign_language_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "teaching_room",
+      "canonical_name": "外国语学院（258栋）311-313、403、411-413课室",
+      "aliases": [],
+      "capacity": 35,
+      "services": [
+        "教学/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_119",
+      "campus_id": "guangzhou_south",
+      "place_id": "foreign_language_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "外国语学院（258栋）一楼校友之家",
+      "aliases": [],
+      "capacity": 36,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_120",
+      "campus_id": "guangzhou_south",
+      "place_id": "alumni_hall",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "校友会堂报告厅-会议",
+      "aliases": [],
+      "capacity": 539,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_121",
+      "campus_id": "guangzhou_south",
+      "place_id": "alumni_hall",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "校友会堂报告厅-演出",
+      "aliases": [],
+      "capacity": 539,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_122",
+      "campus_id": "guangzhou_south",
+      "place_id": "guest_reception_room",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "meeting_room",
+      "canonical_name": "大外宾接待室",
+      "aliases": [],
+      "capacity": 70,
+      "services": [
+        "会议/研讨空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_public_123",
+      "campus_id": "guangzhou_south",
+      "place_id": "yongsheng_building",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "auditorium",
+      "canonical_name": "永生楼4楼讲学厅",
+      "aliases": [],
+      "capacity": 161,
+      "services": [
+        "报告/讲学空间",
+        "官方公共用房共享目录"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://zwc.sysu.edu.cn/article/757"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "容量/名称取自2026年官方公共用房共享共用收费信息汇总表；不表示实时可用状态。"
+    },
+    {
+      "id": "south_sports_001",
+      "campus_id": "guangzhou_south",
+      "place_id": "yingdong_sports_center",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "sports_complex",
+      "canonical_name": "英东体育中心",
+      "aliases": [],
+      "capacity": null,
+      "services": [
+        "体育馆",
+        "田径运动场",
+        "网球场",
+        "综合球类场",
+        "游泳场"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://tiyu.sysu.edu.cn/about/history",
+      "source_refs": [
+        "https://tiyu.sysu.edu.cn/about/history",
+        "https://ce.sysu.edu.cn/zh-hans/article/1215"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "官方场馆目录；未写入日期级空闲结果。"
+    },
+    {
+      "id": "south_sports_002",
+      "campus_id": "guangzhou_south",
+      "place_id": "yingdong_gymnasium",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "gymnasium",
+      "canonical_name": "英东体育馆",
+      "aliases": [],
+      "capacity": null,
+      "services": [
+        "室内篮球场",
+        "排球场",
+        "羽毛球场"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://tiyu.sysu.edu.cn/about/history",
+      "source_refs": [
+        "https://tiyu.sysu.edu.cn/about/history",
+        "https://ce.sysu.edu.cn/zh-hans/article/1215"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "官方场馆目录；未写入日期级空闲结果。"
+    },
+    {
+      "id": "south_sports_003",
+      "campus_id": "guangzhou_south",
+      "place_id": "yingdong_track",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "track_field",
+      "canonical_name": "英东田径运动场",
+      "aliases": [],
+      "capacity": null,
+      "services": [
+        "400米田径场",
+        "足球场"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://tiyu.sysu.edu.cn/about/history",
+      "source_refs": [
+        "https://tiyu.sysu.edu.cn/about/history",
+        "https://ce.sysu.edu.cn/zh-hans/article/1215"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "官方场馆目录；未写入日期级空闲结果。"
+    },
+    {
+      "id": "south_sports_004",
+      "campus_id": "guangzhou_south",
+      "place_id": "yingdong_tennis",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "tennis_court",
+      "canonical_name": "英东网球场",
+      "aliases": [],
+      "capacity": null,
+      "services": [
+        "网球"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://tiyu.sysu.edu.cn/about/history",
+      "source_refs": [
+        "https://tiyu.sysu.edu.cn/about/history",
+        "https://ce.sysu.edu.cn/zh-hans/article/1215"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "官方场馆目录；未写入日期级空闲结果。"
+    },
+    {
+      "id": "south_sports_005",
+      "campus_id": "guangzhou_south",
+      "place_id": "yingdong_ball_courts",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "ball_court",
+      "canonical_name": "英东综合球类场",
+      "aliases": [],
+      "capacity": null,
+      "services": [
+        "球类运动"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://tiyu.sysu.edu.cn/about/history",
+      "source_refs": [
+        "https://tiyu.sysu.edu.cn/about/history",
+        "https://ce.sysu.edu.cn/zh-hans/article/1215"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "官方场馆目录；未写入日期级空闲结果。"
+    },
+    {
+      "id": "south_sports_006",
+      "campus_id": "guangzhou_south",
+      "place_id": "yingdong_pool",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "swimming_pool",
+      "canonical_name": "英东游泳场",
+      "aliases": [],
+      "capacity": null,
+      "services": [
+        "游泳",
+        "跳水"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://tiyu.sysu.edu.cn/about/history",
+      "source_refs": [
+        "https://tiyu.sysu.edu.cn/about/history",
+        "https://ce.sysu.edu.cn/zh-hans/article/1215",
+        "https://tiyu.sysu.edu.cn/node/1927"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified",
+      "verification_note": "官方场馆目录；未写入日期级空闲结果。"
+    },
+    {
+      "id": "south_sports_007",
+      "campus_id": "guangzhou_south",
+      "place_id": "south_new_gym",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "gymnasium",
+      "canonical_name": "南校园新体育馆",
+      "aliases": [],
+      "capacity": null,
+      "services": [
+        "体育活动"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://tiyu.sysu.edu.cn/node/1927",
+      "source_refs": [
+        "https://tiyu.sysu.edu.cn/node/1927",
+        "https://edf-edaao.sysu.edu.cn/article/489"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "partial",
+      "verification_note": "官方场馆目录；未写入日期级空闲结果。"
+    },
+    {
+      "id": "south_discussion_001",
+      "campus_id": "guangzhou_south",
+      "place_id": "teaching_5",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "discussion_room",
+      "canonical_name": "逸夫楼 逸403 有声研讨室",
+      "aliases": [],
+      "capacity": 40,
+      "services": [
+        "有声研讨室"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://jwb.sysu.edu.cn/article/4194",
+      "source_refs": [
+        "https://jwb.sysu.edu.cn/article/4194"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "partial",
+      "verification_note": "教务处按学期公布的自习/研讨空间；具体开放时段需随学期通知更新。"
+    },
+    {
+      "id": "south_discussion_002",
+      "campus_id": "guangzhou_south",
+      "place_id": "teaching_5",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "discussion_room",
+      "canonical_name": "逸夫楼 逸503 有声研讨室",
+      "aliases": [],
+      "capacity": 40,
+      "services": [
+        "有声研讨室"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://jwb.sysu.edu.cn/article/4194",
+      "source_refs": [
+        "https://jwb.sysu.edu.cn/article/4194"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "partial",
+      "verification_note": "教务处按学期公布的自习/研讨空间；具体开放时段需随学期通知更新。"
+    },
+    {
+      "id": "south_discussion_003",
+      "campus_id": "guangzhou_south",
+      "place_id": "teaching_1",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "discussion_room",
+      "canonical_name": "第一教学楼 1103 有声研讨室",
+      "aliases": [],
+      "capacity": 20,
+      "services": [
+        "有声研讨室"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://jwb.sysu.edu.cn/article/4194",
+      "source_refs": [
+        "https://jwb.sysu.edu.cn/article/4194"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "partial",
+      "verification_note": "教务处按学期公布的自习/研讨空间；具体开放时段需随学期通知更新。"
+    },
+    {
+      "id": "south_discussion_004",
+      "campus_id": "guangzhou_south",
+      "place_id": "teaching_1",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "discussion_room",
+      "canonical_name": "第一教学楼 1106 有声研讨室",
+      "aliases": [],
+      "capacity": 69,
+      "services": [
+        "有声研讨室"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://jwb.sysu.edu.cn/article/4194",
+      "source_refs": [
+        "https://jwb.sysu.edu.cn/article/4194"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "partial",
+      "verification_note": "教务处按学期公布的自习/研讨空间；具体开放时段需随学期通知更新。"
+    },
+    {
+      "id": "south_discussion_005",
+      "campus_id": "guangzhou_south",
+      "place_id": "teaching_1",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "discussion_room",
+      "canonical_name": "第一教学楼 1603 有声研讨室",
+      "aliases": [],
+      "capacity": 20,
+      "services": [
+        "有声研讨室"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://jwb.sysu.edu.cn/article/4194",
+      "source_refs": [
+        "https://jwb.sysu.edu.cn/article/4194"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "partial",
+      "verification_note": "教务处按学期公布的自习/研讨空间；具体开放时段需随学期通知更新。"
+    },
+    {
+      "id": "south_discussion_006",
+      "campus_id": "guangzhou_south",
+      "place_id": "teaching_2",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "discussion_room",
+      "canonical_name": "第二教学楼 2117 有声研讨室",
+      "aliases": [],
+      "capacity": 40,
+      "services": [
+        "有声研讨室"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://jwb.sysu.edu.cn/article/4194",
+      "source_refs": [
+        "https://jwb.sysu.edu.cn/article/4194"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "partial",
+      "verification_note": "教务处按学期公布的自习/研讨空间；具体开放时段需随学期通知更新。"
+    },
+    {
+      "id": "south_discussion_007",
+      "campus_id": "guangzhou_south",
+      "place_id": "teaching_2",
+      "source_system": "official",
+      "source_parameter_id": null,
+      "venue_type": "discussion_room",
+      "canonical_name": "第二教学楼 2213 有声研讨室",
+      "aliases": [],
+      "capacity": 36,
+      "services": [
+        "有声研讨室"
+      ],
+      "opening_hours": null,
+      "reservation_window_days": null,
+      "minimum_duration_minutes": null,
+      "maximum_duration_minutes": null,
+      "requires_member_list": null,
+      "cancellation_rules": null,
+      "official_url": "https://jwb.sysu.edu.cn/article/4194",
+      "source_refs": [
+        "https://jwb.sysu.edu.cn/article/4194"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "partial",
+      "verification_note": "教务处按学期公布的自习/研讨空间；具体开放时段需随学期通知更新。"
+    }
+  ]
+}

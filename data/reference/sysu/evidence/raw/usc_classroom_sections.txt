@@ -1,0 +1,202 @@
+
+>>> /Users/baihe/.local/bin/sysu-anything usc classroom sections --json
+{
+  "starts": [
+    {
+      "_id": "fA_E4tumXSyaD4OfBddHu",
+      "name": "第一节 8:00",
+      "value": "1",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "UcV1kF2ftngiJuP_XZgbW",
+      "name": "第二节 8:55",
+      "value": "2",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "VO6cMALVKOqZB8ntIio9z",
+      "name": "第三节 10:10",
+      "value": 3,
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "Tn9UgZKuxcyy9_pJ0OigQ",
+      "name": "第四节 11:05",
+      "value": 4,
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "Uk7RXSJ_v9gM7gKX5czw2",
+      "name": "中午时间段 12:00",
+      "value": "5.1",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "8GEKwfZKYXTnqe7tgGKy1",
+      "name": "第五节 14:20",
+      "value": "5",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "l6PzLoz0nSGqWiHUrgGgx",
+      "name": "第六节 15:15",
+      "value": "6",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "6S_Bn1_imJfBP4xg6zQ1d",
+      "name": "第七节 16:30",
+      "value": "7",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "Bv6lkj_wj8xW0fLpT89HW",
+      "name": "第八节 17:25",
+      "value": "8",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "2Tk5tG1rwhZQN7bQ_A13M",
+      "name": "第九节 19:00",
+      "value": "9",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "sGqwCLGpCDlCrVM0Y5s4y",
+      "name": "第十节 19:55",
+      "value": "10",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "WttFgDFKIMUQRn_Gv_RRi",
+      "name": "第十一节 20:50",
+      "value": "11",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    }
+  ],
+  "ends": [
+    {
+      "_id": "2POk7v-C4skcB85RiIHUj",
+      "name": "第一节 8:45",
+      "value": "1",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "ekoCNeeT4JwIl9hS1tP-X",
+      "name": "第二节 9:40",
+      "value": "2",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "4whGLMhDaAi6156sDMqA8",
+      "name": "第三节 10:55",
+      "value": 3,
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "5-hgGhWS_IWRS7i7mcBls",
+      "name": "第四节 11:50",
+      "value": 4,
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "V-yxV1I3azea0f6X8aeuF",
+      "name": "中午时间段 14:00",
+      "value": "5.1",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "GhpWTfRv5v69JXUBl8hcs",
+      "name": "第五节 15:05",
+      "value": "5",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "ph5XytUGAaDTMO_pB_nHO",
+      "name": "第六节 16:00",
+      "value": "6",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "D5cJP2TbPDlJpxvY60SkN",
+      "name": "第七节 17:15",
+      "value": "7",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "xIYZLDeIKgX_1vAX5LUQC",
+      "name": "第八节 18:10",
+      "value": "8",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "wOH12NrS_BmAKrzwx-TwS",
+      "name": "第九节 19:45",
+      "value": "9",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "lcO9Xx1hWW1sTx28Lsdw_",
+      "name": "第十节 20:40",
+      "value": "10",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    },
+    {
+      "_id": "P0MZ9Bt0QbSekMmpVb-Dt",
+      "name": "第十一节 21:35",
+      "value": "11",
+      "imgSrc": "",
+      "disabled": false,
+      "defaultChecked": false
+    }
+  ]
+}
+
+[exit=]

@@ -1,0 +1,50 @@
+
+>>> /Users/baihe/.local/bin/sysu-anything usc apps --json
+[
+  {
+    "key": "classroom",
+    "appId": 197,
+    "label": "课室临时使用申请",
+    "description": "课室临时使用申请，当前重点卡在重复节里的教室选择数据源。",
+    "publicVersionId": 781,
+    "steps": [],
+    "unloadedStepFormIds": []
+  },
+  {
+    "key": "activity",
+    "appId": 178,
+    "label": "学生活动中心场地使用申请",
+    "description": "学生活动中心场地申请，房间字典数据源和 before_start 触发器已经明确。",
+    "publicVersionId": 763,
+    "steps": [],
+    "unloadedStepFormIds": []
+  },
+  {
+    "key": "meeting",
+    "appId": 290,
+    "label": "会议场所使用申请",
+    "description": "会议场所申请，start-config 已确认两步表单，但第二步 457/487 仍需继续打通。",
+    "publicVersionId": 727,
+    "steps": [
+      {
+        "name": "温馨提示",
+        "formIds": [
+          486
+        ]
+      },
+      {
+        "name": "会议场所使用申请表",
+        "formIds": [
+          457,
+          487
+        ]
+      }
+    ],
+    "unloadedStepFormIds": [
+      457,
+      487
+    ]
+  }
+]
+
+[exit=]

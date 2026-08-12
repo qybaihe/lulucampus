@@ -1,0 +1,1867 @@
+{
+  "version": "v1",
+  "verified_at": "2026-08-11",
+  "places": [
+    {
+      "id": "south_gate",
+      "campus_id": "guangzhou_south",
+      "category": "gate",
+      "canonical_name": "南门",
+      "aliases": [
+        "南校园南门",
+        "南校南门"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园南侧校门",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "校园出入口"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg",
+        "https://www.sysu.edu.cn/xxg/zdxq.htm"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "north_gate",
+      "campus_id": "guangzhou_south",
+      "category": "gate",
+      "canonical_name": "北门",
+      "aliases": [
+        "南校园北门"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园北侧校门",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "校园出入口"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg",
+        "https://www.sysu.edu.cn/xxg/zdxq.htm"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "east_gate",
+      "campus_id": "guangzhou_south",
+      "category": "gate",
+      "canonical_name": "东门",
+      "aliases": [
+        "南校园东门"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园东侧校门",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "校园出入口"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg",
+        "https://www.sysu.edu.cn/xxg/zdxq.htm"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "west_gate",
+      "campus_id": "guangzhou_south",
+      "category": "gate",
+      "canonical_name": "西门",
+      "aliases": [
+        "南校园西门"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园西侧校门",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "校园出入口"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg",
+        "https://www.sysu.edu.cn/xxg/zdxq.htm"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "south_qg_stop",
+      "campus_id": "guangzhou_south",
+      "category": "transit_stop",
+      "canonical_name": "广中大南校区岐关服务部",
+      "aliases": [
+        "南门岐关车站",
+        "南校园岐关车站",
+        "南校岐关车站"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南门左边方向前50米的位置岐关车站",
+      "latitude": 23.092043,
+      "longitude": 113.297367,
+      "opening_hours": null,
+      "services": [
+        "岐关车静态站点"
+      ],
+      "source_refs": [
+        "sysu-anything qg list --today --all --json",
+        "sysu-anything qg routes"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "south_bus_south_gate_parking",
+      "campus_id": "guangzhou_south",
+      "category": "transit_stop",
+      "canonical_name": "南校园南门停车场",
+      "aliases": [
+        "南校南门停车场",
+        "南校园班车站"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园南门停车场；广州校区校际班车站点",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "广州校区班车"
+      ],
+      "source_refs": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json",
+        "https://zwc.sysu.edu.cn/article/495"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "south_bus_new_gym_west_gate",
+      "campus_id": "guangzhou_south",
+      "category": "transit_stop",
+      "canonical_name": "南校园新体育馆西门班车点",
+      "aliases": [
+        "新体育馆西门班车点"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园新体育馆西门；官方通知所列校内班车候车点",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "校内班车"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/article/495"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "partial"
+    },
+    {
+      "id": "north_bus_south_gate_carhouse",
+      "campus_id": "guangzhou_north",
+      "category": "transit_stop",
+      "canonical_name": "北校园南门车房楼下",
+      "aliases": [
+        "北校南门车房楼下"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "北校园南门车房楼下",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "广州校区班车"
+      ],
+      "source_refs": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "east_bus_lanyuan3",
+      "campus_id": "guangzhou_east",
+      "category": "transit_stop",
+      "canonical_name": "东校园兰园3号（原生科院大楼）",
+      "aliases": [
+        "东校园兰园3号",
+        "兰园3号（原生科院大楼）"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "东校园兰园3号（原生科院大楼）停车场",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "广州校区班车"
+      ],
+      "source_refs": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "east_bus_teaching_a_north",
+      "campus_id": "guangzhou_east",
+      "category": "transit_stop",
+      "canonical_name": "东校园教学楼A座北侧",
+      "aliases": [
+        "教学楼A座北侧"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "东校园校内班车停靠点",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "广州校区班车"
+      ],
+      "source_refs": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "east_bus_admin_bridge",
+      "campus_id": "guangzhou_east",
+      "category": "transit_stop",
+      "canonical_name": "东校园行政楼北侧桥头",
+      "aliases": [
+        "行政楼北侧桥头"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "东校园校内班车停靠点",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "广州校区班车"
+      ],
+      "source_refs": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "east_bus_yingyuan1",
+      "campus_id": "guangzhou_east",
+      "category": "transit_stop",
+      "canonical_name": "东校园樱园1号",
+      "aliases": [
+        "樱园1号"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "东校园校内班车停靠点",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "广州校区班车"
+      ],
+      "source_refs": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "east_bus_yingyuan3",
+      "campus_id": "guangzhou_east",
+      "category": "transit_stop",
+      "canonical_name": "东校园樱园3号",
+      "aliases": [
+        "樱园3号"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "东校园校内班车停靠点",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "广州校区班车"
+      ],
+      "source_refs": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "east_bus_staff_apartment",
+      "campus_id": "guangzhou_east",
+      "category": "transit_stop",
+      "canonical_name": "东校园教工公寓对面",
+      "aliases": [
+        "教工公寓对面"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "东校园校内班车停靠点",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "广州校区班车"
+      ],
+      "source_refs": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "east_bus_chem_material",
+      "campus_id": "guangzhou_east",
+      "category": "transit_stop",
+      "canonical_name": "东校园化学材料综合楼",
+      "aliases": [
+        "化学材料综合楼"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "东校园校内班车停靠点",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "广州校区班车"
+      ],
+      "source_refs": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "teaching_1",
+      "campus_id": "guangzhou_south",
+      "category": "teaching_building",
+      "canonical_name": "第一教学楼",
+      "aliases": [
+        "一教",
+        "第一教"
+      ],
+      "building": "348栋",
+      "floor": null,
+      "location_text": "南校园教学区",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "教学用房"
+      ],
+      "source_refs": [
+        "https://jwb.sysu.edu.cn/lx/department",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg",
+        "https://zwc.sysu.edu.cn/article/647"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "teaching_2",
+      "campus_id": "guangzhou_south",
+      "category": "teaching_building",
+      "canonical_name": "第二教学楼",
+      "aliases": [
+        "二教",
+        "第二教"
+      ],
+      "building": "389栋",
+      "floor": null,
+      "location_text": "南校园教学区",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "教学用房",
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://jwb.sysu.edu.cn/lx/department",
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "teaching_3",
+      "campus_id": "guangzhou_south",
+      "category": "teaching_building",
+      "canonical_name": "第三教学楼",
+      "aliases": [
+        "三教",
+        "第三教"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园教学区",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "教学用房"
+      ],
+      "source_refs": [
+        "https://jwb.sysu.edu.cn/lx/department",
+        "https://sbc.sysu.edu.cn/article/885",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "teaching_4",
+      "campus_id": "guangzhou_south",
+      "category": "teaching_building",
+      "canonical_name": "第四教学楼（丰盛堂）",
+      "aliases": [
+        "四教",
+        "丰盛堂",
+        "第四教学楼"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园教学区",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "教学用房"
+      ],
+      "source_refs": [
+        "https://jwb.sysu.edu.cn/lx/department",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "teaching_5",
+      "campus_id": "guangzhou_south",
+      "category": "teaching_building",
+      "canonical_name": "第五教学楼（逸夫楼）",
+      "aliases": [
+        "五教",
+        "逸夫楼",
+        "逸夫教学楼"
+      ],
+      "building": "494栋",
+      "floor": null,
+      "location_text": "南校园教学区",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "教学用房"
+      ],
+      "source_refs": [
+        "https://jwb.sysu.edu.cn/lx/department",
+        "https://zwc.sysu.edu.cn/article/920",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "teaching_6",
+      "campus_id": "guangzhou_south",
+      "category": "teaching_building",
+      "canonical_name": "第六教学楼",
+      "aliases": [
+        "六教",
+        "第六教",
+        "392栋"
+      ],
+      "building": "392栋",
+      "floor": null,
+      "location_text": "南校园教学区",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "教学用房"
+      ],
+      "source_refs": [
+        "https://jwb.sysu.edu.cn/lx/department",
+        "https://cse.sysu.edu.cn/article/3576",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "liberal_arts_building",
+      "campus_id": "guangzhou_south",
+      "category": "teaching_building",
+      "canonical_name": "文科楼",
+      "aliases": [
+        "文科楼"
+      ],
+      "building": "275栋",
+      "floor": null,
+      "location_text": "南校园西区",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "教学用房",
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "chinese_hall",
+      "campus_id": "guangzhou_south",
+      "category": "teaching_building",
+      "canonical_name": "中文堂",
+      "aliases": [
+        "中文堂"
+      ],
+      "building": "274栋",
+      "floor": null,
+      "location_text": "南校园西区",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "教学用房",
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "foreign_language_building",
+      "campus_id": "guangzhou_south",
+      "category": "teaching_building",
+      "canonical_name": "外国语学院",
+      "aliases": [
+        "外院",
+        "外国语学院楼"
+      ],
+      "building": "258栋",
+      "floor": null,
+      "location_text": "南校园西区",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "教学用房",
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "south_library",
+      "campus_id": "guangzhou_south",
+      "category": "library",
+      "canonical_name": "南校园图书馆",
+      "aliases": [
+        "图书总馆",
+        "中山大学图书馆"
+      ],
+      "building": "335栋",
+      "floor": null,
+      "location_text": "广州市海珠区新港西路135号中山大学图书馆",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "中文图书",
+        "外文图书",
+        "参考咨询",
+        "特藏服务",
+        "报刊阅览"
+      ],
+      "source_refs": [
+        "https://library.sysu.edu.cn/campus-library-1",
+        "https://library.sysu.edu.cn/basic/3728",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "canteen_zijing",
+      "campus_id": "guangzhou_south",
+      "category": "canteen",
+      "canonical_name": "紫荆园餐厅",
+      "aliases": [
+        "紫荆园"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园东南区（外国语学院后方）",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": "7:00-9:30；11:30-14:00；17:30-21:30",
+      "services": [
+        "餐饮"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/info/1171/1611.htm"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "canteen_kangle",
+      "campus_id": "guangzhou_south",
+      "category": "canteen",
+      "canonical_name": "康乐园餐厅",
+      "aliases": [
+        "康乐园"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园蒲园区609号；西门入内右转约200米",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": "食堂：6:30-9:00；11:00-13:00；17:00-19:00；餐厅：7:00-10:30；11:00-14:00；17:00-21:00",
+      "services": [
+        "餐饮"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/info/1171/1611.htm"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "canteen_student_1",
+      "campus_id": "guangzhou_south",
+      "category": "canteen",
+      "canonical_name": "学一食堂",
+      "aliases": [
+        "学一"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "逸夫艺术中心西侧",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": "6:00-10:30；10:30-13:30；17:00-19:00；晚餐延时：17:00-22:30",
+      "services": [
+        "餐饮"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/info/1171/1611.htm"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "canteen_student_5",
+      "campus_id": "guangzhou_south",
+      "category": "canteen",
+      "canonical_name": "学五食堂",
+      "aliases": [
+        "学五"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园东区107栋首层附近",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": "6:30-9:30；11:00-13:20；17:00-19:00；晚餐延时：18:30-22:00",
+      "services": [
+        "餐饮"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/info/1171/1611.htm"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "canteen_wuyue",
+      "campus_id": "guangzhou_south",
+      "category": "canteen",
+      "canonical_name": "五月餐厅",
+      "aliases": [
+        "五月"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园东区107栋二楼",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": "11:00-14:00；17:00-20:00",
+      "services": [
+        "餐饮"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/info/1171/1611.htm"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "canteen_chunhui",
+      "campus_id": "guangzhou_south",
+      "category": "canteen",
+      "canonical_name": "春晖园食堂",
+      "aliases": [
+        "春晖园"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园东北区",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": "7:00-9:30；11:00-13:20；17:00-19:00；晚餐延时：19:00-21:30",
+      "services": [
+        "餐饮"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/info/1171/1611.htm"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "partial",
+      "verification_note": "学校当前餐饮页面仍列示；历史通知曾出现阶段性调整，营业状态需按当前现场/页面复核。"
+    },
+    {
+      "id": "canteen_staff_puyuan",
+      "campus_id": "guangzhou_south",
+      "category": "canteen",
+      "canonical_name": "教工（蒲园）餐厅",
+      "aliases": [
+        "蒲园教工餐厅",
+        "教工餐厅"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园西区蒲园路",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": "食堂：6:00-8:30；11:00-13:00；17:00-19:00；餐厅：6:30-9:30；11:00-14:00；17:00-20:30",
+      "services": [
+        "餐饮"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/info/1171/1611.htm"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "canteen_south_lawn",
+      "campus_id": "guangzhou_south",
+      "category": "canteen",
+      "canonical_name": "南草坪食堂",
+      "aliases": [
+        "南草坪"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园中央区",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": "10:30-19:00；餐段：10:30-13:30；17:00-19:00",
+      "services": [
+        "餐饮"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/info/1171/1611.htm"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "canteen_northwest_flavor",
+      "campus_id": "guangzhou_south",
+      "category": "canteen",
+      "canonical_name": "西北风味食堂",
+      "aliases": [
+        "西北风味"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园东区107栋首层学五食堂旁",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": "7:00-9:00；10:45-13:20；16:45-19:00",
+      "services": [
+        "餐饮"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/info/1171/1611.htm"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "canteen_xuerenguan_west",
+      "campus_id": "guangzhou_south",
+      "category": "canteen",
+      "canonical_name": "中大学人馆西餐厅",
+      "aliases": [
+        "学人馆西餐厅"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园北门中大学人馆1楼",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": "7:00-10:00；11:30-14:30；17:30-21:30",
+      "services": [
+        "餐饮"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/info/1171/1611.htm"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "canteen_xuerenguan_chinese",
+      "campus_id": "guangzhou_south",
+      "category": "canteen",
+      "canonical_name": "中大学人馆中餐厅",
+      "aliases": [
+        "学人馆中餐厅"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园北门中大学人馆2-3楼",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": "11:00-14:30；17:30-21:30",
+      "services": [
+        "餐饮"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/info/1171/1611.htm"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "canteen_shuizhuyuxiang",
+      "campus_id": "guangzhou_south",
+      "category": "canteen",
+      "canonical_name": "水煮鱼乡",
+      "aliases": [
+        "水煮鱼乡"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园北门中大学人馆1楼",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": "11:30-14:00；17:00-21:30",
+      "services": [
+        "餐饮"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/info/1171/1611.htm"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "yingdong_sports_center",
+      "campus_id": "guangzhou_south",
+      "category": "sports",
+      "canonical_name": "英东体育中心",
+      "aliases": [
+        "英东体育场馆"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园东南区英东体育中心",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "体育馆",
+        "田径运动场",
+        "网球场",
+        "综合球类场",
+        "游泳场"
+      ],
+      "source_refs": [
+        "https://tiyu.sysu.edu.cn/about/history",
+        "https://ce.sysu.edu.cn/zh-hans/article/1215"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "yingdong_gymnasium",
+      "campus_id": "guangzhou_south",
+      "category": "sports",
+      "canonical_name": "英东体育馆",
+      "aliases": [
+        "英东馆"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园英东体育中心",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "室内篮球场",
+        "排球场",
+        "羽毛球场"
+      ],
+      "source_refs": [
+        "https://tiyu.sysu.edu.cn/about/history",
+        "https://ce.sysu.edu.cn/zh-hans/article/1215",
+        "https://tiyu.sysu.edu.cn/node/1935"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "yingdong_track",
+      "campus_id": "guangzhou_south",
+      "category": "sports",
+      "canonical_name": "英东田径运动场",
+      "aliases": [
+        "英东田径场",
+        "田径场"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园英东体育中心",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "400米田径场",
+        "足球场"
+      ],
+      "source_refs": [
+        "https://tiyu.sysu.edu.cn/about/history",
+        "https://ce.sysu.edu.cn/zh-hans/article/1215",
+        "https://tiyu.sysu.edu.cn/node/1843"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "yingdong_tennis",
+      "campus_id": "guangzhou_south",
+      "category": "sports",
+      "canonical_name": "英东网球场",
+      "aliases": [
+        "网球场"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园英东体育中心",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "网球"
+      ],
+      "source_refs": [
+        "https://tiyu.sysu.edu.cn/about/history",
+        "https://ce.sysu.edu.cn/zh-hans/article/1215"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "yingdong_ball_courts",
+      "campus_id": "guangzhou_south",
+      "category": "sports",
+      "canonical_name": "英东综合球类场",
+      "aliases": [
+        "综合球类场"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园英东体育中心",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "球类运动"
+      ],
+      "source_refs": [
+        "https://tiyu.sysu.edu.cn/about/history",
+        "https://ce.sysu.edu.cn/zh-hans/article/1215"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "yingdong_pool",
+      "campus_id": "guangzhou_south",
+      "category": "sports",
+      "canonical_name": "英东游泳场",
+      "aliases": [
+        "游泳场"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园英东体育中心",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "游泳",
+        "跳水"
+      ],
+      "source_refs": [
+        "https://tiyu.sysu.edu.cn/about/history",
+        "https://ce.sysu.edu.cn/zh-hans/article/1215",
+        "https://tiyu.sysu.edu.cn/node/1927"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "south_new_gym",
+      "campus_id": "guangzhou_south",
+      "category": "sports",
+      "canonical_name": "南校园新体育馆",
+      "aliases": [
+        "新体育馆"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园新体育馆",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "体育活动",
+        "游泳相关活动"
+      ],
+      "source_refs": [
+        "https://tiyu.sysu.edu.cn/node/1927",
+        "https://edf-edaao.sysu.edu.cn/article/489"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "partial"
+    },
+    {
+      "id": "xiongdellong_center",
+      "campus_id": "guangzhou_south",
+      "category": "activity_center",
+      "canonical_name": "熊德龙学生活动中心",
+      "aliases": [
+        "学生活动中心",
+        "熊德龙中心"
+      ],
+      "building": "301栋",
+      "floor": null,
+      "location_text": "南校园学生活动中心",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "音乐厅",
+        "报告厅",
+        "舞蹈室",
+        "画室",
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://xsc.sysu.edu.cn/article/282",
+        "https://arts.sysu.edu.cn/article/556",
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "yifu_art_center",
+      "campus_id": "guangzhou_south",
+      "category": "activity_center",
+      "canonical_name": "逸夫文化艺术中心",
+      "aliases": [
+        "逸夫艺术中心",
+        "艺术中心"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园逸夫文化艺术中心",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "艺术活动",
+        "餐饮邻近点"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/info/1171/1611.htm",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "museum",
+      "campus_id": "guangzhou_south",
+      "category": "landmark",
+      "canonical_name": "中山大学博物馆",
+      "aliases": [
+        "博物馆"
+      ],
+      "building": "543栋",
+      "floor": null,
+      "location_text": "南校园新港西路135号",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "博物馆参观"
+      ],
+      "source_refs": [
+        "https://bwgxsg.sysu.edu.cn/zh-hans/service/open-guide",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "school_history_museum",
+      "campus_id": "guangzhou_south",
+      "category": "landmark",
+      "canonical_name": "校史馆",
+      "aliases": [
+        "格兰堂校史馆"
+      ],
+      "building": "333栋格兰堂",
+      "floor": null,
+      "location_text": "南校园格兰堂",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "校史展览"
+      ],
+      "source_refs": [
+        "https://bwgxsg.sysu.edu.cn/zh-hans/service/open-guide",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "biology_museum",
+      "campus_id": "guangzhou_south",
+      "category": "landmark",
+      "canonical_name": "生物馆",
+      "aliases": [
+        "马文辉堂生物馆"
+      ],
+      "building": "475栋马文辉堂",
+      "floor": null,
+      "location_text": "南校园西南区",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "生物标本展览"
+      ],
+      "source_refs": [
+        "https://bwgxsg.sysu.edu.cn/zh-hans/service/open-guide",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "sun_yat_sen_memorial",
+      "campus_id": "guangzhou_south",
+      "category": "landmark",
+      "canonical_name": "孙中山纪念馆",
+      "aliases": [
+        "孙中山纪念堂"
+      ],
+      "building": "503栋",
+      "floor": null,
+      "location_text": "南校园西北区",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "纪念馆参观"
+      ],
+      "source_refs": [
+        "https://bwgxsg.sysu.edu.cn/zh-hans/service/open-guide",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "chen_yinke_home",
+      "campus_id": "guangzhou_south",
+      "category": "landmark",
+      "canonical_name": "陈寅恪故居",
+      "aliases": [],
+      "building": "309号",
+      "floor": null,
+      "location_text": "南校园东北区",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "历史建筑"
+      ],
+      "source_refs": [
+        "https://bwgxsg.sysu.edu.cn/zh-hans/service/open-guide",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "chen_xintao_home",
+      "campus_id": "guangzhou_south",
+      "category": "landmark",
+      "canonical_name": "陈心陶故居",
+      "aliases": [],
+      "building": "241号",
+      "floor": null,
+      "location_text": "南校园东南区",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "历史建筑"
+      ],
+      "source_refs": [
+        "https://bwgxsg.sysu.edu.cn/zh-hans/service/open-guide",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "south_lawn",
+      "campus_id": "guangzhou_south",
+      "category": "landmark",
+      "canonical_name": "南草坪",
+      "aliases": [
+        "中央草坪"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园中央区",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "集合点",
+        "户外空间"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg",
+        "https://www.sysu.edu.cn/info/1171/1611.htm"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "songtao_garden",
+      "campus_id": "guangzhou_south",
+      "category": "landmark",
+      "canonical_name": "松涛园",
+      "aliases": [
+        "松涛园"
+      ],
+      "building": "359栋附近",
+      "floor": null,
+      "location_text": "南校园东区",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "校园景观"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "north_gate_square",
+      "campus_id": "guangzhou_south",
+      "category": "landmark",
+      "canonical_name": "北门广场",
+      "aliases": [
+        "南校园北门广场"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园北门内侧",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "集合点",
+        "班车路线节点"
+      ],
+      "source_refs": [
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg",
+        "sysu-anything bus --bus 1 --json"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "huishitang",
+      "campus_id": "guangzhou_south",
+      "category": "auditorium",
+      "canonical_name": "怀士堂",
+      "aliases": [
+        "怀士堂"
+      ],
+      "building": "492栋",
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "liangqiujutang",
+      "campus_id": "guangzhou_south",
+      "category": "auditorium",
+      "canonical_name": "梁銶琚堂",
+      "aliases": [
+        "梁銶琚堂"
+      ],
+      "building": "487栋",
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "fulantang",
+      "campus_id": "guangzhou_south",
+      "category": "auditorium",
+      "canonical_name": "芙兰堂",
+      "aliases": [
+        "芙兰堂"
+      ],
+      "building": "262栋",
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "xianweijiantang",
+      "campus_id": "guangzhou_south",
+      "category": "meeting",
+      "canonical_name": "冼为坚堂",
+      "aliases": [
+        "冼为坚堂"
+      ],
+      "building": "260栋",
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "yebaodingtang",
+      "campus_id": "guangzhou_south",
+      "category": "meeting",
+      "canonical_name": "叶葆定堂",
+      "aliases": [
+        "叶葆定堂"
+      ],
+      "building": "394栋",
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "lingnantang",
+      "campus_id": "guangzhou_south",
+      "category": "meeting",
+      "canonical_name": "岭南堂",
+      "aliases": [
+        "岭南堂"
+      ],
+      "building": "577栋",
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "mba_building",
+      "campus_id": "guangzhou_south",
+      "category": "meeting",
+      "canonical_name": "MBA大楼",
+      "aliases": [
+        "MBA楼"
+      ],
+      "building": "395栋",
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "math_building",
+      "campus_id": "guangzhou_south",
+      "category": "meeting",
+      "canonical_name": "数学楼",
+      "aliases": [
+        "数学楼"
+      ],
+      "building": "266栋",
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "zhenhuantang",
+      "campus_id": "guangzhou_south",
+      "category": "teaching_building",
+      "canonical_name": "震寰堂",
+      "aliases": [
+        "震寰堂"
+      ],
+      "building": "629栋",
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "arts_building",
+      "campus_id": "guangzhou_south",
+      "category": "activity_center",
+      "canonical_name": "艺术学院楼",
+      "aliases": [
+        "艺术学院楼"
+      ],
+      "building": "104栋",
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "yongfangtang",
+      "campus_id": "guangzhou_south",
+      "category": "auditorium",
+      "canonical_name": "永芳堂",
+      "aliases": [
+        "永芳堂"
+      ],
+      "building": "503栋",
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "life_science_1",
+      "campus_id": "guangzhou_south",
+      "category": "meeting",
+      "canonical_name": "生命科学楼1号楼",
+      "aliases": [
+        "生科楼1号楼"
+      ],
+      "building": "408栋",
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "life_science_2",
+      "campus_id": "guangzhou_south",
+      "category": "meeting",
+      "canonical_name": "生命科学楼2号楼",
+      "aliases": [
+        "生科楼2号楼"
+      ],
+      "building": "408栋",
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "hedanqingtang",
+      "campus_id": "guangzhou_south",
+      "category": "auditorium",
+      "canonical_name": "贺丹青堂",
+      "aliases": [
+        "贺丹青堂"
+      ],
+      "building": "478栋",
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "shansitang",
+      "campus_id": "guangzhou_south",
+      "category": "meeting",
+      "canonical_name": "善思堂",
+      "aliases": [
+        "善思堂"
+      ],
+      "building": "386栋",
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "shanhengtang",
+      "campus_id": "guangzhou_south",
+      "category": "meeting",
+      "canonical_name": "善衡堂",
+      "aliases": [
+        "善衡堂"
+      ],
+      "building": "387栋",
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "xichang_tang",
+      "campus_id": "guangzhou_south",
+      "category": "meeting",
+      "canonical_name": "锡昌堂",
+      "aliases": [
+        "锡昌堂"
+      ],
+      "building": "269栋",
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "small_red_building",
+      "campus_id": "guangzhou_south",
+      "category": "meeting",
+      "canonical_name": "小红楼",
+      "aliases": [
+        "小红楼"
+      ],
+      "building": "261栋",
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "alumni_hall",
+      "campus_id": "guangzhou_south",
+      "category": "auditorium",
+      "canonical_name": "校友会堂",
+      "aliases": [
+        "校友会堂"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "guest_reception_room",
+      "campus_id": "guangzhou_south",
+      "category": "meeting",
+      "canonical_name": "大外宾接待室",
+      "aliases": [
+        "大外宾接待室"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    },
+    {
+      "id": "yongsheng_building",
+      "campus_id": "guangzhou_south",
+      "category": "meeting",
+      "canonical_name": "永生楼",
+      "aliases": [
+        "永生楼"
+      ],
+      "building": null,
+      "floor": null,
+      "location_text": "南校园公共用房目录",
+      "latitude": null,
+      "longitude": null,
+      "opening_hours": null,
+      "services": [
+        "公共用房目录宿主建筑"
+      ],
+      "source_refs": [
+        "https://zwc.sysu.edu.cn/sites/default/files/2026-01/%E9%99%84%E4%BB%B61.%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%85%AC%E5%85%B1%E7%94%A8%E6%88%BF%E5%85%B1%E4%BA%AB%E5%85%B1%E7%94%A8%E6%94%B6%E8%B4%B9%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB%E8%A1%A8.pdf",
+        "https://www.sysu.edu.cn/images/map-south-2024-10.jpg"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "verified"
+    }
+  ]
+}

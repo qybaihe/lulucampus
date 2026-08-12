@@ -1,0 +1,678 @@
+{
+  "mode": "offline",
+  "now": {
+    "isoDate": "2026-08-11",
+    "timeText": "19:42",
+    "weekdayNumber": 2,
+    "weekdayLabel": "周二",
+    "minutesSinceMidnight": 1182
+  },
+  "inferredDateType": false,
+  "filters": {
+    "bus": "1",
+    "from": null,
+    "to": null,
+    "query": null,
+    "upcomingOnly": false
+  },
+  "result": {
+    "dataFile": "/Users/baihe/Documents/AnythingSYSU/data/bus-schedule.json",
+    "dateType": "1",
+    "dateTypeLabel": "工作日",
+    "routeCount": 6,
+    "momentCount": 61,
+    "routes": [
+      {
+        "id": "95B4536690D42A9CE0537B2B16AC5971",
+        "title": null,
+        "drivingDirectionId": "95B4536690CE2A9CE0537B2B16AC5971",
+        "drivingDirectionName": "东校园-北校园",
+        "dateType": "1",
+        "startTime": null,
+        "endTime": null,
+        "status": null,
+        "schoolBusShuttleMomentList": [
+          {
+            "id": null,
+            "time": "7:00",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "8:00",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "10:00",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "12:10",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "15:30",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "16:20",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "17:10",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "18:30",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "21:00",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "21:55",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          }
+        ],
+        "note": "备注:\n    1、如遇国家法定节假日，班车将相应调整。\n    2、东校园开往南、北校园教职工专车如有空位，学生可排队在教工公寓对面（候车点）乘坐，但应先礼让教职工上车。南、北校园开往东校园的教职工专车因在行车途中要接教职工，故学生不能乘坐。\n    3、东校园内班车行车路线\n    （1）南、北校园开往东校园方向\n    北门广场（教学楼、行政楼）→樱园1号→樱园3号→教工公寓对面→化学材料综合楼→兰园3号（原生科院大楼）停车场（终点）。\n    （2）东校园开往南、北校园方向\n    兰园3号（原生科院大楼）停车场（起点）→教学楼A座北侧→行政楼北侧桥头→樱园1号→樱园3号→教工公寓对面。\n    4、票价3元/次，用校园卡进行缴费。\n\n温馨提示：\n    为了您和他人的安全，请勿在乘坐班车时携带易燃、易爆、毒害性、腐蚀性、放射性、传染病病原体等物质及枪支、弹药、管制刀具等可能危害公共安全的物品。\n\n咨询及投诉电话:\n    粤港澳交通公司：13432000671\n    总务部：84113789",
+        "specialShuttleThemeTitle": null,
+        "startStation": "东校园兰园3号（原生科院大楼）",
+        "endStation": "北校园南门车房楼下",
+        "specialDateListText": null
+      },
+      {
+        "id": "95B4536690D62A9CE0537B2B16AC5971",
+        "title": null,
+        "drivingDirectionId": "95B4536690D02A9CE0537B2B16AC5971",
+        "drivingDirectionName": "北校园-东校园",
+        "dateType": "1",
+        "startTime": null,
+        "endTime": null,
+        "status": null,
+        "schoolBusShuttleMomentList": [
+          {
+            "id": null,
+            "time": "7:00",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "7:50",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "8:10",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "9:00",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "9:40",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "13:10",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "15:10",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "17:45",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "18:50",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "20:50",
+            "drivingRoute": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          }
+        ],
+        "note": "备注:\n    1、如遇国家法定节假日，班车将相应调整。\n    2、东校园开往南、北校园教职工专车如有空位，学生可排队在教工公寓对面（候车点）乘坐，但应先礼让教职工上车。南、北校园开往东校园的教职工专车因在行车途中要接教职工，故学生不能乘坐。\n    3、东校园内班车行车路线\n    （1）南、北校园开往东校园方向\n    北门广场（教学楼、行政楼）→樱园1号→樱园3号→教工公寓对面→化学材料综合楼→兰园3号（原生科院大楼）停车场（终点）。\n    （2）东校园开往南、北校园方向\n    兰园3号（原生科院大楼）停车场（起点）→教学楼A座北侧→行政楼北侧桥头→樱园1号→樱园3号→教工公寓对面。\n    4、票价3元/次，用校园卡进行缴费。\n\n温馨提示：\n    为了您和他人的安全，请勿在乘坐班车时携带易燃、易爆、毒害性、腐蚀性、放射性、传染病病原体等物质及枪支、弹药、管制刀具等可能危害公共安全的物品。\n\n咨询及投诉电话:\n    粤港澳交通公司：13432000671\n    总务部：84113789",
+        "specialShuttleThemeTitle": null,
+        "startStation": "北校园南门车房楼下",
+        "endStation": "东校园兰园3号（原生科院大楼）",
+        "specialDateListText": null
+      },
+      {
+        "id": "95B4536690D72A9CE0537B2B16AC5971",
+        "title": null,
+        "drivingDirectionId": "95B4536690D12A9CE0537B2B16AC5971",
+        "drivingDirectionName": "北校园-南校园",
+        "dateType": "1",
+        "startTime": null,
+        "endTime": null,
+        "status": null,
+        "schoolBusShuttleMomentList": [
+          {
+            "id": null,
+            "time": "7:30",
+            "drivingRoute": "途经东川路、海印桥",
+            "passenger": "教职工",
+            "vehiclesType": "大巴2台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "9:00",
+            "drivingRoute": "中途不停",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "10:00",
+            "drivingRoute": "中途不停",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "12:10",
+            "drivingRoute": "途经东川路、海印桥",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "14:10",
+            "drivingRoute": "途经东川路、海印桥",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "15:30",
+            "drivingRoute": "中途不停",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "17:45",
+            "drivingRoute": "途经东川路、海印桥",
+            "passenger": "教职工",
+            "vehiclesType": "大巴2台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          }
+        ],
+        "note": "备注:\n    1、如遇国家法定节假日，班车将相应调整。\n    2、东校园开往南、北校园教职工专车如有空位，学生可排队在教工公寓对面（候车点）乘坐，但应先礼让教职工上车。南、北校园开往东校园的教职工专车因在行车途中要接教职工，故学生不能乘坐。\n    3、东校园内班车行车路线\n    （1）南、北校园开往东校园方向\n    北门广场（教学楼、行政楼）→樱园1号→樱园3号→教工公寓对面→化学材料综合楼→兰园3号（原生科院大楼）停车场（终点）。\n    （2）东校园开往南、北校园方向\n    兰园3号（原生科院大楼）停车场（起点）→教学楼A座北侧→行政楼北侧桥头→樱园1号→樱园3号→教工公寓对面。\n    4、票价3元/次，用校园卡进行缴费。\n\n温馨提示：\n    为了您和他人的安全，请勿在乘坐班车时携带易燃、易爆、毒害性、腐蚀性、放射性、传染病病原体等物质及枪支、弹药、管制刀具等可能危害公共安全的物品。\n\n咨询及投诉电话:\n    粤港澳交通公司：13432000671\n    总务部：84113789",
+        "specialShuttleThemeTitle": null,
+        "startStation": "北校园南门车房楼下",
+        "endStation": "南校园南门停车场",
+        "specialDateListText": null
+      },
+      {
+        "id": "95B4536690D22A9CE0537B2B16AC5971",
+        "title": null,
+        "drivingDirectionId": "95B4536690CC2A9CE0537B2B16AC5971",
+        "drivingDirectionName": "南校园-东校园",
+        "dateType": "1",
+        "startTime": null,
+        "endTime": null,
+        "status": null,
+        "schoolBusShuttleMomentList": [
+          {
+            "id": null,
+            "time": "7:10",
+            "drivingRoute": "中途1车停坚真花园",
+            "passenger": "教职工",
+            "vehiclesType": "大巴2台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "8:00",
+            "drivingRoute": "中途不停",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴2台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "8:20",
+            "drivingRoute": "中途1车停坚真花园",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴3台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "9:10",
+            "drivingRoute": "中途1车停坚真花园",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴2台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "9:50",
+            "drivingRoute": "中途不停",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "11:00",
+            "drivingRoute": "中途不停",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "13:20",
+            "drivingRoute": "中途1车停坚真花园",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴2台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "15:20",
+            "drivingRoute": "中途1车停坚真花园",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴2台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "17:45",
+            "drivingRoute": "中途不停",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "18:00",
+            "drivingRoute": "中途停坚真花园",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "19:00",
+            "drivingRoute": "中途不停",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "21:00",
+            "drivingRoute": "中途不停",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴2台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "21:50",
+            "drivingRoute": "中途不停",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          }
+        ],
+        "note": "备注:\n    1、如遇国家法定节假日，班车将相应调整。\n    2、东校园开往南、北校园教职工专车如有空位，学生可排队在教工公寓对面（候车点）乘坐，但应先礼让教职工上车。南、北校园开往东校园的教职工专车因在行车途中要接教职工，故学生不能乘坐。\n    3、东校园内班车行车路线\n    （1）南、北校园开往东校园方向\n    北门广场（教学楼、行政楼）→樱园1号→樱园3号→教工公寓对面→化学材料综合楼→兰园3号（原生科院大楼）停车场（终点）。\n    （2）东校园开往南、北校园方向\n    兰园3号（原生科院大楼）停车场（起点）→教学楼A座北侧→行政楼北侧桥头→樱园1号→樱园3号→教工公寓对面。\n    4、票价3元/次，用校园卡进行缴费。\n\n温馨提示：\n    为了您和他人的安全，请勿在乘坐班车时携带易燃、易爆、毒害性、腐蚀性、放射性、传染病病原体等物质及枪支、弹药、管制刀具等可能危害公共安全的物品。\n\n咨询及投诉电话:\n    粤港澳交通公司：13432000671\n    总务部：84113789",
+        "specialShuttleThemeTitle": null,
+        "startStation": "南校园南门停车场",
+        "endStation": "东校园兰园3号（原生科院大楼）",
+        "specialDateListText": null
+      },
+      {
+        "id": "95B4536690D52A9CE0537B2B16AC5971",
+        "title": null,
+        "drivingDirectionId": "95B4536690CF2A9CE0537B2B16AC5971",
+        "drivingDirectionName": "东校园-南校园",
+        "dateType": "1",
+        "startTime": null,
+        "endTime": null,
+        "status": null,
+        "schoolBusShuttleMomentList": [
+          {
+            "id": null,
+            "time": "7:10",
+            "drivingRoute": "校园内经教师公寓对面",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "8:00",
+            "drivingRoute": "校园内经教师公寓对面",
+            "passenger": "教职工",
+            "vehiclesType": "大巴2台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "10:00",
+            "drivingRoute": "中途1车停坚真花园",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴2台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "12:10",
+            "drivingRoute": "中途1车停坚真花园",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴2台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "13:20",
+            "drivingRoute": "校园内经教师公寓对面",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴2台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "13:50",
+            "drivingRoute": "校园内经教师公寓对面",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "15:30",
+            "drivingRoute": "校园内经教师公寓对面",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴2台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "16:20",
+            "drivingRoute": "校园内经教师公寓对面",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴2台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "17:10",
+            "drivingRoute": "中途1车停坚真花园",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴4台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "18:30",
+            "drivingRoute": "中途1车停坚真花园",
+            "passenger": "教职工",
+            "vehiclesType": "大巴2台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "20:00",
+            "drivingRoute": "校园内经教师公寓对面",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "21:00",
+            "drivingRoute": "校园内经教师公寓对面",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "21:55",
+            "drivingRoute": "校园内经教师公寓对面",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "22:15",
+            "drivingRoute": "校园内经教师公寓对面",
+            "passenger": "教职工、学生",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          }
+        ],
+        "note": "备注:\n    1、如遇国家法定节假日，班车将相应调整。\n    2、东校园开往南、北校园教职工专车如有空位，学生可排队在教工公寓对面（候车点）乘坐，但应先礼让教职工上车。南、北校园开往东校园的教职工专车因在行车途中要接教职工，故学生不能乘坐。\n    3、东校园内班车行车路线\n    （1）南、北校园开往东校园方向\n    北门广场（教学楼、行政楼）→樱园1号→樱园3号→教工公寓对面→化学材料综合楼→兰园3号（原生科院大楼）停车场（终点）。\n    （2）东校园开往南、北校园方向\n    兰园3号（原生科院大楼）停车场（起点）→教学楼A座北侧→行政楼北侧桥头→樱园1号→樱园3号→教工公寓对面。\n    4、票价3元/次，用校园卡进行缴费。\n\n温馨提示：\n    为了您和他人的安全，请勿在乘坐班车时携带易燃、易爆、毒害性、腐蚀性、放射性、传染病病原体等物质及枪支、弹药、管制刀具等可能危害公共安全的物品。\n\n咨询及投诉电话:\n    粤港澳交通公司：13432000671\n    总务部：84113789",
+        "specialShuttleThemeTitle": null,
+        "startStation": "东校园兰园3号（原生科院大楼）",
+        "endStation": "南校园南门停车场",
+        "specialDateListText": null
+      },
+      {
+        "id": "95B4536690D32A9CE0537B2B16AC5971",
+        "title": null,
+        "drivingDirectionId": "95B4536690CD2A9CE0537B2B16AC5971",
+        "drivingDirectionName": "南校园-北校园",
+        "dateType": "1",
+        "startTime": null,
+        "endTime": null,
+        "status": null,
+        "schoolBusShuttleMomentList": [
+          {
+            "id": null,
+            "time": "7:30",
+            "drivingRoute": "途经怡乐路口、海印桥",
+            "passenger": "教职工",
+            "vehiclesType": "大巴2台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "9:30",
+            "drivingRoute": "中途不停",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "10:30",
+            "drivingRoute": "中途不停",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "12:10",
+            "drivingRoute": "途经怡乐路口、海印桥",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "14:10",
+            "drivingRoute": "途经怡乐路口、海印桥",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "16:15",
+            "drivingRoute": "中途不停",
+            "passenger": "教职工",
+            "vehiclesType": "大巴1台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          },
+          {
+            "id": null,
+            "time": "17:45",
+            "drivingRoute": "途经怡乐路口、海印桥",
+            "passenger": "教职工",
+            "vehiclesType": "大巴2台",
+            "status": null,
+            "schoolBusShuttleInfoId": null
+          }
+        ],
+        "note": "备注:\n    1、如遇国家法定节假日，班车将相应调整。\n    2、东校园开往南、北校园教职工专车如有空位，学生可排队在教工公寓对面（候车点）乘坐，但应先礼让教职工上车。南、北校园开往东校园的教职工专车因在行车途中要接教职工，故学生不能乘坐。\n    3、东校园内班车行车路线\n    （1）南、北校园开往东校园方向\n    北门广场（教学楼、行政楼）→樱园1号→樱园3号→教工公寓对面→化学材料综合楼→兰园3号（原生科院大楼）停车场（终点）。\n    （2）东校园开往南、北校园方向\n    兰园3号（原生科院大楼）停车场（起点）→教学楼A座北侧→行政楼北侧桥头→樱园1号→樱园3号→教工公寓对面。\n    4、票价3元/次，用校园卡进行缴费。\n\n温馨提示：\n    为了您和他人的安全，请勿在乘坐班车时携带易燃、易爆、毒害性、腐蚀性、放射性、传染病病原体等物质及枪支、弹药、管制刀具等可能危害公共安全的物品。\n\n咨询及投诉电话:\n    粤港澳交通公司：13432000671\n    总务部：84113789",
+        "specialShuttleThemeTitle": null,
+        "startStation": "南校园南门停车场",
+        "endStation": "北校园南门车房楼下",
+        "specialDateListText": null
+      }
+    ]
+  }
+}

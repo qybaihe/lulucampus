@@ -1,0 +1,94 @@
+{
+  "academic_year": "2026-2027",
+  "term": "fall",
+  "term_start": "2026-09-07",
+  "term_end": "2027-01-17",
+  "teaching_week_start": "2026-09-07",
+  "teaching_week_count": 19,
+  "holidays": [
+    {
+      "name": "中秋节",
+      "start_date": "2026-09-25",
+      "end_date": "2026-09-27",
+      "days": 3,
+      "note": "按官方校历。"
+    },
+    {
+      "name": "国庆节",
+      "start_date": "2026-10-01",
+      "end_date": "2026-10-07",
+      "days": 7,
+      "note": "按官方校历。"
+    },
+    {
+      "name": "元旦",
+      "start_date": "2027-01-01",
+      "end_date": "2027-01-01",
+      "days": 1,
+      "note": "按官方校历。"
+    }
+  ],
+  "adjusted_workdays": [
+    {
+      "date": "2026-09-20",
+      "weekday": "星期日",
+      "make_up_for": "国庆节假期安排"
+    },
+    {
+      "date": "2026-10-10",
+      "weekday": "星期六",
+      "make_up_for": "国庆节假期安排"
+    }
+  ],
+  "exam_weeks": [
+    18,
+    19
+  ],
+  "breaks": [
+    {
+      "name": "寒假",
+      "start_date": "2027-01-18",
+      "end_date": "2027-02-21",
+      "weeks": 5
+    },
+    {
+      "name": "暑假（前一学年）",
+      "start_date": "2026-07-13",
+      "end_date": "2026-09-06",
+      "note": "用于解释2026年秋季学期起始边界。"
+    }
+  ],
+  "special_weeks": [
+    {
+      "name": "本科生阅读实践周",
+      "week": 9
+    },
+    {
+      "name": "校庆日",
+      "date": "2026-11-12"
+    }
+  ],
+  "registration_dates": [
+    {
+      "name": "本科新生报到",
+      "date": "2026-08-18"
+    },
+    {
+      "name": "研究生新生报到",
+      "date": "2026-09-04"
+    },
+    {
+      "name": "非新生报到注册",
+      "start_date": "2026-09-05",
+      "end_date": "2026-09-06"
+    }
+  ],
+  "source_refs": [
+    "https://www.sysu.edu.cn/images/xl2026-2027-01.jpg",
+    "https://www.sysu.edu.cn/index/xl.htm",
+    "https://zwc.sysu.edu.cn/article/926"
+  ],
+  "verified_at": "2026-08-11",
+  "confidence": "verified",
+  "verification_note": "学期起止、教学周、节假日与考试周以2026-2027官方校历图为准。"
+}

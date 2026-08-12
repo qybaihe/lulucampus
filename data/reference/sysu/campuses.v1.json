@@ -1,0 +1,118 @@
+{
+  "version": "v1",
+  "verified_at": "2026-08-11",
+  "campuses": [
+    {
+      "id": "guangzhou_south",
+      "canonical_name": "广州校区南校园",
+      "city": "广州",
+      "aliases": [
+        "南校园",
+        "广州南校园",
+        "南校区",
+        "广州校区南校"
+      ],
+      "official_address": "广州市海珠区新港西路135号（510275）",
+      "latitude": null,
+      "longitude": null,
+      "official_url": "https://www.sysu.edu.cn/xxg/zdxq.htm",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "partial",
+      "verification_note": "官方名称与地址已核验；官方页面未提供可直接复用的校园中心坐标，坐标保留 null。"
+    },
+    {
+      "id": "guangzhou_north",
+      "canonical_name": "广州校区北校园",
+      "city": "广州",
+      "aliases": [
+        "北校园",
+        "广州北校园",
+        "北校区",
+        "广州校区北校"
+      ],
+      "official_address": "广州市越秀区中山二路74号（510080）",
+      "latitude": null,
+      "longitude": null,
+      "official_url": "https://www.sysu.edu.cn/xxg/zdxq.htm",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "partial",
+      "verification_note": "官方名称与地址已核验；校园中心坐标待补充。"
+    },
+    {
+      "id": "guangzhou_east",
+      "canonical_name": "广州校区东校园",
+      "city": "广州",
+      "aliases": [
+        "东校园",
+        "广州东校园",
+        "东校区",
+        "广州校区东校"
+      ],
+      "official_address": "广州市番禺区大学城外环东路132号（510006）",
+      "latitude": null,
+      "longitude": null,
+      "official_url": "https://www.sysu.edu.cn/xxg/zdxq.htm",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "partial",
+      "verification_note": "官方名称与地址已核验；校园中心坐标待补充。"
+    },
+    {
+      "id": "zhuhai",
+      "canonical_name": "珠海校区",
+      "city": "珠海",
+      "aliases": [
+        "珠海",
+        "珠海校园"
+      ],
+      "official_address": "珠海市香洲区唐家湾（519082）",
+      "latitude": null,
+      "longitude": null,
+      "official_url": "https://www.sysu.edu.cn/xxg/zdxq.htm",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json",
+        "sysu-anything qg list --today --all --json"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "partial",
+      "verification_note": "官方名称与地址已核验；校园中心坐标待补充。"
+    },
+    {
+      "id": "shenzhen",
+      "canonical_name": "深圳校区",
+      "city": "深圳",
+      "aliases": [
+        "深圳",
+        "深圳校园"
+      ],
+      "official_address": "深圳市光明区公常路66号",
+      "latitude": null,
+      "longitude": null,
+      "official_url": "https://www.sysu.edu.cn/xxg/zdxq.htm",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11",
+      "confidence": "partial",
+      "verification_note": "官方名称与地址已核验；校园中心坐标待补充。"
+    }
+  ]
+}

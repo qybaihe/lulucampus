@@ -1,0 +1,1114 @@
+{
+  "version": "2026_fall_v1.1",
+  "verified_at": "2026-08-11",
+  "campus_bus": {
+    "workday_routes": [
+      {
+        "id": "bus_workday_01",
+        "route_name": "东校园-北校园",
+        "from_campus_id": "guangzhou_east",
+        "to_campus_id": "guangzhou_north",
+        "direction": "东校园-北校园",
+        "stops": [
+          {
+            "place_id": "east_bus_lanyuan3",
+            "name": "东校园兰园3号（原生科院大楼）",
+            "role": "origin"
+          },
+          {
+            "place_id": "north_bus_south_gate_carhouse",
+            "name": "北校园南门车房楼下",
+            "role": "destination"
+          }
+        ],
+        "scheduled_departures": [
+          {
+            "time": "07:00",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "08:00",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "10:00",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "12:10",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "15:30",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "16:20",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "17:10",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "18:30",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "21:00",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "21:55",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          }
+        ],
+        "passenger_restrictions": [
+          "教职工",
+          "教职工、学生"
+        ],
+        "static_notes": [
+          "1、如遇国家法定节假日，班车将相应调整。 2、东校园开往南、北校园教职工专车如有空位，学生可排队在教工公寓对面（候车点）乘坐，但应先礼让教职工上车。南、北校园开往东校园的教职工专车因在行车途中要接教职工，故学生不能乘坐。 3、东校园内班车行车路线 （1）南、北校园开往东校园方向 （2）东校园开往南、北校园方向 4、票价3元/次，用校园卡进行缴费。",
+          "票价3元/次，使用校园卡支付。"
+        ],
+        "date_type": "workday",
+        "source_refs": [
+          "sysu-anything bus --bus 1 --json"
+        ],
+        "verified_at": "2026-08-11",
+        "confidence": "verified"
+      },
+      {
+        "id": "bus_workday_02",
+        "route_name": "北校园-东校园",
+        "from_campus_id": "guangzhou_north",
+        "to_campus_id": "guangzhou_east",
+        "direction": "北校园-东校园",
+        "stops": [
+          {
+            "place_id": "north_bus_south_gate_carhouse",
+            "name": "北校园南门车房楼下",
+            "role": "origin"
+          },
+          {
+            "place_id": "east_bus_lanyuan3",
+            "name": "东校园兰园3号（原生科院大楼）",
+            "role": "destination"
+          }
+        ],
+        "scheduled_departures": [
+          {
+            "time": "07:00",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "07:50",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "08:10",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "09:00",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "09:40",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "13:10",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "15:10",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "17:45",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "18:50",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "20:50",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          }
+        ],
+        "passenger_restrictions": [
+          "教职工",
+          "教职工、学生"
+        ],
+        "static_notes": [
+          "1、如遇国家法定节假日，班车将相应调整。 2、东校园开往南、北校园教职工专车如有空位，学生可排队在教工公寓对面（候车点）乘坐，但应先礼让教职工上车。南、北校园开往东校园的教职工专车因在行车途中要接教职工，故学生不能乘坐。 3、东校园内班车行车路线 （1）南、北校园开往东校园方向 （2）东校园开往南、北校园方向 4、票价3元/次，用校园卡进行缴费。",
+          "票价3元/次，使用校园卡支付。"
+        ],
+        "date_type": "workday",
+        "source_refs": [
+          "sysu-anything bus --bus 1 --json"
+        ],
+        "verified_at": "2026-08-11",
+        "confidence": "verified"
+      },
+      {
+        "id": "bus_workday_03",
+        "route_name": "北校园-南校园",
+        "from_campus_id": "guangzhou_north",
+        "to_campus_id": "guangzhou_south",
+        "direction": "北校园-南校园",
+        "stops": [
+          {
+            "place_id": "north_bus_south_gate_carhouse",
+            "name": "北校园南门车房楼下",
+            "role": "origin"
+          },
+          {
+            "place_id": "south_bus_south_gate_parking",
+            "name": "南校园南门停车场",
+            "role": "destination"
+          }
+        ],
+        "scheduled_departures": [
+          {
+            "time": "07:30",
+            "route_note": "途经东川路、海印桥",
+            "passenger": "教职工",
+            "vehicle_type": "大巴2台"
+          },
+          {
+            "time": "09:00",
+            "route_note": "中途不停",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "10:00",
+            "route_note": "中途不停",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "12:10",
+            "route_note": "途经东川路、海印桥",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "14:10",
+            "route_note": "途经东川路、海印桥",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "15:30",
+            "route_note": "中途不停",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "17:45",
+            "route_note": "途经东川路、海印桥",
+            "passenger": "教职工",
+            "vehicle_type": "大巴2台"
+          }
+        ],
+        "passenger_restrictions": [
+          "教职工"
+        ],
+        "static_notes": [
+          "1、如遇国家法定节假日，班车将相应调整。 2、东校园开往南、北校园教职工专车如有空位，学生可排队在教工公寓对面（候车点）乘坐，但应先礼让教职工上车。南、北校园开往东校园的教职工专车因在行车途中要接教职工，故学生不能乘坐。 3、东校园内班车行车路线 （1）南、北校园开往东校园方向 （2）东校园开往南、北校园方向 4、票价3元/次，用校园卡进行缴费。",
+          "票价3元/次，使用校园卡支付。"
+        ],
+        "date_type": "workday",
+        "source_refs": [
+          "sysu-anything bus --bus 1 --json"
+        ],
+        "verified_at": "2026-08-11",
+        "confidence": "verified"
+      },
+      {
+        "id": "bus_workday_04",
+        "route_name": "南校园-东校园",
+        "from_campus_id": "guangzhou_south",
+        "to_campus_id": "guangzhou_east",
+        "direction": "南校园-东校园",
+        "stops": [
+          {
+            "place_id": "south_bus_south_gate_parking",
+            "name": "南校园南门停车场",
+            "role": "origin"
+          },
+          {
+            "place_id": "east_bus_lanyuan3",
+            "name": "东校园兰园3号（原生科院大楼）",
+            "role": "destination"
+          }
+        ],
+        "scheduled_departures": [
+          {
+            "time": "07:10",
+            "route_note": "中途1车停坚真花园",
+            "passenger": "教职工",
+            "vehicle_type": "大巴2台"
+          },
+          {
+            "time": "08:00",
+            "route_note": "中途不停",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴2台"
+          },
+          {
+            "time": "08:20",
+            "route_note": "中途1车停坚真花园",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴3台"
+          },
+          {
+            "time": "09:10",
+            "route_note": "中途1车停坚真花园",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴2台"
+          },
+          {
+            "time": "09:50",
+            "route_note": "中途不停",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "11:00",
+            "route_note": "中途不停",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "13:20",
+            "route_note": "中途1车停坚真花园",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴2台"
+          },
+          {
+            "time": "15:20",
+            "route_note": "中途1车停坚真花园",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴2台"
+          },
+          {
+            "time": "17:45",
+            "route_note": "中途不停",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "18:00",
+            "route_note": "中途停坚真花园",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "19:00",
+            "route_note": "中途不停",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "21:00",
+            "route_note": "中途不停",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴2台"
+          },
+          {
+            "time": "21:50",
+            "route_note": "中途不停",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          }
+        ],
+        "passenger_restrictions": [
+          "教职工",
+          "教职工、学生"
+        ],
+        "static_notes": [
+          "1、如遇国家法定节假日，班车将相应调整。 2、东校园开往南、北校园教职工专车如有空位，学生可排队在教工公寓对面（候车点）乘坐，但应先礼让教职工上车。南、北校园开往东校园的教职工专车因在行车途中要接教职工，故学生不能乘坐。 3、东校园内班车行车路线 （1）南、北校园开往东校园方向 （2）东校园开往南、北校园方向 4、票价3元/次，用校园卡进行缴费。",
+          "票价3元/次，使用校园卡支付。"
+        ],
+        "date_type": "workday",
+        "source_refs": [
+          "sysu-anything bus --bus 1 --json"
+        ],
+        "verified_at": "2026-08-11",
+        "confidence": "verified"
+      },
+      {
+        "id": "bus_workday_05",
+        "route_name": "东校园-南校园",
+        "from_campus_id": "guangzhou_east",
+        "to_campus_id": "guangzhou_south",
+        "direction": "东校园-南校园",
+        "stops": [
+          {
+            "place_id": "east_bus_lanyuan3",
+            "name": "东校园兰园3号（原生科院大楼）",
+            "role": "origin"
+          },
+          {
+            "place_id": "south_bus_south_gate_parking",
+            "name": "南校园南门停车场",
+            "role": "destination"
+          }
+        ],
+        "scheduled_departures": [
+          {
+            "time": "07:10",
+            "route_note": "校园内经教师公寓对面",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "08:00",
+            "route_note": "校园内经教师公寓对面",
+            "passenger": "教职工",
+            "vehicle_type": "大巴2台"
+          },
+          {
+            "time": "10:00",
+            "route_note": "中途1车停坚真花园",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴2台"
+          },
+          {
+            "time": "12:10",
+            "route_note": "中途1车停坚真花园",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴2台"
+          },
+          {
+            "time": "13:20",
+            "route_note": "校园内经教师公寓对面",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴2台"
+          },
+          {
+            "time": "13:50",
+            "route_note": "校园内经教师公寓对面",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "15:30",
+            "route_note": "校园内经教师公寓对面",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴2台"
+          },
+          {
+            "time": "16:20",
+            "route_note": "校园内经教师公寓对面",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴2台"
+          },
+          {
+            "time": "17:10",
+            "route_note": "中途1车停坚真花园",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴4台"
+          },
+          {
+            "time": "18:30",
+            "route_note": "中途1车停坚真花园",
+            "passenger": "教职工",
+            "vehicle_type": "大巴2台"
+          },
+          {
+            "time": "20:00",
+            "route_note": "校园内经教师公寓对面",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "21:00",
+            "route_note": "校园内经教师公寓对面",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "21:55",
+            "route_note": "校园内经教师公寓对面",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "22:15",
+            "route_note": "校园内经教师公寓对面",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          }
+        ],
+        "passenger_restrictions": [
+          "教职工",
+          "教职工、学生"
+        ],
+        "static_notes": [
+          "1、如遇国家法定节假日，班车将相应调整。 2、东校园开往南、北校园教职工专车如有空位，学生可排队在教工公寓对面（候车点）乘坐，但应先礼让教职工上车。南、北校园开往东校园的教职工专车因在行车途中要接教职工，故学生不能乘坐。 3、东校园内班车行车路线 （1）南、北校园开往东校园方向 （2）东校园开往南、北校园方向 4、票价3元/次，用校园卡进行缴费。",
+          "票价3元/次，使用校园卡支付。"
+        ],
+        "date_type": "workday",
+        "source_refs": [
+          "sysu-anything bus --bus 1 --json"
+        ],
+        "verified_at": "2026-08-11",
+        "confidence": "verified"
+      },
+      {
+        "id": "bus_workday_06",
+        "route_name": "南校园-北校园",
+        "from_campus_id": "guangzhou_south",
+        "to_campus_id": "guangzhou_north",
+        "direction": "南校园-北校园",
+        "stops": [
+          {
+            "place_id": "south_bus_south_gate_parking",
+            "name": "南校园南门停车场",
+            "role": "origin"
+          },
+          {
+            "place_id": "north_bus_south_gate_carhouse",
+            "name": "北校园南门车房楼下",
+            "role": "destination"
+          }
+        ],
+        "scheduled_departures": [
+          {
+            "time": "07:30",
+            "route_note": "途经怡乐路口、海印桥",
+            "passenger": "教职工",
+            "vehicle_type": "大巴2台"
+          },
+          {
+            "time": "09:30",
+            "route_note": "中途不停",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "10:30",
+            "route_note": "中途不停",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "12:10",
+            "route_note": "途经怡乐路口、海印桥",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "14:10",
+            "route_note": "途经怡乐路口、海印桥",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "16:15",
+            "route_note": "中途不停",
+            "passenger": "教职工",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "17:45",
+            "route_note": "途经怡乐路口、海印桥",
+            "passenger": "教职工",
+            "vehicle_type": "大巴2台"
+          }
+        ],
+        "passenger_restrictions": [
+          "教职工"
+        ],
+        "static_notes": [
+          "1、如遇国家法定节假日，班车将相应调整。 2、东校园开往南、北校园教职工专车如有空位，学生可排队在教工公寓对面（候车点）乘坐，但应先礼让教职工上车。南、北校园开往东校园的教职工专车因在行车途中要接教职工，故学生不能乘坐。 3、东校园内班车行车路线 （1）南、北校园开往东校园方向 （2）东校园开往南、北校园方向 4、票价3元/次，用校园卡进行缴费。",
+          "票价3元/次，使用校园卡支付。"
+        ],
+        "date_type": "workday",
+        "source_refs": [
+          "sysu-anything bus --bus 1 --json"
+        ],
+        "verified_at": "2026-08-11",
+        "confidence": "verified"
+      }
+    ],
+    "holiday_routes": [
+      {
+        "id": "bus_holiday_01",
+        "route_name": "东校园-北校园",
+        "from_campus_id": "guangzhou_east",
+        "to_campus_id": "guangzhou_north",
+        "direction": "东校园-北校园",
+        "stops": [
+          {
+            "place_id": "east_bus_lanyuan3",
+            "name": "东校园兰园3号（原生科院大楼）",
+            "role": "origin"
+          },
+          {
+            "place_id": "north_bus_south_gate_carhouse",
+            "name": "北校园南门车房楼下",
+            "role": "destination"
+          }
+        ],
+        "scheduled_departures": [
+          {
+            "time": "09:30",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "13:30",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          }
+        ],
+        "passenger_restrictions": [
+          "教职工、学生"
+        ],
+        "static_notes": [
+          "1、如遇国家法定节假日，班车将相应调整。 2、东校园开往南、北校园教职工专车如有空位，学生可排队在教工公寓对面（候车点）乘坐，但应先礼让教职工上车。南、北校园开往东校园的教职工专车因在行车途中要接教职工，故学生不能乘坐。 3、东校园内班车行车路线 （1）南、北校园开往东校园方向 （2）东校园开往南、北校园方向 4、票价3元/次，用校园卡进行缴费。",
+          "票价3元/次，使用校园卡支付。"
+        ],
+        "date_type": "holiday",
+        "source_refs": [
+          "sysu-anything bus --bus 0 --json"
+        ],
+        "verified_at": "2026-08-11",
+        "confidence": "verified"
+      },
+      {
+        "id": "bus_holiday_02",
+        "route_name": "北校园-东校园",
+        "from_campus_id": "guangzhou_north",
+        "to_campus_id": "guangzhou_east",
+        "direction": "北校园-东校园",
+        "stops": [
+          {
+            "place_id": "north_bus_south_gate_carhouse",
+            "name": "北校园南门车房楼下",
+            "role": "origin"
+          },
+          {
+            "place_id": "east_bus_lanyuan3",
+            "name": "东校园兰园3号（原生科院大楼）",
+            "role": "destination"
+          }
+        ],
+        "scheduled_departures": [
+          {
+            "time": "08:20",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "12:40",
+            "route_note": "途经黄埔大道",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          }
+        ],
+        "passenger_restrictions": [
+          "教职工、学生"
+        ],
+        "static_notes": [
+          "1、如遇国家法定节假日，班车将相应调整。 2、东校园开往南、北校园教职工专车如有空位，学生可排队在教工公寓对面（候车点）乘坐，但应先礼让教职工上车。南、北校园开往东校园的教职工专车因在行车途中要接教职工，故学生不能乘坐。 3、东校园内班车行车路线 （1）南、北校园开往东校园方向 （2）东校园开往南、北校园方向 4、票价3元/次，用校园卡进行缴费。",
+          "票价3元/次，使用校园卡支付。"
+        ],
+        "date_type": "holiday",
+        "source_refs": [
+          "sysu-anything bus --bus 0 --json"
+        ],
+        "verified_at": "2026-08-11",
+        "confidence": "verified"
+      },
+      {
+        "id": "bus_holiday_03",
+        "route_name": "南校园-东校园",
+        "from_campus_id": "guangzhou_south",
+        "to_campus_id": "guangzhou_east",
+        "direction": "南校园-东校园",
+        "stops": [
+          {
+            "place_id": "south_bus_south_gate_parking",
+            "name": "南校园南门停车场",
+            "role": "origin"
+          },
+          {
+            "place_id": "east_bus_lanyuan3",
+            "name": "东校园兰园3号（原生科院大楼）",
+            "role": "destination"
+          }
+        ],
+        "scheduled_departures": [
+          {
+            "time": "08:20",
+            "route_note": "中途不停",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "12:40",
+            "route_note": "中途不停",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          }
+        ],
+        "passenger_restrictions": [
+          "教职工、学生"
+        ],
+        "static_notes": [
+          "1、如遇国家法定节假日，班车将相应调整。 2、东校园开往南、北校园教职工专车如有空位，学生可排队在教工公寓对面（候车点）乘坐，但应先礼让教职工上车。南、北校园开往东校园的教职工专车因在行车途中要接教职工，故学生不能乘坐。 3、东校园内班车行车路线 （1）南、北校园开往东校园方向 （2）东校园开往南、北校园方向 4、票价3元/次，用校园卡进行缴费。",
+          "票价3元/次，使用校园卡支付。"
+        ],
+        "date_type": "holiday",
+        "source_refs": [
+          "sysu-anything bus --bus 0 --json"
+        ],
+        "verified_at": "2026-08-11",
+        "confidence": "verified"
+      },
+      {
+        "id": "bus_holiday_04",
+        "route_name": "东校园-南校园",
+        "from_campus_id": "guangzhou_east",
+        "to_campus_id": "guangzhou_south",
+        "direction": "东校园-南校园",
+        "stops": [
+          {
+            "place_id": "east_bus_lanyuan3",
+            "name": "东校园兰园3号（原生科院大楼）",
+            "role": "origin"
+          },
+          {
+            "place_id": "south_bus_south_gate_parking",
+            "name": "南校园南门停车场",
+            "role": "destination"
+          }
+        ],
+        "scheduled_departures": [
+          {
+            "time": "09:30",
+            "route_note": "校园内经教师公寓对面",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          },
+          {
+            "time": "13:30",
+            "route_note": "校园内经教师公寓对面",
+            "passenger": "教职工、学生",
+            "vehicle_type": "大巴1台"
+          }
+        ],
+        "passenger_restrictions": [
+          "教职工、学生"
+        ],
+        "static_notes": [
+          "1、如遇国家法定节假日，班车将相应调整。 2、东校园开往南、北校园教职工专车如有空位，学生可排队在教工公寓对面（候车点）乘坐，但应先礼让教职工上车。南、北校园开往东校园的教职工专车因在行车途中要接教职工，故学生不能乘坐。 3、东校园内班车行车路线 （1）南、北校园开往东校园方向 （2）东校园开往南、北校园方向 4、票价3元/次，用校园卡进行缴费。",
+          "票价3元/次，使用校园卡支付。"
+        ],
+        "date_type": "holiday",
+        "source_refs": [
+          "sysu-anything bus --bus 0 --json"
+        ],
+        "verified_at": "2026-08-11",
+        "confidence": "verified"
+      }
+    ],
+    "fare_note": "3元/次，使用校园卡支付。",
+    "static_boundary": "只固化线路、站点、日期类型和固定发车时刻；不固化运行状态。",
+    "source_refs": [
+      "sysu-anything bus --bus 1 --json",
+      "sysu-anything bus --bus 0 --json"
+    ]
+  },
+  "qiguan": {
+    "campus_keys": {
+      "zhuhai": "zhuhai",
+      "south": "guangzhou_south",
+      "east": "guangzhou_east"
+    },
+    "station_keys": {
+      "zhuhai": "qg_zhuhai",
+      "boya": "qg_boya",
+      "fifth": "qg_fifth"
+    },
+    "route_keys": [
+      "zhuhai_to_south",
+      "zhuhai_to_east"
+    ],
+    "stations": [
+      {
+        "id": "qg_zhuhai",
+        "campus_id": "zhuhai",
+        "canonical_name": "珠海中大岐关服务点",
+        "aliases": [
+          "珠海中大岐关服务点"
+        ],
+        "location_text": "广东省珠海市香洲区唐家湾镇中山大学（珠海校区）",
+        "latitude": 22.34756,
+        "longitude": 113.589353,
+        "source_refs": [
+          "sysu-anything qg routes",
+          "sysu-anything qg list --today --all --json"
+        ],
+        "verified_at": "2026-08-11",
+        "confidence": "verified"
+      },
+      {
+        "id": "qg_boya",
+        "campus_id": "zhuhai",
+        "canonical_name": "博雅苑",
+        "aliases": [
+          "博雅苑站点"
+        ],
+        "location_text": "珠海校区岐关站点键；详细位置待补官方坐标。",
+        "latitude": null,
+        "longitude": null,
+        "source_refs": [
+          "sysu-anything qg routes"
+        ],
+        "verified_at": "2026-08-11",
+        "confidence": "partial"
+      },
+      {
+        "id": "qg_fifth",
+        "campus_id": "zhuhai",
+        "canonical_name": "中大五院正门",
+        "aliases": [
+          "中大五院正门站点"
+        ],
+        "location_text": "珠海校区岐关站点键；详细位置待补官方坐标。",
+        "latitude": null,
+        "longitude": null,
+        "source_refs": [
+          "sysu-anything qg routes"
+        ],
+        "verified_at": "2026-08-11",
+        "confidence": "partial"
+      },
+      {
+        "id": "qg_south",
+        "campus_id": "guangzhou_south",
+        "canonical_name": "广中大南校区岐关服务部",
+        "aliases": [
+          "南门岐关车站"
+        ],
+        "location_text": "南门左边方向前50米的位置岐关车站；广东省广州市海珠区新港街道逸仙路中山大学（广州校区南校园）",
+        "latitude": 23.092043,
+        "longitude": 113.297367,
+        "source_refs": [
+          "sysu-anything qg routes",
+          "sysu-anything qg list --today --all --json"
+        ],
+        "verified_at": "2026-08-11",
+        "confidence": "verified"
+      },
+      {
+        "id": "qg_east",
+        "campus_id": "guangzhou_east",
+        "canonical_name": "广中大东校区（大学城）岐关服务部",
+        "aliases": [
+          "东校区岐关服务部"
+        ],
+        "location_text": "广州校区东校园岐关服务部",
+        "latitude": 23.061221,
+        "longitude": 113.388421,
+        "source_refs": [
+          "sysu-anything qg routes",
+          "sysu-anything qg list --today --all --json"
+        ],
+        "verified_at": "2026-08-11",
+        "confidence": "verified"
+      }
+    ],
+    "routes": [
+      {
+        "route_key": "zhuhai_to_south",
+        "from_campus_id": "zhuhai",
+        "to_campus_id": "guangzhou_south",
+        "from_station_id": "qg_zhuhai",
+        "to_station_id": "qg_south",
+        "order_entry_note": "通过岐关服务入口按出行日期查询和下单。",
+        "source_refs": [
+          "sysu-anything qg routes",
+          "sysu-anything qg list --today --all --json"
+        ],
+        "confidence": "partial"
+      },
+      {
+        "route_key": "zhuhai_to_east",
+        "from_campus_id": "zhuhai",
+        "to_campus_id": "guangzhou_east",
+        "from_station_id": "qg_zhuhai",
+        "to_station_id": "qg_east",
+        "order_entry_note": "通过岐关服务入口按出行日期查询和下单。",
+        "source_refs": [
+          "sysu-anything qg routes",
+          "sysu-anything qg list --today --all --json"
+        ],
+        "confidence": "partial"
+      }
+    ],
+    "static_boundary": "仅固化校区键、站点键、上下车点和入口说明；不固化日期级班次、价格、座位或运行状态。",
+    "source_refs": [
+      "sysu-anything qg routes",
+      "sysu-anything qg list --today --all --json"
+    ]
+  },
+  "campus_commute_matrix": [
+    {
+      "from_campus_id": "guangzhou_south",
+      "to_campus_id": "guangzhou_east",
+      "transport_mode": "university_shuttle",
+      "typical_minutes": 30,
+      "buffer_minutes": null,
+      "minimum_safe_gap_minutes": null,
+      "duration_source_type": "user_confirmed_typical",
+      "duration_verified_at": "2026-08-11",
+      "evidence": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json",
+        "evidence/user_confirmed_commute_times_2026-08-11.md"
+      ],
+      "source_refs": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json",
+        "evidence/user_confirmed_commute_times_2026-08-11.md"
+      ],
+      "confidence": "partial",
+      "note": "用户确认的典型行程时长；不含额外候车或安全缓冲，只适用于当前记录方向。"
+    },
+    {
+      "from_campus_id": "guangzhou_east",
+      "to_campus_id": "guangzhou_south",
+      "transport_mode": "university_shuttle",
+      "typical_minutes": null,
+      "buffer_minutes": null,
+      "minimum_safe_gap_minutes": null,
+      "duration_source_type": null,
+      "duration_verified_at": null,
+      "evidence": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json"
+      ],
+      "source_refs": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json"
+      ],
+      "confidence": "partial",
+      "note": "已核验固定线路与班次，但当前证据未提供该方向的典型行驶时长。"
+    },
+    {
+      "from_campus_id": "guangzhou_south",
+      "to_campus_id": "guangzhou_north",
+      "transport_mode": "university_shuttle",
+      "typical_minutes": 30,
+      "buffer_minutes": null,
+      "minimum_safe_gap_minutes": null,
+      "duration_source_type": "user_confirmed_typical",
+      "duration_verified_at": "2026-08-11",
+      "evidence": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json",
+        "evidence/user_confirmed_commute_times_2026-08-11.md"
+      ],
+      "source_refs": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json",
+        "evidence/user_confirmed_commute_times_2026-08-11.md"
+      ],
+      "confidence": "partial",
+      "note": "用户确认的典型行程时长；不含额外候车或安全缓冲，只适用于当前记录方向。"
+    },
+    {
+      "from_campus_id": "guangzhou_north",
+      "to_campus_id": "guangzhou_south",
+      "transport_mode": "university_shuttle",
+      "typical_minutes": null,
+      "buffer_minutes": null,
+      "minimum_safe_gap_minutes": null,
+      "duration_source_type": null,
+      "duration_verified_at": null,
+      "evidence": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json"
+      ],
+      "source_refs": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json"
+      ],
+      "confidence": "partial",
+      "note": "已核验固定线路与班次，但当前证据未提供该方向的典型行驶时长。"
+    },
+    {
+      "from_campus_id": "guangzhou_east",
+      "to_campus_id": "guangzhou_north",
+      "transport_mode": "university_shuttle",
+      "typical_minutes": null,
+      "buffer_minutes": null,
+      "minimum_safe_gap_minutes": null,
+      "duration_source_type": null,
+      "duration_verified_at": null,
+      "evidence": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json"
+      ],
+      "source_refs": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json"
+      ],
+      "confidence": "partial",
+      "note": "已核验固定线路与班次，但当前证据未提供该方向的典型行驶时长。"
+    },
+    {
+      "from_campus_id": "guangzhou_north",
+      "to_campus_id": "guangzhou_east",
+      "transport_mode": "university_shuttle",
+      "typical_minutes": null,
+      "buffer_minutes": null,
+      "minimum_safe_gap_minutes": null,
+      "duration_source_type": null,
+      "duration_verified_at": null,
+      "evidence": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json"
+      ],
+      "source_refs": [
+        "sysu-anything bus --bus 1 --json",
+        "sysu-anything bus --bus 0 --json"
+      ],
+      "confidence": "partial",
+      "note": "已核验固定线路与班次，但当前证据未提供该方向的典型行驶时长。"
+    },
+    {
+      "from_campus_id": "guangzhou_east",
+      "to_campus_id": "zhuhai",
+      "transport_mode": "intercampus_coach",
+      "typical_minutes": 90,
+      "buffer_minutes": null,
+      "minimum_safe_gap_minutes": null,
+      "duration_source_type": "user_confirmed_typical",
+      "duration_verified_at": "2026-08-11",
+      "evidence": [
+        "sysu-anything qg routes",
+        "sysu-anything qg list --today --all --json",
+        "evidence/user_confirmed_commute_times_2026-08-11.md"
+      ],
+      "source_refs": [
+        "sysu-anything qg routes",
+        "sysu-anything qg list --today --all --json",
+        "evidence/user_confirmed_commute_times_2026-08-11.md"
+      ],
+      "confidence": "partial",
+      "note": "用户确认的典型行程时长；不含额外候车或安全缓冲，只适用于当前记录方向。"
+    },
+    {
+      "from_campus_id": "guangzhou_east",
+      "to_campus_id": "shenzhen",
+      "transport_mode": "intercampus_transfer",
+      "typical_minutes": 120,
+      "buffer_minutes": null,
+      "minimum_safe_gap_minutes": null,
+      "duration_source_type": "user_confirmed_typical",
+      "duration_verified_at": "2026-08-11",
+      "evidence": [
+        "evidence/user_confirmed_commute_times_2026-08-11.md"
+      ],
+      "source_refs": [
+        "evidence/user_confirmed_commute_times_2026-08-11.md"
+      ],
+      "confidence": "partial",
+      "note": "用户确认的典型行程时长；不含额外候车或安全缓冲，只适用于当前记录方向。"
+    },
+    {
+      "from_campus_id": "guangzhou_south",
+      "to_campus_id": "zhuhai",
+      "transport_mode": "intercampus_coach",
+      "typical_minutes": 120,
+      "buffer_minutes": null,
+      "minimum_safe_gap_minutes": null,
+      "duration_source_type": "user_confirmed_typical",
+      "duration_verified_at": "2026-08-11",
+      "evidence": [
+        "sysu-anything qg routes",
+        "sysu-anything qg list --today --all --json",
+        "evidence/user_confirmed_commute_times_2026-08-11.md"
+      ],
+      "source_refs": [
+        "sysu-anything qg routes",
+        "sysu-anything qg list --today --all --json",
+        "evidence/user_confirmed_commute_times_2026-08-11.md"
+      ],
+      "confidence": "partial",
+      "note": "用户确认的典型行程时长；不含额外候车或安全缓冲，只适用于当前记录方向。"
+    },
+    {
+      "from_campus_id": "guangzhou_south",
+      "to_campus_id": "shenzhen",
+      "transport_mode": "intercampus_transfer",
+      "typical_minutes": 150,
+      "buffer_minutes": null,
+      "minimum_safe_gap_minutes": null,
+      "duration_source_type": "user_confirmed_typical",
+      "duration_verified_at": "2026-08-11",
+      "evidence": [
+        "evidence/user_confirmed_commute_times_2026-08-11.md"
+      ],
+      "source_refs": [
+        "evidence/user_confirmed_commute_times_2026-08-11.md"
+      ],
+      "confidence": "partial",
+      "note": "用户确认的典型行程时长；不含额外候车或安全缓冲，只适用于当前记录方向。"
+    }
+  ]
+}

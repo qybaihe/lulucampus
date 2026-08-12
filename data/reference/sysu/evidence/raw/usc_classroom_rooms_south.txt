@@ -1,0 +1,9 @@
+
+>>> /Users/baihe/.local/bin/sysu-anything usc classroom rooms --campus 南校园 --date 2026-08-11 --section-start 1 --section-end 2 --json
+{
+  "e": "CODE_ERROR",
+  "m": "Trying to access array offset on value of type int App197JSData:48",
+  "d": []
+}
+
+[exit=]

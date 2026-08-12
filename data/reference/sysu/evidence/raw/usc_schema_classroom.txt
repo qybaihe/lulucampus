@@ -1,0 +1,1791 @@
+
+>>> /Users/baihe/.local/bin/sysu-anything usc schema classroom --json
+{
+  "scenario": {
+    "key": "classroom",
+    "appId": 197,
+    "label": "课室临时使用申请",
+    "shortLabel": "课室预约",
+    "description": "课室临时使用申请，当前重点卡在重复节里的教室选择数据源。"
+  },
+  "publicVersionId": 781,
+  "startConfig": {
+    "accessed": [],
+    "appraise": 1,
+    "pdf_down": 0,
+    "show_pay": 1,
+    "anonymity": 0,
+    "hall_show": 1,
+    "print_way": [
+      1
+    ],
+    "sure_hint": {
+      "sureText": "",
+      "cancelText": "",
+      "expression": ""
+    },
+    "take_back": 1,
+    "draft_auto": 1,
+    "inst_draft": 1,
+    "print_list": 1,
+    "print_rule": 1,
+    "save_draft": 1,
+    "show_count": 1,
+    "agentLaunch": [],
+    "approvalLog": 1,
+    "launch_type": 0,
+    "print_other": [],
+    "show_detail": 1,
+    "show_submit": 1,
+    "submit_text": "",
+    "custom_order": {
+      "name": "",
+      "rule": "",
+      "type": "number"
+    },
+    "details_page": 1,
+    "details_tips": "",
+    "launch_again": 1,
+    "show_process": 1,
+    "guide_jump_url": "",
+    "mobile_preview": 1,
+    "credentialsUsers": [],
+    "enableSmallTable": 0,
+    "inst_submit_text": "",
+    "success_jump_url": "",
+    "success_jump_type": 0
+  },
+  "steps": [],
+  "declaredStepFormIds": [],
+  "startForms": [
+    {
+      "id": 304,
+      "versionId": 1895,
+      "name": "课室临时使用申请",
+      "isSub": false,
+      "fields": [
+        {
+          "key": "Serial_245",
+          "type": "Serial",
+          "pluginName": "流水号",
+          "description": "流水号",
+          "groupName": "活动情况",
+          "parentKey": "Table_40",
+          "sort": 500
+        },
+        {
+          "key": "Radio_43",
+          "type": "Radio",
+          "pluginName": "单选按钮",
+          "description": "活动类别",
+          "groupName": "活动情况",
+          "parentKey": "Table_40",
+          "sort": 4300
+        },
+        {
+          "key": "Select_45",
+          "type": "Select",
+          "pluginName": "下拉菜单",
+          "description": "社团名称",
+          "groupName": "社团",
+          "parentKey": "Table_40",
+          "sort": 4500
+        },
+        {
+          "key": "Radio_47",
+          "type": "Radio",
+          "pluginName": "单选按钮",
+          "description": "是否为讲座类活动",
+          "groupName": "活动情况",
+          "parentKey": "Table_40",
+          "sort": 4700
+        },
+        {
+          "key": "Radio_49",
+          "type": "Radio",
+          "pluginName": "单选按钮",
+          "description": "是否涉及境外人员",
+          "groupName": "活动情况",
+          "parentKey": "Table_40",
+          "sort": 4900
+        },
+        {
+          "key": "Radio_52",
+          "type": "Radio",
+          "pluginName": "单选按钮",
+          "description": "讲座类型",
+          "groupName": "讲座类活动",
+          "parentKey": "Table_40",
+          "sort": 5200
+        },
+        {
+          "key": "Input_54",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "活动内容",
+          "groupName": "活动情况",
+          "parentKey": "Table_40",
+          "sort": 5400
+        },
+        {
+          "key": "User_6",
+          "type": "User",
+          "pluginName": "人员信息",
+          "description": "申请人单位",
+          "groupName": "申请信息",
+          "parentKey": "Table_3",
+          "sort": 5500
+        },
+        {
+          "key": "User_161",
+          "type": "User",
+          "pluginName": "人员信息",
+          "description": "申请人学工号",
+          "groupName": "申请信息",
+          "parentKey": "Table_3",
+          "sort": 5600
+        },
+        {
+          "key": "User_8",
+          "type": "User",
+          "pluginName": "人员信息",
+          "description": "申请人姓名",
+          "groupName": "申请信息",
+          "parentKey": "Table_3",
+          "sort": 5700
+        },
+        {
+          "key": "Input_158",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "申请人电话",
+          "groupName": "申请信息",
+          "parentKey": "Table_3",
+          "sort": 5800
+        },
+        {
+          "key": "Select_16",
+          "type": "Select",
+          "pluginName": "下拉菜单",
+          "description": "申请课室所在校区/园",
+          "groupName": "申请信息",
+          "parentKey": "Table_3",
+          "sort": 5900
+        },
+        {
+          "key": "RepeatTablePlus_145",
+          "type": "RepeatTablePlus",
+          "pluginName": "重复节",
+          "description": "课室分配表",
+          "groupName": "",
+          "parentKey": "",
+          "sort": 6100
+        },
+        {
+          "key": "Calendar_181",
+          "type": "Calendar",
+          "pluginName": "日期时间",
+          "description": "选择使用教室日期",
+          "groupName": "申请信息",
+          "parentKey": "RepeatTablePlus_145",
+          "sort": 6180
+        },
+        {
+          "key": "Input_210",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "星期",
+          "groupName": "申请信息",
+          "parentKey": "RepeatTablePlus_145",
+          "sort": 6190
+        },
+        {
+          "key": "Input_226",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "周次",
+          "groupName": "申请信息",
+          "parentKey": "RepeatTablePlus_145",
+          "sort": 6200
+        },
+        {
+          "key": "Input_208",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "使用教室间数",
+          "groupName": "申请信息",
+          "parentKey": "RepeatTablePlus_145",
+          "sort": 6210
+        },
+        {
+          "key": "Radio_243",
+          "type": "Radio",
+          "pluginName": "单选按钮",
+          "description": "是否使用多媒体",
+          "groupName": "申请信息",
+          "parentKey": "RepeatTablePlus_145",
+          "sort": 6220
+        },
+        {
+          "key": "Select_187",
+          "type": "Select",
+          "pluginName": "下拉菜单",
+          "description": "节次开始",
+          "groupName": "申请信息",
+          "parentKey": "RepeatTablePlus_145",
+          "sort": 6240
+        },
+        {
+          "key": "Select_188",
+          "type": "Select",
+          "pluginName": "下拉菜单",
+          "description": "节次结束",
+          "groupName": "申请信息",
+          "parentKey": "RepeatTablePlus_145",
+          "sort": 6250
+        },
+        {
+          "key": "Input_37",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "校内人数",
+          "groupName": "申请信息",
+          "parentKey": "RepeatTablePlus_145",
+          "sort": 6260
+        },
+        {
+          "key": "Input_38",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "校外人数",
+          "groupName": "申请信息",
+          "parentKey": "RepeatTablePlus_145",
+          "sort": 6270
+        },
+        {
+          "key": "Count_34",
+          "type": "Count",
+          "pluginName": "动态运算",
+          "description": "总人数",
+          "groupName": "申请信息",
+          "parentKey": "RepeatTablePlus_145",
+          "sort": 6280
+        },
+        {
+          "key": "Input_39",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "特别要求",
+          "groupName": "申请信息",
+          "parentKey": "RepeatTablePlus_145",
+          "sort": 6290
+        },
+        {
+          "key": "Select_151",
+          "type": "Select",
+          "pluginName": "下拉菜单",
+          "description": "课室",
+          "groupName": "选择课室",
+          "parentKey": "RepeatTablePlus_145",
+          "sort": 6310
+        },
+        {
+          "key": "Count_273",
+          "type": "Count",
+          "pluginName": "动态运算",
+          "description": "课室数量",
+          "groupName": "选择课室",
+          "parentKey": "RepeatTablePlus_145",
+          "sort": 6320
+        },
+        {
+          "key": "Input_260",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "课室座位总数",
+          "groupName": "选择课室",
+          "parentKey": "RepeatTablePlus_145",
+          "sort": 6330
+        },
+        {
+          "key": "Input_153",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "学年学期",
+          "groupName": "申请信息",
+          "parentKey": "RepeatTablePlus_145",
+          "sort": 6340
+        },
+        {
+          "key": "File_58",
+          "type": "File",
+          "pluginName": "附件上传",
+          "description": "讲座上传附件",
+          "groupName": "讲座类活动",
+          "parentKey": "Table_61",
+          "sort": 6370
+        },
+        {
+          "key": "File_59",
+          "type": "File",
+          "pluginName": "附件上传",
+          "description": "境外人员上传附件",
+          "groupName": "境外人员",
+          "parentKey": "Table_61",
+          "sort": 6380
+        },
+        {
+          "key": "File_254",
+          "type": "File",
+          "pluginName": "附件上传",
+          "description": "大型活动上传附件",
+          "groupName": "大型活动",
+          "parentKey": "Table_61",
+          "sort": 6390
+        },
+        {
+          "key": "Input_64",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "院系主管教学负责人审批意见",
+          "groupName": "院系主管教学负责人",
+          "parentKey": "Table_61",
+          "sort": 6400
+        },
+        {
+          "key": "User_66",
+          "type": "User",
+          "pluginName": "人员信息",
+          "description": "院系主管教学负责人审批人",
+          "groupName": "院系主管教学负责人",
+          "parentKey": "Table_61",
+          "sort": 6600
+        },
+        {
+          "key": "Calendar_68",
+          "type": "Calendar",
+          "pluginName": "日期时间",
+          "description": "院系主管教学负责人审批时间",
+          "groupName": "院系主管教学负责人",
+          "parentKey": "Table_61",
+          "sort": 6800
+        },
+        {
+          "key": "Input_137",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "社团指导老师审批意见",
+          "groupName": "社团指导老师",
+          "parentKey": "Table_103",
+          "sort": 7050
+        },
+        {
+          "key": "User_127",
+          "type": "User",
+          "pluginName": "人员信息",
+          "description": "社团指导老师审批人",
+          "groupName": "社团指导老师",
+          "parentKey": "Table_103",
+          "sort": 7060
+        },
+        {
+          "key": "Calendar_128",
+          "type": "Calendar",
+          "pluginName": "日期时间",
+          "description": "社团指导老师审批时间",
+          "groupName": "社团指导老师",
+          "parentKey": "Table_103",
+          "sort": 7070
+        },
+        {
+          "key": "Input_138",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "社团负责人审批意见",
+          "groupName": "社团负责人",
+          "parentKey": "Table_105",
+          "sort": 7080
+        },
+        {
+          "key": "User_129",
+          "type": "User",
+          "pluginName": "人员信息",
+          "description": "社团负责人审批人",
+          "groupName": "社团负责人",
+          "parentKey": "Table_105",
+          "sort": 7090
+        },
+        {
+          "key": "Calendar_130",
+          "type": "Calendar",
+          "pluginName": "日期时间",
+          "description": "社团负责人审批时间",
+          "groupName": "社团负责人",
+          "parentKey": "Table_105",
+          "sort": 7100
+        },
+        {
+          "key": "Input_139",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "院系辅导员审批意见",
+          "groupName": "院系辅导员",
+          "parentKey": "Table_106",
+          "sort": 7110
+        },
+        {
+          "key": "User_131",
+          "type": "User",
+          "pluginName": "人员信息",
+          "description": "院系辅导员审批人",
+          "groupName": "院系辅导员",
+          "parentKey": "Table_106",
+          "sort": 7120
+        },
+        {
+          "key": "Calendar_132",
+          "type": "Calendar",
+          "pluginName": "日期时间",
+          "description": "院系辅导员审批时间",
+          "groupName": "院系辅导员",
+          "parentKey": "Table_106",
+          "sort": 7130
+        },
+        {
+          "key": "Input_140",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "分管学生负责人审批意见",
+          "groupName": "分管学生负责人",
+          "parentKey": "Table_107",
+          "sort": 7140
+        },
+        {
+          "key": "User_133",
+          "type": "User",
+          "pluginName": "人员信息",
+          "description": "分管学生负责人审批人",
+          "groupName": "分管学生负责人",
+          "parentKey": "Table_107",
+          "sort": 7150
+        },
+        {
+          "key": "Calendar_134",
+          "type": "Calendar",
+          "pluginName": "日期时间",
+          "description": "分管学生负责人审批时间",
+          "groupName": "分管学生负责人",
+          "parentKey": "Table_107",
+          "sort": 7160
+        },
+        {
+          "key": "Input_141",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "单位正职负责人审批意见",
+          "groupName": "单位正职负责人",
+          "parentKey": "Table_108",
+          "sort": 7170
+        },
+        {
+          "key": "User_135",
+          "type": "User",
+          "pluginName": "人员信息",
+          "description": "单位正职负责人审批人",
+          "groupName": "单位正职负责人",
+          "parentKey": "Table_108",
+          "sort": 7180
+        },
+        {
+          "key": "Calendar_136",
+          "type": "Calendar",
+          "pluginName": "日期时间",
+          "description": "单位正职负责人审批时间",
+          "groupName": "单位正职负责人",
+          "parentKey": "Table_108",
+          "sort": 7190
+        },
+        {
+          "key": "Input_72",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "教务部审批意见",
+          "groupName": "教务部",
+          "parentKey": "Table_70",
+          "sort": 7200
+        },
+        {
+          "key": "User_75",
+          "type": "User",
+          "pluginName": "人员信息",
+          "description": "教务部审批人",
+          "groupName": "教务部",
+          "parentKey": "Table_70",
+          "sort": 7500
+        },
+        {
+          "key": "Calendar_76",
+          "type": "Calendar",
+          "pluginName": "日期时间",
+          "description": "教务部审批日期",
+          "groupName": "教务部",
+          "parentKey": "Table_70",
+          "sort": 7600
+        },
+        {
+          "key": "Variate_278",
+          "type": "Variate",
+          "pluginName": "变量",
+          "description": "变量_278--是否大型活动",
+          "groupName": "",
+          "parentKey": "",
+          "sort": 27800
+        },
+        {
+          "key": "Input_289",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "隐藏--预约成功教室",
+          "groupName": "",
+          "parentKey": "Table_61",
+          "sort": 28900
+        },
+        {
+          "key": "RepeatTable_292",
+          "type": "RepeatTable",
+          "pluginName": "重复表",
+          "description": "课室分配表（重组数据）",
+          "groupName": "报表",
+          "parentKey": "",
+          "sort": 29200
+        },
+        {
+          "key": "Input_306",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "教学楼",
+          "groupName": "",
+          "parentKey": "RepeatTable_292",
+          "sort": 30600
+        },
+        {
+          "key": "Input_307",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "选择课室（）",
+          "groupName": "",
+          "parentKey": "RepeatTable_292",
+          "sort": 30700
+        },
+        {
+          "key": "Input_308",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "座位数",
+          "groupName": "",
+          "parentKey": "RepeatTable_292",
+          "sort": 30800
+        },
+        {
+          "key": "Input_309",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "考位数",
+          "groupName": "",
+          "parentKey": "RepeatTable_292",
+          "sort": 30900
+        },
+        {
+          "key": "Input_310",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "是否使用多媒体",
+          "groupName": "",
+          "parentKey": "RepeatTable_292",
+          "sort": 31000
+        },
+        {
+          "key": "Input_311",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "日期",
+          "groupName": "",
+          "parentKey": "RepeatTable_292",
+          "sort": 31100
+        },
+        {
+          "key": "Input_312",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "星期",
+          "groupName": "",
+          "parentKey": "RepeatTable_292",
+          "sort": 31200
+        },
+        {
+          "key": "Input_313",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "周次",
+          "groupName": "",
+          "parentKey": "RepeatTable_292",
+          "sort": 31300
+        },
+        {
+          "key": "Input_314",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "节次开始",
+          "groupName": "",
+          "parentKey": "RepeatTable_292",
+          "sort": 31400
+        },
+        {
+          "key": "Input_315",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "节次结束",
+          "groupName": "",
+          "parentKey": "RepeatTable_292",
+          "sort": 31500
+        },
+        {
+          "key": "Input_316",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "学年学期",
+          "groupName": "",
+          "parentKey": "RepeatTable_292",
+          "sort": 31600
+        },
+        {
+          "key": "Input_327",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "最早日期",
+          "groupName": "",
+          "parentKey": "Table_61",
+          "sort": 32700
+        },
+        {
+          "key": "User_333",
+          "type": "User",
+          "pluginName": "人员信息",
+          "description": "申请人身份",
+          "groupName": "隐藏",
+          "parentKey": "Table_3",
+          "sort": 33300
+        }
+      ],
+      "dataSources": [
+        {
+          "key": "DataSource_102",
+          "description": "数据源-带出社团列表",
+          "sourceId": "42",
+          "remoteDataId": 88,
+          "repeatKey": null,
+          "isRepeat": false,
+          "timing": [
+            "loading"
+          ],
+          "bindTargets": [
+            "Select_45"
+          ],
+          "params": []
+        },
+        {
+          "key": "DataSource_159",
+          "description": "数据源_联系电话",
+          "sourceId": "24",
+          "remoteDataId": 7,
+          "repeatKey": null,
+          "isRepeat": false,
+          "timing": [],
+          "bindTargets": [
+            "Input_158"
+          ],
+          "params": [
+            {
+              "key": "number",
+              "name": "工号",
+              "criteria": "{p_User_161}",
+              "triggerType": "change"
+            },
+            {
+              "key": "type",
+              "name": "学工号类型",
+              "criteria": "",
+              "triggerType": "change"
+            }
+          ]
+        },
+        {
+          "key": "DataSource_184",
+          "description": "数据源_获取教室列表",
+          "sourceId": "55",
+          "remoteDataId": 35,
+          "repeatKey": "RepeatTablePlus_145",
+          "isRepeat": true,
+          "timing": [
+            "loading"
+          ],
+          "bindTargets": [
+            "Select_151"
+          ],
+          "params": [
+            {
+              "key": "date",
+              "name": "时间",
+              "criteria": "{p_Calendar_181}",
+              "triggerType": "none"
+            },
+            {
+              "key": "jc_start",
+              "name": "开始节次",
+              "criteria": "{p_Select_187}",
+              "triggerType": "none"
+            },
+            {
+              "key": "jc_end",
+              "name": "结束节次",
+              "criteria": "{p_Select_188}",
+              "triggerType": "none"
+            },
+            {
+              "key": "classroomID",
+              "name": "教室 id",
+              "criteria": "",
+              "triggerType": "none"
+            },
+            {
+              "key": "campus",
+              "name": "校区",
+              "criteria": "{p_Select_16}?.[0]?.value",
+              "triggerType": "none"
+            },
+            {
+              "key": "class_room_type",
+              "name": "教室类型",
+              "criteria": "",
+              "triggerType": "none"
+            }
+          ]
+        },
+        {
+          "key": "DataSource_201",
+          "description": "数据源_申请单位负责人",
+          "sourceId": null,
+          "remoteDataId": 8,
+          "repeatKey": null,
+          "isRepeat": false,
+          "timing": [
+            "loading"
+          ],
+          "bindTargets": [
+            "Input_14"
+          ],
+          "params": [
+            {
+              "key": "userInfo",
+              "name": "用户信息",
+              "criteria": "{p_UserSearch_12}",
+              "triggerType": "change"
+            }
+          ]
+        },
+        {
+          "key": "DataSource_271",
+          "description": "数据源_271--星期周次学年学期",
+          "sourceId": null,
+          "remoteDataId": 221,
+          "repeatKey": "RepeatTablePlus_145",
+          "isRepeat": true,
+          "timing": [
+            "loading"
+          ],
+          "bindTargets": [
+            "Input_210",
+            "Input_226",
+            "Input_153"
+          ],
+          "params": [
+            {
+              "key": "sqtime",
+              "name": "申请时间",
+              "criteria": "{p_Calendar_181}",
+              "triggerType": "change"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "startFormIds": [
+    304
+  ],
+  "unloadedStepFormIds": [],
+  "formData": {
+    "304": {
+      "User_6": "软件工程学院",
+      "User_8": "张少谦",
+      "User_161": "24336154",
+      "User_333": "本科生",
+      "Serial_245": null,
+      "Calendar_181": 1786535099000,
+      "RepeatTable_292": null,
+      "RepeatTablePlus_145": null
+    }
+  },
+  "formAuth": {
+    "304": {
+      "User_6": "sy",
+      "User_8": "sy",
+      "File_58": "wyyyyyyy",
+      "File_59": "wyyyyyyy",
+      "User_66": "ry",
+      "User_75": "rn",
+      "Count_34": "sy",
+      "File_254": "wyyyyyyy",
+      "Input_37": "qy",
+      "Input_38": "qy",
+      "Input_39": "wn",
+      "Input_54": "qy",
+      "Input_64": "rn",
+      "Input_72": "rn",
+      "Radio_43": "qy",
+      "Radio_47": "qy",
+      "Radio_49": "qy",
+      "Radio_52": "wy",
+      "User_127": "rn",
+      "User_129": "rn",
+      "User_131": "rn",
+      "User_133": "rn",
+      "User_135": "rn",
+      "User_161": "sy",
+      "User_333": "hn",
+      "Alert_338": "wn",
+      "Count_273": "sn",
+      "Input_137": "rn",
+      "Input_138": "rn",
+      "Input_139": "rn",
+      "Input_140": "rn",
+      "Input_141": "rn",
+      "Input_153": "qy",
+      "Input_158": "qy",
+      "Input_208": "qy",
+      "Input_210": "qy",
+      "Input_226": "qy",
+      "Input_260": "rn",
+      "Input_289": "rn",
+      "Input_306": "wn",
+      "Input_307": "sn",
+      "Input_308": "wn",
+      "Input_309": "wn",
+      "Input_310": "wn",
+      "Input_311": "wn",
+      "Input_312": "wn",
+      "Input_313": "wn",
+      "Input_314": "wn",
+      "Input_315": "wn",
+      "Input_316": "wn",
+      "Input_327": "sn",
+      "Radio_243": "qy",
+      "Select_16": "qy",
+      "Select_45": "wy",
+      "Select_151": "sn",
+      "Select_187": "qy",
+      "Select_188": "qy",
+      "Serial_245": "sn",
+      "Calendar_68": "rn",
+      "Calendar_76": "rn",
+      "ShowHide_77": "wn",
+      "ShowHide_82": "wn",
+      "Variate_278": "wn",
+      "Calendar_128": "rn",
+      "Calendar_130": "rn",
+      "Calendar_132": "rn",
+      "Calendar_134": "rn",
+      "Calendar_136": "rn",
+      "Calendar_181": "qy",
+      "ShowHide_250": "wn",
+      "ShowHide_266": "wn",
+      "ShowHide_290": "wn",
+      "ShowHide_323": "rn",
+      "ShowHide_330": "wn",
+      "Validate_261": "rn",
+      "Validate_319": "rn",
+      "Validate_339": "wn",
+      "Conversion_206": "fn",
+      "Conversion_275": "rn",
+      "Conversion_280": "wn",
+      "Conversion_291": "rn",
+      "Conversion_318": "wn",
+      "Conversion_320": "rn",
+      "Conversion_329": "wn",
+      "DataSource_102": "wn",
+      "DataSource_159": "wn",
+      "DataSource_184": "rn",
+      "DataSource_201": "fn",
+      "DataSource_271": "wn",
+      "RepeatTable_292": "wn",
+      "RepeatTablePlus_145": "wn",
+      "Conversion_342": "ry"
+    }
+  },
+  "triggers": [],
+  "nodes": [
+    {
+      "nodeKey": "UserTask_0hx5uwi",
+      "nodeName": "单位正职负责人审核",
+      "raw": {
+        "node_key": "UserTask_0hx5uwi",
+        "node_name": "单位正职负责人审核"
+      }
+    },
+    {
+      "nodeKey": "UserTask_1s7nv8r",
+      "nodeName": "社团指导老师审核",
+      "raw": {
+        "node_key": "UserTask_1s7nv8r",
+        "node_name": "社团指导老师审核"
+      }
+    },
+    {
+      "nodeKey": "UserTask_1ovlqam",
+      "nodeName": "教务部登记",
+      "raw": {
+        "node_key": "UserTask_1ovlqam",
+        "node_name": "教务部登记"
+      }
+    },
+    {
+      "nodeKey": "Task_1mb9chd",
+      "nodeName": "申请人选教室",
+      "raw": {
+        "node_key": "Task_1mb9chd",
+        "node_name": "申请人选教室"
+      }
+    },
+    {
+      "nodeKey": "UserTask_1008m9e",
+      "nodeName": "分管学生工作负责人",
+      "raw": {
+        "node_key": "UserTask_1008m9e",
+        "node_name": "分管学生工作负责人"
+      }
+    },
+    {
+      "nodeKey": "UserTask_0fkptma",
+      "nodeName": "发起人修改",
+      "raw": {
+        "node_key": "UserTask_0fkptma",
+        "node_name": "发起人修改"
+      }
+    },
+    {
+      "nodeKey": "UserTask_0ure818",
+      "nodeName": "院系（教学主管领导）审核",
+      "raw": {
+        "node_key": "UserTask_0ure818",
+        "node_name": "院系（教学主管领导）审核"
+      }
+    },
+    {
+      "nodeKey": "UserTask_1vlr72t",
+      "nodeName": "院系辅导员审核",
+      "raw": {
+        "node_key": "UserTask_1vlr72t",
+        "node_name": "院系辅导员审核"
+      }
+    },
+    {
+      "nodeKey": "UserTask_0lpj3v5",
+      "nodeName": "社团负责人",
+      "raw": {
+        "node_key": "UserTask_0lpj3v5",
+        "node_name": "社团负责人"
+      }
+    }
+  ],
+  "searchableFields": [
+    {
+      "key": "User_6_304",
+      "name": "课室临时使用申请.申请人单位",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_6_304",
+        "name": "课室临时使用申请.申请人单位",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_8_304",
+      "name": "课室临时使用申请.申请人姓名",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_8_304",
+        "name": "课室临时使用申请.申请人姓名",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_66_304",
+      "name": "课室临时使用申请.院系主管教学负责人审批人",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_66_304",
+        "name": "课室临时使用申请.院系主管教学负责人审批人",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_75_304",
+      "name": "课室临时使用申请.教务部审批人",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_75_304",
+        "name": "课室临时使用申请.教务部审批人",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_54_304",
+      "name": "课室临时使用申请.活动内容",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_54_304",
+        "name": "课室临时使用申请.活动内容",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_64_304",
+      "name": "课室临时使用申请.院系主管教学负责人审批意见",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_64_304",
+        "name": "课室临时使用申请.院系主管教学负责人审批意见",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_72_304",
+      "name": "课室临时使用申请.教务部审批意见",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_72_304",
+        "name": "课室临时使用申请.教务部审批意见",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Radio_43_304",
+      "name": "课室临时使用申请.活动类别",
+      "searchType": "like",
+      "raw": {
+        "type": "Radio",
+        "attr": {
+          "gap": 10,
+          "size": "medium",
+          "options": [
+            {
+              "_id": "bCU5I60Ft5cHXBInX2UTM",
+              "name": "院系教学类活动",
+              "value": "1",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "W0ogZ8ckuLYkbCp6IlLFJ",
+              "name": "院系非教学类活动(不含社团活动)",
+              "value": "2",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "IPxwafwHXKXeBVJcQBhMa",
+              "name": "学生社团活动",
+              "value": 3,
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "wcHvn9jo2bboJP2Yyf2Bm",
+              "name": "机关处等非院系单位活动",
+              "value": 4,
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            }
+          ],
+          "viewType": 1,
+          "autoNumber": true,
+          "defaultValue": null,
+          "quoteOptions": null,
+          "optionsHidden": [],
+          "statisticsNum": 0,
+          "layoutDirection": "auto",
+          "isOnlyShowSelect": 0,
+          "showMaxSelectCount": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Radio_43_304",
+        "name": "课室临时使用申请.活动类别",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Radio_47_304",
+      "name": "课室临时使用申请.是否为讲座类活动",
+      "searchType": "like",
+      "raw": {
+        "type": "Radio",
+        "attr": {
+          "gap": 10,
+          "size": "medium",
+          "options": [
+            {
+              "_id": "T0UFz7MvGVEkJVBz0yT9w",
+              "name": "是",
+              "value": "1",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "X5qN2SWLssJmTX8flEP6V",
+              "name": "否",
+              "value": "2",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            }
+          ],
+          "viewType": 1,
+          "autoNumber": true,
+          "defaultValue": null,
+          "quoteOptions": null,
+          "optionsHidden": [],
+          "statisticsNum": 0,
+          "layoutDirection": "auto",
+          "isOnlyShowSelect": 0,
+          "showMaxSelectCount": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Radio_47_304",
+        "name": "课室临时使用申请.是否为讲座类活动",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Radio_49_304",
+      "name": "课室临时使用申请.是否涉及境外人员",
+      "searchType": "like",
+      "raw": {
+        "type": "Radio",
+        "attr": {
+          "gap": 10,
+          "size": "medium",
+          "options": [
+            {
+              "_id": "EBY3oPdZQrWTJ_Rfe8sT0",
+              "name": "是",
+              "value": "1",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "SSFTm30J3NCZb2JKHrrxZ",
+              "name": "否",
+              "value": "2",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            }
+          ],
+          "viewType": 1,
+          "autoNumber": true,
+          "defaultValue": null,
+          "quoteOptions": null,
+          "optionsHidden": [],
+          "statisticsNum": 0,
+          "layoutDirection": "auto",
+          "isOnlyShowSelect": 0,
+          "showMaxSelectCount": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Radio_49_304",
+        "name": "课室临时使用申请.是否涉及境外人员",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Radio_52_304",
+      "name": "课室临时使用申请.讲座类型",
+      "searchType": "like",
+      "raw": {
+        "type": "Radio",
+        "attr": {
+          "gap": 10,
+          "size": "medium",
+          "options": [
+            {
+              "_id": "ApgFflApKD9EDHrX0dbwb",
+              "name": "时事政策类",
+              "value": "1",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "nYHTXDrykbx4AILjipuMT",
+              "name": "哲学社会科学类",
+              "value": "2",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "9Snwa5_UJSF1Ux4CEQh6J",
+              "name": "其他学科类",
+              "value": 3,
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            }
+          ],
+          "viewType": 1,
+          "autoNumber": true,
+          "defaultValue": null,
+          "quoteOptions": null,
+          "optionsHidden": [],
+          "statisticsNum": 0,
+          "layoutDirection": "vertical",
+          "isOnlyShowSelect": 0,
+          "showMaxSelectCount": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Radio_52_304",
+        "name": "课室临时使用申请.讲座类型",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_127_304",
+      "name": "课室临时使用申请.社团指导老师审批人",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_127_304",
+        "name": "课室临时使用申请.社团指导老师审批人",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_129_304",
+      "name": "课室临时使用申请.社团负责人审批人",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_129_304",
+        "name": "课室临时使用申请.社团负责人审批人",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_131_304",
+      "name": "课室临时使用申请.院系辅导员审批人",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_131_304",
+        "name": "课室临时使用申请.院系辅导员审批人",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_133_304",
+      "name": "课室临时使用申请.分管学生负责人审批人",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_133_304",
+        "name": "课室临时使用申请.分管学生负责人审批人",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_135_304",
+      "name": "课室临时使用申请.单位正职负责人审批人",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_135_304",
+        "name": "课室临时使用申请.单位正职负责人审批人",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_161_304",
+      "name": "课室临时使用申请.申请人学工号",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_161_304",
+        "name": "课室临时使用申请.申请人学工号",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_328_304",
+      "name": "课室临时使用申请.本人身份",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_328_304",
+        "name": "课室临时使用申请.本人身份",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_137_304",
+      "name": "课室临时使用申请.社团指导老师审批意见",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_137_304",
+        "name": "课室临时使用申请.社团指导老师审批意见",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_138_304",
+      "name": "课室临时使用申请.社团负责人审批意见",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_138_304",
+        "name": "课室临时使用申请.社团负责人审批意见",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_139_304",
+      "name": "课室临时使用申请.院系辅导员审批意见",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_139_304",
+        "name": "课室临时使用申请.院系辅导员审批意见",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_140_304",
+      "name": "课室临时使用申请.分管学生负责人审批意见",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_140_304",
+        "name": "课室临时使用申请.分管学生负责人审批意见",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_141_304",
+      "name": "课室临时使用申请.单位正职负责人审批意见",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_141_304",
+        "name": "课室临时使用申请.单位正职负责人审批意见",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_158_304",
+      "name": "课室临时使用申请.申请人电话",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_158_304",
+        "name": "课室临时使用申请.申请人电话",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_289_304",
+      "name": "课室临时使用申请.隐藏--预约成功教室",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_289_304",
+        "name": "课室临时使用申请.隐藏--预约成功教室",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_326_304",
+      "name": "课室临时使用申请.最早日期",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_326_304",
+        "name": "课室临时使用申请.最早日期",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Select_16_304",
+      "name": "课室临时使用申请.申请课室所在校区/园",
+      "searchType": "like",
+      "raw": {
+        "type": "Select",
+        "attr": {
+          "size": "medium",
+          "options": [
+            {
+              "_id": "D8ycgpM9CEoahzueo3eoi",
+              "name": "广州校区南校园",
+              "value": "南校园",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "f9nLC0_CoGsMLQOAtRbtF",
+              "name": "广州校区北校园",
+              "value": "北校园",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "nlgBaI7GMjYXnOpIJX8gh",
+              "name": "广州校区东校园",
+              "value": "东校园",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "avpbVkoExJ0weLt-QeqAY",
+              "name": "珠海校区",
+              "value": "珠海校区",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "tczveK8sSF1vtqLXv3I7K",
+              "name": "深圳校区",
+              "value": "深圳校区",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            }
+          ],
+          "maxSelect": null,
+          "minSelect": null,
+          "showIndex": 0,
+          "autoNumber": true,
+          "isHasValue": 0,
+          "isMultiple": 0,
+          "placeholder": null,
+          "defaultValue": null,
+          "displayStyle": "inline",
+          "isSupportImg": 0,
+          "isAllowCreate": 0,
+          "optionsHidden": [],
+          "selectBodyFormat": "NULL",
+          "optionsChangeClear": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Select_16_304",
+        "name": "课室临时使用申请.申请课室所在校区/园",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Select_45_304",
+      "name": "课室临时使用申请.社团名称",
+      "searchType": "like",
+      "raw": {
+        "type": "Select",
+        "attr": {
+          "size": "medium",
+          "options": [],
+          "maxSelect": null,
+          "minSelect": null,
+          "showIndex": 0,
+          "autoNumber": true,
+          "isHasValue": 0,
+          "isMultiple": 0,
+          "placeholder": null,
+          "defaultValue": null,
+          "displayStyle": "inline",
+          "isSupportImg": 0,
+          "isAllowCreate": 0,
+          "optionsHidden": [],
+          "selectBodyFormat": "NULL",
+          "optionsChangeClear": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Select_45_304",
+        "name": "课室临时使用申请.社团名称",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Serial_245_304",
+      "name": "课室临时使用申请.流水号",
+      "searchType": "like",
+      "raw": {
+        "type": "Serial",
+        "attr": null,
+        "key": "Serial_245_304",
+        "name": "课室临时使用申请.流水号",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Variate_278_304",
+      "name": "课室临时使用申请.变量_278--是否大型活动",
+      "searchType": "like",
+      "raw": {
+        "type": "Variate",
+        "attr": null,
+        "key": "Variate_278_304",
+        "name": "课室临时使用申请.变量_278--是否大型活动",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_333_304",
+      "name": "课室临时使用申请.申请人身份",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_333_304",
+        "name": "课室临时使用申请.申请人身份",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_327_304",
+      "name": "课室临时使用申请.最早日期",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_327_304",
+        "name": "课室临时使用申请.最早日期",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_347_304",
+      "name": "课室临时使用申请.申请人单位",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_347_304",
+        "name": "课室临时使用申请.申请人单位",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_341_304",
+      "name": "课室临时使用申请.申请人学工号",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_341_304",
+        "name": "课室临时使用申请.申请人学工号",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_342_304",
+      "name": "课室临时使用申请.申请人姓名",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_342_304",
+        "name": "课室临时使用申请.申请人姓名",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_344_304",
+      "name": "课室临时使用申请.申请人电话",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_344_304",
+        "name": "课室临时使用申请.申请人电话",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_14_304",
+      "name": "课室临时使用申请.申请单位负责人电话",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_14_304",
+        "name": "课室临时使用申请.申请单位负责人电话",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_174_304",
+      "name": "课室临时使用申请.星期几",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_174_304",
+        "name": "课室临时使用申请.星期几",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_175_304",
+      "name": "课室临时使用申请.周次",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_175_304",
+        "name": "课室临时使用申请.周次",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_178_304",
+      "name": "课室临时使用申请.申请间数",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_178_304",
+        "name": "课室临时使用申请.申请间数",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_186_304",
+      "name": "课室临时使用申请.申请课室所在校区/院",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_186_304",
+        "name": "课室临时使用申请.申请课室所在校区/院",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "UserSearch_12_304",
+      "name": "课室临时使用申请.申请单位负责人",
+      "searchType": "like",
+      "raw": {
+        "type": "UserSearch",
+        "attr": null,
+        "key": "UserSearch_12_304",
+        "name": "课室临时使用申请.申请单位负责人",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_196_304",
+      "name": "课室临时使用申请.日期",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_196_304",
+        "name": "课室临时使用申请.日期",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_197_304",
+      "name": "课室临时使用申请.节次开始",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_197_304",
+        "name": "课室临时使用申请.节次开始",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_198_304",
+      "name": "课室临时使用申请.节次结束",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_198_304",
+        "name": "课室临时使用申请.节次结束",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "UserSearch_282_304",
+      "name": "课室临时使用申请.社团负责人",
+      "searchType": "like",
+      "raw": {
+        "type": "UserSearch",
+        "attr": null,
+        "key": "UserSearch_282_304",
+        "name": "课室临时使用申请.社团负责人",
+        "search_type": "like"
+      }
+    }
+  ]
+}
+
+[exit=]

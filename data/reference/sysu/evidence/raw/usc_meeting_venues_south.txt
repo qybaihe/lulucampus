@@ -1,0 +1,5 @@
+
+>>> /Users/baihe/.local/bin/sysu-anything usc meeting venues --campus 南校园 --json
+[]
+
+[exit=]

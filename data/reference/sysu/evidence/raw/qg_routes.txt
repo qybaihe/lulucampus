@@ -1,0 +1,9 @@
+Campuses:
+  zhuhai: Zhuhai
+  south: South Campus
+  east: East Campus
+
+Zhuhai station keys:
+  zhuhai: 珠海中大岐关服务点
+  boya: 博雅苑
+  fifth: 中大五院正门

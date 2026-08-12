@@ -1,0 +1,1793 @@
+
+>>> /Users/baihe/.local/bin/sysu-anything usc schema activity --json
+{
+  "scenario": {
+    "key": "activity",
+    "appId": 178,
+    "label": "学生活动中心场地使用申请",
+    "shortLabel": "学生活动预约",
+    "description": "学生活动中心场地申请，房间字典数据源和 before_start 触发器已经明确。",
+    "activityRoomDataSource": {
+      "appVersionId": 763,
+      "formId": 263,
+      "formKey": "DataSource_207",
+      "sourceId": 25
+    }
+  },
+  "publicVersionId": 763,
+  "startConfig": {
+    "accessed": [],
+    "appraise": 1,
+    "pdf_down": 0,
+    "show_pay": 1,
+    "anonymity": 0,
+    "hall_show": 1,
+    "print_way": [
+      1
+    ],
+    "sure_hint": {
+      "sureText": "",
+      "cancelText": "",
+      "expression": ""
+    },
+    "take_back": 1,
+    "check_data": 2,
+    "draft_auto": 1,
+    "inst_draft": 0,
+    "print_list": 1,
+    "print_rule": 0,
+    "save_draft": 1,
+    "show_count": 1,
+    "agentLaunch": [],
+    "approvalLog": 1,
+    "launch_type": 0,
+    "print_other": [],
+    "show_detail": 1,
+    "show_submit": 1,
+    "submit_text": "",
+    "custom_order": {
+      "name": "",
+      "rule": "",
+      "type": "number"
+    },
+    "details_page": 1,
+    "details_tips": "",
+    "launch_again": 1,
+    "show_process": 1,
+    "enableMainText": 0,
+    "guide_jump_url": "",
+    "mobile_preview": 1,
+    "print_required": 0,
+    "credentialsUsers": [],
+    "enableSmallTable": 0,
+    "inst_submit_text": "",
+    "success_jump_url": "",
+    "success_jump_type": 0,
+    "viewPageStyleType": "0",
+    "credentials_enable": 1,
+    "credentials_fields": {
+      "visible_fields": [
+        "creator.name",
+        "creator.number",
+        "session.department_name"
+      ]
+    },
+    "seal_download_text": "",
+    "approval_page_style": "0"
+  },
+  "steps": [],
+  "declaredStepFormIds": [],
+  "startForms": [
+    {
+      "id": 263,
+      "versionId": 1850,
+      "name": "场地使用申请表",
+      "isSub": false,
+      "fields": [
+        {
+          "key": "Link_157",
+          "type": "Link",
+          "pluginName": "链接",
+          "description": "学生活动中心场地预约记录查看",
+          "groupName": "",
+          "parentKey": "Table_2",
+          "sort": 500
+        },
+        {
+          "key": "User_6",
+          "type": "User",
+          "pluginName": "人员信息",
+          "description": "申请人姓名",
+          "groupName": "",
+          "parentKey": "Table_2",
+          "sort": 600
+        },
+        {
+          "key": "Input_8",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "申请人电话",
+          "groupName": "",
+          "parentKey": "Table_2",
+          "sort": 800
+        },
+        {
+          "key": "User_10",
+          "type": "User",
+          "pluginName": "人员信息",
+          "description": "申请人工号",
+          "groupName": "",
+          "parentKey": "Table_2",
+          "sort": 1000
+        },
+        {
+          "key": "User_12",
+          "type": "User",
+          "pluginName": "人员信息",
+          "description": "申请单位",
+          "groupName": "",
+          "parentKey": "Table_2",
+          "sort": 1200
+        },
+        {
+          "key": "Radio_14",
+          "type": "Radio",
+          "pluginName": "单选按钮",
+          "description": "预约类型",
+          "groupName": "",
+          "parentKey": "Table_2",
+          "sort": 1400
+        },
+        {
+          "key": "Select_178",
+          "type": "Select",
+          "pluginName": "下拉菜单",
+          "description": "社团名称",
+          "groupName": "",
+          "parentKey": "Table_2",
+          "sort": 1600
+        },
+        {
+          "key": "Calendar_73",
+          "type": "Calendar",
+          "pluginName": "日期时间",
+          "description": "使用日期",
+          "groupName": "",
+          "parentKey": "Table_22",
+          "sort": 1700
+        },
+        {
+          "key": "Input_77",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "星期",
+          "groupName": "",
+          "parentKey": "Table_22",
+          "sort": 1800
+        },
+        {
+          "key": "Calendar_79",
+          "type": "Calendar",
+          "pluginName": "日期时间",
+          "description": "开始时间",
+          "groupName": "",
+          "parentKey": "Table_22",
+          "sort": 1900
+        },
+        {
+          "key": "Calendar_81",
+          "type": "Calendar",
+          "pluginName": "日期时间",
+          "description": "结束时间",
+          "groupName": "",
+          "parentKey": "Table_22",
+          "sort": 2000
+        },
+        {
+          "key": "Radio_111",
+          "type": "Radio",
+          "pluginName": "单选按钮",
+          "description": "开放讨论室",
+          "groupName": "开放讨论室",
+          "parentKey": "Table_22",
+          "sort": 2100
+        },
+        {
+          "key": "Radio_112",
+          "type": "Radio",
+          "pluginName": "单选按钮",
+          "description": "舞蹈练习室",
+          "groupName": "舞蹈练习室",
+          "parentKey": "Table_22",
+          "sort": 2200
+        },
+        {
+          "key": "Radio_113",
+          "type": "Radio",
+          "pluginName": "单选按钮",
+          "description": "音乐练习室",
+          "groupName": "音乐练习室",
+          "parentKey": "Table_22",
+          "sort": 2300
+        },
+        {
+          "key": "Radio_114",
+          "type": "Radio",
+          "pluginName": "单选按钮",
+          "description": "排练创作室",
+          "groupName": "排练创作室",
+          "parentKey": "Table_22",
+          "sort": 2400
+        },
+        {
+          "key": "Radio_115",
+          "type": "Radio",
+          "pluginName": "单选按钮",
+          "description": "乐队练习室",
+          "groupName": "乐队练习室",
+          "parentKey": "Table_22",
+          "sort": 2500
+        },
+        {
+          "key": "Radio_116",
+          "type": "Radio",
+          "pluginName": "单选按钮",
+          "description": "钢琴练习室",
+          "groupName": "钢琴练习室",
+          "parentKey": "Table_22",
+          "sort": 2600
+        },
+        {
+          "key": "Radio_117",
+          "type": "Radio",
+          "pluginName": "单选按钮",
+          "description": "绘画室",
+          "groupName": "绘画室",
+          "parentKey": "Table_22",
+          "sort": 2700
+        },
+        {
+          "key": "Radio_118",
+          "type": "Radio",
+          "pluginName": "单选按钮",
+          "description": "讨论室",
+          "groupName": "讨论室",
+          "parentKey": "Table_22",
+          "sort": 2800
+        },
+        {
+          "key": "Radio_220",
+          "type": "Radio",
+          "pluginName": "单选按钮",
+          "description": "合唱练习室",
+          "groupName": "讨论室",
+          "parentKey": "Table_22",
+          "sort": 2850
+        },
+        {
+          "key": "Radio_44",
+          "type": "Radio",
+          "pluginName": "单选按钮",
+          "description": "活动类别",
+          "groupName": "活动类别（社团）",
+          "parentKey": "Table_41",
+          "sort": 2900
+        },
+        {
+          "key": "Radio_45",
+          "type": "Radio",
+          "pluginName": "单选按钮",
+          "description": "是否为讲座类活动",
+          "groupName": "",
+          "parentKey": "Table_41",
+          "sort": 3000
+        },
+        {
+          "key": "File_46",
+          "type": "File",
+          "pluginName": "附件上传",
+          "description": "上传审批附件（讲座类活动）",
+          "groupName": "讲座类活动附件",
+          "parentKey": "Table_41",
+          "sort": 3100
+        },
+        {
+          "key": "Radio_47",
+          "type": "Radio",
+          "pluginName": "单选按钮",
+          "description": "是否涉及境外人员",
+          "groupName": "",
+          "parentKey": "Table_41",
+          "sort": 3200
+        },
+        {
+          "key": "File_48",
+          "type": "File",
+          "pluginName": "附件上传",
+          "description": "上传审批附件（涉及境外人员）",
+          "groupName": "境外人员",
+          "parentKey": "Table_41",
+          "sort": 3300
+        },
+        {
+          "key": "Input_50",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "校内人数",
+          "groupName": "",
+          "parentKey": "Table_41",
+          "sort": 3400
+        },
+        {
+          "key": "Input_52",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "校外人数",
+          "groupName": "",
+          "parentKey": "Table_41",
+          "sort": 5200
+        },
+        {
+          "key": "Input_54",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "总人数",
+          "groupName": "",
+          "parentKey": "Table_41",
+          "sort": 5400
+        },
+        {
+          "key": "Input_214",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "活动内容",
+          "groupName": "",
+          "parentKey": "Table_41",
+          "sort": 5450
+        },
+        {
+          "key": "Select_151",
+          "type": "Select",
+          "pluginName": "下拉菜单",
+          "description": "社团指导老师",
+          "groupName": "申请人选择指导老师",
+          "parentKey": "Table_56",
+          "sort": 6000
+        },
+        {
+          "key": "Input_120",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "社团指导老师审批意见",
+          "groupName": "社团指导老师",
+          "parentKey": "Table_56",
+          "sort": 12000
+        },
+        {
+          "key": "User_122",
+          "type": "User",
+          "pluginName": "人员信息",
+          "description": "社团指导老师",
+          "groupName": "社团指导老师",
+          "parentKey": "Table_56",
+          "sort": 12200
+        },
+        {
+          "key": "Calendar_124",
+          "type": "Calendar",
+          "pluginName": "日期时间",
+          "description": "社团指导老师审批时间",
+          "groupName": "社团指导老师",
+          "parentKey": "Table_56",
+          "sort": 12400
+        },
+        {
+          "key": "Input_126",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "所在单位负责人审批意见",
+          "groupName": "所在单位负责人",
+          "parentKey": "Table_56",
+          "sort": 12600
+        },
+        {
+          "key": "User_128",
+          "type": "User",
+          "pluginName": "人员信息",
+          "description": "所在单位负责人",
+          "groupName": "所在单位负责人",
+          "parentKey": "Table_56",
+          "sort": 12800
+        },
+        {
+          "key": "Calendar_130",
+          "type": "Calendar",
+          "pluginName": "日期时间",
+          "description": "所在单位负责人审批时间",
+          "groupName": "所在单位负责人",
+          "parentKey": "Table_56",
+          "sort": 13000
+        },
+        {
+          "key": "Input_69",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "校团委意见",
+          "groupName": "校团委",
+          "parentKey": "Table_56",
+          "sort": 13400
+        },
+        {
+          "key": "User_70",
+          "type": "User",
+          "pluginName": "人员信息",
+          "description": "校团委审批人",
+          "groupName": "校团委",
+          "parentKey": "Table_56",
+          "sort": 13500
+        },
+        {
+          "key": "Input_135",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "星期（隐藏）",
+          "groupName": "",
+          "parentKey": "Table_22",
+          "sort": 13500
+        },
+        {
+          "key": "Calendar_71",
+          "type": "Calendar",
+          "pluginName": "日期时间",
+          "description": "校团委审批时间",
+          "groupName": "校团委",
+          "parentKey": "Table_56",
+          "sort": 13600
+        },
+        {
+          "key": "Input_156",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "预约ID",
+          "groupName": "",
+          "parentKey": "Table_56",
+          "sort": 15600
+        },
+        {
+          "key": "Input_229",
+          "type": "Input",
+          "pluginName": "输入框",
+          "description": "单位编码",
+          "groupName": "",
+          "parentKey": "Table_56",
+          "sort": 22900
+        },
+        {
+          "key": "Select_231",
+          "type": "Select",
+          "pluginName": "下拉菜单",
+          "description": "单位负责人",
+          "groupName": "",
+          "parentKey": "Table_56",
+          "sort": 23100
+        },
+        {
+          "key": "User_237",
+          "type": "User",
+          "pluginName": "人员信息",
+          "description": "人员信息_237",
+          "groupName": "",
+          "parentKey": "Table_56",
+          "sort": 23700
+        }
+      ],
+      "dataSources": [
+        {
+          "key": "DataSource_138",
+          "description": "数据源-星期",
+          "sourceId": "26",
+          "remoteDataId": 64,
+          "repeatKey": null,
+          "isRepeat": false,
+          "timing": [],
+          "bindTargets": [
+            "Input_77"
+          ],
+          "params": [
+            {
+              "key": "星期数字",
+              "name": "xqsz",
+              "criteria": "{p_Input_135}",
+              "triggerType": "change"
+            }
+          ]
+        },
+        {
+          "key": "DataSource_179",
+          "description": "数据源-社团名称",
+          "sourceId": "27",
+          "remoteDataId": 65,
+          "repeatKey": null,
+          "isRepeat": false,
+          "timing": [
+            "loading"
+          ],
+          "bindTargets": [
+            "Select_178"
+          ],
+          "params": []
+        },
+        {
+          "key": "DataSource_181",
+          "description": "数据源-基本信息",
+          "sourceId": "24",
+          "remoteDataId": 7,
+          "repeatKey": null,
+          "isRepeat": false,
+          "timing": [],
+          "bindTargets": [
+            "Input_8"
+          ],
+          "params": [
+            {
+              "key": "number",
+              "name": "工号",
+              "criteria": "{p_User_10}",
+              "triggerType": "change"
+            }
+          ]
+        },
+        {
+          "key": "DataSource_185",
+          "description": "数据源-带出社团指导老师",
+          "sourceId": "28",
+          "remoteDataId": 66,
+          "repeatKey": null,
+          "isRepeat": false,
+          "timing": [
+            "loading"
+          ],
+          "bindTargets": [
+            "Select_151"
+          ],
+          "params": [
+            {
+              "key": "社团名称",
+              "name": "stmc",
+              "criteria": "{p_Select_178}",
+              "triggerType": "change"
+            }
+          ]
+        },
+        {
+          "key": "DataSource_207",
+          "description": "数据源 - 预约场地",
+          "sourceId": "25",
+          "remoteDataId": 9,
+          "repeatKey": null,
+          "isRepeat": false,
+          "timing": [
+            "loading"
+          ],
+          "bindTargets": [
+            "Radio_111",
+            "Radio_112",
+            "Radio_113",
+            "Radio_114",
+            "Radio_115",
+            "Radio_116",
+            "Radio_117",
+            "Radio_118",
+            "Radio_220"
+          ],
+          "params": [
+            {
+              "key": "apply_date",
+              "name": "申请日期",
+              "criteria": "{p_Calendar_73}",
+              "triggerType": "change"
+            },
+            {
+              "key": "start_date",
+              "name": "开始时间",
+              "criteria": "{p_Calendar_79}",
+              "triggerType": "change"
+            },
+            {
+              "key": "end_date",
+              "name": "结束时间",
+              "criteria": "{p_Calendar_81}",
+              "triggerType": "change"
+            }
+          ]
+        },
+        {
+          "key": "DataSource_232",
+          "description": "数据源_单位负责人",
+          "sourceId": null,
+          "remoteDataId": 393,
+          "repeatKey": null,
+          "isRepeat": false,
+          "timing": [],
+          "bindTargets": [
+            "Select_231"
+          ],
+          "params": [
+            {
+              "key": "departmentid",
+              "name": "部门编码",
+              "criteria": "{p_Input_229}",
+              "triggerType": "change"
+            }
+          ]
+        },
+        {
+          "key": "DataSource_234",
+          "description": "数据源_部门id",
+          "sourceId": null,
+          "remoteDataId": 395,
+          "repeatKey": null,
+          "isRepeat": false,
+          "timing": [],
+          "bindTargets": [
+            "Input_229"
+          ],
+          "params": [
+            {
+              "key": "depart_name",
+              "name": "部门名称",
+              "criteria": "{p_User_12}",
+              "triggerType": "change"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "startFormIds": [
+    263
+  ],
+  "unloadedStepFormIds": [],
+  "formData": {
+    "263": {
+      "User_6": "张少谦",
+      "User_10": "24336154",
+      "User_12": "软件工程学院",
+      "User_237": "76250",
+      "Calendar_73": "",
+      "Calendar_79": "",
+      "Calendar_81": ""
+    }
+  },
+  "formAuth": {
+    "263": {
+      "User_6": "sy",
+      "File_46": "wyyyyyyy",
+      "File_48": "wyyyyyyy",
+      "Input_8": "qy",
+      "User_10": "sn",
+      "User_12": "sn",
+      "User_67": "rn",
+      "User_70": "rn",
+      "Input_50": "qy",
+      "Input_52": "qy",
+      "Input_54": "sy",
+      "Input_66": "ry",
+      "Input_69": "ry",
+      "Input_77": "sy",
+      "Link_157": "wn",
+      "Radio_14": "qn",
+      "Radio_44": "wy",
+      "Radio_45": "qn",
+      "Radio_47": "qn",
+      "User_122": "rn",
+      "User_128": "rn",
+      "User_237": "sn",
+      "Input_120": "rn",
+      "Input_126": "rn",
+      "Input_135": "sn",
+      "Input_156": "wn",
+      "Input_214": "qy",
+      "Input_229": "wn",
+      "Radio_111": "wn",
+      "Radio_112": "wn",
+      "Radio_113": "wn",
+      "Radio_114": "wn",
+      "Radio_115": "wn",
+      "Radio_116": "wn",
+      "Radio_117": "wn",
+      "Radio_118": "wn",
+      "Radio_220": "wn",
+      "Select_151": "wn",
+      "Select_178": "wn",
+      "Select_231": "wn",
+      "Calendar_68": "rn",
+      "Calendar_71": "rn",
+      "Calendar_73": "qn",
+      "Calendar_79": "qn",
+      "Calendar_81": "qn",
+      "ShowHide_82": "wn",
+      "Calendar_124": "rn",
+      "Calendar_130": "rn",
+      "ShowHide_131": "wn",
+      "ShowHide_136": "wn",
+      "ShowHide_137": "wn",
+      "ShowHide_153": "wn",
+      "ShowHide_161": "rn",
+      "ShowHide_196": "wn",
+      "ShowHide_209": "rn",
+      "ShowHide_210": "wn",
+      "ShowHide_211": "rn",
+      "ShowHide_224": "rn",
+      "ShowHide_228": "rn",
+      "Validate_192": "wn",
+      "Validate_208": "wn",
+      "Validate_212": "wn",
+      "Conversion_133": "wn",
+      "Conversion_134": "wn",
+      "Conversion_160": "wn",
+      "Conversion_184": "wn",
+      "Conversion_186": "wn",
+      "Conversion_187": "wn",
+      "Conversion_188": "wn",
+      "Conversion_189": "wn",
+      "Conversion_190": "wn",
+      "Conversion_191": "wn",
+      "Conversion_198": "wn",
+      "Conversion_203": "wn",
+      "Conversion_204": "wn",
+      "Conversion_216": "wn",
+      "DataSource_138": "wn",
+      "DataSource_179": "wn",
+      "DataSource_181": "wn",
+      "DataSource_185": "wn",
+      "DataSource_207": "wn",
+      "DataSource_232": "wn",
+      "DataSource_234": "wn"
+    }
+  },
+  "triggers": [
+    {
+      "type": "script",
+      "events": [
+        "after_start",
+        "after_operation"
+      ],
+      "remoteDataId": 14,
+      "async": 0,
+      "params": [
+        {
+          "key": "event_params",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "type": "script",
+      "events": [
+        "before_start"
+      ],
+      "remoteDataId": 13,
+      "async": 1,
+      "params": [
+        {
+          "key": "radio_111",
+          "value": "{form.263.Radio_111.value}"
+        },
+        {
+          "key": "radio_112",
+          "value": "{form.263.Radio_112.value}"
+        },
+        {
+          "key": "radio_113",
+          "value": "{form.263.Radio_113.value}"
+        },
+        {
+          "key": "radio_114",
+          "value": "{form.263.Radio_114.value}"
+        },
+        {
+          "key": "radio_115",
+          "value": "{form.263.Radio_115.value}"
+        },
+        {
+          "key": "radio_116",
+          "value": "{form.263.Radio_116.value}"
+        },
+        {
+          "key": "radio_117",
+          "value": "{form.263.Radio_117.value}"
+        },
+        {
+          "key": "radio_118",
+          "value": "{form.263.Radio_118.value}"
+        },
+        {
+          "key": "radio_220",
+          "value": "{form.263.Radio_220.value}"
+        },
+        {
+          "key": "start_time",
+          "value": "{form.263.Calendar_79}"
+        },
+        {
+          "key": "end_time",
+          "value": "{form.263.Calendar_81}"
+        },
+        {
+          "key": "apply_time",
+          "value": "{form.263.Calendar_73}"
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "nodeKey": "UserTask_0jh5wtp",
+      "nodeName": "校团委",
+      "raw": {
+        "node_key": "UserTask_0jh5wtp",
+        "node_name": "校团委"
+      }
+    },
+    {
+      "nodeKey": "UserTask_1tymuj0",
+      "nodeName": "申请人修改",
+      "raw": {
+        "node_key": "UserTask_1tymuj0",
+        "node_name": "申请人修改"
+      }
+    },
+    {
+      "nodeKey": "UserTask_0mmadri",
+      "nodeName": "所属单位",
+      "raw": {
+        "node_key": "UserTask_0mmadri",
+        "node_name": "所属单位"
+      }
+    },
+    {
+      "nodeKey": "UserTask_1f9zt1r",
+      "nodeName": "社团指导老师",
+      "raw": {
+        "node_key": "UserTask_1f9zt1r",
+        "node_name": "社团指导老师"
+      }
+    }
+  ],
+  "searchableFields": [
+    {
+      "key": "User_6_263",
+      "name": "场地使用申请表.申请人姓名",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_6_263",
+        "name": "场地使用申请表.申请人姓名",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_8_263",
+      "name": "场地使用申请表.申请人电话",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_8_263",
+        "name": "场地使用申请表.申请人电话",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_10_263",
+      "name": "场地使用申请表.申请人工号",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_10_263",
+        "name": "场地使用申请表.申请人工号",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_12_263",
+      "name": "场地使用申请表.申请单位",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_12_263",
+        "name": "场地使用申请表.申请单位",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_67_263",
+      "name": "场地使用申请表.艺术学院审批人",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_67_263",
+        "name": "场地使用申请表.艺术学院审批人",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_70_263",
+      "name": "场地使用申请表.校团委审批人",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_70_263",
+        "name": "场地使用申请表.校团委审批人",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_66_263",
+      "name": "场地使用申请表.艺术学院意见",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_66_263",
+        "name": "场地使用申请表.艺术学院意见",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_69_263",
+      "name": "场地使用申请表.校团委意见",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_69_263",
+        "name": "场地使用申请表.校团委意见",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_77_263",
+      "name": "场地使用申请表.星期",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_77_263",
+        "name": "场地使用申请表.星期",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Radio_14_263",
+      "name": "场地使用申请表.预约类型",
+      "searchType": "like",
+      "raw": {
+        "type": "Radio",
+        "attr": {
+          "gap": 10,
+          "size": "medium",
+          "options": [
+            {
+              "_id": "QPzIhEphlxRkpe5HvT0-L",
+              "name": "社团预约",
+              "value": "1",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "QwdsivnBseuy9NCwtYq7K",
+              "name": "非社团预约",
+              "value": "2",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            }
+          ],
+          "viewType": 1,
+          "autoNumber": true,
+          "defaultValue": null,
+          "quoteOptions": null,
+          "optionsHidden": [],
+          "statisticsNum": 0,
+          "layoutDirection": "auto",
+          "isOnlyShowSelect": 0,
+          "showMaxSelectCount": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Radio_14_263",
+        "name": "场地使用申请表.预约类型",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Radio_44_263",
+      "name": "场地使用申请表.活动类别",
+      "searchType": "like",
+      "raw": {
+        "type": "Radio",
+        "attr": {
+          "gap": 10,
+          "size": "medium",
+          "options": [
+            {
+              "_id": "9VmGmrme74c-LzDydI4Ek",
+              "name": "学生社团活动",
+              "value": "1",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "V4uuCZbdnzYEiTZwlCRKs",
+              "name": "院系其他学生活动",
+              "value": "2",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            }
+          ],
+          "viewType": 1,
+          "autoNumber": true,
+          "defaultValue": null,
+          "quoteOptions": null,
+          "optionsHidden": [],
+          "statisticsNum": 0,
+          "layoutDirection": "auto",
+          "isOnlyShowSelect": 0,
+          "showMaxSelectCount": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Radio_44_263",
+        "name": "场地使用申请表.活动类别",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Radio_45_263",
+      "name": "场地使用申请表.是否为讲座类活动",
+      "searchType": "like",
+      "raw": {
+        "type": "Radio",
+        "attr": {
+          "gap": 10,
+          "size": "medium",
+          "options": [
+            {
+              "_id": "JtuUtFFlhJi3-Mjv9uPZ9",
+              "name": "是",
+              "value": "1",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "pYuL2dhBrsO7UOW7rRZfo",
+              "name": "否",
+              "value": "2",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            }
+          ],
+          "viewType": 1,
+          "autoNumber": true,
+          "defaultValue": null,
+          "quoteOptions": null,
+          "optionsHidden": [],
+          "statisticsNum": 0,
+          "layoutDirection": "auto",
+          "isOnlyShowSelect": 0,
+          "showMaxSelectCount": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Radio_45_263",
+        "name": "场地使用申请表.是否为讲座类活动",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Radio_47_263",
+      "name": "场地使用申请表.是否涉及境外人员",
+      "searchType": "like",
+      "raw": {
+        "type": "Radio",
+        "attr": {
+          "gap": 10,
+          "size": "medium",
+          "options": [
+            {
+              "_id": "7eKkshywo-NW5O1Hqxrjm",
+              "name": "是",
+              "value": "1",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "kkWMe9q0Eu5eQrWVD32UP",
+              "name": "否",
+              "value": "2",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            }
+          ],
+          "viewType": 1,
+          "autoNumber": true,
+          "defaultValue": null,
+          "quoteOptions": null,
+          "optionsHidden": [],
+          "statisticsNum": 0,
+          "layoutDirection": "auto",
+          "isOnlyShowSelect": 0,
+          "showMaxSelectCount": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Radio_47_263",
+        "name": "场地使用申请表.是否涉及境外人员",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_122_263",
+      "name": "场地使用申请表.社团指导老师",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_122_263",
+        "name": "场地使用申请表.社团指导老师",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_128_263",
+      "name": "场地使用申请表.所在单位负责人",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_128_263",
+        "name": "场地使用申请表.所在单位负责人",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_236_263",
+      "name": "场地使用申请表.单位代码",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_236_263",
+        "name": "场地使用申请表.单位代码",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_120_263",
+      "name": "场地使用申请表.社团指导老师审批意见",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_120_263",
+        "name": "场地使用申请表.社团指导老师审批意见",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_126_263",
+      "name": "场地使用申请表.所在单位负责人审批意见",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_126_263",
+        "name": "场地使用申请表.所在单位负责人审批意见",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_135_263",
+      "name": "场地使用申请表.星期（隐藏）",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_135_263",
+        "name": "场地使用申请表.星期（隐藏）",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_156_263",
+      "name": "场地使用申请表.预约ID",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_156_263",
+        "name": "场地使用申请表.预约ID",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_214_263",
+      "name": "场地使用申请表.活动内容",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_214_263",
+        "name": "场地使用申请表.活动内容",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_229_263",
+      "name": "场地使用申请表.单位编码",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_229_263",
+        "name": "场地使用申请表.单位编码",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Radio_111_263",
+      "name": "场地使用申请表.开放讨论室",
+      "searchType": "like",
+      "raw": {
+        "type": "Radio",
+        "attr": {
+          "gap": 10,
+          "size": "medium",
+          "options": [],
+          "viewType": 1,
+          "autoNumber": true,
+          "defaultValue": null,
+          "quoteOptions": null,
+          "optionsHidden": [],
+          "statisticsNum": 0,
+          "layoutDirection": "auto",
+          "isOnlyShowSelect": 0,
+          "showMaxSelectCount": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Radio_111_263",
+        "name": "场地使用申请表.开放讨论室",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Radio_112_263",
+      "name": "场地使用申请表.舞蹈练习室",
+      "searchType": "like",
+      "raw": {
+        "type": "Radio",
+        "attr": {
+          "gap": 10,
+          "size": "medium",
+          "options": [],
+          "viewType": 1,
+          "autoNumber": true,
+          "defaultValue": null,
+          "quoteOptions": null,
+          "optionsHidden": [],
+          "statisticsNum": 0,
+          "layoutDirection": "auto",
+          "isOnlyShowSelect": 1,
+          "showMaxSelectCount": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Radio_112_263",
+        "name": "场地使用申请表.舞蹈练习室",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Radio_113_263",
+      "name": "场地使用申请表.音乐练习室",
+      "searchType": "like",
+      "raw": {
+        "type": "Radio",
+        "attr": {
+          "gap": 10,
+          "size": "medium",
+          "options": [],
+          "viewType": 1,
+          "autoNumber": true,
+          "defaultValue": null,
+          "quoteOptions": null,
+          "optionsHidden": [],
+          "statisticsNum": 0,
+          "layoutDirection": "auto",
+          "isOnlyShowSelect": 1,
+          "showMaxSelectCount": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Radio_113_263",
+        "name": "场地使用申请表.音乐练习室",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Radio_114_263",
+      "name": "场地使用申请表.排练创作室",
+      "searchType": "like",
+      "raw": {
+        "type": "Radio",
+        "attr": {
+          "gap": 10,
+          "size": "medium",
+          "options": [],
+          "viewType": 1,
+          "autoNumber": true,
+          "defaultValue": null,
+          "quoteOptions": null,
+          "optionsHidden": [],
+          "statisticsNum": 0,
+          "layoutDirection": "auto",
+          "isOnlyShowSelect": 1,
+          "showMaxSelectCount": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Radio_114_263",
+        "name": "场地使用申请表.排练创作室",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Radio_115_263",
+      "name": "场地使用申请表.乐队练习室",
+      "searchType": "like",
+      "raw": {
+        "type": "Radio",
+        "attr": {
+          "gap": 10,
+          "size": "medium",
+          "options": [],
+          "viewType": 1,
+          "autoNumber": true,
+          "defaultValue": null,
+          "quoteOptions": null,
+          "optionsHidden": [],
+          "statisticsNum": 0,
+          "layoutDirection": "auto",
+          "isOnlyShowSelect": 1,
+          "showMaxSelectCount": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Radio_115_263",
+        "name": "场地使用申请表.乐队练习室",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Radio_116_263",
+      "name": "场地使用申请表.钢琴练习室",
+      "searchType": "like",
+      "raw": {
+        "type": "Radio",
+        "attr": {
+          "gap": 10,
+          "size": "medium",
+          "options": [],
+          "viewType": 1,
+          "autoNumber": true,
+          "defaultValue": null,
+          "quoteOptions": null,
+          "optionsHidden": [],
+          "statisticsNum": 0,
+          "layoutDirection": "auto",
+          "isOnlyShowSelect": 0,
+          "showMaxSelectCount": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Radio_116_263",
+        "name": "场地使用申请表.钢琴练习室",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Radio_117_263",
+      "name": "场地使用申请表.绘画室",
+      "searchType": "like",
+      "raw": {
+        "type": "Radio",
+        "attr": {
+          "gap": 10,
+          "size": "medium",
+          "options": [],
+          "viewType": 1,
+          "autoNumber": true,
+          "defaultValue": null,
+          "quoteOptions": null,
+          "optionsHidden": [],
+          "statisticsNum": 0,
+          "layoutDirection": "auto",
+          "isOnlyShowSelect": 0,
+          "showMaxSelectCount": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Radio_117_263",
+        "name": "场地使用申请表.绘画室",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Radio_118_263",
+      "name": "场地使用申请表.讨论室",
+      "searchType": "like",
+      "raw": {
+        "type": "Radio",
+        "attr": {
+          "gap": 10,
+          "size": "medium",
+          "options": [],
+          "viewType": 1,
+          "autoNumber": true,
+          "defaultValue": null,
+          "quoteOptions": null,
+          "optionsHidden": [
+            {
+              "formula": {
+                "fn": "",
+                "criteria": "{p_User_6}!=''"
+              },
+              "isShowAll": true,
+              "filedNames": "广州校区东校园至善园11号3楼讨论室3（16个座位）",
+              "description": "隐藏"
+            }
+          ],
+          "statisticsNum": 0,
+          "layoutDirection": "auto",
+          "isOnlyShowSelect": 0,
+          "showMaxSelectCount": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Radio_118_263",
+        "name": "场地使用申请表.讨论室",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Radio_220_263",
+      "name": "场地使用申请表.合唱练习室",
+      "searchType": "like",
+      "raw": {
+        "type": "Radio",
+        "attr": {
+          "gap": 10,
+          "size": "medium",
+          "options": [],
+          "viewType": 1,
+          "autoNumber": true,
+          "defaultValue": null,
+          "quoteOptions": null,
+          "optionsHidden": [],
+          "statisticsNum": 0,
+          "layoutDirection": "auto",
+          "isOnlyShowSelect": 0,
+          "showMaxSelectCount": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Radio_220_263",
+        "name": "场地使用申请表.合唱练习室",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Select_151_263",
+      "name": "场地使用申请表.社团指导老师",
+      "searchType": "like",
+      "raw": {
+        "type": "Select",
+        "attr": {
+          "size": "medium",
+          "options": [
+            {
+              "_id": "ntoLdfFuHIba4LpaW2M0f",
+              "name": "选项1",
+              "value": "1",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "fRgqtVGTOnkaIwixw8fmR",
+              "name": "选项2",
+              "value": "2",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            }
+          ],
+          "maxSelect": null,
+          "minSelect": null,
+          "showIndex": 0,
+          "autoNumber": true,
+          "isHasValue": 0,
+          "isMultiple": 0,
+          "placeholder": "社团指导老师",
+          "defaultValue": null,
+          "displayStyle": "inline",
+          "isSupportImg": 0,
+          "isAllowCreate": 0,
+          "optionsHidden": [],
+          "selectBodyFormat": "NULL",
+          "optionsChangeClear": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Select_151_263",
+        "name": "场地使用申请表.社团指导老师",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Select_178_263",
+      "name": "场地使用申请表.社团名称",
+      "searchType": "like",
+      "raw": {
+        "type": "Select",
+        "attr": {
+          "size": "medium",
+          "options": [
+            {
+              "_id": "052Uj2QUbmpr_0lRv3Fb9",
+              "name": "选项1",
+              "value": "1",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "-kT1gJl0ZwmAaJh9USA_m",
+              "name": "选项2",
+              "value": "2",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            }
+          ],
+          "maxSelect": null,
+          "minSelect": null,
+          "showIndex": 0,
+          "autoNumber": true,
+          "isHasValue": 0,
+          "isMultiple": 0,
+          "placeholder": "社团名称",
+          "defaultValue": null,
+          "displayStyle": "inline",
+          "isSupportImg": 0,
+          "isAllowCreate": 0,
+          "optionsHidden": [],
+          "selectBodyFormat": "NULL",
+          "optionsChangeClear": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Select_178_263",
+        "name": "场地使用申请表.社团名称",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Select_231_263",
+      "name": "场地使用申请表.单位负责人",
+      "searchType": "like",
+      "raw": {
+        "type": "Select",
+        "attr": {
+          "size": "medium",
+          "options": [
+            {
+              "_id": "XSpVExVw6-1zqhxvHYeOg",
+              "name": "选项1",
+              "value": "1",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "I5kDtbwXx9EQmotMErra4",
+              "name": "选项2",
+              "value": "2",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            }
+          ],
+          "maxSelect": null,
+          "minSelect": null,
+          "showIndex": 0,
+          "autoNumber": true,
+          "isHasValue": 0,
+          "isMultiple": 0,
+          "placeholder": null,
+          "defaultValue": null,
+          "displayStyle": "inline",
+          "isSupportImg": 0,
+          "isAllowCreate": 0,
+          "optionsHidden": [],
+          "selectBodyFormat": "NULL",
+          "optionsChangeClear": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Select_231_263",
+        "name": "场地使用申请表.单位负责人",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_241_263",
+      "name": "场地使用申请表.申请单位",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_241_263",
+        "name": "场地使用申请表.申请单位",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_236_263",
+      "name": "场地使用申请表.申请人姓名",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_236_263",
+        "name": "场地使用申请表.申请人姓名",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_237_263",
+      "name": "场地使用申请表.申请人电话",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_237_263",
+        "name": "场地使用申请表.申请人电话",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_238_263",
+      "name": "场地使用申请表.申请人工号",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_238_263",
+        "name": "场地使用申请表.申请人工号",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Select_152_263",
+      "name": "场地使用申请表.单位负责人",
+      "searchType": "like",
+      "raw": {
+        "type": "Select",
+        "attr": {
+          "size": "medium",
+          "options": [
+            {
+              "_id": "fIqei0ZjRShSkZcgaxQZM",
+              "name": "选项1",
+              "value": "1",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "Ah8pEL8SvvtnCyyNkvNHD",
+              "name": "选项2",
+              "value": "2",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            }
+          ],
+          "maxSelect": null,
+          "minSelect": null,
+          "isMultiple": 0,
+          "placeholder": "单位负责人",
+          "defaultValue": null,
+          "isSupportImg": 0,
+          "isAllowCreate": 0,
+          "selectBodyFormat": "NULL"
+        },
+        "key": "Select_152_263",
+        "name": "场地使用申请表.单位负责人",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Input_217_263",
+      "name": "场地使用申请表.申请人电话",
+      "searchType": "like",
+      "raw": {
+        "type": "Input",
+        "attr": null,
+        "key": "Input_217_263",
+        "name": "场地使用申请表.申请人电话",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "Select_226_263",
+      "name": "场地使用申请表.申请单位负责人",
+      "searchType": "like",
+      "raw": {
+        "type": "Select",
+        "attr": {
+          "size": "medium",
+          "options": [
+            {
+              "_id": "ptpw23fkm0_BONCwVv43r",
+              "name": "选项1",
+              "value": "1",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            },
+            {
+              "_id": "R0IQs1U4uh4bv-VZ8PVYN",
+              "name": "选项2",
+              "value": "2",
+              "imgSrc": "",
+              "disabled": false,
+              "defaultChecked": false
+            }
+          ],
+          "maxSelect": null,
+          "minSelect": null,
+          "showIndex": 0,
+          "autoNumber": true,
+          "isMultiple": 0,
+          "placeholder": null,
+          "defaultValue": null,
+          "displayStyle": "inline",
+          "isSupportImg": 0,
+          "isAllowCreate": 0,
+          "optionsHidden": [],
+          "selectBodyFormat": "NULL",
+          "optionsChangeClear": 0,
+          "relatedBaseInfoField": null
+        },
+        "key": "Select_226_263",
+        "name": "场地使用申请表.申请单位负责人",
+        "search_type": "like"
+      }
+    },
+    {
+      "key": "User_237_263",
+      "name": "场地使用申请表.人员信息_237",
+      "searchType": "like",
+      "raw": {
+        "type": "User",
+        "attr": null,
+        "key": "User_237_263",
+        "name": "场地使用申请表.人员信息_237",
+        "search_type": "like"
+      }
+    }
+  ]
+}
+
+[exit=]

@@ -1,0 +1,239 @@
+{
+  "version": "v1",
+  "aliases": [
+    {
+      "alias": "广州校区南校园",
+      "canonical_id": "guangzhou_south",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "南校园",
+      "canonical_id": "guangzhou_south",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "广州南校园",
+      "canonical_id": "guangzhou_south",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "南校区",
+      "canonical_id": "guangzhou_south",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "广州校区南校",
+      "canonical_id": "guangzhou_south",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "广州校区北校园",
+      "canonical_id": "guangzhou_north",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "北校园",
+      "canonical_id": "guangzhou_north",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "广州北校园",
+      "canonical_id": "guangzhou_north",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "北校区",
+      "canonical_id": "guangzhou_north",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "广州校区北校",
+      "canonical_id": "guangzhou_north",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "广州校区东校园",
+      "canonical_id": "guangzhou_east",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "东校园",
+      "canonical_id": "guangzhou_east",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "广州东校园",
+      "canonical_id": "guangzhou_east",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "东校区",
+      "canonical_id": "guangzhou_east",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "广州校区东校",
+      "canonical_id": "guangzhou_east",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "珠海校区",
+      "canonical_id": "zhuhai",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json",
+        "sysu-anything qg list --today --all --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "珠海",
+      "canonical_id": "zhuhai",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json",
+        "sysu-anything qg list --today --all --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "珠海校园",
+      "canonical_id": "zhuhai",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json",
+        "sysu-anything qg list --today --all --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "深圳校区",
+      "canonical_id": "shenzhen",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "深圳",
+      "canonical_id": "shenzhen",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11"
+    },
+    {
+      "alias": "深圳校园",
+      "canonical_id": "shenzhen",
+      "kind": "campus",
+      "source_refs": [
+        "https://www.sysu.edu.cn/xxg/zdxq.htm",
+        "sysu-anything usc classroom campuses --json",
+        "sysu-anything usc meeting campuses --json"
+      ],
+      "verified_at": "2026-08-11"
+    }
+  ]
+}

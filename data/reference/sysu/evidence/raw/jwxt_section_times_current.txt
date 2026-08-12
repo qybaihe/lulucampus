@@ -1,0 +1,234 @@
+
+>>> /Users/baihe/.local/bin/sysu-anything jwxt section-times --school-year 2025-2 --json
+{
+  "schoolYear": "2025-2",
+  "response": {
+    "code": 200,
+    "data": [
+      {
+        "minorName": "第1节",
+        "startTime": "08:00",
+        "endTime": "08:45",
+        "sortNumber": 0,
+        "sectionNumber": 1,
+        "minorNumber": 0,
+        "bigSection": "1",
+        "bigSectionName": "第1大节"
+      },
+      {
+        "minorName": "第2节",
+        "startTime": "08:55",
+        "endTime": "09:40",
+        "sortNumber": 0,
+        "sectionNumber": 2,
+        "minorNumber": 0,
+        "bigSection": "1",
+        "bigSectionName": "第1大节"
+      },
+      {
+        "minorName": "第3节",
+        "startTime": "10:10",
+        "endTime": "10:55",
+        "sortNumber": 0,
+        "sectionNumber": 3,
+        "minorNumber": 0,
+        "bigSection": "2",
+        "bigSectionName": "第2大节"
+      },
+      {
+        "minorName": "第4节",
+        "startTime": "11:05",
+        "endTime": "11:50",
+        "sortNumber": 0,
+        "sectionNumber": 4,
+        "minorNumber": 0,
+        "bigSection": "2",
+        "bigSectionName": "第2大节"
+      },
+      {
+        "minorName": "第5节",
+        "startTime": "14:20",
+        "endTime": "15:05",
+        "sortNumber": 0,
+        "sectionNumber": 5,
+        "minorNumber": 0,
+        "bigSection": "4",
+        "bigSectionName": "第3大节"
+      },
+      {
+        "minorName": "第6节",
+        "startTime": "15:15",
+        "endTime": "16:00",
+        "sortNumber": 0,
+        "sectionNumber": 6,
+        "minorNumber": 0,
+        "bigSection": "4",
+        "bigSectionName": "第3大节"
+      },
+      {
+        "minorName": "第7节",
+        "startTime": "16:30",
+        "endTime": "17:15",
+        "sortNumber": 0,
+        "sectionNumber": 7,
+        "minorNumber": 0,
+        "bigSection": "5",
+        "bigSectionName": "第4大节"
+      },
+      {
+        "minorName": "第8节",
+        "startTime": "17:25",
+        "endTime": "18:10",
+        "sortNumber": 0,
+        "sectionNumber": 8,
+        "minorNumber": 0,
+        "bigSection": "5",
+        "bigSectionName": "第4大节"
+      },
+      {
+        "minorName": "第9节",
+        "startTime": "19:00",
+        "endTime": "19:45",
+        "sortNumber": 0,
+        "sectionNumber": 9,
+        "minorNumber": 0,
+        "bigSection": "6",
+        "bigSectionName": "第5大节"
+      },
+      {
+        "minorName": "第10节",
+        "startTime": "19:55",
+        "endTime": "20:40",
+        "sortNumber": 0,
+        "sectionNumber": 10,
+        "minorNumber": 0,
+        "bigSection": "6",
+        "bigSectionName": "第5大节"
+      },
+      {
+        "minorName": "第11节",
+        "startTime": "20:50",
+        "endTime": "21:35",
+        "sortNumber": 0,
+        "sectionNumber": 11,
+        "minorNumber": 0,
+        "bigSection": "6",
+        "bigSectionName": "第5大节"
+      }
+    ]
+  },
+  "sectionTimes": [
+    {
+      "minorName": "第1节",
+      "startTime": "08:00",
+      "endTime": "08:45",
+      "sortNumber": 0,
+      "sectionNumber": 1,
+      "minorNumber": 0,
+      "bigSection": "1",
+      "bigSectionName": "第1大节"
+    },
+    {
+      "minorName": "第2节",
+      "startTime": "08:55",
+      "endTime": "09:40",
+      "sortNumber": 0,
+      "sectionNumber": 2,
+      "minorNumber": 0,
+      "bigSection": "1",
+      "bigSectionName": "第1大节"
+    },
+    {
+      "minorName": "第3节",
+      "startTime": "10:10",
+      "endTime": "10:55",
+      "sortNumber": 0,
+      "sectionNumber": 3,
+      "minorNumber": 0,
+      "bigSection": "2",
+      "bigSectionName": "第2大节"
+    },
+    {
+      "minorName": "第4节",
+      "startTime": "11:05",
+      "endTime": "11:50",
+      "sortNumber": 0,
+      "sectionNumber": 4,
+      "minorNumber": 0,
+      "bigSection": "2",
+      "bigSectionName": "第2大节"
+    },
+    {
+      "minorName": "第5节",
+      "startTime": "14:20",
+      "endTime": "15:05",
+      "sortNumber": 0,
+      "sectionNumber": 5,
+      "minorNumber": 0,
+      "bigSection": "4",
+      "bigSectionName": "第3大节"
+    },
+    {
+      "minorName": "第6节",
+      "startTime": "15:15",
+      "endTime": "16:00",
+      "sortNumber": 0,
+      "sectionNumber": 6,
+      "minorNumber": 0,
+      "bigSection": "4",
+      "bigSectionName": "第3大节"
+    },
+    {
+      "minorName": "第7节",
+      "startTime": "16:30",
+      "endTime": "17:15",
+      "sortNumber": 0,
+      "sectionNumber": 7,
+      "minorNumber": 0,
+      "bigSection": "5",
+      "bigSectionName": "第4大节"
+    },
+    {
+      "minorName": "第8节",
+      "startTime": "17:25",
+      "endTime": "18:10",
+      "sortNumber": 0,
+      "sectionNumber": 8,
+      "minorNumber": 0,
+      "bigSection": "5",
+      "bigSectionName": "第4大节"
+    },
+    {
+      "minorName": "第9节",
+      "startTime": "19:00",
+      "endTime": "19:45",
+      "sortNumber": 0,
+      "sectionNumber": 9,
+      "minorNumber": 0,
+      "bigSection": "6",
+      "bigSectionName": "第5大节"
+    },
+    {
+      "minorName": "第10节",
+      "startTime": "19:55",
+      "endTime": "20:40",
+      "sortNumber": 0,
+      "sectionNumber": 10,
+      "minorNumber": 0,
+      "bigSection": "6",
+      "bigSectionName": "第5大节"
+    },
+    {
+      "minorName": "第11节",
+      "startTime": "20:50",
+      "endTime": "21:35",
+      "sortNumber": 0,
+      "sectionNumber": 11,
+      "minorNumber": 0,
+      "bigSection": "6",
+      "bigSectionName": "第5大节"
+    }
+  ]
+}
+
+[exit=]

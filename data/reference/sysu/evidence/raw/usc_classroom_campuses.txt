@@ -1,0 +1,46 @@
+
+>>> /Users/baihe/.local/bin/sysu-anything usc classroom campuses --json
+[
+  {
+    "_id": "D8ycgpM9CEoahzueo3eoi",
+    "name": "广州校区南校园",
+    "value": "南校园",
+    "imgSrc": "",
+    "disabled": false,
+    "defaultChecked": false
+  },
+  {
+    "_id": "f9nLC0_CoGsMLQOAtRbtF",
+    "name": "广州校区北校园",
+    "value": "北校园",
+    "imgSrc": "",
+    "disabled": false,
+    "defaultChecked": false
+  },
+  {
+    "_id": "nlgBaI7GMjYXnOpIJX8gh",
+    "name": "广州校区东校园",
+    "value": "东校园",
+    "imgSrc": "",
+    "disabled": false,
+    "defaultChecked": false
+  },
+  {
+    "_id": "avpbVkoExJ0weLt-QeqAY",
+    "name": "珠海校区",
+    "value": "珠海校区",
+    "imgSrc": "",
+    "disabled": false,
+    "defaultChecked": false
+  },
+  {
+    "_id": "tczveK8sSF1vtqLXv3I7K",
+    "name": "深圳校区",
+    "value": "深圳校区",
+    "imgSrc": "",
+    "disabled": false,
+    "defaultChecked": false
+  }
+]
+
+[exit=]
