@@ -1,0 +1,355 @@
+[
+  {
+    "source": "宣讲会",
+    "external_key": "career:teachin:174843",
+    "title": "多益网络2027届校园招聘秋招第一场在线宣讲会",
+    "starts_at": "2026-08-13T19:30:00+08:00",
+    "ends_at": "2026-08-13T20:10:00+08:00",
+    "location": "线上宣讲",
+    "official_url": "https://career.sysu.edu.cn/teachin/view/id/174843",
+    "details": {
+      "description": "多益网络2027届校招在线宣讲，覆盖程序、策划、艺术、市场、职能等岗位。",
+      "organizer": "中山大学党委学生工作部 / 就业信息网",
+      "company": "多益网络有限公司",
+      "mode": "online"
+    }
+  },
+  {
+    "source": "宣讲会",
+    "external_key": "career:teachin:174845",
+    "title": "新东方深圳学校空宣-27校招提前批招聘",
+    "starts_at": "2026-08-18T18:30:00+08:00",
+    "ends_at": "2026-08-18T20:30:00+08:00",
+    "location": "线上宣讲",
+    "official_url": "https://career.sysu.edu.cn/teachin/view/id/174845",
+    "details": {
+      "description": "新东方深圳学校2027校招提前批空中宣讲，视频号直播形式。",
+      "organizer": "中山大学党委学生工作部 / 就业信息网",
+      "company": "深圳新东方培训学校",
+      "mode": "online"
+    }
+  },
+  {
+    "source": "招聘会",
+    "external_key": "career:jobfair:49316",
+    "title": "2026届毕业生就业暨2027届暑期实习线上招聘会",
+    "starts_at": "2026-06-22T00:00:00+08:00",
+    "ends_at": "2026-09-10T17:00:00+08:00",
+    "location": "网络招聘会，在线投递简历",
+    "official_url": "https://career.sysu.edu.cn/jobfair/view/id/49316",
+    "details": {
+      "description": "面向中山大学2026届、2027届毕业生的线上双选会，单位与学生均可在就业信息网参会。",
+      "organizer": "中山大学党委学生工作部",
+      "mode": "online",
+      "status": "ongoing_until_2026-09-10"
+    }
+  },
+  {
+    "source": "招聘会",
+    "external_key": "career:jobfair:49341",
+    "title": "2026年秋季“万企进校园”综合类大型双选会",
+    "starts_at": "2026-09-15T14:30:00+08:00",
+    "ends_at": "2026-09-15T17:00:00+08:00",
+    "location": "广州校区东校园篮球场",
+    "official_url": "https://career.sysu.edu.cn/jobfair/view/id/49341",
+    "details": {
+      "description": "秋季综合类大型双选会，主办单位为中山大学党委学生工作部。",
+      "organizer": "中山大学党委学生工作部"
+    }
+  },
+  {
+    "source": "招聘会",
+    "external_key": "career:jobfair:49343",
+    "title": "“医职由我”全国医学类高校2027届毕业生巡回招聘会——中山大学站",
+    "starts_at": "2026-09-19T14:00:00+08:00",
+    "ends_at": "2026-09-19T17:00:00+08:00",
+    "location": "广州校区北校园篮球场（广州市中山二路74号）",
+    "official_url": "https://career.sysu.edu.cn/jobfair/view/id/49343",
+    "details": {
+      "description": "医学类高校巡回招聘会中山大学站，组织国内部分三甲医院等医疗卫生用人单位现场招聘。",
+      "organizer": "医职由我医疗招聘团队 / 中山大学就业信息网"
+    }
+  },
+  {
+    "source": "招聘会",
+    "external_key": "career:jobfair:49342",
+    "title": "中山大学2027届毕业生秋季重点行业领域专场招聘会（珠海校区）",
+    "starts_at": "2026-09-21T14:30:00+08:00",
+    "ends_at": "2026-09-21T17:00:00+08:00",
+    "location": "珠海校区教学楼架空层",
+    "official_url": "https://career.sysu.edu.cn/jobfair/view/id/49342",
+    "details": {
+      "description": "2027届毕业生秋季重点行业领域专场招聘会珠海校区场次。",
+      "organizer": "中山大学党委学生工作部"
+    }
+  },
+  {
+    "source": "招聘会",
+    "external_key": "career:jobfair:49344",
+    "title": "中山大学2027届毕业生秋季重点行业领域专场招聘会（深圳校区）",
+    "starts_at": "2026-09-29T14:30:00+08:00",
+    "ends_at": "2026-09-29T17:00:00+08:00",
+    "location": "深圳校区西教学楼南侧架空层",
+    "official_url": "https://career.sysu.edu.cn/jobfair/view/id/49344",
+    "details": {
+      "description": "2027届毕业生秋季重点行业领域专场招聘会深圳校区场次。",
+      "organizer": "中山大学党委学生工作部"
+    }
+  },
+  {
+    "source": "招聘会",
+    "external_key": "career:jobfair:49345",
+    "title": "医路领航 笃行致远——2026年秋季学期医科高层次人才专场招聘会",
+    "starts_at": "2026-10-29T14:30:00+08:00",
+    "ends_at": "2026-10-29T17:30:00+08:00",
+    "location": "广州校区北校园篮球场",
+    "official_url": "https://career.sysu.edu.cn/jobfair/view/id/49345",
+    "details": {
+      "description": "面向医科相关专业博士/博后等的高层次人才专场招聘会（广州校区北校园专场）。",
+      "organizer": "中山大学党委学生工作部"
+    }
+  },
+  {
+    "source": "赛事",
+    "external_key": "math:contest:nmc-2026-gd",
+    "title": "2026年全国大学生数学建模竞赛广东赛区",
+    "starts_at": "2026-09-10T18:00:00+08:00",
+    "ends_at": "2026-09-13T20:00:00+08:00",
+    "location": "中山大学（报名参赛，在线提交）",
+    "official_url": "https://math.sysu.edu.cn/article/3910",
+    "details": {
+      "description": "同时是2026高教社杯全国大学生数学建模竞赛广东赛区选拔赛。在读本科生可报名；报名截止2026-09-01 18:00。",
+      "organizer": "中山大学数学建模竞赛领导小组 / 数学学院",
+      "registration_deadline": "2026-09-01T18:00:00+08:00"
+    }
+  },
+  {
+    "source": "赛事",
+    "external_key": "official:contest:cpipc-2026",
+    "title": "2026年中国研究生创新实践系列大赛（校内组织）",
+    "starts_at": null,
+    "ends_at": null,
+    "location": "中山大学（各主题赛事校内承接单位组织）",
+    "official_url": "https://graduate.sysu.edu.cn/article/603",
+    "details": {
+      "description": "教育部学位管理与研究生教育司指导下的研究生品牌竞赛平台；各主题赛事报名与作品提交截止时间以研创网为准。",
+      "organizer": "研究生院 / 党委学生工作部",
+      "portal": "https://cpipc.acge.org.cn/"
+    }
+  },
+  {
+    "source": "其他",
+    "external_key": "official:calendar:undergrad-freshman-register-2026",
+    "title": "2026级本科新生报到",
+    "starts_at": "2026-08-18T08:00:00+08:00",
+    "ends_at": "2026-08-18T18:00:00+08:00",
+    "location": "中山大学各校区（以录取通知书与学院通知为准）",
+    "official_url": "https://www.sysu.edu.cn/index/xl.htm",
+    "details": {
+      "description": "2026-2027学年校历：本科新生报到日。",
+      "organizer": "中山大学",
+      "source_refs": [
+        "https://www.sysu.edu.cn/index/xl.htm",
+        "data/reference/sysu/academic_calendar_2026_2027.json"
+      ]
+    }
+  },
+  {
+    "source": "其他",
+    "external_key": "official:calendar:grad-freshman-register-2026",
+    "title": "2026级研究生新生报到",
+    "starts_at": "2026-09-04T08:00:00+08:00",
+    "ends_at": "2026-09-04T18:00:00+08:00",
+    "location": "中山大学各校区（以学院/培养单位通知为准）",
+    "official_url": "https://www.sysu.edu.cn/index/xl.htm",
+    "details": {
+      "description": "2026-2027学年校历：研究生新生报到日。",
+      "organizer": "中山大学 / 研究生院",
+      "source_refs": [
+        "https://www.sysu.edu.cn/index/xl.htm",
+        "https://cse.sysu.edu.cn/article/3576"
+      ]
+    }
+  },
+  {
+    "source": "其他",
+    "external_key": "official:calendar:returning-register-2026",
+    "title": "2026学年秋季学期非新生报到注册",
+    "starts_at": "2026-09-05T08:00:00+08:00",
+    "ends_at": "2026-09-06T18:00:00+08:00",
+    "location": "中山大学各校区（在校生注册）",
+    "official_url": "https://www.sysu.edu.cn/index/xl.htm",
+    "details": {
+      "description": "校历与研究生院通知：9月5日、6日为非新生报到注册日。",
+      "organizer": "中山大学",
+      "source_refs": [
+        "https://www.sysu.edu.cn/index/xl.htm",
+        "https://cse.sysu.edu.cn/article/3576"
+      ]
+    }
+  },
+  {
+    "source": "其他",
+    "external_key": "official:calendar:term-start-2026",
+    "title": "2026学年秋季学期正式上课",
+    "starts_at": "2026-09-07T08:00:00+08:00",
+    "ends_at": null,
+    "location": "中山大学各校区",
+    "official_url": "https://www.sysu.edu.cn/index/xl.htm",
+    "details": {
+      "description": "2026-2027学年第一学期教学周起始日（第1周）。",
+      "organizer": "中山大学 / 教务部",
+      "source_refs": [
+        "https://www.sysu.edu.cn/index/xl.htm",
+        "data/reference/sysu/academic_calendar_2026_2027.json"
+      ]
+    }
+  },
+  {
+    "source": "其他",
+    "external_key": "official:calendar:anniversary-2026",
+    "title": "中山大学校庆日",
+    "starts_at": "2026-11-12T00:00:00+08:00",
+    "ends_at": "2026-11-12T23:59:00+08:00",
+    "location": "中山大学各校区",
+    "official_url": "https://www.sysu.edu.cn/index/xl.htm",
+    "details": {
+      "description": "2026-2027学年校历标注校庆日。",
+      "organizer": "中山大学",
+      "source_refs": [
+        "data/reference/sysu/academic_calendar_2026_2027.json"
+      ]
+    }
+  },
+  {
+    "source": "其他",
+    "external_key": "museum:exhibition:pangxunqin-2026",
+    "title": "养我者中国——庞薰琹与指向21世纪的工艺复兴",
+    "starts_at": null,
+    "ends_at": null,
+    "location": "广州校区南校园 中山大学博物馆（543栋）",
+    "official_url": "https://bwgxsg.sysu.edu.cn/zh-hans/article/608",
+    "details": {
+      "description": "2026年5月1日开幕的专题展览，计划分两期展出；官网临时展览列表仍在展。庞薰琹曾任国立中山大学师范学院教授。",
+      "organizer": "中山大学博物馆（校史馆）",
+      "status": "ongoing_temporary",
+      "opened_at": "2026-05-01"
+    }
+  },
+  {
+    "source": "其他",
+    "external_key": "museum:exhibition:ruins-guangzhou",
+    "title": "废墟中的广州 抗战中的中大",
+    "starts_at": null,
+    "ends_at": null,
+    "location": "广州校区南校园 中山大学博物馆（校史馆）",
+    "official_url": "https://bwgxsg.sysu.edu.cn/zh-hans/article/587",
+    "details": {
+      "description": "抗战主题临时展览；馆方曾发布延期公告，官网临时展览列表仍在展。",
+      "organizer": "中山大学博物馆（校史馆）",
+      "status": "ongoing_temporary",
+      "opened_at": "2025-08-26",
+      "extension_note_url": "https://mp.weixin.qq.com/s/4cBlOqKDIcq11w7mHzcntw"
+    }
+  },
+  {
+    "source": "其他",
+    "external_key": "museum:on-show:main",
+    "title": "中山大学博物馆基本展陈（教学展厅与文物专题展）",
+    "starts_at": null,
+    "ends_at": null,
+    "location": "广州校区南校园 博物馆（543栋）",
+    "official_url": "https://bwgxsg.sysu.edu.cn/zh-hans/article/146",
+    "details": {
+      "description": "生命与健康教学展厅、陶瓷教学展厅及文物专题展（中国古代文明、岭南历史文化、西南民族民俗）。需预约参观。",
+      "organizer": "中山大学博物馆（校史馆）",
+      "status": "permanent",
+      "reservation": "https://bwgxsgticket.sysu.edu.cn/"
+    }
+  },
+  {
+    "source": "其他",
+    "external_key": "museum:on-show:history",
+    "title": "中山大学校史馆展陈",
+    "starts_at": null,
+    "ends_at": null,
+    "location": "广州校区南校园 校史馆（格兰堂 / 333栋）",
+    "official_url": "https://bwgxsg.sysu.edu.cn/zh-hans/article/147",
+    "details": {
+      "description": "校史馆基本展陈，呈现中山大学办学历程。需预约参观。",
+      "organizer": "中山大学博物馆（校史馆）",
+      "status": "permanent",
+      "reservation": "https://bwgxsgticket.sysu.edu.cn/"
+    }
+  },
+  {
+    "source": "其他",
+    "external_key": "museum:on-show:sun-yat-sen",
+    "title": "孙中山纪念馆展陈（孙中山与中山大学 / 孙中山生平展）",
+    "starts_at": null,
+    "ends_at": null,
+    "location": "广州校区南校园 孙中山纪念馆（西北区503栋）",
+    "official_url": "https://bwgxsg.sysu.edu.cn/zh-hans/article/586",
+    "details": {
+      "description": "一层“孙中山与中山大学”主题展与二层“孙中山生平展”。需预约参观。",
+      "organizer": "中山大学博物馆（校史馆）",
+      "status": "permanent"
+    }
+  },
+  {
+    "source": "其他",
+    "external_key": "museum:on-show:biology",
+    "title": "生物馆展陈（马文辉堂）",
+    "starts_at": null,
+    "ends_at": null,
+    "location": "广州校区南校园 马文辉堂（西南区475栋）",
+    "official_url": "https://bwgxsg.sysu.edu.cn/zh-hans/article/581",
+    "details": {
+      "description": "国家二级博物馆属性高校生物馆，含化石与生命演化、脊椎动物生态等展厅。",
+      "organizer": "中山大学博物馆（校史馆）",
+      "status": "permanent"
+    }
+  },
+  {
+    "source": "其他",
+    "external_key": "museum:on-show:chen-yinque",
+    "title": "陈寅恪故居展陈",
+    "starts_at": null,
+    "ends_at": null,
+    "location": "广州校区南校园 东北区309号 陈寅恪故居",
+    "official_url": "https://bwgxsg.sysu.edu.cn/zh-hans/article/584",
+    "details": {
+      "description": "陈寅恪先生1952年至1969年居住与教学之所，现为故居展陈。",
+      "organizer": "中山大学博物馆（校史馆）",
+      "status": "permanent"
+    }
+  },
+  {
+    "source": "其他",
+    "external_key": "museum:on-show:chen-xintao",
+    "title": "陈心陶故居展陈",
+    "starts_at": null,
+    "ends_at": null,
+    "location": "广州校区南校园 东南区241 陈心陶故居",
+    "official_url": "https://bwgxsg.sysu.edu.cn/zh-hans/article/583",
+    "details": {
+      "description": "中山大学博物馆（校史馆）基本展陈之一。",
+      "organizer": "中山大学博物馆（校史馆）",
+      "status": "permanent"
+    }
+  },
+  {
+    "source": "其他",
+    "external_key": "museum:on-show:medical",
+    "title": "医学博物馆展陈",
+    "starts_at": null,
+    "ends_at": null,
+    "location": "广州校区北校园 11号楼 医学博物馆（中山二路74号）",
+    "official_url": "https://bwgxsg.sysu.edu.cn/zh-hans/article/585",
+    "details": {
+      "description": "北校园医学博物馆基本展陈。",
+      "organizer": "中山大学博物馆（校史馆）",
+      "status": "permanent"
+    }
+  }
+]
