@@ -1,0 +1,127 @@
+import XCTest
+@testable import ONE_MORE
+
+final class APIContractTests: XCTestCase {
+    func testCampusDayCodecKeepsShanghaiCivilDayAtEveryBoundary() throws {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime]
+        let midnight = try XCTUnwrap(formatter.date(from: "2026-08-12T16:00:00Z"))
+        let earlyMorning = try XCTUnwrap(formatter.date(from: "2026-08-12T21:30:00Z"))
+        let lateNight = try XCTUnwrap(formatter.date(from: "2026-08-13T15:59:00Z"))
+        XCTAssertEqual(CampusDayCodec.string(from: midnight), "2026-08-13")
+        XCTAssertEqual(CampusDayCodec.string(from: earlyMorning), "2026-08-13")
+        XCTAssertEqual(CampusDayCodec.string(from: lateNight), "2026-08-13")
+    }
+
+    func testHTTP200FailedCampusActionNeverMapsToSuccess() {
+        XCTAssertEqual(
+            CampusActionExecutionDisposition.resolve(
+                status: "failed", errorCategory: "resource_conflict"
+            ),
+            .chooseAnotherResource
+        )
+        XCTAssertEqual(
+            CampusActionExecutionDisposition.resolve(
+                status: "failed", errorCategory: "login_expired"
+            ),
+            .reauthenticate
+        )
+        XCTAssertEqual(
+            CampusActionExecutionDisposition.resolve(
+                status: "succeeded", errorCategory: nil
+            ),
+            .succeeded
+        )
+        XCTAssertEqual(
+            CampusActionExecutionDisposition.recoveryScreen(
+                actionName: "room.reserve_preview"
+            ),
+            "B6"
+        )
+        XCTAssertEqual(
+            CampusActionExecutionDisposition.recoveryScreen(
+                actionName: "gym.book_preview"
+            ),
+            "B5"
+        )
+    }
+
+    func testCampusEventAcceptsNullableSchedule() throws {
+        let json = #"{"id":"e-null","type":"lecture","title":"时间待定活动","starts_at":null,"ends_at":null,"location":null,"official_url":null,"details":{},"registration_mode":"official_link_only"}"#
+        let event = try JSONDecoder.oneMore.decode(CampusEvent.self, from: Data(json.utf8))
+        XCTAssertNil(event.startsAt)
+        XCTAssertNil(event.endsAt)
+        XCTAssertEqual(event.title, "时间待定活动")
+    }
+
+    func testLeaveEndpointMinimalAuthoritativeResultDecodes() throws {
+        let payload = #"{"id":"g-1","status":"Dissolved"}"#.data(using: .utf8)!
+        let result = try JSONDecoder.oneMore.decode(GatheringLeaveResult.self, from: payload)
+        XCTAssertEqual(result.id, "g-1")
+        XCTAssertEqual(result.status, .dissolved)
+    }
+
+    func testSuccessEnvelopeSnakeCaseAndFractionalUTCDate() throws {
+        let data = #"{"data":{"id":"m1","channel_id":"c1","sender_id":"u1","sender_type":"human","content_type":"text","content":"你好","image":null,"location":null,"sent_at":"2026-08-11T14:08:35.089313Z"},"meta":{"source":"live"}}"#.data(using: .utf8)!
+        let envelope = try JSONDecoder.oneMore.decode(APIEnvelope<MessagePayload>.self, from: data)
+        XCTAssertEqual(envelope.data.channelId, "c1")
+        XCTAssertEqual(envelope.data.content, "你好")
+        XCTAssertNotNil(envelope.data.sentAt)
+        XCTAssertEqual(envelope.meta["source"], .string("live"))
+    }
+
+    func testErrorEnvelopePreservesRequestIDAndDetails() throws {
+        let data = #"{"error":{"code":"INTENT_NOT_EDITABLE","message":"当前意图不可编辑","details":{"status":"Pooling"},"request_id":"req-123"}}"#.data(using: .utf8)!
+        let value = try JSONDecoder.oneMore.decode(APIErrorEnvelope.self, from: data).error
+        XCTAssertEqual(value.code, "INTENT_NOT_EDITABLE")
+        XCTAssertEqual(value.requestId, "req-123")
+        XCTAssertEqual(value.details["status"], .string("Pooling"))
+    }
+
+    func testUnknownGatheringEnumFallsBackWithoutDecodeFailure() throws {
+        let data = Data(#""future_server_state""#.utf8)
+        XCTAssertEqual(try JSONDecoder().decode(GatheringStatus.self, from: data), .unknown)
+    }
+
+    func testNotificationPreferenceRoundTripUsesSnakeCase() throws {
+        let value = NotificationPreferences(
+            overallEnabled: true,
+            calendarSyncEnabled: false,
+            categories: .init(gatheringUpdates: true, actionUpdates: false, chatMessages: true, trustUpdates: true, competitionDeadlines: false),
+            systemSettingsManagedLocally: ["focus_mode"]
+        )
+        let data = try JSONEncoder.oneMore.encode(value)
+        let string = String(decoding: data, as: UTF8.self)
+        XCTAssertTrue(string.contains("calendar_sync_enabled"))
+        XCTAssertEqual(try JSONDecoder.oneMore.decode(NotificationPreferences.self, from: data).categories.actionUpdates, false)
+    }
+
+    func testSharedGoalDecodesAutomaticProgressContract() throws {
+        let payload = #"{"id":"goal-1","relation_id":"rel-1","definition":"一起自习","period_start":"2026-08-01","period_end":"2026-08-31","target_value":4,"current_value":1,"unit":"次","status":"active","milestones":[{"fraction":0.25,"target_value":1,"reached":true,"reached_at":"2026-08-11T12:00:00Z"}],"member_progress":[{"user_id":"u1","display_name":"小林","current_value":2,"last_progress_at":"2026-08-11T12:00:00Z"}],"next_action":"周五图书馆见","last_broadcast":"已自动更新","last_progress_at":"2026-08-11T12:00:00Z","progress_source":"attendance_and_completion"}"#.data(using: .utf8)!
+        let goal = try JSONDecoder.oneMore.decode(SharedGoal.self, from: payload)
+        XCTAssertEqual(goal.currentValue, 1)
+        XCTAssertEqual(goal.milestones.first?.reached, true)
+        XCTAssertEqual(goal.memberProgress.first?.currentValue, 2)
+        XCTAssertEqual(goal.nextAction, "周五图书馆见")
+        XCTAssertEqual(goal.progressSource, "attendance_and_completion")
+    }
+
+    func testAnonymousRescheduleProposalContractDecodesWithoutVoterIdentities() throws {
+        let payload = #"{"proposal_id":"rp-1","gathering_id":"g-1","status":"open","start_at":"2026-08-18T11:00:00Z","end_at":"2026-08-18T13:00:00Z","feasible_count":4,"accepted_count":2,"required_count":4,"my_vote":"accepted","expires_at":"2026-08-11T13:00:00Z","decided_at":null}"#.data(using: .utf8)!
+        let proposal = try JSONDecoder.oneMore.decode(RescheduleProposal.self, from: payload)
+        XCTAssertEqual(proposal.id, "rp-1")
+        XCTAssertEqual(proposal.acceptedCount, 2)
+        XCTAssertEqual(proposal.requiredCount, 4)
+        XCTAssertEqual(proposal.myVote, "accepted")
+    }
+
+    func testPrivateRecurrenceDecisionContractDecodesCloneRoute() throws {
+        let payload = #"{"decision":"partial","kept_user_ids":["u1","u2"],"clone_gathering_id":"g-next"}"#.data(using: .utf8)!
+        let decision = try JSONDecoder.oneMore.decode(
+            GatheringSummary.RecurrenceDecision.self, from: payload
+        )
+        XCTAssertEqual(decision.decision, "partial")
+        XCTAssertEqual(decision.keptUserIds, ["u1", "u2"])
+        XCTAssertEqual(decision.cloneGatheringId, "g-next")
+    }
+}
