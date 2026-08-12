@@ -55,10 +55,18 @@ def llm_enabled() -> bool:
     return bool(_api_key())
 
 
-def _sample_snippets(items: list[dict[str, Any]]) -> list[str]:
-    snippets: list[str] = []
+def _sample_snippets(items: list[dict[str, Any]]) -> list[dict[str, str]]:
+    buckets: dict[str, list[dict[str, Any]]] = {"like": [], "collect": [], "post": []}
+    for item in items:
+        bucket = str(item.get("source_bucket") or "post")
+        if bucket not in buckets:
+            bucket = "post"
+        buckets[bucket].append(item)
+    picked = buckets["like"][:16] + buckets["collect"][:16] + buckets["post"][:8]
+
+    snippets: list[dict[str, str]] = []
     seen: set[str] = set()
-    for item in items[:500]:
+    for item in picked:
         text = " ".join(
             part
             for part in (
@@ -75,7 +83,10 @@ def _sample_snippets(items: list[dict[str, Any]]) -> list[str]:
         if key in seen:
             continue
         seen.add(key)
-        snippets.append(text[:MAX_SNIPPET_CHARS])
+        source = str(item.get("source_bucket") or "post")
+        if source not in {"like", "collect"}:
+            source = "post"
+        snippets.append({"source": source, "text": text[:MAX_SNIPPET_CHARS]})
         if len(snippets) >= MAX_SAMPLE_SNIPPETS:
             break
     return snippets
@@ -164,7 +175,7 @@ def enrich_provisional_profile(
         system = (
             "你是校园成局产品「噜噜成局」的抖音兴趣画像分析师。"
             "用户已完成内容采集，并在 App 内回答了 3–5 道兴趣细化题。"
-            "请结合：① 抖音喜欢样本 ② 结构化分数 ③ 用户答题选择，"
+            "请结合：① 抖音喜欢与收藏样本 ② 结构化分数 ③ 用户答题选择，"
             "生成更精准、更具体的中文人物画像。"
             "要求：\n"
             "1) 必须体现 quiz_answers 里的具体选择，不要忽略用户回答；\n"
@@ -181,19 +192,20 @@ def enrich_provisional_profile(
         )
     else:
         system = (
-            "你是校园成局产品「噜噜成局」的抖音兴趣画像分析师。"
-            "用户刚通过扫码授权采集了抖音喜欢列表；你要根据内容样本 + 结构化分数，"
-            "生成自然、具体、像真人观察的中文人物画像文案。"
+            "你现在不是分析师，你是「噜噜成局」里的水豚噜噜：圆、慢半拍、刚看完对方的内容，抬起头跟「你」说话。\n"
+            "样本来自最近的喜欢、收藏和作品；收藏是更有意存下来的，和喜欢一起看。\n"
             "要求：\n"
-            "1) 不要说教，不要空话，不要提抖音/算法/模型/OpenCode；\n"
-            "2) 不要改动 primary_tag.key / secondary_tags 的 key；\n"
-            "3) interest_facets 的 domain 必须在 allowed_domain_keys 内；\n"
-            "4) 只输出 JSON，字段：\n"
-            "   - summary: string，60-120 字，一句话画像\n"
-            "   - persona: string，80-160 字，更细的人物气质与行动风格\n"
-            "   - interest_facets: array of {domain, facet, label}，2-5 个具体兴趣点\n"
-            "   - matching_hints: array of string，2-4 条适合匹配/成局的短提示\n"
-            "   - tone: string，如 务实/探索/审美/策展\n"
+            "1) persona 必须第一人称（我）对第二人称（你）；像口头短句，不要书面鉴定腔；\n"
+            "2) 先点出 content_snippets 里 1-2 件具体事，再轻轻落到这个人怎么成局；\n"
+            "3) 允许一点点水豚身体感：慢慢看完、嗯了一下、拍拍、把局凑上。不要堆叠萌词；\n"
+            "4) 禁止：这位用户、该账号、作为一名、画像、标签、算法、模型、抖音、喜欢列表、说教、鸡汤、列点；\n"
+            "5) 不要改动 primary_tag.key；interest_facets 的 domain 必须在 allowed_domain_keys 内；\n"
+            "6) 只输出 JSON，字段：\n"
+            "   - summary: string，40-90 字，给卡片看的一句人味描述，仍用「你」\n"
+            "   - persona: string，70-140 字，噜噜刚看完抬头发的评语\n"
+            "   - interest_facets: array of {domain, facet, label}，2-5 个\n"
+            "   - matching_hints: array of string，2-4 条噜噜口吻短句，每条不超过 28 字\n"
+            "   - tone: string\n"
         )
     user = json.dumps(payload, ensure_ascii=False)
     try:
@@ -215,13 +227,13 @@ def enrich_provisional_profile(
 
     sample = result.setdefault("sample", {})
     persona = data.get("persona")
-    if isinstance(persona, str) and 12 <= len(persona.strip()) <= 240:
-        sample["persona"] = persona.strip()
+    if isinstance(persona, str) and 12 <= len(persona.strip()) <= 320:
+        sample["persona"] = persona.strip()[:280]
 
     hints = data.get("matching_hints")
     if isinstance(hints, list):
         cleaned_hints = [
-            str(item).strip()[:60]
+            str(item).strip()[:36]
             for item in hints
             if isinstance(item, (str, int, float)) and str(item).strip()
         ][:4]
@@ -315,6 +327,9 @@ def _chat_json(*, system: str, user: str) -> dict[str, Any]:
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
+        # Cloudflare on opencode.ai rejects bare python clients (error 1010).
+        "User-Agent": "ONE-MORE/1.0 (+https://github.com/onemore; taste-llm)",
+        "Accept": "application/json",
     }
     url = f"{base_url}/chat/completions"
     with httpx.Client(timeout=timeout) as client:

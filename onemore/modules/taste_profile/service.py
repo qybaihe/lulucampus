@@ -621,6 +621,10 @@ def upsert_taste_profile(
     )
     sample["visibility"] = result.get("visibility") or "members"
     sample["synced_tag_keys"] = [key for key, _, _ in _tag_entries(result)]
+    if result.get("persona"):
+        sample["persona"] = result["persona"]
+    if result.get("matching_hints"):
+        sample["matching_hints"] = result["matching_hints"]
     profile.sample_summary = sample
     profile.model_version = result.get("model_version") or MODEL_VERSION
     profile.confirmed_at = now_utc()
@@ -647,13 +651,13 @@ def regenerate_ai_narrative(db: Session, user_id: str) -> dict[str, Any]:
         .order_by(TasteImportSession.completed_at.desc(), TasteImportSession.created_at.desc())
     )
     if session is None:
-        raise AppError("TASTE_PROFILE_NOT_FOUND", "还没有可刷新的抖音画像，请先扫码导入", 404)
+        raise AppError("TASTE_PROFILE_NOT_FOUND", "还没有可刷新的抖音画像，请先粘贴主页链接导入", 404)
 
     path = items_path(runtime_dir_for(session.id))
     if not path.is_file():
         raise AppError(
             "DOUYIN_LIKES_UNAVAILABLE",
-            "本地喜欢内容已清理，请重新扫码导入后再生成 AI 画像",
+            "本地喜欢内容已清理，请重新粘贴主页链接导入后再生成 AI 画像",
             409,
         )
     items: list[dict[str, Any]] = []
@@ -720,6 +724,23 @@ def regenerate_ai_narrative(db: Session, user_id: str) -> dict[str, Any]:
 
 def get_taste_profile(db: Session, user_id: str) -> TasteProfile | None:
     return db.get(TasteProfile, user_id)
+
+
+def persona_dict(db: Session, user_id: str) -> dict[str, Any] | None:
+    """Full persona payload for competition / recruit scoring (no I/O besides DB)."""
+    profile = get_taste_profile(db, user_id)
+    if profile is None:
+        return None
+    sample = profile.sample_summary or {}
+    return {
+        "primary_tag": profile.primary_tag or {},
+        "secondary_tags": profile.secondary_tags or [],
+        "interest_domains": profile.interest_domains or [],
+        "interest_facets": sample.get("interest_facets") or [],
+        "matching_hints": sample.get("matching_hints") or [],
+        "summary": profile.summary or "",
+        "persona": sample.get("persona"),
+    }
 
 
 def taste_summary(db: Session, user_id: str) -> dict[str, Any] | None:
@@ -797,3 +818,202 @@ def mark_interrupted_imports_failed(db: Session) -> int:
 
 def _as_utc(value: datetime) -> datetime:
     return value if value.tzinfo is not None else value.replace(tzinfo=UTC)
+
+
+def _collect_and_analyze_from_share_link(
+    share_url: str,
+    *,
+    likes_limit: int | None = None,
+    posts_limit: int | None = None,
+    collects_limit: int | None = None,
+    use_llm: bool = True,
+) -> tuple[dict[str, Any], list[dict[str, Any]], Any]:
+    settings = get_settings()
+    from onemore.modules.taste_profile.providers.douyin_http import DouyinHttpCollector
+
+    likes_n = likes_limit if likes_limit is not None else settings.douyin_http_recent_likes
+    posts_n = posts_limit if posts_limit is not None else settings.douyin_http_recent_posts
+    collects_n = (
+        collects_limit
+        if collects_limit is not None
+        else settings.douyin_http_recent_collects
+    )
+    collector = DouyinHttpCollector(
+        timeout_seconds=settings.douyin_http_timeout_seconds,
+    )
+    bundle = collector.collect_recent(
+        share_url,
+        likes_limit=likes_n,
+        posts_limit=posts_n,
+        collects_limit=collects_n,
+    )
+
+    likes_items = [analyzer.normalize_item(raw) for raw in bundle["likes_raw"]]
+    collect_items = [analyzer.normalize_item(raw) for raw in bundle["collects_raw"]]
+    post_items = [analyzer.normalize_item(raw) for raw in bundle["posts_raw"]]
+    like_ids = {str(x.get("aweme_id") or "") for x in likes_items if x.get("aweme_id")}
+    collect_ids = {
+        str(x.get("aweme_id") or "") for x in collect_items if x.get("aweme_id")
+    }
+    merged: dict[str, dict[str, Any]] = {}
+    for item in likes_items + collect_items + post_items:
+        aid = str(item.get("aweme_id") or "")
+        if not aid or aid in merged:
+            continue
+        row = dict(item)
+        if aid in like_ids:
+            row["source_bucket"] = "like"
+        elif aid in collect_ids:
+            row["source_bucket"] = "collect"
+        else:
+            row["source_bucket"] = "post"
+        merged[aid] = row
+    items = list(merged.values())
+
+    analysis = analyzer.analyze_content(
+        items,
+        api_pages=int(bundle["meta"]["likes"].get("pages") or 0)
+        + int(bundle["meta"].get("collects", {}).get("pages") or 0)
+        + int(bundle["meta"]["posts"].get("pages") or 0),
+    )
+    result = analyzer.build_provisional_result(analysis, items=items, use_llm=use_llm)
+    result = normalize_taste_result(result) or result
+    payload = {
+        "share_url": share_url,
+        "profile_url": bundle["profile_url"],
+        "source_profile": bundle["source_profile"],
+        "posts_count": len(post_items),
+        "likes_count": len(likes_items),
+        "collects_count": len(collect_items),
+        "items_used": len(items),
+        "collection": bundle["meta"],
+        "result": result,
+    }
+    return payload, items, analysis
+
+
+def analyze_from_share_link(
+    share_url: str,
+    *,
+    likes_limit: int | None = None,
+    posts_limit: int | None = None,
+    collects_limit: int | None = None,
+    use_llm: bool = True,
+) -> dict[str, Any]:
+    """Sync HTTP path: share link → recent likes/collects/posts → taste result.
+
+    No Playwright scrolling. Designed for ~30 recent likes + collects + posts.
+    Does not persist to a user account.
+    """
+    payload, _items, _analysis = _collect_and_analyze_from_share_link(
+        share_url,
+        likes_limit=likes_limit,
+        posts_limit=posts_limit,
+        collects_limit=collects_limit,
+        use_llm=use_llm,
+    )
+    return payload
+
+
+def import_from_share_link(
+    db: Session,
+    user_id: str,
+    share_url: str,
+    *,
+    likes_limit: int | None = None,
+    posts_limit: int | None = None,
+    collects_limit: int | None = None,
+    use_llm: bool = True,
+    force: bool = True,
+    orchestrator=None,
+) -> TasteImportSession:
+    """Authenticated path: paste share link → persist READY session + taste profile."""
+    settings = get_settings()
+    if not settings.douyin_import_enabled:
+        raise AppError("DOUYIN_IMPORT_DISABLED", "抖音兴趣导入功能未开启", 403)
+
+    existing = _find_active_session(db, user_id)
+    if existing is not None and not force:
+        return existing
+    if existing is not None:
+        existing.status = CANCELLED
+        existing.error_code = None
+        existing.error_message = None
+        if orchestrator is not None:
+            orchestrator.cancel(existing.id)
+        db.commit()
+
+    payload, items, analysis = _collect_and_analyze_from_share_link(
+        share_url,
+        likes_limit=likes_limit,
+        posts_limit=posts_limit,
+        collects_limit=collects_limit,
+        use_llm=use_llm,
+    )
+    result = payload["result"]
+    from onemore.modules.taste_profile.taxonomy import TAG_DEFINITIONS
+
+    labels = {tag.key: tag.label for tag in TAG_DEFINITIONS}
+    candidate_tags = sorted(
+        [
+            {"key": key, "label": labels.get(key, key), "score": score}
+            for key, score in analysis.content_scores.items()
+        ],
+        key=lambda item: item["score"],
+        reverse=True,
+    )
+    questions = analyzer.select_questions(analysis)
+    now = now_utc()
+    session = TasteImportSession(
+        id=f"imp_{new_id().replace('-', '')[:28]}",
+        user_id=user_id,
+        source=SOURCE_DOUYIN,
+        status=READY,
+        profile_url=payload["profile_url"],
+        max_items=len(items),
+        expires_at=now + timedelta(seconds=DEFAULT_TASK_TTL_SECONDS),
+        authenticated_at=now,
+        source_profile=payload.get("source_profile") or {},
+        progress={
+            "phase": "ready",
+            "current": len(items),
+            "total": len(items),
+            "percent": 100.0,
+            "message": "已根据喜欢和收藏生成画像，可选细化题进一步校准",
+        },
+        collection_summary={
+            "api_pages": int((analysis.sample_stats or {}).get("api_pages") or 0),
+            "items_collected": len(items),
+            "has_more": False,
+            "likes_count": payload["likes_count"],
+            "collects_count": payload["collects_count"],
+            "posts_count": payload["posts_count"],
+            "collector": "http",
+        },
+        candidate_tags=candidate_tags,
+        questions=questions,
+        analysis_snapshot={
+            "item_count": analysis.item_count,
+            "content_scores": analysis.content_scores,
+            "dimensions": analysis.dimensions,
+            "domain_shares": analysis.domain_shares,
+            "recent200_domains": analysis.recent200_domains,
+            "top_domains": analysis.top_domains,
+            "sample_stats": analysis.sample_stats,
+        },
+        result_snapshot=result,
+        completed_at=now,
+    )
+    db.add(session)
+    db.flush()
+
+    runtime = runtime_dir_for(session.id)
+    runtime.mkdir(parents=True, exist_ok=True)
+    with items_path(runtime).open("w", encoding="utf-8") as handle:
+        for item in items:
+            handle.write(json.dumps(item, ensure_ascii=False) + "\n")
+
+    upsert_taste_profile(db, session, result)
+    db.commit()
+    db.refresh(session)
+    return session

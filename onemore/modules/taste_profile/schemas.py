@@ -133,6 +133,44 @@ class QRLoginView(APIModel):
     error: dict[str, str] | None = None
 
 
+class DemoTasteStartView(QRLoginView):
+    """Public demo start payload: ephemeral guest token + Douyin QR."""
+
+    access_token: str
+    guest_user_id: str
+    mode: str = "fake"
+
+
+class DemoTasteStatusView(APIModel):
+    enabled: bool
+    douyin_import_enabled: bool
+    mode: str
+    message: str = ""
+    http_link_import_ready: bool = False
+
+
+class DemoTasteFromLinkRequest(APIModel):
+    share_url: str = Field(min_length=8, max_length=2000)
+    likes_limit: int = Field(default=30, ge=1, le=60)
+    posts_limit: int = Field(default=20, ge=0, le=40)
+    collects_limit: int = Field(default=30, ge=0, le=40)
+    use_llm: bool = True
+    force: bool = True
+
+
+class DemoTasteFromLinkView(APIModel):
+    source: str = "douyin_http_link"
+    share_url: str
+    profile_url: str
+    source_profile: SourceProfile | None = None
+    posts_count: int = 0
+    likes_count: int = 0
+    collects_count: int = 0
+    items_used: int = 0
+    collection: dict[str, Any] = Field(default_factory=dict)
+    result: TasteProfileResultView | dict[str, Any]
+
+
 class LoginVerificationView(APIModel):
     import_id: str
     status: str

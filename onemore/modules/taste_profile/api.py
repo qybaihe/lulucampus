@@ -16,6 +16,7 @@ from onemore.db.models import TasteImportSession, User
 from onemore.modules.taste_profile import service
 from onemore.modules.taste_profile.orchestrator import taste_orchestrator
 from onemore.modules.taste_profile.schemas import (
+    DemoTasteFromLinkRequest,
     ImportCreateRequest,
     ImportItemView,
     ImportSessionView,
@@ -448,6 +449,41 @@ def submit_answers(
     return APIResponse(
         data=TasteProfileResultView.model_validate(_result_data(result)),
         meta={"refined_with_quiz": True, "ai_rewritten": True},
+    )
+
+
+@router.post(
+    "/profile/taste/from-link",
+    response_model=APIResponse[ImportSessionView],
+)
+def taste_from_link(
+    body: DemoTasteFromLinkRequest,
+    user: User = Depends(current_user),
+    db: Session = Depends(get_db),
+) -> APIResponse[ImportSessionView]:
+    """Paste a Douyin homepage share link → likes + collects + posts → persist profile."""
+    settings = get_settings()
+    if not settings.douyin_import_enabled:
+        from onemore.core.errors import AppError
+
+        raise AppError("DOUYIN_IMPORT_DISABLED", "抖音兴趣导入功能未开启", 403)
+    session = service.import_from_share_link(
+        db,
+        user.id,
+        body.share_url,
+        likes_limit=body.likes_limit,
+        posts_limit=body.posts_limit,
+        collects_limit=body.collects_limit,
+        use_llm=body.use_llm,
+        force=body.force,
+        orchestrator=taste_orchestrator,
+    )
+    return APIResponse(
+        data=ImportSessionView.model_validate(service.to_view(session)),
+        meta={
+            "collector": "http",
+            "note": "默认约 30 条最近喜欢 + 30 条收藏 + 若干作品；喜欢和收藏里的视频需公开",
+        },
     )
 
 
