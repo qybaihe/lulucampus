@@ -49,6 +49,8 @@ class Settings(BaseSettings):
 
     auto_create_schema: bool = True
     seed_demo_data: bool = False
+    # Live demo cast: u_demo_1–6 act through real APIs. Never on in production.
+    cast_driver_enabled: bool = False
     competition_public_snapshot_version: str = "competition-radar-cn-v1.1-2026-08-11"
     media_root: Path = Path("./runtime/media")
     media_max_image_bytes: int = 10 * 1024 * 1024
@@ -67,6 +69,8 @@ class Settings(BaseSettings):
     apns_timeout_seconds: float = 10.0
 
     douyin_import_enabled: bool = True
+    # Public judge/demo landing: create ephemeral guest + QR without App login.
+    demo_taste_public_enabled: bool = True
     douyin_mode: Literal["fake", "browser"] = "fake"
     douyin_browser_executable: str = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
     douyin_browser_headless: bool = True
@@ -76,6 +80,18 @@ class Settings(BaseSettings):
     douyin_max_parallel_imports: int = 2
     douyin_keep_raw_debug: bool = False
 
+    # HTTP collector (share-link → recent likes/collects/posts, no Playwright).
+    # Prefer cookie header / B64 in server .env; file path is a local fallback.
+    douyin_http_cookie: str = ""
+    douyin_http_cookie_b64: str = ""
+    douyin_http_cookie_path: Path = Path(
+        "./douyin_like_profile/DouK-Downloader/auth/cookies.json"
+    )
+    douyin_http_recent_likes: int = 30
+    douyin_http_recent_posts: int = 20
+    douyin_http_recent_collects: int = 30
+    douyin_http_timeout_seconds: float = 25.0
+
     # Douyin taste-profile AI narrative via OpenCode Go · DeepSeek V4 Flash.
     # Tag scoring remains deterministic; LLM only rewrites summary / facets.
     taste_llm_enabled: bool = True
@@ -83,6 +99,19 @@ class Settings(BaseSettings):
     taste_llm_model: str = "deepseek-v4-flash"
     taste_llm_api_key: str = ""
     taste_llm_timeout_seconds: float = 45.0
+
+    # Hermes Agent sidecar (LLM tool loop). Rule compiler remains the fallback.
+    hermes_agent_mode: Literal["off", "sidecar"] = "sidecar"
+    hermes_agent_url: str = "http://127.0.0.1:8642"
+    hermes_agent_timeout_seconds: float = 60.0
+    hermes_agent_max_tool_rounds: int = 8
+    hermes_agent_base_url: str = ""
+    hermes_agent_model: str = "deepseek-v4-flash"
+    hermes_agent_api_key: str = ""
+    hermes_agent_llm_timeout_seconds: float = 25.0
+    campus_mcp_url: str = "http://127.0.0.1:8000/internal/campus-mcp"
+    campus_mcp_token: str = ""
+    tool_session_ttl_seconds: int = 600
 
     @field_validator("database_url")
     @classmethod
@@ -121,6 +150,8 @@ class Settings(BaseSettings):
             (self.apns_team_id, self.apns_key_id, self.apns_topic, self.apns_private_key)
         ):
             issues.append("APNs mode requires team id, key id, topic and private key")
+        if self.cast_driver_enabled:
+            issues.append("ONEMORE_CAST_DRIVER_ENABLED must be false")
         if self.auto_create_schema:
             issues.append("ONEMORE_AUTO_CREATE_SCHEMA must be false; use Alembic")
         if issues:
