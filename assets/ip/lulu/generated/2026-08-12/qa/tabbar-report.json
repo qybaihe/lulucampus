@@ -1,0 +1,257 @@
+{
+  "sheet_size": [
+    1254,
+    1254
+  ],
+  "grid": [
+    3,
+    2
+  ],
+  "canvas_size": [
+    512,
+    512
+  ],
+  "target_extent": 360,
+  "icons": {
+    "today": {
+      "active_source_bbox": [
+        79,
+        231,
+        355,
+        570
+      ],
+      "inactive_source_bbox": [
+        81,
+        231,
+        355,
+        570
+      ],
+      "shared_source_bbox": [
+        79,
+        231,
+        355,
+        570
+      ],
+      "active": {
+        "size": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alpha_bbox": [
+          109,
+          76,
+          402,
+          436
+        ],
+        "transparent_corners": true
+      },
+      "inactive": {
+        "size": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alpha_bbox": [
+          111,
+          76,
+          402,
+          436
+        ],
+        "transparent_corners": true
+      }
+    },
+    "activity": {
+      "active_source_bbox": [
+        42,
+        282,
+        359,
+        529
+      ],
+      "inactive_source_bbox": [
+        42,
+        284,
+        358,
+        530
+      ],
+      "shared_source_bbox": [
+        42,
+        282,
+        359,
+        530
+      ],
+      "active": {
+        "size": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alpha_bbox": [
+          76,
+          115,
+          436,
+          396
+        ],
+        "transparent_corners": true
+      },
+      "inactive": {
+        "size": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alpha_bbox": [
+          76,
+          117,
+          435,
+          397
+        ],
+        "transparent_corners": true
+      }
+    },
+    "create": {
+      "active_source_bbox": [
+        34,
+        232,
+        366,
+        567
+      ],
+      "inactive_source_bbox": [
+        34,
+        235,
+        364,
+        568
+      ],
+      "shared_source_bbox": [
+        34,
+        232,
+        366,
+        568
+      ],
+      "active": {
+        "size": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alpha_bbox": [
+          78,
+          76,
+          434,
+          435
+        ],
+        "transparent_corners": true
+      },
+      "inactive": {
+        "size": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alpha_bbox": [
+          78,
+          77,
+          432,
+          436
+        ],
+        "transparent_corners": true
+      }
+    },
+    "messages": {
+      "active_source_bbox": [
+        57,
+        89,
+        353,
+        367
+      ],
+      "inactive_source_bbox": [
+        58,
+        90,
+        353,
+        367
+      ],
+      "shared_source_bbox": [
+        57,
+        89,
+        353,
+        367
+      ],
+      "active": {
+        "size": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alpha_bbox": [
+          77,
+          87,
+          436,
+          425
+        ],
+        "transparent_corners": true
+      },
+      "inactive": {
+        "size": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alpha_bbox": [
+          78,
+          88,
+          436,
+          425
+        ],
+        "transparent_corners": true
+      }
+    },
+    "profile": {
+      "active_source_bbox": [
+        37,
+        77,
+        364,
+        378
+      ],
+      "inactive_source_bbox": [
+        37,
+        78,
+        363,
+        379
+      ],
+      "shared_source_bbox": [
+        37,
+        77,
+        364,
+        379
+      ],
+      "active": {
+        "size": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alpha_bbox": [
+          76,
+          90,
+          436,
+          421
+        ],
+        "transparent_corners": true
+      },
+      "inactive": {
+        "size": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alpha_bbox": [
+          76,
+          91,
+          436,
+          422
+        ],
+        "transparent_corners": true
+      }
+    }
+  }
+}

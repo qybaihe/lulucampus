@@ -1,0 +1,471 @@
+{
+  "delivery": "2026-08-12",
+  "motion_count": 6,
+  "sticker_count": 36,
+  "motion": [
+    {
+      "clip": "intent.card",
+      "raw": "generated/2026-08-12/raw/lulu-intent-card-chroma.png",
+      "atlas": "atlases/LuluIntentCardAtlas.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "visible_pixel_ratio": 0.3482,
+      "transparent_corners": true
+    },
+    {
+      "clip": "pool.waiting",
+      "raw": "generated/2026-08-12/raw/lulu-pool-waiting-chroma.png",
+      "atlas": "atlases/LuluPoolWaitingAtlas.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "visible_pixel_ratio": 0.3103,
+      "transparent_corners": true
+    },
+    {
+      "clip": "confirm.gather",
+      "raw": "generated/2026-08-12/raw/lulu-confirm-gather-chroma.png",
+      "atlas": "atlases/LuluConfirmGatherAtlas.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "visible_pixel_ratio": 0.333,
+      "transparent_corners": true
+    },
+    {
+      "clip": "action.preview",
+      "raw": "generated/2026-08-12/raw/lulu-action-preview-chroma.png",
+      "atlas": "atlases/LuluActionPreviewAtlas.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "visible_pixel_ratio": 0.3027,
+      "transparent_corners": true
+    },
+    {
+      "clip": "action.executing",
+      "raw": "generated/2026-08-12/raw/lulu-action-executing-chroma.png",
+      "atlas": "atlases/LuluActionExecutingAtlas.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "visible_pixel_ratio": 0.309,
+      "transparent_corners": true
+    },
+    {
+      "clip": "exit.bow",
+      "raw": "generated/2026-08-12/raw/lulu-exit-bow-chroma.png",
+      "atlas": "atlases/LuluExitBowAtlas.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "visible_pixel_ratio": 0.2866,
+      "transparent_corners": true
+    }
+  ],
+  "stickers": [
+    {
+      "batch": "S1",
+      "id": "chair-empty",
+      "file": "generated/2026-08-12/stickers/S1/chair-empty.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.2993,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S1",
+      "id": "round-table",
+      "file": "generated/2026-08-12/stickers/S1/round-table.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.4786,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S1",
+      "id": "nameplate-blank",
+      "file": "generated/2026-08-12/stickers/S1/nameplate-blank.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.4735,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S1",
+      "id": "access-card",
+      "file": "generated/2026-08-12/stickers/S1/access-card.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.428,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S1",
+      "id": "qr-plaque-blank",
+      "file": "generated/2026-08-12/stickers/S1/qr-plaque-blank.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.4884,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S1",
+      "id": "hourglass",
+      "file": "generated/2026-08-12/stickers/S1/hourglass.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.3935,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S2",
+      "id": "badminton",
+      "file": "generated/2026-08-12/stickers/S2/badminton.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.2935,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S2",
+      "id": "basketball",
+      "file": "generated/2026-08-12/stickers/S2/basketball.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.6235,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S2",
+      "id": "table-tennis",
+      "file": "generated/2026-08-12/stickers/S2/table-tennis.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.4428,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S2",
+      "id": "football",
+      "file": "generated/2026-08-12/stickers/S2/football.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.6227,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S2",
+      "id": "running-shoe",
+      "file": "generated/2026-08-12/stickers/S2/running-shoe.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.4123,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S2",
+      "id": "sports-bottle",
+      "file": "generated/2026-08-12/stickers/S2/sports-bottle.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.3044,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S3",
+      "id": "books-stack",
+      "file": "generated/2026-08-12/stickers/S3/books-stack.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.5573,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S3",
+      "id": "laptop-closed",
+      "file": "generated/2026-08-12/stickers/S3/laptop-closed.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.2876,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S3",
+      "id": "notebook-open",
+      "file": "generated/2026-08-12/stickers/S3/notebook-open.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.4599,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S3",
+      "id": "marker",
+      "file": "generated/2026-08-12/stickers/S3/marker.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.1935,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S3",
+      "id": "alarm-clock",
+      "file": "generated/2026-08-12/stickers/S3/alarm-clock.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.4493,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S3",
+      "id": "desk-calendar",
+      "file": "generated/2026-08-12/stickers/S3/desk-calendar.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.5723,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S4",
+      "id": "seminar-room-sign",
+      "file": "generated/2026-08-12/stickers/S4/seminar-room-sign.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.5198,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S4",
+      "id": "study-lamp",
+      "file": "generated/2026-08-12/stickers/S4/study-lamp.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.2491,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S4",
+      "id": "teaching-building",
+      "file": "generated/2026-08-12/stickers/S4/teaching-building.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.5687,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S4",
+      "id": "school-bus",
+      "file": "generated/2026-08-12/stickers/S4/school-bus.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.4366,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S4",
+      "id": "poster-blank",
+      "file": "generated/2026-08-12/stickers/S4/poster-blank.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.4351,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S4",
+      "id": "cafeteria-tray",
+      "file": "generated/2026-08-12/stickers/S4/cafeteria-tray.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.4346,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S5",
+      "id": "backend-server",
+      "file": "generated/2026-08-12/stickers/S5/backend-server.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.5044,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S5",
+      "id": "frontend-browser",
+      "file": "generated/2026-08-12/stickers/S5/frontend-browser.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.6518,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S5",
+      "id": "data-chart",
+      "file": "generated/2026-08-12/stickers/S5/data-chart.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.5527,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S5",
+      "id": "product-notes",
+      "file": "generated/2026-08-12/stickers/S5/product-notes.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.5916,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S5",
+      "id": "algorithm-gear",
+      "file": "generated/2026-08-12/stickers/S5/algorithm-gear.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.5258,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S5",
+      "id": "design-palette",
+      "file": "generated/2026-08-12/stickers/S5/design-palette.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.4967,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S6",
+      "id": "trophy",
+      "file": "generated/2026-08-12/stickers/S6/trophy.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.4313,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S6",
+      "id": "certificate",
+      "file": "generated/2026-08-12/stickers/S6/certificate.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.3452,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S6",
+      "id": "badge",
+      "file": "generated/2026-08-12/stickers/S6/badge.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.4742,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S6",
+      "id": "envelope",
+      "file": "generated/2026-08-12/stickers/S6/envelope.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.606,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S6",
+      "id": "chat-bubble",
+      "file": "generated/2026-08-12/stickers/S6/chat-bubble.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.5711,
+      "transparent_corners": true
+    },
+    {
+      "batch": "S6",
+      "id": "approval-stamp",
+      "file": "generated/2026-08-12/stickers/S6/approval-stamp.png",
+      "size": [
+        512,
+        512
+      ],
+      "visible_pixel_ratio": 0.4283,
+      "transparent_corners": true
+    }
+  ]
+}

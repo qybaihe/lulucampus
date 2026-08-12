@@ -1,0 +1,258 @@
+{
+  "version": 1,
+  "count": 36,
+  "assets": [
+    {
+      "id": "onion",
+      "name_zh": "洋葱",
+      "batch": "Batch01",
+      "file": "Batch01/transparent/onion.png",
+      "package_text": null
+    },
+    {
+      "id": "tomato",
+      "name_zh": "西红柿",
+      "batch": "Batch01",
+      "file": "Batch01/transparent/tomato.png",
+      "package_text": null
+    },
+    {
+      "id": "egg",
+      "name_zh": "鸡蛋",
+      "batch": "Batch01",
+      "file": "Batch01/transparent/egg.png",
+      "package_text": null
+    },
+    {
+      "id": "milk",
+      "name_zh": "牛奶",
+      "batch": "Batch01",
+      "file": "Batch01/transparent/milk-lettered-v2.png",
+      "package_text": "Milk"
+    },
+    {
+      "id": "beef-brisket",
+      "name_zh": "牛腩",
+      "batch": "Batch01",
+      "file": "Batch01/transparent/beef-brisket.png",
+      "package_text": null
+    },
+    {
+      "id": "carrot",
+      "name_zh": "胡萝卜",
+      "batch": "Batch01",
+      "file": "Batch01/transparent/carrot.png",
+      "package_text": null
+    },
+    {
+      "id": "cucumber",
+      "name_zh": "黄瓜",
+      "batch": "Batch02",
+      "file": "Batch02/transparent/cucumber.png",
+      "package_text": null
+    },
+    {
+      "id": "broccoli",
+      "name_zh": "西兰花",
+      "batch": "Batch02",
+      "file": "Batch02/transparent/broccoli.png",
+      "package_text": null
+    },
+    {
+      "id": "lettuce",
+      "name_zh": "生菜",
+      "batch": "Batch02",
+      "file": "Batch02/transparent/lettuce.png",
+      "package_text": null
+    },
+    {
+      "id": "spinach",
+      "name_zh": "菠菜",
+      "batch": "Batch02",
+      "file": "Batch02/transparent/spinach.png",
+      "package_text": null
+    },
+    {
+      "id": "green-bell-pepper",
+      "name_zh": "青椒",
+      "batch": "Batch02",
+      "file": "Batch02/transparent/green-bell-pepper.png",
+      "package_text": null
+    },
+    {
+      "id": "red-bell-pepper",
+      "name_zh": "红椒",
+      "batch": "Batch02",
+      "file": "Batch02/transparent/red-bell-pepper.png",
+      "package_text": null
+    },
+    {
+      "id": "potato",
+      "name_zh": "土豆",
+      "batch": "Batch03",
+      "file": "Batch03/transparent/potato.png",
+      "package_text": null
+    },
+    {
+      "id": "sweet-potato",
+      "name_zh": "红薯",
+      "batch": "Batch03",
+      "file": "Batch03/transparent/sweet-potato.png",
+      "package_text": null
+    },
+    {
+      "id": "corn",
+      "name_zh": "玉米",
+      "batch": "Batch03",
+      "file": "Batch03/transparent/corn.png",
+      "package_text": null
+    },
+    {
+      "id": "pumpkin",
+      "name_zh": "南瓜",
+      "batch": "Batch03",
+      "file": "Batch03/transparent/pumpkin.png",
+      "package_text": null
+    },
+    {
+      "id": "eggplant",
+      "name_zh": "茄子",
+      "batch": "Batch03",
+      "file": "Batch03/transparent/eggplant.png",
+      "package_text": null
+    },
+    {
+      "id": "zucchini",
+      "name_zh": "西葫芦",
+      "batch": "Batch03",
+      "file": "Batch03/transparent/zucchini.png",
+      "package_text": null
+    },
+    {
+      "id": "celery",
+      "name_zh": "芹菜",
+      "batch": "Batch04",
+      "file": "Batch04/transparent/celery.png",
+      "package_text": null
+    },
+    {
+      "id": "scallion",
+      "name_zh": "大葱",
+      "batch": "Batch04",
+      "file": "Batch04/transparent/scallion.png",
+      "package_text": null
+    },
+    {
+      "id": "garlic",
+      "name_zh": "大蒜",
+      "batch": "Batch04",
+      "file": "Batch04/transparent/garlic.png",
+      "package_text": null
+    },
+    {
+      "id": "ginger",
+      "name_zh": "生姜",
+      "batch": "Batch04",
+      "file": "Batch04/transparent/ginger.png",
+      "package_text": null
+    },
+    {
+      "id": "cauliflower",
+      "name_zh": "菜花",
+      "batch": "Batch04",
+      "file": "Batch04/transparent/cauliflower.png",
+      "package_text": null
+    },
+    {
+      "id": "lotus-root",
+      "name_zh": "莲藕",
+      "batch": "Batch04",
+      "file": "Batch04/transparent/lotus-root.png",
+      "package_text": null
+    },
+    {
+      "id": "bok-choy",
+      "name_zh": "小白菜",
+      "batch": "Batch05",
+      "file": "Batch05/transparent/bok-choy.png",
+      "package_text": null
+    },
+    {
+      "id": "shiitake",
+      "name_zh": "香菇",
+      "batch": "Batch05",
+      "file": "Batch05/transparent/shiitake.png",
+      "package_text": null
+    },
+    {
+      "id": "enoki",
+      "name_zh": "金针菇",
+      "batch": "Batch05",
+      "file": "Batch05/transparent/enoki.png",
+      "package_text": null
+    },
+    {
+      "id": "tofu",
+      "name_zh": "豆腐",
+      "batch": "Batch05",
+      "file": "Batch05/transparent/tofu.png",
+      "package_text": null
+    },
+    {
+      "id": "chicken-breast",
+      "name_zh": "鸡胸肉",
+      "batch": "Batch05",
+      "file": "Batch05/transparent/chicken-breast.png",
+      "package_text": null
+    },
+    {
+      "id": "pork-belly",
+      "name_zh": "五花肉",
+      "batch": "Batch05",
+      "file": "Batch05/transparent/pork-belly.png",
+      "package_text": null
+    },
+    {
+      "id": "shrimp",
+      "name_zh": "虾",
+      "batch": "Batch06",
+      "file": "Batch06/transparent/shrimp.png",
+      "package_text": null
+    },
+    {
+      "id": "yogurt",
+      "name_zh": "酸奶",
+      "batch": "Batch06",
+      "file": "Batch06/transparent/yogurt.png",
+      "package_text": "Yogurt"
+    },
+    {
+      "id": "apple",
+      "name_zh": "苹果",
+      "batch": "Batch06",
+      "file": "Batch06/transparent/apple.png",
+      "package_text": null
+    },
+    {
+      "id": "lemon",
+      "name_zh": "柠檬",
+      "batch": "Batch06",
+      "file": "Batch06/transparent/lemon.png",
+      "package_text": null
+    },
+    {
+      "id": "orange",
+      "name_zh": "橙子",
+      "batch": "Batch06",
+      "file": "Batch06/transparent/orange.png",
+      "package_text": null
+    },
+    {
+      "id": "banana",
+      "name_zh": "香蕉",
+      "batch": "Batch06",
+      "file": "Batch06/transparent/banana.png",
+      "package_text": null
+    }
+  ]
+}

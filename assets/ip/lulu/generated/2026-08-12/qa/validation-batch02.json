@@ -1,0 +1,653 @@
+{
+  "delivery": "2026-08-12",
+  "batches": [
+    "S7",
+    "S8",
+    "S9",
+    "S10",
+    "S11"
+  ],
+  "sticker_count": 29,
+  "expected_sticker_count": 29,
+  "source_mode": "built-in imagegen chroma-key plus local alpha extraction",
+  "stickers": [
+    {
+      "batch": "S7",
+      "id": "shield-check",
+      "file": "generated/2026-08-12/stickers/S7/shield-check.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S7/shield-check.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        55,
+        28,
+        456,
+        484
+      ],
+      "visible_pixel_ratio": 0.5291,
+      "partial_alpha_pixel_ratio": 0.019043,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S7",
+      "id": "key",
+      "file": "generated/2026-08-12/stickers/S7/key.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S7/key.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        84,
+        28,
+        428,
+        484
+      ],
+      "visible_pixel_ratio": 0.2893,
+      "partial_alpha_pixel_ratio": 0.022171,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S7",
+      "id": "sliders",
+      "file": "generated/2026-08-12/stickers/S7/sliders.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S7/sliders.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        28,
+        42,
+        484,
+        469
+      ],
+      "visible_pixel_ratio": 0.502,
+      "partial_alpha_pixel_ratio": 0.044361,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 5
+    },
+    {
+      "batch": "S7",
+      "id": "block-sign",
+      "file": "generated/2026-08-12/stickers/S7/block-sign.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S7/block-sign.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        36,
+        28,
+        476,
+        484
+      ],
+      "visible_pixel_ratio": 0.5079,
+      "partial_alpha_pixel_ratio": 0.036549,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S7",
+      "id": "flag",
+      "file": "generated/2026-08-12/stickers/S7/flag.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S7/flag.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        77,
+        28,
+        435,
+        484
+      ],
+      "visible_pixel_ratio": 0.2848,
+      "partial_alpha_pixel_ratio": 0.017811,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S7",
+      "id": "bell",
+      "file": "generated/2026-08-12/stickers/S7/bell.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S7/bell.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        96,
+        28,
+        415,
+        484
+      ],
+      "visible_pixel_ratio": 0.3163,
+      "partial_alpha_pixel_ratio": 0.016445,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S8",
+      "id": "id-card",
+      "file": "generated/2026-08-12/stickers/S8/id-card.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S8/id-card.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        129,
+        28,
+        383,
+        484
+      ],
+      "visible_pixel_ratio": 0.297,
+      "partial_alpha_pixel_ratio": 0.015266,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S8",
+      "id": "medal",
+      "file": "generated/2026-08-12/stickers/S8/medal.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S8/medal.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        115,
+        28,
+        396,
+        484
+      ],
+      "visible_pixel_ratio": 0.3485,
+      "partial_alpha_pixel_ratio": 0.018085,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S8",
+      "id": "sparkle-wand",
+      "file": "generated/2026-08-12/stickers/S8/sparkle-wand.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S8/sparkle-wand.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        92,
+        28,
+        420,
+        484
+      ],
+      "visible_pixel_ratio": 0.1797,
+      "partial_alpha_pixel_ratio": 0.017643,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S8",
+      "id": "box-export",
+      "file": "generated/2026-08-12/stickers/S8/box-export.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S8/box-export.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        68,
+        28,
+        443,
+        484
+      ],
+      "visible_pixel_ratio": 0.3917,
+      "partial_alpha_pixel_ratio": 0.018333,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S8",
+      "id": "clipboard-whistle",
+      "file": "generated/2026-08-12/stickers/S8/clipboard-whistle.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S8/clipboard-whistle.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        81,
+        28,
+        430,
+        484
+      ],
+      "visible_pixel_ratio": 0.452,
+      "partial_alpha_pixel_ratio": 0.017841,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S8",
+      "id": "megaphone",
+      "file": "generated/2026-08-12/stickers/S8/megaphone.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S8/megaphone.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        36,
+        28,
+        475,
+        484
+      ],
+      "visible_pixel_ratio": 0.4101,
+      "partial_alpha_pixel_ratio": 0.022083,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S9",
+      "id": "table-people",
+      "file": "generated/2026-08-12/stickers/S9/table-people.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S9/table-people.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        28,
+        30,
+        484,
+        481
+      ],
+      "visible_pixel_ratio": 0.5627,
+      "partial_alpha_pixel_ratio": 0.034653,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S9",
+      "id": "handshake",
+      "file": "generated/2026-08-12/stickers/S9/handshake.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S9/handshake.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        28,
+        119,
+        484,
+        393
+      ],
+      "visible_pixel_ratio": 0.3385,
+      "partial_alpha_pixel_ratio": 0.016747,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S9",
+      "id": "table-plus",
+      "file": "generated/2026-08-12/stickers/S9/table-plus.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S9/table-plus.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        28,
+        28,
+        483,
+        484
+      ],
+      "visible_pixel_ratio": 0.5615,
+      "partial_alpha_pixel_ratio": 0.025105,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S9",
+      "id": "redo-arrow",
+      "file": "generated/2026-08-12/stickers/S9/redo-arrow.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S9/redo-arrow.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        35,
+        28,
+        476,
+        484
+      ],
+      "visible_pixel_ratio": 0.4945,
+      "partial_alpha_pixel_ratio": 0.036736,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 1
+    },
+    {
+      "batch": "S9",
+      "id": "party-popper",
+      "file": "generated/2026-08-12/stickers/S9/party-popper.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S9/party-popper.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        61,
+        28,
+        451,
+        484
+      ],
+      "visible_pixel_ratio": 0.319,
+      "partial_alpha_pixel_ratio": 0.035713,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S9",
+      "id": "door-exit",
+      "file": "generated/2026-08-12/stickers/S9/door-exit.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S9/door-exit.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        128,
+        28,
+        383,
+        484
+      ],
+      "visible_pixel_ratio": 0.4064,
+      "partial_alpha_pixel_ratio": 0.006912,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S10",
+      "id": "trust-t0",
+      "file": "generated/2026-08-12/stickers/S10/trust-t0.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S10/trust-t0.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        68,
+        28,
+        444,
+        484
+      ],
+      "visible_pixel_ratio": 0.4812,
+      "partial_alpha_pixel_ratio": 0.017288,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S10",
+      "id": "trust-t1",
+      "file": "generated/2026-08-12/stickers/S10/trust-t1.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S10/trust-t1.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        67,
+        28,
+        445,
+        484
+      ],
+      "visible_pixel_ratio": 0.4818,
+      "partial_alpha_pixel_ratio": 0.01759,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S10",
+      "id": "trust-t2",
+      "file": "generated/2026-08-12/stickers/S10/trust-t2.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S10/trust-t2.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        67,
+        28,
+        444,
+        484
+      ],
+      "visible_pixel_ratio": 0.4827,
+      "partial_alpha_pixel_ratio": 0.01696,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S10",
+      "id": "trust-t3",
+      "file": "generated/2026-08-12/stickers/S10/trust-t3.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S10/trust-t3.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        68,
+        28,
+        444,
+        484
+      ],
+      "visible_pixel_ratio": 0.4793,
+      "partial_alpha_pixel_ratio": 0.017483,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S10",
+      "id": "trust-t4",
+      "file": "generated/2026-08-12/stickers/S10/trust-t4.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S10/trust-t4.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        93,
+        28,
+        419,
+        484
+      ],
+      "visible_pixel_ratio": 0.4155,
+      "partial_alpha_pixel_ratio": 0.017494,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S10",
+      "id": "lulu-face",
+      "file": "generated/2026-08-12/stickers/S10/lulu-face.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S10/lulu-face.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        47,
+        28,
+        464,
+        484
+      ],
+      "visible_pixel_ratio": 0.5011,
+      "partial_alpha_pixel_ratio": 0.018627,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S11",
+      "id": "magnifier-empty",
+      "file": "generated/2026-08-12/stickers/S11/magnifier-empty.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S11/magnifier-empty.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        68,
+        28,
+        444,
+        484
+      ],
+      "visible_pixel_ratio": 0.3589,
+      "partial_alpha_pixel_ratio": 0.017685,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S11",
+      "id": "cloud-off",
+      "file": "generated/2026-08-12/stickers/S11/cloud-off.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S11/cloud-off.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        28,
+        87,
+        484,
+        424
+      ],
+      "visible_pixel_ratio": 0.4207,
+      "partial_alpha_pixel_ratio": 0.018436,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 1
+    },
+    {
+      "batch": "S11",
+      "id": "homework-pencil",
+      "file": "generated/2026-08-12/stickers/S11/homework-pencil.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S11/homework-pencil.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        28,
+        41,
+        484,
+        470
+      ],
+      "visible_pixel_ratio": 0.5863,
+      "partial_alpha_pixel_ratio": 0.020493,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S11",
+      "id": "flask",
+      "file": "generated/2026-08-12/stickers/S11/flask.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S11/flask.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        86,
+        28,
+        425,
+        484
+      ],
+      "visible_pixel_ratio": 0.388,
+      "partial_alpha_pixel_ratio": 0.017025,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    },
+    {
+      "batch": "S11",
+      "id": "bulb",
+      "file": "generated/2026-08-12/stickers/S11/bulb.png",
+      "ios_file": "ios/OneMore/Resources/LuluGenerated/Stickers/S11/bulb.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        102,
+        28,
+        409,
+        484
+      ],
+      "visible_pixel_ratio": 0.3809,
+      "partial_alpha_pixel_ratio": 0.015869,
+      "transparent_corners": true,
+      "visible_near_key_pixels": 0,
+      "visible_green_spill_edge_pixels": 0
+    }
+  ]
+}
