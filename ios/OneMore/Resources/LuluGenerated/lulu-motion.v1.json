@@ -1,0 +1,365 @@
+{
+  "schemaVersion": 1,
+  "character": {
+    "id": "lulu",
+    "displayName": "水豚噜噜",
+    "designVersion": "one-more-v1"
+  },
+  "rendering": {
+    "cellWidth": 627,
+    "cellHeight": 627,
+    "anchor": {
+      "x": 0.5,
+      "y": 0.941
+    },
+    "defaultTransitionMs": 120,
+    "preferredMaximumFPS": 12,
+    "reducedMotionPolicy": "poster-frame"
+  },
+  "atlases": {
+    "core-states": {
+      "path": "Atlases/LuluCoreStatesAtlas.png",
+      "columns": 2,
+      "rows": 2,
+      "assetName": "LuluCoreStatesAtlas"
+    },
+    "home-idle": {
+      "path": "Atlases/LuluHomeIdleAtlas.png",
+      "columns": 2,
+      "rows": 2,
+      "assetName": "LuluHomeIdleAtlas"
+    },
+    "home-thinking": {
+      "path": "Atlases/LuluHomeThinkingAtlas.png",
+      "assetName": "LuluHomeThinkingAtlas",
+      "columns": 2,
+      "rows": 2
+    },
+    "home-listening": {
+      "path": "Atlases/LuluHomeListeningAtlas.png",
+      "assetName": "LuluHomeListeningAtlas",
+      "columns": 2,
+      "rows": 2
+    },
+    "home-reply": {
+      "path": "Atlases/LuluHomeReplyAtlas.png",
+      "assetName": "LuluHomeReplyAtlas",
+      "columns": 2,
+      "rows": 2
+    },
+    "intent-card": {
+      "path": "Atlases/LuluIntentCardAtlas.png",
+      "assetName": "LuluIntentCardAtlas",
+      "columns": 2,
+      "rows": 2
+    },
+    "pool-waiting": {
+      "path": "Atlases/LuluPoolWaitingAtlas.png",
+      "assetName": "LuluPoolWaitingAtlas",
+      "columns": 2,
+      "rows": 2
+    },
+    "confirm-gather": {
+      "path": "Atlases/LuluConfirmGatherAtlas.png",
+      "assetName": "LuluConfirmGatherAtlas",
+      "columns": 2,
+      "rows": 2
+    },
+    "action-preview": {
+      "path": "Atlases/LuluActionPreviewAtlas.png",
+      "assetName": "LuluActionPreviewAtlas",
+      "columns": 2,
+      "rows": 2
+    },
+    "action-executing": {
+      "path": "Atlases/LuluActionExecutingAtlas.png",
+      "assetName": "LuluActionExecutingAtlas",
+      "columns": 2,
+      "rows": 2
+    },
+    "exit-bow": {
+      "path": "Atlases/LuluExitBowAtlas.png",
+      "assetName": "LuluExitBowAtlas",
+      "columns": 2,
+      "rows": 2
+    }
+  },
+  "clips": {
+    "home.idle": {
+      "atlas": "home-idle",
+      "loopMode": "loop",
+      "posterCell": 0,
+      "frames": [
+        {
+          "cell": 0,
+          "durationMs": 900
+        },
+        {
+          "cell": 1,
+          "durationMs": 300
+        },
+        {
+          "cell": 2,
+          "durationMs": 180
+        },
+        {
+          "cell": 3,
+          "durationMs": 650
+        }
+      ]
+    },
+    "home.listening": {
+      "atlas": "home-listening",
+      "loopMode": "loop",
+      "posterCell": 0,
+      "frames": [
+        {
+          "cell": 0,
+          "durationMs": 360
+        },
+        {
+          "cell": 1,
+          "durationMs": 320
+        },
+        {
+          "cell": 2,
+          "durationMs": 180
+        },
+        {
+          "cell": 1,
+          "durationMs": 320
+        }
+      ]
+    },
+    "home.thinking": {
+      "atlas": "home-thinking",
+      "loopMode": "loop",
+      "posterCell": 0,
+      "frames": [
+        {
+          "cell": 0,
+          "durationMs": 460
+        },
+        {
+          "cell": 1,
+          "durationMs": 420
+        },
+        {
+          "cell": 2,
+          "durationMs": 170
+        },
+        {
+          "cell": 3,
+          "durationMs": 430
+        }
+      ]
+    },
+    "home.reply": {
+      "atlas": "home-reply",
+      "loopMode": "loop",
+      "posterCell": 1,
+      "frames": [
+        {
+          "cell": 0,
+          "durationMs": 260
+        },
+        {
+          "cell": 1,
+          "durationMs": 240
+        },
+        {
+          "cell": 2,
+          "durationMs": 220
+        },
+        {
+          "cell": 3,
+          "durationMs": 240
+        }
+      ]
+    },
+    "core.care": {
+      "atlas": "core-states",
+      "loopMode": "loop",
+      "posterCell": 0,
+      "frames": [
+        {
+          "cell": 0,
+          "durationMs": 900
+        },
+        {
+          "cell": 2,
+          "durationMs": 350
+        },
+        {
+          "cell": 0,
+          "durationMs": 900
+        },
+        {
+          "cell": 3,
+          "durationMs": 350
+        }
+      ]
+    },
+    "core.celebrate": {
+      "atlas": "core-states",
+      "loopMode": "loop",
+      "posterCell": 1,
+      "frames": [
+        {
+          "cell": 1,
+          "durationMs": 700
+        },
+        {
+          "cell": 3,
+          "durationMs": 300
+        },
+        {
+          "cell": 1,
+          "durationMs": 700
+        },
+        {
+          "cell": 2,
+          "durationMs": 300
+        }
+      ]
+    },
+    "intent.card": {
+      "atlas": "intent-card",
+      "loopMode": "once",
+      "posterCell": 2,
+      "frames": [
+        {
+          "cell": 0,
+          "durationMs": 260
+        },
+        {
+          "cell": 1,
+          "durationMs": 260
+        },
+        {
+          "cell": 2,
+          "durationMs": 520
+        },
+        {
+          "cell": 3,
+          "durationMs": 420
+        }
+      ]
+    },
+    "pool.waiting": {
+      "atlas": "pool-waiting",
+      "loopMode": "loop",
+      "posterCell": 0,
+      "frames": [
+        {
+          "cell": 0,
+          "durationMs": 520
+        },
+        {
+          "cell": 1,
+          "durationMs": 420
+        },
+        {
+          "cell": 2,
+          "durationMs": 420
+        },
+        {
+          "cell": 3,
+          "durationMs": 320
+        }
+      ]
+    },
+    "confirm.gather": {
+      "atlas": "confirm-gather",
+      "loopMode": "once",
+      "posterCell": 3,
+      "frames": [
+        {
+          "cell": 0,
+          "durationMs": 300
+        },
+        {
+          "cell": 1,
+          "durationMs": 300
+        },
+        {
+          "cell": 2,
+          "durationMs": 300
+        },
+        {
+          "cell": 3,
+          "durationMs": 560
+        }
+      ]
+    },
+    "action.preview": {
+      "atlas": "action-preview",
+      "loopMode": "once",
+      "posterCell": 2,
+      "frames": [
+        {
+          "cell": 0,
+          "durationMs": 260
+        },
+        {
+          "cell": 1,
+          "durationMs": 240
+        },
+        {
+          "cell": 2,
+          "durationMs": 520
+        },
+        {
+          "cell": 3,
+          "durationMs": 320
+        }
+      ]
+    },
+    "action.executing": {
+      "atlas": "action-executing",
+      "loopMode": "once",
+      "posterCell": 0,
+      "frames": [
+        {
+          "cell": 0,
+          "durationMs": 180
+        },
+        {
+          "cell": 1,
+          "durationMs": 180
+        },
+        {
+          "cell": 2,
+          "durationMs": 180
+        },
+        {
+          "cell": 3,
+          "durationMs": 180
+        }
+      ]
+    },
+    "exit.bow": {
+      "atlas": "exit-bow",
+      "loopMode": "once",
+      "posterCell": 3,
+      "frames": [
+        {
+          "cell": 0,
+          "durationMs": 360
+        },
+        {
+          "cell": 1,
+          "durationMs": 300
+        },
+        {
+          "cell": 2,
+          "durationMs": 420
+        },
+        {
+          "cell": 3,
+          "durationMs": 720
+        }
+      ]
+    }
+  }
+}

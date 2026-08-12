@@ -1,0 +1,86 @@
+{
+  "bundle_version": "sysu-campus-reference-v1.1-south-first",
+  "schema_version": "1.1.0",
+  "generated_at": "2026-08-11T21:05:00+08:00",
+  "effective_from": "2026-09-07",
+  "datasets": [
+    {
+      "file": "campuses.v1.json",
+      "record_count": 5
+    },
+    {
+      "file": "aliases.v1.json",
+      "record_count": 21
+    },
+    {
+      "file": "places.v1.json",
+      "record_count": 76
+    },
+    {
+      "file": "venues.v1.json",
+      "record_count": 137
+    },
+    {
+      "file": "transit_2026_fall.json",
+      "record_count": 22
+    },
+    {
+      "file": "academic_calendar_2026_2027.json",
+      "record_count": 1
+    },
+    {
+      "file": "section_times_2026_fall.json",
+      "record_count": 11
+    },
+    {
+      "file": "evidence/source_audit.csv",
+      "record_count": 468
+    },
+    {
+      "file": "evidence/cli_inventory.md",
+      "record_count": 1
+    },
+    {
+      "file": "evidence/user_confirmed_commute_times_2026-08-11.md",
+      "record_count": 1
+    },
+    {
+      "file": "data_gaps.md",
+      "record_count": 1
+    },
+    {
+      "file": "completeness_report.md",
+      "record_count": 1
+    }
+  ],
+  "record_counts": {
+    "campuses.v1.json": 5,
+    "aliases.v1.json": 21,
+    "places.v1.json": 76,
+    "venues.v1.json": 137,
+    "transit_2026_fall.json": 22,
+    "academic_calendar_2026_2027.json": 1,
+    "section_times_2026_fall.json": 11,
+    "evidence/source_audit.csv": 468,
+    "evidence/cli_inventory.md": 1,
+    "evidence/user_confirmed_commute_times_2026-08-11.md": 1,
+    "data_gaps.md": 1,
+    "completeness_report.md": 1
+  },
+  "checksums": {
+    "campuses.v1.json": "e90ec6d82ab2f1083ff1ad5c984f3e6add57ab0cf0ee32a3af50766e8006f38a",
+    "aliases.v1.json": "37943770c4c0c506e060695550462972d551cf269f13beee49462fcbc918cc20",
+    "places.v1.json": "7264f40216b8df355e1830ca6937e3e8daed2bb1404bf1d0ecc075acd18a7b21",
+    "venues.v1.json": "5747baa82a0ec60bb32b20fe1edaa2d56a49dd70615e22fbf553e472263954cc",
+    "transit_2026_fall.json": "d8bb688a21ab141dfe65c91ef153a2e0ff35bcfe30964c6aa8239867af5bbbb4",
+    "academic_calendar_2026_2027.json": "b144cf3b3cf4579fc5180f65f1f580fc4c0742431cae0581479d9a7a0973b0f9",
+    "section_times_2026_fall.json": "a6139dea89be9bcc2c0dd894c523c6d4bd8ee38ab44403d94cbbf9f84d9ac90b",
+    "evidence/source_audit.csv": "54a1e885828a7cbe2af9d7cd25b612d9fa4cdb3ddffb7f6322f5c61059bbad2a",
+    "evidence/cli_inventory.md": "b54685200183c63fecfdeeddd081afd35292f103f6930ee7483fed572f724055",
+    "evidence/user_confirmed_commute_times_2026-08-11.md": "303169ce9962d0f7f2e90111956f1100d8147bd420ed1123c0f292142c6c2477",
+    "data_gaps.md": "1c0a3f493c7522cc928600846f03d45f5e615936f851799ad92dc2bff2528b07",
+    "completeness_report.md": "cd8eab5e1638de58b2e51e19e7beeb8f8a692e9e1eca758fccf8289621faa5c6"
+  },
+  "source_count": 40,
+  "unresolved_gap_count": 13
+}
