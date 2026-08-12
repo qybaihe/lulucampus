@@ -7,6 +7,7 @@ final class AuthRouterTests: XCTestCase {
         XCTAssertEqual(AppBrand.mascotName, "噜噜")
         XCTAssertEqual(AppBrand.coreAction, "差一个")
         XCTAssertEqual(AppBrand.slogan, "差一个，就成局")
+        XCTAssertEqual(AppBrand.agentName, "Lulu Hermes")
         XCTAssertEqual(RootTab.create.title, AppBrand.coreAction)
 
         let iosRoot = URL(fileURLWithPath: #filePath)

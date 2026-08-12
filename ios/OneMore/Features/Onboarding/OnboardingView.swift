@@ -21,7 +21,7 @@ struct OnboardingView: View {
          "\(AppBrand.slogan)。从真实课业与校园场景出发——拼课、约球、组队比赛，不刷人、不闲聊。"),
         (.homeListening,
          "说一句，剩下的交给噜噜",
-         "想找什么人、什么时候有空，告诉 Hermes 一句话，噜噜帮你把缺口补齐。"),
+         "想找什么人、什么时候有空，告诉 \(AppBrand.agentName) 一句话，噜噜帮你把缺口补齐。"),
     ]
     /// 0…brandPages-1 品牌页；最后一页选学校。
     private var pageCount: Int { brandPages.count + 1 }
@@ -31,21 +31,24 @@ struct OnboardingView: View {
         VStack(spacing: 0) {
             TabView(selection: $step) {
                 ForEach(Array(brandPages.enumerated()), id: \.offset) { index, page in
-                    VStack(spacing: 18) {
-                        Spacer()
-                        LuluView(clip: page.clip, placement: .hero)
-                            .frame(height: 250)
+                    VStack(spacing: 0) {
                         Text(page.title)
-                            .font(OMTheme.TypeToken.hero)
-                            .tracking(-0.7)
+                            .font(OMTheme.TypeToken.title2)
                             .foregroundStyle(OMTheme.ColorToken.ink)
                             .multilineTextAlignment(.center)
+                            .padding(.top, 8)
+                            .padding(.horizontal, 24)
                         Text(page.subtitle)
-                            .font(OMTheme.TypeToken.callout)
-                            .multilineTextAlignment(.center)
+                            .font(OMTheme.TypeToken.footnote)
                             .foregroundStyle(OMTheme.ColorToken.mist)
-                            .padding(.horizontal, 34)
-                        Spacer()
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 28)
+                            .padding(.top, 6)
+                        Spacer(minLength: 8)
+                        LuluView(clip: page.clip, placement: .hero)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 260)
+                        Spacer(minLength: 8)
                     }
                     .tag(index)
                 }
@@ -86,29 +89,31 @@ struct OnboardingView: View {
         .accessibilityElement(children: .contain).accessibilityIdentifier("screen-\(stateID)-onboarding")
     }
 
-    /// 选学校：两个选项视觉对等，噜噜陪伴。
+    /// 选学校：标题 → 中间噜噜 → 底部两个选项。
     private var schoolPage: some View {
-        VStack(spacing: 18) {
-            Spacer()
-            LuluView(clip: .coreCare, placement: .hero)
-                .frame(height: 220)
+        VStack(spacing: 0) {
             Text("你在哪所学校？")
-                .font(OMTheme.TypeToken.hero)
-                .tracking(-0.7)
+                .font(OMTheme.TypeToken.title2)
                 .foregroundStyle(OMTheme.ColorToken.ink)
+                .padding(.top, 8)
             Text("我们为部分学校做了针对优化，选项效力相同。")
-                .font(OMTheme.TypeToken.callout)
-                .multilineTextAlignment(.center)
+                .font(OMTheme.TypeToken.footnote)
                 .foregroundStyle(OMTheme.ColorToken.mist)
-                .padding(.horizontal, 34)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 28)
+                .padding(.top, 6)
+            Spacer(minLength: 8)
+            LuluView(clip: .coreCare, placement: .hero)
+                .frame(maxWidth: .infinity)
+                .frame(height: 220)
+            Spacer(minLength: 8)
             VStack(spacing: 10) {
                 ForEach(SchoolAffiliation.allCases) { option in
                     schoolOption(option)
                 }
             }
             .padding(.horizontal, 24)
-            .padding(.top, 8)
-            Spacer()
+            .padding(.bottom, 8)
         }
     }
 
@@ -145,7 +150,7 @@ struct OnboardingView: View {
     }
 }
 
-/// A2 · 认证流：中大先扫码闸门 → 全员手机号密码登录。
+/// A2 · 认证流：先手机号登录/注册；中大账号登录后再绑定校园身份。
 struct AuthenticationFlowView: View {
     @EnvironmentObject private var environment: AppEnvironment
     @State private var school: SchoolAffiliation? = SchoolAffiliation.current
@@ -153,7 +158,6 @@ struct AuthenticationFlowView: View {
 
     private enum Phase: Equatable {
         case school
-        case campusScan
         case phone
         case resolve
     }
@@ -165,99 +169,90 @@ struct AuthenticationFlowView: View {
                 Color.clear.onAppear { resolve() }
             case .school:
                 schoolGate
-            case .campusScan:
-                RealLoginView(campusGateOnly: true) {
-                    SchoolAffiliation.campusGatePassed = true
-                    withAnimation(OMTheme.Motion.medium) { phase = .phone }
-                }
             case .phone:
                 PhoneAuthView()
             }
         }
-        // accessibility contain 会按内容固有宽度收缩；先铺满再挂 identifier。
+        // 勿用 accessibilityElement(children: .contain) 包整页：会按内容固有宽度收缩成中间竖条。
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(OMPageBackground())
-        .accessibilityElement(children: .contain)
         .accessibilityIdentifier("screen-A2-auth-intro")
     }
 
     private func resolve() {
-        guard let school else {
-            phase = .school
-            return
-        }
-        if school == .sysu && !SchoolAffiliation.campusGatePassed {
-            phase = .campusScan
-        } else {
-            phase = .phone
-        }
+        phase = school == nil ? .school : .phone
     }
 
     private var schoolGate: some View {
-        VStack(spacing: 18) {
-            Spacer()
-            LuluView(clip: .homeReply, placement: .hero).frame(height: 220)
-            Text("你在哪所学校？")
-                .font(OMTheme.TypeToken.hero)
-                .tracking(-0.7)
-                .foregroundStyle(OMTheme.ColorToken.ink)
-            Text("选好后进入登录；中大同学需先完成校园扫码。")
-                .font(OMTheme.TypeToken.callout)
-                .multilineTextAlignment(.center)
-                .foregroundStyle(OMTheme.ColorToken.mist)
-                .padding(.horizontal, 30)
-            VStack(spacing: 10) {
-                ForEach(SchoolAffiliation.allCases) { option in
-                    Button {
-                        SchoolAffiliation.save(option)
-                        school = option
-                        withAnimation(OMTheme.Motion.medium) {
-                            phase = option == .sysu ? .campusScan : .phone
+        OMStage(title: "你在哪所学校？", subtitle: "选好后用手机号登录；中大同学登录后可绑定校园身份", clip: .homeReply) {
+            ForEach(SchoolAffiliation.allCases) { option in
+                Button {
+                    SchoolAffiliation.save(option)
+                    school = option
+                    withAnimation(OMTheme.Motion.medium) { phase = .phone }
+                } label: {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(option.title)
+                                .font(OMTheme.TypeToken.callout.weight(.bold))
+                                .foregroundStyle(OMTheme.ColorToken.ink)
+                            Text(option.subtitle)
+                                .font(OMTheme.TypeToken.footnote)
+                                .foregroundStyle(OMTheme.ColorToken.mist)
                         }
-                    } label: {
-                        HStack {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(option.title)
-                                    .font(OMTheme.TypeToken.callout.weight(.bold))
-                                    .foregroundStyle(OMTheme.ColorToken.ink)
-                                Text(option.subtitle)
-                                    .font(OMTheme.TypeToken.footnote)
-                                    .foregroundStyle(OMTheme.ColorToken.mist)
-                            }
-                            Spacer()
-                            Text("›")
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundStyle(OMTheme.ColorToken.sage)
-                        }
-                        .padding(16)
-                        .background(OMTheme.ColorToken.card)
-                        .clipShape(RoundedRectangle(cornerRadius: OMTheme.Radius.large))
-                        .overlay {
-                            RoundedRectangle(cornerRadius: OMTheme.Radius.large)
-                                .stroke(OMTheme.ColorToken.line, lineWidth: OMTheme.Radius.borderWidth)
-                        }
+                        Spacer()
+                        Text("›")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundStyle(OMTheme.ColorToken.sage)
                     }
-                    .buttonStyle(.plain)
-                    .accessibilityIdentifier("auth-school-\(option.rawValue)")
+                    .padding(16)
+                    .background(OMTheme.ColorToken.card)
+                    .clipShape(RoundedRectangle(cornerRadius: OMTheme.Radius.large))
+                    .overlay {
+                        RoundedRectangle(cornerRadius: OMTheme.Radius.large)
+                            .stroke(OMTheme.ColorToken.line, lineWidth: OMTheme.Radius.borderWidth)
+                    }
                 }
+                .buttonStyle(.plain)
+                .accessibilityIdentifier("auth-school-\(option.rawValue)")
             }
-            .padding(.horizontal, 24)
-            Spacer()
         }
-        .background(OMPageBackground())
     }
 }
 
 @MainActor
 final class FirstUseSetupViewModel: ObservableObject {
-    enum Step { case grants, facts, social, ready }
-    @Published var step: Step = .grants
+    enum Step { case campusBind, grants, facts, social, ready }
+    @Published var step: Step = SchoolAffiliation.current == .sysu ? .campusBind : .grants
     @Published var selectedScopes: Set<String> = ["timetable", "curriculum", "enrollment", "agent_booking"]
     @Published var facts: IdentityFacts?
     @Published var working = false
     @Published var error: String?
     private let repository: IdentityRepository
     init(repository: IdentityRepository) { self.repository = repository }
+
+    /// 中大且尚未校园核验 → 先绑定；否则直接授权。
+    func bootstrap() async {
+        do {
+            let facts = try await repository.facts()
+            self.facts = facts
+            error = nil
+            if SchoolAffiliation.current == .sysu && !facts.verified && !SchoolAffiliation.campusGatePassed {
+                step = .campusBind
+            } else {
+                step = .grants
+            }
+        } catch {
+            self.error = error.localizedDescription
+            step = SchoolAffiliation.current == .sysu && !SchoolAffiliation.campusGatePassed ? .campusBind : .grants
+        }
+    }
+
+    func markCampusBound() {
+        SchoolAffiliation.campusGatePassed = true
+        step = .grants
+    }
+
     func saveGrants() async {
         guard !working else { return }; working = true; defer { working = false }
         do {
@@ -285,7 +280,7 @@ final class FirstUseSetupViewModel: ObservableObject {
     }
 }
 
-/// A4–A7 · 首次设置（授权 → 身份事实 → 社交开启 → 就绪）
+/// A4–A7 · 首次设置（中大可先绑定校园 → 授权 → 身份事实 → 社交 → 就绪）
 struct FirstUseSetupView: View {
     @StateObject private var model: FirstUseSetupViewModel
     @EnvironmentObject private var environment: AppEnvironment
@@ -301,77 +296,47 @@ struct FirstUseSetupView: View {
 
     var body: some View {
         Group {
-            if model.step == .grants {
+            switch model.step {
+            case .campusBind:
+                RealLoginView(
+                    bindMode: true,
+                    onCampusGateComplete: { model.markCampusBound() },
+                    onSkip: { model.step = .grants }
+                )
+            case .grants:
                 grants
-            } else {
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 0) {
-                        switch model.step {
-                        case .grants: EmptyView()
-                        case .facts: facts
-                        case .social: social
-                        case .ready: ready
-                        }
-                        if let error = model.error {
-                            OMCard {
-                                OMG5StateView(state: .networkError, message: error, actionTitle: "重试") {
-                                    Task { await retry() }
-                                }
-                            }
-                        }
-                    }
-                    .padding(.horizontal, OMTheme.Spacing.pageX)
-                    .padding(.bottom, 44)
-                }
+            case .social:
+                social
+            case .facts:
+                facts
+            case .ready:
+                ready
             }
         }
         .background(OMPageBackground())
+        .task { await model.bootstrap() }
     }
 
-    /// 授权页：噜噜居中撑满上半屏，底部 2×2 确认按钮，避免半屏空白。
+    /// 授权页：标题 → 中间噜噜 → 底部四格选项。
     private var grants: some View {
-        VStack(spacing: 0) {
-            Text("授权由你掌控")
-                .font(OMTheme.TypeToken.title2)
-                .foregroundStyle(OMTheme.ColorToken.ink)
-                .padding(.top, OMTheme.Spacing.s4)
-            Text("点选你愿意开放的数据边界，随时可在设置里撤回")
-                .font(OMTheme.TypeToken.footnote)
-                .foregroundStyle(OMTheme.ColorToken.mist)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 28)
-                .padding(.top, 6)
-
-            Spacer(minLength: 8)
-            LuluView(clip: .coreCare, placement: .hero)
-                .frame(maxWidth: .infinity)
-                .frame(height: 260)
-            Spacer(minLength: 8)
-
+        OMStage(title: "授权由你掌控", subtitle: "点选你愿意开放的数据边界，随时可在设置里撤回", clip: .coreCare) {
             LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)], spacing: 10) {
                 ForEach(Self.grantItems, id: \.scope) { item in
                     grantButton(title: item.title, scope: item.scope)
                 }
             }
-            .padding(.horizontal, OMTheme.Spacing.pageX)
-
             if let error = model.error {
                 Text(error)
                     .font(OMTheme.TypeToken.footnote)
                     .foregroundStyle(Color.red.opacity(0.85))
-                    .padding(.horizontal, OMTheme.Spacing.pageX)
-                    .padding(.top, OMTheme.Spacing.s2)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
-
             OMButton("确认授权，继续", loading: model.working) {
                 Task { await model.saveGrants() }
             }
-            .padding(.horizontal, OMTheme.Spacing.pageX)
-            .padding(.top, OMTheme.Spacing.s3)
-            .padding(.bottom, 34)
             .accessibilityIdentifier("first-use-save-grants")
         }
-        .accessibilityElement(children: .contain).accessibilityIdentifier("screen-A4-grants")
+        .accessibilityIdentifier("screen-A4-grants")
     }
 
     private func grantButton(title: String, scope: String) -> some View {
@@ -406,36 +371,40 @@ struct FirstUseSetupView: View {
         .accessibilityIdentifier("first-use-grant-\(scope)")
     }
     private var facts: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            OMHeader(eyebrow: "校方核验事实", title: "确认你的校园画像", lulu: .homeReply)
+        OMStage(title: "确认你的校园画像", subtitle: "来自校园身份核验，只给你自己看", clip: .homeReply) {
             if let facts = model.facts {
                 OMCard {
-                    HStack(spacing: 10) {
-                        OMSticker("id-card.png", size: .s44)
-                        VStack(alignment: .leading, spacing: 2) {
-                            OMTextRole.t3(facts.verified ? "统一身份已核验" : "身份待核验")
-                        }
-                        Spacer()
+                    OMTextRole.t3(facts.verified ? "校园身份已核验" : "身份待核验")
+                    let line = [facts.college, facts.major].compactMap { $0 }.joined(separator: " · ")
+                    if !line.isEmpty {
+                        OMTextRole.call(line).padding(.top, 4)
                     }
-                    OMDivider()
-                    OMTextRole.t2([facts.college, facts.major].compactMap { $0 }.joined(separator: " · "))
-                    OMTextRole.foot([facts.campus, facts.gradeYear.map(String.init)].compactMap { $0 }.joined(separator: " · "))
-                        .padding(.top, 4)
+                    let meta = [facts.campus, facts.gradeYear.map(String.init)].compactMap { $0 }.joined(separator: " · ")
+                    if !meta.isEmpty {
+                        OMTextRole.foot(meta).padding(.top, 2)
+                    }
                 }
+            } else if let error = model.error {
+                Text(error)
+                    .font(OMTheme.TypeToken.footnote)
+                    .foregroundStyle(Color.red.opacity(0.85))
             } else {
-                OMCard { OMG5StateView(state: .loading, message: AppBrand.loadingMessage) }
+                OMTextRole.foot(AppBrand.loadingMessage)
             }
             OMButton("身份事实无误", icon: .shield) { model.step = .social }
                 .accessibilityIdentifier("first-use-confirm-facts")
         }
         .task { if model.facts == nil { await model.refreshFacts() } }
-        .accessibilityElement(children: .contain).accessibilityIdentifier("screen-A5-A6-facts")
+        .accessibilityIdentifier("screen-A5-A6-facts")
     }
+
+    /// 社交开关：标题 → 中间噜噜 → 底部双按钮。
     private var social: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            OMHeader(eyebrow: "主动开启", title: "由你开启校园成局", lulu: .confirmGather)
-            OMCard {
-                OMTextRole.call("开启后才能发布意图与加入局。")
+        OMStage(title: "由你开启校园成局", subtitle: "开启后才能发布意图与加入局", clip: .confirmGather) {
+            if let error = model.error {
+                Text(error)
+                    .font(OMTheme.TypeToken.footnote)
+                    .foregroundStyle(Color.red.opacity(0.85))
             }
             OMButton("开启并继续", loading: model.working) {
                 Task { await model.enableSocial() }
@@ -444,27 +413,14 @@ struct FirstUseSetupView: View {
             OMButton(model.working ? "保存中…" : "暂不开启，保持关闭并继续", kind: .ghost) {
                 Task { await model.keepSocialOff() }
             }
-            .padding(.top, OMTheme.Spacing.s2)
             .disabled(model.working)
             .accessibilityIdentifier("first-use-skip-social")
         }
-        .accessibilityElement(children: .contain).accessibilityIdentifier("screen-A7-social")
+        .accessibilityIdentifier("screen-A7-social")
     }
+
     private var ready: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Spacer(minLength: 40)
-            LuluView(clip: .coreCelebrate, placement: .empty)
-                .frame(maxWidth: .infinity)
-                .padding(.bottom, OMTheme.Spacing.s3)
-            Text("准备好了")
-                .font(OMTheme.TypeToken.title1).tracking(-0.3)
-                .frame(maxWidth: .infinity)
-                .multilineTextAlignment(.center)
-            OMTextRole.foot("首次设置已保存，噜噜在今天等你。")
-                .frame(maxWidth: .infinity)
-                .multilineTextAlignment(.center)
-                .padding(.top, OMTheme.Spacing.s2)
-                .padding(.bottom, OMTheme.Spacing.s4)
+        OMStage(title: "准备好了", subtitle: "首次设置已保存，噜噜在今天等你", clip: .coreCelebrate) {
             OMButton("进入今天", icon: .arrow) {
                 Task {
                     await environment.session.completeOnboarding()
@@ -477,9 +433,15 @@ struct FirstUseSetupView: View {
             }
             .accessibilityIdentifier("first-use-finish")
         }
-        .accessibilityElement(children: .contain).accessibilityIdentifier("screen-A7-ready")
+        .accessibilityIdentifier("screen-A7-ready")
     }
     private func retry() async {
-        switch model.step { case .grants: await model.saveGrants(); case .facts: await model.refreshFacts(); case .social: await model.enableSocial(); case .ready: break }
+        switch model.step {
+        case .campusBind: await model.bootstrap()
+        case .grants: await model.saveGrants()
+        case .facts: await model.refreshFacts()
+        case .social: await model.enableSocial()
+        case .ready: break
+        }
     }
 }

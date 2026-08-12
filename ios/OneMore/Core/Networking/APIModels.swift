@@ -267,12 +267,20 @@ struct CampusCourseDetail: Codable, Identifiable, Sendable {
     let privacy: String
 }
 
+struct HermesToolTrace: Codable, Sendable {
+    let name: String
+    let ok: Bool?
+    let summary: String?
+    let cardType: String?
+}
+
 struct HermesAskResult: Codable, Sendable {
     let kind: String
     let action: String?
     let cardType: String
     let data: JSONValue
     let requiresPreview: Bool
+    let toolTrace: [HermesToolTrace]?
 }
 
 struct UserProfilePayload: Codable, Sendable {
@@ -358,6 +366,10 @@ struct Competition: Codable, Identifiable, Sendable {
     let teamFormingSupported: Bool
     let collaborationAction: String
     let teamConstraints: TeamConstraints
+    var tasteFit: Double? = nil
+    var tasteFitLabel: String? = nil
+    var tasteFitReasons: [String] = []
+    var recruitHints: [String] = []
     var teamSizeMin: Int { teamConstraints.teamSizeMin }
     var teamSizeMax: Int { teamConstraints.teamSizeMax }
 
@@ -404,6 +416,10 @@ struct Competition: Codable, Identifiable, Sendable {
         teamFormingSupported = try c.decode(Bool.self, forKey: .teamFormingSupported)
         collaborationAction = try c.decode(String.self, forKey: .collaborationAction)
         teamConstraints = try c.decode(TeamConstraints.self, forKey: .teamConstraints)
+        tasteFit = try c.decodeIfPresent(Double.self, forKey: .tasteFit)
+        tasteFitLabel = try c.decodeIfPresent(String.self, forKey: .tasteFitLabel)
+        tasteFitReasons = try c.decodeIfPresent([String].self, forKey: .tasteFitReasons) ?? []
+        recruitHints = try c.decodeIfPresent([String].self, forKey: .recruitHints) ?? []
     }
 
     private static let fallbackLabels = ["A": "优先推荐", "B": "可报名", "C": "补充参考"]
@@ -496,6 +512,8 @@ struct IntentCompileResult: Codable, Sendable {
     let needsClarification: Bool
     let questions: [IntentClarificationQuestion]
     let maxRounds: Int
+    var tasteFitLabel: String? = nil
+    var recruitHints: [String]? = nil
 }
 
 struct IntentClarificationQuestion: Codable, Hashable, Identifiable, Sendable {
@@ -791,6 +809,7 @@ struct GatheringSummary: Codable, Identifiable, Sendable {
     let requiredTrustLevel: String
     let requiredRoles: [String]
     let matchReason: String?
+    var lookingFor: [String]? = nil
     let myConfirmation: String?
     let confirmedCount: Int?
     let memberCount: Int?
@@ -837,6 +856,7 @@ struct GapShare: Codable, Sendable {
     let joinable: Bool
     let deepLink: URL
     let universalLink: URL
+    var lookingFor: [String]? = nil
 }
 
 /// 成局后 30 秒破冰包：为什么是你们 / 第一句怎么开 / 下一步是什么。
@@ -1049,6 +1069,15 @@ struct ImageAsset: Codable, Sendable {
 }
 
 struct TasteImportCreate: Codable, Sendable { var force = false; var maxItems: Int? = nil }
+
+struct TasteFromLinkRequest: Codable, Sendable {
+    var shareUrl: String
+    var likesLimit: Int = 30
+    var postsLimit: Int = 20
+    var collectsLimit: Int = 30
+    var useLlm: Bool = true
+    var force: Bool = true
+}
 
 struct TasteProgressPayload: Codable, Sendable {
     let phase: String

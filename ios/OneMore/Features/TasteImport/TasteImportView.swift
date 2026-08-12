@@ -26,6 +26,8 @@ import UIKit
     @Published var existingProfile: TasteProfileResult?
     /// Prefer opening the quiz once after first READY (user can skip).
     @Published var offeredQuizForImport: String?
+    @Published var shareText = ""
+    @Published var usingLink = true
 
     private let repository: TasteImportRepository
     private var polling: Task<Void, Never>?
@@ -36,8 +38,26 @@ import UIKit
         existingProfile = try? await repository.currentProfile()
     }
 
+    func analyzeFromLink() async {
+        let text = shareText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard text.count >= 8, !submitting, polling == nil else { return }
+        usingLink = true
+        submitting = true
+        phase = .starting
+        defer { submitting = false }
+        do {
+            let value = try await repository.fromLink(text, force: true)
+            // Match the judge page: show the persona card first, quiz stays optional.
+            offeredQuizForImport = value.id
+            await applyStatus(value)
+        } catch {
+            phase = .failed(error.localizedDescription)
+        }
+    }
+
     func start(force: Bool = false) async {
         guard polling == nil else { return }
+        usingLink = false
         phase = .starting
         do {
             // Prefer QR-wait entry from docs/17; fall back to async create.
@@ -267,7 +287,8 @@ import UIKit
 }
 
 /// 抖音兴趣画像导入（可选）
-/// 主链路：扫码 → 采集 → READY 画像可用 → 可选细化题 / AI 文案刷新
+/// 主链路：粘贴主页链接 → 喜欢+收藏 HTTP 采集 → READY 画像可用 → 可选细化题
+/// 扫码导入仍作为次要入口保留。
 struct TasteImportView: View {
     @StateObject private var model: TasteImportViewModel
     init(repository: TasteImportRepository) {
@@ -285,7 +306,12 @@ struct TasteImportView: View {
                 case .intro:
                     introContent
                 case .starting:
-                    OMCard { OMG5StateView(state: .loading, message: "正在创建导入会话…") }
+                    OMCard {
+                        OMG5StateView(
+                            state: .loading,
+                            message: model.usingLink ? "噜噜正在看你的喜欢和收藏…" : "正在创建导入会话…"
+                        )
+                    }
                 case .refining:
                     OMCard {
                         OMG5StateView(
@@ -322,17 +348,52 @@ struct TasteImportView: View {
     @ViewBuilder private var introContent: some View {
         if let existing = model.existingProfile {
             tasteResultCard(existing, title: "当前兴趣画像")
-            OMButton("重新扫码导入", kind: .ghost) { Task { await model.start(force: true) } }
-                .padding(.top, OMTheme.Spacing.s2)
+            OMButton("重新粘贴链接导入", kind: .ghost) {
+                model.existingProfile = nil
+                model.shareText = ""
+                model.phase = .intro
+            }
+            .padding(.top, OMTheme.Spacing.s2)
             OMButton("删除抖音兴趣画像", systemIcon: "trash", kind: .dark, loading: model.submitting) {
                 Task { await model.deleteProfile() }
             }
             .padding(.top, OMTheme.Spacing.s2)
         } else {
             OMCard {
-                OMTextRole.t3("只读取你主动授权的公开兴趣信号")
+                OMTextRole.t3("粘贴主页分享链接")
+                OMTextRole.foot("噜噜会一起看你最近的喜欢和收藏。把「喜欢」和收藏里的「视频」设为公开后再贴。")
+                    .padding(.top, OMTheme.Spacing.s2)
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("1. 打开抖音，点底部「我」")
+                    Text("2. 点自己的抖音号，进入抖音码页面")
+                    Text("3. 点右上角分享箭头，再选「复制链接」")
+                    Text("4. 打开「设置 → 隐私与政策 → 收藏」，把里面的「视频」设为公开")
+                    Text("5. 把主页「喜欢」也设为公开，然后粘贴到下面")
+                }
+                .font(OMTheme.TypeToken.footnote)
+                .foregroundStyle(OMTheme.ColorToken.mist)
+                .padding(.top, OMTheme.Spacing.s3)
             }
-            OMButton("开始导入", systemIcon: "qrcode") { Task { await model.start() } }
+            TextEditor(text: $model.shareText)
+                .omInputStyle(multiline: true)
+                .frame(minHeight: 96)
+                .padding(.top, OMTheme.Spacing.s3)
+                .accessibilityIdentifier("taste-share-input")
+            OMButton(
+                "让噜噜看看",
+                systemIcon: "sparkles",
+                loading: model.submitting,
+                disabledReason: model.shareText.trimmingCharacters(in: .whitespacesAndNewlines).count < 8
+                    ? "先粘贴主页分享链接"
+                    : nil
+            ) {
+                Task { await model.analyzeFromLink() }
+            }
+            .padding(.top, OMTheme.Spacing.s3)
+            OMButton("改用扫码导入", systemIcon: "qrcode", kind: .ghost) {
+                Task { await model.start() }
+            }
+            .padding(.top, OMTheme.Spacing.s2)
         }
     }
 
@@ -425,7 +486,8 @@ struct TasteImportView: View {
         }
         .padding(.top, OMTheme.Spacing.s2)
         OMButton("重新导入", kind: .text, small: true, fillsWidth: false) {
-            Task { await model.start(force: true) }
+            model.shareText = ""
+            model.phase = .intro
         }
     }
 

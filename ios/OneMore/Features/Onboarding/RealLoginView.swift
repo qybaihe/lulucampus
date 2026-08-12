@@ -41,7 +41,7 @@ import UIKit
                         self.phase = .waiting(current)
                         if current.status == "SUCCESS" {
                             if self.campusGateOnly {
-                                self.onCampusGateComplete?()
+                                await MainActor.run { self.onCampusGateComplete?() }
                                 break
                             }
                             let redeemed: LoginRedemptionResult = try await api.send(
@@ -51,6 +51,7 @@ import UIKit
                                 idempotencyKey: "login-redeem-\(login.id)"
                             )
                             await sessionController.install(token: redeemed.accessToken)
+                            await MainActor.run { self.onCampusGateComplete?() }
                             break
                         }
                         if ["TIMEOUT", "CANCELLED", "FAILED"].contains(current.status) { self.phase = .failed(current.errorCategory ?? "认证未完成"); break }
@@ -61,6 +62,13 @@ import UIKit
             }
         } catch { phase = .failed(error.localizedDescription) }
     }
+    /// 取消轮询并回到 intro，供「跳过 / 稍后再说」使用。
+    func cancelPolling() {
+        polling?.cancel()
+        polling = nil
+        phase = .intro
+    }
+
     #if DEV_AUTH
     func completeDemo(api: APIClient) async {
         guard case let .waiting(login) = phase else { return }
@@ -87,60 +95,120 @@ import UIKit
     }
 }
 
-/// A3 · 统一身份认证（扫码）。`campusGateOnly` 时只核验中大身份，不兑换登录会话。
+/// A3 · 统一身份认证（扫码）。
+/// - `campusGateOnly`：只核验、不兑换会话（旧闸门）
+/// - `bindMode`：已登录用户绑定校园身份，兑换后回调继续首次设置
 struct RealLoginView: View {
     var campusGateOnly = false
+    var bindMode = false
     var onCampusGateComplete: (() -> Void)? = nil
+    var onSkip: (() -> Void)? = nil
     @StateObject private var model = RealLoginViewModel()
     @EnvironmentObject private var environment: AppEnvironment
     @EnvironmentObject private var router: AppRouter
 
     var body: some View {
-        VStack(spacing: 20) {
-            Spacer(minLength: 0)
-            LuluView(clip: .homeIdle, placement: .empty).frame(height: 205)
-            Text(campusGateOnly ? "中大校园认证" : "统一身份认证")
-                .font(OMTheme.TypeToken.hero)
-                .tracking(-0.7)
+        VStack(spacing: 0) {
+            Text(bindMode || campusGateOnly ? "绑定校园身份" : "统一身份认证")
+                .font(OMTheme.TypeToken.title2)
                 .foregroundStyle(OMTheme.ColorToken.ink)
-            switch model.phase {
-            case .intro:
-                Text(campusGateOnly
-                     ? "先用企业微信扫码完成校园核验，下一步再用手机号登录"
-                     : "使用企业微信或企业邮箱扫码完成认证")
-                    .font(OMTheme.TypeToken.callout)
-                    .multilineTextAlignment(.center)
-                    .foregroundStyle(OMTheme.ColorToken.mist)
-                    .padding(.horizontal, 30)
-                OMButton(campusGateOnly ? "生成校园核验二维码" : "生成认证二维码", systemIcon: "qrcode") {
-                    model.campusGateOnly = campusGateOnly
-                    model.onCampusGateComplete = onCampusGateComplete
-                    Task { await model.start(api: environment.api, sessionController: environment.session, router: router) }
-                }
+                .multilineTextAlignment(.center)
+                .padding(.top, OMTheme.Spacing.s4)
                 .padding(.horizontal, 24)
-                .accessibilityIdentifier("auth-start-button")
-            case .creating:
-                CampusAuthQRLoadingSlot(message: "正在创建认证会话…")
-            case let .waiting(login):
-                waitingContent(login)
-            case let .failed(message):
-                OMCard {
-                    OMG5StateView(state: .networkError, message: message, actionTitle: "重试") {
-                        model.phase = .intro
-                    }
-                }
-                .padding(.horizontal, 24)
+            Text(phaseSubtitle)
+                .font(OMTheme.TypeToken.footnote)
+                .foregroundStyle(OMTheme.ColorToken.mist)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 28)
+                .padding(.top, 6)
+
+            Spacer(minLength: 8)
+            phaseHero
+            Spacer(minLength: 8)
+
+            VStack(spacing: 10) {
+                phaseActions
             }
-            Spacer(minLength: 0)
+            .padding(.horizontal, OMTheme.Spacing.pageX)
+            .padding(.bottom, 34)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(OMPageBackground())
-        .accessibilityElement(children: .contain)
+        // 只用 identifier，避免 accessibility contain 把页面收成中间竖条。
         .accessibilityIdentifier("screen-A3-real-login")
     }
 
+    private var canSkip: Bool { onSkip != nil }
+
+    private var phaseSubtitle: String {
+        switch model.phase {
+        case .intro:
+            if bindMode { return "用企业微信扫码，把校园身份绑到当前账号，解锁课表等校园能力" }
+            if campusGateOnly { return "先用企业微信扫码完成校园核验，下一步再用手机号登录" }
+            return "使用企业微信或企业邮箱扫码完成认证"
+        case .creating:
+            return "正在创建认证会话…"
+        case .waiting:
+            return "打开企业微信，扫一扫"
+        case .failed:
+            return "这次没连上，可以重试或稍后再说"
+        }
+    }
+
     @ViewBuilder
-    private func waitingContent(_ login: LoginSession) -> some View {
+    private var phaseHero: some View {
+        switch model.phase {
+        case .intro:
+            LuluView(clip: .homeIdle, placement: .hero)
+                .frame(maxWidth: .infinity)
+                .frame(height: 260)
+        case .creating:
+            CampusAuthQRLoadingSlot(message: "正在创建认证会话…")
+        case let .waiting(login):
+            waitingHero(login)
+        case .failed:
+            LuluView(clip: .coreCare, placement: .hero)
+                .frame(maxWidth: .infinity)
+                .frame(height: 220)
+        }
+    }
+
+    @ViewBuilder
+    private var phaseActions: some View {
+        switch model.phase {
+        case .intro:
+            OMButton(bindMode || campusGateOnly ? "生成绑定二维码" : "生成认证二维码", systemIcon: "qrcode") {
+                model.campusGateOnly = campusGateOnly && !bindMode
+                model.onCampusGateComplete = onCampusGateComplete
+                Task { await model.start(api: environment.api, sessionController: environment.session, router: router) }
+            }
+            .accessibilityIdentifier("auth-start-button")
+            if canSkip { skipButton }
+        case .creating:
+            if canSkip { skipButton }
+        case let .waiting(login):
+            waitingActions(login)
+            if canSkip { skipButton }
+        case let .failed(message):
+            OMCard {
+                OMG5StateView(state: .networkError, message: message, actionTitle: "重试") {
+                    model.phase = .intro
+                }
+            }
+            if canSkip { skipButton }
+        }
+    }
+
+    private var skipButton: some View {
+        OMButton(bindMode ? "跳过，稍后再绑定" : "跳过", kind: .ghost) {
+            model.cancelPolling()
+            onSkip?()
+        }
+        .accessibilityIdentifier("campus-bind-skip")
+    }
+
+    @ViewBuilder
+    private func waitingHero(_ login: LoginSession) -> some View {
         let ready = Self.isQRReady(login)
         if ready, let image = qr(login.qrImageDataUrl) {
             image.resizable().interpolation(.none).scaledToFit()
@@ -152,13 +220,19 @@ struct RealLoginView: View {
                         .stroke(OMTheme.ColorToken.line, lineWidth: OMTheme.Radius.borderWidth)
                 }
                 .transition(.opacity.combined(with: .scale(scale: 0.98)))
-            OMChip(text: Self.statusLabel(login.status), kind: .solid)
-            Text("请使用企业微信扫码")
-                .font(OMTheme.TypeToken.callout)
-                .foregroundStyle(OMTheme.ColorToken.mist)
-                .padding(.horizontal, 30)
         } else {
             CampusAuthQRLoadingSlot(message: Self.loadingMessage(for: login.status))
+        }
+    }
+
+    @ViewBuilder
+    private func waitingActions(_ login: LoginSession) -> some View {
+        if Self.isQRReady(login) {
+            HStack {
+                Spacer(minLength: 0)
+                OMChip(text: Self.statusLabel(login.status), kind: .solid)
+                Spacer(minLength: 0)
+            }
         }
         #if DEV_AUTH
         OMButton("开发环境：完成扫码", small: true, fillsWidth: false) {

@@ -658,33 +658,93 @@ struct OMScheduleGrid: View {
 
 // MARK: - 聊天气泡（.bubble / .bubble-sys）
 
+/// Renders a subset of Markdown (bold / italic / lists / links) with a plain-text fallback.
+struct OMMarkdownText: View {
+    let text: String
+    var font: Font = OMTheme.TypeToken.callout
+    var color: Color = OMTheme.ColorToken.ink
+    var lineSpacing: CGFloat = 4
+
+    var body: some View {
+        Text(Self.attributed(text, color: color))
+            .font(font)
+            .lineSpacing(lineSpacing)
+            .multilineTextAlignment(.leading)
+            .textSelection(.enabled)
+    }
+
+    static func attributed(_ raw: String, color: Color) -> AttributedString {
+        let prepared = prepare(raw)
+        var options = AttributedString.MarkdownParsingOptions()
+        options.interpretedSyntax = .inlineOnlyPreservingWhitespace
+        options.failurePolicy = .returnPartiallyParsedIfPossible
+        if let parsed = try? AttributedString(markdown: prepared, options: options) {
+            var copy = parsed
+            copy.foregroundColor = color
+            return copy
+        }
+        var plain = AttributedString(prepared)
+        plain.foregroundColor = color
+        return plain
+    }
+
+    /// Keep visual line breaks: Markdown `.full` collapses single newlines into spaces.
+    private static func prepare(_ raw: String) -> String {
+        var text = raw.replacingOccurrences(of: "\r\n", with: "\n")
+        text = text.replacingOccurrences(
+            of: #"([。！？；:：])\s*(\d+[\.、]\s)"#,
+            with: "$1\n$2",
+            options: .regularExpression
+        )
+        text = text.replacingOccurrences(
+            of: #"([。！？])\s+([—\-•])"#,
+            with: "$1\n$2",
+            options: .regularExpression
+        )
+        return text
+    }
+}
+
 /// .bubble / .bubble.me：无头像、无昵称、无时间、无已读回执
 struct OMChatBubble: View {
     let text: String
     let isMine: Bool
+    var markdown: Bool = false
 
-    init(_ text: String, mine: Bool) {
+    init(_ text: String, mine: Bool, markdown: Bool = false) {
         self.text = text
         self.isMine = mine
+        self.markdown = markdown
     }
 
     var body: some View {
-        HStack {
-            if isMine { Spacer(minLength: 44) }
-            Text(text)
-                .font(OMTheme.TypeToken.callout)
-                .lineSpacing(3)
-                .multilineTextAlignment(.leading)
-                .foregroundStyle(isMine ? OMTheme.ColorToken.paper : OMTheme.ColorToken.ink)
-                .padding(.horizontal, 14)
-                .padding(.vertical, 10)
-                .background(isMine ? OMTheme.ColorToken.ink : OMTheme.ColorToken.card)
-                .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
-                .overlay {
-                    RoundedRectangle(cornerRadius: 18, style: .continuous)
-                        .stroke(isMine ? OMTheme.ColorToken.ink : OMTheme.ColorToken.line, lineWidth: OMTheme.Radius.borderWidth)
+        HStack(spacing: 8) {
+            if isMine { Spacer(minLength: 36) }
+            Group {
+                if markdown {
+                    OMMarkdownText(
+                        text: text,
+                        font: OMTheme.TypeToken.callout,
+                        color: isMine ? OMTheme.ColorToken.paper : OMTheme.ColorToken.ink
+                    )
+                } else {
+                    Text(text)
+                        .font(OMTheme.TypeToken.callout)
+                        .lineSpacing(3)
+                        .multilineTextAlignment(.leading)
+                        .foregroundStyle(isMine ? OMTheme.ColorToken.paper : OMTheme.ColorToken.ink)
                 }
-            if !isMine { Spacer(minLength: 44) }
+            }
+            .frame(maxWidth: isMine ? nil : .infinity, alignment: .leading)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 10)
+            .background(isMine ? OMTheme.ColorToken.ink : OMTheme.ColorToken.card)
+            .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+            .overlay {
+                RoundedRectangle(cornerRadius: 18, style: .continuous)
+                    .stroke(isMine ? OMTheme.ColorToken.ink : OMTheme.ColorToken.line, lineWidth: OMTheme.Radius.borderWidth)
+            }
+            if !isMine { Spacer(minLength: 8) }
         }
     }
 }
@@ -887,6 +947,45 @@ enum OMTextRole {
     }
     static func monoFoot(_ text: String) -> some View {
         Text(text).font(OMTheme.TypeToken.mono(.footnote)).foregroundStyle(OMTheme.ColorToken.mist)
+    }
+}
+
+// MARK: - 稀疏确认页公式（标题 → 中间大噜噜 → 底部选项）
+
+/// 选项少、下半屏易空的确认/选择页：上标题、中噜噜、下操作区。
+struct OMStage<Footer: View>: View {
+    let title: String
+    var subtitle: String? = nil
+    var clip: LuluClip = .homeReply
+    @ViewBuilder var footer: () -> Footer
+
+    var body: some View {
+        VStack(spacing: 0) {
+            Text(title)
+                .font(OMTheme.TypeToken.title2)
+                .foregroundStyle(OMTheme.ColorToken.ink)
+                .multilineTextAlignment(.center)
+                .padding(.top, OMTheme.Spacing.s4)
+                .padding(.horizontal, 24)
+            if let subtitle, !subtitle.isEmpty {
+                Text(subtitle)
+                    .font(OMTheme.TypeToken.footnote)
+                    .foregroundStyle(OMTheme.ColorToken.mist)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 28)
+                    .padding(.top, 6)
+            }
+            Spacer(minLength: 8)
+            LuluView(clip: clip, placement: .hero)
+                .frame(maxWidth: .infinity)
+                .frame(height: 260)
+            Spacer(minLength: 8)
+            VStack(spacing: 10) { footer() }
+                .padding(.horizontal, OMTheme.Spacing.pageX)
+                .padding(.bottom, 34)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(OMPageBackground())
     }
 }
 

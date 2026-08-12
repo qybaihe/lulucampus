@@ -62,7 +62,7 @@ struct TodayView: View {
                     HStack(spacing: 10) {
                         LuluView(clip: .homeListening, placement: .avatar)
                         VStack(alignment: .leading, spacing: 2) {
-                            OMTextRole.t3("问问 Hermes")
+                            OMTextRole.t3("问问 \(AppBrand.agentName)")
                             OMTextRole.cap("课表、DDL、场地、公选匹配")
                         }
                         Spacer()

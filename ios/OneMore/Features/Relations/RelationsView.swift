@@ -45,6 +45,11 @@ struct RelationsView: View {
                             }
                             OMTextRole.foot(relationSummaryLine(relation))
                                 .padding(.top, 4)
+                            let tags = Array(Set(relation.participants.flatMap(\.interestTags))).prefix(4)
+                            if !tags.isEmpty {
+                                OMTextRole.cap(tags.joined(separator: " · "))
+                                    .padding(.top, 4)
+                            }
                             if let milestone = relation.milestone, let next = milestone.next, let remaining = milestone.remaining {
                                 OMProgressBar(value: Double(relation.timesTogether) / Double(next))
                                     .padding(.top, OMTheme.Spacing.s2)

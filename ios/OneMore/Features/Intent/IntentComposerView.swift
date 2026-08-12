@@ -53,6 +53,8 @@ final class IntentComposerViewModel: ObservableObject {
                 clarificationRound: round,
                 answers: answers
             )
+            recruitHints = result.recruitHints ?? []
+            tasteFitLabel = result.tasteFitLabel
             if result.needsClarification, round < result.maxRounds {
                 clarificationAnswer = ""
                 phase = .clarifying(result.card, result.questions, round, result.maxRounds)

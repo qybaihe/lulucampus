@@ -8,6 +8,8 @@ enum AppBrand {
     static let coreAction = "差一个"
     static let slogan = "差一个，就成局"
     static let descriptor = "校园成局助手"
+    /// 用户可见的校园事务助手名；接口路径仍是 `/hermes/ask`。
+    static let agentName = "Lulu Hermes"
     static let loadingMessage = "噜噜正在取数，稍等一下。"
 }
 

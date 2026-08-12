@@ -20,10 +20,33 @@ struct CompetitionDetailView: View {
                         .frame(maxWidth: .infinity)
                         .multilineTextAlignment(.center)
                         .padding(.top, OMTheme.Spacing.s2)
-                    OMTextRole.foot("\(item.recommendationLabel) · 已核验 · 队伍 \(item.teamSizeMin)–\(item.teamSizeMax) 人")
+                    OMTextRole.foot(
+                        [
+                            item.tasteFitLabel,
+                            "\(item.recommendationLabel) · 已核验",
+                            "队伍 \(item.teamSizeMin)–\(item.teamSizeMax) 人",
+                        ]
+                        .compactMap { $0 }
+                        .joined(separator: " · ")
+                    )
                         .frame(maxWidth: .infinity)
                         .multilineTextAlignment(.center)
                         .padding(.bottom, OMTheme.Spacing.s3)
+
+                    if !item.tasteFitReasons.isEmpty || !item.recruitHints.isEmpty {
+                        OMCard {
+                            OMTextRole.t3("按你的兴趣画像")
+                            ForEach(item.tasteFitReasons, id: \.self) { reason in
+                                OMTextRole.foot(reason).padding(.top, OMTheme.Spacing.s2)
+                            }
+                            if !item.recruitHints.isEmpty {
+                                OMTextRole.call("招什么样的人").padding(.top, OMTheme.Spacing.s3)
+                                ForEach(item.recruitHints, id: \.self) { hint in
+                                    OMTextRole.foot(hint).padding(.top, 4)
+                                }
+                            }
+                        }
+                    }
 
                     OMCard {
                         HStack(spacing: 10) {

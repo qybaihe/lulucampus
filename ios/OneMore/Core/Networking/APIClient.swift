@@ -175,8 +175,8 @@ actor APIClient {
         self.auth = auth
         self.diagnostics = diagnostics
         let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 20
-        configuration.timeoutIntervalForResource = 45
+        configuration.timeoutIntervalForRequest = 30
+        configuration.timeoutIntervalForResource = 120
         configuration.waitsForConnectivity = true
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         configuration.urlCache = nil

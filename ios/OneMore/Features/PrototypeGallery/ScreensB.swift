@@ -11,7 +11,7 @@ struct B1Screen: View {
     var body: some View {
         PrototypePage(
             nav: "",
-            navRight: AnyView(OMIconButton(icon: .spark, accessibilityLabel: "问 Hermes") { prototypeGo("G1", actions) }),
+            navRight: AnyView(OMIconButton(icon: .spark, accessibilityLabel: "问 \(AppBrand.agentName)") { prototypeGo("G1", actions) }),
             large: "今天", largeSub: "8 月 12 日 · 周三 · 东校园",
             tab: .today,
             actions: actions
@@ -83,7 +83,7 @@ struct B2Screen: View {
     let actions: PrototypeActions
 
     var body: some View {
-        PrototypePage(nav: "Hermes", back: true, actions: actions) {
+        PrototypePage(nav: AppBrand.agentName, back: true, actions: actions) {
             VStack(spacing: 0) {
                 HStack(spacing: 8) {
                     TextField("问校园相关的事…", text: .constant(""))

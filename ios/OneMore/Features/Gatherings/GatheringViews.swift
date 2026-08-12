@@ -304,6 +304,23 @@ struct GatheringDetailView: View {
                 .padding(.top, 4)
             }
         }
+        if let reason = item.matchReason, !reason.isEmpty {
+            OMCard {
+                OMTextRole.t3("为什么是你们")
+                OMTextRole.foot(reason).padding(.top, OMTheme.Spacing.s2)
+            }
+        }
+        if item.status == .pooling, let looking = item.lookingFor, !looking.isEmpty {
+            OMCard {
+                OMTextRole.t3("这桌还在找")
+                OMFlowLayout {
+                    ForEach(looking, id: \.self) { role in
+                        OMChip(text: role, kind: .gap)
+                    }
+                }
+                .padding(.top, OMTheme.Spacing.s2)
+            }
+        }
         if let participants = item.participants {
             OMCard {
                 OMTextRole.t3("参与成员")
@@ -643,7 +660,7 @@ struct GatheringDetailView: View {
                     .padding(.top, OMTheme.Spacing.s2)
                     if !bookingOptions.isEmpty {
                         OMCard {
-                            OMTextRole.t3("Hermes 实时可预约结果")
+                            OMTextRole.t3("\(AppBrand.agentName) 实时可预约结果")
                             ForEach(bookingOptions) { option in
                                 Button {
                                     Task { await selectBookingOption(option) }

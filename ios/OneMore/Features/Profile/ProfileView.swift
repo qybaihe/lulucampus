@@ -84,7 +84,7 @@ struct ProfileView: View {
                     OMRow(sticker: "id-card.png", title: "画像与能力", onTap: { router.push(.formal(.m2)) })
                     OMRow(sticker: "medal.png", title: "信任进度", onTap: { router.push(.trust) })
                     OMRow(sticker: "key.png", title: "授权管理", onTap: { router.push(.grants) })
-                    OMRow(sticker: "sparkle-wand.png", title: "抖音兴趣画像", onTap: { router.push(.tasteImport) })
+                    OMRow(sticker: "sparkle-wand.png", title: "抖音兴趣画像", sub: "粘贴主页链接即可，不用扫码", onTap: { router.push(.tasteImport) })
                         .accessibilityIdentifier("profile-taste-import")
                 }
 

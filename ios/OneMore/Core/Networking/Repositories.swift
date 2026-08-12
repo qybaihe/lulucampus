@@ -500,6 +500,14 @@ actor TasteImportRepository {
     init(api: APIClient) { self.api = api }
 
     /// Recommended entry: create import and wait up to `waitSeconds` for a QR payload.
+    func fromLink(_ shareUrl: String, force: Bool = true) async throws -> TasteImportStatus {
+        try await api.send(
+            "/profile/taste/from-link",
+            method: .post,
+            body: TasteFromLinkRequest(shareUrl: shareUrl, force: force)
+        )
+    }
+
     func createWithQR(force: Bool = false, waitSeconds: Int = 10) async throws -> TasteImportStatus {
         let qr: TasteQRLoginView = try await api.send(
             "/profile/imports/douyin/qr",

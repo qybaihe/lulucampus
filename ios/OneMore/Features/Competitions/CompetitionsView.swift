@@ -79,6 +79,9 @@ struct CompetitionsListContent: View {
                                         }
                                     }
                                     Spacer()
+                                    if let fit = item.tasteFitLabel {
+                                        OMChip(text: fit, kind: .gap)
+                                    }
                                     OMChip(text: item.recommendationLabel, kind: .standard)
                                 }
                                 HStack {

@@ -38,17 +38,77 @@ private func actionParams(from result: HermesAskResult) -> [String: JSONValue]? 
     return params
 }
 
+private func hermesCardData(_ value: JSONValue) -> JSONValue {
+    guard case let .object(root) = value else { return value }
+    var filtered = root
+    filtered.removeValue(forKey: "tool_trace")
+    filtered.removeValue(forKey: "message")
+    return .object(filtered)
+}
+
+private struct HermesResultPanel<Content: View>: View {
+    let icon: String
+    let eyebrow: String
+    let content: Content
+
+    init(icon: String, eyebrow: String, @ViewBuilder content: () -> Content) {
+        self.icon = icon
+        self.eyebrow = eyebrow
+        self.content = content()
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(spacing: 6) {
+                Image(systemName: icon)
+                    .font(.system(size: 11, weight: .bold))
+                    .foregroundStyle(OMTheme.ColorToken.ink)
+                Text(eyebrow)
+                    .font(OMTheme.TypeToken.caption.weight(.semibold))
+                    .foregroundStyle(OMTheme.ColorToken.ink)
+                Spacer(minLength: 0)
+            }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 8)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(OMTheme.ColorToken.yolk)
+
+            content
+                .padding(14)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(OMTheme.ColorToken.yolk14)
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+        .overlay {
+            RoundedRectangle(cornerRadius: 18, style: .continuous)
+                .stroke(OMTheme.ColorToken.yolkBorder, lineWidth: 1.5)
+        }
+    }
+}
+
 private struct StructuredResultCard: View {
     let title: String
     let value: JSONValue
+    var embedded = false
+
     var body: some View {
-        OMCard {
-            OMTextRole.t3(title)
+        if embedded {
+            inner
+        } else {
+            OMCard { inner }
+        }
+    }
+
+    private var inner: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(title)
+                .font(OMTheme.TypeToken.title3)
+                .foregroundStyle(OMTheme.ColorToken.ink)
             let rows = jsonRows(value)
             if rows.isEmpty {
-                OMTextRole.foot("服务端返回空结果").padding(.top, OMTheme.Spacing.s2)
+                OMTextRole.foot("服务端返回空结果")
             }
-            ForEach(Array(rows.enumerated()), id: \.offset) { _, row in
+            ForEach(Array(rows.prefix(16).enumerated()), id: \.offset) { _, row in
                 VStack(alignment: .leading, spacing: 2) {
                     Text(row.0)
                         .font(OMTheme.TypeToken.mono(.caption))
@@ -58,7 +118,6 @@ private struct StructuredResultCard: View {
                         .foregroundStyle(OMTheme.ColorToken.ink)
                         .textSelection(.enabled)
                 }
-                .padding(.top, OMTheme.Spacing.s3)
                 OMDivider()
             }
         }
@@ -83,46 +142,115 @@ private struct ElectiveMatchCard: View {
         return jsonText(obj[key] ?? .null)
     }
 
+    private func reasons(in item: JSONValue) -> [String] {
+        guard case let .object(obj) = item else { return [] }
+        switch obj["match_reasons"] {
+        case let .array(values):
+            return values.compactMap { value in
+                if case let .string(text) = value { return text }
+                return nil
+            }
+        case let .string(text):
+            return text.isEmpty ? [] : [text]
+        default:
+            return []
+        }
+    }
+
     var body: some View {
-        OMCard {
-            OMTextRole.t3("公选 / 画像匹配")
-            if case let .string(message) = object["message"] {
-                Text(message)
-                    .font(OMTheme.TypeToken.callout)
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .firstTextBaseline, spacing: 8) {
+                Text("公选匹配")
+                    .font(OMTheme.TypeToken.title3)
                     .foregroundStyle(OMTheme.ColorToken.ink)
-                    .padding(.top, OMTheme.Spacing.s3)
-                    .textSelection(.enabled)
-            }
-            if case let .string(label) = object["persona_label"] {
-                OMTextRole.foot("画像：\(label)").padding(.top, OMTheme.Spacing.s2)
-            }
-            ForEach(Array(items.prefix(8).enumerated()), id: \.offset) { index, item in
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("\(index + 1). \(field(item, "title"))")
-                        .font(OMTheme.TypeToken.callout.weight(.semibold))
+                Spacer(minLength: 0)
+                if case let .string(label) = object["persona_label"] {
+                    Text(label)
+                        .font(OMTheme.TypeToken.caption.weight(.semibold))
                         .foregroundStyle(OMTheme.ColorToken.ink)
-                    Text("\(field(item, "code")) · \(field(item, "category")) · 匹配 \(field(item, "match_score"))")
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(OMTheme.ColorToken.yolk.opacity(0.55))
+                        .clipShape(Capsule())
+                }
+            }
+
+            if items.isEmpty, case let .string(message) = object["message"] {
+                OMMarkdownText(text: message)
+            }
+
+            ForEach(Array(items.prefix(8).enumerated()), id: \.offset) { index, item in
+                HStack(alignment: .top, spacing: 10) {
+                    Text("\(index + 1)")
+                        .font(OMTheme.TypeToken.mono(.caption, weight: .bold))
+                        .foregroundStyle(OMTheme.ColorToken.ink)
+                        .frame(width: 22, height: 22)
+                        .background(index == 0 ? OMTheme.ColorToken.yolk : OMTheme.ColorToken.ink06)
+                        .clipShape(Circle())
+
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(field(item, "title"))
+                            .font(OMTheme.TypeToken.callout.weight(.semibold))
+                            .foregroundStyle(OMTheme.ColorToken.ink)
+                            .fixedSize(horizontal: false, vertical: true)
+                        Text(
+                            [field(item, "code"), field(item, "category"), field(item, "credits") == "—" ? nil : "\(field(item, "credits")) 学分"]
+                                .compactMap { $0 }
+                                .filter { $0 != "—" }
+                                .joined(separator: " · ")
+                        )
                         .font(OMTheme.TypeToken.mono(.caption))
                         .foregroundStyle(OMTheme.ColorToken.mist)
-                    Text("\(field(item, "competition_label")) · 已选 \(field(item, "selected")) / 容量 \(field(item, "capacity")) / 余 \(field(item, "remaining"))")
-                        .font(OMTheme.TypeToken.caption)
-                        .foregroundStyle(OMTheme.ColorToken.ink)
-                    let reasons = field(item, "match_reasons")
-                    if reasons != "—" && reasons != "[]" {
-                        OMTextRole.foot("理由：\(reasons)")
+
+                        HStack(spacing: 6) {
+                            let competition = field(item, "competition_label")
+                            if competition != "—" {
+                                Text(competition)
+                                    .font(OMTheme.TypeToken.caption.weight(.semibold))
+                                    .padding(.horizontal, 7)
+                                    .padding(.vertical, 3)
+                                    .background(OMTheme.ColorToken.card)
+                                    .clipShape(Capsule())
+                            }
+                            let selected = field(item, "selected")
+                            let capacity = field(item, "capacity")
+                            if selected != "—" || capacity != "—" {
+                                Text("已选 \(selected)/\(capacity)")
+                                    .font(OMTheme.TypeToken.caption)
+                                    .foregroundStyle(OMTheme.ColorToken.mist)
+                            }
+                        }
+
+                        let reasonText = reasons(in: item).prefix(2).joined(separator: " · ")
+                        if !reasonText.isEmpty {
+                            Text(reasonText)
+                                .font(OMTheme.TypeToken.caption)
+                                .foregroundStyle(OMTheme.ColorToken.mist)
+                        }
                     }
+                    Spacer(minLength: 0)
                 }
-                .padding(.top, OMTheme.Spacing.s3)
-                OMDivider()
+                if index < min(items.count, 8) - 1 {
+                    OMDivider()
+                }
             }
-            if case let .string(note) = object["note"] {
-                OMTextRole.foot(note).padding(.top, OMTheme.Spacing.s2)
-            }
-            if case let .object(catalog) = object["catalog"],
-               case let .string(catalogNote) = catalog["note"] {
-                OMTextRole.foot(catalogNote).padding(.top, OMTheme.Spacing.s2)
+
+            if let note = displayNote {
+                Text(note)
+                    .font(OMTheme.TypeToken.footnote)
+                    .foregroundStyle(OMTheme.ColorToken.mist)
+                    .padding(.top, 2)
             }
         }
+    }
+
+    private var displayNote: String? {
+        if case let .object(catalog) = object["catalog"],
+           case let .string(status) = catalog["session_status"],
+           status == "login_expired" {
+            return "教务登录已过期，重新扫码后会更新。"
+        }
+        return nil
     }
 }
 
@@ -186,29 +314,11 @@ private struct HermesChatMessage: Identifiable, Equatable {
 
         messages.append(HermesChatMessage(id: UUID(), kind: .user, text: query))
         let thinkingID = UUID()
-        let toolID = UUID()
-        let tool = Self.inferredTool(for: query)
         messages.append(
             HermesChatMessage(
                 id: thinkingID,
                 kind: .thinking,
-                text: "先理解你的校园事务…",
-                isActive: true
-            )
-        )
-        bumpScroll()
-
-        try? await Task.sleep(nanoseconds: 280_000_000)
-        if let index = messages.firstIndex(where: { $0.id == thinkingID }) {
-            messages[index].text = "已理解意图，准备调用校园工具"
-            messages[index].isActive = false
-        }
-        messages.append(
-            HermesChatMessage(
-                id: toolID,
-                kind: .tool,
-                text: "正在执行",
-                toolName: tool,
+                text: "正在询问校园 Agent…",
                 isActive: true
             )
         )
@@ -217,9 +327,21 @@ private struct HermesChatMessage: Identifiable, Equatable {
         do {
             let asked = try await repository.askHermes(query)
             result = asked
-            if let index = messages.firstIndex(where: { $0.id == toolID }) {
-                messages[index].text = "已完成"
+            if let index = messages.firstIndex(where: { $0.id == thinkingID }) {
+                messages[index].text = asked.toolTrace?.isEmpty == false ? "已理解意图，正在调用校园工具" : "已完成回复"
                 messages[index].isActive = false
+            }
+            let traces = asked.toolTrace ?? Self.toolTrace(from: asked.data)
+            for trace in traces {
+                messages.append(
+                    HermesChatMessage(
+                        id: UUID(),
+                        kind: .tool,
+                        text: trace.summary?.isEmpty == false ? (trace.summary ?? "已完成") : (trace.ok == false ? "调用失败" : "已完成"),
+                        toolName: trace.name,
+                        isActive: false
+                    )
+                )
             }
             let answer = Self.answerText(for: asked)
             messages.append(
@@ -229,8 +351,8 @@ private struct HermesChatMessage: Identifiable, Equatable {
                 HermesChatMessage(id: UUID(), kind: .result, text: asked.cardType, result: asked)
             )
         } catch {
-            if let index = messages.firstIndex(where: { $0.id == toolID }) {
-                messages[index].text = "调用失败"
+            if let index = messages.firstIndex(where: { $0.id == thinkingID }) {
+                messages[index].text = "询问失败"
                 messages[index].isActive = false
             }
             let message = error.localizedDescription
@@ -245,49 +367,87 @@ private struct HermesChatMessage: Identifiable, Equatable {
 
     private func bumpScroll() { scrollToken = UUID() }
 
-    private static func inferredTool(for query: String) -> String {
-        let text = query.lowercased()
-        if ["公选", "选修", "选课", "通识", "画像", "推荐课", "选什么课"].contains(where: { query.contains($0) }) {
-            return "elective.match_taste"
+    private static func toolTrace(from data: JSONValue) -> [HermesToolTrace] {
+        guard case let .object(root) = data, case let .array(items) = root["tool_trace"] else {
+            return []
         }
-        if ["课", "课表", "今天"].contains(where: { query.contains($0) }) {
-            return "timetable.today"
+        return items.compactMap { item in
+            guard case let .object(object) = item, case let .string(name) = object["name"] else {
+                return nil
+            }
+            let ok: Bool?
+            if case let .bool(value) = object["ok"] { ok = value } else { ok = nil }
+            let summary: String?
+            if case let .string(value) = object["summary"] { summary = value } else { summary = nil }
+            let cardType: String?
+            if case let .string(value) = object["card_type"] { cardType = value } else { cardType = nil }
+            return HermesToolTrace(name: name, ok: ok, summary: summary, cardType: cardType)
         }
-        if ["作业", "ddl"].contains(where: { text.contains($0) }) {
-            return "assignment.list_unfinished"
-        }
-        if ["研讨室", "图书馆"].contains(where: { query.contains($0) }) {
-            return "room.available"
-        }
-        if ["场馆", "羽毛球", "健身", "游泳", "网球", "乒乓球", "篮球"].contains(where: { query.contains($0) }) {
-            return "gym.available"
-        }
-        if ["讲座", "组会", "课题"].contains(where: { query.contains($0) }) {
-            return "seminar.list"
-        }
-        if query.contains("班车") || text.contains("qg") || query.contains("岐关") {
-            return "transit.bus"
-        }
-        return "hermes.ask"
     }
 
     private static func answerText(for result: HermesAskResult) -> String {
+        let hasItems: Bool = {
+            guard case let .object(root) = result.data, case let .array(items) = root["items"] else {
+                return false
+            }
+            return !items.isEmpty
+        }()
         if case let .object(root) = result.data, case let .string(message) = root["message"] {
-            return message
+            return compactHermesMessage(message, cardType: result.cardType, hasStructuredItems: hasItems)
         }
         switch result.kind {
         case "help":
-            return "我主要处理课表、DDL、场地、活动、班车，以及按画像推荐公选。可以换个校园事务再问我。"
+            return "我主要处理课表、DDL、场地、活动、班车，以及按画像推荐公选。"
         case "clarification":
             return "还差几个参数，补齐后我就能继续查。"
         case "action_preview":
-            return "已生成行动预览。确认后再执行，不会直接下单。"
+            return "已生成预览，确认后再执行。"
         default:
             if result.cardType == "elective_match" {
-                return "已经按你的画像筛过一轮可选课，下面是匹配结果。"
+                return "按你的画像挑了这几门。"
             }
             return "查到了，结果在下面。"
         }
+    }
+
+    private static func compactHermesMessage(
+        _ raw: String,
+        cardType: String,
+        hasStructuredItems: Bool
+    ) -> String {
+        var text = stripBoilerplate(raw)
+        if hasStructuredItems {
+            if let range = text.range(of: #"\n?\s*1[\.、]"#, options: .regularExpression) {
+                text = String(text[..<range.lowerBound])
+            }
+            for marker in ["几点提醒", "提醒一句", "想再按", "需要我帮你", "要不要我"] {
+                if let range = text.range(of: marker) {
+                    text = String(text[..<range.lowerBound])
+                }
+            }
+        }
+        text = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        if text.isEmpty {
+            return cardType == "elective_match" ? "按你的画像挑了这几门。" : "查到了。"
+        }
+        return text
+    }
+
+    private static func stripBoilerplate(_ raw: String) -> String {
+        var text = raw
+        let patterns = [
+            #"提醒一句[：:].*?(不会自动帮你选课|不会自动选课)[。.]?"#,
+            #"这只是只读推荐[^。\n]*[。.]?"#,
+            #"只读推荐[，,]不会自动选课[。.]?"#,
+            #"正式选课请在教务确认[。.]?"#,
+            #"不会自动帮你选课[。.]?"#,
+            #"不会自动选课[。.]?"#,
+            #"不会代选课[。.]?"#,
+        ]
+        for pattern in patterns {
+            text = text.replacingOccurrences(of: pattern, with: "", options: .regularExpression)
+        }
+        return text.replacingOccurrences(of: #"\n{3,}"#, with: "\n\n", options: .regularExpression)
     }
 }
 
@@ -353,7 +513,7 @@ struct HermesAskView: View {
             HStack(spacing: 10) {
                 LuluView(clip: .homeListening, placement: .avatar)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Hermes")
+                    Text(AppBrand.agentName)
                         .font(OMTheme.TypeToken.title3)
                         .foregroundStyle(OMTheme.ColorToken.ink)
                     Text("校园事务助手 · 会先想清楚再查工具")
@@ -392,15 +552,19 @@ struct HermesAskView: View {
         case .answer:
             HStack(alignment: .top, spacing: 8) {
                 LuluView(clip: .homeReply, placement: .avatar)
-                OMChatBubble(message.text, mine: false)
+                OMChatBubble(message.text, mine: false, markdown: true)
             }
         case .result:
             if let result = message.result {
                 VStack(alignment: .leading, spacing: 10) {
                     if result.cardType == "elective_match" {
-                        ElectiveMatchCard(data: result.data)
-                    } else if result.kind != "help" {
-                        StructuredResultCard(title: result.cardType, value: result.data)
+                        HermesResultPanel(icon: "sparkles", eyebrow: "匹配结果") {
+                            ElectiveMatchCard(data: result.data)
+                        }
+                    } else if result.kind != "help" && result.cardType != "agent_reply" {
+                        HermesResultPanel(icon: "doc.text", eyebrow: "查询结果") {
+                            StructuredResultCard(title: result.cardType, value: hermesCardData(result.data), embedded: true)
+                        }
                     }
                     if result.kind == "clarification", let action = result.action {
                         OMButton("补齐参数后继续", systemIcon: "slider.horizontal.3", kind: .ghost, small: true) {
@@ -893,7 +1057,6 @@ private struct ScheduleBlock: Identifiable {
     enum Phase { case loading, loaded(WeekData), failed(String) }
     @Published var week = 1
     @Published var phase: Phase = .loading
-    @Published var refreshing = false
     private let repository: TodayRepository
     private let gatherings: GatheringRepository
     /// (周号, 周一) 基准：有课的周建立，空课周据此推日期。
@@ -923,16 +1086,6 @@ private struct ScheduleBlock: Identifiable {
             let data = build(timetable: timetable, gatherings: cachedGatherings ?? [])
             phase = .loaded(data)
             autoLocateTodayIfNeeded(from: data)
-        } catch { phase = .failed(error.localizedDescription) }
-    }
-
-    func refresh() async {
-        guard !refreshing else { return }; refreshing = true; defer { refreshing = false }
-        do {
-            _ = try await repository.refreshTimetable()
-            try? await Task.sleep(for: .seconds(1))
-            cachedGatherings = nil
-            await load()
         } catch { phase = .failed(error.localizedDescription) }
     }
 
@@ -1088,17 +1241,6 @@ struct TimetableView: View {
         } else {
             OMCard { OMG5StateView(state: .empty, message: "这周还没有日程数据。") }
         }
-        HStack(spacing: 6) {
-            if let updated = data.timetable.updatedAt {
-                OMTextRole.cap("更新于 \(updated.formatted(date: .abbreviated, time: .shortened)) · \(data.timetable.source)")
-            }
-            Spacer()
-        }
-        .padding(.top, OMTheme.Spacing.s2)
-        OMButton("增量校验课表", systemIcon: "arrow.triangle.2.circlepath", kind: .ghost, small: true, loading: model.refreshing) {
-            Task { await model.refresh() }
-        }
-        .padding(.top, OMTheme.Spacing.s2)
     }
 
     private var weekSwitcher: some View {

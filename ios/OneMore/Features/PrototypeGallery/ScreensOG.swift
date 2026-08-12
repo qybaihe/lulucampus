@@ -151,7 +151,7 @@ struct G1Screen: View {
             VStack(spacing: 0) {
                 OMSection(title: "下方页面保持不动")
                 OMCard {
-                    OMRow(sticker: "books-stack.png", title: "Hermes 以浮层唤起", sub: "不打断当前页面，关掉就回到原处")
+                    OMRow(sticker: "books-stack.png", title: "\(AppBrand.agentName) 以浮层唤起", sub: "不打断当前页面，关掉就回到原处")
                 }
             }
             .opacity(0.35)
@@ -164,7 +164,7 @@ struct G1Screen: View {
             VStack(spacing: 0) {
                 LuluView(clip: .homeListening, placement: .confirm)
                     .frame(maxWidth: .infinity)
-                OMTextRole.t3("Hermes")
+                OMTextRole.t3(AppBrand.agentName)
                     .frame(maxWidth: .infinity)
                     .multilineTextAlignment(.center)
                     .padding(.top, OMTheme.Spacing.s2)
