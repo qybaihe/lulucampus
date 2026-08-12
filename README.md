@@ -1,11 +1,9 @@
 # 噜噜成局 · ONE MORE
 
 <p align="center">
-  <img src="docs/readme-assets/app-icon.png" alt="噜噜成局 App Icon" width="160" />
-</p>
-
-<p align="center">
-  <img src="docs/readme-assets/splash.png" alt="噜噜成局开屏" width="280" />
+  <img src="docs/readme-assets/app-icon.png" alt="噜噜成局 App Icon" width="120" />
+  &nbsp;&nbsp;
+  <img src="docs/readme-assets/lulu-ip.png" alt="噜噜 IP" width="120" />
 </p>
 
 <p align="center">
@@ -26,6 +24,12 @@
   <a href="docs/README.md">工程文档索引</a>
 </p>
 
+<p align="center">
+  <img src="docs/readme-assets/hero-trio.png" alt="开屏 · 分项授权 · 今天" width="900" />
+</p>
+
+<p align="center"><sub>开屏主张 · 分项授权由你掌控 · hermes「今天」</sub></p>
+
 ---
 
 ## 一句话定义
@@ -34,10 +38,6 @@
 它把主动表达的目标、课表推导出的真实共同空档和历史成局记录组合起来，匿名凑齐合适的同伴，把场地、活动与日程真正落实，然后退到幕后。
 
 最小产品单元不是「人」，而是「局」——一次羽毛球局、一次比赛筹备会、一次跨校区同行、一次 90 分钟作业冲刺，都是一个局。
-
-<p align="center">
-  <img src="docs/readme-assets/lulu-ip.png" alt="噜噜 IP" width="220" />
-</p>
 
 **说人话，这套系统干两件事：**
 
@@ -65,6 +65,18 @@
 
 ---
 
+## 授权由你掌控
+
+社交与校园能力默认不越权：课表与空闲、课程画像、同课匹配、校园预约代理均为**分项授权**，可随时在设置中单独撤回并级联清除派生数据。边界由用户点选，不是系统默认全开。
+
+<p align="center">
+  <img src="docs/readme-assets/privacy-duo.png" alt="分项授权与兴趣画像" width="720" />
+</p>
+
+<p align="center"><sub>左：授权由你掌控（四项可勾选）· 右：抖音兴趣画像，默认可一键删除</sub></p>
+
+---
+
 ## 核心能力
 
 ### Skill 1 · SYSU Anything（校园行动引擎）
@@ -74,10 +86,6 @@
 ### Skill 2 · 抖音兴趣画像
 
 扫码导入「喜欢」列表 → 主标签 / 子兴趣 / 人格化描述 / 成局提示。默认仅成局后对成员可见，可一键删除。Cookie 不进响应与日志。
-
-<p align="center">
-  <img src="docs/readme-assets/taste-persona.png" alt="抖音兴趣画像" width="280" />
-</p>
 
 ### 成局主流程
 
@@ -90,12 +98,15 @@
 
 <p align="center"><sub>意图卡 → 分别确认 → 「为什么是你们」与开场第一句 → 群聊系统成局卡</sub></p>
 
-| 截图 | 说明 |
-|---|---|
-| ![](docs/readme-assets/intent-composer.png) | 「差一个」一句话发起 |
-| ![](docs/readme-assets/match-explain.png) | 可解释匹配与破冰第一句 |
-| ![](docs/readme-assets/channel-chat.png) | 局内群聊 · AI 退场后的系统成局卡 |
-| ![](docs/readme-assets/competition-duo.png) | 比赛雷达与「还差 N 个角色」组队详情 |
+<p align="center">
+  <img src="docs/readme-assets/product-quad.png" alt="活动 · 赛事详情 · 群聊 · 招募中" width="900" />
+</p>
+
+<p align="center"><sub>比赛雷达 · 「还差 N 个角色」· 局内群聊 · 噜噜招募中</sub></p>
+
+<p align="center">
+  <img src="docs/readme-assets/competition-duo.png" alt="活动列表与赛事详情" width="720" />
+</p>
 
 ---
 
@@ -310,6 +321,7 @@ uv run celery -A onemore.tasks.celery_app:celery_app beat -l INFO
 - **执行闭环** — 多人确认后预约落到校园系统  
 - **静默成局** — 未满员不可见，凑不齐静默解散  
 - **把自己删掉的 AI** — 成局后退场，优化「事成」而非停留时长  
+- **授权由你掌控** — 分项勾选、随时撤回、级联清除  
 - **安全即架构** — LLM 不碰命令行；红灯能力不可达；凭证按人加密隔离  
 
 ---
