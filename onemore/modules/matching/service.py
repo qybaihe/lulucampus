@@ -40,6 +40,15 @@ SIMILAR_WEIGHTS = {
     "trust": 0.05,
 }
 
+# 广州校区内部（南 / 东 / 北）班车可及，视为同一匹配半径；珠海、深圳单独成池。
+_GUANGZHOU_CAMPUSES = frozenset({"南校园", "东校园", "北校园", "广州校区"})
+
+
+def _campus_compatible(left: str | None, right: str | None) -> bool:
+    if not left or not right or left == right:
+        return True
+    return left in _GUANGZHOU_CAMPUSES and right in _GUANGZHOU_CAMPUSES
+
 
 def _tokens(value: str) -> set[str]:
     compact = "".join(value.lower().split())
@@ -163,6 +172,34 @@ def _taste_similarity(db: Session, user_a: str, user_b: str) -> float:
     return _jaccard(left, right)
 
 
+def _shared_interest_labels(db: Session, user_ids: list[str]) -> list[str]:
+    from onemore.modules.taste_profile.service import public_interest_tags
+
+    counts: dict[str, int] = {}
+    for user_id in user_ids:
+        for tag in public_interest_tags(db, user_id):
+            counts[tag] = counts.get(tag, 0) + 1
+    return [
+        tag
+        for tag, count in sorted(counts.items(), key=lambda item: (-item[1], item[0]))
+        if count >= 2
+    ]
+
+
+def _taste_aware_match_reason(
+    db: Session, user_ids: list[str], *, complementary: bool
+) -> str:
+    shared = _shared_interest_labels(db, user_ids)
+    if complementary:
+        base = "你们的目标一致，时间可行；成员能力覆盖了不同角色。"
+        if shared:
+            return f"{base}兴趣上也对上了：{'、'.join(shared[:2])}。"
+        return base
+    if shared:
+        return f"兴趣画像相近（{'、'.join(shared[:2])}），时间与目标也对得上。"
+    return "你们在时间、目标与参与强度上相近。"
+
+
 def _take_pairwise_compatible(
     db: Session,
     base_user_ids: set[str] | list[str],
@@ -217,7 +254,7 @@ def match_similar(db: Session, source: IntentCard, candidate: IntentCard) -> dic
     dimensions = {
         "time": _window_overlap(source, candidate),
         "goal": _jaccard(_tokens(source.goal), _tokens(candidate.goal)),
-        "campus": 1.0 if not source.campus or source.campus == candidate.campus else 0.0,
+        "campus": 1.0 if _campus_compatible(source.campus, candidate.campus) else 0.0,
         "level": _jaccard(source_tags, candidate_tags),
         "taste": taste,
         "interaction": _matching_preference_similarity(db, source, candidate),
@@ -232,6 +269,9 @@ def match_similar(db: Session, source: IntentCard, candidate: IntentCard) -> dic
     reason = "共同时间稳定，目标与参与强度相近"
     if taste >= 0.45:
         reason = "兴趣画像相近，共同时间与目标也匹配"
+        shared = _shared_interest_labels(db, [source.user_id, candidate.user_id])
+        if shared:
+            reason = f"兴趣画像相近（{'、'.join(shared[:2])}），共同时间与目标也匹配"
     return {
         "score": round(min(score, 1.0), 4),
         "dimensions": dimensions,
@@ -278,7 +318,7 @@ def match_complementary(
             skills = set(_visible_capability_vector(db, candidate.user_id))
             marginal = len((skills - covered) & required) if required else len(skills - covered)
             time_score = _window_overlap(source, candidate)
-            campus_score = 1.0 if source.campus == candidate.campus else 0.0
+            campus_score = 1.0 if _campus_compatible(source.campus, candidate.campus) else 0.0
             cross_score = profile.cross_major_score if profile else 0.0
             taste_score = _taste_similarity(db, source.user_id, candidate.user_id)
             score = (
@@ -387,7 +427,7 @@ def _eligible(db: Session, source: IntentCard, candidate: IntentCard, gathering:
         or candidate.min_size > gathering.target_size
     ):
         return False
-    if source.campus and candidate.campus and source.campus != candidate.campus:
+    if not _campus_compatible(source.campus, candidate.campus):
         return False
     source_user = db.get(User, source.user_id)
     candidate_user = db.get(User, candidate.user_id)
@@ -661,10 +701,10 @@ def run_matching(db: Session) -> dict:
             from onemore.modules.notify.service import notify_confirmation_required
 
             notify_confirmation_required(db, gathering)
-            gathering.match_reason = (
-                "你们的目标一致，时间可行；成员能力覆盖了不同角色。"
-                if gathering.mode == "complementary"
-                else "你们在时间、目标与参与强度上相近。"
+            gathering.match_reason = _taste_aware_match_reason(
+                db,
+                user_ids,
+                complementary=gathering.mode == "complementary",
             )
             formed.append(gathering.id)
             db.commit()

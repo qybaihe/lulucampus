@@ -183,6 +183,7 @@ def gap_share_view(db: Session, token: str) -> dict:
         "joinable": joinable,
         "deep_link": f"onemore://g/{token}",
         "universal_link": f"{base}/g/{token}",
+        "looking_for": _looking_for_labels(db, gathering.required_roles or []),
     }
 
 
@@ -618,6 +619,27 @@ def _action_id(db: Session, gathering_id: str) -> str | None:
     )
 
 
+def _looking_for_labels(db: Session, role_keys: list[str]) -> list[str]:
+    """Identity-free recruit copy: capability labels the table still needs."""
+    if not role_keys:
+        return []
+    from onemore.db.models import CapabilityTag
+    from onemore.modules.taste_profile.competition_match import SKILL_LABELS
+
+    rows = {
+        row.key: row.label
+        for row in db.scalars(select(CapabilityTag).where(CapabilityTag.key.in_(role_keys)))
+    }
+    labels: list[str] = []
+    for key in role_keys:
+        label = rows.get(key) or SKILL_LABELS.get(key) or key
+        if label.startswith("taste:"):
+            continue
+        if label and label not in labels:
+            labels.append(label)
+    return labels[:6]
+
+
 def to_view(db: Session, gathering: Gathering, viewer_id: str | None) -> dict:
     members = active_members(db, gathering.id)
     member = next((item for item in members if item.user_id == viewer_id), None)
@@ -684,6 +706,7 @@ def to_view(db: Session, gathering: Gathering, viewer_id: str | None) -> dict:
         "required_trust_level": gathering.required_trust_level,
         "required_roles": gathering.required_roles,
         "match_reason": gathering.match_reason if member and visible_counts else None,
+        "looking_for": _looking_for_labels(db, gathering.required_roles or []),
         "my_confirmation": member.confirmation_status if member else None,
         "confirmed_count": (
             sum(item.confirmation_status == ConfirmationStatus.CONFIRMED.value for item in members)

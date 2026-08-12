@@ -457,4 +457,34 @@ def expire_sweep(db: Session) -> int:
     return len(expired)
 
 
+def taste_compile_meta(db: Session, user: User, card: IntentCard) -> dict[str, Any]:
+    """Attach persona-aware recruit hints when compiling an intent."""
+    from onemore.modules.taste_profile.competition_match import score_competition
+    from onemore.modules.taste_profile.service import persona_dict
+
+    persona = persona_dict(db, user.id)
+    if persona is None:
+        return {}
+    competition_view: dict[str, Any] = {
+        "name": card.goal,
+        "tracks": [card.gathering_type],
+        "required_skills": [{"key": key} for key in (card.required_roles or [])],
+        "priority": 0,
+        "recommendation_tier": "B",
+    }
+    if card.competition_id:
+        from onemore.modules.competitions.service import get_actionable
+        from onemore.core.errors import NotFoundError
+
+        try:
+            competition_view = get_actionable(db, card.competition_id)
+        except NotFoundError:
+            pass
+    scored = score_competition(persona, competition_view)
+    return {
+        "taste_fit_label": scored.get("taste_fit_label"),
+        "recruit_hints": scored.get("recruit_hints") or [],
+    }
+
+
 card_view_dict = _card_view_dict

@@ -140,6 +140,11 @@ class CompetitionView(APIModel):
     verified_at: datetime | None
     team_forming_supported: bool
     collaboration_action: str
+    # Present when the caller is logged in and has a Douyin taste profile.
+    taste_fit: float | None = None
+    taste_fit_label: str | None = None
+    taste_fit_reasons: list[str] = Field(default_factory=list)
+    recruit_hints: list[str] = Field(default_factory=list)
 
 
 class IngestResult(APIModel):

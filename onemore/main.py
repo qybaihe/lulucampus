@@ -17,8 +17,10 @@ from onemore.core.errors import AppError
 from onemore.core.http import install_http_infrastructure
 from onemore.core.idempotency_api import router as idempotency_router
 from onemore.db.seed import seed_demo_data, seed_reference_data
+from onemore.hermes.mcp_api import router as campus_mcp_router
 from onemore.modules.actions.api import router as actions_router
 from onemore.modules.campus.api import router as campus_router
+from onemore.modules.cast_driver.api import router as cast_driver_router
 from onemore.modules.collab.api import router as collab_router
 from onemore.modules.competitions.api import router as competitions_router
 from onemore.modules.gathering.api import router as gathering_router
@@ -33,6 +35,7 @@ from onemore.modules.notify.api import router as notify_router
 from onemore.modules.profile.api import router as profile_router
 from onemore.modules.schedule.api import router as schedule_router
 from onemore.modules.taste_profile.api import router as taste_profile_router
+from onemore.modules.taste_profile.demo_api import router as demo_taste_router
 from onemore.modules.trust.api import internal_router as trust_internal_router
 from onemore.modules.trust.api import router as trust_router
 
@@ -69,14 +72,22 @@ def create_app() -> FastAPI:
         docs_url="/docs",
         redoc_url="/redoc",
     )
-    if settings.cors_origins:
-        app.add_middleware(
-            CORSMiddleware,
-            allow_origins=settings.cors_origins,
-            allow_credentials=True,
-            allow_methods=["*"],
-            allow_headers=["*"],
-        )
+    # Laptop Vite (`yarn dev`) talks to this same API. Always allow those
+    # origins so local web shares production Postgres without a CORS block.
+    local_web_origins = [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]
+    cors_origins = list(dict.fromkeys([*settings.cors_origins, *local_web_origins]))
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=cors_origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
     install_http_infrastructure(app)
     for router in (
         identity_router,
@@ -84,6 +95,8 @@ def create_app() -> FastAPI:
         profile_router,
         schedule_router,
         campus_router,
+        campus_mcp_router,
+        cast_driver_router,
         intent_router,
         matching_router,
         media_router,
@@ -97,6 +110,7 @@ def create_app() -> FastAPI:
         actions_router,
         notify_router,
         taste_profile_router,
+        demo_taste_router,
         idempotency_router,
     ):
         app.include_router(router)
@@ -135,7 +149,7 @@ def create_app() -> FastAPI:
         if settings.hermes_mode == "real":
             cli_status = "ok" if Path(settings.sysu_cli).is_file() else "missing"
             if settings.is_production and cli_status == "missing":
-                raise AppError("HERMES_CLI_MISSING", "Hermes CLI 未就绪", 503)
+                raise AppError("HERMES_CLI_MISSING", "Lulu Hermes 未就绪", 503)
         return {
             "status": "ready",
             "database": "ok",

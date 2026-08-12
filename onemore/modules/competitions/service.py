@@ -208,6 +208,15 @@ def _view(db: Session, event: CompetitionEvent) -> dict:
     }
 
 
+def _apply_viewer_taste(db: Session, views: list[dict], viewer_id: str | None) -> list[dict]:
+    if not viewer_id:
+        return views
+    from onemore.modules.taste_profile.competition_match import apply_taste_fit
+    from onemore.modules.taste_profile.service import persona_dict
+
+    return apply_taste_fit(views, persona_dict(db, viewer_id))
+
+
 def list_actionable(
     db: Session,
     *,
@@ -216,6 +225,7 @@ def list_actionable(
     deadline_before: datetime | None = None,
     team_only: bool | None = None,
     recommendation_tier: str | None = None,
+    viewer_id: str | None = None,
 ) -> list[dict]:
     public_snapshot = get_settings().competition_public_snapshot_version
     query = select(CompetitionEvent).where(
@@ -253,7 +263,7 @@ def list_actionable(
         ]
     if team_only:
         views = [item for item in views if item["team_constraints"]["team_size_max"] > 1]
-    return views
+    return _apply_viewer_taste(db, views, viewer_id)
 
 
 def list_recommendation_tiers() -> list[dict]:
@@ -269,7 +279,9 @@ def list_recommendation_tiers() -> list[dict]:
     ]
 
 
-def get_actionable(db: Session, competition_id: str) -> dict:
+def get_actionable(
+    db: Session, competition_id: str, *, viewer_id: str | None = None
+) -> dict:
     public_snapshot = get_settings().competition_public_snapshot_version
     event = db.scalar(
         select(CompetitionEvent).where(
@@ -283,7 +295,8 @@ def get_actionable(db: Session, competition_id: str) -> dict:
         raise NotFoundError("赛事", competition_id)
     if event.registration_deadline and ensure_utc(event.registration_deadline) < datetime.now(UTC):
         raise NotFoundError("可报名赛事", competition_id)
-    return _view(db, event)
+    views = _apply_viewer_taste(db, [_view(db, event)], viewer_id)
+    return views[0]
 
 
 def list_teams(db: Session, competition_id: str) -> list[dict]:

@@ -46,6 +46,10 @@ def render_share_page(view: dict) -> str:
     joinable = bool(view.get("joinable"))
     deep_link = html.escape(view.get("deep_link") or "")
     seats = _seats_markup(target, missing)
+    looking = [html.escape(str(item)) for item in (view.get("looking_for") or []) if item]
+    looking_block = (
+        f'<p class="looking">这桌还缺：{" · ".join(looking)}</p>' if looking else ""
+    )
 
     if joinable and missing > 0:
         gap_text = f"还差 {missing} 人"
@@ -124,6 +128,7 @@ def render_share_page(view: dict) -> str:
     border-left: 3px solid var(--yolk); padding-left: 10px; text-align: left;
     display: inline-block;
   }}
+  .looking {{ margin-top: 12px; font-size: 13px; color: var(--dim); }}
   .state {{ margin-top: 18px; font-size: 13px; color: var(--dim); }}
   .cta {{
     display: block; margin-top: 18px; padding: 14px 0; border-radius: 16px;
@@ -143,6 +148,7 @@ def render_share_page(view: dict) -> str:
     <h1>{gathering_type}{('·' + title) if title and title != gathering_type else ''}</h1>
     <p class="meta">{slot}<br>{campus or '校内'}</p>
     {mood_block}
+    {looking_block}
     <p class="state">{state_line}</p>
     {cta_block}
     <div class="foot">匿名招募 · 满座即成局 · 失败无痕</div>

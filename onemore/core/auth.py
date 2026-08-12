@@ -108,6 +108,21 @@ def current_user(
     return user
 
 
+def optional_user(
+    authorization: str | None = Header(default=None),
+    x_user_id: str | None = Header(default=None),
+    db: Session = __import__("fastapi").Depends(get_db),
+) -> User | None:
+    """Public endpoints that personalize when a valid session is present."""
+    user_id = _extract_user_id(authorization, x_user_id)
+    if not user_id:
+        return None
+    user = db.scalar(select(User).where(User.id == user_id))
+    if user is None or user.account_status != "active":
+        return None
+    return user
+
+
 def require_admin(x_admin_token: str | None = Header(default=None)) -> None:
     if x_admin_token != get_settings().admin_token:
         raise ForbiddenError("管理员令牌无效")

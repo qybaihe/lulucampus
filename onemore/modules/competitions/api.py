@@ -5,9 +5,10 @@ from datetime import datetime
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
-from onemore.core.auth import require_admin
+from onemore.core.auth import optional_user, require_admin
 from onemore.core.database import get_db
 from onemore.core.schemas import APIResponse
+from onemore.db.models import User
 from onemore.modules.competitions import service
 from onemore.modules.competitions.recommendation import RECOMMENDATION_TIER_PATTERN
 from onemore.modules.competitions.schemas import (
@@ -32,6 +33,7 @@ def competitions(
         pattern=RECOMMENDATION_TIER_PATTERN,
         description="Filter by storage code A|B|C. Prefer labels from GET /competitions/recommendation-tiers.",
     ),
+    user: User | None = Depends(optional_user),
     db: Session = Depends(get_db),
 ) -> APIResponse[list[CompetitionView]]:
     views = service.list_actionable(
@@ -41,6 +43,7 @@ def competitions(
         deadline_before=deadline_before,
         team_only=team_only,
         recommendation_tier=recommendation_tier,
+        viewer_id=user.id if user else None,
     )
     return APIResponse(data=[CompetitionView.model_validate(item) for item in views])
 
@@ -61,10 +64,16 @@ def competition_recommendation_tiers() -> APIResponse[list[RecommendationTierVie
 
 @router.get("/competitions/{competition_id}", response_model=APIResponse[CompetitionView])
 def competition_detail(
-    competition_id: str, db: Session = Depends(get_db)
+    competition_id: str,
+    user: User | None = Depends(optional_user),
+    db: Session = Depends(get_db),
 ) -> APIResponse[CompetitionView]:
     return APIResponse(
-        data=CompetitionView.model_validate(service.get_actionable(db, competition_id))
+        data=CompetitionView.model_validate(
+            service.get_actionable(
+                db, competition_id, viewer_id=user.id if user else None
+            )
+        )
     )
 
 

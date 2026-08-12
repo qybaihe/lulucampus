@@ -950,3 +950,17 @@ class SceneTrigger(TimestampMixin, Base):
     last_shown_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     ignored_count: Mapped[int] = mapped_column(Integer, default=0)
     disabled: Mapped[bool] = mapped_column(Boolean, default=False)
+
+
+class CastDriverEvent(Base):
+    """Audit log for the demo-cast live driver. Not a product surface."""
+
+    __tablename__ = "cast_driver_events"
+    __table_args__ = (Index("ix_cast_driver_events_user_occurred", "user_id", "occurred_at"),)
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True)
+    kind: Mapped[str] = mapped_column(String(32), index=True)
+    subject_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    detail: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
+    occurred_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, index=True)

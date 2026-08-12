@@ -67,6 +67,8 @@ class IntentCompileResult(APIModel):
     needs_clarification: bool
     questions: list[IntentClarificationQuestion]
     max_rounds: int = 2
+    taste_fit_label: str | None = None
+    recruit_hints: list[str] = Field(default_factory=list)
 
 
 class IntentCardPatch(APIModel):

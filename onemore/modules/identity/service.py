@@ -69,7 +69,8 @@ def register_phone_account(
     except IntegrityError as exc:
         db.rollback()
         raise ConflictError("PHONE_ALREADY_REGISTERED", "该手机号已注册，请直接登录") from exc
-    _ensure_authenticated_trust_floor(db, user.id)
+    # 手机号注册默认 T0；校园核验（verified_at）后才会抬到 T1。
+    _ensure_trust_floor(db, user.id)
     db.commit()
     db.refresh(user)
     return user, issue_access_token(user.id)
@@ -85,7 +86,7 @@ def login_phone_account(db: Session, phone: str, password: str) -> tuple[User, s
         raise AppError("INVALID_CREDENTIALS", "手机号或密码不正确", 401)
     if user.account_status != "active":
         raise AppError("ACCOUNT_UNAVAILABLE", "该账号当前不可用", 403)
-    _ensure_authenticated_trust_floor(db, user.id)
+    _ensure_trust_floor(db, user.id)
     db.commit()
     return user, issue_access_token(user.id)
 
@@ -231,18 +232,24 @@ def _bind_campus_identity(
 
     target.account_status = "active"
     target.verified_at = target.verified_at or utcnow()
-    _ensure_authenticated_trust_floor(db, target.id)
+    # 校园身份绑定后抬到至少 T1；已有更高等级不降。
+    _ensure_trust_floor(db, target.id)
     return target, provisional_to_purge
 
 
-def _ensure_authenticated_trust_floor(db: Session, user_id: str) -> None:
-    """Authentication raises the T0 floor but never erases earned trust."""
+def _ensure_trust_floor(db: Session, user_id: str) -> None:
+    """按是否完成校园核验设定信任地板：未核验 T0，已核验 ≥T1；不降级。"""
 
+    from onemore.modules.trust.service import LEVEL_ORDER
+
+    user = db.get(User, user_id)
+    floor = TrustLevel.T1.value if user is not None and user.verified_at else TrustLevel.T0.value
     trust = db.get(TrustProfile, user_id)
     if trust is None:
-        db.add(TrustProfile(user_id=user_id, level=TrustLevel.T1.value))
-    elif trust.level == TrustLevel.T0.value:
-        trust.level = TrustLevel.T1.value
+        db.add(TrustProfile(user_id=user_id, level=floor))
+        return
+    if LEVEL_ORDER.get(trust.level, 0) < LEVEL_ORDER.get(floor, 0):
+        trust.level = floor
 
 
 def _mark_login_subsystems(db: Session, user_id: str, *, fake: bool) -> None:
@@ -293,7 +300,7 @@ def complete_fake_login(
         ):
             user = original
             user.verified_at = user.verified_at or utcnow()
-            _ensure_authenticated_trust_floor(db, user.id)
+            _ensure_trust_floor(db, user.id)
         else:
             user, _ = _bind_campus_identity(db, session, campus_subject)
         user.display_name = user.display_name or "中大同学"

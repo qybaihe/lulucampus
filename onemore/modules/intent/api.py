@@ -32,11 +32,14 @@ def compile_intent(
     db: Session = Depends(get_db),
 ) -> APIResponse[IntentCompileResult]:
     card, questions = service.compile_intent(db, user, body)
+    taste = service.taste_compile_meta(db, user, card)
     return APIResponse(
         data=IntentCompileResult(
             card=_view(card),
             needs_clarification=bool(questions),
             questions=[IntentClarificationQuestion.model_validate(item) for item in questions],
+            taste_fit_label=taste.get("taste_fit_label"),
+            recruit_hints=taste.get("recruit_hints") or [],
         )
     )
 

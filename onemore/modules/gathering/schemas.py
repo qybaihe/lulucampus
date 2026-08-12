@@ -62,6 +62,7 @@ class GatheringView(APIModel):
     required_trust_level: str
     required_roles: list[str]
     match_reason: str | None = None
+    looking_for: list[str] = Field(default_factory=list)
     my_confirmation: str | None = None
     confirmed_count: int | None = None
     member_count: int | None = None
@@ -158,6 +159,7 @@ class GapShareView(APIModel):
     joinable: bool
     deep_link: str
     universal_link: str
+    looking_for: list[str] = Field(default_factory=list)
 
 
 class IcebreakerFactView(APIModel):
