@@ -1,0 +1,240 @@
+{
+  "lead_version": "competition-leads-cn-v1-2026-08-11",
+  "generated_at": "2026-08-11T20:04:54+08:00",
+  "items": [
+    {
+      "external_key": "ciscn_works_2026",
+      "name": "第十九届全国大学生信息安全竞赛（作品赛）暨第三届“长城杯”网数智安全大赛（作品赛）",
+      "status": "待核验",
+      "source_url": "https://www.ciscn.cn/announcement/view/412",
+      "registration_url": "https://www.ciscn.cn/competition/securityCompetition?compet_id=45",
+      "discovered_at": "2026-08-11T20:04:54+08:00",
+      "official_claims": [
+        "官方站点公布作品赛报名与作品提交已结束；线上初赛、入围赛和约定的线下决赛安排已发布。",
+        "参赛对象、队伍上限和奖项可在官方赛项页核对。"
+      ],
+      "missing_fields": [
+        "本批次报名入口已关闭",
+        "下一阶段对中大用户仍可采取的报名或观赛动作"
+      ],
+      "next_check": "核对官方后续赛程通知和是否开放观摩、补录或下一届预报名。"
+    },
+    {
+      "external_key": "ciscn_challenge_2026",
+      "name": "第十九届全国大学生信息安全竞赛（挑战赛）暨第三届“长城杯”网数智安全大赛（挑战赛）",
+      "status": "待核验",
+      "source_url": "https://www.ciscn.cn/announcement/view/412",
+      "registration_url": "https://www.ciscn.cn/competition/securityCompetition?compet_id=46",
+      "discovered_at": "2026-08-11T20:04:54+08:00",
+      "official_claims": [
+        "官方站点公布挑战赛报名已截止，并公布线上赛、入围阶段和线下决赛安排。"
+      ],
+      "missing_fields": [
+        "当前报名入口已关闭",
+        "是否仍有后续开放动作或旁观入口"
+      ],
+      "next_check": "跟踪官方赛程、决赛通知和2027届报名公告。"
+    },
+    {
+      "external_key": "huanghecup_cyber_student_2026",
+      "name": "2026“黄鹤杯”网络安全人才创新大赛学生组",
+      "status": "待核验",
+      "source_url": "https://hhb.whcsa.org.cn/",
+      "registration_url": "https://ctf.chuzelab.com/",
+      "discovered_at": "2026-08-11T20:04:54+08:00",
+      "official_claims": [
+        "官网面向全国相关专业在读学生设置学生组，队伍不超过3人，初赛线上、决赛武汉线下。",
+        "官网显示报名截止2026年7月15日，2026年10月举行线下决赛。"
+      ],
+      "missing_fields": [
+        "当前报名已截止",
+        "奖项和决赛详细时间未在主页面完整呈现"
+      ],
+      "next_check": "补齐官方奖项和决赛通知后作为下一版网安观赛/备赛条目。"
+    },
+    {
+      "external_key": "ai_security_contest_sjtu_2026",
+      "name": "2026第二届大学生人工智能安全竞赛",
+      "status": "待核验",
+      "source_url": "https://ai-contest.sjtu.edu.cn/",
+      "registration_url": "https://ai-contest.sjtu.edu.cn/",
+      "discovered_at": "2026-08-11T20:04:54+08:00",
+      "official_claims": [
+        "上海交通大学赛事官网公布作品赛和对抗赛，聚焦人工智能安全。",
+        "官网检索信息显示作品赛报名截止时间已延长至2026年8月2日。"
+      ],
+      "missing_fields": [
+        "当前报名已截止",
+        "对抗赛当前入口、队伍人数和下一阶段时间需再次核对"
+      ],
+      "next_check": "核对官网最新公告和下一届报名时间。"
+    },
+    {
+      "external_key": "cuidc_industrial_design_2026",
+      "name": "2026第八届全国大学生工业设计大赛",
+      "status": "待核验",
+      "source_url": "https://www.cuidc.net/",
+      "registration_url": "https://www.cuidc.net/",
+      "discovered_at": "2026-08-11T20:04:54+08:00",
+      "official_claims": [
+        "大赛官网及高校官方通知公布人工智能主题、作品提交、校级/省级评审和广州美术学院全国总评审安排。",
+        "公开通知显示本届作品提交截止2026年7月31日。"
+      ],
+      "missing_fields": [
+        "本届报名入口已关闭",
+        "用户可直接参与的下一阶段动作和完整作品提交入口"
+      ],
+      "next_check": "补齐全国评审、模型准备和决赛观摩信息，作为设计类观赛线索。"
+    },
+    {
+      "external_key": "ncda_future_design_2026",
+      "name": "第十四届未来设计师·全国高校数字艺术设计大赛（2026）",
+      "status": "待核验",
+      "source_url": "https://ncda.org.cn/",
+      "registration_url": "https://ncda.org.cn/",
+      "discovered_at": "2026-08-11T20:04:54+08:00",
+      "official_claims": [
+        "赛事官网持续发布2026年数字艺术设计类专题征集及截止时间。"
+      ],
+      "missing_fields": [
+        "本届统一报名入口",
+        "参赛资格和队伍人数",
+        "赛道级奖励和作品提交字段"
+      ],
+      "next_check": "以官网正式赛项通知为准，补齐后再进入可行动快照。"
+    },
+    {
+      "external_key": "china_international_innovation_entrepreneurship_2026",
+      "name": "中国国际大学生创新大赛（2026）",
+      "status": "待核验",
+      "source_url": "https://cse.sysu.edu.cn/article/3534",
+      "registration_url": "https://cse.sysu.edu.cn/article/3534",
+      "discovered_at": "2026-08-11T20:04:54+08:00",
+      "official_claims": [
+        "中山大学官方通知公布校内报名和校内选拔时间。"
+      ],
+      "missing_fields": [
+        "全国组委会本届统一报名入口",
+        "中山大学校内选拔后可直接执行的下一阶段时间",
+        "赛道级队伍人数和奖励"
+      ],
+      "next_check": "核对全国组委会公告和中山大学后续通知。"
+    },
+    {
+      "external_key": "robotcontest_creative_robot_2026",
+      "name": "2026中国高校智能机器人创意大赛",
+      "status": "待核验",
+      "source_url": "https://www.robotcontest.cn/",
+      "registration_url": "https://www.robotcontest.cn/",
+      "discovered_at": "2026-08-11T20:04:54+08:00",
+      "official_claims": [
+        "大赛官网发布2026届赛事及全国决赛相关通知。"
+      ],
+      "missing_fields": [
+        "当前赛项报名截止时间",
+        "有效报名入口",
+        "赛项队伍人数、模式和奖励"
+      ],
+      "next_check": "逐赛项核对官网通知，优先补齐机器人、智能硬件和人工智能赛道。"
+    },
+    {
+      "external_key": "nuedc_electronics_2026",
+      "name": "2026全国大学生电子设计竞赛",
+      "status": "待核验",
+      "source_url": "https://nuedc.xjtu.edu.cn/",
+      "registration_url": "https://nuedc.xjtu.edu.cn/",
+      "discovered_at": "2026-08-11T20:04:54+08:00",
+      "official_claims": [
+        "竞赛官网和高校通知发布2026年相关赛题及竞赛安排。"
+      ],
+      "missing_fields": [
+        "中山大学可执行报名入口",
+        "当前批次报名状态",
+        "赛项队伍人数、提交时间和决赛地点"
+      ],
+      "next_check": "以竞赛官网和广东赛区/中山大学官方通知为准。"
+    },
+    {
+      "external_key": "craic_guangdong_2026",
+      "name": "2026中国机器人及人工智能大赛广东赛区",
+      "status": "待核验",
+      "source_url": "https://www.caairobot.com/post/notification-guangdong-craic2026/",
+      "registration_url": "https://www.caairobot.com/",
+      "discovered_at": "2026-08-11T20:04:54+08:00",
+      "official_claims": [
+        "中国人工智能学会机器人智能系统专业委员会官网发布广东赛区通知。"
+      ],
+      "missing_fields": [
+        "本届当前报名入口",
+        "赛项级截止时间和队伍限制",
+        "奖励和广东赛区下一阶段安排"
+      ],
+      "next_check": "补齐官方赛项页和报名系统后进入快照。"
+    },
+    {
+      "external_key": "cubec_entrepreneurship_plan_2026",
+      "name": "2026年第十四届全国高校商业精英挑战赛创新创业竞赛——创业计划赛道",
+      "status": "待核验",
+      "source_url": "https://www.ccpitcsc.org/eduxq/4857",
+      "registration_url": "https://ssyth.cubec.org.cn/single?id=2",
+      "discovered_at": "2026-08-11T20:04:54+08:00",
+      "official_claims": [
+        "中国贸促会商业行业委员会通知明确2026年8月7日前院校报名、8月27日前提交全国预选赛材料、10月17日至18日线上总决赛和11月13日至15日暂定线下精英赛。"
+      ],
+      "missing_fields": [
+        "学生当前报名已截止",
+        "下一阶段是否仍接受补录或仅可参加后续赛程的确认"
+      ],
+      "next_check": "跟踪组委会是否开放补录/观赛，并纳入下一版历史阶段提醒。"
+    },
+    {
+      "external_key": "appcontest_mobile_app_2026",
+      "name": "2026中国高校计算机大赛——移动应用创新赛",
+      "status": "待核验",
+      "source_url": "https://www.appcontest.net/home/homepage",
+      "registration_url": "https://www.appcontest.net/home/homepage",
+      "discovered_at": "2026-08-11T20:04:54+08:00",
+      "official_claims": [
+        "官方赛事平台显示2026移动应用创新赛报名截止时间为2026年8月10日23:59，作品/后续阶段仍需查看官方公告。"
+      ],
+      "missing_fields": [
+        "当前报名入口已关闭",
+        "下一阶段的有效操作、提交时间和奖励字段"
+      ],
+      "next_check": "核对官方平台公告和下一届开放报名时间。"
+    },
+    {
+      "external_key": "jingkaibei_digital_art_2026",
+      "name": "2026“经开杯”全国大学生数字艺术设计大赛",
+      "status": "待核验",
+      "source_url": "https://www.cxcyds.org.cn/34.html",
+      "registration_url": "https://www.cxcyds.org.cn/34.html",
+      "discovered_at": "2026-08-11T20:04:54+08:00",
+      "official_claims": [
+        "经开杯官网公布数字艺术设计大赛和延期截稿通知。"
+      ],
+      "missing_fields": [
+        "本届作品提交已结束",
+        "下一阶段可报名入口和可执行时间",
+        "完整赛道级队伍限制"
+      ],
+      "next_check": "用于下一批数字媒体、视觉设计和产品设计类别补充。"
+    },
+    {
+      "external_key": "ccf_blockchain_application_2026",
+      "name": "2026年第五届大学生区块链技术与创新应用竞赛（中国计算机学会主办）",
+      "status": "待核验",
+      "source_url": "https://btc.ccf.org.cn/competitioncharter",
+      "registration_url": "https://btc.ccf.org.cn/competition/joinCompetition?teamType=compet&compet_id=43",
+      "discovered_at": "2026-08-11T20:04:54+08:00",
+      "official_claims": [
+        "中国计算机学会官方报名网站显示第五届赛事进行中；官方赛制说明明确函评作品提交为2026年9月1日至10月31日，预计2026年12月20日决赛。"
+      ],
+      "missing_fields": [
+        "官方赛制说明中的报名截止年份显示为2025年，和2026届赛事存在笔误/不一致",
+        "需从报名系统确认本届实际报名截止时间后再导入"
+      ],
+      "next_check": "核对报名系统和最新官方公告，确认2026年报名截止时间。"
+    }
+  ]
+}
