@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "frames_root": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/frames",
+  "output_dir": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews",
+  "previews": [
+    {
+      "state": "idle",
+      "frames": 6,
+      "durations_ms": [
+        280,
+        110,
+        110,
+        140,
+        140,
+        320
+      ],
+      "gif": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews/idle.gif",
+      "webp": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews/idle.webp"
+    },
+    {
+      "state": "running-right",
+      "frames": 8,
+      "durations_ms": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        220
+      ],
+      "gif": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews/running-right.gif",
+      "webp": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews/running-right.webp"
+    },
+    {
+      "state": "running-left",
+      "frames": 8,
+      "durations_ms": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        220
+      ],
+      "gif": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews/running-left.gif",
+      "webp": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews/running-left.webp"
+    },
+    {
+      "state": "waving",
+      "frames": 4,
+      "durations_ms": [
+        140,
+        140,
+        140,
+        280
+      ],
+      "gif": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews/waving.gif",
+      "webp": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews/waving.webp"
+    },
+    {
+      "state": "jumping",
+      "frames": 5,
+      "durations_ms": [
+        140,
+        140,
+        140,
+        140,
+        280
+      ],
+      "gif": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews/jumping.gif",
+      "webp": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews/jumping.webp"
+    },
+    {
+      "state": "failed",
+      "frames": 8,
+      "durations_ms": [
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        240
+      ],
+      "gif": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews/failed.gif",
+      "webp": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews/failed.webp"
+    },
+    {
+      "state": "waiting",
+      "frames": 6,
+      "durations_ms": [
+        150,
+        150,
+        150,
+        150,
+        150,
+        260
+      ],
+      "gif": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews/waiting.gif",
+      "webp": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews/waiting.webp"
+    },
+    {
+      "state": "running",
+      "frames": 6,
+      "durations_ms": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        220
+      ],
+      "gif": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews/running.gif",
+      "webp": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews/running.webp"
+    },
+    {
+      "state": "review",
+      "frames": 6,
+      "durations_ms": [
+        150,
+        150,
+        150,
+        150,
+        150,
+        280
+      ],
+      "gif": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews/review.gif",
+      "webp": "/Users/baihe/Documents/compusone/output/azou-d-motion-v1/qa/previews/review.webp"
+    }
+  ]
+}

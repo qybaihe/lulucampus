@@ -1,0 +1,355 @@
+{
+  "schemaVersion": 1,
+  "profile": "aiia-pink-girl-business-v1",
+  "selectionStatus": "selected",
+  "role": "阿凑业务场景动态视觉代理",
+  "source": {
+    "brand": "抖音 AI 创变者计划 2026",
+    "officialPage": "https://aiia.douyin.com/",
+    "referenceUse": "粉发角色的身份、色彩与闭眼情绪参考"
+  },
+  "atlas": {
+    "columns": 8,
+    "rows": 9,
+    "cellWidth": 192,
+    "cellHeight": 208,
+    "width": 1536,
+    "height": 1872,
+    "format": "webp",
+    "alpha": true,
+    "unusedCells": "fully-transparent",
+    "path": "spritesheet.webp",
+    "retinaPath": "spritesheet@2x.webp",
+    "retinaScale": 2,
+    "retinaCellWidth": 384,
+    "retinaCellHeight": 416
+  },
+  "rows": [
+    {
+      "row": 0,
+      "state": "idle",
+      "sourceState": "idle",
+      "label": "安静待机",
+      "frames": 6,
+      "durationsMs": [
+        260,
+        130,
+        160,
+        280,
+        150,
+        300
+      ],
+      "meaning": "低打扰的呼吸、眨眼与冷静注视",
+      "loop": true,
+      "maxLoops": 3,
+      "reducedMotionColumn": 0
+    },
+    {
+      "row": 1,
+      "state": "appear",
+      "sourceState": "running-right",
+      "label": "显现",
+      "frames": 8,
+      "durationsMs": [
+        120,
+        120,
+        120,
+        140,
+        140,
+        140,
+        150,
+        260
+      ],
+      "meaning": "由闭眼休眠到睁眼就位，不做方向跑动",
+      "loop": false,
+      "reducedMotionColumn": 7
+    },
+    {
+      "row": 2,
+      "state": "exit",
+      "sourceState": "running-left",
+      "label": "退场",
+      "frames": 8,
+      "durationsMs": [
+        130,
+        130,
+        140,
+        150,
+        160,
+        170,
+        180,
+        280
+      ],
+      "meaning": "由在场到闭眼收束，把空间交还给真人",
+      "loop": false,
+      "reducedMotionColumn": 7
+    },
+    {
+      "row": 3,
+      "state": "greeting",
+      "sourceState": "waving",
+      "label": "轻量招呼",
+      "frames": 4,
+      "durationsMs": [
+        150,
+        170,
+        180,
+        280
+      ],
+      "meaning": "克制、专业的短招手",
+      "loop": false,
+      "reducedMotionColumn": 3
+    },
+    {
+      "row": 4,
+      "state": "success",
+      "sourceState": "jumping",
+      "label": "执行成功",
+      "frames": 5,
+      "durationsMs": [
+        160,
+        160,
+        220,
+        180,
+        300
+      ],
+      "meaning": "手触胸口、闭眼点头的冷静确认",
+      "loop": false,
+      "reducedMotionColumn": 4
+    },
+    {
+      "row": 5,
+      "state": "needs-adjustment",
+      "sourceState": "failed",
+      "label": "暂未完成",
+      "frames": 8,
+      "durationsMs": [
+        140,
+        140,
+        160,
+        180,
+        240,
+        160,
+        160,
+        260
+      ],
+      "meaning": "分析、思考、重算并恢复就绪，不哭泣、不责怪",
+      "loop": false,
+      "reducedMotionColumn": 7
+    },
+    {
+      "row": 6,
+      "state": "waiting-confirmation",
+      "sourceState": "waiting",
+      "label": "等待确认",
+      "frames": 6,
+      "durationsMs": [
+        160,
+        180,
+        180,
+        220,
+        260,
+        280
+      ],
+      "meaning": "掌心打开并耐心等待确认、授权或选择",
+      "loop": true,
+      "maxLoops": 2,
+      "reducedMotionColumn": 5
+    },
+    {
+      "row": 7,
+      "state": "executing",
+      "sourceState": "running",
+      "label": "正在执行",
+      "frames": 6,
+      "durationsMs": [
+        130,
+        130,
+        130,
+        130,
+        180,
+        220
+      ],
+      "meaning": "双手整理不可见约束的精确工作循环，不做字面跑步",
+      "loop": true,
+      "maxLoops": 3,
+      "reducedMotionColumn": 4
+    },
+    {
+      "row": 8,
+      "state": "closed-eye-sensing",
+      "sourceState": "review",
+      "label": "闭眼感知",
+      "frames": 6,
+      "durationsMs": [
+        160,
+        180,
+        260,
+        360,
+        200,
+        280
+      ],
+      "meaning": "标志性闭眼感知、理解意图与编译上下文动作",
+      "loop": true,
+      "maxLoops": 2,
+      "reducedMotionColumn": 3
+    }
+  ],
+  "eventRules": [
+    {
+      "event": "azou.entry.first-visible",
+      "sequence": [
+        "appear",
+        "greeting",
+        "idle"
+      ],
+      "priority": 20,
+      "cooldownMs": 86400000
+    },
+    {
+      "event": "intent.input.focused",
+      "sequence": [
+        "closed-eye-sensing",
+        "idle"
+      ],
+      "priority": 30,
+      "cooldownMs": 10000
+    },
+    {
+      "event": "intent.compile.started",
+      "sequence": [
+        "closed-eye-sensing"
+      ],
+      "priority": 50,
+      "cooldownMs": 0
+    },
+    {
+      "event": "intent.published",
+      "sequence": [
+        "executing",
+        "idle"
+      ],
+      "priority": 50,
+      "cooldownMs": 0
+    },
+    {
+      "event": "gathering.tentative",
+      "sequence": [
+        "waiting-confirmation"
+      ],
+      "priority": 70,
+      "cooldownMs": 0
+    },
+    {
+      "event": "action.preview.ready",
+      "sequence": [
+        "closed-eye-sensing",
+        "waiting-confirmation"
+      ],
+      "priority": 70,
+      "cooldownMs": 0
+    },
+    {
+      "event": "action.execute.started",
+      "sequence": [
+        "executing"
+      ],
+      "priority": 80,
+      "cooldownMs": 0
+    },
+    {
+      "event": "action.execute.succeeded",
+      "sequence": [
+        "success",
+        "exit"
+      ],
+      "priority": 100,
+      "cooldownMs": 0
+    },
+    {
+      "event": "action.execute.failed",
+      "sequence": [
+        "needs-adjustment",
+        "waiting-confirmation"
+      ],
+      "priority": 100,
+      "cooldownMs": 0
+    },
+    {
+      "event": "gathering.backfill.started",
+      "sequence": [
+        "executing",
+        "idle"
+      ],
+      "priority": 60,
+      "cooldownMs": 0
+    },
+    {
+      "event": "gathering.pooling.expired.visible",
+      "sequence": [
+        "needs-adjustment",
+        "exit"
+      ],
+      "priority": 80,
+      "cooldownMs": 0
+    },
+    {
+      "event": "chat.azou.mentioned",
+      "sequence": [
+        "appear",
+        "closed-eye-sensing",
+        "executing"
+      ],
+      "priority": 90,
+      "cooldownMs": 1000
+    },
+    {
+      "event": "chat.azou.response.completed",
+      "sequence": [
+        "exit"
+      ],
+      "priority": 90,
+      "cooldownMs": 0
+    },
+    {
+      "event": "chat.human.bidirectional-started",
+      "sequence": [
+        "exit"
+      ],
+      "priority": 85,
+      "cooldownMs": 86400000
+    }
+  ],
+  "ignoredByAzou": [
+    {
+      "event": "auth.session.expired",
+      "owner": "hermes",
+      "reason": "个人校园授权属于 hermes，避免两个 AI 的视觉人格混合"
+    },
+    {
+      "event": "trust.level.changed",
+      "owner": "system-ui",
+      "reason": "阿凑不参与等级激励与活跃度召回"
+    },
+    {
+      "event": "app.daily-return",
+      "owner": "none",
+      "reason": "不做签到、连续使用与人格养成"
+    }
+  ],
+  "runtimePolicy": {
+    "singleActiveAnimation": true,
+    "higherPriorityPreempts": true,
+    "successAndFailureNonInterruptible": true,
+    "duplicateEventDebounceMs": 500,
+    "stopLongLoopsAfterConfiguredMaxLoops": true,
+    "fallbackState": "idle",
+    "respectReducedMotion": true,
+    "pauseWhenOffscreen": true,
+    "pauseWhenAppBackgrounded": true,
+    "horizontalTravelDisabled": true
+  },
+  "productionFrameCount": 57,
+  "selectedPetId": "aiia-pink-girl-business-v1",
+  "assetRoot": "assets/ip/selected/aiia-pink-girl-business-v1"
+}

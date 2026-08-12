@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "petId": "aiia-pink-girl-v2",
+  "displayName": "AIIA 粉发创变者 · 比例修订版",
+  "status": "single-base-review",
+  "sourceUrl": "https://aiia.douyin.com/",
+  "asset": "base-transparent.png",
+  "proportions": {
+    "targetHeadCount": 5.0,
+    "headHeightShare": "20–22%",
+    "bodyHeightShare": "78–80%",
+    "direction": "年轻成人、修长、可动画化，非大头 Q 版"
+  },
+  "nextStep": "仅在本基准形象通过评审后再生成动作帧"
+}

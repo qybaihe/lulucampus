@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "format": [
+    "gif",
+    "webp"
+  ],
+  "states": [
+    {
+      "state": "idle",
+      "frames": 6,
+      "durationsMs": [
+        260,
+        130,
+        160,
+        280,
+        150,
+        300
+      ],
+      "gif": "idle.gif",
+      "webp": "idle.webp"
+    },
+    {
+      "state": "appear",
+      "frames": 8,
+      "durationsMs": [
+        120,
+        120,
+        120,
+        140,
+        140,
+        140,
+        150,
+        260
+      ],
+      "gif": "appear.gif",
+      "webp": "appear.webp"
+    },
+    {
+      "state": "exit",
+      "frames": 8,
+      "durationsMs": [
+        130,
+        130,
+        140,
+        150,
+        160,
+        170,
+        180,
+        280
+      ],
+      "gif": "exit.gif",
+      "webp": "exit.webp"
+    },
+    {
+      "state": "greeting",
+      "frames": 4,
+      "durationsMs": [
+        150,
+        170,
+        180,
+        280
+      ],
+      "gif": "greeting.gif",
+      "webp": "greeting.webp"
+    },
+    {
+      "state": "success",
+      "frames": 5,
+      "durationsMs": [
+        160,
+        160,
+        220,
+        180,
+        300
+      ],
+      "gif": "success.gif",
+      "webp": "success.webp"
+    },
+    {
+      "state": "needs-adjustment",
+      "frames": 8,
+      "durationsMs": [
+        140,
+        140,
+        160,
+        180,
+        240,
+        160,
+        160,
+        260
+      ],
+      "gif": "needs-adjustment.gif",
+      "webp": "needs-adjustment.webp"
+    },
+    {
+      "state": "waiting-confirmation",
+      "frames": 6,
+      "durationsMs": [
+        160,
+        180,
+        180,
+        220,
+        260,
+        280
+      ],
+      "gif": "waiting-confirmation.gif",
+      "webp": "waiting-confirmation.webp"
+    },
+    {
+      "state": "executing",
+      "frames": 6,
+      "durationsMs": [
+        130,
+        130,
+        130,
+        130,
+        180,
+        220
+      ],
+      "gif": "executing.gif",
+      "webp": "executing.webp"
+    },
+    {
+      "state": "closed-eye-sensing",
+      "frames": 6,
+      "durationsMs": [
+        160,
+        180,
+        260,
+        360,
+        200,
+        280
+      ],
+      "gif": "closed-eye-sensing.gif",
+      "webp": "closed-eye-sensing.webp"
+    }
+  ]
+}

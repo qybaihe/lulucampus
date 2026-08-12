@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "petId": "azou-d-v1",
+  "displayName": "阿凑 D · 软糖团子",
+  "status": "selected-motion-candidate",
+  "role": "年轻化成局行动助手；完成协调后主动退场",
+  "identity": {
+    "body": "暖奶油色软糯团子",
+    "signature": "不闭合的半透明珊瑚橙连接软糖环",
+    "accent": "角色自身右上缺口处的一颗薄荷绿连接珠",
+    "face": "深色椭圆眼、极小弧形嘴、杏色腮红",
+    "invariants": [
+      "右上缺口与薄荷珠不镜像",
+      "无耳朵、头发、服装、文字或漂浮特效",
+      "不拟人化成宠物养成角色"
+    ]
+  },
+  "atlas": {
+    "path": "spritesheet.webp",
+    "fallbackPng": "spritesheet.png",
+    "columns": 8,
+    "rows": 9,
+    "cellWidth": 192,
+    "cellHeight": 208,
+    "width": 1536,
+    "height": 1872,
+    "alpha": true
+  },
+  "frameCount": 57,
+  "contactSheet": "contact-sheet.png",
+  "motionContract": "motion-contract.json",
+  "generationPrompts": "generation-prompts.md",
+  "previewsDir": "previews",
+  "framesDir": "frames",
+  "qa": "validation.json"
+}

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "id": "aiia-pink-girl-business-v1",
+  "displayName": "AIIA 粉发创变者 · 阿凑业务动作版",
+  "selectionStatus": "selected",
+  "visualRole": "年轻、冷静、聪明、会在关键节点出现并在成局后退场的业务型 AI 伙伴",
+  "identity": {
+    "proportions": "平衡紧凑的 4.3–4.6 头身",
+    "hair": "珍珠高光的粉色双辫与斜刘海",
+    "signature": "角色自身左上方的半透明珍珠淡紫花冠",
+    "costume": "石墨黑与珍珠银科技服，玫粉/青色细线，半透明花瓣裙片",
+    "expression": "冷静半垂眼；闭眼感知为标志动作"
+  },
+  "source": {
+    "brand": "抖音 AI 创变者计划 2026",
+    "officialPage": "https://aiia.douyin.com/",
+    "referenceAsset": "assets/ip/references/aiia-2026/pink-girl-portrait-reference.jpg"
+  },
+  "baseImage": "base-transparent.png",
+  "spritesheet": "spritesheet.webp",
+  "motionContract": "motion-contract.json",
+  "contactSheet": "contact-sheet.png",
+  "frameCount": 57,
+  "businessPreviewStates": [
+    "idle",
+    "appear",
+    "exit",
+    "greeting",
+    "success",
+    "needs-adjustment",
+    "waiting-confirmation",
+    "executing",
+    "closed-eye-sensing"
+  ],
+  "sourceStateMap": {
+    "idle": "idle",
+    "appear": "running-right",
+    "exit": "running-left",
+    "greeting": "waving",
+    "success": "jumping",
+    "needs-adjustment": "failed",
+    "waiting-confirmation": "waiting",
+    "executing": "running",
+    "closed-eye-sensing": "review"
+  },
+  "retinaSpritesheet": "spritesheet@2x.webp",
+  "displayPolicy": {
+    "runtimeAtlasMaxDisplayWidthPt": 170,
+    "largePreviewAtlas": "spritesheet@2x.webp"
+  },
+  "retinaPreviews": "previews@2x/"
+}

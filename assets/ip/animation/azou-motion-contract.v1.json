@@ -1,0 +1,355 @@
+{
+  "schemaVersion": 1,
+  "profile": "azou-codex-pat-compatible-v1",
+  "selectionStatus": "selected",
+  "sourceContract": "Codex-style fixed sprite atlas",
+  "atlas": {
+    "columns": 8,
+    "rows": 9,
+    "cellWidth": 192,
+    "cellHeight": 208,
+    "width": 1536,
+    "height": 1872,
+    "format": "webp",
+    "alpha": true,
+    "unusedCells": "fully-transparent",
+    "path": "spritesheet.webp"
+  },
+  "rows": [
+    {
+      "row": 0,
+      "state": "idle",
+      "azouMeaning": "安静待机：呼吸、眨眼、连接珠轻微摆动",
+      "usedColumns": [
+        0,
+        5
+      ],
+      "durationsMs": [
+        280,
+        110,
+        110,
+        140,
+        140,
+        320
+      ],
+      "loop": true,
+      "maxLoops": 3,
+      "reducedMotionColumn": 0
+    },
+    {
+      "row": 1,
+      "state": "running-right",
+      "azouMeaning": "从屏幕边缘进入，需要出现或被 @ 唤起",
+      "usedColumns": [
+        0,
+        7
+      ],
+      "durationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        220
+      ],
+      "loop": false,
+      "reducedMotionColumn": 7
+    },
+    {
+      "row": 2,
+      "state": "running-left",
+      "azouMeaning": "完成工作后退场，把空间让给人",
+      "usedColumns": [
+        0,
+        7
+      ],
+      "durationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        220
+      ],
+      "loop": false,
+      "reducedMotionColumn": 7
+    },
+    {
+      "row": 3,
+      "state": "waving",
+      "azouMeaning": "首次进入阿凑入口时的轻量招呼",
+      "usedColumns": [
+        0,
+        3
+      ],
+      "durationsMs": [
+        140,
+        140,
+        140,
+        280
+      ],
+      "loop": false,
+      "reducedMotionColumn": 3
+    },
+    {
+      "row": 4,
+      "state": "jumping",
+      "azouMeaning": "真实预约或行动执行成功后的短促庆祝",
+      "usedColumns": [
+        0,
+        4
+      ],
+      "durationsMs": [
+        140,
+        140,
+        140,
+        140,
+        280
+      ],
+      "loop": false,
+      "reducedMotionColumn": 4
+    },
+    {
+      "row": 5,
+      "state": "failed",
+      "azouMeaning": "中性受挫：轻微泄气或摊手，不哭、不归因到任何人",
+      "usedColumns": [
+        0,
+        7
+      ],
+      "durationsMs": [
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        240
+      ],
+      "loop": false,
+      "reducedMotionColumn": 7
+    },
+    {
+      "row": 6,
+      "state": "waiting",
+      "azouMeaning": "等待用户确认、授权或选择时段",
+      "usedColumns": [
+        0,
+        5
+      ],
+      "durationsMs": [
+        150,
+        150,
+        150,
+        150,
+        150,
+        260
+      ],
+      "loop": true,
+      "maxLoops": 2,
+      "reducedMotionColumn": 5
+    },
+    {
+      "row": 7,
+      "state": "running",
+      "azouMeaning": "正在凑人、补位或执行动作；不是跑步",
+      "usedColumns": [
+        0,
+        5
+      ],
+      "durationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        220
+      ],
+      "loop": true,
+      "maxLoops": 3,
+      "reducedMotionColumn": 3
+    },
+    {
+      "row": 8,
+      "state": "review",
+      "azouMeaning": "整理意图、检查约束、阅读行动预览",
+      "usedColumns": [
+        0,
+        5
+      ],
+      "durationsMs": [
+        150,
+        150,
+        150,
+        150,
+        150,
+        280
+      ],
+      "loop": true,
+      "maxLoops": 2,
+      "reducedMotionColumn": 4
+    }
+  ],
+  "eventRules": [
+    {
+      "event": "azou.entry.first-visible",
+      "sequence": [
+        "running-right",
+        "waving",
+        "idle"
+      ],
+      "priority": 20,
+      "cooldownMs": 86400000
+    },
+    {
+      "event": "intent.input.focused",
+      "sequence": [
+        "review",
+        "idle"
+      ],
+      "priority": 30,
+      "cooldownMs": 10000
+    },
+    {
+      "event": "intent.compile.started",
+      "sequence": [
+        "review"
+      ],
+      "priority": 50,
+      "cooldownMs": 0
+    },
+    {
+      "event": "intent.published",
+      "sequence": [
+        "running",
+        "idle"
+      ],
+      "priority": 50,
+      "cooldownMs": 0
+    },
+    {
+      "event": "gathering.tentative",
+      "sequence": [
+        "waiting"
+      ],
+      "priority": 70,
+      "cooldownMs": 0
+    },
+    {
+      "event": "action.preview.ready",
+      "sequence": [
+        "review",
+        "waiting"
+      ],
+      "priority": 70,
+      "cooldownMs": 0
+    },
+    {
+      "event": "action.execute.started",
+      "sequence": [
+        "running"
+      ],
+      "priority": 80,
+      "cooldownMs": 0
+    },
+    {
+      "event": "action.execute.succeeded",
+      "sequence": [
+        "jumping",
+        "running-left"
+      ],
+      "priority": 100,
+      "cooldownMs": 0
+    },
+    {
+      "event": "action.execute.failed",
+      "sequence": [
+        "failed",
+        "waiting"
+      ],
+      "priority": 100,
+      "cooldownMs": 0
+    },
+    {
+      "event": "gathering.backfill.started",
+      "sequence": [
+        "running",
+        "idle"
+      ],
+      "priority": 60,
+      "cooldownMs": 0
+    },
+    {
+      "event": "gathering.pooling.expired.visible",
+      "sequence": [
+        "failed",
+        "running-left"
+      ],
+      "priority": 80,
+      "cooldownMs": 0
+    },
+    {
+      "event": "chat.azou.mentioned",
+      "sequence": [
+        "running-right",
+        "review",
+        "running"
+      ],
+      "priority": 90,
+      "cooldownMs": 1000
+    },
+    {
+      "event": "chat.azou.response.completed",
+      "sequence": [
+        "running-left"
+      ],
+      "priority": 90,
+      "cooldownMs": 0
+    },
+    {
+      "event": "chat.human.bidirectional-started",
+      "sequence": [
+        "running-left"
+      ],
+      "priority": 85,
+      "cooldownMs": 86400000
+    }
+  ],
+  "ignoredByAzou": [
+    {
+      "event": "auth.session.expired",
+      "owner": "hermes",
+      "reason": "个人校园授权属于 hermes，不得让两个 AI 的视觉人格重新混合"
+    },
+    {
+      "event": "trust.level.changed",
+      "owner": "system-ui",
+      "reason": "阿凑不参与等级激励与活跃度召回"
+    },
+    {
+      "event": "app.daily-return",
+      "owner": "none",
+      "reason": "不做签到、连续使用与人格养成"
+    }
+  ],
+  "runtimePolicy": {
+    "singleActiveAnimation": true,
+    "higherPriorityPreempts": true,
+    "successAndFailureNonInterruptible": true,
+    "duplicateEventDebounceMs": 500,
+    "stopLongLoopsAfterConfiguredMaxLoops": true,
+    "fallbackState": "idle",
+    "respectReducedMotion": true,
+    "pauseWhenOffscreen": true,
+    "pauseWhenAppBackgrounded": true
+  },
+  "productionFrameCount": 57,
+  "selectedPetId": "azou-d-v1",
+  "selectedCandidate": "D · 软糖团子",
+  "assetRoot": "assets/ip/selected/azou-d-v1"
+}

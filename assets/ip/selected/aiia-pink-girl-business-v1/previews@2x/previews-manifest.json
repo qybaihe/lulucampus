@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "cellWidth": 384,
+  "cellHeight": 416,
+  "scale": 2,
+  "states": [
+    {
+      "state": "idle",
+      "frames": 6,
+      "webp": "idle.webp"
+    },
+    {
+      "state": "appear",
+      "frames": 8,
+      "webp": "appear.webp"
+    },
+    {
+      "state": "exit",
+      "frames": 8,
+      "webp": "exit.webp"
+    },
+    {
+      "state": "greeting",
+      "frames": 4,
+      "webp": "greeting.webp"
+    },
+    {
+      "state": "success",
+      "frames": 5,
+      "webp": "success.webp"
+    },
+    {
+      "state": "needs-adjustment",
+      "frames": 8,
+      "webp": "needs-adjustment.webp"
+    },
+    {
+      "state": "waiting-confirmation",
+      "frames": 6,
+      "webp": "waiting-confirmation.webp"
+    },
+    {
+      "state": "executing",
+      "frames": 6,
+      "webp": "executing.webp"
+    },
+    {
+      "state": "closed-eye-sensing",
+      "frames": 6,
+      "webp": "closed-eye-sensing.webp"
+    }
+  ]
+}

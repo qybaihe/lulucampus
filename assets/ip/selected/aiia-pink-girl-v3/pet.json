@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "petId": "aiia-pink-girl-v3",
+  "displayName": "AIIA 粉发创变者 · 平衡酷感版",
+  "status": "single-base-review",
+  "sourceUrl": "https://aiia.douyin.com/",
+  "asset": "base-transparent.png",
+  "adjustments": [
+    "躯干缩短约 5–7%",
+    "腿部缩短约 8–10%",
+    "四肢与躯干略微增量",
+    "半垂眼、收下巴、克制冷感神情"
+  ],
+  "nextStep": "基准形象确认后再开始动作帧"
+}
