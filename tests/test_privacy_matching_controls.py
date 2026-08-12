@@ -27,10 +27,16 @@ def _compile(client, user_id: str, text: str = "周六晚上珠海校区一起�
 
 
 def _publish(client, user_id: str, text: str = "周六晚上珠海校区一起打羽毛球，3人"):
+    headers = {"X-User-ID": user_id}
     card = _compile(client, user_id, text)
+    patched = client.patch(
+        f"/intent/{card['id']}", headers=headers, json={"campus": "南校园"}
+    )
+    assert patched.status_code == 200, patched.text
+    card = patched.json()["data"]
     response = client.post(
         "/intent/publish",
-        headers={"X-User-ID": user_id},
+        headers=headers,
         json={"card_id": card["id"]},
     )
     return card, response

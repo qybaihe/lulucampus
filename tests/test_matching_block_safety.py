@@ -5,22 +5,14 @@ from sqlalchemy import select
 
 from onemore.core.database import SessionLocal
 from onemore.db.models import Gathering, GatheringMember
+from tests.cast_helpers import publish_aligned_intent
 
 
 def _publish_same_three_person_intent(client, user_id: str) -> str:
-    headers = {"X-User-ID": user_id}
-    compiled = client.post(
-        "/intent/compile",
-        headers=headers,
-        json={"text": "周六晚上珠海校区一起打羽毛球，3个人"},
+    _headers, card, _published = publish_aligned_intent(
+        client, user_id, "周六晚上珠海校区一起打羽毛球，3个人"
     )
-    assert compiled.status_code == 200, compiled.text
-    card_id = compiled.json()["data"]["card"]["id"]
-    published = client.post(
-        "/intent/publish", headers=headers, json={"card_id": card_id}
-    )
-    assert published.status_code == 201, published.text
-    return card_id
+    return card["id"]
 
 
 @pytest.mark.parametrize(

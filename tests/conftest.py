@@ -12,8 +12,10 @@ os.environ["ONEMORE_AUTO_CREATE_SCHEMA"] = "false"
 os.environ["ONEMORE_VAULT_ROOT"] = "./test-vaults"
 os.environ["ONEMORE_DOUYIN_MODE"] = "fake"
 os.environ["ONEMORE_DOUYIN_IMPORT_ENABLED"] = "true"
+os.environ["ONEMORE_DEMO_TASTE_PUBLIC_ENABLED"] = "true"
 os.environ["ONEMORE_DOUYIN_RUNTIME_ROOT"] = "./test-runtime/douyin"
 os.environ["ONEMORE_TASTE_LLM_ENABLED"] = "false"
+os.environ["ONEMORE_HERMES_AGENT_MODE"] = "off"
 
 import shutil
 import time

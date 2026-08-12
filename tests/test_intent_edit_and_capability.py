@@ -6,6 +6,7 @@ from sqlalchemy import delete, select
 
 from onemore.core.database import SessionLocal
 from onemore.db.models import Gathering, GatheringStatus, TimeWindow
+from tests.cast_helpers import publish_aligned_intent
 
 
 def test_clarification_questions_have_stable_keys_and_answers_are_consumed(client):
@@ -47,13 +48,7 @@ def test_clarification_questions_have_stable_keys_and_answers_are_consumed(clien
 
 def _confirmed_gathering(client) -> str:
     for index in range(1, 5):
-        headers = {"X-User-ID": f"u_demo_{index}"}
-        card = client.post(
-            "/intent/compile", headers=headers, json={"text": "一起完成 DDL，4人"}
-        ).json()["data"]["card"]
-        assert client.post(
-            "/intent/publish", headers=headers, json={"card_id": card["id"]}
-        ).status_code == 201
+        publish_aligned_intent(client, f"u_demo_{index}", "一起完成 DDL，4人")
     run = client.post("/internal/matching/run", headers={"X-Admin-Token": "test-admin"})
     gathering_id = run.json()["data"]["gathering_ids"][0]
     for index in range(1, 5):

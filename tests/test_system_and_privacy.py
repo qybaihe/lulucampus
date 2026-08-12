@@ -11,6 +11,7 @@ from onemore.db.models import (
     SharedExperience,
 )
 from onemore.hermes.catalog import CATALOG
+from tests.cast_helpers import publish_aligned_intent
 
 
 def test_health_and_required_routes(client):
@@ -112,13 +113,7 @@ def test_schedule_intersection_has_no_identity_fields(client, admin_headers):
 
 def test_declined_member_is_not_retained_or_attributed(client, admin_headers):
     for index in range(1, 4):
-        headers = {"X-User-ID": f"u_demo_{index}"}
-        card = client.post(
-            "/intent/compile",
-            headers=headers,
-            json={"text": "周六晚上三个人一起打羽毛球"},
-        ).json()["data"]["card"]
-        client.post("/intent/publish", headers=headers, json={"card_id": card["id"]})
+        publish_aligned_intent(client, f"u_demo_{index}", "周六晚上三个人一起打羽毛球")
     formed = client.post("/internal/matching/run", headers=admin_headers).json()["data"]
     gathering_id = formed["gathering_ids"][0]
     declined = client.post(

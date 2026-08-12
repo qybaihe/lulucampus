@@ -123,7 +123,7 @@ def test_gap_share_card_exposes_gap_and_anonymous_landing_page(client, auth_head
     assert page.headers["content-type"].startswith("text/html")
     body = page.text
     assert "还差 1 人" in body
-    for display_name in ("小岚", "阿衡", "知夏", "庭川"):
+    for display_name in ("林予安", "周衡", "陈可薇", "梁景行", "苏晚宁", "何屿"):
         assert display_name not in body
 
 

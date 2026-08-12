@@ -5,9 +5,9 @@ def test_matching_preferences_are_private_persisted_and_patchable(client, auth_h
     initial = client.get("/me/matching-preferences", headers=auth_headers)
     assert initial.status_code == 200
     assert initial.json()["data"] == {
-        "interaction_style": "balanced",
-        "sport_level": "casual",
-        "study_intensity": "balanced",
+        "interaction_style": "talkative",
+        "sport_level": "intermediate",
+        "study_intensity": "focused",
     }
 
     updated = client.patch(
@@ -18,7 +18,7 @@ def test_matching_preferences_are_private_persisted_and_patchable(client, auth_h
     assert updated.status_code == 200
     assert updated.json()["data"] == {
         "interaction_style": "quiet",
-        "sport_level": "casual",
+        "sport_level": "intermediate",
         "study_intensity": "focused",
     }
     persisted = client.get("/me/matching-preferences", headers=auth_headers)

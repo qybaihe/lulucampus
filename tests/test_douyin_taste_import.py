@@ -440,7 +440,6 @@ def test_answers_produce_ready_result(client, auth_headers):
 
 def test_taste_me_and_profile_me_summary(client, auth_headers):
     before = client.get("/profile/me", headers=auth_headers).json()["data"]
-    assert before["taste_profile"] is None
     capability_keys_before = {
         item["key"] for item in before["capabilities"] if item["source"] != "taste"
     }

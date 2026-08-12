@@ -78,3 +78,14 @@ def test_registered_user_can_use_authenticated_apis(client):
 
     trust = client.get("/trust/me", headers=headers)
     assert trust.status_code == 200
+
+
+def test_phone_register_starts_at_t0_until_campus_verified(client):
+    token = _register(client, phone="13800005555").json()["data"]["access_token"]
+    headers = {"Authorization": f"Bearer {token}"}
+    trust = client.get("/trust/me", headers=headers)
+    assert trust.status_code == 200
+    assert trust.json()["data"]["level"] == "T0"
+    me = client.get("/auth/me", headers=headers)
+    assert me.status_code == 200
+    assert me.json()["data"]["verified"] is False

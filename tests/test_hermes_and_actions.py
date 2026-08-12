@@ -8,24 +8,18 @@ from onemore.core.database import SessionLocal
 from onemore.db.models import SecurityEvent
 from onemore.hermes.catalog import build_argv
 from onemore.hermes.schemas import ActionName, RoomReserveParams
+from tests.cast_helpers import publish_aligned_intent
 
 
 def _confirmed_gathering(client):
     compiled = {}
     for index in range(1, 5):
-        headers = {"X-User-ID": f"u_demo_{index}"}
-        card = client.post(
-            "/intent/compile",
-            headers=headers,
-            json={"text": "周六晚上一起打羽毛球，4人"},
-        ).json()["data"]["card"]
-        compiled[index] = card
-        assert (
-            client.post(
-                "/intent/publish", headers=headers, json={"card_id": card["id"]}
-            ).status_code
-            == 201
+        user_id = f"u_demo_{index}"
+        _headers, card, published = publish_aligned_intent(
+            client, user_id, "周六晚上一起打羽毛球，4人"
         )
+        compiled[index] = card
+        assert published["gathering_id"]
     run = client.post("/internal/matching/run", headers={"X-Admin-Token": "test-admin"})
     assert run.status_code == 200
     gathering_id = run.json()["data"]["gathering_ids"][0]
