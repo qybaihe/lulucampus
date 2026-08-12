@@ -1,0 +1,73 @@
+services:
+  api:
+    build: .
+    environment:
+      ONEMORE_DATABASE_URL: postgresql+psycopg://onemore:onemore@postgres:5432/onemore
+      ONEMORE_REDIS_URL: redis://redis:6379/0
+      ONEMORE_CELERY_BROKER_URL: redis://redis:6379/1
+      ONEMORE_CELERY_RESULT_BACKEND: redis://redis:6379/2
+      ONEMORE_HERMES_MODE: fake
+      ONEMORE_ADMIN_TOKEN: local-admin
+      ONEMORE_AUTO_CREATE_SCHEMA: "false"
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  worker:
+    build: .
+    command: uv run celery -A onemore.tasks.celery_app:celery_app worker -l INFO
+    environment: &backend-env
+      ONEMORE_DATABASE_URL: postgresql+psycopg://onemore:onemore@postgres:5432/onemore
+      ONEMORE_REDIS_URL: redis://redis:6379/0
+      ONEMORE_CELERY_BROKER_URL: redis://redis:6379/1
+      ONEMORE_CELERY_RESULT_BACKEND: redis://redis:6379/2
+      ONEMORE_HERMES_MODE: fake
+      ONEMORE_ADMIN_TOKEN: local-admin
+    depends_on:
+      api:
+        condition: service_healthy
+
+  beat:
+    build: .
+    command: uv run celery -A onemore.tasks.celery_app:celery_app beat -l INFO
+    environment: *backend-env
+    depends_on:
+      - worker
+
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: onemore
+      POSTGRES_USER: onemore
+      POSTGRES_PASSWORD: onemore
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U onemore"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:8-alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  postgres-data:
+  redis-data:

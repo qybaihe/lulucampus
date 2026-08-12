@@ -1,0 +1,63 @@
+.DS_Store
+.env
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+__pycache__/
+*.py[cod]
+*.db
+*.sqlite3
+.venv/
+venv/
+dist/
+build/
+vaults/
+*-vault/
+*-vaults/
+tmp/
+runtime/
+test-runtime/
+test-vaults/
+douyin-cookies/
+*-cookies/
+*.cookie.txt
+celerybeat-schedule*
+.playwright-cli/
+
+# Python packaging / local artifacts
+*.egg-info/
+.uv/
+
+# Node / Web
+web/node_modules/
+web/dist/
+**/node_modules/
+
+# Xcode local build/test products (source, generated project and evidence remain tracked)
+ios/.derived/
+ios/.derived-release/
+ios/build/
+ios/*.xcresult/
+ios/artifacts/**/*.xcresult/
+ios/artifacts/logs/
+ios/artifacts/test-results/
+*.xcresult
+
+# Local demo DBs / caches (already covered by *.db, keep explicit)
+onemore.db
+douyin_demo.db
+test_onemore.db
+
+# Heavy local-only tooling outputs
+output/
+douyin_like_profile/DouK-Downloader/.venv/
+douyin_like_profile/DouK-Downloader/output/
+douyin_like_profile/**/browser_favorite_raw.json
+
+# Editor / OS
+.idea/
+.vscode/
+*.swp
+*~
