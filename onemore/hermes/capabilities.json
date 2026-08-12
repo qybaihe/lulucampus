@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-11T10:33:47.292611+00:00",
+  "cli": "/Users/baihe/.local/bin/sysu-anything",
+  "actions": {
+    "timetable.fetch_term": {
+      "command": [
+        "jwxt",
+        "timetable"
+      ],
+      "tier": "green",
+      "subsystem": "jwxt",
+      "write": false,
+      "required_grant": "timetable",
+      "required_trust_level": "T1",
+      "supports_state_dir": true,
+      "help_verified": true,
+      "help_sha256": "e68b48aac2600e498d39b160d356f373f7ce5a7b7830767bf7ac45e4098610a7"
+    },
+    "timetable.today": {
+      "command": [
+        "today"
+      ],
+      "tier": "green",
+      "subsystem": "jwxt",
+      "write": false,
+      "required_grant": "timetable",
+      "required_trust_level": "T1",
+      "supports_state_dir": true,
+      "help_verified": true,
+      "help_sha256": "fcea5559e8da22adaab068c31e95d8574ade4b9a55c645fd34df2b4125dbfaf1"
+    },
+    "timetable.section_times": {
+      "command": [
+        "jwxt",
+        "section-times"
+      ],
+      "tier": "green",
+      "subsystem": "jwxt",
+      "write": false,
+      "required_grant": "timetable",
+      "required_trust_level": "T1",
+      "supports_state_dir": true,
+      "help_verified": true,
+      "help_sha256": "319b39194132a84627eee5de348a313741f5bc8b31796c7d183ed66304be62cc"
+    },
+    "assignment.list_unfinished": {
+      "command": [
+        "matrix",
+        "assignments",
+        "list"
+      ],
+      "tier": "green",
+      "subsystem": "matrix",
+      "write": false,
+      "required_grant": "enrollment",
+      "required_trust_level": "T1",
+      "supports_state_dir": false,
+      "help_verified": true,
+      "help_sha256": "bff20c62c800fef351f8cf1342411a5034795789932bd14d8621cccd41d056e9"
+    },
+    "room.available": {
+      "command": [
+        "libic",
+        "available"
+      ],
+      "tier": "green",
+      "subsystem": "libic",
+      "write": false,
+      "required_grant": "timetable",
+      "required_trust_level": "T1",
+      "supports_state_dir": true,
+      "help_verified": true,
+      "help_sha256": "0ee6ddf4c0aca82b964e3cdaa9a9bc487d90e9181d74244326ccdab23dcf1d6f"
+    },
+    "room.room_types": {
+      "command": [
+        "libic",
+        "room-types"
+      ],
+      "tier": "green",
+      "subsystem": "libic",
+      "write": false,
+      "required_grant": null,
+      "required_trust_level": "T0",
+      "supports_state_dir": true,
+      "help_verified": true,
+      "help_sha256": "629f07f9b7824b219b946c1ddf65c11457f733b5ea344569cd08d42f2240e86c"
+    },
+    "room.reserve_preview": {
+      "command": [
+        "libic",
+        "reserve"
+      ],
+      "tier": "yellow",
+      "subsystem": "libic",
+      "write": true,
+      "required_grant": "agent_booking",
+      "required_trust_level": "T2",
+      "supports_state_dir": true,
+      "help_verified": true,
+      "help_sha256": "0dc206c7b72f11f1f26ad8460cdaafa58c551174c6f4544e31e1d65688c284e0"
+    },
+    "room.reserve_commit": {
+      "command": [
+        "libic",
+        "reserve"
+      ],
+      "tier": "yellow",
+      "subsystem": "libic",
+      "write": true,
+      "required_grant": "agent_booking",
+      "required_trust_level": "T2",
+      "supports_state_dir": true,
+      "help_verified": true,
+      "help_sha256": "0dc206c7b72f11f1f26ad8460cdaafa58c551174c6f4544e31e1d65688c284e0"
+    },
+    "gym.available": {
+      "command": [
+        "gym",
+        "available"
+      ],
+      "tier": "green",
+      "subsystem": "gym",
+      "write": false,
+      "required_grant": "timetable",
+      "required_trust_level": "T1",
+      "supports_state_dir": true,
+      "help_verified": true,
+      "help_sha256": "d5635826e06dc5e7189e42a59957fe76d7ef71cb1d1ba619fad88da7cd0ac2d8"
+    },
+    "gym.book_preview": {
+      "command": [
+        "gym",
+        "book"
+      ],
+      "tier": "yellow",
+      "subsystem": "gym",
+      "write": true,
+      "required_grant": "agent_booking",
+      "required_trust_level": "T2",
+      "supports_state_dir": true,
+      "help_verified": true,
+      "help_sha256": "d448efd950ef9917fa02a80907b88f927f5810dde4212a1cd266a65b3771d910"
+    },
+    "gym.book_commit": {
+      "command": [
+        "gym",
+        "book"
+      ],
+      "tier": "yellow",
+      "subsystem": "gym",
+      "write": true,
+      "required_grant": "agent_booking",
+      "required_trust_level": "T2",
+      "supports_state_dir": true,
+      "help_verified": true,
+      "help_sha256": "d448efd950ef9917fa02a80907b88f927f5810dde4212a1cd266a65b3771d910"
+    },
+    "seminar.list": {
+      "command": [
+        "explore",
+        "seminar",
+        "list"
+      ],
+      "tier": "green",
+      "subsystem": "explore",
+      "write": false,
+      "required_grant": null,
+      "required_trust_level": "T0",
+      "supports_state_dir": true,
+      "help_verified": true,
+      "help_sha256": "06624053dff620041efd68c7bff436079a35755d013f36d4eaf1321c238ee118"
+    },
+    "seminar.reserve_preview": {
+      "command": [
+        "explore",
+        "seminar",
+        "reserve"
+      ],
+      "tier": "yellow",
+      "subsystem": "explore",
+      "write": true,
+      "required_grant": "agent_booking",
+      "required_trust_level": "T2",
+      "supports_state_dir": true,
+      "help_verified": true,
+      "help_sha256": "e9e608439c2cd7dd839c5ea0ce25818f58bb404a3e8728739c45f029bae89b6b"
+    },
+    "seminar.reserve_commit": {
+      "command": [
+        "explore",
+        "seminar",
+        "reserve"
+      ],
+      "tier": "yellow",
+      "subsystem": "explore",
+      "write": true,
+      "required_grant": "agent_booking",
+      "required_trust_level": "T2",
+      "supports_state_dir": true,
+      "help_verified": true,
+      "help_sha256": "e9e608439c2cd7dd839c5ea0ce25818f58bb404a3e8728739c45f029bae89b6b"
+    },
+    "career.teachin_list": {
+      "command": [
+        "career",
+        "teachin",
+        "list"
+      ],
+      "tier": "green",
+      "subsystem": "career",
+      "write": false,
+      "required_grant": null,
+      "required_trust_level": "T0",
+      "supports_state_dir": false,
+      "help_verified": true,
+      "help_sha256": "56cfa471e9ce3d9998dbd967f28698ed881e3a775e541b290ac950382f3e05c1"
+    },
+    "career.jobfair_list": {
+      "command": [
+        "career",
+        "jobfair",
+        "list"
+      ],
+      "tier": "green",
+      "subsystem": "career",
+      "write": false,
+      "required_grant": null,
+      "required_trust_level": "T0",
+      "supports_state_dir": false,
+      "help_verified": true,
+      "help_sha256": "f4b5f5b88d49a067f2814f9dc527a28bec07c8f6dc0cb4ed20fdecd28cbba442"
+    },
+    "transit.bus": {
+      "command": [
+        "bus"
+      ],
+      "tier": "green",
+      "subsystem": "transit",
+      "write": false,
+      "required_grant": null,
+      "required_trust_level": "T0",
+      "supports_state_dir": false,
+      "help_verified": true,
+      "help_sha256": "ccdc4a8230c1e0b818046eaf33677bff431447d00695041312d6b1398ddb259d"
+    },
+    "transit.qiguan": {
+      "command": [
+        "qg",
+        "list"
+      ],
+      "tier": "green",
+      "subsystem": "transit",
+      "write": false,
+      "required_grant": null,
+      "required_trust_level": "T0",
+      "supports_state_dir": false,
+      "help_verified": true,
+      "help_sha256": "a320b8f690f56f0551cfcc065d9229a02bdc99565b7a6915323235a575cdff64"
+    }
+  }
+}
