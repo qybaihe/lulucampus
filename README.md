@@ -5,6 +5,10 @@
 </p>
 
 <p align="center">
+  <img src="docs/readme-assets/splash.png" alt="噜噜成局开屏" width="280" />
+</p>
+
+<p align="center">
   <b>差一个，就成局。</b><br/>
   AI 不介绍人，AI 促成事。
 </p>
@@ -54,10 +58,10 @@
 | 记忆 | 不持有人际记忆 | 持有共同经历，但禁止主动召回 |
 
 <p align="center">
-  <img src="docs/readme-assets/onboarding.png" alt="开屏与校园身份认证" width="720" />
+  <img src="docs/readme-assets/onboarding.png" alt="今天与差一个入口" width="720" />
 </p>
 
-<p align="center"><sub>左：开屏主张 · 右：校园身份认证</sub></p>
+<p align="center"><sub>左：hermes 常驻的「今天」· 右：「差一个，就说一句」发起页</sub></p>
 
 ---
 
@@ -84,14 +88,14 @@
   <img src="docs/readme-assets/flow-main.png" alt="核心四步流程" width="900" />
 </p>
 
-<p align="center"><sub>意图输入 → AI 意图卡 → 「为什么是你们」 → 行动预览</sub></p>
+<p align="center"><sub>意图卡 → 分别确认 → 「为什么是你们」与开场第一句 → 群聊系统成局卡</sub></p>
 
 | 截图 | 说明 |
 |---|---|
 | ![](docs/readme-assets/intent-composer.png) | 「差一个」一句话发起 |
-| ![](docs/readme-assets/match-explain.png) | 可解释匹配与分别确认 |
+| ![](docs/readme-assets/match-explain.png) | 可解释匹配与破冰第一句 |
 | ![](docs/readme-assets/channel-chat.png) | 局内群聊 · AI 退场后的系统成局卡 |
-| ![](docs/readme-assets/competition-radar.png) | 比赛雷达 · 「还差 N 个角色」 |
+| ![](docs/readme-assets/competition-duo.png) | 比赛雷达与「还差 N 个角色」组队详情 |
 
 ---
 
