@@ -1,0 +1,501 @@
+{
+  "schemaVersion": 1,
+  "name": "ONE MORE returned mobile prototype",
+  "importedAt": "2026-08-11T21:43:18+08:00",
+  "source": {
+    "originalPath": "/Users/baihe/Downloads/Mobile app scope questionnaire.zip",
+    "archivePath": "/Users/baihe/Documents/compusone/design/received/2026-08-11-one-more-mobile-prototype/raw/Mobile app scope questionnaire.zip",
+    "archiveBytes": 1396877,
+    "archiveSha256": "6e6630b369601f4ad517648521af3357772c74fba183775e70fdfc9536df53cb"
+  },
+  "status": "frozen_returned_design_reference",
+  "baseline": {
+    "deviceLabel": "iPhone 17",
+    "widthPx": 402,
+    "heightPx": 874,
+    "theme": "dark"
+  },
+  "entrypoint": "export/ONE MORE 原型.dc.html",
+  "files": [
+    {
+      "path": "export/.thumbnail",
+      "bytes": 11274,
+      "sha256": "86d73c2927f03e685b31a6273c1bdb763a1783855bd3073452c034caa6c596d9"
+    },
+    {
+      "path": "export/ONE MORE 原型.dc.html",
+      "bytes": 155063,
+      "sha256": "ee1419b31eb4ad263bf0d94bc2a1bcb53c2cbce0b05658315186796b7b8f3e12"
+    },
+    {
+      "path": "export/assets/azou-alt.png",
+      "bytes": 720889,
+      "sha256": "3a9a1372050179c81a1533bfe59e9d6ec4ab9daa0974b768f45aca948b038028"
+    },
+    {
+      "path": "export/assets/azou.png",
+      "bytes": 617953,
+      "sha256": "ce5d9be6b4eda6c885f65455b685de08282beb17cecc8dd5564fd38a42e079af"
+    },
+    {
+      "path": "export/ds/_ds_bundle.css",
+      "bytes": 12462,
+      "sha256": "a193f595bf06d85e9f4d0aed771dcf1bda2e0e030dbb2f4fbe5e842cb55e7e61"
+    },
+    {
+      "path": "export/support.js",
+      "bytes": 69150,
+      "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe"
+    }
+  ],
+  "screens": {
+    "prototypeStateCount": 36,
+    "requiredDesignNodeCount": 74,
+    "coveredRequiredNodeCount": 34,
+    "extraCompositeStateCount": 2,
+    "missingRequiredNodeCount": 40,
+    "map": [
+      {
+        "prototype_id": "a2",
+        "design_node": "A2",
+        "title": "价值引导"
+      },
+      {
+        "prototype_id": "a3",
+        "design_node": "A3",
+        "title": "扫码认证"
+      },
+      {
+        "prototype_id": "a4",
+        "design_node": "A4",
+        "title": "分项授权"
+      },
+      {
+        "prototype_id": "a5",
+        "design_node": "A5",
+        "title": "画像初始化"
+      },
+      {
+        "prototype_id": "a6",
+        "design_node": "A6",
+        "title": "画像确认"
+      },
+      {
+        "prototype_id": "a7",
+        "design_node": "A7",
+        "title": "社交开关"
+      },
+      {
+        "prototype_id": "b1",
+        "design_node": "B1",
+        "title": "今天 / hermes"
+      },
+      {
+        "prototype_id": "c1",
+        "design_node": "C1",
+        "title": "公开局"
+      },
+      {
+        "prototype_id": "b12",
+        "design_node": "B12",
+        "title": "比赛"
+      },
+      {
+        "prototype_id": "b12d",
+        "design_node": "B12.1",
+        "title": "赛事详情"
+      },
+      {
+        "prototype_id": "table",
+        "design_node": "B12.2",
+        "title": "牌桌 · 差一个",
+        "coverage": "extra_composite"
+      },
+      {
+        "prototype_id": "msg",
+        "design_node": "MSG",
+        "title": "消息",
+        "coverage": "extra_composite"
+      },
+      {
+        "prototype_id": "d1",
+        "design_node": "D1",
+        "title": "意图输入"
+      },
+      {
+        "prototype_id": "d2",
+        "design_node": "D2",
+        "title": "澄清追问"
+      },
+      {
+        "prototype_id": "d3",
+        "design_node": "D3",
+        "title": "意图卡确认"
+      },
+      {
+        "prototype_id": "d4",
+        "design_node": "D4",
+        "title": "招募中"
+      },
+      {
+        "prototype_id": "e3",
+        "design_node": "E3",
+        "title": "多人确认"
+      },
+      {
+        "prototype_id": "e5",
+        "design_node": "E5",
+        "title": "预览与授权"
+      },
+      {
+        "prototype_id": "e6",
+        "design_node": "E6",
+        "title": "执行结果"
+      },
+      {
+        "prototype_id": "e7",
+        "design_node": "E7",
+        "title": "协作空间"
+      },
+      {
+        "prototype_id": "e14",
+        "design_node": "E14",
+        "title": "局内群聊"
+      },
+      {
+        "prototype_id": "b5",
+        "design_node": "B5",
+        "title": "场馆空场"
+      },
+      {
+        "prototype_id": "b5s",
+        "design_node": "B5.1",
+        "title": "时段选择"
+      },
+      {
+        "prototype_id": "e9",
+        "design_node": "E9",
+        "title": "完成确认"
+      },
+      {
+        "prototype_id": "e10",
+        "design_node": "E10",
+        "title": "复局选择"
+      },
+      {
+        "prototype_id": "b4",
+        "design_node": "B4",
+        "title": "作业与 DDL"
+      },
+      {
+        "prototype_id": "b4d",
+        "design_node": "B4.1",
+        "title": "作业详情"
+      },
+      {
+        "prototype_id": "b7",
+        "design_node": "B7",
+        "title": "活动（免登录）"
+      },
+      {
+        "prototype_id": "b7d",
+        "design_node": "B7.1",
+        "title": "活动详情"
+      },
+      {
+        "prototype_id": "g2",
+        "design_node": "G2",
+        "title": "缺口卡分享"
+      },
+      {
+        "prototype_id": "c4",
+        "design_node": "C4",
+        "title": "缺口卡落地页"
+      },
+      {
+        "prototype_id": "e1",
+        "design_node": "E1",
+        "title": "我的局 / 搭子"
+      },
+      {
+        "prototype_id": "e16",
+        "design_node": "E16",
+        "title": "搭子详情"
+      },
+      {
+        "prototype_id": "e17",
+        "design_node": "E17",
+        "title": "解除关系"
+      },
+      {
+        "prototype_id": "m1",
+        "design_node": "M1",
+        "title": "我"
+      },
+      {
+        "prototype_id": "m3",
+        "design_node": "M3",
+        "title": "等级详情"
+      }
+    ],
+    "missingRequiredNodes": [
+      "A1",
+      "A8",
+      "B2",
+      "B3",
+      "B3.1",
+      "B6",
+      "B6.1",
+      "B8",
+      "B9",
+      "B10",
+      "B11",
+      "C2",
+      "C3",
+      "D3.1",
+      "D3.2",
+      "D3.3",
+      "D3.4",
+      "E2",
+      "E4",
+      "E8",
+      "E11",
+      "E12",
+      "E13",
+      "E15",
+      "M2",
+      "M4",
+      "M5",
+      "M6",
+      "M7",
+      "M8",
+      "M9",
+      "M10",
+      "O1",
+      "O2",
+      "O3",
+      "O4",
+      "G1",
+      "G3",
+      "G4",
+      "G5"
+    ],
+    "screenshotsDirectory": "screens",
+    "contactSheet": "SCREEN_CONTACT_SHEET.png",
+    "screenshotFiles": [
+      {
+        "path": "screens/a2.png",
+        "bytes": 94968,
+        "sha256": "be064f96d29bb385c1e7eb0d1f4856187b07c2a2b3115d6f29365f04965a2e1c"
+      },
+      {
+        "path": "screens/a3.png",
+        "bytes": 54444,
+        "sha256": "302559f0fc508b4cc6cfad7777a6994d7b0e15e10ccb0d639243678b1207a28f"
+      },
+      {
+        "path": "screens/a4.png",
+        "bytes": 79605,
+        "sha256": "55d5c2daf84364f6b0ebceafdf45d2e89aa2462f6fed80efaddeccc5568fa266"
+      },
+      {
+        "path": "screens/a5.png",
+        "bytes": 53828,
+        "sha256": "9fefda3e22aa91d94a13c4dfa5e4f6f5b770d3cb25e0b164b4680dbc3ab621a0"
+      },
+      {
+        "path": "screens/a6.png",
+        "bytes": 66284,
+        "sha256": "0d1039bfc1b2839ebf64a5d511d8d09a6ee1e89e041fe79fa6f4503a379b60ac"
+      },
+      {
+        "path": "screens/a7.png",
+        "bytes": 66084,
+        "sha256": "be547824868370165558aa73b15008d9d2a9cef882f2aed094d85985ae969a63"
+      },
+      {
+        "path": "screens/b1.png",
+        "bytes": 88902,
+        "sha256": "08b2a1b39875ce1b31d17259b7157216a570191f70d4430a2a6c0d8370c23c11"
+      },
+      {
+        "path": "screens/b12.png",
+        "bytes": 96268,
+        "sha256": "1e449325eaef4b283e0df23eb5abd14dab0ee8d0602a6a9ea81b7ff44afb9543"
+      },
+      {
+        "path": "screens/b12d.png",
+        "bytes": 81304,
+        "sha256": "62413b5c58b7b1bdfc478432405f6bbcd16f706cf96cea1a4d2e5532e29ea9ab"
+      },
+      {
+        "path": "screens/b4.png",
+        "bytes": 62795,
+        "sha256": "a0d455e0f47984e5830279b11f59ba06766a922b42480187bdc0d725d6fd8541"
+      },
+      {
+        "path": "screens/b4d.png",
+        "bytes": 68515,
+        "sha256": "aadc9a358f63bec7f3610b82bc62c054f1cf5e90aabfd998de5ceed6dc33b2db"
+      },
+      {
+        "path": "screens/b5.png",
+        "bytes": 65023,
+        "sha256": "ab09a6060c6dc92eb49624858213a4fe55351dca1d638fda4f6a646f27c5582b"
+      },
+      {
+        "path": "screens/b5s.png",
+        "bytes": 55143,
+        "sha256": "8b59c4cdab56bf322bc8e03123b61603a58a4f4aef307a6843b39e192d79c81a"
+      },
+      {
+        "path": "screens/b7.png",
+        "bytes": 61154,
+        "sha256": "2632a6ac39ec15e66919424af61661a5d446c05dd00f9f5512627813dc206ebb"
+      },
+      {
+        "path": "screens/b7d.png",
+        "bytes": 64209,
+        "sha256": "c26943201f533a56c6f1d37493069fa42bec8213a0261f771390e38e6ecf33eb"
+      },
+      {
+        "path": "screens/c1.png",
+        "bytes": 70037,
+        "sha256": "f51602f66cb2c7094cd8588f2b3ea747ad000e459905589ef223349ced308402"
+      },
+      {
+        "path": "screens/c4.png",
+        "bytes": 45599,
+        "sha256": "e5192872f5aefa4572a4b9a9be75105e5b8672bb2654cb61b70f067b4d1b0750"
+      },
+      {
+        "path": "screens/d1.png",
+        "bytes": 64248,
+        "sha256": "685e3bc8e6745db5f60603893295c14d2e370dec792702b945627492f9c86467"
+      },
+      {
+        "path": "screens/d2.png",
+        "bytes": 55867,
+        "sha256": "f7ebf535a8a9d328a6d6aca044cb11e0d3a6a1cee770d1d0eb6731658a4d3d56"
+      },
+      {
+        "path": "screens/d3.png",
+        "bytes": 73850,
+        "sha256": "2250bba5dbd73e8f163ef13674a224c727e9b10b1f7d63763c86737e45949881"
+      },
+      {
+        "path": "screens/d4.png",
+        "bytes": 66710,
+        "sha256": "7eca6eb219f37a87ca87df83562bf932ffad7ffba7b1ce74cc3d969a72e09d1d"
+      },
+      {
+        "path": "screens/e1.png",
+        "bytes": 78254,
+        "sha256": "951bbc7c67f543919884876d05c3ecec2415057ac933fc5668354357439351da"
+      },
+      {
+        "path": "screens/e10.png",
+        "bytes": 56090,
+        "sha256": "34d20c28245fcf074d0f59eeb813921420a280975f96b009bdc489e96955d329"
+      },
+      {
+        "path": "screens/e14.png",
+        "bytes": 67980,
+        "sha256": "4f2be47c23c417ee6981f8266788fe04fb5e0b34b3e1a04fb55d2367b8a2b571"
+      },
+      {
+        "path": "screens/e16.png",
+        "bytes": 70303,
+        "sha256": "7a246fd72e4849863cde2bf4dfb7306e9c1b1138fa689dc15d77c539e3b01e31"
+      },
+      {
+        "path": "screens/e17.png",
+        "bytes": 39150,
+        "sha256": "f705ef4c23aa1e31347415feb3952c4a4453142d6b475de865625938f6c50614"
+      },
+      {
+        "path": "screens/e3.png",
+        "bytes": 72773,
+        "sha256": "67a5a323bdfe6d976679ccf2943ce01c77bcf06f46d903378064e993d5ce2f50"
+      },
+      {
+        "path": "screens/e5.png",
+        "bytes": 65639,
+        "sha256": "c5f5d1861af21060fdabd05238b8f480152efecc5eb7e90d4814d7e990eb8907"
+      },
+      {
+        "path": "screens/e6.png",
+        "bytes": 57605,
+        "sha256": "d684ecd9524fa7d2db09434216087ac8964172816cc59d2c9ed4607244138469"
+      },
+      {
+        "path": "screens/e7.png",
+        "bytes": 82345,
+        "sha256": "d24b3d5e4e8011442fbca80b297df584d8d14e59c598c166a6456472fbb373e6"
+      },
+      {
+        "path": "screens/e9.png",
+        "bytes": 51341,
+        "sha256": "6e2c5047506ddd49f1442a962f07de904f09bf855dbeb9a193d453f13010bd13"
+      },
+      {
+        "path": "screens/g2.png",
+        "bytes": 87958,
+        "sha256": "ba53ebcf9ba6c737300b7a831619440499c50e45c5336f5dab6fb7ff61eb60c1"
+      },
+      {
+        "path": "screens/m1.png",
+        "bytes": 73197,
+        "sha256": "7addb2224d6c3dce2b5694f8c13263fb662f435183865fc0ebfbd0c0a4883c6c"
+      },
+      {
+        "path": "screens/m3.png",
+        "bytes": 94572,
+        "sha256": "0ec7c6fb1fcd00b65eccd3e8eecf2ac3402a38555252d8974f93cfa5d40685c5"
+      },
+      {
+        "path": "screens/msg.png",
+        "bytes": 88832,
+        "sha256": "b8b2f3dca4cf57356ffeb10b76ff6bd83ad48055c5d898dfb0b1b5fb79a56d45"
+      },
+      {
+        "path": "screens/table.png",
+        "bytes": 107400,
+        "sha256": "1de13597d1b9b01538bd4b43d0f0a5a3601203e48ecba6459e95c7bc08b4db05"
+      }
+    ],
+    "contactSheetFile": {
+      "path": "SCREEN_CONTACT_SHEET.png",
+      "bytes": 1136140,
+      "sha256": "e000f150879deb832e9aa34998ad7028bfd0a3e4688974a8557425407c314fa8"
+    }
+  },
+  "validation": {
+    "servedUrl": "http://127.0.0.1:8765/ONE%20MORE%20%E5%8E%9F%E5%9E%8B.dc.html",
+    "httpStatus": 200,
+    "renderedStates": {
+      "passed": 36,
+      "total": 36
+    },
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "verifiedInteractions": [
+      "intent input -> clarification round 1 -> clarification round 2 -> intent card -> pooling",
+      "competition table seat -> 4/4 ready",
+      "multi-party confirmation -> 4/4 confirmed",
+      "calendar permission mock -> added to calendar state",
+      "chat text send -> message appended"
+    ],
+    "evidenceDirectory": "/Users/baihe/Documents/compusone/output/playwright/one-more-design-return"
+  },
+  "mascotPolicy": {
+    "prototypeReferencedAsset": "export/assets/azou.png",
+    "prototypeReferencedAssetRole": "obsolete orange placeholder",
+    "prototypeFinalStaticCandidate": "export/assets/azou-alt.png",
+    "selectedRuntimeRoot": "/Users/baihe/Documents/compusone/assets/ip/selected/aiia-pink-girl-business-v1",
+    "selectedStaticAsset": "/Users/baihe/Documents/compusone/assets/ip/selected/aiia-pink-girl-business-v1/base-transparent.png",
+    "selectedStaticSha256": "3a9a1372050179c81a1533bfe59e9d6ec4ab9daa0974b768f45aca948b038028",
+    "altMatchesSelectedStatic": true,
+    "rule": "final iOS app must use selected runtime root and motion contract; never ship azou.png"
+  }
+}

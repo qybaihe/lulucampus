@@ -1,0 +1,472 @@
+/* src/fonts.css */
+/* Brand faces are loaded at runtime from ByteDance's public CDN — the same
+   URLs the live site uses. No font binaries are redistributed with this
+   package: DouyinSans and FZXiangSu are licensed faces we do not own.
+   Every family below has a system fallback in --aiia-font-*. */
+
+/* @ds-font-face-dropped: unresolvable src */
+
+
+/* src/tokens.css */
+/* Design tokens extracted from aiia.douyin.com (抖音AI创变者计划 2026).
+   Values are transcribed from the site's shipped stylesheets, not invented. */
+
+:root {
+  /* ---- Surface ------------------------------------------------------- */
+  /* The page floor is #010001, not pure black — a deliberate 1/255 warm cast. */
+  --aiia-bg-page: #010001;
+  --aiia-bg-black: #000000;
+  --aiia-bg-elevated: #121515;
+
+  /* Glass fills. The whole UI is built from white at four opacities over the
+     near-black page, never from opaque grey panels. */
+  --aiia-surface-subtle: rgba(255, 255, 255, 0.06);
+  --aiia-surface-default: rgba(255, 255, 255, 0.08);
+  --aiia-surface-raised: rgba(255, 255, 255, 0.12);
+  --aiia-surface-strong: rgba(255, 255, 255, 0.2);
+
+  /* ---- Border -------------------------------------------------------- */
+  --aiia-border-subtle: rgba(255, 255, 255, 0.06);
+  --aiia-border-default: rgba(255, 255, 255, 0.15);
+  --aiia-border-strong: rgba(255, 255, 255, 0.2);
+
+  /* ---- Text ---------------------------------------------------------- */
+  /* An opacity ladder on white, mirroring Semi's --semi-color-text-0..3. */
+  --aiia-text-primary: #ffffff;
+  --aiia-text-secondary: rgba(255, 255, 255, 0.75);
+  --aiia-text-tertiary: rgba(255, 255, 255, 0.6);
+  --aiia-text-muted: rgba(255, 255, 255, 0.5);
+
+  /* ---- Accent: cyan (primary action + keyword highlight) -------------- */
+  --aiia-cyan: #00ffe1;
+  --aiia-cyan-gradient: linear-gradient(180deg, #40ffe6, #00c4b0);
+  --aiia-cyan-gradient-hover: linear-gradient(180deg, #00e0c8, #00b8a5);
+  --aiia-cyan-gradient-active: linear-gradient(180deg, #00d0bc, #00ac98);
+  /* Text on the cyan gradient is deep teal-black, never pure black. */
+  --aiia-on-cyan: #0a1a18;
+
+  /* ---- Accent: magenta (agenda / list emphasis) ----------------------- */
+  --aiia-magenta: #ff4fd3;
+  --aiia-magenta-soft: #ff9be1;
+
+  /* ---- Radius -------------------------------------------------------- */
+  /* Two poles: interactive elements are fully round, containers are soft. */
+  --aiia-radius-pill: 100px;
+  --aiia-radius-sm: 8px;
+  --aiia-radius-card: 20px;
+  --aiia-radius-panel: 32px;
+
+  /* ---- Blur ---------------------------------------------------------- */
+  --aiia-blur-nav: 20px;
+  --aiia-blur-surface: 12px;
+
+  /* ---- Type ---------------------------------------------------------- */
+  --aiia-font-sans: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial,
+    sans-serif;
+  --aiia-font-display: 'DouyinSans', 'PingFang SC', sans-serif;
+  --aiia-font-pixel: 'PixelifySans', 'FZXS18', ui-monospace, Menlo, monospace;
+
+  /* ---- Motion -------------------------------------------------------- */
+  --aiia-duration-fast: 0.2s;
+  --aiia-duration-base: 0.3s;
+  --aiia-ease: ease;
+}
+
+
+/* src/components.css */
+/* Component rules transcribed from aiia.douyin.com's shipped CSS modules.
+   Class names are re-prefixed (aiia-*) but geometry, colour and motion match
+   the source rules. */
+
+/* ---- Button ---------------------------------------------------------- */
+
+.aiia-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: var(--aiia-radius-pill);
+  font-family: var(--aiia-font-sans);
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--aiia-duration-fast) var(--aiia-ease);
+}
+
+.aiia-button:disabled,
+.aiia-button[aria-disabled='true'] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Sizes. The site runs three heights: 40 (nav actions), 48, 56 (hero). */
+.aiia-button--sm {
+  height: 40px;
+  padding: 0 24px;
+  font-size: 14px;
+  line-height: 20px;
+}
+.aiia-button--md {
+  height: 48px;
+  padding: 0 28px;
+  font-size: 16px;
+  line-height: 24px;
+}
+.aiia-button--lg {
+  height: 56px;
+  padding: 0 32px;
+  min-width: 200px;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.aiia-button--block {
+  width: 100%;
+}
+
+/* Primary: the cyan gradient. Deep-teal label, never black. */
+.aiia-button--primary {
+  background: var(--aiia-cyan-gradient);
+  color: var(--aiia-on-cyan);
+  font-weight: 600;
+}
+.aiia-button--primary:hover:not(:disabled) {
+  background: var(--aiia-cyan-gradient-hover);
+}
+.aiia-button--primary:active:not(:disabled) {
+  background: var(--aiia-cyan-gradient-active);
+}
+
+/* Secondary: frosted glass with a hairline. The workhorse. */
+.aiia-button--secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--aiia-border-strong);
+  color: var(--aiia-text-primary);
+  font-weight: 500;
+  -webkit-backdrop-filter: blur(var(--aiia-blur-surface));
+  backdrop-filter: blur(var(--aiia-blur-surface));
+}
+.aiia-button--secondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.aiia-button--secondary:active:not(:disabled) {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Ghost: the lightest glass, used inside cards. */
+.aiia-button--ghost {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--aiia-border-strong);
+  color: var(--aiia-text-primary);
+  font-weight: 500;
+  -webkit-backdrop-filter: blur(var(--aiia-blur-surface));
+  backdrop-filter: blur(var(--aiia-blur-surface));
+}
+.aiia-button--ghost:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* ---- GlassPanel ------------------------------------------------------ */
+
+.aiia-glass-panel {
+  position: relative;
+  border-style: solid;
+  border-width: 1px;
+  font-family: var(--aiia-font-sans);
+  color: var(--aiia-text-primary);
+}
+
+.aiia-glass-panel--subtle {
+  background: var(--aiia-surface-subtle);
+  border-color: var(--aiia-border-subtle);
+}
+.aiia-glass-panel--default {
+  background: var(--aiia-surface-default);
+  border-color: var(--aiia-border-default);
+}
+.aiia-glass-panel--strong {
+  background: var(--aiia-surface-raised);
+  border-color: var(--aiia-border-strong);
+}
+
+.aiia-glass-panel--card {
+  border-radius: var(--aiia-radius-card);
+}
+.aiia-glass-panel--panel {
+  border-radius: var(--aiia-radius-panel);
+}
+.aiia-glass-panel--pill {
+  border-radius: var(--aiia-radius-pill);
+}
+
+.aiia-glass-panel--blurred {
+  -webkit-backdrop-filter: blur(var(--aiia-blur-surface));
+  backdrop-filter: blur(var(--aiia-blur-surface));
+}
+
+/* ---- Header ---------------------------------------------------------- */
+
+.aiia-header {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 80px;
+  min-width: fit-content;
+  border-bottom: 1px solid var(--aiia-border-subtle);
+  font-family: var(--aiia-font-sans);
+  transition: all var(--aiia-duration-base) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Past the fold the bar detaches into a floating frosted pill. */
+.aiia-header--floating {
+  left: 80px;
+  right: 80px;
+  top: 20px;
+  height: 64px;
+  border-bottom: none;
+  border-radius: var(--aiia-radius-pill);
+  background: var(--aiia-surface-default);
+  -webkit-backdrop-filter: blur(var(--aiia-blur-nav));
+  backdrop-filter: blur(var(--aiia-blur-nav));
+}
+
+.aiia-header__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 24px;
+}
+
+.aiia-header__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  justify-content: flex-start;
+  min-width: 135px;
+  height: 38px;
+  color: var(--aiia-text-primary);
+  font-family: var(--aiia-font-display);
+  font-size: 16px;
+}
+
+.aiia-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 10px;
+}
+
+.aiia-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.aiia-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 92px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: var(--aiia-radius-pill);
+  background: transparent;
+  color: var(--aiia-text-secondary);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--aiia-duration-base) var(--aiia-ease),
+    color var(--aiia-duration-base) var(--aiia-ease);
+}
+
+.aiia-nav-item:hover,
+.aiia-nav-item--active {
+  background: var(--aiia-surface-strong);
+  color: var(--aiia-text-primary);
+  font-weight: 600;
+  -webkit-backdrop-filter: blur(var(--aiia-blur-surface));
+  backdrop-filter: blur(var(--aiia-blur-surface));
+}
+
+/* ---- SectionHeading -------------------------------------------------- */
+
+.aiia-section-heading {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--aiia-font-sans);
+}
+
+.aiia-section-heading--center {
+  align-items: center;
+  text-align: center;
+}
+.aiia-section-heading--start {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.aiia-section-heading__eyebrow {
+  margin: 0 0 16px;
+  color: var(--aiia-text-muted);
+  font-family: var(--aiia-font-pixel);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.aiia-section-heading__title {
+  margin: 0;
+  color: var(--aiia-text-primary);
+  font-family: var(--aiia-font-display);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.aiia-section-heading__title--lg {
+  font-size: 60px;
+}
+.aiia-section-heading__title--md {
+  font-size: 40px;
+}
+.aiia-section-heading__title--sm {
+  font-size: 28px;
+  line-height: 44px;
+}
+
+.aiia-section-heading__description {
+  max-width: 720px;
+  margin: 20px 0 0;
+  color: var(--aiia-text-muted);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* ---- TrackCard ------------------------------------------------------- */
+
+.aiia-track-card {
+  position: relative;
+  width: 100%;
+  border-radius: var(--aiia-radius-card);
+  overflow: hidden;
+  background: var(--aiia-surface-subtle);
+  border: 1px solid var(--aiia-border-subtle);
+  font-family: var(--aiia-font-sans);
+}
+
+.aiia-track-card__background {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--aiia-radius-card);
+  overflow: hidden;
+  pointer-events: none;
+  background-size: cover;
+  background-position: 50%;
+}
+
+/* A downward scrim so body copy stays legible over artwork. */
+.aiia-track-card__scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(5, 5, 5, 0.92) 0%,
+    rgba(5, 5, 5, 0.72) 46%,
+    rgba(5, 5, 5, 0.45) 100%
+  );
+}
+
+.aiia-track-card__content {
+  position: relative;
+  padding: 40px 150px 40px 55px;
+}
+
+.aiia-track-card__title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.aiia-track-card__title {
+  margin: 0 0 15px;
+  color: var(--aiia-text-primary);
+  font-family: var(--aiia-font-sans);
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.aiia-track-card__list {
+  margin: 0;
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.aiia-track-card__item {
+  margin-bottom: 15px;
+  color: var(--aiia-text-tertiary);
+  font-size: 15px;
+  line-height: 18px;
+}
+.aiia-track-card__item:last-child {
+  margin-bottom: 0;
+}
+.aiia-track-card__item::marker {
+  color: var(--aiia-text-tertiary);
+}
+
+/* Selected track: copy goes full white and the markers pick up the magenta. */
+.aiia-track-card--active .aiia-track-card__item {
+  color: var(--aiia-text-primary);
+}
+.aiia-track-card--active .aiia-track-card__item::marker {
+  color: var(--aiia-magenta-soft);
+}
+
+.aiia-track-card__action {
+  flex-shrink: 0;
+  margin-top: 2px;
+  padding: 6px 20px;
+  border: 1px solid var(--aiia-border-strong);
+  border-radius: 999px;
+  background: var(--aiia-surface-raised);
+  color: var(--aiia-text-primary);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(var(--aiia-blur-surface));
+  backdrop-filter: blur(var(--aiia-blur-surface));
+  transition: background var(--aiia-duration-fast) var(--aiia-ease);
+}
+.aiia-track-card__action:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* ---- HighlightText --------------------------------------------------- */
+
+.aiia-highlight-text {
+  margin: 0 0 12px;
+  color: var(--aiia-text-muted);
+  font-family: var(--aiia-font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.aiia-highlight-text__keyword {
+  color: var(--aiia-cyan);
+}

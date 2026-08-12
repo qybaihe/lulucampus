@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="ds/_ds_bundle.css">
+<style>
+@font-face{font-family:'DouyinSans';font-weight:700;font-display:swap;src:url('https://lf-dy-gr-sourcecdn.bytegecko.com/obj/byte-gurd-source-gr/delight/common/resource/dux_common_resource/DouyinSansBold.ttf') format('truetype');}
+body{margin:0;background:#010001;-webkit-font-smoothing:antialiased;}
+a{color:#00ffe1;text-decoration:none}a:hover{color:#40ffe6}
+::-webkit-scrollbar{width:0;height:0}
+@keyframes seatPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,79,211,.35)}50%{box-shadow:0 0 0 10px rgba(255,79,211,0)}}
+</style>
+</helmet>
+<div style="min-height:100vh;background:var(--aiia-bg-page);color:var(--aiia-text-primary);font-family:var(--aiia-font-sans),'PingFang SC',system-ui,sans-serif;display:flex;gap:40px;padding:40px 48px 80px;align-items:flex-start">
+
+  <sc-if value="{{ showRail }}" hint-placeholder-val="{{ true }}">
+  <aside style="width:236px;flex:none;position:sticky;top:40px;display:flex;flex-direction:column;gap:18px">
+    <div>
+      <div style="font:400 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.22em;color:var(--aiia-magenta);text-transform:uppercase">One More · P0</div>
+      <div style="font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:26px;line-height:1.2;margin-top:10px">差一个</div>
+      <div style="font-size:12px;line-height:1.6;color:var(--aiia-text-muted);margin-top:8px">AI 不介绍人，AI 促成事。<br>iPhone 17 · 402×874</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <sc-for list="{{ rail }}" as="g" hint-placeholder-count="3">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="font:600 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--aiia-text-muted);text-transform:uppercase">{{ g.name }}</div>
+          <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="4">
+            <div onClick="{{ it.go }}" style="{{ it.st }}" style-hover="background:var(--aiia-surface-default)">{{ it.label }}</div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </aside>
+  </sc-if>
+
+  <div style="flex:none;display:flex;flex-direction:column;align-items:center;gap:14px">
+    <div style="position:relative;width:402px;height:874px;border-radius:56px;background:#000;box-shadow:0 0 0 11px #17191b,0 0 0 13px #35393d,0 40px 120px rgba(0,255,225,.06);overflow:hidden">
+      <div style="position:absolute;inset:0;background:var(--aiia-bg-page);display:flex;flex-direction:column;overflow:hidden">
+
+        <div style="position:absolute;top:-140px;left:-60px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,225,.16),transparent 68%);filter:blur(10px);pointer-events:none"></div>
+        <div style="position:absolute;top:120px;right:-120px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,79,211,.12),transparent 68%);filter:blur(10px);pointer-events:none"></div>
+
+        <div style="position:relative;height:54px;flex:none;display:flex;align-items:flex-end;justify-content:space-between;padding:0 30px 8px;font-size:14px;font-weight:600;letter-spacing:.02em">
+          <span>9:41</span>
+          <span style="display:flex;align-items:center;gap:5px;opacity:.9">
+            <span style="display:inline-flex;align-items:flex-end;gap:2px;height:11px"><i style="width:3px;height:4px;background:#fff;border-radius:1px"></i><i style="width:3px;height:6px;background:#fff;border-radius:1px"></i><i style="width:3px;height:9px;background:#fff;border-radius:1px"></i><i style="width:3px;height:11px;background:#fff;border-radius:1px"></i></span>
+            <span style="width:22px;height:11px;border:1px solid rgba(255,255,255,.5);border-radius:3px;padding:1px;display:inline-block"><i style="display:block;width:75%;height:100%;background:#fff;border-radius:1px"></i></span>
+          </span>
+        </div>
+        <div style="position:absolute;top:12px;left:50%;transform:translateX(-50%);width:118px;height:33px;background:#000;border-radius:20px"></div>
+
+        <sc-if value="{{ showNav }}" hint-placeholder-val="{{ true }}">
+          <div style="position:relative;flex:none;height:50px;display:flex;align-items:center;padding:0 16px;gap:6px">
+            <div onClick="{{ back }}" style="width:34px;height:34px;border-radius:50%;background:var(--aiia-surface-subtle);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--aiia-text-secondary)" style-hover="background:var(--aiia-surface-raised)">‹</div>
+            <div style="font-size:16px;font-weight:600">{{ title }}</div>
+          </div>
+        </sc-if>
+
+        <div style="position:relative;flex:1;overflow-y:auto;overflow-x:hidden">
+          <sc-if value="{{ is_a2 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:20px 26px 34px">
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.24em;color:var(--aiia-magenta)">ONE MORE · 中山大学</div>
+              <div style="position:relative;margin:18px -10px 0;height:250px;display:flex;align-items:center;justify-content:center">
+                <div style="position:absolute;width:210px;height:210px;border-radius:50%;background:radial-gradient(circle,rgba(255,79,211,.22),transparent 70%)"></div>
+                <img src="assets/azou.png" alt="阿凑" style="position:relative;width:212px;height:212px;object-fit:contain;filter:drop-shadow(0 18px 40px rgba(0,0,0,.6))">
+              </div>
+              <div style="font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:40px;line-height:1.15;margin-top:6px">AI 不介绍人<br>AI 促成事</div>
+              <div style="font-size:14px;line-height:1.75;color:var(--aiia-text-muted);margin-top:14px">这里的最小单元是<span style="color:var(--aiia-cyan)">一个局</span>，不是一个人。说出你想做的事，剩下的交给阿凑。</div>
+              <div style="display:flex;flex-direction:column;gap:12px;margin-top:22px">
+                <div style="display:flex;gap:10px;align-items:flex-start"><i style="width:6px;height:6px;border-radius:50%;background:var(--aiia-magenta);margin-top:7px;flex:none"></i><span style="font-size:13px;line-height:1.6;color:var(--aiia-text-tertiary)">不是交友软件，没有刷人、没有好友申请</span></div>
+                <div style="display:flex;gap:10px;align-items:flex-start"><i style="width:6px;height:6px;border-radius:50%;background:var(--aiia-magenta);margin-top:7px;flex:none"></i><span style="font-size:13px;line-height:1.6;color:var(--aiia-text-tertiary)">零填表画像，课表和培养方案自己说话</span></div>
+                <div style="display:flex;gap:10px;align-items:flex-start"><i style="width:6px;height:6px;border-radius:50%;background:var(--aiia-magenta);margin-top:7px;flex:none"></i><span style="font-size:13px;line-height:1.6;color:var(--aiia-text-tertiary)">凑不齐会自动结束，没有人知道你开过口</span></div>
+              </div>
+              <div style="flex:1;min-height:24px"></div>
+              <div style="display:flex;gap:6px;justify-content:center;margin-bottom:18px"><i style="width:18px;height:4px;border-radius:2px;background:var(--aiia-cyan)"></i><i style="width:4px;height:4px;border-radius:2px;background:rgba(255,255,255,.25)"></i><i style="width:4px;height:4px;border-radius:2px;background:rgba(255,255,255,.25)"></i></div>
+              <div onClick="{{ n.a3 }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer">开始</div>
+              <div onClick="{{ n.b7 }}" style="height:44px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--aiia-text-muted);cursor:pointer" style-hover="color:var(--aiia-text-primary)">先随便看看校园活动</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_a3 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:6px 26px 34px">
+              <div style="font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:28px;line-height:1.25">用企业微信扫一扫</div>
+              <div style="font-size:13px;line-height:1.7;color:var(--aiia-text-muted);margin-top:10px">全程不需要输入校园密码。我们只拿到学校返回的身份凭证。</div>
+              <div style="margin-top:26px;background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-panel);padding:24px;display:flex;flex-direction:column;align-items:center;gap:16px">
+                <div style="width:212px;height:212px;border-radius:var(--aiia-radius-card);background:#fff;padding:14px;box-sizing:border-box">
+                  <div style="width:100%;height:100%;background-color:#fff;background-image:repeating-linear-gradient(0deg,#010001 0 8px,transparent 8px 16px),repeating-linear-gradient(90deg,#010001 0 8px,transparent 8px 16px);background-size:16px 16px;position:relative;border-radius:4px">
+                    <div style="position:absolute;top:0;left:0;width:44px;height:44px;border:9px solid #010001;background:#fff"></div>
+                    <div style="position:absolute;top:0;right:0;width:44px;height:44px;border:9px solid #010001;background:#fff"></div>
+                    <div style="position:absolute;bottom:0;left:0;width:44px;height:44px;border:9px solid #010001;background:#fff"></div>
+                    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;color:#010001;font-weight:700">企微</div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default)">
+                  <i style="width:7px;height:7px;border-radius:50%;background:var(--aiia-cyan)"></i>
+                  <span style="font-size:12.5px;color:var(--aiia-text-secondary)">等待扫描 · 二维码 04:32 后失效</span>
+                </div>
+                <div style="font-size:12px;color:var(--aiia-text-muted);cursor:pointer" style-hover="color:var(--aiia-cyan)">刷新二维码</div>
+              </div>
+              <div style="flex:1;min-height:18px"></div>
+              <div onClick="{{ n.a4 }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer">打开企业微信扫码</div>
+              <div style="height:44px;display:flex;align-items:center;justify-content:center;font-size:12.5px;color:var(--aiia-text-muted);cursor:pointer">为什么需要授权？</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_a4 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:6px 22px 34px">
+              <div style="font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:26px;line-height:1.3;padding:0 4px">四项授权，逐项可关</div>
+              <div style="font-size:13px;line-height:1.7;color:var(--aiia-text-muted);margin:10px 4px 0">跳过任何一项都能继续使用，只是对应能力会降级。</div>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px">
+                <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px;display:flex;gap:12px;align-items:flex-start">
+                  <div style="flex:1"><div style="font-size:15px;font-weight:600">课表</div><div style="font-size:12.5px;line-height:1.6;color:var(--aiia-text-muted);margin-top:5px">用来算你的空档。关掉后只能手动选时间。</div></div>
+                  <div style="width:46px;height:27px;border-radius:20px;background:var(--aiia-cyan-gradient);padding:3px;box-sizing:border-box;flex:none"><i style="display:block;width:21px;height:21px;border-radius:50%;background:#fff;margin-left:19px"></i></div>
+                </div>
+                <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px;display:flex;gap:12px;align-items:flex-start">
+                  <div style="flex:1"><div style="font-size:15px;font-weight:600">培养方案</div><div style="font-size:12.5px;line-height:1.6;color:var(--aiia-text-muted);margin-top:5px">用来生成学科域与能力标签。</div></div>
+                  <div style="width:46px;height:27px;border-radius:20px;background:var(--aiia-cyan-gradient);padding:3px;box-sizing:border-box;flex:none"><i style="display:block;width:21px;height:21px;border-radius:50%;background:#fff;margin-left:19px"></i></div>
+                </div>
+                <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px;display:flex;gap:12px;align-items:flex-start">
+                  <div style="flex:1"><div style="font-size:15px;font-weight:600">选课记录</div><div style="font-size:12.5px;line-height:1.6;color:var(--aiia-text-muted);margin-top:5px">识别跨专业选修与同课破冰理由。</div></div>
+                  <div style="width:46px;height:27px;border-radius:20px;background:var(--aiia-cyan-gradient);padding:3px;box-sizing:border-box;flex:none"><i style="display:block;width:21px;height:21px;border-radius:50%;background:#fff;margin-left:19px"></i></div>
+                </div>
+                <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px;display:flex;gap:12px;align-items:flex-start">
+                  <div style="flex:1"><div style="font-size:15px;font-weight:600">代理预约</div><div style="font-size:12.5px;line-height:1.6;color:var(--aiia-text-muted);margin-top:5px">全员确认后，由阿凑替你们订研讨室和场馆。每次执行前都会先给预览。</div></div>
+                  <div style="width:46px;height:27px;border-radius:20px;background:var(--aiia-surface-strong);padding:3px;box-sizing:border-box;flex:none"><i style="display:block;width:21px;height:21px;border-radius:50%;background:rgba(255,255,255,.55)"></i></div>
+                </div>
+              </div>
+              <div style="margin-top:16px;display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:var(--aiia-radius-card);background:rgba(0,255,225,.06);border:1px solid rgba(0,255,225,.18)">
+                <span style="font-size:14px;color:var(--aiia-cyan)">✓</span>
+                <span style="font-size:12.5px;line-height:1.55;color:var(--aiia-text-secondary)">永不读取<span style="color:var(--aiia-cyan)">成绩与绩点</span>，只看你修过什么</span>
+              </div>
+              <div style="flex:1;min-height:18px"></div>
+              <div onClick="{{ n.a5 }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer;margin-top:14px">同意并继续</div>
+              <div onClick="{{ n.a5 }}" style="height:44px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--aiia-text-muted);cursor:pointer">全部跳过</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_a5 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:26px 26px 34px">
+              <div style="font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:26px;line-height:1.3">正在读你的课表<br>不用填表</div>
+              <div style="display:flex;flex-direction:column;gap:2px;margin-top:30px">
+                <div style="display:flex;gap:14px;align-items:center;padding:14px 0"><span style="width:22px;height:22px;border-radius:50%;background:rgba(0,255,225,.14);color:var(--aiia-cyan);display:flex;align-items:center;justify-content:center;font-size:12px;flex:none">✓</span><span style="flex:1;font-size:14px">读取培养方案</span><span style="font-size:12px;color:var(--aiia-text-muted)">计算机科学与技术</span></div>
+                <div style="display:flex;gap:14px;align-items:center;padding:14px 0"><span style="width:22px;height:22px;border-radius:50%;background:rgba(0,255,225,.14);color:var(--aiia-cyan);display:flex;align-items:center;justify-content:center;font-size:12px;flex:none">✓</span><span style="flex:1;font-size:14px">扫描全学期课表</span><span style="font-size:12px;color:var(--aiia-text-muted)">9 门 · 34 段空档</span></div>
+                <div style="display:flex;gap:14px;align-items:center;padding:14px 0"><span style="width:22px;height:22px;border-radius:50%;background:rgba(0,255,225,.14);color:var(--aiia-cyan);display:flex;align-items:center;justify-content:center;font-size:12px;flex:none">✓</span><span style="flex:1;font-size:14px">生成能力标签</span><span style="font-size:12px;color:var(--aiia-text-muted)">6 个</span></div>
+                <div style="display:flex;gap:14px;align-items:center;padding:14px 0"><span style="width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,79,211,.5);border-top-color:var(--aiia-magenta);flex:none;box-sizing:border-box"></span><span style="flex:1;font-size:14px;color:var(--aiia-text-secondary)">识别跨专业选修</span><span style="font-size:12px;color:var(--aiia-magenta)">进行中</span></div>
+              </div>
+              <div style="height:3px;border-radius:3px;background:var(--aiia-surface-default);margin-top:18px;overflow:hidden"><i style="display:block;width:78%;height:100%;background:var(--aiia-cyan-gradient)"></i></div>
+              <div style="flex:1;min-height:18px"></div>
+              <div onClick="{{ n.a6 }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer">查看结果</div>
+              <div style="height:44px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--aiia-text-muted);cursor:pointer">放到后台继续</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_a6 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:6px 22px 34px">
+              <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:18px">
+                <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted)">认证事实</div>
+                <div style="font-size:19px;font-weight:600;margin-top:10px">中山大学 · 计算机学院</div>
+                <div style="font-size:13px;color:var(--aiia-text-muted);margin-top:6px">2024 级本科 · 东校园</div>
+                <div style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:5px 11px;border-radius:var(--aiia-radius-sm);background:rgba(0,255,225,.1);color:var(--aiia-cyan);font-size:11px">✓ 企业微信已验证</div>
+              </div>
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted);margin:22px 4px 12px">能力标签 · 均带来源</div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <span style="display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:13px">数据结构与算法<i style="font-size:10px;font-style:normal;color:var(--aiia-cyan)">已验证·选课</i></span>
+                <span style="display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:13px">机器学习<i style="font-size:10px;font-style:normal;color:var(--aiia-cyan)">已验证·选课</i></span>
+                <span style="display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--aiia-radius-pill);background:rgba(255,79,211,.1);border:1px solid rgba(255,79,211,.28);font-size:13px">产品设计导论<i style="font-size:10px;font-style:normal;color:var(--aiia-magenta)">跨专业选修</i></span>
+                <span style="display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:13px">后端开发<i style="font-size:10px;font-style:normal;color:var(--aiia-text-muted)">自述</i></span>
+                <span style="display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-subtle);border:1px dashed var(--aiia-border-default);font-size:13px;color:var(--aiia-text-muted)">+ 添加自述标签</span>
+              </div>
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted);margin:22px 4px 12px">你的可用时间 · 仅自己可见</div>
+              <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px">
+                <div style="height:9px;border-radius:2px;background:rgba(0,255,225,.5)"></div><div style="height:9px;border-radius:2px;background:var(--aiia-surface-default)"></div><div style="height:9px;border-radius:2px;background:rgba(0,255,225,.5)"></div><div style="height:9px;border-radius:2px;background:rgba(0,255,225,.22)"></div><div style="height:9px;border-radius:2px;background:var(--aiia-surface-default)"></div><div style="height:9px;border-radius:2px;background:rgba(0,255,225,.5)"></div><div style="height:9px;border-radius:2px;background:rgba(0,255,225,.5)"></div>
+                <div style="height:9px;border-radius:2px;background:var(--aiia-surface-default)"></div><div style="height:9px;border-radius:2px;background:rgba(0,255,225,.22)"></div><div style="height:9px;border-radius:2px;background:var(--aiia-surface-default)"></div><div style="height:9px;border-radius:2px;background:rgba(0,255,225,.5)"></div><div style="height:9px;border-radius:2px;background:rgba(0,255,225,.5)"></div><div style="height:9px;border-radius:2px;background:var(--aiia-surface-default)"></div><div style="height:9px;border-radius:2px;background:rgba(0,255,225,.22)"></div>
+                <div style="height:9px;border-radius:2px;background:rgba(0,255,225,.5)"></div><div style="height:9px;border-radius:2px;background:rgba(0,255,225,.5)"></div><div style="height:9px;border-radius:2px;background:rgba(0,255,225,.22)"></div><div style="height:9px;border-radius:2px;background:var(--aiia-surface-default)"></div><div style="height:9px;border-radius:2px;background:rgba(0,255,225,.5)"></div><div style="height:9px;border-radius:2px;background:rgba(0,255,225,.5)"></div><div style="height:9px;border-radius:2px;background:rgba(0,255,225,.5)"></div>
+              </div>
+              <div style="font-size:12px;color:var(--aiia-text-muted);margin:10px 4px 0">别人永远看不到你的课表，只会看到系统算出的共同空档。</div>
+              <div style="flex:1;min-height:20px"></div>
+              <div onClick="{{ n.a7 }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer;margin-top:14px">就是这样</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_a7 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:6px 26px 34px">
+              <div style="font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:26px;line-height:1.3">个人工具已经能用了</div>
+              <div style="font-size:13.5px;line-height:1.75;color:var(--aiia-text-muted);margin-top:12px">课表、作业、研讨室、场馆、班车、赛事，现在就可以查。<br>要不要顺便进入成局池，由你决定。</div>
+              <div style="margin-top:24px;background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:20px;display:flex;gap:14px;align-items:center">
+                <div style="flex:1"><div style="font-size:16px;font-weight:600">进入成局池</div><div style="font-size:12.5px;line-height:1.6;color:var(--aiia-text-muted);margin-top:6px">默认关闭。关闭时公开局、差一个、我的局置灰，其他一切照常。</div></div>
+                <div style="width:52px;height:31px;border-radius:20px;background:var(--aiia-surface-strong);padding:3px;box-sizing:border-box;flex:none"><i style="display:block;width:25px;height:25px;border-radius:50%;background:rgba(255,255,255,.55)"></i></div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:12px;margin-top:20px">
+                <div style="display:flex;gap:10px;align-items:flex-start"><i style="width:6px;height:6px;border-radius:50%;background:var(--aiia-magenta);margin-top:7px;flex:none"></i><span style="font-size:13px;line-height:1.6;color:var(--aiia-text-tertiary)">开启后仍然匿名招募，满员前没人知道你报了名</span></div>
+                <div style="display:flex;gap:10px;align-items:flex-start"><i style="width:6px;height:6px;border-radius:50%;background:var(--aiia-magenta);margin-top:7px;flex:none"></i><span style="font-size:13px;line-height:1.6;color:var(--aiia-text-tertiary)">随时可以在「我 · 隐私与安全」里关掉</span></div>
+              </div>
+              <div style="flex:1;min-height:18px"></div>
+              <div onClick="{{ n.b1 }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer">开启并进入今天</div>
+              <div onClick="{{ n.b1 }}" style="height:44px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--aiia-text-muted);cursor:pointer">先不开，只用工具</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_b1 }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:4px 20px 26px">
+              <div style="display:flex;align-items:flex-end;justify-content:space-between">
+                <div>
+                  <div style="font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:28px;line-height:1.2">今天</div>
+                  <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:6px">8 月 11 日 周二 · 东校园</div>
+                </div>
+                <div style="width:38px;height:38px;border-radius:50%;background:var(--aiia-surface-default);border:1px solid var(--aiia-border-subtle);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--aiia-text-secondary)">刘</div>
+              </div>
+
+              <div onClick="{{ n.e3 }}" style="margin-top:18px;border-radius:var(--aiia-radius-card);background:rgba(255,79,211,.09);border:1px solid rgba(255,79,211,.28);padding:16px;display:flex;align-items:center;gap:12px;cursor:pointer">
+                <div style="flex:1">
+                  <div style="font-size:11px;color:var(--aiia-magenta);letter-spacing:.06em">待你确认 · 还剩 3 小时 12 分</div>
+                  <div style="font-size:15px;font-weight:600;margin-top:7px">智能应用开发大赛 · 组队面聊</div>
+                  <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:5px">已满 4 人 · 2/4 人已确认</div>
+                </div>
+                <span style="font-size:18px;color:var(--aiia-text-muted)">›</span>
+              </div>
+
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted);margin:24px 2px 12px">今日时间轴</div>
+              <div style="display:flex;flex-direction:column;gap:0">
+                <div style="display:flex;gap:14px"><div style="width:44px;flex:none;font-size:12px;color:var(--aiia-text-muted);padding-top:2px">10:00</div><div style="flex:1;border-left:1px solid var(--aiia-border-subtle);padding:0 0 18px 14px;position:relative"><i style="position:absolute;left:-4px;top:5px;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.35)"></i><div style="font-size:14px">计算机网络</div><div style="font-size:12px;color:var(--aiia-text-muted);margin-top:4px">东校园 A302 · 教学班 02</div></div></div>
+                <div style="display:flex;gap:14px"><div style="width:44px;flex:none;font-size:12px;color:var(--aiia-text-muted);padding-top:2px">14:00</div><div style="flex:1;border-left:1px solid var(--aiia-border-subtle);padding:0 0 18px 14px;position:relative"><i style="position:absolute;left:-4px;top:5px;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.35)"></i><div style="font-size:14px">机器学习</div><div style="font-size:12px;color:var(--aiia-text-muted);margin-top:4px">东校园 B105</div></div></div>
+                <div style="display:flex;gap:14px"><div style="width:44px;flex:none;font-size:12px;color:var(--aiia-cyan);padding-top:2px">19:30</div><div style="flex:1;border-left:1px solid rgba(0,255,225,.3);padding:0 0 4px 14px;position:relative"><i style="position:absolute;left:-4px;top:5px;width:7px;height:7px;border-radius:50%;background:var(--aiia-cyan)"></i><div style="font-size:14px">已成局 · 羽毛球 3 号场</div><div style="font-size:12px;color:var(--aiia-text-muted);margin-top:4px">东校园体育馆 · 4 人</div></div></div>
+              </div>
+
+              <div style="margin-top:18px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);padding:14px;display:flex;gap:12px;align-items:center">
+                <img src="assets/azou.png" alt="阿凑" style="width:46px;height:46px;object-fit:contain;flex:none">
+                <div style="flex:1">
+                  <div style="font-size:13.5px;line-height:1.55">图书馆 4 楼研讨室 <span style="color:var(--aiia-cyan)">今晚 19:00 空着</span>，你的《机器学习》作业周四截止。</div>
+                  <div style="display:flex;gap:8px;margin-top:10px">
+                    <div onClick="{{ n.d1 }}" style="padding:7px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);font-size:12.5px;font-weight:600;cursor:pointer">开个冲刺局</div>
+                    <div style="padding:7px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:12.5px;color:var(--aiia-text-muted);cursor:pointer">忽略</div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted);margin:24px 2px 12px">hermes 工具</div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+                <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:16px;padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer"><span style="font-size:17px">▦</span><span style="font-size:11px;color:var(--aiia-text-secondary)">课表</span></div>
+                <div onClick="{{ n.b4 }}" style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:16px;padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer"><span style="font-size:17px">◷</span><span style="font-size:11px;color:var(--aiia-text-secondary)">作业</span></div>
+                <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:16px;padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer"><span style="font-size:17px">▤</span><span style="font-size:11px;color:var(--aiia-text-secondary)">研讨室</span></div>
+                <div onClick="{{ n.b5 }}" style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:16px;padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer"><span style="font-size:17px">◎</span><span style="font-size:11px;color:var(--aiia-text-secondary)">场馆</span></div>
+                <div onClick="{{ n.b7 }}" style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:16px;padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer"><span style="font-size:17px">◇</span><span style="font-size:11px;color:var(--aiia-text-secondary)">活动</span></div>
+                <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:16px;padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer"><span style="font-size:17px">▷</span><span style="font-size:11px;color:var(--aiia-text-secondary)">班车</span></div>
+                <div onClick="{{ n.b12 }}" style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:16px;padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer"><span style="font-size:17px">◆</span><span style="font-size:11px;color:var(--aiia-text-secondary)">赛事</span></div>
+                <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:16px;padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer"><span style="font-size:17px">◐</span><span style="font-size:11px;color:var(--aiia-text-secondary)">组会</span></div>
+              </div>
+
+              <div style="margin-top:20px;height:46px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);border:1px solid var(--aiia-border-subtle);display:flex;align-items:center;padding:0 18px;gap:10px">
+                <span style="font-size:12px;color:var(--aiia-cyan);font-weight:600">hermes</span>
+                <span style="font-size:13px;color:var(--aiia-text-muted)">问点什么，比如「明天下午有空吗」</span>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_b12 }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:4px 20px 26px">
+              <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:16px">
+                <div>
+                  <div style="font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:28px;line-height:1.2">比赛</div>
+                  <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:6px">已核验 · 可行动 · 21 场</div>
+                </div>
+                <span style="width:38px;height:38px;border-radius:50%;background:var(--aiia-surface-default);border:1px solid var(--aiia-border-subtle);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--aiia-text-secondary)">⌕</span>
+              </div>
+              <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:4px">
+                <span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:rgba(0,255,225,.12);border:1px solid rgba(0,255,225,.3);color:var(--aiia-cyan);font-size:12.5px">可组队</span>
+                <span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:12.5px;color:var(--aiia-text-secondary)">AI · 算法</span>
+                <span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:12.5px;color:var(--aiia-text-secondary)">线上</span>
+                <span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:12.5px;color:var(--aiia-text-secondary)">30 天内截止</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;margin:20px 2px 12px">
+                <span style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-magenta)">即将截止</span>
+                <span style="flex:1;height:1px;background:var(--aiia-border-subtle)"></span>
+              </div>
+              <div onClick="{{ n.b12d }}" style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px;cursor:pointer" style-hover="background:var(--aiia-surface-default)">
+                <div style="font-size:11px;color:var(--aiia-magenta)">报名 9 月 30 日截止 · 还剩 50 天</div>
+                <div style="font-size:15.5px;font-weight:600;line-height:1.45;margin-top:8px">2026 全国大学生智能应用开发大赛</div>
+                <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:7px">线上 · 1–10 人 · 智能应用 / 大模型应用</div>
+                <div style="display:flex;gap:6px;margin-top:14px">
+                  <div style="flex:1;padding:9px 0;border-radius:12px;background:var(--aiia-surface-raised);text-align:center;font-size:11px;color:var(--aiia-text-secondary)">后端 ✓</div>
+                  <div style="flex:1;padding:9px 0;border-radius:12px;background:var(--aiia-surface-raised);text-align:center;font-size:11px;color:var(--aiia-text-secondary)">数据 ✓</div>
+                  <div style="flex:1;padding:9px 0;border-radius:12px;background:var(--aiia-surface-raised);text-align:center;font-size:11px;color:var(--aiia-text-secondary)">产品 ✓</div>
+                  <div style="flex:1;padding:9px 0;border-radius:12px;background:rgba(255,79,211,.1);border:1px dashed rgba(255,79,211,.5);text-align:center;font-size:11px;color:var(--aiia-magenta-soft)">差一个</div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px">
+                  <span style="font-size:11.5px;color:var(--aiia-text-muted)">3 / 4 已就位 · 缺前端</span>
+                  <span onClick="{{ n.table }}" style="padding:8px 16px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);font-size:12.5px;font-weight:600;cursor:pointer">上桌</span>
+                </div>
+              </div>
+              <div style="height:12px"></div>
+              <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px">
+                <div style="font-size:11px;color:var(--aiia-magenta)">报名 9 月 1 日截止 · 还剩 21 天</div>
+                <div style="font-size:15.5px;font-weight:600;line-height:1.45;margin-top:8px">2026 高教社杯全国大学生数学建模竞赛（广东赛区）</div>
+                <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:7px">线上 · 3 人一队 · 数学建模 / 数据分析</div>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px">
+                  <div style="display:flex;gap:6px"><span style="padding:5px 10px;border-radius:var(--aiia-radius-sm);background:var(--aiia-surface-default);font-size:11px;color:var(--aiia-text-tertiary)">已核验</span><span style="padding:5px 10px;border-radius:var(--aiia-radius-sm);background:var(--aiia-surface-default);font-size:11px;color:var(--aiia-text-tertiary)">校内报名</span></div>
+                  <span style="padding:8px 16px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-raised);font-size:12.5px;color:var(--aiia-text-secondary)">组队</span>
+                </div>
+              </div>
+              <div style="height:12px"></div>
+              <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px">
+                <div style="font-size:11px;color:var(--aiia-text-muted)">报名 10 月 15 日截止</div>
+                <div style="font-size:15.5px;font-weight:600;line-height:1.45;margin-top:8px">第八届全球校园人工智能算法精英大赛 · 算法应用赛道</div>
+                <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:7px">线下赛区 · 3 人一队 · 算法 / 机器学习</div>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px">
+                  <div style="display:flex;gap:6px"><span style="padding:5px 10px;border-radius:var(--aiia-radius-sm);background:var(--aiia-surface-default);font-size:11px;color:var(--aiia-text-tertiary)">已核验</span></div>
+                  <span style="padding:8px 16px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-raised);font-size:12.5px;color:var(--aiia-text-secondary)">组队</span>
+                </div>
+              </div>
+              <div style="font-size:12px;color:var(--aiia-text-muted);text-align:center;margin-top:18px;line-height:1.6">只展示已核验、可行动的赛事<br>未核验线索不会出现在这里</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_b12d }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:2px 20px 26px">
+              <div style="font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:24px;line-height:1.35">2026 全国大学生<br>智能应用开发大赛</div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:14px">
+                <span style="padding:6px 11px;border-radius:var(--aiia-radius-sm);background:rgba(0,255,225,.1);color:var(--aiia-cyan);font-size:11px">已核验 · 可行动</span>
+                <span style="padding:6px 11px;border-radius:var(--aiia-radius-sm);background:var(--aiia-surface-default);font-size:11px;color:var(--aiia-text-tertiary)">线上</span>
+                <span style="padding:6px 11px;border-radius:var(--aiia-radius-sm);background:var(--aiia-surface-default);font-size:11px;color:var(--aiia-text-tertiary)">1–10 人</span>
+              </div>
+              <div style="margin-top:18px;background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px">
+                <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted)">赛程</div>
+                <div style="display:flex;gap:12px;margin-top:14px"><i style="width:7px;height:7px;border-radius:50%;background:var(--aiia-cyan);margin-top:5px;flex:none"></i><div style="flex:1"><div style="font-size:13.5px">报名与作品提交</div><div style="font-size:12px;color:var(--aiia-text-muted);margin-top:3px">至 2026-09-30 23:59</div></div></div>
+                <div style="display:flex;gap:12px;margin-top:12px"><i style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);margin-top:5px;flex:none"></i><div style="flex:1"><div style="font-size:13.5px">初赛评审</div><div style="font-size:12px;color:var(--aiia-text-muted);margin-top:3px">2026-10 中旬</div></div></div>
+                <div style="display:flex;gap:12px;margin-top:12px"><i style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);margin-top:5px;flex:none"></i><div style="flex:1"><div style="font-size:13.5px">全国总决赛</div><div style="font-size:12px;color:var(--aiia-text-muted);margin-top:3px">2026-12</div></div></div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
+                <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:14px"><div style="font-size:11px;color:var(--aiia-text-muted)">组队规则</div><div style="font-size:13.5px;margin-top:7px;line-height:1.5">1–10 人<br>可跨院系</div></div>
+                <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:14px"><div style="font-size:11px;color:var(--aiia-text-muted)">提交要求</div><div style="font-size:13.5px;margin-top:7px;line-height:1.5">可运行应用<br>+ 演示视频</div></div>
+              </div>
+              <div style="margin-top:12px;background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px">
+                <div style="font-size:11px;color:var(--aiia-text-muted)">这个赛道需要的能力</div>
+                <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:11px">
+                  <span style="padding:7px 12px;border-radius:var(--aiia-radius-pill);background:rgba(0,255,225,.1);color:var(--aiia-cyan);font-size:12px">后端 · 你已具备</span>
+                  <span style="padding:7px 12px;border-radius:var(--aiia-radius-pill);background:rgba(0,255,225,.1);color:var(--aiia-cyan);font-size:12px">数据 · 你已具备</span>
+                  <span style="padding:7px 12px;border-radius:var(--aiia-radius-pill);background:rgba(255,79,211,.12);color:var(--aiia-magenta-soft);font-size:12px">前端 · 缺</span>
+                  <span style="padding:7px 12px;border-radius:var(--aiia-radius-pill);background:rgba(255,79,211,.12);color:var(--aiia-magenta-soft);font-size:12px">产品 · 缺</span>
+                </div>
+              </div>
+              <div onClick="{{ n.table }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer;margin-top:20px">上桌 · 这桌差一个</div>
+              <div onClick="{{ n.d1 }}" style="height:46px;display:flex;align-items:center;justify-content:center;font-size:13.5px;color:var(--aiia-text-secondary);cursor:pointer">自己开一桌</div>
+              <div style="height:38px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--aiia-text-muted);cursor:pointer">去官网报名（外部跳转）</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_d1 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:2px 20px 26px">
+              <div style="display:flex;gap:11px;align-items:center">
+                <img src="assets/azou.png" alt="阿凑" style="width:44px;height:44px;object-fit:contain;flex:none">
+                <div style="font-size:14px;line-height:1.6;color:var(--aiia-text-secondary)">说说你想做的事，<span style="color:var(--aiia-cyan)">不用管找谁</span>。</div>
+              </div>
+              <div style="margin-top:16px;background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-default);border-radius:var(--aiia-radius-card);padding:16px">
+                <textarea value="{{ intent }}" onChange="{{ onIntent }}" placeholder="例如：想在国庆前找人一起把智能应用开发大赛的作品做出来" style="width:100%;min-height:120px;border:none;outline:none;resize:none;background:transparent;color:var(--aiia-text-primary);font-size:15px;line-height:1.7;font-family:inherit"></textarea>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:12px;border-top:1px solid var(--aiia-border-subtle)">
+                  <span style="font-size:12px;color:var(--aiia-text-muted)">或者按住说话</span>
+                  <span style="width:34px;height:34px;border-radius:50%;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer">◉</span>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;margin-top:14px;padding:12px 14px;border-radius:var(--aiia-radius-card);background:rgba(0,255,225,.06);border:1px solid rgba(0,255,225,.18)">
+                <span style="font-size:12px;color:var(--aiia-cyan)">已带入</span>
+                <span style="font-size:12.5px;color:var(--aiia-text-secondary);flex:1">2026 全国大学生智能应用开发大赛 · 缺前端 / 产品</span>
+              </div>
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted);margin:22px 2px 12px">常用模板</div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <span onClick="{{ fillTpl }}" style="padding:9px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:13px;cursor:pointer" style-hover="background:var(--aiia-surface-raised)">比赛组队</span>
+                <span onClick="{{ fillTpl }}" style="padding:9px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:13px;cursor:pointer">打球</span>
+                <span onClick="{{ fillTpl }}" style="padding:9px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:13px;cursor:pointer">自习</span>
+                <span onClick="{{ fillTpl }}" style="padding:9px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:13px;cursor:pointer">DDL 冲刺</span>
+                <span onClick="{{ fillTpl }}" style="padding:9px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:13px;cursor:pointer">活动同行</span>
+              </div>
+              <div style="flex:1;min-height:18px"></div>
+              <div onClick="{{ toD2 }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer">交给阿凑</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_d2 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:2px 20px 26px">
+              <div style="align-self:flex-end;max-width:80%;background:var(--aiia-surface-raised);border-radius:18px 18px 4px 18px;padding:13px 15px;font-size:14px;line-height:1.6">{{ intentShown }}</div>
+              <sc-if value="{{ round0 }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;gap:10px;margin-top:18px;align-items:flex-start">
+                  <img src="assets/azou.png" alt="阿凑" style="width:36px;height:36px;object-fit:contain;flex:none;margin-top:2px">
+                  <div style="flex:1">
+                    <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:18px 18px 18px 4px;padding:14px 16px;font-size:14px;line-height:1.65">收到。只问两个问题就够了 —— 你大概什么时候能凑出 2 小时？</div>
+                    <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+                      <div onClick="{{ p0a }}" style="padding:12px 16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-default);font-size:13.5px;cursor:pointer" style-hover="background:var(--aiia-surface-raised)">本周内的晚上</div>
+                      <div onClick="{{ p0b }}" style="padding:12px 16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-default);font-size:13.5px;cursor:pointer" style-hover="background:var(--aiia-surface-raised)">周末白天</div>
+                      <div onClick="{{ p0c }}" style="padding:12px 16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-default);font-size:13.5px;cursor:pointer" style-hover="background:var(--aiia-surface-raised)">越快越好，随时</div>
+                    </div>
+                    <div style="font-size:11px;color:var(--aiia-text-muted);margin-top:10px">第 1 / 2 轮 · 之后我会用默认值生成草稿</div>
+                  </div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ round1 }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;gap:10px;margin-top:18px;align-items:flex-start">
+                  <img src="assets/azou.png" alt="阿凑" style="width:36px;height:36px;object-fit:contain;flex:none;margin-top:2px">
+                  <div style="flex:1">
+                    <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:18px 18px 18px 4px;padding:14px 16px;font-size:14px;line-height:1.65">好。最后一个：这次要补的角色是？你的后端和数据我已经从选课里认过了。</div>
+                    <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+                      <div onClick="{{ p1a }}" style="padding:12px 16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-default);font-size:13.5px;cursor:pointer" style-hover="background:var(--aiia-surface-raised)">缺前端 1 · 产品 1</div>
+                      <div onClick="{{ p1b }}" style="padding:12px 16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-default);font-size:13.5px;cursor:pointer" style-hover="background:var(--aiia-surface-raised)">只缺前端 1</div>
+                      <div onClick="{{ p1c }}" style="padding:12px 16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-default);font-size:13.5px;cursor:pointer" style-hover="background:var(--aiia-surface-raised)">让阿凑按赛道推荐</div>
+                    </div>
+                    <div style="font-size:11px;color:var(--aiia-text-muted);margin-top:10px">第 2 / 2 轮</div>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_d3 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:2px 20px 26px">
+              <div style="font-size:13px;color:var(--aiia-text-muted);line-height:1.6">每一项都能改。带来源标记的是系统认过的事实。</div>
+              <div style="margin-top:14px;background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-panel);padding:6px 18px">
+                <div style="display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--aiia-border-subtle)"><span style="width:66px;flex:none;font-size:12px;color:var(--aiia-text-muted);padding-top:2px">局类型</span><span style="flex:1;font-size:14px">比赛组队</span></div>
+                <div style="display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--aiia-border-subtle)"><span style="width:66px;flex:none;font-size:12px;color:var(--aiia-text-muted);padding-top:2px">目标</span><span style="flex:1;font-size:14px;line-height:1.55">在 9/30 前完成智能应用开发大赛的作品与提交</span></div>
+                <div style="display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--aiia-border-subtle)"><span style="width:66px;flex:none;font-size:12px;color:var(--aiia-text-muted);padding-top:2px">我的能力</span><span style="flex:1;font-size:14px;line-height:1.6">后端 · 数据分析 <i style="font-size:10px;font-style:normal;color:var(--aiia-cyan)">已验证·选课</i></span></div>
+                <div style="display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--aiia-border-subtle)"><span style="width:66px;flex:none;font-size:12px;color:var(--aiia-text-muted);padding-top:2px">所需角色</span><span style="flex:1;font-size:14px;color:var(--aiia-magenta-soft)">{{ pick1 }}</span></div>
+                <div style="display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--aiia-border-subtle)"><span style="width:66px;flex:none;font-size:12px;color:var(--aiia-text-muted);padding-top:2px">目标强度</span><span style="flex:1;font-size:14px">冲奖 · 每周 2 次</span></div>
+                <div style="display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--aiia-border-subtle)"><span style="width:66px;flex:none;font-size:12px;color:var(--aiia-text-muted);padding-top:2px">可用时间</span><span style="flex:1;font-size:14px;line-height:1.6">{{ pick0 }} <i style="font-size:10px;font-style:normal;color:var(--aiia-cyan)">来自你的课表</i></span></div>
+                <div style="display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--aiia-border-subtle)"><span style="width:66px;flex:none;font-size:12px;color:var(--aiia-text-muted);padding-top:2px">校区 · 人数</span><span style="flex:1;font-size:14px">东校园 · 4 人</span></div>
+                <div style="display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--aiia-border-subtle)"><span style="width:66px;flex:none;font-size:12px;color:var(--aiia-text-muted);padding-top:2px">社交模式</span><span style="flex:1;font-size:14px;line-height:1.6">满员后公开身份 · 3 人以上</span></div>
+                <div style="display:flex;gap:12px;padding:14px 0"><span style="width:66px;flex:none;font-size:12px;color:var(--aiia-text-muted);padding-top:2px">截止</span><span style="flex:1;font-size:14px">8 月 14 日 23:59 前凑齐</span></div>
+              </div>
+              <div style="flex:1;min-height:18px"></div>
+              <div onClick="{{ n.d4 }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer;margin-top:16px">发布，开始匿名招募</div>
+              <div style="height:44px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--aiia-text-muted);cursor:pointer">存草稿</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_d4 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:10px 24px 26px;align-items:center;text-align:center">
+              <div style="position:relative;width:150px;height:150px;display:flex;align-items:center;justify-content:center;margin-top:12px">
+                <div style="position:absolute;inset:0;border-radius:50%;border:1px solid rgba(0,255,225,.18)"></div>
+                <div style="position:absolute;inset:18px;border-radius:50%;border:1px solid rgba(0,255,225,.28)"></div>
+                <div style="position:absolute;inset:36px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,225,.16),transparent 70%)"></div>
+                <div style="position:relative;font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:30px">02:41</div>
+              </div>
+              <div style="font-size:19px;font-weight:600;margin-top:18px">正在匿名招募</div>
+              <div style="font-size:13.5px;line-height:1.7;color:var(--aiia-text-muted);margin-top:10px">不显示报名人数，也不显示是谁。<br>满员之前，这件事只有你知道。</div>
+              <div style="width:100%;margin-top:22px;background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px;text-align:left">
+                <div style="font-size:14.5px;font-weight:600;line-height:1.45">智能应用开发大赛 · 作品冲刺</div>
+                <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:7px">4 人 · 东校园 · 缺前端 1 / 产品 1</div>
+                <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:5px">8 月 14 日 23:59 截止 · 凑不齐自动结束，没有人会收到通知</div>
+              </div>
+              <div style="flex:1;min-height:18px"></div>
+              <div onClick="{{ n.g2 }}" style="width:100%;height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;cursor:pointer;margin-top:16px" style-hover="background:var(--aiia-surface-strong)">分享一张缺口卡</div>
+              <div onClick="{{ n.e3 }}" style="width:100%;height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;cursor:pointer;margin-top:10px">（演示）已经满员了</div>
+              <div style="height:40px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--aiia-text-muted);cursor:pointer">撤回这个局</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_e3 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:2px 20px 26px">
+              <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:18px">
+                <div style="font-size:11px;color:var(--aiia-magenta)">确认倒计时 03:12:40</div>
+                <div style="font-size:18px;font-weight:600;line-height:1.4;margin-top:9px">智能应用开发大赛 · 组队面聊</div>
+                <div style="font-size:13px;color:var(--aiia-text-secondary);margin-top:10px;line-height:1.7">8 月 12 日 周三 19:00–21:00<br>图书馆 4 楼 研讨室 402</div>
+                <div style="display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:6px 12px;border-radius:var(--aiia-radius-pill);background:rgba(0,255,225,.1);font-size:11.5px;color:var(--aiia-cyan)">场地当前可预约</div>
+              </div>
+              <div style="margin-top:12px;background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:18px">
+                <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-magenta)">为什么是你们</div>
+                <div style="font-size:13.5px;line-height:1.75;color:var(--aiia-text-secondary);margin-top:12px">4 个人的角色刚好补齐赛道要求：<span style="color:var(--aiia-cyan)">后端 · 前端 · 产品 · 数据</span>，没有重复。<br>你们在本周晚上有 3 段共同空档，这是最早的一段。</div>
+              </div>
+              <div style="margin-top:12px;background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:18px">
+                <div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font-size:13.5px;color:var(--aiia-text-secondary)">{{ confirmText }}</span><span style="font-size:11.5px;color:var(--aiia-text-muted)">不显示谁确认了</span></div>
+                <div style="height:6px;border-radius:3px;background:var(--aiia-surface-default);margin-top:12px;overflow:hidden"><i style="{{ confirmBar }}"></i></div>
+              </div>
+              <div style="flex:1;min-height:18px"></div>
+              <sc-if value="{{ notMine }}" hint-placeholder-val="{{ true }}">
+                <div>
+                  <div onClick="{{ doConfirm }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer;margin-top:16px">确认参加</div>
+                  <div style="display:flex;gap:10px;margin-top:10px">
+                    <div style="flex:1;height:46px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);display:flex;align-items:center;justify-content:center;font-size:13.5px;color:var(--aiia-text-secondary);cursor:pointer">提议改时间</div>
+                    <div style="flex:1;height:46px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);display:flex;align-items:center;justify-content:center;font-size:13.5px;color:var(--aiia-text-muted);cursor:pointer">退出</div>
+                  </div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ mine }}" hint-placeholder-val="{{ false }}">
+                <div>
+                  <div style="display:flex;align-items:center;gap:10px;padding:14px 16px;border-radius:var(--aiia-radius-card);background:rgba(0,255,225,.07);border:1px solid rgba(0,255,225,.2);margin-top:16px">
+                    <span style="color:var(--aiia-cyan);font-size:14px">✓</span><span style="font-size:13.5px;color:var(--aiia-text-secondary)">你已确认，等其他人。</span>
+                  </div>
+                  <sc-if value="{{ allIn }}" hint-placeholder-val="{{ false }}">
+                    <div onClick="{{ n.e5 }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer;margin-top:10px">全员已确认 · 去看预约预览</div>
+                  </sc-if>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_e5 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:2px 20px 26px">
+              <div style="font-size:13px;color:var(--aiia-text-muted);line-height:1.65">真实操作前一定先给你们看参数。没有跳过预览的入口。</div>
+              <div style="margin-top:14px;background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-default);border-radius:var(--aiia-radius-card);padding:18px">
+                <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-cyan)">即将执行</div>
+                <div style="font-size:17px;font-weight:600;margin-top:10px">预约图书馆研讨室</div>
+                <div style="display:flex;flex-direction:column;gap:0;margin-top:14px">
+                  <div style="display:flex;gap:12px;padding:11px 0;border-top:1px solid var(--aiia-border-subtle)"><span style="width:64px;flex:none;font-size:12px;color:var(--aiia-text-muted)">房间</span><span style="flex:1;font-size:13.5px">4 楼 402 · 6 人间</span></div>
+                  <div style="display:flex;gap:12px;padding:11px 0;border-top:1px solid var(--aiia-border-subtle)"><span style="width:64px;flex:none;font-size:12px;color:var(--aiia-text-muted)">时间</span><span style="flex:1;font-size:13.5px">8 月 12 日 19:00–21:00</span></div>
+                  <div style="display:flex;gap:12px;padding:11px 0;border-top:1px solid var(--aiia-border-subtle)"><span style="width:64px;flex:none;font-size:12px;color:var(--aiia-text-muted)">使用人</span><span style="flex:1;font-size:13.5px">4 人（本局成员）</span></div>
+                  <div style="display:flex;gap:12px;padding:11px 0;border-top:1px solid var(--aiia-border-subtle)"><span style="width:64px;flex:none;font-size:12px;color:var(--aiia-text-muted)">用途</span><span style="flex:1;font-size:13.5px">小组研讨</span></div>
+                </div>
+              </div>
+              <div style="margin-top:12px;padding:14px 16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);font-size:12.5px;line-height:1.7;color:var(--aiia-text-muted)">执行后会占用你在图书馆系统的当日预约额度；取消需提前 2 小时。参数如果发生变化，这份预览会作废并重新生成。</div>
+              <div style="flex:1;min-height:18px"></div>
+              <div onClick="{{ n.e6 }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer;margin-top:16px">授权执行</div>
+              <div style="height:44px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--aiia-text-muted);cursor:pointer">提议修改参数</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_e6 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:6px 20px 26px;position:relative">
+              <div style="display:flex;flex-direction:column;align-items:center;text-align:center;margin-top:10px">
+                <div style="width:64px;height:64px;border-radius:50%;background:rgba(0,255,225,.12);display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--aiia-cyan)">✓</div>
+                <div style="font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:24px;margin-top:16px">研讨室订好了</div>
+                <div style="font-size:13px;color:var(--aiia-text-muted);margin-top:8px">4 个人都不用再操作</div>
+              </div>
+              <div style="margin-top:22px;background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:18px">
+                <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted)">预约凭证</div>
+                <div style="font-size:15px;font-weight:600;margin-top:11px">图书馆 402 · 8 月 12 日 19:00–21:00</div>
+                <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:8px;font-family:ui-monospace,Menlo,monospace">NO. SYSU-LIB-20260812-402-1900</div>
+              </div>
+              <sc-if value="{{ calIdle }}" hint-placeholder-val="{{ true }}">
+                <div onClick="{{ openCal }}" style="margin-top:12px;background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px;display:flex;align-items:center;gap:12px;cursor:pointer" style-hover="background:var(--aiia-surface-default)">
+                  <span style="font-size:18px">▤</span>
+                  <div style="flex:1"><div style="font-size:14px;font-weight:600">写入系统日历</div><div style="font-size:12px;color:var(--aiia-text-muted);margin-top:4px">现在才需要日历权限，之前一直没要过</div></div>
+                  <span style="font-size:16px;color:var(--aiia-text-muted)">›</span>
+                </div>
+              </sc-if>
+              <sc-if value="{{ calDone }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top:12px;background:rgba(0,255,225,.06);border:1px solid rgba(0,255,225,.2);border-radius:var(--aiia-radius-card);padding:16px">
+                  <div style="display:flex;align-items:center;gap:10px"><span style="color:var(--aiia-cyan);font-size:14px">✓</span><span style="font-size:14px;font-weight:600">已加入「日历」</span></div>
+                  <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:8px;line-height:1.65">含时间、地点、4 名成员和协作空间链接。改约或取消会自动同步。</div>
+                </div>
+              </sc-if>
+              <div style="flex:1;min-height:18px"></div>
+              <div onClick="{{ n.e7 }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer;margin-top:16px">进入协作空间</div>
+
+              <sc-if value="{{ askCal }}" hint-placeholder-val="{{ false }}">
+                <div style="position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:26px">
+                  <div style="width:100%;background:#1c1d1f;border-radius:16px;overflow:hidden;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.6)">
+                    <div style="padding:20px 20px 18px">
+                      <div style="font-size:16px;font-weight:600">「差一个」想访问你的日历</div>
+                      <div style="font-size:13px;line-height:1.6;color:rgba(255,255,255,.6);margin-top:8px">仅写入已经预约成功的局，不读取你的其他日程。</div>
+                    </div>
+                    <div style="display:flex;border-top:1px solid rgba(255,255,255,.12)">
+                      <div onClick="{{ laterCal }}" style="flex:1;padding:14px;font-size:15px;color:#0af;cursor:pointer;border-right:1px solid rgba(255,255,255,.12)">暂不</div>
+                      <div onClick="{{ allowCal }}" style="flex:1;padding:14px;font-size:15px;color:#0af;font-weight:600;cursor:pointer">允许</div>
+                    </div>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_e7 }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:2px 20px 26px">
+              <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:18px">
+                <div style="font-size:17px;font-weight:600">明晚 19:00 · 图书馆 402</div>
+                <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:8px;line-height:1.65">东校园图书馆 4 楼，从北门进电梯右转<br>建议 18:50 在 4 楼电梯口集合</div>
+                <div style="display:flex;gap:8px;margin-top:14px">
+                  <span style="padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-raised);font-size:12.5px;cursor:pointer">路线</span>
+                  <span style="padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-raised);font-size:12.5px;cursor:pointer">加入日历</span>
+                </div>
+              </div>
+              <div style="margin-top:12px;display:flex;gap:11px;align-items:flex-start;padding:16px;border-radius:var(--aiia-radius-card);background:rgba(255,79,211,.07);border:1px solid rgba(255,79,211,.2)">
+                <img src="assets/azou.png" alt="阿凑" style="width:40px;height:40px;object-fit:contain;flex:none">
+                <div style="flex:1;font-size:13.5px;line-height:1.7;color:var(--aiia-text-secondary)">开场信息我放这儿了：你们四个都选过《机器学习》，两个人做过大创。<br><span style="color:var(--aiia-magenta-soft)">接下来交给你们，我先退到一边。需要订场、查资料就 @我。</span></div>
+              </div>
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted);margin:22px 2px 12px">角色与待办</div>
+              <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:6px 16px">
+                <div style="display:flex;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--aiia-border-subtle)"><i style="width:18px;height:18px;border-radius:5px;border:1.5px solid var(--aiia-cyan);flex:none"></i><span style="flex:1;font-size:13.5px">带上赛题文档和往届作品</span><span style="font-size:11.5px;color:var(--aiia-text-muted)">后端</span></div>
+                <div style="display:flex;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--aiia-border-subtle)"><i style="width:18px;height:18px;border-radius:5px;border:1.5px solid rgba(255,255,255,.3);flex:none"></i><span style="flex:1;font-size:13.5px">画三页原型草图</span><span style="font-size:11.5px;color:var(--aiia-text-muted)">产品</span></div>
+                <div style="display:flex;gap:12px;align-items:center;padding:13px 0"><i style="width:18px;height:18px;border-radius:5px;border:1.5px solid rgba(255,255,255,.3);flex:none"></i><span style="flex:1;font-size:13.5px">确认技术栈</span><span style="font-size:11.5px;color:var(--aiia-text-muted)">前端</span></div>
+              </div>
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted);margin:22px 2px 12px">成员 4 人</div>
+              <div style="display:flex;gap:8px">
+                <span style="width:44px;height:44px;border-radius:50%;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--aiia-text-secondary)">刘</span>
+                <span style="width:44px;height:44px;border-radius:50%;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--aiia-text-secondary)">陈</span>
+                <span style="width:44px;height:44px;border-radius:50%;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--aiia-text-secondary)">吴</span>
+                <span style="width:44px;height:44px;border-radius:50%;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--aiia-text-secondary)">黄</span>
+              </div>
+              <div onClick="{{ n.e14 }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer;margin-top:20px">进入群聊</div>
+              <div style="display:flex;gap:8px;margin-top:12px">
+                <span style="flex:1;text-align:center;padding:12px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:12.5px;color:var(--aiia-text-secondary);cursor:pointer">改约</span>
+                <span style="flex:1;text-align:center;padding:12px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:12.5px;color:var(--aiia-text-secondary);cursor:pointer">补位</span>
+                <span style="flex:1;text-align:center;padding:12px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:12.5px;color:var(--aiia-text-muted);cursor:pointer">取消</span>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_e14 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column">
+              <div style="flex:none;margin:0 16px;padding:11px 14px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);display:flex;align-items:center;gap:10px">
+                <div style="flex:1"><div style="font-size:12.5px">明晚 19:00 · 图书馆 402</div><div style="font-size:11px;color:var(--aiia-text-muted);margin-top:3px">4 人 · 已预约</div></div>
+                <span style="font-size:11.5px;color:var(--aiia-text-muted)">局信息 ›</span>
+              </div>
+              <div style="flex:1;padding:18px 16px;display:flex;flex-direction:column;gap:14px">
+                <div style="align-self:center;padding:7px 13px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-subtle);font-size:11px;color:var(--aiia-text-muted);display:flex;align-items:center;gap:7px">
+                  <img src="assets/azou.png" alt="" style="width:16px;height:16px;object-fit:contain">阿凑已退场 · 需要时 @我
+                </div>
+                <sc-for list="{{ msgs }}" as="m" hint-placeholder-count="3">
+                  <div style="{{ m.rowSt }}">
+                    <sc-if value="{{ m.isPeer }}" hint-placeholder-val="{{ true }}">
+                      <span style="width:30px;height:30px;border-radius:50%;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:11px;flex:none;overflow:hidden">{{ m.who }}</span>
+                    </sc-if>
+                    <div style="{{ m.bubbleSt }}">{{ m.text }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="flex:none;padding:10px 16px 20px;display:flex;gap:10px;align-items:center">
+                <div style="flex:1;height:42px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);border:1px solid var(--aiia-border-subtle);display:flex;align-items:center;padding:0 6px 0 16px">
+                  <input value="{{ draft }}" onChange="{{ onDraft }}" onKeyDown="{{ onKey }}" placeholder="说点什么，或 @阿凑" style="flex:1;min-width:0;background:transparent;border:none;outline:none;color:var(--aiia-text-primary);font-size:13.5px;font-family:inherit">
+                </div>
+                <span onClick="{{ send }}" style="width:42px;height:42px;border-radius:50%;background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer;flex:none">↑</span>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_b5 }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:2px 20px 26px">
+              <div style="display:flex;gap:8px;overflow-x:auto"><span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:rgba(0,255,225,.12);border:1px solid rgba(0,255,225,.3);color:var(--aiia-cyan);font-size:12.5px">东校园</span><span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:12.5px;color:var(--aiia-text-secondary)">羽毛球</span><span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:12.5px;color:var(--aiia-text-secondary)">今天</span></div>
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted);margin:22px 2px 12px">今晚还有空场</div>
+              <div onClick="{{ n.b5s }}" style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px;cursor:pointer" style-hover="background:var(--aiia-surface-default)">
+                <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:15px;font-weight:600">东校园体育馆 · 羽毛球</span><span style="font-size:12px;color:var(--aiia-cyan)">5 个时段</span></div>
+                <div style="display:flex;gap:6px;margin-top:12px"><span style="padding:6px 10px;border-radius:var(--aiia-radius-sm);background:var(--aiia-surface-default);font-size:11.5px">19:00</span><span style="padding:6px 10px;border-radius:var(--aiia-radius-sm);background:var(--aiia-surface-default);font-size:11.5px">20:00</span><span style="padding:6px 10px;border-radius:var(--aiia-radius-sm);background:var(--aiia-surface-default);font-size:11.5px">21:00</span></div>
+              </div>
+              <div style="height:12px"></div>
+              <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px">
+                <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:15px;font-weight:600">南校园体育中心 · 羽毛球</span><span style="font-size:12px;color:var(--aiia-text-muted)">2 个时段</span></div>
+                <div style="display:flex;gap:6px;margin-top:12px"><span style="padding:6px 10px;border-radius:var(--aiia-radius-sm);background:var(--aiia-surface-default);font-size:11.5px">20:00</span><span style="padding:6px 10px;border-radius:var(--aiia-radius-sm);background:var(--aiia-surface-default);font-size:11.5px">21:00</span></div>
+              </div>
+              <div style="margin-top:18px;padding:14px 16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);font-size:12.5px;line-height:1.65;color:var(--aiia-text-muted)">场地空档实时查询，不缓存。图书馆自习区与健身房器械区不提供现场连接。</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_b5s }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:2px 20px 26px">
+              <div style="font-size:15px;font-weight:600">东校园体育馆 · 羽毛球</div>
+              <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:7px">8 月 11 日 · 每场 60 分钟 · 最多连订 2 场</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px">
+                <div style="padding:16px;border-radius:var(--aiia-radius-card);background:rgba(0,255,225,.1);border:1px solid rgba(0,255,225,.32)"><div style="font-size:16px;font-weight:600;color:var(--aiia-cyan)">19:00</div><div style="font-size:11.5px;color:var(--aiia-text-secondary);margin-top:5px">3 号场 · 空</div></div>
+                <div style="padding:16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle)"><div style="font-size:16px;font-weight:600">20:00</div><div style="font-size:11.5px;color:var(--aiia-text-muted);margin-top:5px">3 / 5 号场 · 空</div></div>
+                <div style="padding:16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle)"><div style="font-size:16px;font-weight:600">21:00</div><div style="font-size:11.5px;color:var(--aiia-text-muted);margin-top:5px">1 号场 · 空</div></div>
+                <div style="padding:16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);opacity:.4"><div style="font-size:16px;font-weight:600">22:00</div><div style="font-size:11.5px;color:var(--aiia-text-muted);margin-top:5px">已满</div></div>
+              </div>
+              <div style="flex:1;min-height:18px"></div>
+              <div onClick="{{ n.d1 }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer;margin-top:16px">19:00 差 3 个人 · 找搭子</div>
+              <div style="height:44px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--aiia-text-muted);cursor:pointer">我自己订（个人预约预览）</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_e9 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:10px 24px 26px">
+              <div style="font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:26px;line-height:1.3;margin-top:14px">这次局完成了吗？</div>
+              <div style="font-size:13px;line-height:1.7;color:var(--aiia-text-muted);margin-top:12px">只问事情，不问人。这里没有评分，也不会给任何成员贴标签。</div>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-top:26px">
+                <div onClick="{{ n.e10 }}" style="padding:18px;border-radius:var(--aiia-radius-card);background:rgba(0,255,225,.09);border:1px solid rgba(0,255,225,.28);font-size:15px;font-weight:600;cursor:pointer">完成了</div>
+                <div style="padding:18px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);font-size:15px;cursor:pointer">部分完成</div>
+                <div style="padding:18px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);font-size:15px;color:var(--aiia-text-muted);cursor:pointer">没能进行</div>
+              </div>
+              <div style="margin-top:16px;padding:16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle)">
+                <div style="font-size:12px;color:var(--aiia-text-muted)">可选 · 一句事实补充</div>
+                <div style="font-size:13.5px;color:rgba(255,255,255,.35);margin-top:10px">例如：打了 5 局，下次改到 20:00</div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_e10 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:10px 24px 26px">
+              <div style="display:flex;flex-direction:column;align-items:center;text-align:center;margin-top:8px">
+                <img src="assets/azou.png" alt="阿凑" style="width:84px;height:84px;object-fit:contain">
+                <div style="font-size:19px;font-weight:600;margin-top:12px">第 3 次一起打球</div>
+                <div style="font-size:13px;color:var(--aiia-text-muted);margin-top:8px;line-height:1.65">共同经历已经自动记下来了，不用你填。</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-top:26px">
+                <div onClick="{{ n.e16 }}" style="padding:18px;border-radius:var(--aiia-radius-card);background:rgba(0,255,225,.09);border:1px solid rgba(0,255,225,.28);cursor:pointer"><div style="font-size:15px;font-weight:600">原班再来一次</div><div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:6px">下周同一时间，我先去问场地</div></div>
+                <div style="padding:18px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);cursor:pointer"><div style="font-size:15px;font-weight:600">留 2 个人，再差一个</div><div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:6px">重新匿名招募缺的位置</div></div>
+                <div onClick="{{ n.e1 }}" style="padding:18px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);cursor:pointer"><div style="font-size:15px;color:var(--aiia-text-muted)">就到这里</div><div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:6px">结束不会通知其他人</div></div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_b4 }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:2px 20px 26px">
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-magenta);margin:6px 2px 12px">48 小时内截止</div>
+              <div onClick="{{ n.b4d }}" style="background:var(--aiia-surface-subtle);border:1px solid rgba(255,79,211,.25);border-radius:var(--aiia-radius-card);padding:16px;cursor:pointer" style-hover="background:var(--aiia-surface-default)">
+                <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:15px;font-weight:600">机器学习 · 作业三</span><span style="font-size:11.5px;color:var(--aiia-magenta)">周四 23:59</span></div>
+                <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:8px">SVM 与核方法 · 编程题 3 道</div>
+                <div style="margin-top:13px;display:inline-flex;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);font-size:12.5px;font-weight:600">今晚开冲刺局</div>
+              </div>
+              <div style="height:12px"></div>
+              <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px">
+                <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:15px;font-weight:600">计算机网络 · 实验二</span><span style="font-size:11.5px;color:var(--aiia-text-muted)">下周一 18:00</span></div>
+                <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:8px">路由协议抓包分析</div>
+              </div>
+              <div style="height:12px"></div>
+              <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px">
+                <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:15px;font-weight:600">产品设计导论 · 小组作业</span><span style="font-size:11.5px;color:var(--aiia-text-muted)">8 月 22 日</span></div>
+                <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:8px">用户访谈报告</div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_b4d }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:2px 20px 26px">
+              <div style="font-size:20px;font-weight:600;line-height:1.4">机器学习 · 作业三</div>
+              <div style="font-size:13px;color:var(--aiia-magenta);margin-top:9px">8 月 13 日 周四 23:59 截止 · 还剩 2 天</div>
+              <div style="margin-top:18px;background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px;font-size:13.5px;line-height:1.8;color:var(--aiia-text-secondary)">SVM 与核方法：推导软间隔对偶问题；在给定数据集上实现 SMO；比较三种核函数的表现并写 1 页分析。</div>
+              <div style="margin-top:12px;display:flex;gap:11px;align-items:center;padding:16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle)">
+                <img src="assets/azou.png" alt="阿凑" style="width:40px;height:40px;object-fit:contain;flex:none">
+                <div style="flex:1;font-size:13px;line-height:1.65;color:var(--aiia-text-secondary)">同教学班还有人也没交。开一个 <span style="color:var(--aiia-cyan)">90 分钟冲刺局</span>，匿名凑人，不会暴露是谁。</div>
+              </div>
+              <div style="flex:1;min-height:18px"></div>
+              <div onClick="{{ n.d1 }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer;margin-top:16px">开一个 90 分钟冲刺局</div>
+              <div style="text-align:center;font-size:12px;color:var(--aiia-text-muted);margin-top:14px;line-height:1.6">不会显示同课同学名单。<br>成局之后，才会告诉大家你们上同一门课。</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_b7 }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:2px 20px 26px">
+              <div style="padding:12px 14px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);font-size:12.5px;line-height:1.6;color:var(--aiia-text-muted)">你还没认证。活动、宣讲会、赛事可以随便看；要加入局时再扫码，之后会回到这一页。</div>
+              <div style="display:flex;gap:8px;margin-top:16px;overflow-x:auto"><span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:rgba(0,255,225,.12);border:1px solid rgba(0,255,225,.3);color:var(--aiia-cyan);font-size:12.5px">本周</span><span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:12.5px;color:var(--aiia-text-secondary)">宣讲会</span><span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:12.5px;color:var(--aiia-text-secondary)">讲座</span></div>
+              <div style="height:16px"></div>
+              <div onClick="{{ n.b7d }}" style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px;cursor:pointer" style-hover="background:var(--aiia-surface-default)">
+                <div style="font-size:11.5px;color:var(--aiia-cyan)">8 月 13 日 19:00 · 东校园</div>
+                <div style="font-size:15px;font-weight:600;margin-top:8px;line-height:1.45">某科技公司 2027 校园招聘宣讲会</div>
+                <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:7px">学生活动中心报告厅 · 需官网报名</div>
+              </div>
+              <div style="height:12px"></div>
+              <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px">
+                <div style="font-size:11.5px;color:var(--aiia-text-muted)">8 月 15 日 14:30 · 南校园</div>
+                <div style="font-size:15px;font-weight:600;margin-top:8px;line-height:1.45">人工智能前沿系列讲座 · 第六讲</div>
+                <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:7px">怀士堂 · 免报名</div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_b7d }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:2px 20px 26px">
+              <div style="font-size:20px;font-weight:600;line-height:1.4">某科技公司 2027 校园招聘宣讲会</div>
+              <div style="font-size:13px;color:var(--aiia-text-secondary);margin-top:12px;line-height:1.8">8 月 13 日 周三 19:00–21:00<br>东校园 学生活动中心报告厅</div>
+              <div style="margin-top:16px;padding:14px 16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);font-size:12.5px;line-height:1.7;color:var(--aiia-text-muted)">报名需要你本人在官方渠道完成，我们不代办。</div>
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted);margin:22px 2px 12px">可以开的局</div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div onClick="{{ n.d1 }}" style="padding:16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);cursor:pointer"><div style="font-size:14.5px;font-weight:600">找人同行</div><div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:6px">18:40 东门集合，一起过去</div></div>
+                <div onClick="{{ n.d1 }}" style="padding:16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);cursor:pointer"><div style="font-size:14.5px;font-weight:600">会前准备局</div><div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:6px">一起过公司业务和面经</div></div>
+                <div onClick="{{ n.d1 }}" style="padding:16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);cursor:pointer"><div style="font-size:14.5px;font-weight:600">会后复盘局</div><div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:6px">21:00 之后，30 分钟</div></div>
+              </div>
+              <div style="flex:1;min-height:18px"></div>
+              <div style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;cursor:pointer;margin-top:16px">去官方渠道报名 ↗</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_g2 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;background:rgba(0,0,0,.5)">
+              <div style="flex:1;min-height:26px"></div>
+              <div style="background:#151617;border-radius:22px 22px 0 0;padding:20px 18px 26px">
+                <div style="width:38px;height:4px;border-radius:2px;background:rgba(255,255,255,.2);margin:0 auto 18px"></div>
+                <div style="border-radius:var(--aiia-radius-card);background:linear-gradient(150deg,rgba(0,255,225,.12),rgba(255,79,211,.1));border:1px solid var(--aiia-border-default);padding:22px">
+                  <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-cyan)">ONE MORE · 差一个</div>
+                  <div style="font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:22px;line-height:1.35;margin-top:14px">智能应用开发大赛<br>还差前端 1 · 产品 1</div>
+                  <div style="font-size:12.5px;color:var(--aiia-text-secondary);margin-top:12px;line-height:1.65">东校园 · 4 人 · 8 月 14 日截止<br>点开可以匿名查看，加入前没人知道你是谁</div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:18px"><span style="font-size:11.5px;color:var(--aiia-text-muted)">卡片不包含分享者身份</span><span style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.9)"></span></div>
+                </div>
+                <div style="display:flex;gap:16px;margin-top:22px;justify-content:space-around">
+                  <div onClick="{{ n.c4 }}" style="display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer"><span style="width:52px;height:52px;border-radius:16px;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:19px">◉</span><span style="font-size:11px;color:var(--aiia-text-muted)">微信</span></div>
+                  <div onClick="{{ n.c4 }}" style="display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer"><span style="width:52px;height:52px;border-radius:16px;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:19px">◍</span><span style="font-size:11px;color:var(--aiia-text-muted)">朋友圈</span></div>
+                  <div onClick="{{ n.c4 }}" style="display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer"><span style="width:52px;height:52px;border-radius:16px;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:19px">⧉</span><span style="font-size:11px;color:var(--aiia-text-muted)">复制链接</span></div>
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer"><span style="width:52px;height:52px;border-radius:16px;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:19px">↓</span><span style="font-size:11px;color:var(--aiia-text-muted)">存图片</span></div>
+                </div>
+                <div onClick="{{ back }}" style="height:48px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--aiia-text-secondary);cursor:pointer;margin-top:20px">取消</div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_c4 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;background:#0b0b0c">
+              <div style="flex:none;margin:8px 14px;height:38px;border-radius:12px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;gap:7px;font-size:12.5px;color:rgba(255,255,255,.55)"><span style="font-size:10px">🔒</span>onemore.sysu.edu.cn/g/8f2a</div>
+              <div style="flex:1;padding:18px 22px 26px;display:flex;flex-direction:column">
+                <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-magenta)">有人差一个</div>
+                <div style="font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:26px;line-height:1.3;margin-top:14px">智能应用开发大赛<br>还差前端 1 · 产品 1</div>
+                <div style="margin-top:18px;background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px;font-size:13px;line-height:1.85;color:var(--aiia-text-secondary)">东校园 · 4 人局<br>8 月 14 日 23:59 前凑齐<br>需要：前端 1、产品 1</div>
+                <div style="margin-top:14px;font-size:12.5px;line-height:1.7;color:var(--aiia-text-muted)">你现在是匿名浏览。点「我来」后需要企业微信扫码认证，认证完会直接回到这个局，不用重新找。</div>
+                <div style="flex:1;min-height:18px"></div>
+                <div onClick="{{ n.a3 }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer">我来</div>
+                <div style="text-align:center;font-size:12px;color:var(--aiia-text-muted);margin-top:14px">发这张卡的人是谁，卡片不会告诉你</div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_e1 }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:4px 20px 26px">
+              <div style="font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:28px;line-height:1.2">我的局</div>
+              <div style="display:flex;gap:8px;margin-top:16px;overflow-x:auto">
+                <span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:rgba(255,79,211,.14);border:1px solid rgba(255,79,211,.3);color:var(--aiia-magenta-soft);font-size:12.5px">待我确认 1</span>
+                <span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:12.5px;color:var(--aiia-text-secondary)">进行中</span>
+                <span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:12.5px;color:var(--aiia-text-secondary)">招募中</span>
+                <span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:12.5px;color:var(--aiia-text-secondary)">搭子</span>
+                <span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:12.5px;color:var(--aiia-text-secondary)">已完成</span>
+              </div>
+              <div onClick="{{ n.e3 }}" style="margin-top:18px;border-radius:var(--aiia-radius-card);background:rgba(255,79,211,.09);border:1px solid rgba(255,79,211,.28);padding:16px;cursor:pointer">
+                <div style="font-size:11px;color:var(--aiia-magenta)">待你确认 · 03:12:40</div>
+                <div style="font-size:15px;font-weight:600;margin-top:8px">智能应用开发大赛 · 组队面聊</div>
+                <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:6px">明晚 19:00 · 图书馆 402 · 2/4 已确认</div>
+              </div>
+              <div onClick="{{ n.e7 }}" style="margin-top:12px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);padding:16px;cursor:pointer">
+                <div style="font-size:11px;color:var(--aiia-cyan)">进行中</div>
+                <div style="font-size:15px;font-weight:600;margin-top:8px">羽毛球 · 3 号场</div>
+                <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:6px">今晚 19:30 · 东校园体育馆 · 4 人</div>
+              </div>
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted);margin:24px 2px 12px">搭子</div>
+              <div onClick="{{ n.e16 }}" style="border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);padding:16px;display:flex;gap:12px;align-items:center;cursor:pointer" style-hover="background:var(--aiia-surface-default)">
+                <div style="display:flex"><span style="width:34px;height:34px;border-radius:50%;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:11px">陈</span><span style="width:34px;height:34px;border-radius:50%;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:11px;margin-left:-10px;border:2px solid #0b0c0c">吴</span></div>
+                <div style="flex:1"><div style="font-size:14px;font-weight:600">羽毛球 · 3 人</div><div style="font-size:12px;color:var(--aiia-text-muted);margin-top:5px">一起打过 3 次 · 最近 8 月 4 日</div></div>
+                <span style="padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);font-size:12px;font-weight:600">再来一次</span>
+              </div>
+              <div style="margin-top:12px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);padding:16px;display:flex;gap:12px;align-items:center">
+                <span style="width:34px;height:34px;border-radius:50%;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:11px">黄</span>
+                <div style="flex:1"><div style="font-size:14px;font-weight:600">机器学习 冲刺 · 2 人</div><div style="font-size:12px;color:var(--aiia-text-muted);margin-top:5px">一起冲过 1 次 · 最近 7 月 29 日</div></div>
+                <span style="padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-raised);font-size:12px;color:var(--aiia-text-secondary)">再来一次</span>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_e16 }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:2px 20px 26px">
+              <div style="display:flex;gap:12px;align-items:center">
+                <div style="display:flex"><span style="width:40px;height:40px;border-radius:50%;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:12px">陈</span><span style="width:40px;height:40px;border-radius:50%;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:12px;margin-left:-12px;border:2px solid #0b0c0c">吴</span></div>
+                <div><div style="font-size:16px;font-weight:600">羽毛球 · 3 人</div><div style="font-size:12px;color:var(--aiia-text-muted);margin-top:4px">共同完成 3 次</div></div>
+              </div>
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted);margin:24px 2px 14px">做过什么 · 自动记录</div>
+              <div style="display:flex;flex-direction:column">
+                <div style="display:flex;gap:14px"><div style="width:46px;flex:none;font-size:11.5px;color:var(--aiia-text-muted);padding-top:2px">08-04</div><div style="flex:1;border-left:1px solid var(--aiia-border-subtle);padding:0 0 18px 14px;position:relative"><i style="position:absolute;left:-4px;top:5px;width:7px;height:7px;border-radius:50%;background:var(--aiia-magenta)"></i><div style="font-size:13.5px">羽毛球 · 东校园体育馆 3 号场</div><div style="font-size:12px;color:var(--aiia-text-muted);margin-top:4px">19:00–21:00 · 完成</div></div></div>
+                <div style="display:flex;gap:14px"><div style="width:46px;flex:none;font-size:11.5px;color:var(--aiia-text-muted);padding-top:2px">07-21</div><div style="flex:1;border-left:1px solid var(--aiia-border-subtle);padding:0 0 18px 14px;position:relative"><i style="position:absolute;left:-4px;top:5px;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3)"></i><div style="font-size:13.5px">羽毛球 · 东校园体育馆 1 号场</div><div style="font-size:12px;color:var(--aiia-text-muted);margin-top:4px">20:00–21:00 · 完成</div></div></div>
+                <div style="display:flex;gap:14px"><div style="width:46px;flex:none;font-size:11.5px;color:var(--aiia-text-muted);padding-top:2px">07-09</div><div style="flex:1;border-left:1px solid var(--aiia-border-subtle);padding:0 0 4px 14px;position:relative"><i style="position:absolute;left:-4px;top:5px;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3)"></i><div style="font-size:13.5px">羽毛球 · 南校园体育中心</div><div style="font-size:12px;color:var(--aiia-text-muted);margin-top:4px">19:00–20:00 · 完成</div></div></div>
+              </div>
+              <div style="margin-top:8px;padding:16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle)">
+                <div style="font-size:11.5px;color:var(--aiia-text-muted)">共同点</div>
+                <div style="font-size:13.5px;line-height:1.7;margin-top:9px;color:var(--aiia-text-secondary)">都选过《机器学习》· 都在东校园 · 都偏好晚上</div>
+              </div>
+              <div style="font-size:12px;color:var(--aiia-text-muted);margin:14px 2px 0;line-height:1.65">只记事实，不记评价。你们看到的内容完全一样。</div>
+              <div onClick="{{ n.e14 }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer;margin-top:20px">再来一次</div>
+              <div style="display:flex;gap:10px;margin-top:10px">
+                <div style="flex:1;height:46px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);display:flex;align-items:center;justify-content:center;font-size:13.5px;color:var(--aiia-text-secondary);cursor:pointer">进入对话</div>
+                <div onClick="{{ n.e17 }}" style="flex:1;height:46px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);display:flex;align-items:center;justify-content:center;font-size:13.5px;color:var(--aiia-text-muted);cursor:pointer">解除关系</div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_e17 }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;background:rgba(0,0,0,.5)">
+              <div style="flex:1"></div>
+              <div style="background:#151617;border-radius:22px 22px 0 0;padding:24px 22px 26px">
+                <div style="width:38px;height:4px;border-radius:2px;background:rgba(255,255,255,.2);margin:0 auto 20px"></div>
+                <div style="font-size:18px;font-weight:600">解除和这个关系的联系？</div>
+                <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px">
+                  <div style="display:flex;gap:10px;align-items:flex-start"><i style="width:6px;height:6px;border-radius:50%;background:var(--aiia-magenta);margin-top:7px;flex:none"></i><span style="font-size:13px;line-height:1.6;color:var(--aiia-text-tertiary)">对方<span style="color:var(--aiia-text-primary)">不会收到任何通知</span></span></div>
+                  <div style="display:flex;gap:10px;align-items:flex-start"><i style="width:6px;height:6px;border-radius:50%;background:var(--aiia-magenta);margin-top:7px;flex:none"></i><span style="font-size:13px;line-height:1.6;color:var(--aiia-text-tertiary)">对话关闭，共同经历从双方视图里移除</span></div>
+                  <div style="display:flex;gap:10px;align-items:flex-start"><i style="width:6px;height:6px;border-radius:50%;background:var(--aiia-magenta);margin-top:7px;flex:none"></i><span style="font-size:13px;line-height:1.6;color:var(--aiia-text-tertiary)">单方面生效，不需要对方同意</span></div>
+                </div>
+                <div onClick="{{ n.e1 }}" style="height:50px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;cursor:pointer;margin-top:24px">解除</div>
+                <div onClick="{{ back }}" style="height:50px;border-radius:var(--aiia-radius-pill);background:transparent;display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--aiia-text-muted);cursor:pointer;margin-top:6px">返回</div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_c1 }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:4px 20px 26px">
+              <div style="font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:28px;line-height:1.2">公开局</div>
+              <div style="display:flex;gap:8px;margin-top:16px;overflow-x:auto"><span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:rgba(0,255,225,.12);border:1px solid rgba(0,255,225,.3);color:var(--aiia-cyan);font-size:12.5px">东校园</span><span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:12.5px;color:var(--aiia-text-secondary)">本周</span><span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:12.5px;color:var(--aiia-text-secondary)">运动</span><span style="flex:none;padding:8px 14px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-default);font-size:12.5px;color:var(--aiia-text-secondary)">学习</span></div>
+              <div style="height:18px"></div>
+              <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px">
+                <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:15px;font-weight:600">周三晚 羽毛球 双打</span><span style="font-size:11.5px;color:var(--aiia-cyan)">差 1 人</span></div>
+                <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:8px">8 月 12 日 19:00 · 东校园体育馆</div>
+                <div style="height:5px;border-radius:3px;background:var(--aiia-surface-default);margin-top:12px;overflow:hidden"><i style="display:block;width:75%;height:100%;background:var(--aiia-cyan-gradient)"></i></div>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px"><span style="font-size:11.5px;color:var(--aiia-text-muted)">3 / 4 人 · 需要 T1 及以上</span><span style="padding:8px 16px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);font-size:12.5px;font-weight:600;cursor:pointer">我来</span></div>
+              </div>
+              <div style="height:12px"></div>
+              <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:16px">
+                <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:15px;font-weight:600">数学建模 · 广东赛区组队</span><span style="font-size:11.5px;color:var(--aiia-magenta-soft)">缺 编程 1</span></div>
+                <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:8px">长期目标 · 9 月 13 日交题</div>
+                <div style="height:5px;border-radius:3px;background:var(--aiia-surface-default);margin-top:12px;overflow:hidden"><i style="display:block;width:66%;height:100%;background:var(--aiia-cyan-gradient)"></i></div>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px"><span style="font-size:11.5px;color:var(--aiia-text-muted)">2 / 3 人 · 需要 T2 及以上</span><span onClick="{{ n.m3 }}" style="padding:8px 16px;border-radius:var(--aiia-radius-pill);background:var(--aiia-surface-raised);font-size:12.5px;color:var(--aiia-text-secondary);cursor:pointer">我来</span></div>
+              </div>
+              <div style="margin-top:18px;font-size:12px;color:var(--aiia-text-muted);text-align:center;line-height:1.7">这里不显示任何成员身份，也不显示别人的等级。<br>只有角色缺口和人数进度。</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_m1 }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:4px 20px 26px">
+              <div style="display:flex;gap:14px;align-items:center;margin-top:6px">
+                <span style="width:56px;height:56px;border-radius:50%;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:16px">刘</span>
+                <div><div style="font-size:18px;font-weight:600">刘同学</div><div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:5px">计算机学院 · 2024 级 · 东校园</div></div>
+              </div>
+              <div onClick="{{ n.m3 }}" style="margin-top:20px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);padding:18px;cursor:pointer" style-hover="background:var(--aiia-surface-default)">
+                <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:11px;color:var(--aiia-text-muted)">仅你自己可见</span><span style="font-size:11.5px;color:var(--aiia-text-muted)">›</span></div>
+                <div style="display:flex;align-items:baseline;gap:10px;margin-top:10px"><span style="font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:26px;color:var(--aiia-cyan)">T2</span><span style="font-size:15px">靠谱同学</span></div>
+                <div style="height:5px;border-radius:3px;background:var(--aiia-surface-default);margin-top:14px;overflow:hidden"><i style="display:block;width:70%;height:100%;background:var(--aiia-cyan-gradient)"></i></div>
+                <div style="font-size:12px;color:var(--aiia-text-muted);margin-top:9px">距 T3 还差 3 次有效成局</div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px">
+                <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:16px;padding:14px 10px;text-align:center"><div style="font-size:20px;font-weight:600">7</div><div style="font-size:11px;color:var(--aiia-text-muted);margin-top:5px">有效成局</div></div>
+                <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:16px;padding:14px 10px;text-align:center"><div style="font-size:20px;font-weight:600">3</div><div style="font-size:11px;color:var(--aiia-text-muted);margin-top:5px">搭子关系</div></div>
+                <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:16px;padding:14px 10px;text-align:center"><div style="font-size:20px;font-weight:600">100%</div><div style="font-size:11px;color:var(--aiia-text-muted);margin-top:5px">准时确认</div></div>
+              </div>
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted);margin:24px 2px 12px">我的局</div>
+              <div onClick="{{ n.e7 }}" style="border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);padding:16px;display:flex;align-items:center;gap:12px;cursor:pointer" style-hover="background:var(--aiia-surface-default)">
+                <div style="flex:1"><div style="font-size:11px;color:var(--aiia-cyan)">进行中</div><div style="font-size:14.5px;font-weight:600;margin-top:7px">羽毛球 · 3 号场</div><div style="font-size:12px;color:var(--aiia-text-muted);margin-top:5px">今晚 19:30 · 东校园体育馆</div></div>
+                <span style="font-size:16px;color:var(--aiia-text-muted)">›</span>
+              </div>
+              <div onClick="{{ n.e1 }}" style="margin-top:10px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);padding:16px;display:flex;align-items:center;gap:12px;cursor:pointer" style-hover="background:var(--aiia-surface-default)">
+                <div style="flex:1"><div style="font-size:14px">全部的局</div><div style="font-size:12px;color:var(--aiia-text-muted);margin-top:5px">招募中 1 · 已完成 7 · 搭子 3</div></div>
+                <span style="font-size:16px;color:var(--aiia-text-muted)">›</span>
+              </div>
+              <div style="margin-top:20px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);padding:4px 16px">
+                <div style="display:flex;align-items:center;padding:14px 0;border-bottom:1px solid var(--aiia-border-subtle)"><span style="flex:1;font-size:14px">画像与能力标签</span><span style="font-size:12px;color:var(--aiia-text-muted)">›</span></div>
+                <div style="display:flex;align-items:center;padding:14px 0;border-bottom:1px solid var(--aiia-border-subtle)"><span style="flex:1;font-size:14px">授权管理</span><span style="font-size:12px;color:var(--aiia-text-muted)">4 项 · 3 已开 ›</span></div>
+                <div style="display:flex;align-items:center;padding:14px 0;border-bottom:1px solid var(--aiia-border-subtle)"><span style="flex:1;font-size:14px">隐私与安全</span><span style="font-size:12px;color:var(--aiia-cyan)">社交池 已开 ›</span></div>
+                <div style="display:flex;align-items:center;padding:14px 0;border-bottom:1px solid var(--aiia-border-subtle)"><span style="flex:1;font-size:14px">日历与通知</span><span style="font-size:12px;color:var(--aiia-text-muted)">›</span></div>
+                <div style="display:flex;align-items:center;padding:14px 0"><span style="flex:1;font-size:14px">账号与数据</span><span style="font-size:12px;color:var(--aiia-text-muted)">›</span></div>
+              </div>
+              <div style="margin-top:16px;font-size:12px;color:var(--aiia-text-muted);text-align:center;line-height:1.7">没有可以被别人访问的个人主页。</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_m3 }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:2px 20px 26px">
+              <div style="border-radius:var(--aiia-radius-card);background:linear-gradient(150deg,rgba(0,255,225,.1),rgba(255,79,211,.07));border:1px solid var(--aiia-border-default);padding:20px">
+                <div style="display:flex;align-items:baseline;gap:10px"><span style="font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:30px;color:var(--aiia-cyan)">T2</span><span style="font-size:16px">靠谱同学</span></div>
+                <div style="height:6px;border-radius:3px;background:rgba(255,255,255,.12);margin-top:16px;overflow:hidden"><i style="display:block;width:70%;height:100%;background:var(--aiia-cyan-gradient)"></i></div>
+                <div style="font-size:12.5px;color:var(--aiia-text-secondary);margin-top:10px">7 / 10 次有效成局 · 再完成 3 次升到 T3</div>
+                <div style="font-size:11.5px;color:var(--aiia-text-muted);margin-top:6px">等级只有你自己看得到</div>
+              </div>
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted);margin:22px 2px 12px">已解锁</div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <span style="padding:8px 12px;border-radius:var(--aiia-radius-pill);background:rgba(0,255,225,.1);color:var(--aiia-cyan);font-size:12.5px">自行发起局</span>
+                <span style="padding:8px 12px;border-radius:var(--aiia-radius-pill);background:rgba(0,255,225,.1);color:var(--aiia-cyan);font-size:12.5px">2 人局</span>
+                <span style="padding:8px 12px;border-radius:var(--aiia-radius-pill);background:rgba(0,255,225,.1);color:var(--aiia-cyan);font-size:12.5px">跨院系匹配</span>
+                <span style="padding:8px 12px;border-radius:var(--aiia-radius-pill);background:rgba(0,255,225,.1);color:var(--aiia-cyan);font-size:12.5px">比赛组队池</span>
+                <span style="padding:8px 12px;border-radius:var(--aiia-radius-pill);background:rgba(0,255,225,.1);color:var(--aiia-cyan);font-size:12.5px">AI 代理预约</span>
+              </div>
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted);margin:22px 2px 12px">还没解锁 · T3 组局者</div>
+              <div style="background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);border-radius:var(--aiia-radius-card);padding:4px 16px">
+                <div style="display:flex;align-items:center;padding:13px 0;border-bottom:1px solid var(--aiia-border-subtle)"><span style="flex:1;font-size:13.5px;color:var(--aiia-text-tertiary)">长期共同目标</span><span style="font-size:11.5px;color:var(--aiia-text-muted)">差 3 次</span></div>
+                <div style="display:flex;align-items:center;padding:13px 0;border-bottom:1px solid var(--aiia-border-subtle)"><span style="flex:1;font-size:13.5px;color:var(--aiia-text-tertiary)">6 人以上的局</span><span style="font-size:11.5px;color:var(--aiia-text-muted)">差 3 次</span></div>
+                <div style="display:flex;align-items:center;padding:13px 0"><span style="flex:1;font-size:13.5px;color:var(--aiia-text-tertiary)">补位快速通道</span><span style="font-size:11.5px;color:var(--aiia-text-muted)">差 3 次</span></div>
+              </div>
+              <div onClick="{{ n.c1 }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:15.5px;font-weight:600;cursor:pointer;margin-top:20px">去看能马上参加的低风险局</div>
+              <div style="text-align:center;font-size:12px;color:var(--aiia-text-muted);margin-top:14px;line-height:1.65">等级解锁的是能力，不是身份。<br>没有排行榜，也不会展示给别人。</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_table }}" hint-placeholder-val="{{ true }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;padding:2px 20px 26px">
+              <div style="font-size:15px;font-weight:600;line-height:1.4">2026 全国大学生智能应用开发大赛</div>
+              <div style="font-size:12px;color:var(--aiia-text-muted);margin-top:6px">这一桌 4 人 · 8 月 14 日 23:59 前坐满</div>
+
+              <div style="position:relative;height:322px;margin-top:14px">
+                <div style="position:absolute;inset:44px 30px;border-radius:110px/86px;background:radial-gradient(ellipse at 50% 40%,rgba(0,255,225,.12),rgba(255,255,255,.05) 70%);border:1px solid var(--aiia-border-default);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 66px;box-sizing:border-box">
+                  <div style="font:400 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-cyan)">这桌的目标</div>
+                  <div style="font-size:13.5px;line-height:1.5;margin-top:9px">9/30 前做出可运行的作品并提交</div>
+                  <div style="font-size:11.5px;color:var(--aiia-text-muted);margin-top:9px">{{ seatText }} · 坐满自动开局</div>
+                </div>
+
+                <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:96px;padding:10px 0;border-radius:16px;background:var(--aiia-surface-raised);text-align:center">
+                  <div style="font-size:12.5px;font-weight:600">产品</div>
+                  <div style="font-size:10.5px;color:var(--aiia-cyan);margin-top:4px">已就位</div>
+                </div>
+                <div style="position:absolute;top:132px;left:0;width:88px;padding:10px 0;border-radius:16px;background:var(--aiia-surface-raised);text-align:center">
+                  <div style="font-size:12.5px;font-weight:600">数据</div>
+                  <div style="font-size:10.5px;color:var(--aiia-cyan);margin-top:4px">已就位</div>
+                </div>
+                <div style="position:absolute;top:132px;right:0;width:88px;padding:10px 0;border-radius:16px;background:var(--aiia-surface-raised);text-align:center">
+                  <div style="font-size:12.5px;font-weight:600">后端</div>
+                  <div style="font-size:10.5px;color:var(--aiia-cyan);margin-top:4px">已就位</div>
+                </div>
+                <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:150px;padding:13px 0;border-radius:18px;text-align:center;animation:seatPulse 2s infinite;{{ seat4St }}">
+                  <div style="font-size:13.5px;font-weight:600">前端</div>
+                  <div style="font-size:10.5px;margin-top:4px;color:var(--aiia-text-secondary)">{{ seatBottomLabel }}</div>
+                </div>
+              </div>
+
+              <div style="padding:16px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle)">
+                <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-magenta)">为什么是这桌</div>
+                <div style="font-size:13px;line-height:1.75;color:var(--aiia-text-secondary);margin-top:11px">桌上三个人的角色和你不重复，你补上前端刚好覆盖赛道要求。<br>你们本周晚上有 <span style="color:var(--aiia-cyan)">3 段共同空档</span>。</div>
+              </div>
+              <div style="font-size:11.5px;color:var(--aiia-text-muted);margin-top:12px;line-height:1.7;text-align:center">桌上只显示角色，不显示是谁。<br>坐满后进入各自确认，确认完群聊才会开。</div>
+
+              <div style="flex:1;min-height:14px"></div>
+              <sc-if value="{{ notSeated }}" hint-placeholder-val="{{ true }}">
+                <div onClick="{{ sit }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer">我来坐前端这个位</div>
+              </sc-if>
+              <sc-if value="{{ seated }}" hint-placeholder-val="{{ false }}">
+                <div>
+                  <div style="display:flex;align-items:center;justify-content:center;gap:9px;padding:13px;border-radius:var(--aiia-radius-card);background:rgba(0,255,225,.08);border:1px solid rgba(0,255,225,.24);font-size:13.5px;color:var(--aiia-text-secondary)"><span style="color:var(--aiia-cyan)">✓</span>坐满了 · 4 / 4</div>
+                  <div onClick="{{ n.e3 }}" style="height:52px;border-radius:var(--aiia-radius-pill);background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;cursor:pointer;margin-top:10px">去确认这一局</div>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is_msg }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:4px 20px 26px">
+              <div style="display:flex;align-items:flex-end;justify-content:space-between">
+                <div style="font-family:'DouyinSans',var(--aiia-font-display);font-weight:400;font-size:28px;line-height:1.2">消息</div>
+                <span style="font-size:12px;color:var(--aiia-text-muted)">没有陌生人私聊</span>
+              </div>
+
+              <div onClick="{{ n.e3 }}" style="margin-top:18px;border-radius:var(--aiia-radius-card);background:rgba(255,79,211,.09);border:1px solid rgba(255,79,211,.28);padding:16px;display:flex;align-items:center;gap:12px;cursor:pointer">
+                <div style="flex:1">
+                  <div style="font-size:11px;color:var(--aiia-magenta)">待你确认 · 03:12:40</div>
+                  <div style="font-size:14.5px;font-weight:600;margin-top:7px">智能应用开发大赛 · 组队面聊</div>
+                  <div style="font-size:12px;color:var(--aiia-text-muted);margin-top:5px">2/4 人已确认 · 确认后群聊自动开启</div>
+                </div>
+                <span style="font-size:18px;color:var(--aiia-text-muted)">›</span>
+              </div>
+
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted);margin:24px 2px 12px">局内群聊</div>
+              <div onClick="{{ n.e14 }}" style="display:flex;gap:12px;align-items:center;padding:14px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);cursor:pointer" style-hover="background:var(--aiia-surface-default)">
+                <div style="display:flex;flex:none"><span style="width:36px;height:36px;border-radius:50%;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:11px">陈</span><span style="width:36px;height:36px;border-radius:50%;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:11px;margin-left:-12px;border:2px solid #0b0c0c">吴</span></div>
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:14px;font-weight:600">智能应用开发大赛 · 4 人</span><span style="font-size:11px;color:var(--aiia-text-muted)">12:04</span></div>
+                  <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">阿凑：周四 19:00 402 可订，授权后我就去订</div>
+                </div>
+                <i style="width:18px;height:18px;border-radius:50%;background:var(--aiia-magenta);color:#fff;font-size:10px;font-style:normal;display:flex;align-items:center;justify-content:center;flex:none">2</i>
+              </div>
+              <div style="height:10px"></div>
+              <div style="display:flex;gap:12px;align-items:center;padding:14px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);opacity:.55">
+                <span style="width:36px;height:36px;border-radius:50%;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:14px;flex:none">◔</span>
+                <div style="flex:1"><div style="font-size:14px;font-weight:600">羽毛球 · 周三晚</div><div style="font-size:12px;color:var(--aiia-text-muted);margin-top:5px">招募期不开群聊，坐满确认后开启</div></div>
+              </div>
+
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted);margin:24px 2px 12px">搭子对话</div>
+              <div onClick="{{ n.e16 }}" style="display:flex;gap:12px;align-items:center;padding:14px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle);cursor:pointer" style-hover="background:var(--aiia-surface-default)">
+                <div style="display:flex;flex:none"><span style="width:36px;height:36px;border-radius:50%;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:11px">陈</span><span style="width:36px;height:36px;border-radius:50%;background:var(--aiia-surface-raised);display:flex;align-items:center;justify-content:center;font-size:11px;margin-left:-12px;border:2px solid #0b0c0c">吴</span></div>
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:14px;font-weight:600">羽毛球 · 3 人</span><span style="font-size:11px;color:var(--aiia-text-muted)">昨天</span></div>
+                  <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">一起打过 3 次 · 下周还来吗</div>
+                </div>
+              </div>
+
+              <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--aiia-text-muted);margin:24px 2px 12px">阿凑通知</div>
+              <div style="display:flex;gap:12px;align-items:center;padding:14px;border-radius:var(--aiia-radius-card);background:var(--aiia-surface-subtle);border:1px solid var(--aiia-border-subtle)">
+                <img src="assets/azou.png" alt="阿凑" style="width:36px;height:36px;object-fit:contain;flex:none">
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:14px;font-weight:600">阿凑</span><span style="font-size:11px;color:var(--aiia-text-muted)">10:12</span></div>
+                  <div style="font-size:12.5px;color:var(--aiia-text-muted);margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">图书馆 402 预约成功，已写入日历</div>
+                </div>
+              </div>
+              <div style="text-align:center;font-size:11.5px;color:var(--aiia-text-muted);margin-top:20px;line-height:1.7">只有一起成过局的人才会出现在这里。<br>没有好友申请、用户搜索，也没有已读回执。</div>
+            </div>
+          </sc-if>
+        </div>
+
+        <sc-if value="{{ showTabs }}" hint-placeholder-val="{{ true }}">
+          <div style="position:relative;flex:none;height:83px;display:flex;align-items:flex-start;justify-content:space-between;padding:10px 22px 0;background:rgba(1,0,1,.72);backdrop-filter:blur(20px);border-top:1px solid var(--aiia-border-subtle)">
+            <div onClick="{{ goB1 }}" style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;color:{{ cToday }}"><span style="font-size:19px">◔</span><span style="font-size:10px">今天</span></div>
+            <div onClick="{{ goB12 }}" style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;color:{{ cMatch }}"><span style="font-size:19px">◈</span><span style="font-size:10px">比赛</span></div>
+            <div onClick="{{ goD1 }}" style="width:56px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;margin-top:-14px">
+              <span style="width:52px;height:52px;border-radius:50%;background:var(--aiia-cyan-gradient);color:var(--aiia-on-cyan);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:600;box-shadow:0 8px 24px rgba(0,255,225,.28)">⊕</span>
+              <span style="font-size:10px;color:var(--aiia-text-secondary)">差一个</span>
+            </div>
+            <div onClick="{{ goMsg }}" style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;color:{{ cMsg }};position:relative"><span style="font-size:19px">◫</span><span style="font-size:10px">消息</span><i style="position:absolute;top:-2px;right:9px;width:7px;height:7px;border-radius:50%;background:var(--aiia-magenta)"></i></div>
+            <div onClick="{{ goM1 }}" style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;color:{{ cMe }}"><span style="font-size:19px">◍</span><span style="font-size:10px">我</span></div>
+          </div>
+        </sc-if>
+
+        <div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(255,255,255,.28)"></div>
+      </div>
+    </div>
+    <div style="font:400 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;color:var(--aiia-text-muted)">{{ code }}</div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:760,&quot;height&quot;:1010},&quot;startScreen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;b12&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;a2&quot;,&quot;a3&quot;,&quot;a4&quot;,&quot;a5&quot;,&quot;a6&quot;,&quot;a7&quot;,&quot;b1&quot;,&quot;b12&quot;,&quot;b12d&quot;,&quot;table&quot;,&quot;d1&quot;,&quot;d2&quot;,&quot;d3&quot;,&quot;d4&quot;,&quot;e3&quot;,&quot;e5&quot;,&quot;e6&quot;,&quot;e7&quot;,&quot;e14&quot;,&quot;msg&quot;,&quot;e16&quot;,&quot;e17&quot;,&quot;e1&quot;,&quot;c1&quot;,&quot;b5&quot;,&quot;b5s&quot;,&quot;e9&quot;,&quot;e10&quot;,&quot;b4&quot;,&quot;b4d&quot;,&quot;b7&quot;,&quot;b7d&quot;,&quot;g2&quot;,&quot;c4&quot;,&quot;m1&quot;,&quot;m3&quot;],&quot;section&quot;:&quot;原型&quot;},&quot;showRail&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;原型&quot;}}">
+const CFG = {
+  a2:['',0,0,'A2 价值引导'], a3:['扫码认证',1,0,'A3 扫码认证'], a4:['授权范围',1,0,'A4 分项授权'],
+  a5:['',0,0,'A5 画像初始化'], a6:['确认你的画像',1,0,'A6 画像确认'], a7:['社交开关',1,0,'A7 社交开关'],
+  b1:['',0,1,'B1 今天 / hermes'], c1:['',0,1,'C1 公开局'], b12:['',0,1,'B12 比赛'], b12d:['赛事详情',1,1,'B12.1 赛事详情'],
+  table:['牌桌',1,0,'B12.2 牌桌 · 差一个'], msg:['',0,1,'MSG 消息'],
+  d1:['差一个',1,0,'D1 意图输入'], d2:['差一个',1,0,'D2 澄清追问'], d3:['意图卡',1,0,'D3 意图卡确认'], d4:['招募中',1,0,'D4 招募中'],
+  e3:['待你确认',1,0,'E3 多人确认'], e5:['行动预览',1,0,'E5 预览与授权'], e6:['执行结果',1,0,'E6 执行结果'],
+  e7:['协作空间',1,0,'E7 协作空间'], e14:['羽你有关 · 群聊',1,0,'E14 局内群聊'],
+  b5:['体育场馆',1,1,'B5 场馆空场'], b5s:['时段选择',1,0,'B5.1 时段选择'], e9:['完成确认',1,0,'E9 完成确认'], e10:['接下来',1,0,'E10 复局选择'],
+  b4:['作业与 DDL',1,1,'B4 作业与 DDL'], b4d:['作业详情',1,0,'B4.1 作业详情'],
+  b7:['活动 · 宣讲会',1,0,'B7 活动（免登录）'], b7d:['活动详情',1,0,'B7.1 活动详情'],
+  g2:['',0,0,'G2 缺口卡分享'], c4:['',0,0,'C4 缺口卡落地页'],
+  e1:['',0,1,'E1 我的局 / 搭子'], e16:['共同经历',1,0,'E16 搭子详情'], e17:['',0,0,'E17 解除关系'],
+  m1:['',0,1,'M1 我'], m3:['信任等级',1,0,'M3 等级详情']
+};
+const RAIL = [
+  ['首次使用', ['a2','a3','a4','a5','a6','a7','b1']],
+  ['比赛 · 牌桌成局', ['b12','b12d','table','e3','e5','e6','e7','e14']],
+  ['差一个 · 发布', ['d1','d2','d3','d4']],
+  ['消息', ['msg','e14','e16']],
+  ['运动搭子', ['b5','b5s','e9','e10']],
+  ['同课 DDL 冲刺', ['b4','b4d']],
+  ['活动同行 · 访客', ['b7','b7d']],
+  ['分享获客', ['g2','c4']],
+  ['关系沉淀 · 其他', ['e1','e16','e17','c1','m1','m3']]
+];
+class Component extends DCLogic {
+  state = { s:'a2', hist:[], intent:'', round:0, picks:[], confirmed:2, mine:false, calPerm:0, tab:'today', slot:'',
+    seated:false, seatCount:3, draft:'',
+    msgs:[
+      { k:'peer', w:'陈同学 · 前端', t:'我把上次做的组件库带过来，明天直接搭页面' },
+      { k:'peer', w:'吴同学 · 产品', t:'好，我今晚先把用户故事列出来' },
+      { k:'me', t:'@阿凑 帮我们把周四晚同一间也订上' },
+      { k:'azou', w:'阿凑', t:'周四 19:00 402 可订。生成预览了，四个人授权后我就去订。' }
+    ] };
+  go = (id) => this.setState(st => ({ s:id, hist:[...st.hist, st.s] }));
+  componentDidMount() { if (this.props.startScreen && CFG[this.props.startScreen]) this.setState({ s:this.props.startScreen, hist:[] }); }
+  componentDidUpdate(prev) { if (prev.startScreen !== this.props.startScreen && CFG[this.props.startScreen]) this.setState({ s:this.props.startScreen, hist:[] }); }
+  back = () => this.setState(st => st.hist.length ? { s:st.hist[st.hist.length-1], hist:st.hist.slice(0,-1) } : { s:st.s });
+  renderVals() {
+    const s = this.state.s, cfg = CFG[s] || ['',0,0,''];
+    const v = {}, n = {};
+    Object.keys(CFG).forEach(k => { v['is_'+k] = (s === k); n[k] = () => this.go(k); });
+    v.n = n;
+    const mk = (t) => () => {
+      const p = [...this.state.picks, t];
+      if (this.state.round === 0) this.setState({ round:1, picks:p });
+      else this.setState({ s:'d3', hist:[...this.state.hist,'d2'], picks:p, round:0 });
+    };
+    const tabOf = { b1:'today', b12:'match', b12d:'match', d1:'add', msg:'msg', m1:'me' }[s];
+    const col = (k) => tabOf === k ? 'var(--aiia-cyan)' : 'rgba(255,255,255,.45)';
+    return Object.assign(v, {
+      title: cfg[0], showNav: !!cfg[1], showTabs: !!cfg[2], code: cfg[3],
+      showRail: this.props.showRail !== false,
+      back: this.back, goB1:()=>this.go('b1'), goB12:()=>this.go('b12'), goD1:()=>this.go('d1'), goMsg:()=>this.go('msg'), goM1:()=>this.go('m1'),
+      cToday: col('today'), cMatch: col('match'), cMsg: col('msg'), cMe: col('me'),
+      seated: this.state.seated, notSeated: !this.state.seated, tableFull: this.state.seatCount === 4,
+      seatCount: this.state.seatCount, seatText: this.state.seatCount + ' / 4 已就位',
+      seatBottomLabel: this.state.seated ? '你 · 已就位' : '空位 · 差一个',
+      seat4St: this.state.seated
+        ? 'background:rgba(0,255,225,.12);border:1px solid rgba(0,255,225,.4)'
+        : 'background:var(--aiia-surface-subtle);border:1px dashed rgba(255,79,211,.5)',
+      sit: () => { this.setState({ seated:true, seatCount:4 }); },
+      msgs: this.state.msgs.map((m, i) => ({
+        key: i, text: m.t, who: (m.w || '我')[0],
+        rowSt: m.k === 'me' ? 'display:flex;justify-content:flex-end' : 'display:flex;gap:9px;align-items:flex-start',
+        bubbleSt: m.k === 'me'
+          ? 'max-width:250px;background:var(--aiia-surface-raised);border-radius:16px 16px 4px 16px;padding:11px 14px;font-size:13.5px;line-height:1.55'
+          : (m.k === 'azou'
+            ? 'max-width:250px;background:rgba(255,79,211,.08);border:1px solid rgba(255,79,211,.2);border-radius:16px 16px 16px 4px;padding:11px 14px;font-size:13.5px;line-height:1.55'
+            : 'max-width:250px;background:var(--aiia-surface-default);border-radius:16px 16px 16px 4px;padding:11px 14px;font-size:13.5px;line-height:1.55'),
+        isPeer: m.k !== 'me', isAzou: m.k === 'azou'
+      })),
+      draft: this.state.draft,
+      onDraft: (e) => this.setState({ draft: e.target.value }),
+      send: () => { const t = this.state.draft.trim(); if (!t) return; this.setState(st => ({ msgs:[...st.msgs, { k:'me', t }], draft:'' })); },
+      onKey: (e) => { if (e.key === 'Enter') { const t = this.state.draft.trim(); if (t) this.setState(st => ({ msgs:[...st.msgs, { k:'me', t }], draft:'' })); } },
+      rail: RAIL.map(([name, ids]) => ({ name, items: ids.map(id => ({
+        label: CFG[id][3], go: () => this.setState({ s:id, hist:[] }),
+        st: 'cursor:pointer;font-size:11.5px;line-height:1.35;padding:6px 10px;border-radius:8px;transition:background .2s;' +
+            (id === s ? 'background:var(--aiia-surface-raised);color:#fff' : 'color:rgba(255,255,255,.5)')
+      })) })),
+      intent: this.state.intent,
+      intentShown: this.state.intent || '想找 2 个人一起报名智能应用开发大赛，我会后端和数据，缺前端和产品',
+      onIntent: (e) => this.setState({ intent: e.target.value }),
+      fillTpl: () => this.setState({ intent:'我想找 2 个人一起报名智能应用开发大赛，我会后端和数据，缺前端和产品' }),
+      toD2: () => this.setState({ s:'d2', hist:[...this.state.hist,'d1'], round:0, picks:[] }),
+      round0: this.state.round === 0, round1: this.state.round === 1,
+      p0a: mk('本周内的晚上'), p0b: mk('周末白天'), p0c: mk('越快越好，随时'),
+      p1a: mk('缺前端 1 · 产品 1'), p1b: mk('只缺前端 1'), p1c: mk('让阿凑按赛道推荐'),
+      pick0: this.state.picks[0] || '本周内的晚上',
+      pick1: this.state.picks[1] || '缺前端 1 · 产品 1',
+      confirmed: this.state.confirmed, mine: this.state.mine, notMine: !this.state.mine,
+      confirmText: this.state.confirmed + '/4 人已确认',
+      confirmBar: 'width:' + (this.state.confirmed/4*100) + '%;height:100%;background:var(--aiia-cyan-gradient);border-radius:3px;transition:width .5s var(--aiia-ease)',
+      allIn: this.state.confirmed === 4,
+      doConfirm: () => { this.setState({ mine:true, confirmed:3 }); setTimeout(()=>this.setState({ confirmed:4 }), 900); },
+      askCal: this.state.calPerm === 1, calDone: this.state.calPerm === 2, calIdle: this.state.calPerm === 0,
+      openCal: () => this.setState({ calPerm:1 }),
+      allowCal: () => this.setState({ calPerm:2 }),
+      laterCal: () => this.setState({ calPerm:0 }),
+      slot: this.state.slot,
+      pickSlot: (t) => this.setState({ slot:t, s:'d3', hist:[...this.state.hist,'b5s'] }),
+      go: this.go,
+      g: (id) => () => this.go(id)
+    });
+  }
+}
+</script>
+</body>
+</html>
