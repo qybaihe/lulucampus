@@ -1,0 +1,89 @@
+# Production deployment (single host, behind nginx path prefix /onemore/api).
+# Secrets live in /opt/onemore/.env on the server — never commit that file.
+#
+# Hermes real mode: host Node + /opt/AnythingSYSU are bind-mounted into api/worker.
+# Campus auth is HTTP-based (no Chromium required for workwechat login).
+x-hermes-volumes: &hermes-volumes
+  - media-data:/app/runtime/media
+  - vault-data:/app/vaults
+  - /opt/node-v24.12.0-linux-x64:/opt/node:ro
+  - /opt/AnythingSYSU:/opt/AnythingSYSU:ro
+  - /opt/onemore/bin/sysu-anything:/usr/local/bin/sysu-anything:ro
+
+services:
+  api:
+    image: onemore-api:prod
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    env_file: .env
+    environment:
+      PATH: /opt/node/bin:/usr/local/bin:/usr/bin:/bin
+    ports:
+      - "127.0.0.1:18100:8000"
+    volumes: *hermes-volumes
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=2)"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  worker:
+    image: onemore-api:prod
+    # concurrency=1 keeps memory safe on the 3.6Gi host while Chromium-less CLI runs.
+    command: uv run celery -A onemore.tasks.celery_app:celery_app worker -l INFO --concurrency=1
+    env_file: .env
+    environment:
+      PATH: /opt/node/bin:/usr/local/bin:/usr/bin:/bin
+    volumes: *hermes-volumes
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+
+  beat:
+    image: onemore-api:prod
+    command: uv run celery -A onemore.tasks.celery_app:celery_app beat -l INFO
+    env_file: .env
+    restart: unless-stopped
+    depends_on:
+      - worker
+
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: onemore
+      POSTGRES_USER: onemore
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set in .env}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U onemore"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:8-alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  postgres-data:
+  redis-data:
+  media-data:
+  vault-data:
