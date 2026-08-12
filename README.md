@@ -25,10 +25,10 @@
 </p>
 
 <p align="center">
-  <img src="docs/readme-assets/hero-trio.png" alt="开屏 · 分项授权 · 今天" width="900" />
+  <img src="docs/readme-assets/hero-trio.png" alt="分项授权 · 今天 · 差一个" width="900" />
 </p>
 
-<p align="center"><sub>开屏主张 · 分项授权由你掌控 · hermes「今天」</sub></p>
+<p align="center"><sub>授权由你掌控 · hermes「今天」 · 「差一个」发起</sub></p>
 
 ---
 
