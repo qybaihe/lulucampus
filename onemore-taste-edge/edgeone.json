@@ -1,0 +1,8 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "mainlandRegions": ["ap-guangzhou"],
+  "cloudFunctions": {
+    "maxDuration": 90
+  }
+}
