@@ -323,9 +323,10 @@ COUNT=$(git rev-list --count HEAD)
 echo "==> created ${COUNT} commits on ${BRANCH}"
 git log --oneline
 
-# Safety: refuse to push if known leaked key pattern is present in the tree
-if git grep -n "sk-Kk7YCXLEMuDA79JklMxvsCfyiZhWy42vDSw3eAX0rAgq3eFkVg9tNCsaNKvNgpZB" >/dev/null 2>&1; then
-  echo "ERROR: secret key still present in tree; aborting push" >&2
+# Safety: refuse to push if an OpenAI-style key is hardcoded outside env examples
+if git grep -nE "sk-[A-Za-z0-9]{20,}" -- ':!.env*' ':!scripts/bootstrap_github_history.sh' >/dev/null 2>&1; then
+  echo "ERROR: secret-looking API key still present in tree; aborting push" >&2
+  git grep -nE "sk-[A-Za-z0-9]{20,}" -- ':!.env*' ':!scripts/bootstrap_github_history.sh' || true
   exit 1
 fi
 
