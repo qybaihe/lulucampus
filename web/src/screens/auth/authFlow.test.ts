@@ -45,8 +45,11 @@ describe("auth flow — iOS-aligned FastAPI contract", () => {
     expect(src).toContain("qr_image_data_url");
     expect(src).toContain("redemption_token");
     expect(src).toContain("pollSession");
-    expect(src).toContain("repos.auth.redeem");
+    // 扫码现为校园闸门：SUCCESS 后进手机号登录，不再在扫码页兑换会话
+    expect(src).toContain("markCampusGatePassed");
+    expect(src).toContain("/auth/phone");
     expect(repos).toContain("X-Login-Redemption");
+    expect(repos).toContain("redeem");
     // Must not rely only on a static decorative SVG without server data
     expect(src).toContain('data-od-id="auth-qr-image"');
     // grant scopes match iOS
@@ -54,6 +57,10 @@ describe("auth flow — iOS-aligned FastAPI contract", () => {
     expect(src).toContain("agent_booking");
     expect(src).toContain("setGrant");
     expect(src).toContain("setSocialEnabled");
+    // 选校引导
+    expect(src).toContain("中山大学");
+    expect(src).toContain("onboarding-school-");
+    expect(src).toContain('id: "sysu"');
   });
 
   it("startSession → poll with redemption header → redeem returns access_token", async () => {

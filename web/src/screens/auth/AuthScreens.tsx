@@ -711,27 +711,11 @@ export function AuthScanScreen() {
             <div className="center mt-3">
               <span className="om-chip solid">{status ?? "WAITING"}</span>
             </div>
-            <div className="t-foot center mt-3">
-              企业微信 → 工作台 → 扫一扫
-              <br />
-              认证只确认「你是中大人」，不读取聊天
-              <br />
-              <span className="mono t-cap">
-                session · {phase.login.id.slice(0, 8)}…
-              </span>
-            </div>
             {isDemoSvg ? (
               <Note sticker="access-card.png">
-                当前后端返回的是演示用 SVG（hermes_mode=fake 或未接通 Hermes）。
-                企业微信无法扫描演示图。请用与 iOS 相同的后端配置（真实 Hermes 登录编排），
-                或在开发环境点「开发环境：完成扫码」。
+                当前是演示用二维码，企业微信扫不了。开发环境可点下方「完成扫码」。
               </Note>
-            ) : (
-              <Note sticker="access-card.png">
-                二维码由服务端 `/auth/session` 下发（qr_image_data_url）。扫码成功后客户端自动
-                poll → redeem，写入与 iOS 相同的 Bearer access_token。
-              </Note>
-            )}
+            ) : null}
             {(import.meta.env.DEV || import.meta.env.VITE_DEV_AUTH) && (
               <div data-od-id="demo-complete-login">
                 <Btn kind="ghost" onClick={() => void demoComplete()}>
@@ -780,7 +764,7 @@ const GRANT_DEFS: Array<{ scope: GrantScope; title: string; sub: string }> = [
   },
 ];
 
-/** A4 · grants — POST /auth/grants per scope */
+/** A4 · grants — 噜噜居中 + 底部四格确认按钮（对齐 iOS FirstUseSetupView.grants） */
 export function AuthGrantsScreen() {
   const { repos } = useApp();
   const nav = useNavigate();
@@ -815,40 +799,122 @@ export function AuthGrantsScreen() {
   }
 
   return (
-    <Screen id="screen-A4-grants">
-      <NavBar title="授权范围" backTo="/auth/scan" />
-      <div className="om-large-title">授权由你掌控</div>
-      <div className="om-large-sub">分项授权 · 每项可在设置中单独撤回</div>
-      <Scroll>
-        <Card>
-          {GRANT_DEFS.map((g) => (
-            <Row
-              key={g.scope}
-              icon={<Sticker name="books-stack.png" size="st-24" />}
-              title={g.title}
-              sub={g.sub}
-              right={
+    <Screen id="screen-A4-grants" className="auth-grants">
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100%",
+          padding: "12px 20px 28px",
+        }}
+      >
+        <div className="t-t2 center" style={{ marginTop: 8 }}>
+          授权由你掌控
+        </div>
+        <div
+          className="t-foot muted center mt-1"
+          style={{ maxWidth: 280, margin: "6px auto 0" }}
+        >
+          点选你愿意开放的数据边界，随时可在设置里撤回
+        </div>
+
+        <div
+          style={{
+            flex: 1,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: 220,
+            padding: "12px 0",
+          }}
+        >
+          <LuluMark placement="hero" clip="core.care" />
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 10,
+          }}
+        >
+          {GRANT_DEFS.map((g) => {
+            const on = selected.has(g.scope);
+            return (
+              <button
+                key={g.scope}
+                type="button"
+                data-od-id={`first-use-grant-${g.scope}`}
+                onClick={() => toggle(g.scope)}
+                aria-pressed={on}
+                style={{
+                  textAlign: "left",
+                  cursor: "pointer",
+                  minHeight: 52,
+                  padding: "12px 12px",
+                  borderRadius: 14,
+                  border: on
+                    ? "1.5px solid var(--ink)"
+                    : "1px solid var(--line)",
+                  background: on
+                    ? "color-mix(in srgb, var(--yolk) 35%, var(--card))"
+                    : "var(--card)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                }}
+              >
                 <span
-                  onClick={() => toggle(g.scope)}
-                  role="switch"
-                  aria-checked={selected.has(g.scope)}
+                  aria-hidden
+                  style={{
+                    width: 16,
+                    height: 16,
+                    borderRadius: 999,
+                    border: on ? "none" : "1.5px solid var(--sage)",
+                    background: on ? "var(--ink)" : "transparent",
+                    flex: "0 0 auto",
+                    position: "relative",
+                  }}
                 >
-                  <Switch on={selected.has(g.scope)} />
+                  {on ? (
+                    <span
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        color: "var(--card)",
+                        fontSize: 11,
+                        lineHeight: "16px",
+                        textAlign: "center",
+                        fontWeight: 700,
+                      }}
+                    >
+                      ✓
+                    </span>
+                  ) : null}
                 </span>
-              }
-            />
-          ))}
-        </Card>
-        <Note sticker="nameplate-blank.png">
-          关闭某一项只会影响对应能力：例如关闭课表后，噜噜无法自动找空档，你仍可以手动选时间。
-        </Note>
-        {error ? <div className="t-foot mt-2">{error}</div> : null}
-      </Scroll>
-      <Footer>
-        <Btn kind="primary" onClick={() => void save()} disabled={busy}>
-          {busy ? "保存中…" : "保存授权并读取身份事实"}
-        </Btn>
-      </Footer>
+                <span
+                  className="t-foot"
+                  style={{ fontWeight: 600, color: "var(--ink)" }}
+                >
+                  {g.title}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {error ? (
+          <div className="t-foot mt-2" role="alert" style={{ color: "#c0392b" }}>
+            {error}
+          </div>
+        ) : null}
+
+        <div className="mt-3" data-od-id="first-use-save-grants">
+          <Btn kind="primary" onClick={() => void save()} disabled={busy}>
+            {busy ? "保存中…" : "确认授权，继续"}
+          </Btn>
+        </div>
+      </div>
     </Screen>
   );
 }
