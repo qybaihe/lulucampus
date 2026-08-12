@@ -6,11 +6,22 @@ from pathlib import Path
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from onemore.db.demo_cast import (
+    CAST_BY_ID,
+    CAST_PASSWORD_HASH,
+    CAST_TASTE,
+    CAST_USERS,
+    COMPLETED_GATHERINGS,
+    COURSE_MEETINGS,
+    EXTERNAL_EVENTS,
+    EXTRA_COURSES,
+    OPEN_GATHERINGS,
+    CastGathering,
+)
 from onemore.db.models import (
     Assignment,
     AuthorizationGrant,
     CapabilityTag,
-    ConfirmationStatus,
     Course,
     Enrollment,
     ExternalEvent,
@@ -18,10 +29,14 @@ from onemore.db.models import (
     GatheringMember,
     GatheringStatus,
     GrantScope,
+    IntentCard,
+    IntentStatus,
+    Message,
     Profile,
     ProfileInitStatus,
+    SessionHealth,
+    TasteImportSession,
     TimeWindow,
-    TrustLevel,
     TrustProfile,
     User,
 )
@@ -56,6 +71,7 @@ def seed_reference_data(db: Session) -> None:
         ("DS3001", "视觉传达设计", "design", ["visual_design", "design"], "cross_major"),
         ("BA2001", "商业模式设计", "business", ["business_analysis", "product"], "elective"),
         ("FE1001", "Web 前端开发", "computer_science", ["frontend"], "elective"),
+        *EXTRA_COURSES,
     ]
     for code, name, domain, tags, course_type in courses:
         existing = db.scalar(select(Course).where(Course.code == code))
@@ -72,81 +88,122 @@ def seed_reference_data(db: Session) -> None:
     db.commit()
 
 
-def seed_demo_data(db: Session, root: Path | None = None) -> None:
-    seed_reference_data(db)
-    now = datetime.now(UTC)
-    user_specs = [
-        ("u_demo_1", "小岚", "软件工程", "F", ["SE1001", "CS2002", "DS3001"]),
-        ("u_demo_2", "阿衡", "计算机科学", "M", ["CS2002", "FE1001"]),
-        ("u_demo_3", "知夏", "传播设计", "F", ["DS3001", "BA2001"]),
-        ("u_demo_4", "庭川", "工商管理", "M", ["BA2001", "SE1001"]),
-    ]
-    for index, (user_id, display_name, major, gender_code, course_codes) in enumerate(user_specs):
-        user = db.get(User, user_id)
-        if user is None:
-            user = User(
-                id=user_id,
-                netid_hash=f"demo-hash-{index}",
-                display_name=display_name,
-                college="示范学院",
-                major=major,
-                grade_year=2024,
-                campus="珠海校区",
-                gender_code=gender_code,
-                verified_at=now - timedelta(days=60),
-                social_enabled=True,
+def _next_weekday(now: datetime, weekday: int, hour: int) -> datetime:
+    days = (weekday - now.weekday()) % 7
+    candidate = (now + timedelta(days=days)).replace(
+        hour=hour, minute=0, second=0, microsecond=0
+    )
+    if candidate <= now:
+        candidate += timedelta(days=7)
+    return candidate
+
+
+def _ensure_session_health(db: Session, user_id: str, now: datetime) -> None:
+    for subsystem in ("cas", "jwxt", "libic", "gym", "explore"):
+        health = db.scalar(
+            select(SessionHealth).where(
+                SessionHealth.user_id == user_id,
+                SessionHealth.subsystem == subsystem,
             )
+        )
+        if health is None:
+            health = SessionHealth(user_id=user_id, subsystem=subsystem)
+            db.add(health)
+        health.healthy = True
+        health.last_checked_at = now
+        health.error_category = None
+
+
+def _seed_users(db: Session, now: datetime) -> None:
+    for spec in CAST_USERS:
+        user = db.get(User, spec.id)
+        if user is None:
+            user = User(id=spec.id, netid_hash=f"demo-hash-{spec.netid_index}")
             db.add(user)
             db.flush()
-        elif user.gender_code is None:
-            user.gender_code = gender_code
+        user.display_name = spec.display_name
+        user.college = spec.college
+        user.major = spec.major
+        user.grade_year = spec.grade_year
+        user.campus = spec.campus
+        user.gender_code = spec.gender_code
+        user.verified_at = user.verified_at or now - timedelta(days=60)
+        user.social_enabled = True
+        user.course_matching_enabled = True
+        user.account_status = "active"
+        user.identity_disclosure = spec.identity_disclosure
+        user.minimum_group_size = spec.minimum_group_size
+        user.matching_preferences = {
+            "interaction_style": spec.interaction_style,
+            "sport_level": spec.sport_level,
+            "study_intensity": spec.study_intensity,
+        }
+        if user.phone is None:
+            taken = db.scalar(select(User.id).where(User.phone == spec.phone))
+            if taken is None:
+                user.phone = spec.phone
+                user.password_hash = CAST_PASSWORD_HASH
         for scope in GrantScope:
             grant = db.scalar(
                 select(AuthorizationGrant).where(
-                    AuthorizationGrant.user_id == user_id,
+                    AuthorizationGrant.user_id == spec.id,
                     AuthorizationGrant.scope == scope.value,
                 )
             )
             if grant is None:
                 db.add(
                     AuthorizationGrant(
-                        user_id=user_id,
+                        user_id=spec.id,
                         scope=scope.value,
                         granted=True,
                         granted_at=now,
                     )
                 )
-        trust = db.get(TrustProfile, user_id)
+            else:
+                grant.granted = True
+                grant.granted_at = grant.granted_at or now
+                grant.revoked_at = None
+        trust = db.get(TrustProfile, spec.id)
         if trust is None:
+            trust = TrustProfile(user_id=spec.id)
+            db.add(trust)
+        trust.level = spec.trust_level
+        trust.completed_gatherings = spec.completed_gatherings
+        trust.initiated_gatherings = spec.initiated_gatherings
+        trust.recurrences = spec.recurrences
+        trust.on_time_confirm_rate = spec.on_time_confirm_rate
+        _ensure_session_health(db, spec.id, now)
+        if db.get(Profile, spec.id) is None:
             db.add(
-                TrustProfile(
-                    user_id=user_id,
-                    level=TrustLevel.T2.value,
-                    completed_gatherings=3,
-                    on_time_confirm_rate=1.0,
+                Profile(
+                    user_id=spec.id,
+                    init_status=ProfileInitStatus.NOT_STARTED.value,
+                    self_reported_tags=[],
                 )
             )
-        for code in course_codes:
+        for code in spec.course_codes:
             course = db.scalar(select(Course).where(Course.code == code))
             if course is None:
                 continue
+            class_code = f"{code}-01"
             exists = db.scalar(
                 select(Enrollment).where(
-                    Enrollment.user_id == user_id,
+                    Enrollment.user_id == spec.id,
                     Enrollment.course_id == course.id,
-                    Enrollment.class_code == f"{code}-01",
+                    Enrollment.class_code == class_code,
                     Enrollment.term == "2026-fall",
                 )
             )
             if exists is None:
+                location, hour = COURSE_MEETINGS.get(code, (f"{spec.campus}教学楼", 10))
                 start = (now + timedelta(days=1)).replace(
-                    hour=9 + index, minute=0, second=0, microsecond=0
+                    hour=hour, minute=0, second=0, microsecond=0
                 )
                 db.add(
                     Enrollment(
-                        user_id=user_id,
+                        user_id=spec.id,
                         course_id=course.id,
-                        class_code=f"{code}-01",
+                        class_code=class_code,
                         term="2026-fall",
                         status="current",
                         course_type=course.course_type,
@@ -155,124 +212,244 @@ def seed_demo_data(db: Session, root: Path | None = None) -> None:
                                 "week": max(1, int(now.strftime("%W")) % 25),
                                 "start_at": start.isoformat(),
                                 "end_at": (start + timedelta(hours=2)).isoformat(),
-                                "location": "珠海校区教学楼",
+                                "location": location,
                             }
                         ],
                     )
                 )
-        if db.get(Profile, user_id) is None:
-            db.add(
-                Profile(
-                    user_id=user_id,
-                    init_status=ProfileInitStatus.NOT_STARTED.value,
-                    self_reported_tags=[],
-                )
-            )
-        if not db.scalar(select(TimeWindow.id).where(TimeWindow.user_id == user_id)):
+        if not db.scalar(select(TimeWindow.id).where(TimeWindow.user_id == spec.id)):
             for offset in range(1, 8):
                 start = (now + timedelta(days=offset)).replace(
                     hour=19 if offset < 6 else 14, minute=0, second=0, microsecond=0
                 )
                 db.add(
                     TimeWindow(
-                        user_id=user_id,
+                        user_id=spec.id,
                         start_at=start,
                         end_at=start + timedelta(hours=3),
-                        campus="珠海校区",
+                        campus=spec.campus,
                         recurring=True,
-                        stability=0.95 - index * 0.02,
+                        stability=0.95 - spec.netid_index * 0.02,
                     )
                 )
     db.commit()
+
+
+def _seed_taste(db: Session, now: datetime) -> None:
+    from onemore.modules.taste_profile import service as taste_service
+
+    for user_id, result in CAST_TASTE.items():
+        import_id = f"imp_cast_{user_id}"
+        session = db.get(TasteImportSession, import_id)
+        if session is None:
+            session = TasteImportSession(
+                id=import_id,
+                user_id=user_id,
+                status=taste_service.READY,
+                expires_at=now + timedelta(days=30),
+            )
+            db.add(session)
+        session.status = taste_service.READY
+        session.authenticated_at = session.authenticated_at or now
+        session.completed_at = now
+        spec = CAST_BY_ID.get(user_id)
+        session.source_profile = {
+            "nickname": spec.display_name if spec else user_id,
+            "avatar_url": None,
+            "uid": f"cast-{user_id}",
+        }
+        sample = result.get("sample") or {}
+        session.progress = {
+            "phase": "ready",
+            "current": sample.get("items") or 0,
+            "total": sample.get("items") or 0,
+            "percent": 100.0,
+            "message": "画像已生成",
+        }
+        session.collection_summary = {
+            "api_pages": 3,
+            "items_collected": sample.get("items") or 0,
+            "has_more": False,
+        }
+        session.questions = []
+        session.result_snapshot = taste_service.normalize_taste_result(result) or result
+        taste_service.upsert_taste_profile(db, session, result)
+    db.commit()
+
+
+def _gathering_bounds(spec: CastGathering, now: datetime) -> tuple[datetime, datetime]:
+    if spec.start_days_ago is not None:
+        start = (now - timedelta(days=spec.start_days_ago)).replace(
+            hour=spec.start_hour, minute=0, second=0, microsecond=0
+        )
+    elif spec.start_weekday is not None:
+        start = _next_weekday(now, spec.start_weekday, spec.start_hour)
+    else:
+        start = (now + timedelta(days=2)).replace(
+            hour=spec.start_hour, minute=0, second=0, microsecond=0
+        )
+    return start, start + timedelta(hours=spec.duration_hours)
+
+
+def _seed_gathering(db: Session, spec: CastGathering, now: datetime) -> Gathering:
+    gathering = db.scalar(select(Gathering).where(Gathering.title == spec.title))
+    start_at, end_at = _gathering_bounds(spec, now)
+    created = gathering is None
+    if gathering is None:
+        intent = None
+        # Pooling gap cards must not enter the matching pool, or test runs
+        # will absorb them. Mood notes stay on completed / non-pooling intents.
+        if spec.mood_note and spec.status != GatheringStatus.POOLING.value:
+            intent = IntentCard(
+                user_id=spec.owner_user_id,
+                status=IntentStatus.MATCHED.value,
+                gathering_type=spec.gathering_type,
+                mode=spec.mode,
+                goal=spec.goal,
+                mood_note=spec.mood_note,
+                required_roles=list(spec.required_roles),
+                campus=spec.campus,
+                min_size=spec.min_size,
+                target_size=spec.target_size,
+                expires_at=now + timedelta(days=7),
+            )
+            db.add(intent)
+            db.flush()
+        gathering = Gathering(
+            source_intent_id=intent.id if intent else None,
+            owner_user_id=spec.owner_user_id,
+            gathering_type=spec.gathering_type,
+            mode=spec.mode,
+            title=spec.title,
+            goal=spec.goal,
+            status=spec.status,
+            min_size=spec.min_size,
+            target_size=spec.target_size,
+            required_trust_level=spec.required_trust_level,
+            campus=spec.campus,
+            identity_disclosure=spec.identity_disclosure,
+            start_at=start_at,
+            end_at=end_at,
+            location=spec.location,
+            required_roles=list(spec.required_roles),
+            official_metadata=dict(spec.official_metadata),
+            expires_at=(
+                None
+                if spec.status == GatheringStatus.COMPLETED.value
+                else now + timedelta(days=7)
+            ),
+            completed_at=end_at if spec.status == GatheringStatus.COMPLETED.value else None,
+        )
+        db.add(gathering)
+        db.flush()
+        for member in spec.members:
+            db.add(
+                GatheringMember(
+                    gathering_id=gathering.id,
+                    user_id=member.user_id,
+                    role=member.role,
+                    confirmation_status=member.confirmation,
+                    joined_via=member.joined_via,
+                    confirmed_at=start_at - timedelta(hours=24),
+                    completion_confirmed=spec.status == GatheringStatus.COMPLETED.value,
+                )
+            )
+    db.flush()
+    if created and spec.messages and spec.status == GatheringStatus.COMPLETED.value:
+        from onemore.modules.collab.service import open_gathering_channel
+
+        channel = open_gathering_channel(db, gathering.id)
+        existing = db.scalar(select(Message.id).where(Message.channel_id == channel.id))
+        if existing is None:
+            sent = start_at + timedelta(minutes=10)
+            for user_id, content in spec.messages:
+                db.add(
+                    Message(
+                        channel_id=channel.id,
+                        sender_id=user_id,
+                        sender_type="human",
+                        content_type="text",
+                        content=content,
+                        sent_at=sent,
+                    )
+                )
+                sent += timedelta(minutes=4)
+    return gathering
+
+
+def seed_demo_data(db: Session, root: Path | None = None) -> None:
+    seed_reference_data(db)
+    now = datetime.now(UTC)
+    _seed_users(db, now)
 
     from onemore.modules.profile.service import init_profile
 
-    for user_id, *_ in user_specs:
-        init_profile(db, user_id)
-    demo_gatherings: list[Gathering] = []
-    for number in range(1, 4):
-        gathering = db.scalar(select(Gathering).where(Gathering.title == f"演示共同经历 {number}"))
-        if gathering is None:
-            gathering = Gathering(
-                gathering_type="DDL冲刺" if number < 3 else "羽毛球",
-                mode="similar",
-                title=f"演示共同经历 {number}",
-                goal="完成一次真实的共同任务",
-                status=GatheringStatus.COMPLETED.value,
-                min_size=3,
-                target_size=4,
-                required_trust_level="T1",
-                campus="珠海校区",
-                start_at=now - timedelta(days=number * 7, hours=2),
-                end_at=now - timedelta(days=number * 7),
-                completed_at=now - timedelta(days=number * 7),
-            )
-            db.add(gathering)
-            db.flush()
-            for member_index, (user_id, *_rest) in enumerate(user_specs):
-                if gathering.start_at is None:
-                    continue
-                db.add(
-                    GatheringMember(
-                        gathering_id=gathering.id,
-                        user_id=user_id,
-                        role="participant",
-                        confirmation_status=ConfirmationStatus.CONFIRMED.value,
-                        joined_via="owner" if member_index == number % 4 else "matching",
-                        confirmed_at=gathering.start_at - timedelta(hours=24),
-                        completion_confirmed=True,
-                    )
-                )
-        demo_gatherings.append(gathering)
+    for spec in CAST_USERS:
+        init_profile(db, spec.id)
+    _seed_taste(db, now)
+
+    completed: list[Gathering] = []
+    for spec in COMPLETED_GATHERINGS:
+        completed.append(_seed_gathering(db, spec, now))
     db.commit()
     from onemore.modules.collab.service import record_experience
+    from onemore.modules.trust.service import recompute_level
 
-    for gathering in demo_gatherings:
+    for gathering in completed:
         record_experience(db, gathering.id)
     db.commit()
-    if not db.scalar(select(Assignment.id).where(Assignment.user_id == "u_demo_1")):
-        course = db.scalar(select(Course).where(Course.code == "SE1001"))
+
+    for spec in OPEN_GATHERINGS:
+        _seed_gathering(db, spec, now)
+    db.commit()
+
+    for spec in CAST_USERS:
+        recompute_level(db, spec.id)
+        trust = db.get(TrustProfile, spec.id)
+        if trust is not None:
+            # Keep the narrative trust floor (T3 局主等)；次数以真实成局记录为准。
+            trust.level = spec.trust_level
+            trust.on_time_confirm_rate = spec.on_time_confirm_rate
+    db.commit()
+
+    for spec in CAST_USERS:
+        if spec.assignment is None:
+            continue
+        if db.scalar(select(Assignment.id).where(Assignment.user_id == spec.id)):
+            continue
+        code, title = spec.assignment
+        course = db.scalar(select(Course).where(Course.code == code))
         if course is None:
-            raise RuntimeError("seed reference course SE1001 is missing")
+            continue
         db.add(
             Assignment(
-                user_id="u_demo_1",
+                user_id=spec.id,
                 course_id=course.id,
-                title="软件工程迭代作业",
-                due_at=now + timedelta(hours=20),
+                title=title,
+                due_at=now + timedelta(hours=20 + spec.netid_index),
                 status="unfinished",
-                source_ref="demo-assignment-1",
+                source_ref=f"cast-assignment-{spec.id}",
             )
         )
-    if not db.scalar(select(ExternalEvent.id)):
-        db.add_all(
-            [
-                ExternalEvent(
-                    source="teachin",
-                    external_key="demo-teachin-1",
-                    title="科技企业校园宣讲会",
-                    starts_at=now + timedelta(days=3),
-                    ends_at=now + timedelta(days=3, hours=2),
-                    location="珠海校区报告厅",
-                    official_url="https://example.edu.cn/events/teachin-1",
-                    details={"registration": "official_link_only"},
-                ),
-                ExternalEvent(
-                    source="seminar",
-                    external_key="demo-seminar-1",
-                    title="可信人工智能前沿讲座",
-                    starts_at=now + timedelta(days=5),
-                    ends_at=now + timedelta(days=5, hours=2),
-                    location="珠海校区学术交流中心",
-                    official_url="https://example.edu.cn/events/seminar-1",
-                    details={"registration": "official_link_only"},
-                ),
-            ]
+
+    for event in EXTERNAL_EVENTS:
+        if db.scalar(
+            select(ExternalEvent.id).where(ExternalEvent.external_key == event["external_key"])
+        ):
+            continue
+        db.add(
+            ExternalEvent(
+                source=event["source"],
+                external_key=event["external_key"],
+                title=event["title"],
+                starts_at=now + timedelta(days=event["days"]),
+                ends_at=now + timedelta(days=event["days"], hours=2),
+                location=event["location"],
+                official_url=event["official_url"],
+                details=event["details"],
+            )
         )
     db.commit()
-    # Demo users need realistic content, but the public competition catalogue must
-    # never be populated from the small demo fixture.  Keep demo people/gatherings
-    # while seeding the same reviewed production snapshot used by clients.
     fixture = (root or Path.cwd()) / "fixtures/competition_snapshot_2026-08-11_v1.1.json"
     if fixture.exists():
         ingest_snapshot_path(db, fixture)

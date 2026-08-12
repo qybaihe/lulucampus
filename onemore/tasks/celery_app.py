@@ -68,5 +68,9 @@ celery_app.conf.update(
             "task": "onemore.schedule.weekly_delta",
             "schedule": 604800.0,
         },
+        "cast-driver-every-fifteen-minutes": {
+            "task": "onemore.cast_driver.tick",
+            "schedule": 900.0,
+        },
     },
 )

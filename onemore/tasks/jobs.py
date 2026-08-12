@@ -211,3 +211,11 @@ def schedule_weekly_delta() -> dict:
         "changed": sum(bool(item.get("changed")) for item in results),
         "failed": sum(not item.get("ok", False) for item in results),
     }
+
+
+@celery_app.task(name="onemore.cast_driver.tick")
+def cast_driver_tick() -> dict:
+    from onemore.modules.cast_driver.service import tick
+
+    with SessionLocal() as db:
+        return tick(db)
