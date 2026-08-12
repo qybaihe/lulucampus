@@ -74,6 +74,7 @@ import {
   OrganizerScreen,
   OrganizerTemplatesScreen,
 } from "./screens/organizer/OrganizerScreens";
+import { DemoTasteScreen } from "./screens/taste/DemoTasteScreen";
 import { TasteImportScreen } from "./screens/taste/TasteImportScreen";
 import {
   PermissionNoticeScreen,
@@ -100,6 +101,11 @@ function isMarketingRoute(pathname: string): boolean {
     pathname === "/legal" ||
     pathname.startsWith("/legal/")
   );
+}
+
+/** 评委公开体验：免登录，独立全页，不套 App 壳。 */
+function isPublicDemoRoute(pathname: string): boolean {
+  return pathname === "/demo/taste" || pathname.startsWith("/demo/taste/");
 }
 
 function usesTabBar(pathname: string): boolean {
@@ -141,6 +147,15 @@ export default function App() {
         <Route path="/legal/privacy" element={<PrivacyPolicyScreen />} />
         <Route path="/legal/terms" element={<TermsScreen />} />
         <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    );
+  }
+
+  if (isPublicDemoRoute(location.pathname)) {
+    return (
+      <Routes>
+        <Route path="/demo/taste" element={<DemoTasteScreen />} />
+        <Route path="*" element={<Navigate to="/demo/taste" replace />} />
       </Routes>
     );
   }

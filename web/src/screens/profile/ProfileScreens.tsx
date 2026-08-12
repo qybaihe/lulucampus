@@ -192,6 +192,7 @@ export function ProfileScreen() {
           <Row
             icon={<Sticker name="data-chart.png" size="st-24" />}
             title="抖音兴趣画像"
+            sub="粘贴主页链接即可，不用扫码"
             to="/me/taste"
           />
         </Card>

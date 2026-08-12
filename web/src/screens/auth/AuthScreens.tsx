@@ -5,6 +5,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useApp } from "../../app/AppContext";
+import { AppBrand } from "../../core/brand";
 import type {
   AuthMe,
   GrantScope,
@@ -18,12 +19,10 @@ import {
   LuluMark,
   NavBar,
   Note,
-  Row,
   Screen,
   Scroll,
+  Stage,
   StateView,
-  Sticker,
-  Switch,
 } from "../../components/ui/primitives";
 
 const ONBOARDING_SEEN_KEY = "onemore.onboarding.seen.v1";
@@ -215,7 +214,7 @@ export function OnboardingGuideScreen() {
       clip: "home.listening" as const,
       title: "说一句，剩下的交给噜噜",
       subtitle:
-        "想找什么人、什么时候有空，告诉 Hermes 一句话，噜噜帮你把缺口补齐。",
+        `想找什么人、什么时候有空，告诉 ${AppBrand.agentName} 一句话，噜噜帮你把缺口补齐。`,
     },
   ];
   const pageCount = brandPages.length + 1;
@@ -224,65 +223,48 @@ export function OnboardingGuideScreen() {
 
   return (
     <Screen id="screen-onboarding-guide">
-      <Scroll>
-        <div className="center mt-8">
-          <LuluMark
-            placement="hero"
-            clip={isSchoolStep ? "core.care" : page.clip}
-          />
-        </div>
+      <Stage
+        title={isSchoolStep ? "你在哪所学校？" : page.title}
+        subtitle={
+          isSchoolStep
+            ? "选好后用手机号登录；中大同学登录后可绑定校园身份。"
+            : page.subtitle
+        }
+        clip={isSchoolStep ? "core.care" : page.clip}
+      >
         {isSchoolStep ? (
-          <>
-            <div className="t-hero center mt-4">你在哪所学校？</div>
-            <div
-              className="t-call muted center mt-3"
-              style={{ maxWidth: 300, margin: "0 auto" }}
-            >
-              我们为部分学校做了针对优化，选项效力相同。
-            </div>
-            <div className="mt-5" style={{ display: "grid", gap: 10 }}>
-              {SCHOOL_OPTIONS.map((option) => {
-                const selected = school === option.id;
-                return (
-                  <button
-                    key={option.id}
-                    type="button"
-                    data-od-id={`onboarding-school-${option.id}`}
-                    onClick={() => setSchool(option.id)}
-                    style={{
-                      textAlign: "left",
-                      cursor: "pointer",
-                      border: selected
-                        ? "1.5px solid var(--ink)"
-                        : "1px solid var(--line)",
-                      background: "var(--card)",
-                      padding: 16,
-                      borderRadius: 20,
-                    }}
-                  >
-                    <div className="t-call" style={{ fontWeight: 700 }}>
-                      {option.title}
-                    </div>
-                    <div className="t-foot muted mt-1">{option.subtitle}</div>
-                  </button>
-                );
-              })}
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="t-hero center mt-4">{page.title}</div>
-            <div
-              className="t-call muted center mt-3"
-              style={{ maxWidth: 300, margin: "0 auto" }}
-            >
-              {page.subtitle}
-            </div>
-          </>
-        )}
+          <div style={{ display: "grid", gap: 10, marginBottom: 16 }}>
+            {SCHOOL_OPTIONS.map((option) => {
+              const selected = school === option.id;
+              return (
+                <button
+                  key={option.id}
+                  type="button"
+                  data-od-id={`onboarding-school-${option.id}`}
+                  onClick={() => setSchool(option.id)}
+                  style={{
+                    textAlign: "left",
+                    cursor: "pointer",
+                    border: selected
+                      ? "1.5px solid var(--ink)"
+                      : "1px solid var(--line)",
+                    background: "var(--card)",
+                    padding: 16,
+                    borderRadius: 20,
+                  }}
+                >
+                  <div className="t-call" style={{ fontWeight: 700 }}>
+                    {option.title}
+                  </div>
+                  <div className="t-foot muted mt-1">{option.subtitle}</div>
+                </button>
+              );
+            })}
+          </div>
+        ) : null}
         <div
-          className="flex mt-6"
-          style={{ justifyContent: "center", gap: 8 }}
+          className="flex"
+          style={{ justifyContent: "center", gap: 8, marginBottom: 8 }}
         >
           {Array.from({ length: pageCount }).map((_, i) => (
             <span
@@ -297,7 +279,7 @@ export function OnboardingGuideScreen() {
             />
           ))}
         </div>
-      </Scroll>
+      </Stage>
       <Footer>
         <Btn
           kind="primary"
@@ -320,7 +302,7 @@ export function OnboardingGuideScreen() {
   );
 }
 
-/** A2 · 认证入口：按学校分流（中大先扫码 → 全员手机号密码） */
+/** A2 · 认证入口：一律先手机号；中大登录后再绑定校园身份 */
 export function AuthIntroScreen() {
   const nav = useNavigate();
   const school = getSchool();
@@ -328,10 +310,6 @@ export function AuthIntroScreen() {
   useEffect(() => {
     if (!school) {
       nav("/onboarding", { replace: true });
-      return;
-    }
-    if (school === "sysu" && !campusGatePassed()) {
-      nav("/auth/scan", { replace: true });
       return;
     }
     nav("/auth/phone", { replace: true });
@@ -389,6 +367,22 @@ export function PhoneAuthScreen() {
       });
       const pending = session.getPendingRoute();
       session.setPendingRoute(null);
+
+      // 中大且尚未校园核验 → 先绑定；否则进首次设置 / 今天。页面不提信任等级。
+      if (getSchool() === "sysu" && !campusGatePassed()) {
+        try {
+          const me = await repos.auth.me();
+          if (!me.verified) {
+            nav("/auth/scan", { replace: true });
+            return;
+          }
+          markCampusGatePassed();
+        } catch {
+          nav("/auth/scan", { replace: true });
+          return;
+        }
+      }
+
       if (result.is_new_user || !isFirstUseDone()) {
         nav("/auth/grants", { replace: true });
         return;
@@ -403,10 +397,7 @@ export function PhoneAuthScreen() {
 
   return (
     <Screen id="screen-A2b-phone-auth">
-      <NavBar
-        title="手机号登录"
-        backTo={getSchool() === "sysu" ? "/auth/scan" : "/onboarding"}
-      />
+      <NavBar title="手机号登录" backTo="/onboarding" />
       <Scroll>
         <div className="center mt-4">
           <LuluMark
@@ -536,9 +527,9 @@ type ScanPhase =
   | { kind: "redeeming" }
   | { kind: "failed"; message: string };
 
-/** A3 · 中大校园扫码闸门：SUCCESS 后不兑换会话，继续手机号登录。 */
+/** A3 · 中大校园绑定：手机号登录后扫码，兑换会话把校园身份绑到当前账号。 */
 export function AuthScanScreen() {
-  const { repos } = useApp();
+  const { repos, session } = useApp();
   const nav = useNavigate();
   const [phase, setPhase] = useState<ScanPhase>({ kind: "intro" });
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -558,10 +549,20 @@ export function AuthScanScreen() {
     };
   }, [stopPoll]);
 
-  const finishCampusGate = useCallback(() => {
-    markCampusGatePassed();
-    nav("/auth/phone", { replace: true });
-  }, [nav]);
+  const finishBind = useCallback(
+    (accessToken?: string) => {
+      if (accessToken) {
+        session.setSession(accessToken);
+      }
+      markCampusGatePassed();
+      if (!isFirstUseDone()) {
+        nav("/auth/grants", { replace: true });
+        return;
+      }
+      nav("/today", { replace: true });
+    },
+    [session, nav],
+  );
 
   const pollAndMaybeRedeem = useCallback(
     async (sessionId: string, redemptionToken: string) => {
@@ -571,7 +572,16 @@ export function AuthScanScreen() {
         setPhase({ kind: "waiting", login: current, redemptionToken });
         if (current.status === "SUCCESS") {
           stopPoll();
-          finishCampusGate();
+          setPhase({ kind: "redeeming" });
+          const redeemed = await repos.auth.redeem(sessionId, redemptionToken);
+          if (!redeemed.access_token) {
+            setPhase({
+              kind: "failed",
+              message: "服务端未返回 access_token",
+            });
+            return;
+          }
+          finishBind(redeemed.access_token);
           return;
         }
         if (["TIMEOUT", "CANCELLED", "FAILED"].includes(current.status)) {
@@ -590,7 +600,7 @@ export function AuthScanScreen() {
         });
       }
     },
-    [repos, stopPoll, finishCampusGate],
+    [repos, stopPoll, finishBind],
   );
 
   async function startLogin() {
@@ -629,7 +639,7 @@ export function AuthScanScreen() {
     if (phase.kind !== "waiting") return;
     try {
       await repos.auth.demoComplete(phase.login.id, phase.redemptionToken);
-      finishCampusGate();
+      await pollAndMaybeRedeem(phase.login.id, phase.redemptionToken);
     } catch (e) {
       setPhase({
         kind: "failed",
@@ -647,48 +657,19 @@ export function AuthScanScreen() {
 
   return (
     <Screen id="screen-A3-real-login">
-      <NavBar title="中大校园认证" backTo="/onboarding" />
-      <Scroll>
-        <div className="center mt-4">
-          <LuluMark
-            placement="header"
-            caption={
-              phase.kind === "waiting"
-                ? "打开企业微信，扫一扫"
-                : "先完成校园核验，下一步再用手机号登录"
-            }
-          />
-        </div>
-
-        {phase.kind === "intro" ? (
-          <>
-            <div className="t-call muted center mt-4" style={{ maxWidth: 300, margin: "0 auto" }}>
-              中大同学需先扫码完成校园核验；核验通过后仍要用手机号与密码登录。
-            </div>
-            <div className="mt-5" data-od-id="auth-start-button">
-              <Btn kind="primary" onClick={() => void startLogin()}>
-                生成校园核验二维码
-              </Btn>
-            </div>
-          </>
-        ) : null}
-
-        {phase.kind === "creating" || phase.kind === "redeeming" ? (
-          <Card className="mt-4">
-            <StateView
-              kind="loading"
-              message={
-                phase.kind === "creating"
-                  ? "正在创建认证会话…"
-                  : "扫码已确认，正在兑换会话…"
-              }
-            />
-          </Card>
-        ) : null}
-
-        {phase.kind === "waiting" ? (
-          <>
-            <div className="qr-box mt-4" data-od-id="auth-qr-image">
+      <NavBar title="绑定校园身份" backTo="/auth/phone" />
+      <Stage
+        subtitle={
+          phase.kind === "waiting"
+            ? "打开企业微信，扫一扫"
+            : phase.kind === "failed"
+              ? "这次没连上，可以重试或稍后再说"
+              : "用企业微信扫码完成绑定；也可以稍后再说，不影响先使用基础功能。"
+        }
+        clip={phase.kind === "failed" ? "core.care" : "home.idle"}
+        hero={
+          phase.kind === "waiting" ? (
+            <div className="qr-box" data-od-id="auth-qr-image">
               {qrUrl ? (
                 <img
                   src={qrUrl}
@@ -708,7 +689,41 @@ export function AuthScanScreen() {
                 </div>
               )}
             </div>
-            <div className="center mt-3">
+          ) : phase.kind === "creating" || phase.kind === "redeeming" ? (
+            <StateView
+              kind="loading"
+              message={
+                phase.kind === "creating"
+                  ? "正在创建认证会话…"
+                  : "扫码已确认，正在兑换会话…"
+              }
+            />
+          ) : undefined
+        }
+      >
+        {phase.kind === "intro" ? (
+          <>
+            <div data-od-id="auth-start-button">
+              <Btn kind="primary" onClick={() => void startLogin()}>
+                生成绑定二维码
+              </Btn>
+            </div>
+            <div className="mt-2">
+              <Btn
+                kind="ghost"
+                onClick={() => {
+                  nav("/auth/grants", { replace: true });
+                }}
+              >
+                稍后再说
+              </Btn>
+            </div>
+          </>
+        ) : null}
+
+        {phase.kind === "waiting" ? (
+          <>
+            <div className="center">
               <span className="om-chip solid">{status ?? "WAITING"}</span>
             </div>
             {isDemoSvg ? (
@@ -717,26 +732,47 @@ export function AuthScanScreen() {
               </Note>
             ) : null}
             {(import.meta.env.DEV || import.meta.env.VITE_DEV_AUTH) && (
-              <div data-od-id="demo-complete-login">
+              <div className="mt-2" data-od-id="demo-complete-login">
                 <Btn kind="ghost" onClick={() => void demoComplete()}>
                   开发环境：完成扫码
                 </Btn>
               </div>
             )}
+            <div className="mt-2">
+              <Btn
+                kind="ghost"
+                onClick={() => {
+                  stopPoll();
+                  nav("/auth/grants", { replace: true });
+                }}
+              >
+                稍后再说
+              </Btn>
+            </div>
           </>
         ) : null}
 
         {phase.kind === "failed" ? (
-          <Card className="mt-4">
-            <StateView
-              kind="network"
-              message={phase.message}
-              actionTitle="重试"
-              onAction={() => setPhase({ kind: "intro" })}
-            />
-          </Card>
+          <>
+            <Card>
+              <StateView
+                kind="network"
+                message={phase.message}
+                actionTitle="重试"
+                onAction={() => setPhase({ kind: "intro" })}
+              />
+            </Card>
+            <div className="mt-2">
+              <Btn
+                kind="ghost"
+                onClick={() => nav("/auth/grants", { replace: true })}
+              >
+                稍后再说
+              </Btn>
+            </div>
+          </>
         ) : null}
-      </Scroll>
+      </Stage>
     </Screen>
   );
 }
@@ -800,37 +836,11 @@ export function AuthGrantsScreen() {
 
   return (
     <Screen id="screen-A4-grants" className="auth-grants">
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          minHeight: "100%",
-          padding: "12px 20px 28px",
-        }}
+      <Stage
+        title="授权由你掌控"
+        subtitle="点选你愿意开放的数据边界，随时可在设置里撤回"
+        clip="core.care"
       >
-        <div className="t-t2 center" style={{ marginTop: 8 }}>
-          授权由你掌控
-        </div>
-        <div
-          className="t-foot muted center mt-1"
-          style={{ maxWidth: 280, margin: "6px auto 0" }}
-        >
-          点选你愿意开放的数据边界，随时可在设置里撤回
-        </div>
-
-        <div
-          style={{
-            flex: 1,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            minHeight: 220,
-            padding: "12px 0",
-          }}
-        >
-          <LuluMark placement="hero" clip="core.care" />
-        </div>
-
         <div
           style={{
             display: "grid",
@@ -914,7 +924,7 @@ export function AuthGrantsScreen() {
             {busy ? "保存中…" : "确认授权，继续"}
           </Btn>
         </div>
-      </div>
+      </Stage>
     </Screen>
   );
 }
@@ -946,15 +956,11 @@ export function AuthFactsScreen() {
   if (phase === "loading") {
     return (
       <Screen id="screen-A5-A6-facts">
-        <NavBar title="画像初始化" backTo="/auth/grants" />
-        <Scroll>
-          <div className="center mt-6">
-            <LuluMark placement="hero" caption="正在读取服务端身份事实…" />
-          </div>
-          <Card className="mt-6">
-            <StateView kind="loading" />
-          </Card>
-        </Scroll>
+        <Stage
+          title="确认你的校园画像"
+          subtitle="正在读取校园身份…"
+          clip="home.reply"
+        />
       </Screen>
     );
   }
@@ -962,77 +968,52 @@ export function AuthFactsScreen() {
   if (phase === "failed") {
     return (
       <Screen id="screen-A5-A6-facts">
-        <NavBar title="画像确认" backTo="/auth/grants" />
-        <Scroll>
-          <Card>
-            <StateView
-              kind="network"
-              message={error ?? undefined}
-              actionTitle="重试"
-              onAction={() => void load()}
-            />
-          </Card>
-        </Scroll>
+        <Stage
+          title="确认你的校园画像"
+          subtitle={error ?? "这次没读到，可以再试一次"}
+          clip="core.care"
+        >
+          <Btn kind="primary" onClick={() => void load()}>
+            重试
+          </Btn>
+        </Stage>
       </Screen>
     );
   }
 
+  const line = [me?.college, me?.major].filter(Boolean).join(" · ");
+  const meta = [
+    me?.campus,
+    me?.grade_year != null ? String(me.grade_year) : null,
+  ]
+    .filter(Boolean)
+    .join(" · ");
+
   return (
     <Screen id="screen-A5-A6-facts">
-      <NavBar title="画像确认" backTo="/auth/grants" />
-      <div className="om-large-title">确认你的校园画像</div>
-      <div className="om-large-sub">校方核验事实 · 来自 GET /auth/me</div>
-      <Scroll>
+      <Stage
+        title="确认你的校园画像"
+        subtitle="来自校园身份核验，只给你自己看"
+        clip="home.reply"
+      >
         <Card tight>
-          <Row
-            icon={<Sticker name="access-card.png" size="st-24" />}
-            title={me?.verified ? "统一身份已核验" : "身份待核验"}
-            sub="以上来自服务端身份事实，不展示给未完成双向确认的其他人。"
-          />
-          <div className="divider" />
-          <div className="t-t2">
-            {[me?.college, me?.major].filter(Boolean).join(" · ") ||
-              me?.display_name ||
-              "已认证同学"}
+          <div className="t-t3">
+            {me?.verified ? "校园身份已核验" : "身份待核验"}
           </div>
-          <div className="t-foot mt-1">
-            {[me?.campus, me?.grade_year != null ? String(me.grade_year) : null]
-              .filter(Boolean)
-              .join(" · ") || "—"}
-          </div>
+          {line ? <div className="t-call mt-1">{line}</div> : null}
+          {meta ? <div className="t-foot mt-1">{meta}</div> : null}
         </Card>
-        {me?.grants && me.grants.length > 0 ? (
-          <>
-            <div className="om-section">
-              <span>当前授权</span>
-            </div>
-            <Card tight>
-              {me.grants.map((g) => (
-                <Row
-                  key={g.scope}
-                  title={g.scope}
-                  sub={g.granted ? "已授权" : "未授权"}
-                  right={
-                    <span className={`om-chip ${g.granted ? "solid" : ""}`}>
-                      {g.granted ? "开" : "关"}
-                    </span>
-                  }
-                />
-              ))}
-            </Card>
-          </>
-        ) : null}
-      </Scroll>
-      <Footer>
-        <Btn kind="primary" onClick={() => nav("/auth/social")}>
-          身份事实无误
-        </Btn>
-      </Footer>
+        <div className="mt-3">
+          <Btn kind="primary" onClick={() => nav("/auth/social")}>
+            身份事实无误
+          </Btn>
+        </div>
+      </Stage>
     </Screen>
   );
 }
 
-/** A7 · social opt-in — PATCH /me/privacy */
+/** A7 · social opt-in — 与授权页同构：居中大噜噜 + 底部双按钮 */
 export function AuthSocialScreen() {
   const { repos } = useApp();
   const nav = useNavigate();
@@ -1054,39 +1035,29 @@ export function AuthSocialScreen() {
   }
 
   return (
-    <Screen id="screen-A7-social">
-      <NavBar title="社交开关" backTo="/auth/facts" />
-      <Scroll>
-        <div className="center mt-4">
-          <LuluMark placement="header" />
-        </div>
-        <div className="t-t2 center mt-3">由你开启校园成局</div>
-        <div className="t-foot center mt-2">
-          开启后才能发布意图与加入局。身份仍只在全员分别确认后展示。
-        </div>
-        <Card className="mt-5">
-          <div className="t-call">
-            不提供用户搜索、好友申请、人物刷卡或公开主页。
+    <Screen id="screen-A7-social" className="auth-social">
+      <Stage
+        title="由你开启校园成局"
+        subtitle="开启后才能发布意图与加入局"
+        clip="confirm.gather"
+      >
+        {error ? (
+          <div className="t-foot mt-2" role="alert" style={{ color: "#c0392b" }}>
+            {error}
           </div>
-        </Card>
-        {error ? <div className="t-foot mt-2">{error}</div> : null}
-      </Scroll>
-      <Footer>
-        <Btn
-          kind="primary"
-          disabled={busy}
-          onClick={() => void finish(true)}
-        >
-          {busy ? "保存中…" : "开启并继续"}
-        </Btn>
-        <Btn
-          kind="ghost"
-          disabled={busy}
-          onClick={() => void finish(false)}
-        >
-          暂不开启，保持关闭并继续
-        </Btn>
-      </Footer>
+        ) : null}
+
+        <div data-od-id="first-use-enable-social">
+          <Btn kind="primary" disabled={busy} onClick={() => void finish(true)}>
+            {busy ? "保存中…" : "开启并继续"}
+          </Btn>
+        </div>
+        <div className="mt-2" data-od-id="first-use-skip-social">
+          <Btn kind="ghost" disabled={busy} onClick={() => void finish(false)}>
+            暂不开启，保持关闭并继续
+          </Btn>
+        </div>
+      </Stage>
     </Screen>
   );
 }

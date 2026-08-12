@@ -2,6 +2,7 @@ import { useEffect, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { LuluSprite } from "../../components/lulu/LuluSprite";
 import { assetURL } from "../../core/assets";
+import { AppBrand } from "../../core/brand";
 
 /**
  * 营销首页（Landing）。全宽文档流，不进 PhoneFrame。
@@ -282,7 +283,7 @@ export function LandingScreen() {
                   </span>
                 </div>
                 <p className="lp-story-so">
-                  这套执行器，现在就是「今天」Tab 背后的 <strong>hermes</strong>：
+                  这套执行器，现在就是「今天」Tab 背后的 <strong>{AppBrand.agentName}</strong>：
                   课表与空教室即问即答、作业 DDL 自动进提醒、体育馆空档直接预订、
                   跨校区班车一句话查到。
                 </p>
@@ -292,22 +293,22 @@ export function LandingScreen() {
                 <span className="lp-skill-no">技能 02 · 兴趣画像</span>
                 <h3>抖音画像分析导入</h3>
                 <p className="lp-skill-sub">
-                  让 AI 在第一次见面前就了解你：扫一个码，把你在抖音里「喜欢」的内容，
+                  让 AI 在第一次见面前就了解你：粘贴抖音主页分享链接，把你最近的「喜欢」和「收藏」，
                   变成一张讲人话的兴趣画像。
                 </p>
                 <ol className="lp-chain">
                   <li>
                     <span className="cnum">1</span>
                     <div>
-                      <b>抖音扫码授权</b>
-                      <span>手机抖音扫一下二维码即可，全程用你自己的会话</span>
+                      <b>粘贴主页链接</b>
+                      <span>复制抖音「我」页分享链接即可，不用扫码登录</span>
                     </div>
                   </li>
                   <li>
                     <span className="cnum">2</span>
                     <div>
-                      <b>拉取你的「喜欢」</b>
-                      <span>后台采集你点过赞的内容，进度实时可见</span>
+                      <b>读取喜欢和收藏</b>
+                      <span>服务器拉取你公开的最近喜欢、收藏和作品</span>
                     </div>
                   </li>
                   <li>
@@ -397,7 +398,7 @@ export function LandingScreen() {
               <span className="lp-kicker">能做什么</span>
               <h2>一个入口成局，一个助手跑腿</h2>
               <p>
-                「⊕ 差一个」负责把人凑齐；「今天」里的 hermes 负责你自己的校园事务。
+                「⊕ 差一个」负责把人凑齐；「今天」里的 {AppBrand.agentName} 负责你自己的校园事务。
                 比赛、消息、信任体系围绕这两件事展开。
               </p>
             </div>
@@ -428,7 +429,7 @@ export function LandingScreen() {
                   </h3>
                   <p>
                     课表、空教室、场馆空档、作业 DDL、校车班次，问一句就有答案。
-                    hermes 只为你一个人干活，用的是你自己的授权。
+                    {AppBrand.agentName} 只为你一个人干活，用的是你自己的授权。
                   </p>
                 </div>
               </article>

@@ -152,6 +152,9 @@ export function CompetitionsScreen() {
                   </div>
                   <div className="between mt-3">
                     <span className="flex" style={{ gap: 6 }}>
+                      {c.taste_fit_label ? (
+                        <span className="om-chip gap">{c.taste_fit_label}</span>
+                      ) : null}
                       <span
                         className={`om-chip ${c.recommendation_tier === "A" ? "gap" : ""}`}
                       >
@@ -276,9 +279,29 @@ export function CompetitionDetailScreen() {
             </div>
             <div className="t-t1 center mt-2">{item.name}</div>
             <div className="t-foot center mb-3">
+              {item.taste_fit_label ? `${item.taste_fit_label} · ` : ""}
               {item.recommendation_label ?? "已核验"} · 已核验
               {sizeLabel ? ` · 队伍 ${sizeLabel}` : ""}
             </div>
+
+            {item.taste_fit_reasons?.length || item.recruit_hints?.length ? (
+              <Card className="mb-3">
+                <div className="t-t3">按你的兴趣画像</div>
+                {(item.taste_fit_reasons ?? []).map((reason) => (
+                  <div className="t-foot mt-2" key={reason}>
+                    {reason}
+                  </div>
+                ))}
+                {(item.recruit_hints ?? []).length > 0 ? (
+                  <div className="t-call mt-3">招什么样的人</div>
+                ) : null}
+                {(item.recruit_hints ?? []).map((hint) => (
+                  <div className="t-foot mt-1" key={hint}>
+                    {hint}
+                  </div>
+                ))}
+              </Card>
+            ) : null}
 
             <Card>
               <div className="flex" style={{ gap: 10 }}>

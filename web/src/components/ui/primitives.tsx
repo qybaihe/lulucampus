@@ -93,6 +93,61 @@ export function LargeTitle({ title, sub }: { title: string; sub?: string }) {
   );
 }
 
+/** 稀疏确认页公式：上标题 → 中间大噜噜 → 底部选项（对齐 iOS OMStage） */
+/** 稀疏确认页：上标题、中噜噜（或自定义 hero）、下操作区。 */
+export function Stage({
+  title,
+  subtitle,
+  clip = "home.reply",
+  hero,
+  children,
+}: {
+  title?: string;
+  subtitle?: string;
+  clip?: LuluClip;
+  hero?: ReactNode;
+  children?: ReactNode;
+}) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        flex: 1,
+        minHeight: 0,
+        padding: "12px 20px 28px",
+      }}
+    >
+      {title ? (
+        <div className="t-t2 center" style={{ marginTop: 8 }}>
+          {title}
+        </div>
+      ) : null}
+      {subtitle ? (
+        <div
+          className="t-foot muted center mt-1"
+          style={{ maxWidth: 280, margin: "6px auto 0" }}
+        >
+          {subtitle}
+        </div>
+      ) : null}
+      <div
+        style={{
+          flex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: 220,
+          padding: "12px 0",
+        }}
+      >
+        {hero ?? <LuluMark placement="hero" clip={clip} />}
+      </div>
+      {children}
+    </div>
+  );
+}
+
 export function Section({
   title,
   more,

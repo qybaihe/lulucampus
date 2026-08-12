@@ -56,6 +56,8 @@ export interface RequestOptions {
   idempotencyKey?: string;
   auth?: boolean;
   signal?: AbortSignal;
+  /** Abort the request after this many milliseconds. */
+  timeoutMs?: number;
 }
 
 function buildURL(
@@ -154,16 +156,26 @@ export class APIClient {
       }
     }
 
+    const signal =
+      options.signal ??
+      (options.timeoutMs != null && options.timeoutMs > 0
+        ? AbortSignal.timeout(options.timeoutMs)
+        : undefined);
+
     let response: Response;
     try {
       response = await this.fetchImpl(url, {
         method,
         headers,
         body: options.body !== undefined ? JSON.stringify(options.body) : undefined,
-        signal: options.signal,
+        signal,
       });
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
+      const name = err instanceof Error ? err.name : "";
+      if (name === "AbortError" || name === "TimeoutError" || /aborted|timeout/i.test(message)) {
+        throw new APIClientError("transport", "分析时间有点长，请稍后再试");
+      }
       if (/Failed to fetch|NetworkError|offline/i.test(message)) {
         throw new APIClientError("offline", "当前离线，写操作将在联网后恢复");
       }
@@ -343,5 +355,16 @@ export function defaultBaseURL(): string {
   if (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_BASE) {
     return String(import.meta.env.VITE_API_BASE);
   }
-  return "http://127.0.0.1:8000";
+  return "http://42.194.219.172/onemore/api";
+}
+
+/** 仅本机 FastAPI 才注入 DEV_AUTH；连线上接口时必须走真实登录。 */
+export function isLocalAPIBase(baseURL: string): boolean {
+  try {
+    if (!/^https?:\/\//i.test(baseURL)) return false;
+    const host = new URL(baseURL).hostname;
+    return host === "localhost" || host === "127.0.0.1";
+  } catch {
+    return false;
+  }
 }

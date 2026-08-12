@@ -244,6 +244,15 @@ export function RelationsScreen() {
                   <div className="t-foot mt-1">
                     {relationSummaryLine(relation)}
                   </div>
+                  {relation.participants.some((p) => (p.interest_tags ?? []).length) ? (
+                    <div className="t-cap mt-1">
+                      {relation.participants
+                        .flatMap((p) => p.interest_tags ?? [])
+                        .filter((tag, i, all) => all.indexOf(tag) === i)
+                        .slice(0, 4)
+                        .join(" · ")}
+                    </div>
+                  ) : null}
                   {milestone?.next != null && milestone.remaining != null ? (
                     <>
                       <div className="mt-2">
@@ -516,6 +525,16 @@ function RelationDetailContent({
             <Chip kind="gap">{relation.partner_title}</Chip>
           ) : null}
         </div>
+        <div className="t-foot mt-1">{relationSummaryLine(relation)}</div>
+        {relation.participants.some((p) => (p.interest_tags ?? []).length) ? (
+          <div className="t-cap mt-2">
+            {relation.participants
+              .flatMap((p) => p.interest_tags ?? [])
+              .filter((tag, i, all) => all.indexOf(tag) === i)
+              .slice(0, 6)
+              .join(" · ")}
+          </div>
+        ) : null}
         <div className="flex mt-3">
           <StatBlock value={`${relation.times_together ?? 0}`} label="次同局" />
           <StatBlock value={`${relation.recur_count ?? 0}`} label="次复局" />

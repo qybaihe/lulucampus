@@ -6,7 +6,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { APIClient, defaultBaseURL } from "../core/api/client";
+import { APIClient, defaultBaseURL, isLocalAPIBase } from "../core/api/client";
 import {
   createRepositories,
   type Repositories,
@@ -62,9 +62,11 @@ export function AppProvider({
   const shellMode = resolveShellMode(width);
 
   const value = useMemo(() => {
-    // 本地开发：无 token 时走后端 dev 认证（Bearer dev:u_demo_1），可用 VITE_DEV_AUTH 覆盖
+    // 只有连本机 FastAPI 时才带 DEV_AUTH；yarn dev 打线上接口必须真实登录。
     const devAuthHeader =
-      typeof import.meta !== "undefined" && import.meta.env?.DEV
+      typeof import.meta !== "undefined" &&
+      import.meta.env?.DEV &&
+      isLocalAPIBase(baseURL)
         ? String(import.meta.env?.VITE_DEV_AUTH ?? "Bearer dev:u_demo_1")
         : null;
     const client = new APIClient({

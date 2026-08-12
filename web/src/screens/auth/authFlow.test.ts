@@ -30,7 +30,10 @@ describe("auth flow — iOS-aligned FastAPI contract", () => {
     const html = readFileSync(join(process.cwd(), "index.html"), "utf8");
     expect(auth).toContain("噜噜成局");
     expect(auth).toContain("差一个，就成局");
+    expect(auth).toContain("AppBrand.agentName");
     expect(html).toContain("<title>噜噜成局</title>");
+    const brand = readFileSync(join(process.cwd(), "src/core/brand.ts"), "utf8");
+    expect(brand).toContain('agentName: "Lulu Hermes"');
   });
 
   it("AuthScanScreen uses server qr_image_data_url and does not hard-code fake QR path", () => {
@@ -45,9 +48,10 @@ describe("auth flow — iOS-aligned FastAPI contract", () => {
     expect(src).toContain("qr_image_data_url");
     expect(src).toContain("redemption_token");
     expect(src).toContain("pollSession");
-    // 扫码现为校园闸门：SUCCESS 后进手机号登录，不再在扫码页兑换会话
+    // 扫码为登录后绑定：SUCCESS 后 redeem，再进授权/今天
     expect(src).toContain("markCampusGatePassed");
-    expect(src).toContain("/auth/phone");
+    expect(src).toContain("repos.auth.redeem");
+    expect(src).toContain("/auth/grants");
     expect(repos).toContain("X-Login-Redemption");
     expect(repos).toContain("redeem");
     // Must not rely only on a static decorative SVG without server data

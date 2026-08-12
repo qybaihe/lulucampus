@@ -15,7 +15,9 @@ yarn
 yarn dev
 ```
 
-默认 API：`http://127.0.0.1:8000`（`VITE_API_BASE`）。
+默认连线上接口：`http://42.194.219.172/onemore/api`（与 iOS / 线上 Web 同一套 Postgres）。
+
+若要改连本机 FastAPI，在 `web/.env` 里设 `VITE_API_BASE=http://127.0.0.1:8000`。
 
 ## 测试
 

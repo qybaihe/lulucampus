@@ -12,6 +12,7 @@ import { Btn, Card, NavBar, Note, Screen, Scroll } from "../../components/ui/pri
 import { PersonaCard } from "./PersonaCard";
 
 type Phase =
+  | { kind: "boot" }
   | { kind: "starting" }
   | { kind: "scan" }
   | { kind: "phone" }
@@ -75,7 +76,7 @@ export function VerifiedBadge() {
 
 export function TasteImportScreen() {
   const { repos } = useApp();
-  const [phase, setPhase] = useState<Phase>({ kind: "starting" });
+  const [phase, setPhase] = useState<Phase>({ kind: "boot" });
   const [session, setSession] = useState<TasteImportSession | null>(null);
   const [result, setResult] = useState<TasteProfileResult | null>(null);
   const [profile, setProfile] = useState<TasteSourceProfile | null>(null);
@@ -90,6 +91,8 @@ export function TasteImportScreen() {
   const [phoneError, setPhoneError] = useState<string | null>(null);
   const [selections, setSelections] = useState<Record<string, string>>({});
   const [submittingQuiz, setSubmittingQuiz] = useState(false);
+  const [shareText, setShareText] = useState("");
+  const [linkBusy, setLinkBusy] = useState(false);
 
   const importIdRef = useRef<string | null>(null);
   const pollTimerRef = useRef<number | null>(null);
@@ -233,14 +236,49 @@ export function TasteImportScreen() {
     [repos, tick, stopPolling],
   );
 
+  const onAnalyzeLink = async () => {
+    const text = shareText.trim();
+    if (!text || linkBusy) return;
+    stopPolling();
+    generateRequestedRef.current = true;
+    setLinkBusy(true);
+    setPhase({ kind: "generating" });
+    try {
+      const snap = await repos.taste.fromLink({ share_url: text, force: true });
+      if (goneRef.current) return;
+      importIdRef.current = snap.id;
+      setSession(snap);
+      if (snap.source_profile) setProfile(snap.source_profile);
+      if (snap.result) setResult(snap.result);
+      setPhase({ kind: "ready" });
+    } catch (err) {
+      if (!goneRef.current) setPhase({ kind: "failed", message: errMessage(err) });
+    } finally {
+      setLinkBusy(false);
+    }
+  };
+
   useEffect(() => {
     goneRef.current = false;
-    void start(false);
+    void (async () => {
+      try {
+        const existing = await repos.taste.me();
+        if (goneRef.current) return;
+        if (existing) {
+          setResult(existing);
+          setPhase({ kind: "ready" });
+        } else {
+          setPhase({ kind: "boot" });
+        }
+      } catch {
+        if (!goneRef.current) setPhase({ kind: "boot" });
+      }
+    })();
     return () => {
       goneRef.current = true;
       stopPolling();
     };
-  }, [start, stopPolling]);
+  }, [repos, stopPolling]);
 
   // 二维码过期倒计时
   useEffect(() => {
@@ -269,7 +307,12 @@ export function TasteImportScreen() {
   const onRestart = () => {
     const id = importIdRef.current;
     if (id) void repos.taste.cancelDouyinImport(id).catch(() => undefined);
-    void start(true);
+    importIdRef.current = null;
+    setResult(null);
+    setProfile(null);
+    setSession(null);
+    setShareText("");
+    setPhase({ kind: "boot" });
   };
 
   const onManualRefresh = () => {
@@ -399,7 +442,7 @@ export function TasteImportScreen() {
       await repos.taste.deleteDouyinProfile();
       setResult(null);
       showToast("画像已删除");
-      void start(true);
+      setPhase({ kind: "boot" });
     } catch (err) {
       showToast(errMessage(err));
     }
@@ -416,6 +459,47 @@ export function TasteImportScreen() {
     <Screen id="screen-taste-import">
       <NavBar title="兴趣画像" backTo="/me" />
       <Scroll>
+        {phase.kind === "boot" ? (
+          <div className="taste-stage" style={{ alignItems: "stretch" }}>
+            <div className="center">
+              <LuluSprite clip="home.listening" size={120} />
+            </div>
+            <div className="t-t2 center mt-2">粘贴主页分享链接</div>
+            <div className="t-foot center mt-1">
+              噜噜会一起看你最近的喜欢和收藏，生成一张只属于你的兴趣画像卡。不用扫码。
+            </div>
+            <ol className="share-howto">
+              <li>打开抖音，点底部「我」</li>
+              <li>点自己的抖音号，进入抖音码页面</li>
+              <li>点右上角分享箭头，再选「复制链接」</li>
+              <li>打开「设置 → 隐私与政策 → 收藏」，把里面的「视频」设为公开</li>
+              <li>把主页「喜欢」也设为公开，然后粘贴到下面</li>
+            </ol>
+            <textarea
+              className="om-input mt-3"
+              rows={4}
+              value={shareText}
+              onChange={(e) => setShareText(e.target.value)}
+              placeholder="粘贴整段分享卡片也可以，例如：长按复制此条消息… https://v.douyin.com/xxxx/"
+              data-od-id="taste-share-input"
+            />
+            <div className="mt-3">
+              <Btn
+                kind="primary"
+                disabled={linkBusy || shareText.trim().length < 8}
+                onClick={() => void onAnalyzeLink()}
+              >
+                {linkBusy ? "分析中…" : "让噜噜看看"}
+              </Btn>
+            </div>
+            <div className="mt-2">
+              <Btn kind="ghost" onClick={() => void start(true)}>
+                改用扫码导入
+              </Btn>
+            </div>
+          </div>
+        ) : null}
+
         {phase.kind === "starting" ? (
           <div className="taste-stage">
             <LuluSprite clip="home.thinking" size={150} />
@@ -620,9 +704,9 @@ export function TasteImportScreen() {
         {phase.kind === "generating" ? (
           <div className="taste-stage">
             <LuluSprite clip="home.thinking" size={150} />
-            <div className="t-t2 mt-3">噜噜正在生成你的画像</div>
+            <div className="t-t2 mt-3">噜噜正在看你的喜欢和收藏</div>
             <div className="t-foot mt-1">
-              {progress?.message ?? "正在分析你的喜欢内容…"}
+              {progress?.message ?? "马上就好，请稍等一会儿。"}
             </div>
             <div className="gen-progress">
               <div className="om-progress">
@@ -643,7 +727,7 @@ export function TasteImportScreen() {
             <div className="t-t2 mt-3">这次没成功</div>
             <div className="t-foot mt-1 center" style={{ maxWidth: 300 }}>{phase.message}</div>
             <div className="mt-5" style={{ width: "100%" }}>
-              <Btn kind="primary" onClick={onRestart}>重新扫码</Btn>
+              <Btn kind="primary" onClick={onRestart}>重新开始</Btn>
             </div>
           </div>
         ) : null}
@@ -662,7 +746,7 @@ export function TasteImportScreen() {
               可选 · 答细化题
             </Btn>
           ) : null}
-          <Btn kind="ghost" onClick={onRestart}>重新扫码导入</Btn>
+          <Btn kind="ghost" onClick={onRestart}>重新导入</Btn>
           <Btn kind="text" sm onClick={() => void onDeleteProfile()}>
             删除抖音兴趣画像
           </Btn>

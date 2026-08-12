@@ -121,7 +121,7 @@ export const FORMAL_NODES: FormalNodeDefinition[] = [
   system("A8", "系统权限", "permission denied/recheck", "OMPermissionRecoveryNotice", "permission-recovery-notice", "shared"),
 
   route("B1", "今天", "/today", "TodayView", "screen-B1-today", "today"),
-  route("B2", "Hermes 问答", "/today/ask", "HermesAskView", "screen-B2-hermes", "today"),
+  route("B2", "Lulu Hermes 问答", "/today/ask", "HermesAskView", "screen-B2-hermes", "today"),
   route("B3", "我的课表", "/today/timetable", "TimetableView", "screen-B3-timetable", "today"),
   server("B3.1", "课程详情", "/schedule/courses/{course_id}", "selected course", "CourseDetailView", "screen-B3.1-course-detail", "today", "/today/course/:courseId"),
   route("B4", "作业与 DDL", "/today/assignments", "AssignmentsView", "screen-B4-assignments", "today"),
@@ -187,7 +187,7 @@ export const FORMAL_NODES: FormalNodeDefinition[] = [
   route("O3", "报名与到场看板", "/organizer/gatherings/:gatheringId/dashboard", "OrganizerDashboardView", "screen-O3-organizer-dashboard", "organizer"),
   server("O4", "官方局模板", "/organizer/templates", "T4 verified", "OrganizerView.templateSection", "screen-O4-templates", "organizer", "/organizer/templates"),
 
-  system("G1", "Hermes 唤起", "today hermes entry", "HermesAskView", "today-hermes-entry", "today", "/today/ask"),
+  system("G1", "Lulu Hermes 唤起", "today hermes entry", "HermesAskView", "today-hermes-entry", "today", "/today/ask"),
   system("G2", "缺口卡分享", "gap share created", "GatheringDetailView ShareLink", "gathering-share-link", "gatherings"),
   system("G3", "认证恢复", "401/deep link", "AuthenticationFlowView + pendingAfterAuthentication", "screen-A3-real-login", "auth", "/auth/scan"),
   server("G4", "静默解散", "/gatherings/{gathering_id}", "Dissolved/Expired", "GatheringDetailView terminal state", "gathering-terminal-state", "gatherings"),

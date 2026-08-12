@@ -51,6 +51,10 @@ export interface Competition {
   recommendation_description?: string;
   team_forming_supported?: boolean;
   collaboration_action?: string;
+  taste_fit?: number | null;
+  taste_fit_label?: string | null;
+  taste_fit_reasons?: string[];
+  recruit_hints?: string[];
   team_constraints?: { team_size_min?: number; team_size_max?: number };
   required_skills?: Array<{ key?: string; label?: string; [key: string]: unknown }>;
   [key: string]: unknown;
@@ -77,7 +81,12 @@ export function capabilityLabel(key: string): string {
 
 export interface GatheringParticipant {
   user_id?: string;
+  display_name?: string | null;
+  college?: string | null;
+  major?: string | null;
   role?: string | null;
+  interest_tags?: string[];
+  taste_summary?: string | null;
   label?: string | null;
   confirmation_status?: string | null;
   [key: string]: unknown;
@@ -102,6 +111,8 @@ export interface Gathering {
   channel_id?: string | null;
   competition_id?: string | null;
   required_roles?: string[];
+  looking_for?: string[];
+  match_reason?: string | null;
   participants?: GatheringParticipant[];
   my_confirmation?: string | null;
   my_recurrence_decision?: string | null;
@@ -305,6 +316,8 @@ export interface IntentCompileResult {
   max_rounds?: number;
   questions?: Array<{ id?: string; prompt?: string; key?: string }>;
   card?: IntentCard;
+  taste_fit_label?: string | null;
+  recruit_hints?: string[];
   [key: string]: unknown;
 }
 
@@ -1460,6 +1473,26 @@ export function createRepositories(client: APIClient) {
     },
     taste: {
       me: () => client.get<TasteProfileResult | null>("/profile/taste/me"),
+      fromLink: (body: {
+        share_url: string;
+        likes_limit?: number;
+        posts_limit?: number;
+        collects_limit?: number;
+        use_llm?: boolean;
+        force?: boolean;
+      }) =>
+        client.post<TasteImportSession>(
+          "/profile/taste/from-link",
+          {
+            likes_limit: 30,
+            posts_limit: 20,
+            collects_limit: 30,
+            use_llm: true,
+            force: true,
+            ...body,
+          },
+          { timeoutMs: 120_000 },
+        ),
       importDouyin: (body: Record<string, unknown>) =>
         client.post("/profile/imports/douyin", body),
       /** 创建导入任务并等待新鲜二维码（最长 waitSeconds 秒）。 */

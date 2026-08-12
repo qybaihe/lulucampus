@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { APIClient, APIClientError } from "./client";
+import { APIClient, APIClientError, defaultBaseURL, isLocalAPIBase } from "./client";
 import { createSessionStore } from "./session";
 
 function memorySession() {
@@ -90,5 +90,16 @@ describe("APIClient", () => {
     }
     expect(session.getState().status).toBe("expired");
     expect(onExpired).toHaveBeenCalled();
+  });
+
+  it("treats only loopback hosts as local API bases", () => {
+    expect(isLocalAPIBase("http://127.0.0.1:8000")).toBe(true);
+    expect(isLocalAPIBase("http://localhost:8000")).toBe(true);
+    expect(isLocalAPIBase("http://42.194.219.172/onemore/api")).toBe(false);
+    expect(isLocalAPIBase("/onemore/api")).toBe(false);
+  });
+
+  it("defaults to the shared production API", () => {
+    expect(defaultBaseURL()).toContain("42.194.219.172");
   });
 });

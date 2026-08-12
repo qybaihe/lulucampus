@@ -559,6 +559,49 @@ export function GatheringDetailScreen() {
               <Note sticker="chat-bubble.png">{g.mood_note}</Note>
             ) : null}
 
+            {typeof g.match_reason === "string" && g.match_reason ? (
+              <Note sticker="sparkle-wand.png">{g.match_reason}</Note>
+            ) : null}
+
+            {(g.looking_for ?? []).length > 0 && /Pooling/i.test(status) ? (
+              <Card className="mt-3">
+                <div className="t-t3">这桌还在找</div>
+                <div className="flex wrap mt-2" style={{ gap: 6 }}>
+                  {g.looking_for!.map((role) => (
+                    <Chip key={role} kind="gap">
+                      {role}
+                    </Chip>
+                  ))}
+                </div>
+              </Card>
+            ) : null}
+
+            {(g.participants ?? []).length > 0 && !/Pooling/i.test(status) ? (
+              <Card className="mt-3">
+                <div className="t-t3">参与成员</div>
+                {g.participants!.map((p, i) => {
+                  const uid = String(p.user_id ?? i);
+                  const name =
+                    (typeof p.display_name === "string" && p.display_name) ||
+                    p.label ||
+                    `成员 ···${uid.slice(-4)}`;
+                  return (
+                    <div key={uid} className="mt-2">
+                      <div className="t-call">{name}</div>
+                      {(p.interest_tags ?? []).length > 0 ? (
+                        <div className="t-foot mt-1">
+                          {p.interest_tags!.slice(0, 4).join(" · ")}
+                        </div>
+                      ) : null}
+                      {p.taste_summary ? (
+                        <div className="t-cap mt-1">{p.taste_summary}</div>
+                      ) : null}
+                    </div>
+                  );
+                })}
+              </Card>
+            ) : null}
+
             <Card className="mt-4">
               <div className="between mb-2">
                 <span className="t-foot">

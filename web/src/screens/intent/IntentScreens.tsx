@@ -193,6 +193,8 @@ export function IntentComposerScreen() {
   const [saving, setSaving] = useState(false);
   const [operationError, setOperationError] = useState<string | null>(null);
   const [pendingPublishKey, setPendingPublishKey] = useState<string | null>(null);
+  const [recruitHints, setRecruitHints] = useState<string[]>([]);
+  const [tasteFitLabel, setTasteFitLabel] = useState<string | null>(null);
 
   const presets = useMemo(
     () => [
@@ -218,6 +220,8 @@ export function IntentComposerScreen() {
         answers,
       });
       const maxRounds = result.max_rounds ?? 2;
+      setRecruitHints(result.recruit_hints ?? []);
+      setTasteFitLabel(result.taste_fit_label ?? null);
       if (result.needs_clarification && round < maxRounds && result.card) {
         setClarifyAnswer("");
         setPhase({
@@ -446,6 +450,19 @@ export function IntentComposerScreen() {
                 <ChipsRow title="还需要" items={roleChips} />
               </div>
             ) : null}
+          </>
+        ) : null}
+        {tasteFitLabel || recruitHints.length ? (
+          <>
+            <Divider />
+            {tasteFitLabel ? (
+              <Chip kind="gap">{tasteFitLabel}</Chip>
+            ) : null}
+            {recruitHints.map((hint) => (
+              <div className="t-foot mt-2" key={hint}>
+                {hint}
+              </div>
+            ))}
           </>
         ) : null}
       </Card>

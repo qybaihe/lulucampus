@@ -124,3 +124,26 @@ export function LuluSprite({
     </div>
   );
 }
+
+/**
+ * 分享卡底部的噜噜：用不透明单帧 PNG，导出时再手动画回去。
+ * CSS 图集 / 透明切帧在 html-to-image 里经常丢脸。
+ */
+export function LuluStill({
+  size = 72,
+}: {
+  clip?: LuluClip;
+  size?: number;
+}) {
+  return (
+    <img
+      className="lulu-still"
+      src={assetURL("/assets/lulu/lulu-wave.png")}
+      width={size}
+      height={size}
+      alt="噜噜"
+      draggable={false}
+      decoding="sync"
+    />
+  );
+}

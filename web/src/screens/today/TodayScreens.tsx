@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useApp } from "../../app/AppContext";
+import { AppBrand } from "../../core/brand";
 import type { TodaySummary } from "../../core/api/repositories";
 import {
   Btn,
@@ -222,7 +223,7 @@ export function TodayScreen() {
           <div className="flex">
             <LuluMark placement="avatar" />
             <div className="grow">
-              <div className="t-t3">问问 Hermes</div>
+              <div className="t-t3">问问 {AppBrand.agentName}</div>
               <div className="t-cap">课表、DDL、场地、活动与班车</div>
             </div>
           </div>
@@ -313,7 +314,7 @@ export function HermesAskScreen() {
     try {
       const res = await repos.hermes.ask(value);
       setAnswer(
-        String(res.answer ?? res.text ?? res.message ?? "Hermes 没有返回文案"),
+        String(res.answer ?? res.text ?? res.message ?? `${AppBrand.agentName} 没有返回文案`),
       );
       setQ(value);
     } catch (e) {
@@ -326,7 +327,7 @@ export function HermesAskScreen() {
 
   return (
     <Screen id="screen-B2-hermes">
-      <NavBar title="Hermes" backTo="/today" />
+      <NavBar title={AppBrand.agentName} backTo="/today" />
       <Scroll>
         <div className="center mt-3">
           <LuluMark placement="header" caption="课表、场地、班车、活动都行" />
@@ -361,11 +362,11 @@ export function HermesAskScreen() {
         ) : null}
         {answer ? (
           <Card className="mt-3" data-od-id="hermes-answer">
-            <div className="t-t3">Hermes</div>
+            <div className="t-t3">{AppBrand.agentName}</div>
             <div className="t-call mt-2">{answer}</div>
           </Card>
         ) : null}
-        <Note>Hermes 只读校园事实，不会替你报名或付款。POST /hermes/ask</Note>
+        <Note>{AppBrand.agentName} 只读校园事实，不会替你报名或付款。</Note>
       </Scroll>
     </Screen>
   );
@@ -467,21 +468,11 @@ function ApiListScreen({
   );
 }
 
-/** 课表来源 → 中文显示名（后端返回 cache/jwxt 等原始值）。 */
-const TIMETABLE_SOURCE_LABELS: Record<string, string> = {
-  cache: "本地缓存",
-  jwxt: "教务系统",
-  live: "实时抓取",
-};
-
 export function TimetableScreen() {
   const { repos } = useApp();
   const [phase, setPhase] = useState<"loading" | "loaded" | "failed">("loading");
   const [entries, setEntries] = useState<Array<Record<string, unknown>>>([]);
-  const [updatedAt, setUpdatedAt] = useState<string | null>(null);
-  const [source, setSource] = useState<string | null>(null);
   const [week, setWeek] = useState(1);
-  const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   async function load() {
@@ -492,8 +483,6 @@ export function TimetableScreen() {
         entries?: unknown[];
         courses?: unknown[];
         items?: unknown[];
-        updated_at?: string;
-        source?: string;
       };
       const list = Array.isArray(raw)
         ? raw
@@ -505,8 +494,6 @@ export function TimetableScreen() {
               ? record.items
               : [];
       setEntries(list as Array<Record<string, unknown>>);
-      setUpdatedAt(typeof record?.updated_at === "string" ? record.updated_at : null);
-      setSource(typeof record?.source === "string" ? record.source : null);
       setPhase("loaded");
     } catch (e) {
       setError(e instanceof Error ? e.message : "加载失败");
@@ -518,22 +505,6 @@ export function TimetableScreen() {
     void load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [repos, week]);
-
-  /** 增量校验（对齐 iOS：POST /schedule/refresh → 等 1s → 重拉本周）。 */
-  async function refresh() {
-    if (refreshing) return;
-    setRefreshing(true);
-    try {
-      await repos.campus.refreshSchedule();
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      await load();
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "刷新失败");
-      setPhase("failed");
-    } finally {
-      setRefreshing(false);
-    }
-  }
 
   const groups = groupEntriesByDay(entries);
 
@@ -563,12 +534,6 @@ export function TimetableScreen() {
               onAction={() => void load()}
             />
           </Card>
-        ) : null}
-        {phase === "loaded" && updatedAt ? (
-          <div className="t-cap mb-2">
-            更新于 {formatDateTimeShort(updatedAt)}
-            {source ? ` · ${TIMETABLE_SOURCE_LABELS[source] ?? source}` : ""}
-          </div>
         ) : null}
         {phase === "loaded" && entries.length === 0 ? (
           <Card>
@@ -616,25 +581,10 @@ export function TimetableScreen() {
               </Card>
             </div>
           ))}
-        {phase === "loaded" ? (
-          <div className="mt-2">
-            <Btn kind="ghost" onClick={() => void refresh()} disabled={refreshing}>
-              {refreshing ? "校验中…" : "增量校验课表"}
-            </Btn>
-          </div>
-        ) : null}
         <Note>仅显示你的缓存课表；不会展示教务内部编码。</Note>
       </Scroll>
     </Screen>
   );
-}
-
-/** 「更新于」时间戳（M月d日 HH:mm）。 */
-function formatDateTimeShort(iso: string): string {
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return iso;
-  const pad = (n: number) => String(n).padStart(2, "0");
-  return `${date.getMonth() + 1}月${date.getDate()}日 ${pad(date.getHours())}:${pad(date.getMinutes())}`;
 }
 
 function groupEntriesByDay(entries: Array<Record<string, unknown>>) {
@@ -899,7 +849,7 @@ export function ResearchScreen() {
           const ans = await repos.hermes.ask("我本周的组会与课题安排");
           return [
             {
-              title: "Hermes 摘要",
+              title: `${AppBrand.agentName} 摘要`,
               summary: ans.answer ?? ans.text ?? "无摘要",
             },
           ];
