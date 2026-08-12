@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>差一个 · ONE MORE — 设计系统 v1.0</title>
+<link rel="stylesheet" href="css/tokens.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--font-body); line-height: 1.6; }
+  .ds-nav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in oklch, var(--paper) 88%, transparent);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 32px;
+    display: flex; align-items: center; gap: 24px;
+    font-size: 14px;
+  }
+  .ds-nav b { font-size: 16px; letter-spacing: -0.01em; }
+  .ds-nav a { color: var(--mist); text-decoration: none; font-weight: 600; }
+  .ds-nav a:hover { color: var(--ink); }
+  .ds-nav .spacer { flex: 1; }
+  .ds-wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px 120px; }
+  .ds-hero { padding: 96px 0 64px; border-bottom: 1px solid var(--line); }
+  .ds-hero h1 { font-size: 64px; letter-spacing: -0.03em; line-height: 1.05; font-weight: 800; }
+  .ds-hero .sub { color: var(--mist); font-size: 19px; margin-top: 18px; max-width: 640px; }
+  .ds-hero .meta { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+  .ds-tag { font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--mist); }
+  .ds-sec { padding: 72px 0 8px; }
+  .ds-sec h2 { font-size: 34px; letter-spacing: -0.02em; font-weight: 800; display: flex; align-items: baseline; gap: 14px; }
+  .ds-sec h2 .no { font-family: var(--font-mono); font-size: 15px; color: var(--mist); font-weight: 500; }
+  .ds-sec .lead { color: var(--mist); font-size: 16px; max-width: 680px; margin-top: 10px; }
+  .ds-grid { display: grid; gap: 14px; margin-top: 32px; }
+  .g2 { grid-template-columns: 1fr 1fr; } .g3 { grid-template-columns: 1fr 1fr 1fr; } .g4 { grid-template-columns: repeat(4, 1fr); } .g6 { grid-template-columns: repeat(6, 1fr); }
+  .ds-card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 22px; }
+  .swatch { border-radius: 14px; border: 1px solid var(--line); overflow: hidden; background: var(--card); }
+  .swatch .c { height: 96px; }
+  .swatch .i { padding: 12px 14px; }
+  .swatch .n { font-weight: 700; font-size: 14px; }
+  .swatch .h { font-family: var(--font-mono); font-size: 12px; color: var(--mist); margin-top: 2px; }
+  .swatch .u { font-size: 12px; color: var(--mist); margin-top: 6px; }
+  .rule-card { border-left: 4px solid var(--yolk); }
+  .rule-card.ink { border-left-color: var(--ink); }
+  .type-row { display: flex; align-items: baseline; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--line); gap: 24px; }
+  .type-row .spec { font-family: var(--font-mono); font-size: 12px; color: var(--mist); white-space: nowrap; }
+  .lulu-cell { text-align: center; }
+  .lulu-cell .lulu { margin: 0 auto; }
+  .lulu-cell .nm { font-weight: 700; font-size: 14px; margin-top: 10px; }
+  .lulu-cell .sz { font-family: var(--font-mono); font-size: 11px; color: var(--mist); margin-top: 3px; }
+  .lulu-cell .use { font-size: 12px; color: var(--mist); margin-top: 6px; }
+  .stk { text-align: center; padding: 14px 8px; }
+  .stk img { width: 64px; height: 64px; object-fit: contain; margin: 0 auto; }
+  .stk .n { font-size: 11px; color: var(--mist); margin-top: 6px; }
+  .ds-table { width: 100%; border-collapse: collapse; margin-top: 28px; font-size: 14px; }
+  .ds-table th { text-align: left; font-size: 12px; color: var(--mist); text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 12px; border-bottom: 2px solid var(--ink); }
+  .ds-table td { padding: 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .ds-table td:first-child { font-weight: 700; white-space: nowrap; }
+  .redline { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; font-size: 14px; display: flex; gap: 12px; align-items: flex-start; }
+  .redline::before { content: "×"; flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); color: var(--paper); display: grid; place-items: center; font-weight: 800; font-size: 13px; }
+  .okline { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; font-size: 14px; display: flex; gap: 12px; align-items: flex-start; }
+  .okline::before { content: "✓"; flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--yolk); color: var(--ink); display: grid; place-items: center; font-weight: 800; font-size: 13px; }
+  code { font-family: var(--font-mono); font-size: 0.88em; background: var(--ink-06); padding: 2px 7px; border-radius: 6px; }
+  .demo-seats { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+  @media (max-width: 860px) { .g3, .g4, .g6 { grid-template-columns: 1fr 1fr; } .ds-hero h1 { font-size: 42px; } .ds-nav { overflow-x: auto; } }
+</style>
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<nav class="ds-nav" data-od-id="ds-nav">
+  <b>差一个 · 设计系统</b>
+  <a href="#concept">概念</a><a href="#color">色彩</a><a href="#type">字体</a><a href="#grid">栅格</a><a href="#components">组件</a><a href="#lulu">Lulu</a><a href="#stickers">贴纸</a><a href="#motion">动效</a><a href="#a11y">可访问性</a><a href="#redlines">红线</a>
+  <span class="spacer"></span>
+  <a href="index.html">← 启动器</a>
+</nav>
+
+<div class="ds-wrap">
+
+<header class="ds-hero" data-od-id="ds-hero">
+  <h1>差一个 · ONE MORE<br>设计系统 v1.0</h1>
+  <p class="sub">中山大学校园「成局」工具的 iOS 视觉语言。暖纸底、深墨绿黑、一个明黄——界面里最需要被一眼看到的东西只有一个：缺口。</p>
+  <div class="meta">
+    <span class="ds-tag">iOS 原生 · iPhone 现役主力尺寸 393×852</span>
+    <span class="ds-tag">Soft Pantry Editorial 色向</span>
+    <span class="ds-tag">独立成文 · 与 Lulu's Fridge 同族不同文</span>
+  </div>
+</header>
+
+<!-- 1 概念 -->
+<section class="ds-sec" id="concept" data-od-id="ds-concept">
+  <h2><span class="no">01</span>概念</h2>
+  <p class="lead">产品性格决定视觉姿态。三条产品性格，各对应一条视觉翻译。</p>
+  <div class="ds-grid g3">
+    <div class="ds-card"><b>最小单元是「一个局」</b><p class="t-foot mt-2">所以界面的主角是席位与缺口，不是人。签名组件是圆桌席位图——你看的永远是「这件事还差什么」。</p></div>
+    <div class="ds-card"><b>AI 越早退场越好</b><p class="t-foot mt-2">所以 Lulu 只在有事发生时出现：在听、在想、办成了、要走了。它不做装饰性常驻，不刷存在感。</p></div>
+    <div class="ds-card"><b>凑不齐就安静结束</b><p class="t-foot mt-2">所以视觉低刺激、有呼吸感。亮色暖调，不喊。失败态没有红色、没有归因、没有惩罚性文案。</p></div>
+  </div>
+</section>
+
+<!-- 2 色彩 -->
+<section class="ds-sec" id="color" data-od-id="ds-color">
+  <h2><span class="no">02</span>色彩</h2>
+  <p class="lead">七色封闭色板，不新增。派生色只允许由基础色混合（color-mix）。</p>
+  <div class="ds-grid g4">
+    <div class="swatch"><div class="c" style="background:#f6f4ec"></div><div class="i"><div class="n">Canvas 暖纸</div><div class="h">#f6f4ec</div><div class="u">页面画布</div></div></div>
+    <div class="swatch"><div class="c" style="background:#1f2d25"></div><div class="i"><div class="n">Primary 深墨绿黑</div><div class="h">#1f2d25</div><div class="u">文字 · 已就位</div></div></div>
+    <div class="swatch"><div class="c" style="background:#f6c945"></div><div class="i"><div class="n">Yolk 明黄</div><div class="h">#f6c945</div><div class="u">唯一强调 · 缺口与主行动</div></div></div>
+    <div class="swatch"><div class="c" style="background:#fffdf8"></div><div class="i"><div class="n">Surface 卡片白</div><div class="h">#fffdf8</div><div class="u">卡片与面板</div></div></div>
+    <div class="swatch"><div class="c" style="background:#5d6b63"></div><div class="i"><div class="n">Secondary 灰绿</div><div class="h">#5d6b63</div><div class="u">次要文字与元信息</div></div></div>
+    <div class="swatch"><div class="c" style="background:#dce3d9"></div><div class="i"><div class="n">Default 描边</div><div class="h">#dce3d9</div><div class="u">分隔线与描边</div></div></div>
+    <div class="swatch"><div class="c" style="background:#cbd4cc"></div><div class="i"><div class="n">Sage 灰绿浅</div><div class="h">#cbd4cc</div><div class="u">次级行动与弱强调</div></div></div>
+  </div>
+  <div class="ds-grid g2" style="margin-top:20px">
+    <div class="ds-card rule-card"><b>缺口 = 明黄，全屏最高视觉权重</b><p class="t-foot mt-2">「还差一个」用明黄实心 + 脉冲。任何页面同一时刻只允许一个缺口焦点。红色禁止用于缺口——红被读作错误，而缺口是邀请。</p></div>
+    <div class="ds-card rule-card ink"><b>已就位 = 深墨绿黑实心</b><p class="t-foot mt-2">「已具备 / 已就位」用墨色实心。两种状态形状相同、填充相反，色盲用户也能凭「亮 vs 暗」区分，不只靠色相。</p></div>
+  </div>
+</section>
+
+<!-- 3 字体 -->
+<section class="ds-sec" id="type" data-od-id="ds-type">
+  <h2><span class="no">03</span>字体</h2>
+  <p class="lead">iOS 系统字体族（SF / PingFang SC）。数字与倒计时用等宽。字号阶梯以 17px 正文为基准，整体随 Dynamic Type 缩放。</p>
+  <div class="ds-card" style="margin-top:28px">
+    <div class="type-row"><span style="font-size:34px;font-weight:800;letter-spacing:-0.02em">大标题 Hero</span><span class="spec">34 / 800 / -2%</span></div>
+    <div class="type-row"><span style="font-size:28px;font-weight:700">标题 1 · 页面级</span><span class="spec">28 / 700</span></div>
+    <div class="type-row"><span style="font-size:22px;font-weight:700">标题 2 · 卡片级</span><span class="spec">22 / 700</span></div>
+    <div class="type-row"><span style="font-size:17px;font-weight:700">标题 3 · 行级强调</span><span class="spec">17 / 700</span></div>
+    <div class="type-row"><span style="font-size:17px">正文 Body · 阅读与按钮</span><span class="spec">17 / 400</span></div>
+    <div class="type-row"><span style="font-size:15px">标注 Callout · 列表副行</span><span class="spec">15 / 400</span></div>
+    <div class="type-row"><span style="font-size:13px;color:var(--mist)">脚注 Footnote · 元信息</span><span class="spec">13 / 400</span></div>
+    <div class="type-row"><span style="font-size:11px;color:var(--mist)">说明 Caption · 最小字号</span><span class="spec">11 / 400</span></div>
+    <div class="type-row"><span class="mono" style="font-size:17px">等宽 Mono · 41:22:08 · 3/4</span><span class="spec">SF Mono / 表格数字</span></div>
+  </div>
+</section>
+
+<!-- 4 栅格 -->
+<section class="ds-sec" id="grid" data-od-id="ds-grid">
+  <h2><span class="no">04</span>栅格与形状</h2>
+  <p class="lead">4pt 基线网格；页面左右边距 20px；卡片间距 12px；段落留白 24–40px。</p>
+  <div class="ds-grid g4">
+    <div class="ds-card"><b>圆角</b><p class="t-foot mt-2">8 小件 · 14 输入 · 20 卡片 · 28 弹层 · 999 行动按钮与胶囊</p></div>
+    <div class="ds-card"><b>描边</b><p class="t-foot mt-2">1px 常规 · 2px 强调（意图卡、最紧急 DDL）· 不用投影堆层级</p></div>
+    <div class="ds-card"><b>触控</b><p class="t-foot mt-2">命中区 ≥ 44pt · 主行动按钮高 52pt · 列表行高 ≥ 48pt</p></div>
+    <div class="ds-card"><b>密度</b><p class="t-foot mt-2">一屏一个问题。页面空的时候用信息结构承担重量，不用头像墙和热度数字填。</p></div>
+  </div>
+</section>
+
+<!-- 5 组件 -->
+<section class="ds-sec" id="components" data-od-id="ds-components">
+  <h2><span class="no">05</span>组件</h2>
+  <p class="lead">核心组件在原型中全部为可运行实例。以下为签名组件「圆桌席位」的两种形态。</p>
+  <div class="ds-card" style="margin-top:28px">
+    <div class="demo-seats">
+      <div id="ds-seat-demo"></div>
+      <div class="grow">
+        <b>圆桌席位 · Seat Table</b>
+        <p class="t-foot mt-2">详情页全尺寸（240pt）：圆桌居中，席位环绕。已就位 = 墨色实心；缺口 = 明黄 + 1.6s 脉冲呼吸。列表页用紧凑席位条（26pt 圆点）。</p>
+        <p class="t-foot mt-2">VoiceOver 朗读：「数学建模国赛冲刺：2 人已就位，缺 1 人 · 写作位」。</p>
+      </div>
+    </div>
+  </div>
+  <div class="ds-grid g3">
+    <div class="ds-card"><b>缺口徽章 Gap Badge</b><p class="t-foot mt-2">明黄胶囊 + 等宽数字。全屏同语义唯一来源，禁止用普通标签仿制。</p></div>
+    <div class="ds-card"><b>行动按钮</b><p class="t-foot mt-2">主行动 = 明黄底墨字胶囊；次级 = 墨描边；三级 = 纯文字。一屏最多一个主按钮。</p></div>
+    <div class="ds-card"><b>状态视图 State View</b><p class="t-foot mt-2">G5 八态共用同一骨架：Lulu + 一句影响 + 一个动作。见原型 M10 → 界面状态规范。</p></div>
+  </div>
+</section>
+
+<!-- 6 Lulu -->
+<section class="ds-sec" id="lulu" data-od-id="ds-lulu">
+  <h2><span class="no">06</span>Lulu 出场矩阵</h2>
+  <p class="lead">水豚 Lulu 是主元素，但只在有事发生时出现。12 个注册状态，帧序列与 iOS 工程共用 <code>lulu-motion.v1.json</code> 契约（2×2 图集 · 627pt 单元格 · 锚点 0.5/0.941 · ≤12fps）。</p>
+  <div class="ds-grid g4" id="ds-lulu-grid" style="margin-top:32px"></div>
+  <table class="ds-table">
+    <tr><th>状态</th><th>出场页面</th><th>尺寸</th></tr>
+    <tr><td>待机 home.idle</td><td>M1 个人中心头像 · 空态</td><td class="mono">44 / 170pt</td></tr>
+    <tr><td>在听 home.listening</td><td>D1 意图输入 · B2 Hermes · A3 扫码</td><td class="mono">120–260pt</td></tr>
+    <tr><td>在想 home.thinking</td><td>A5 画像初始化 · D2 澄清追问</td><td class="mono">120–260pt</td></tr>
+    <tr><td>回应 home.reply</td><td>A2 认证说明 · B1 场景建议 · B10</td><td class="mono">84–260pt</td></tr>
+    <tr><td>关切 core.care</td><td>A8 权限 · C3 准入 · E12 退出 · G3 会话失效 · 异常态</td><td class="mono">120–170pt</td></tr>
+    <tr><td>庆祝 core.celebrate</td><td>E6 执行成功 · E10 复局选择</td><td class="mono">120pt · 播一次</td></tr>
+    <tr><td>举意图卡 intent.card</td><td>B10 场景触发 · D3 意图卡确认</td><td class="mono">84–260pt · 播一次</td></tr>
+    <tr><td>等待招募 pool.waiting</td><td>D4 匿名池 · E8 补位</td><td class="mono">120–260pt</td></tr>
+    <tr><td>清点确认 confirm.gather</td><td>E3 多人确认</td><td class="mono">84pt · 播一次</td></tr>
+    <tr><td>递出预约单 action.preview</td><td>B11 / E5 行动预览</td><td class="mono">84pt · 播一次</td></tr>
+    <tr><td>正在执行 action.executing</td><td>E5 授权后过渡</td><td class="mono">84pt · 循环</td></tr>
+    <tr><td>退场 exit.bow</td><td>E7 协作空间 · G4 静默解散</td><td class="mono">84–170pt · 播一次</td></tr>
+  </table>
+  <div class="ds-grid g2" style="margin-top:20px">
+    <div class="ds-card"><b>不做</b><p class="t-foot mt-2">不做等级成长、不喂养、不签到、不主动搭话。事情办完就退场（exit.bow 是产品叙事的句号）。</p></div>
+    <div class="ds-card"><b>减弱动效</b><p class="t-foot mt-2">系统开启「减弱动态效果」时，全部状态降级为 poster 静帧（manifest 中 reducedMotionPolicy: poster-frame）。</p></div>
+  </div>
+</section>
+
+<!-- 7 贴纸 -->
+<section class="ds-sec" id="stickers" data-od-id="ds-stickers">
+  <h2><span class="no">07</span>贴纸素材库 · 36 张</h2>
+  <p class="lead">半写实手绘卡通 · 统一光照 · 主体带约 5% 连续白边 · 512×512 透明 PNG · 表面留白不写字。新素材沿用同一风格回源生成。</p>
+  <div class="ds-card" style="margin-top:28px"><div class="ds-grid g6" id="ds-sticker-grid"></div></div>
+</section>
+
+<!-- 8 动效 -->
+<section class="ds-sec" id="motion" data-od-id="ds-motion">
+  <h2><span class="no">08</span>动效原则</h2>
+  <div class="ds-grid g3">
+    <div class="ds-card"><b>时长</b><p class="t-foot mt-2">微反馈 160ms · 页面过渡 280ms · 曲线 cubic-bezier(0.22, 1, 0.36, 1)。没有超过 300ms 的界面动效。</p></div>
+    <div class="ds-card"><b>缺口脉冲</b><p class="t-foot mt-2">1.6s 呼吸外扩环，只用于缺口席位。它是全产品唯一循环播放的非 Lulu 动效。</p></div>
+    <div class="ds-card"><b>Lulu 帧率</b><p class="t-foot mt-2">≤12fps 手绘帧感。切帧不位移（双锚点对齐）。once 剪辑停在 poster 帧，不鬼畜循环。</p></div>
+  </div>
+</section>
+
+<!-- 9 可访问性 -->
+<section class="ds-sec" id="a11y" data-od-id="ds-a11y">
+  <h2><span class="no">09</span>Dynamic Type 与 VoiceOver</h2>
+  <div class="ds-grid g2">
+    <div class="ds-card">
+      <b>Dynamic Type 放大思路</b>
+      <p class="t-foot mt-2">字号阶梯整体随系统缩放（基准 17px 正文）。放大到 AX 级时：圆桌席位从环形布局降级为纵向列表（席位语义不变）；卡片由多列降为单列；底部 Tab 只留图标 + 文字加大行高；缺口徽章数字允许换行但不缩小。所有滚动容器不锁高度。</p>
+    </div>
+    <div class="ds-card">
+      <b>VoiceOver 思路</b>
+      <p class="t-foot mt-2">圆桌席位朗读为「N 人已就位，缺 M 人 + 缺口角色」，不逐个点名；缺口席位在焦点顺序中排最前；Lulu 动效标记为装饰性（decoractive），其状态语义由旁边文案承担；所有贴纸带角色 alt（如「后卫（缺口）」）。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 10 红线 -->
+<section class="ds-sec" id="redlines" data-od-id="ds-redlines">
+  <h2><span class="no">10</span>设计侧红线（不可协商）</h2>
+  <p class="lead">以下在任何页面、卡片、浮层、通知、空态、异常态中都不得出现。出现即为设计错误。</p>
+  <div class="ds-grid g2" style="margin-top:28px">
+    <div class="redline">他人的信任等级、积分、排行榜</div>
+    <div class="redline">他人的课表、忙碌原因、时间信息</div>
+    <div class="redline">同课同学名单</div>
+    <div class="redline">「某某拒绝了你」类归因文案</div>
+    <div class="redline">招募未满时的报名人数与名单</div>
+    <div class="redline">实时在场者、实时位置</div>
+    <div class="redline">人物卡片流、刷人入口</div>
+    <div class="redline">动态流、公开个人主页</div>
+    <div class="redline">双向确认前的真实身份</div>
+    <div class="redline">成绩、绩点、学业表现</div>
+    <div class="redline">自习区 / 健身房的现场社交入口</div>
+    <div class="redline">加好友、陌生人搜索、通讯录扩列</div>
+    <div class="redline">已读回执、在线状态、正在输入</div>
+    <div class="redline">共同经历里的评价与印象标签</div>
+    <div class="redline">搭子数量排行、跨关系聚合</div>
+    <div class="redline">AI 主动闲聊、人格养成、留存机制</div>
+    <div class="redline">招募期群聊、拉人进群、群二维码</div>
+    <div class="redline">跳过预览直接预约的入口</div>
+  </div>
+  <div class="ds-grid g2" style="margin-top:14px">
+    <div class="okline">页面显得空的时候，用信息结构承担视觉重量，不用社交产品填充物。</div>
+    <div class="okline">每个页面先回答两个问题：用户现在要完成什么？下一步是什么？</div>
+  </div>
+</section>
+
+</div>
+
+<script src="js/lulu.js"></script>
+<script src="js/app.js"></script>
+<script>
+  /* Lulu 状态演示格 */
+  const LULU_DEMO = [
+    ["home.idle", "待机", "loop"], ["home.listening", "在听", "loop"], ["home.thinking", "在想", "loop"], ["home.reply", "回应", "loop"],
+    ["core.care", "关切", "loop"], ["core.celebrate", "庆祝", "once"], ["intent.card", "举意图卡", "once"], ["pool.waiting", "等待招募", "loop"],
+    ["confirm.gather", "清点确认", "once"], ["action.preview", "递出预约单", "once"], ["action.executing", "正在执行", "loop"], ["exit.bow", "退场", "once"],
+  ];
+  document.getElementById("ds-lulu-grid").innerHTML = LULU_DEMO.map(([clip, name, mode]) =>
+    `<div class="ds-card lulu-cell">${luluHTML(clip, "lulu-header")}<div class="nm">${name}</div><div class="sz">${clip} · ${mode}</div></div>`
+  ).join("");
+
+  /* 贴纸墙 */
+  const STICKERS = [
+    ["chair-empty.png","空椅子"],["round-table.png","圆桌"],["nameplate-blank.png","空白名牌"],["access-card.png","门禁卡"],["qr-plaque-blank.png","二维码牌"],["hourglass.png","沙漏"],
+    ["badminton.png","羽毛球"],["basketball.png","篮球"],["table-tennis.png","乒乓球"],["football.png","足球"],["running-shoe.png","跑鞋"],["sports-bottle.png","水壶"],
+    ["books-stack.png","书堆"],["laptop-closed.png","笔记本电脑"],["notebook-open.png","活页本"],["marker.png","马克笔"],["alarm-clock.png","闹钟"],["desk-calendar.png","台历"],
+    ["seminar-room-sign.png","研讨室门牌"],["study-lamp.png","台灯"],["teaching-building.png","教学楼"],["school-bus.png","校车"],["poster-blank.png","空白海报"],["cafeteria-tray.png","餐盘"],
+    ["backend-server.png","后端"],["frontend-browser.png","前端"],["data-chart.png","数据"],["product-notes.png","产品"],["algorithm-gear.png","算法"],["design-palette.png","设计"],
+    ["trophy.png","奖杯"],["certificate.png","证书"],["badge.png","徽章"],["envelope.png","信封"],["chat-bubble.png","对话气泡"],["approval-stamp.png","对勾印章"],
+  ];
+  document.getElementById("ds-sticker-grid").innerHTML = STICKERS.map(([f, n]) =>
+    `<div class="stk"><img src="assets/stickers/${f}" alt="${n}"><div class="n">${n}</div></div>`
+  ).join("");
+
+  /* 席位演示 */
+  document.getElementById("ds-seat-demo").innerHTML = P.seatTable("数模 · 2/3 已就位", [
+    { role: "建模", state: "filled", sticker: "data-chart.png" },
+    { role: "编程", state: "filled", sticker: "algorithm-gear.png" },
+    { role: "写作", state: "gap", sticker: "marker.png" },
+  ], "round-table.png");
+
+  luluBoot(document.body);
+</script>
+</body>
+</html>

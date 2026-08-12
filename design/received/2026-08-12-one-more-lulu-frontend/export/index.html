@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>差一个 · ONE MORE — 交付启动器</title>
+<link rel="stylesheet" href="css/tokens.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--font-body); line-height: 1.6; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px 120px; }
+  header { padding: 88px 0 48px; border-bottom: 1px solid var(--line); }
+  h1 { font-size: 56px; letter-spacing: -0.03em; line-height: 1.06; font-weight: 800; }
+  .sub { color: var(--mist); font-size: 18px; margin-top: 16px; max-width: 620px; }
+  .entries { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+  .entry {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 26px;
+    transition: transform 160ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .entry:hover { transform: translateY(-2px); border-color: var(--ink); }
+  .entry .k { font-family: var(--font-mono); font-size: 12px; color: var(--mist); letter-spacing: 0.08em; }
+  .entry h3 { font-size: 22px; margin-top: 8px; letter-spacing: -0.01em; }
+  .entry p { color: var(--mist); font-size: 14px; margin-top: 8px; }
+  .entry .go { display: inline-block; margin-top: 14px; font-size: 13px; font-weight: 700; background: var(--yolk); padding: 6px 14px; border-radius: 999px; }
+  h2 { font-size: 26px; margin: 64px 0 6px; letter-spacing: -0.02em; }
+  .h2sub { color: var(--mist); font-size: 14px; margin-bottom: 20px; }
+  .group { margin-bottom: 28px; }
+  .group .gt { font-size: 13px; font-weight: 800; letter-spacing: 0.06em; color: var(--mist); text-transform: uppercase; margin-bottom: 10px; }
+  .nodes { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+  .node {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px;
+    font-size: 13px;
+  }
+  .node:hover { border-color: var(--yolk); }
+  .node b { font-family: var(--font-mono); font-size: 11px; color: var(--mist); display: block; }
+  .node.hot { border-color: var(--yolk); border-width: 2px; }
+  @media (max-width: 760px) { .entries { grid-template-columns: 1fr; } h1 { font-size: 38px; } }
+</style>
+</head>
+<body>
+<div class="wrap" data-od-id="launcher">
+  <header>
+    <h1>差一个 · ONE MORE</h1>
+    <p class="sub">中山大学校园「成局」工具 · iOS 高保真原型交付。AI 不介绍人，AI 促成事——人凑齐、场订好，Lulu 就退场。</p>
+  </header>
+
+  <div class="entries" data-od-id="launcher-entries">
+    <a class="entry" href="mobile-ios.html" data-od-id="entry-prototype">
+      <span class="k">PROTOTYPE · 74 SCREENS</span>
+      <h3>iPhone 高保真原型</h3>
+      <p>一台 iPhone 壳内五 Tab 切换：今天 / 比赛 / ⊕ 差一个 / 消息 / 我。74 个节点全部可点击到达，关键流程可连续走通。</p>
+      <span class="go">打开原型 →</span>
+    </a>
+    <a class="entry" href="design-system.html" data-od-id="entry-ds">
+      <span class="k">DESIGN SYSTEM · v1.0</span>
+      <h3>「差一个」设计系统</h3>
+      <p>独立成文：概念 / 色彩 / 字体 / 栅格 / 组件 / Lulu 出场矩阵 / 36 贴纸 / 动效 / Dynamic Type 与 VoiceOver / 红线。</p>
+      <span class="go">打开设计系统 →</span>
+    </a>
+  </div>
+
+  <h2>74 节点地图</h2>
+  <p class="h2sub">点击任意节点直达原型内对应屏。黄色描边 = 产品核心页。</p>
+  <div id="node-map" data-od-id="node-map"></div>
+</div>
+
+<script>
+const GROUPS = [
+  ["A · 认证与初始化", [["A1","启动路由"],["A2","认证说明"],["A3","扫码认证"],["A4","授权范围"],["A5","画像初始化"],["A6","画像确认"],["A7","社交开关"],["A8","系统权限"]]],
+  ["B · 今天与校园工具", [["B1","今天"],["B2","Hermes 问答"],["B3","我的课表"],["B3.1","课程详情"],["B4","作业与 DDL"],["B4.1","作业详情"],["B5","体育场馆"],["B5.1","体育时段"],["B6","研讨室"],["B6.1","研讨室时段"],["B7","校园活动"],["B7.1","活动详情"],["B8","组会与课题"],["B9","班车与节次"],["B10","场景触发"],["B11","个人行动预览"],["B12","比赛雷达",1],["B12.1","赛事详情",1]]],
+  ["C · 公开局与站外落地", [["C1","公开局"],["C2","公开局详情"],["C3","准入门槛"],["C4","缺口卡落地"]]],
+  ["D · 意图与匹配", [["D1","意图输入"],["D2","澄清追问"],["D3","意图卡确认"],["D3.1","能力编辑"],["D3.2","空档选择"],["D3.3","角色编辑"],["D3.4","安全偏好"],["D4","匿名池"]]],
+  ["E · 局的全生命周期", [["E1","我的局"],["E2","局详情"],["E3","多人确认"],["E4","改约协商"],["E5","行动预览",1],["E6","执行结果"],["E7","协作空间",1],["E8","补位"],["E9","完成确认"],["E10","复局选择"],["E11","共同目标"],["E12","退出"],["E13","举报与拉黑"],["E14","局内群聊"],["E15","搭子关系"],["E16","共同经历"],["E17","解除关系"]]],
+  ["M · 我", [["M1","个人中心"],["M2","画像编辑"],["M3","信任进度"],["M4","授权管理"],["M5","隐私与安全"],["M6","匹配偏好"],["M7","通知与日历"],["M8","黑名单"],["M9","信任申诉"],["M10","账号与数据"]]],
+  ["O · 主理人", [["O1","主理人控制台"],["O2","创建官方局"],["O3","报名与到场看板"],["O4","官方局模板"]]],
+  ["G · 全局与跨阶段", [["G1","Hermes 唤起"],["G2","缺口卡分享"],["G3","认证恢复"],["G4","静默解散"],["G5","状态规范",1]]],
+];
+document.getElementById("node-map").innerHTML = GROUPS.map(([name, nodes]) =>
+  `<div class="group"><div class="gt">${name}（${nodes.length}）</div><div class="nodes">${
+    nodes.map(([id, label, hot]) => `<a class="node ${hot ? "hot" : ""}" href="mobile-ios.html#/s/${id}"><b>${id}</b>${label}</a>`).join("")
+  }</div></div>`
+).join("");
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+/* ============================================================
+   差一个 · ONE MORE — Design Tokens v1.0
+   色向：暖纸底 / 深墨绿黑 / 明黄唯一强调 / 灰绿中性
+   语义硬规则：明黄 = 缺口与主行动（全屏最高视觉权重）
+              深墨绿黑 = 已就位 / 已具备
+              缺口禁止用红色表达
+   ============================================================ */
+
+:root {
+  /* — 基础色板（七色，不新增） — */
+  --paper: #f6f4ec;        /* 页面画布 · 暖纸 */
+  --ink: #1f2d25;          /* 正文与标题 · 深墨绿黑 */
+  --yolk: #f6c945;         /* 唯一强调 · 缺口 / 主行动 */
+  --card: #fffdf8;         /* 卡片表面 */
+  --mist: #5d6b63;         /* 次要文字 · 灰绿 */
+  --line: #dce3d9;         /* 描边与分隔 */
+  --sage: #cbd4cc;         /* 次级行动 / 弱强调 */
+
+  /* — 派生色（仅由基础色混合，不引入新色） — */
+  --ink-60: color-mix(in oklch, var(--ink) 60%, var(--paper));
+  --ink-12: color-mix(in oklch, var(--ink) 12%, var(--card));
+  --ink-06: color-mix(in oklch, var(--ink) 6%, var(--card));
+  --yolk-30: color-mix(in oklch, var(--yolk) 30%, var(--card));
+  --yolk-14: color-mix(in oklch, var(--yolk) 14%, var(--card));
+  --mist-40: color-mix(in oklch, var(--mist) 40%, var(--paper));
+
+  /* — 语义别名 — */
+  --gap: var(--yolk);            /* 缺口：全屏最高权重 */
+  --gap-soft: var(--yolk-14);
+  --ready: var(--ink);           /* 已就位 */
+  --ready-soft: var(--ink-06);
+
+  /* — 字体 — */
+  --font-display: system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB", "Segoe UI", "Microsoft YaHei", sans-serif;
+  --font-body: system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB", "Segoe UI", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+
+  /* — 字号阶梯（Dynamic Type 以 17px 正文为基准缩放） — */
+  --fs-hero: 34px;
+  --fs-title1: 28px;
+  --fs-title2: 22px;
+  --fs-title3: 17px;
+  --fs-body: 17px;
+  --fs-callout: 15px;
+  --fs-footnote: 13px;
+  --fs-caption: 11px;
+
+  /* — 栅格与间距（4pt 基线） — */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --page-x: 20px;
+
+  /* — 形状 — */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+  --bw: 1px;
+
+  /* — 动效 — */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 160ms;
+  --dur-med: 280ms;
+
+  /* — Lulu 出场尺寸（pt） — */
+  --lulu-hero: 260px;      /* 主场景 240–300 */
+  --lulu-header: 120px;    /* 页面头部 96–140 */
+  --lulu-empty: 170px;     /* 空态 / 错误态 140–190 */
+  --lulu-confirm: 84px;    /* 确认卡 72–96 */
+  --lulu-avatar: 44px;     /* 消息头像 36–48 */
+}

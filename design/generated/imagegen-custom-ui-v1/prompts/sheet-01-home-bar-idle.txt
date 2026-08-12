@@ -1,0 +1,9 @@
+Use case: stylized-concept
+Asset type: native iOS custom UI pictogram sheet
+Primary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: idle time track ring with star node; idle prism/circuit trophy; idle four-node open gathering ring with incoming final node; idle linked conversation bubbles; idle anonymous profile inside privacy ring; minimal idle open-gap brand ring with incoming diamond.
+Scene/backdrop: perfectly flat solid #39FF14 chroma-key background.
+Style/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.
+Composition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.
+Color palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.
+Constraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.
+Avoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.

@@ -1,0 +1,1946 @@
+{
+  "schema_version": 1,
+  "generated_sheet_count": 11,
+  "imagegen_call_count": 12,
+  "asset_count": 66,
+  "alpha_asset_count": 66,
+  "qa_pass_count": 66,
+  "home_bar_pair_alpha_mask_iou": {
+    "om_tab_today_idle__om_tab_today_active": 0.956,
+    "om_tab_competitions_idle__om_tab_competitions_active": 0.9703,
+    "om_tab_create_idle__om_tab_create_active": 0.963,
+    "om_tab_messages_idle__om_tab_messages_active": 0.9739,
+    "om_tab_profile_idle__om_tab_profile_active": 0.975,
+    "om_brand_gap_mark_idle__om_brand_gap_mark_active": 0.9446
+  },
+  "overview_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/previews/FINAL_CONTACT_SHEET.png",
+  "asset_index_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/previews/ALL_66_ASSET_INDEX.png",
+  "assets": {
+    "om_tab_today_idle": {
+      "alpha_bbox": [
+        72,
+        69,
+        440,
+        444
+      ],
+      "optical_span_ratio": 0.732422,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.222973,
+      "partial_alpha_pixel_ratio": 0.034653,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 179.99,
+      "visible_pixels_at_24px": 169,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null,
+      "active_idle_alpha_mask_iou": 0.956
+    },
+    "om_tab_competitions_idle": {
+      "alpha_bbox": [
+        83,
+        68,
+        427,
+        444
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.263344,
+      "partial_alpha_pixel_ratio": 0.023201,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 181.3,
+      "visible_pixels_at_24px": 191,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null,
+      "active_idle_alpha_mask_iou": 0.9703
+    },
+    "om_tab_create_idle": {
+      "alpha_bbox": [
+        68,
+        101,
+        444,
+        411
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.10825,
+      "partial_alpha_pixel_ratio": 0.01543,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 195.64,
+      "visible_pixels_at_24px": 95,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null,
+      "active_idle_alpha_mask_iou": 0.963
+    },
+    "om_tab_messages_idle": {
+      "alpha_bbox": [
+        68,
+        144,
+        444,
+        368
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.140144,
+      "partial_alpha_pixel_ratio": 0.010147,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 201.68,
+      "visible_pixels_at_24px": 104,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null,
+      "active_idle_alpha_mask_iou": 0.9739
+    },
+    "om_tab_profile_idle": {
+      "alpha_bbox": [
+        69,
+        68,
+        443,
+        444
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.275364,
+      "partial_alpha_pixel_ratio": 0.025211,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 199.93,
+      "visible_pixels_at_24px": 206,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null,
+      "active_idle_alpha_mask_iou": 0.975
+    },
+    "om_brand_gap_mark_idle": {
+      "alpha_bbox": [
+        68,
+        100,
+        444,
+        411
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.120316,
+      "partial_alpha_pixel_ratio": 0.020046,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 196.85,
+      "visible_pixels_at_24px": 104,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null,
+      "active_idle_alpha_mask_iou": 0.9446
+    },
+    "om_tab_today_active": {
+      "alpha_bbox": [
+        71,
+        68,
+        440,
+        444
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.219276,
+      "partial_alpha_pixel_ratio": 0.019157,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 188.59,
+      "visible_pixels_at_24px": 170,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null,
+      "active_idle_alpha_mask_iou": 0.956
+    },
+    "om_tab_competitions_active": {
+      "alpha_bbox": [
+        83,
+        68,
+        429,
+        444
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.259937,
+      "partial_alpha_pixel_ratio": 0.018192,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 182.2,
+      "visible_pixels_at_24px": 193,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null,
+      "active_idle_alpha_mask_iou": 0.9703
+    },
+    "om_tab_create_active": {
+      "alpha_bbox": [
+        68,
+        101,
+        444,
+        411
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.105427,
+      "partial_alpha_pixel_ratio": 0.011898,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 192.9,
+      "visible_pixels_at_24px": 95,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null,
+      "active_idle_alpha_mask_iou": 0.963
+    },
+    "om_tab_messages_active": {
+      "alpha_bbox": [
+        68,
+        145,
+        444,
+        366
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.136669,
+      "partial_alpha_pixel_ratio": 0.007797,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 191.9,
+      "visible_pixels_at_24px": 103,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null,
+      "active_idle_alpha_mask_iou": 0.9739
+    },
+    "om_tab_profile_active": {
+      "alpha_bbox": [
+        68,
+        68,
+        444,
+        444
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.271717,
+      "partial_alpha_pixel_ratio": 0.020424,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 193.56,
+      "visible_pixels_at_24px": 204,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null,
+      "active_idle_alpha_mask_iou": 0.975
+    },
+    "om_brand_gap_mark_active": {
+      "alpha_bbox": [
+        68,
+        100,
+        444,
+        411
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.115795,
+      "partial_alpha_pixel_ratio": 0.015152,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 194.98,
+      "visible_pixels_at_24px": 102,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null,
+      "active_idle_alpha_mask_iou": 0.9446
+    },
+    "om_tool_schedule": {
+      "alpha_bbox": [
+        68,
+        74,
+        444,
+        437
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.44788,
+      "partial_alpha_pixel_ratio": 0.015667,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 198.27,
+      "visible_pixels_at_24px": 286,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_tool_deadline": {
+      "alpha_bbox": [
+        94,
+        68,
+        418,
+        444
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.39822,
+      "partial_alpha_pixel_ratio": 0.033539,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 213.09,
+      "visible_pixels_at_24px": 256,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": "Removed a small neighboring-cell fragment at the right cell edge."
+    },
+    "om_tool_study_room": {
+      "alpha_bbox": [
+        68,
+        86,
+        444,
+        425
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.296021,
+      "partial_alpha_pixel_ratio": 0.025696,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 201.56,
+      "visible_pixels_at_24px": 195,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": "Added fixed-cell safety padding after the generated vignette touched the left cell edge."
+    },
+    "om_tool_sports": {
+      "alpha_bbox": [
+        68,
+        87,
+        444,
+        425
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.181793,
+      "partial_alpha_pixel_ratio": 0.049793,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 191.37,
+      "visible_pixels_at_24px": 160,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_tool_shuttle": {
+      "alpha_bbox": [
+        68,
+        99,
+        444,
+        413
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.29427,
+      "partial_alpha_pixel_ratio": 0.024384,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 187.86,
+      "visible_pixels_at_24px": 211,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": "Removed a small neighboring-cell fragment at the right cell edge."
+    },
+    "om_tool_official_event": {
+      "alpha_bbox": [
+        68,
+        116,
+        444,
+        396
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.295795,
+      "partial_alpha_pixel_ratio": 0.020561,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 195.01,
+      "visible_pixels_at_24px": 201,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": "Added fixed-cell safety padding after the generated stage touched the left cell edge."
+    },
+    "om_feature_public_gathering": {
+      "alpha_bbox": [
+        76,
+        68,
+        436,
+        444
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.173477,
+      "partial_alpha_pixel_ratio": 0.024616,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 186.5,
+      "visible_pixels_at_24px": 142,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": "Targeted cell repair: reused the approved occupied-node geometry from the same generated cell to add the missing third occupied node; the other five cells remain from Sheet 04 v1."
+    },
+    "om_feature_my_gatherings": {
+      "alpha_bbox": [
+        68,
+        121,
+        444,
+        391
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.139996,
+      "partial_alpha_pixel_ratio": 0.019341,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 185.98,
+      "visible_pixels_at_24px": 129,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_feature_relations": {
+      "alpha_bbox": [
+        68,
+        149,
+        444,
+        362
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.095764,
+      "partial_alpha_pixel_ratio": 0.01519,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 184.95,
+      "visible_pixels_at_24px": 94,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_feature_competition_team": {
+      "alpha_bbox": [
+        68,
+        69,
+        444,
+        443
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.175571,
+      "partial_alpha_pixel_ratio": 0.023605,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 192.87,
+      "visible_pixels_at_24px": 152,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_feature_prep_partner": {
+      "alpha_bbox": [
+        68,
+        144,
+        444,
+        367
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.11063,
+      "partial_alpha_pixel_ratio": 0.013824,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 182.26,
+      "visible_pixels_at_24px": 100,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": "Removed a small waveform fragment belonging to the adjacent cell."
+    },
+    "om_feature_intent": {
+      "alpha_bbox": [
+        68,
+        178,
+        444,
+        335
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.107105,
+      "partial_alpha_pixel_ratio": 0.014744,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 193.96,
+      "visible_pixels_at_24px": 92,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": "Added fixed-cell safety padding around the waveform-to-card composition."
+    },
+    "om_state_waiting_confirmation": {
+      "alpha_bbox": [
+        68,
+        70,
+        444,
+        441
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.142799,
+      "partial_alpha_pixel_ratio": 0.016598,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 201.14,
+      "visible_pixels_at_24px": 126,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_state_action_preview": {
+      "alpha_bbox": [
+        91,
+        68,
+        421,
+        444
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.243336,
+      "partial_alpha_pixel_ratio": 0.022247,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 216.2,
+      "visible_pixels_at_24px": 205,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_state_executing": {
+      "alpha_bbox": [
+        68,
+        83,
+        444,
+        428
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.207924,
+      "partial_alpha_pixel_ratio": 0.037941,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 183.44,
+      "visible_pixels_at_24px": 193,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_state_success": {
+      "alpha_bbox": [
+        68,
+        71,
+        444,
+        441
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.217842,
+      "partial_alpha_pixel_ratio": 0.018677,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 207.19,
+      "visible_pixels_at_24px": 169,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_state_needs_adjustment": {
+      "alpha_bbox": [
+        68,
+        147,
+        444,
+        365
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.120079,
+      "partial_alpha_pixel_ratio": 0.012665,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 197.13,
+      "visible_pixels_at_24px": 107,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_state_backfill": {
+      "alpha_bbox": [
+        68,
+        75,
+        444,
+        437
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.159016,
+      "partial_alpha_pixel_ratio": 0.016548,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 196.51,
+      "visible_pixels_at_24px": 134,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_collab_group_chat": {
+      "alpha_bbox": [
+        69,
+        99,
+        444,
+        412
+      ],
+      "optical_span_ratio": 0.732422,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.188541,
+      "partial_alpha_pixel_ratio": 0.015282,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 197.76,
+      "visible_pixels_at_24px": 145,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_collab_azou_mention": {
+      "alpha_bbox": [
+        68,
+        91,
+        444,
+        421
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.20525,
+      "partial_alpha_pixel_ratio": 0.019684,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 189.87,
+      "visible_pixels_at_24px": 160,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_collab_shared_goal": {
+      "alpha_bbox": [
+        68,
+        127,
+        444,
+        384
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.129932,
+      "partial_alpha_pixel_ratio": 0.019516,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 181.1,
+      "visible_pixels_at_24px": 130,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_collab_recurrence": {
+      "alpha_bbox": [
+        68,
+        133,
+        444,
+        379
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.113834,
+      "partial_alpha_pixel_ratio": 0.014893,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 194.31,
+      "visible_pixels_at_24px": 103,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_collab_calendar_commit": {
+      "alpha_bbox": [
+        68,
+        90,
+        443,
+        422
+      ],
+      "optical_span_ratio": 0.732422,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.380665,
+      "partial_alpha_pixel_ratio": 0.013657,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 207.36,
+      "visible_pixels_at_24px": 244,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_collab_experience": {
+      "alpha_bbox": [
+        68,
+        194,
+        444,
+        318
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.097214,
+      "partial_alpha_pixel_ratio": 0.013649,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 197.56,
+      "visible_pixels_at_24px": 88,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_settings_trust": {
+      "alpha_bbox": [
+        96,
+        68,
+        416,
+        444
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.362957,
+      "partial_alpha_pixel_ratio": 0.013336,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 178.96,
+      "visible_pixels_at_24px": 234,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_settings_permissions": {
+      "alpha_bbox": [
+        93,
+        68,
+        418,
+        444
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.285305,
+      "partial_alpha_pixel_ratio": 0.046745,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 181.01,
+      "visible_pixels_at_24px": 227,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_settings_privacy": {
+      "alpha_bbox": [
+        68,
+        99,
+        444,
+        412
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.290897,
+      "partial_alpha_pixel_ratio": 0.029266,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 196.56,
+      "visible_pixels_at_24px": 210,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_settings_block_report": {
+      "alpha_bbox": [
+        68,
+        136,
+        444,
+        375
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.124718,
+      "partial_alpha_pixel_ratio": 0.015259,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 180.94,
+      "visible_pixels_at_24px": 97,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_settings_appeal": {
+      "alpha_bbox": [
+        96,
+        68,
+        416,
+        444
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.327877,
+      "partial_alpha_pixel_ratio": 0.020554,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 194.42,
+      "visible_pixels_at_24px": 215,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_settings_account_data": {
+      "alpha_bbox": [
+        68,
+        103,
+        444,
+        409
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.265438,
+      "partial_alpha_pixel_ratio": 0.04319,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 177.93,
+      "visible_pixels_at_24px": 219,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_organizer_official": {
+      "alpha_bbox": [
+        68,
+        69,
+        444,
+        441
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.258739,
+      "partial_alpha_pixel_ratio": 0.016914,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 207.86,
+      "visible_pixels_at_24px": 199,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_organizer_dashboard": {
+      "alpha_bbox": [
+        68,
+        76,
+        444,
+        436
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.511497,
+      "partial_alpha_pixel_ratio": 0.010494,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 213.5,
+      "visible_pixels_at_24px": 320,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_organizer_attendance": {
+      "alpha_bbox": [
+        68,
+        78,
+        444,
+        434
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.213676,
+      "partial_alpha_pixel_ratio": 0.024319,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 211.84,
+      "visible_pixels_at_24px": 204,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_organizer_template": {
+      "alpha_bbox": [
+        68,
+        90,
+        444,
+        421
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.434444,
+      "partial_alpha_pixel_ratio": 0.009167,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 221.19,
+      "visible_pixels_at_24px": 269,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_message_image": {
+      "alpha_bbox": [
+        68,
+        68,
+        443,
+        444
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.470707,
+      "partial_alpha_pixel_ratio": 0.009644,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 209.54,
+      "visible_pixels_at_24px": 292,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_message_location_once": {
+      "alpha_bbox": [
+        95,
+        68,
+        416,
+        444
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.23386,
+      "partial_alpha_pixel_ratio": 0.014942,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 210.77,
+      "visible_pixels_at_24px": 180,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_ornament_gap_ring": {
+      "alpha_bbox": [
+        81,
+        68,
+        431,
+        444
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.089573,
+      "partial_alpha_pixel_ratio": 0.034649,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 179.98,
+      "visible_pixels_at_24px": 84,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_ornament_sensing_halo": {
+      "alpha_bbox": [
+        73,
+        68,
+        439,
+        444
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.101421,
+      "partial_alpha_pixel_ratio": 0.030033,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 187.73,
+      "visible_pixels_at_24px": 177,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_ornament_card_corner": {
+      "alpha_bbox": [
+        74,
+        68,
+        437,
+        444
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.125469,
+      "partial_alpha_pixel_ratio": 0.033878,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 176.27,
+      "visible_pixels_at_24px": 114,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_ornament_qr_frame": {
+      "alpha_bbox": [
+        68,
+        69,
+        444,
+        444
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.095444,
+      "partial_alpha_pixel_ratio": 0.032455,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 192.37,
+      "visible_pixels_at_24px": 77,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_ornament_verified_source": {
+      "alpha_bbox": [
+        68,
+        87,
+        444,
+        424
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.12656,
+      "partial_alpha_pixel_ratio": 0.034645,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 197.58,
+      "visible_pixels_at_24px": 114,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_ornament_share_gap": {
+      "alpha_bbox": [
+        68,
+        86,
+        444,
+        426
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.098141,
+      "partial_alpha_pixel_ratio": 0.028511,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 194.9,
+      "visible_pixels_at_24px": 89,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_spot_deadline_sprint": {
+      "alpha_bbox": [
+        68,
+        116,
+        444,
+        396
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.296276,
+      "partial_alpha_pixel_ratio": 0.008305,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 200.87,
+      "visible_pixels_at_24px": 208,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_spot_badminton": {
+      "alpha_bbox": [
+        68,
+        93,
+        444,
+        418
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.317417,
+      "partial_alpha_pixel_ratio": 0.033016,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 182.08,
+      "visible_pixels_at_24px": 232,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_spot_study_room": {
+      "alpha_bbox": [
+        68,
+        82,
+        444,
+        429
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.354408,
+      "partial_alpha_pixel_ratio": 0.01466,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 194.4,
+      "visible_pixels_at_24px": 251,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_spot_competition_project": {
+      "alpha_bbox": [
+        68,
+        111,
+        444,
+        400
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.347187,
+      "partial_alpha_pixel_ratio": 0.007805,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 171.32,
+      "visible_pixels_at_24px": 223,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_spot_campus_event": {
+      "alpha_bbox": [
+        68,
+        86,
+        444,
+        425
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.452057,
+      "partial_alpha_pixel_ratio": 0.006554,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 184.51,
+      "visible_pixels_at_24px": 276,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_spot_campus_shuttle": {
+      "alpha_bbox": [
+        68,
+        93,
+        444,
+        418
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.214478,
+      "partial_alpha_pixel_ratio": 0.018669,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 156.83,
+      "visible_pixels_at_24px": 167,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_empty_today": {
+      "alpha_bbox": [
+        68,
+        113,
+        444,
+        399
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.094101,
+      "partial_alpha_pixel_ratio": 0.013371,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 192.12,
+      "visible_pixels_at_24px": 102,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_empty_public_gatherings": {
+      "alpha_bbox": [
+        68,
+        122,
+        444,
+        389
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.187866,
+      "partial_alpha_pixel_ratio": 0.011509,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 213.29,
+      "visible_pixels_at_24px": 144,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_empty_competitions": {
+      "alpha_bbox": [
+        68,
+        128,
+        444,
+        383
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.121929,
+      "partial_alpha_pixel_ratio": 0.012695,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 208.98,
+      "visible_pixels_at_24px": 110,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_empty_messages": {
+      "alpha_bbox": [
+        68,
+        157,
+        444,
+        355
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.120327,
+      "partial_alpha_pixel_ratio": 0.005852,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 212.2,
+      "visible_pixels_at_24px": 94,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_state_offline": {
+      "alpha_bbox": [
+        68,
+        141,
+        444,
+        369
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.077785,
+      "partial_alpha_pixel_ratio": 0.012318,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 200.98,
+      "visible_pixels_at_24px": 95,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    },
+    "om_state_session_expired": {
+      "alpha_bbox": [
+        68,
+        158,
+        444,
+        353
+      ],
+      "optical_span_ratio": 0.734375,
+      "minimum_safety_margin_px": 68,
+      "visible_pixel_ratio": 0.105114,
+      "partial_alpha_pixel_ratio": 0.009228,
+      "alpha_corner_check": {
+        "top_left": 0,
+        "top_right": 0,
+        "bottom_left": 0,
+        "bottom_right": 0,
+        "pass": true
+      },
+      "green_fringe_pixels": 0,
+      "dark_background_mean_subject_luminance": 210.32,
+      "visible_pixels_at_24px": 99,
+      "optical_span_gate_70_to_76_percent": true,
+      "cropped_at_cell_edge": false,
+      "semantic_review": "pass",
+      "text_or_watermark_review": "pass",
+      "new_character_review": "pass",
+      "qa_status": "pass",
+      "repair_note": null
+    }
+  }
+}

@@ -1,0 +1,390 @@
+{
+  "schemaVersion": 1,
+  "name": "ONE MORE · Lulu 亮色设计稿（全 74 节点）",
+  "importedAt": "2026-08-12T13:42:40+08:00",
+  "status": "frozen_returned_design_reference",
+  "supersedes": "design/received/2026-08-11-one-more-mobile-prototype",
+  "source": {
+    "originalPath": "/Users/baihe/Downloads/新前端.zip",
+    "archivePath": "raw/新前端.zip",
+    "archiveBytes": 22414368,
+    "archiveSha256": "a1adb99733b6e90418538e189fb12d6677421d4640c32444298608e54ede4c58"
+  },
+  "entrypoints": {
+    "launcher": "export/index.html",
+    "prototype": "export/mobile-ios.html",
+    "designSystem": "export/design-system.html"
+  },
+  "routing": {
+    "pattern": "#/s/<nodeId>",
+    "tabPattern": "#/tab/<tabId>"
+  },
+  "tokens": "export/css/tokens.css",
+  "screens": {
+    "definedCount": 75,
+    "formalNodeCount": 74,
+    "extraCompositeStates": [
+      "MSG"
+    ],
+    "ids": [
+      "A1",
+      "A2",
+      "A3",
+      "A4",
+      "A5",
+      "A6",
+      "A7",
+      "A8",
+      "B1",
+      "B10",
+      "B11",
+      "B12",
+      "B12.1",
+      "B2",
+      "B3",
+      "B3.1",
+      "B4",
+      "B4.1",
+      "B5",
+      "B5.1",
+      "B6",
+      "B6.1",
+      "B7",
+      "B7.1",
+      "B8",
+      "B9",
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "D1",
+      "D2",
+      "D3",
+      "D3.1",
+      "D3.2",
+      "D3.3",
+      "D3.4",
+      "D4",
+      "E1",
+      "E10",
+      "E11",
+      "E12",
+      "E13",
+      "E14",
+      "E15",
+      "E16",
+      "E17",
+      "E2",
+      "E3",
+      "E4",
+      "E5",
+      "E6",
+      "E7",
+      "E8",
+      "E9",
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G5",
+      "M1",
+      "M10",
+      "M2",
+      "M3",
+      "M4",
+      "M5",
+      "M6",
+      "M7",
+      "M8",
+      "M9",
+      "MSG",
+      "O1",
+      "O2",
+      "O3",
+      "O4"
+    ]
+  },
+  "validation": {
+    "consoleErrors": 0,
+    "spotChecked": [
+      "B1",
+      "B12",
+      "E7"
+    ],
+    "checkedAt": "2026-08-12T13:42:40+08:00"
+  },
+  "files": [
+    {
+      "path": "export/DESIGN-HANDOFF.md",
+      "bytes": 9170
+    },
+    {
+      "path": "export/DESIGN-MANIFEST.json",
+      "bytes": 10800
+    },
+    {
+      "path": "export/assets/lulu/LuluActionExecutingAtlas.png",
+      "bytes": 705252
+    },
+    {
+      "path": "export/assets/lulu/LuluActionPreviewAtlas.png",
+      "bytes": 693816
+    },
+    {
+      "path": "export/assets/lulu/LuluConfirmGatherAtlas.png",
+      "bytes": 821678
+    },
+    {
+      "path": "export/assets/lulu/LuluCookingGuideAtlas.png",
+      "bytes": 903702
+    },
+    {
+      "path": "export/assets/lulu/LuluCoreStatesAtlas.png",
+      "bytes": 818542
+    },
+    {
+      "path": "export/assets/lulu/LuluDeviceConnectAtlas.png",
+      "bytes": 727655
+    },
+    {
+      "path": "export/assets/lulu/LuluExitBowAtlas.png",
+      "bytes": 673087
+    },
+    {
+      "path": "export/assets/lulu/LuluHomeIdleAtlas.png",
+      "bytes": 758491
+    },
+    {
+      "path": "export/assets/lulu/LuluHomeListeningAtlas.png",
+      "bytes": 798449
+    },
+    {
+      "path": "export/assets/lulu/LuluHomeReplyAtlas.png",
+      "bytes": 779978
+    },
+    {
+      "path": "export/assets/lulu/LuluHomeThinkingAtlas.png",
+      "bytes": 764149
+    },
+    {
+      "path": "export/assets/lulu/LuluIntentCardAtlas.png",
+      "bytes": 794128
+    },
+    {
+      "path": "export/assets/lulu/LuluInventoryReviewAtlas.png",
+      "bytes": 871338
+    },
+    {
+      "path": "export/assets/lulu/LuluInventoryScanAtlas.png",
+      "bytes": 986653
+    },
+    {
+      "path": "export/assets/lulu/LuluKitchenRolesAtlas.png",
+      "bytes": 1032261
+    },
+    {
+      "path": "export/assets/lulu/LuluPoolWaitingAtlas.png",
+      "bytes": 709826
+    },
+    {
+      "path": "export/assets/lulu/LuluRecipePlanAtlas.png",
+      "bytes": 934140
+    },
+    {
+      "path": "export/assets/lulu/LuluShoppingOrganizeAtlas.png",
+      "bytes": 893676
+    },
+    {
+      "path": "export/assets/lulu/lulu-motion.v1.json",
+      "bytes": 9547
+    },
+    {
+      "path": "export/assets/stickers/access-card.png",
+      "bytes": 137911
+    },
+    {
+      "path": "export/assets/stickers/alarm-clock.png",
+      "bytes": 237655
+    },
+    {
+      "path": "export/assets/stickers/algorithm-gear.png",
+      "bytes": 258335
+    },
+    {
+      "path": "export/assets/stickers/approval-stamp.png",
+      "bytes": 245103
+    },
+    {
+      "path": "export/assets/stickers/backend-server.png",
+      "bytes": 222663
+    },
+    {
+      "path": "export/assets/stickers/badge.png",
+      "bytes": 253064
+    },
+    {
+      "path": "export/assets/stickers/badminton.png",
+      "bytes": 200554
+    },
+    {
+      "path": "export/assets/stickers/basketball.png",
+      "bytes": 308762
+    },
+    {
+      "path": "export/assets/stickers/books-stack.png",
+      "bytes": 309339
+    },
+    {
+      "path": "export/assets/stickers/cafeteria-tray.png",
+      "bytes": 255720
+    },
+    {
+      "path": "export/assets/stickers/certificate.png",
+      "bytes": 184627
+    },
+    {
+      "path": "export/assets/stickers/chair-empty.png",
+      "bytes": 162441
+    },
+    {
+      "path": "export/assets/stickers/chat-bubble.png",
+      "bytes": 191133
+    },
+    {
+      "path": "export/assets/stickers/data-chart.png",
+      "bytes": 186218
+    },
+    {
+      "path": "export/assets/stickers/design-palette.png",
+      "bytes": 266671
+    },
+    {
+      "path": "export/assets/stickers/desk-calendar.png",
+      "bytes": 220857
+    },
+    {
+      "path": "export/assets/stickers/envelope.png",
+      "bytes": 215928
+    },
+    {
+      "path": "export/assets/stickers/football.png",
+      "bytes": 304545
+    },
+    {
+      "path": "export/assets/stickers/frontend-browser.png",
+      "bytes": 189358
+    },
+    {
+      "path": "export/assets/stickers/hourglass.png",
+      "bytes": 196773
+    },
+    {
+      "path": "export/assets/stickers/laptop-closed.png",
+      "bytes": 136893
+    },
+    {
+      "path": "export/assets/stickers/marker.png",
+      "bytes": 119710
+    },
+    {
+      "path": "export/assets/stickers/nameplate-blank.png",
+      "bytes": 176316
+    },
+    {
+      "path": "export/assets/stickers/notebook-open.png",
+      "bytes": 187056
+    },
+    {
+      "path": "export/assets/stickers/poster-blank.png",
+      "bytes": 180548
+    },
+    {
+      "path": "export/assets/stickers/product-notes.png",
+      "bytes": 277917
+    },
+    {
+      "path": "export/assets/stickers/qr-plaque-blank.png",
+      "bytes": 151401
+    },
+    {
+      "path": "export/assets/stickers/round-table.png",
+      "bytes": 212496
+    },
+    {
+      "path": "export/assets/stickers/running-shoe.png",
+      "bytes": 268473
+    },
+    {
+      "path": "export/assets/stickers/school-bus.png",
+      "bytes": 241798
+    },
+    {
+      "path": "export/assets/stickers/seminar-room-sign.png",
+      "bytes": 204928
+    },
+    {
+      "path": "export/assets/stickers/sports-bottle.png",
+      "bytes": 147314
+    },
+    {
+      "path": "export/assets/stickers/study-lamp.png",
+      "bytes": 154998
+    },
+    {
+      "path": "export/assets/stickers/table-tennis.png",
+      "bytes": 238897
+    },
+    {
+      "path": "export/assets/stickers/teaching-building.png",
+      "bytes": 316702
+    },
+    {
+      "path": "export/assets/stickers/trophy.png",
+      "bytes": 233177
+    },
+    {
+      "path": "export/critique.json",
+      "bytes": 1509
+    },
+    {
+      "path": "export/css/app.css",
+      "bytes": 20230
+    },
+    {
+      "path": "export/css/tokens.css",
+      "bytes": 2872
+    },
+    {
+      "path": "export/design-system.html",
+      "bytes": 22706
+    },
+    {
+      "path": "export/index.html",
+      "bytes": 6110
+    },
+    {
+      "path": "export/js/app.js",
+      "bytes": 13153
+    },
+    {
+      "path": "export/js/lulu.js",
+      "bytes": 3783
+    },
+    {
+      "path": "export/js/screens-1.js",
+      "bytes": 31538
+    },
+    {
+      "path": "export/js/screens-2.js",
+      "bytes": 31833
+    },
+    {
+      "path": "export/js/screens-3.js",
+      "bytes": 22124
+    },
+    {
+      "path": "export/mobile-ios.html",
+      "bytes": 707
+    }
+  ]
+}

@@ -1,0 +1,1982 @@
+[
+  {
+    "asset_id": "om_tab_today_idle",
+    "sheet_id": "sheet-01",
+    "row": 1,
+    "column": 1,
+    "semantic_description": "轨道式时间圆环，右上角克制星点",
+    "state": "idle",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_tab_today_idle.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_today_idle@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_today_idle@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_today_idle@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-01-home-bar-idle-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-01-home-bar-idle-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "4815666a711954f51b6db2e64c1dff8abf6741f4f71efe32d8655205c0895197",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: idle time track ring with star node; idle prism/circuit trophy; idle four-node open gathering ring with incoming final node; idle linked conversation bubbles; idle anonymous profile inside privacy ring; minimal idle open-gap brand ring with incoming diamond.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-01-home-bar-idle.txt"
+  },
+  {
+    "asset_id": "om_tab_competitions_idle",
+    "sheet_id": "sheet-01",
+    "row": 1,
+    "column": 2,
+    "semantic_description": "奖杯与棱晶、电路节点融合",
+    "state": "idle",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_tab_competitions_idle.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_competitions_idle@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_competitions_idle@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_competitions_idle@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-01-home-bar-idle-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-01-home-bar-idle-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "18e821bce7e811c4bac89918f9e1d96e745000e7b4a58def853f55eec6395cb2",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: idle time track ring with star node; idle prism/circuit trophy; idle four-node open gathering ring with incoming final node; idle linked conversation bubbles; idle anonymous profile inside privacy ring; minimal idle open-gap brand ring with incoming diamond.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-01-home-bar-idle.txt"
+  },
+  {
+    "asset_id": "om_tab_create_idle",
+    "sheet_id": "sheet-01",
+    "row": 1,
+    "column": 3,
+    "semantic_description": "四节点未闭合成局环与补入节点",
+    "state": "idle",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_tab_create_idle.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_create_idle@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_create_idle@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_create_idle@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-01-home-bar-idle-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-01-home-bar-idle-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "6ef1359dde12281349feae7d85358a3a474d21e554280bcc582755f60621cfcd",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: idle time track ring with star node; idle prism/circuit trophy; idle four-node open gathering ring with incoming final node; idle linked conversation bubbles; idle anonymous profile inside privacy ring; minimal idle open-gap brand ring with incoming diamond.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-01-home-bar-idle.txt"
+  },
+  {
+    "asset_id": "om_tab_messages_idle",
+    "sheet_id": "sheet-01",
+    "row": 2,
+    "column": 1,
+    "semantic_description": "双连接对话气泡与连接节点",
+    "state": "idle",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_tab_messages_idle.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_messages_idle@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_messages_idle@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_messages_idle@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-01-home-bar-idle-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-01-home-bar-idle-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "48e3d2351638d0c1cb82781e84dc9fb4addd9a2fac62969d56402514131d5591",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: idle time track ring with star node; idle prism/circuit trophy; idle four-node open gathering ring with incoming final node; idle linked conversation bubbles; idle anonymous profile inside privacy ring; minimal idle open-gap brand ring with incoming diamond.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-01-home-bar-idle.txt"
+  },
+  {
+    "asset_id": "om_tab_profile_idle",
+    "sheet_id": "sheet-01",
+    "row": 2,
+    "column": 2,
+    "semantic_description": "隐私保护环内的匿名人物轮廓",
+    "state": "idle",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_tab_profile_idle.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_profile_idle@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_profile_idle@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_profile_idle@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-01-home-bar-idle-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-01-home-bar-idle-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "838733a7ee613517cb0f220a45e04f41a23455729a80a6cb258ec83a745a19db",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: idle time track ring with star node; idle prism/circuit trophy; idle four-node open gathering ring with incoming final node; idle linked conversation bubbles; idle anonymous profile inside privacy ring; minimal idle open-gap brand ring with incoming diamond.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-01-home-bar-idle.txt"
+  },
+  {
+    "asset_id": "om_brand_gap_mark_idle",
+    "sheet_id": "sheet-01",
+    "row": 2,
+    "column": 3,
+    "semantic_description": "最简品牌缺口环与补入菱形",
+    "state": "idle",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_brand_gap_mark_idle.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_brand_gap_mark_idle@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_brand_gap_mark_idle@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_brand_gap_mark_idle@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-01-home-bar-idle-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-01-home-bar-idle-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "b6e2ebf262095f952e11f8ac4b29737580cbd210fdcce2aa18456eb39284678c",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: idle time track ring with star node; idle prism/circuit trophy; idle four-node open gathering ring with incoming final node; idle linked conversation bubbles; idle anonymous profile inside privacy ring; minimal idle open-gap brand ring with incoming diamond.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-01-home-bar-idle.txt"
+  },
+  {
+    "asset_id": "om_tab_today_active",
+    "sheet_id": "sheet-02",
+    "row": 1,
+    "column": 1,
+    "semantic_description": "轨道式时间圆环 active",
+    "state": "active",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_tab_today_active.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_today_active@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_today_active@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_today_active@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-02-home-bar-active-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-02-home-bar-active-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "f663023abdbe9f2a162c2bc3faa1b0ae80225ae8fd6d6768bf6774ec5c88d7cb",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Edit reference: Sheet 01. Preserve the six silhouettes, positions, scale and geometry exactly; change only to active cyan with restrained magenta focus nodes, with the create icon permitted about 12% more emphasis.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-02-home-bar-active.txt"
+  },
+  {
+    "asset_id": "om_tab_competitions_active",
+    "sheet_id": "sheet-02",
+    "row": 1,
+    "column": 2,
+    "semantic_description": "棱晶电路奖杯 active",
+    "state": "active",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_tab_competitions_active.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_competitions_active@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_competitions_active@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_competitions_active@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-02-home-bar-active-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-02-home-bar-active-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "15069c3b65e074831016e07479250822816db6d5e4e8fd84938487172cdbb68c",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Edit reference: Sheet 01. Preserve the six silhouettes, positions, scale and geometry exactly; change only to active cyan with restrained magenta focus nodes, with the create icon permitted about 12% more emphasis.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-02-home-bar-active.txt"
+  },
+  {
+    "asset_id": "om_tab_create_active",
+    "sheet_id": "sheet-02",
+    "row": 1,
+    "column": 3,
+    "semantic_description": "四节点缺口成局环 active",
+    "state": "active",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_tab_create_active.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_create_active@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_create_active@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_create_active@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-02-home-bar-active-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-02-home-bar-active-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "b24b9f6adf866482f3f995d581b526bf93d4986ffc6a9b806818d77e7d56bc0b",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Edit reference: Sheet 01. Preserve the six silhouettes, positions, scale and geometry exactly; change only to active cyan with restrained magenta focus nodes, with the create icon permitted about 12% more emphasis.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-02-home-bar-active.txt"
+  },
+  {
+    "asset_id": "om_tab_messages_active",
+    "sheet_id": "sheet-02",
+    "row": 2,
+    "column": 1,
+    "semantic_description": "连接对话气泡 active",
+    "state": "active",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_tab_messages_active.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_messages_active@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_messages_active@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_messages_active@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-02-home-bar-active-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-02-home-bar-active-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "3fda11370e2c0f6079ba121fa57a02ecedd9487ef18a9672d768d9d0477abf61",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Edit reference: Sheet 01. Preserve the six silhouettes, positions, scale and geometry exactly; change only to active cyan with restrained magenta focus nodes, with the create icon permitted about 12% more emphasis.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-02-home-bar-active.txt"
+  },
+  {
+    "asset_id": "om_tab_profile_active",
+    "sheet_id": "sheet-02",
+    "row": 2,
+    "column": 2,
+    "semantic_description": "隐私环匿名轮廓 active",
+    "state": "active",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_tab_profile_active.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_profile_active@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_profile_active@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_tab_profile_active@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-02-home-bar-active-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-02-home-bar-active-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "c83c3174b5f8676f533c1a16d2a3ad2cfa76aebab5ecead495fdb42c91954498",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Edit reference: Sheet 01. Preserve the six silhouettes, positions, scale and geometry exactly; change only to active cyan with restrained magenta focus nodes, with the create icon permitted about 12% more emphasis.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-02-home-bar-active.txt"
+  },
+  {
+    "asset_id": "om_brand_gap_mark_active",
+    "sheet_id": "sheet-02",
+    "row": 2,
+    "column": 3,
+    "semantic_description": "品牌缺口环 active",
+    "state": "active",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_brand_gap_mark_active.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_brand_gap_mark_active@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_brand_gap_mark_active@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tab/om_brand_gap_mark_active@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-02-home-bar-active-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-02-home-bar-active-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "7ca9dc66d727c12a2f50d25efa39511ad62c40eec2072e7797fbbc4ae1eded45",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Edit reference: Sheet 01. Preserve the six silhouettes, positions, scale and geometry exactly; change only to active cyan with restrained magenta focus nodes, with the create icon permitted about 12% more emphasis.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-02-home-bar-active.txt"
+  },
+  {
+    "asset_id": "om_tool_schedule",
+    "sheet_id": "sheet-03",
+    "row": 1,
+    "column": 1,
+    "semantic_description": "分层日历与高亮时间槽",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_tool_schedule.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tool/om_tool_schedule@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tool/om_tool_schedule@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tool/om_tool_schedule@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-03-home-tools-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-03-home-tools-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "38e7ceb285bd05983115f7ba05d59eab563edf4b530da5daeda4f7edc1d7f6f5",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: layered no-number schedule calendar; folded assignment document with fast clock cut; compact study room with three seats; badminton racket/shuttle/court arc; front-view campus shuttle with route nodes; campus lecture stage with location node and restrained broadcast arcs.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-03-home-tools.txt"
+  },
+  {
+    "asset_id": "om_tool_deadline",
+    "sheet_id": "sheet-03",
+    "row": 1,
+    "column": 2,
+    "semantic_description": "作业文档折角与快速时钟切线",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_tool_deadline.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tool/om_tool_deadline@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tool/om_tool_deadline@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tool/om_tool_deadline@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-03-home-tools-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-03-home-tools-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "d31b5e9bd07bebf497412e2d659ba40c8d018d29e24853896f373cf1a7d79e79",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: layered no-number schedule calendar; folded assignment document with fast clock cut; compact study room with three seats; badminton racket/shuttle/court arc; front-view campus shuttle with route nodes; campus lecture stage with location node and restrained broadcast arcs.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-03-home-tools.txt"
+  },
+  {
+    "asset_id": "om_tool_study_room",
+    "sheet_id": "sheet-03",
+    "row": 1,
+    "column": 3,
+    "semantic_description": "研讨桌与三个座位",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_tool_study_room.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tool/om_tool_study_room@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tool/om_tool_study_room@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tool/om_tool_study_room@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-03-home-tools-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-03-home-tools-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "ce4c8d66928cb1ae440be7bbadcdf10365d3a664ba7ed51f81e098c3a4602e0a",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: layered no-number schedule calendar; folded assignment document with fast clock cut; compact study room with three seats; badminton racket/shuttle/court arc; front-view campus shuttle with route nodes; campus lecture stage with location node and restrained broadcast arcs.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-03-home-tools.txt"
+  },
+  {
+    "asset_id": "om_tool_sports",
+    "sheet_id": "sheet-03",
+    "row": 2,
+    "column": 1,
+    "semantic_description": "羽毛球拍、球与场地弧线",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_tool_sports.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tool/om_tool_sports@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tool/om_tool_sports@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tool/om_tool_sports@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-03-home-tools-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-03-home-tools-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "9294f302a182fc2ca300e3ad39ae44b8525357e62a8b43745403ce4ff95c6237",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: layered no-number schedule calendar; folded assignment document with fast clock cut; compact study room with three seats; badminton racket/shuttle/court arc; front-view campus shuttle with route nodes; campus lecture stage with location node and restrained broadcast arcs.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-03-home-tools.txt"
+  },
+  {
+    "asset_id": "om_tool_shuttle",
+    "sheet_id": "sheet-03",
+    "row": 2,
+    "column": 2,
+    "semantic_description": "校园班车正面与路线节点",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_tool_shuttle.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tool/om_tool_shuttle@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tool/om_tool_shuttle@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tool/om_tool_shuttle@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-03-home-tools-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-03-home-tools-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "7ea8beab186c4dd2c5899bee0ed6fea70d19b700719cb440c2bb311ca850ede4",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: layered no-number schedule calendar; folded assignment document with fast clock cut; compact study room with three seats; badminton racket/shuttle/court arc; front-view campus shuttle with route nodes; campus lecture stage with location node and restrained broadcast arcs.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-03-home-tools.txt"
+  },
+  {
+    "asset_id": "om_tool_official_event",
+    "sheet_id": "sheet-03",
+    "row": 2,
+    "column": 3,
+    "semantic_description": "校园讲座舞台、定位节点与广播弧线",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_tool_official_event.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tool/om_tool_official_event@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tool/om_tool_official_event@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/tool/om_tool_official_event@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-03-home-tools-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-03-home-tools-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "a84051dd091789b02066c935da031e663b85c162546e94e9ac5d135bb5db5bf2",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: layered no-number schedule calendar; folded assignment document with fast clock cut; compact study room with three seats; badminton racket/shuttle/court arc; front-view campus shuttle with route nodes; campus lecture stage with location node and restrained broadcast arcs.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-03-home-tools.txt"
+  },
+  {
+    "asset_id": "om_feature_public_gathering",
+    "sheet_id": "sheet-04",
+    "row": 1,
+    "column": 1,
+    "semantic_description": "三个已入环节点与一个开放席位",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_feature_public_gathering.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_feature_public_gathering@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_feature_public_gathering@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_feature_public_gathering@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-04-discovery-gathering-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-04-discovery-gathering-transparent-v4-final.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "9121c53ce60d3445bbd41bac8dca41a2c936cce2634ddcb4db0467e200349aec",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: public gathering ring with exactly three occupied cyan nodes and one open magenta seat; two completed gathering rings with factual time nodes; two independent relation rings joined at one shared-experience node; four capability nodes around a competition prism; two preparation notebooks around one target; waveform entering a structured intent card and resolving to nodes.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-04-discovery-gathering.txt"
+  },
+  {
+    "asset_id": "om_feature_my_gatherings",
+    "sheet_id": "sheet-04",
+    "row": 1,
+    "column": 2,
+    "semantic_description": "两个完成成局环与事实时间节点",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_feature_my_gatherings.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_feature_my_gatherings@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_feature_my_gatherings@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_feature_my_gatherings@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-04-discovery-gathering-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-04-discovery-gathering-transparent-v4-final.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "655ccac9023933f86bab83c5775358f8004229359ba9ce36dc576cbae8ec0936",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: public gathering ring with exactly three occupied cyan nodes and one open magenta seat; two completed gathering rings with factual time nodes; two independent relation rings joined at one shared-experience node; four capability nodes around a competition prism; two preparation notebooks around one target; waveform entering a structured intent card and resolving to nodes.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-04-discovery-gathering.txt"
+  },
+  {
+    "asset_id": "om_feature_relations",
+    "sheet_id": "sheet-04",
+    "row": 1,
+    "column": 3,
+    "semantic_description": "两个独立关系环与共同经历节点",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_feature_relations.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_feature_relations@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_feature_relations@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_feature_relations@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-04-discovery-gathering-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-04-discovery-gathering-transparent-v4-final.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "e0360fe623dbc0fd9d57e364fefe828be7fb07d0fc458ff188f0768c35742a0e",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: public gathering ring with exactly three occupied cyan nodes and one open magenta seat; two completed gathering rings with factual time nodes; two independent relation rings joined at one shared-experience node; four capability nodes around a competition prism; two preparation notebooks around one target; waveform entering a structured intent card and resolving to nodes.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-04-discovery-gathering.txt"
+  },
+  {
+    "asset_id": "om_feature_competition_team",
+    "sheet_id": "sheet-04",
+    "row": 2,
+    "column": 1,
+    "semantic_description": "四能力节点围绕比赛棱晶",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_feature_competition_team.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_feature_competition_team@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_feature_competition_team@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_feature_competition_team@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-04-discovery-gathering-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-04-discovery-gathering-transparent-v4-final.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "6c6b9e89c9bfd69852b1d926361f57ca8dcdc12b5713681cbf55b9b3c3a66adc",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: public gathering ring with exactly three occupied cyan nodes and one open magenta seat; two completed gathering rings with factual time nodes; two independent relation rings joined at one shared-experience node; four capability nodes around a competition prism; two preparation notebooks around one target; waveform entering a structured intent card and resolving to nodes.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-04-discovery-gathering.txt"
+  },
+  {
+    "asset_id": "om_feature_prep_partner",
+    "sheet_id": "sheet-04",
+    "row": 2,
+    "column": 2,
+    "semantic_description": "两本备赛笔记围绕共同目标",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_feature_prep_partner.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_feature_prep_partner@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_feature_prep_partner@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_feature_prep_partner@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-04-discovery-gathering-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-04-discovery-gathering-transparent-v4-final.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "3924e13aefc3f40263077c7584cc77afe7489c11b518fe13fcf56203b8c8af46",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: public gathering ring with exactly three occupied cyan nodes and one open magenta seat; two completed gathering rings with factual time nodes; two independent relation rings joined at one shared-experience node; four capability nodes around a competition prism; two preparation notebooks around one target; waveform entering a structured intent card and resolving to nodes.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-04-discovery-gathering.txt"
+  },
+  {
+    "asset_id": "om_feature_intent",
+    "sheet_id": "sheet-04",
+    "row": 2,
+    "column": 3,
+    "semantic_description": "自然语言波形进入结构化意图卡",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_feature_intent.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_feature_intent@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_feature_intent@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_feature_intent@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-04-discovery-gathering-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-04-discovery-gathering-transparent-v4-final.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "bdd6631bc7cfca9f32483e3549f0c6ba25a2a1e0d19a112df02666ee8a09cda1",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: public gathering ring with exactly three occupied cyan nodes and one open magenta seat; two completed gathering rings with factual time nodes; two independent relation rings joined at one shared-experience node; four capability nodes around a competition prism; two preparation notebooks around one target; waveform entering a structured intent card and resolving to nodes.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-04-discovery-gathering.txt"
+  },
+  {
+    "asset_id": "om_state_waiting_confirmation",
+    "sheet_id": "sheet-05",
+    "row": 1,
+    "column": 1,
+    "semantic_description": "四确认节点中一个仍为空心",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_state_waiting_confirmation.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_waiting_confirmation@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_waiting_confirmation@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_waiting_confirmation@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-05-action-lifecycle-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-05-action-lifecycle-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "337cbd1cbd2655435bb5885d69eb59985ccb034c38396eabcc4b4ddb0c9d4a86",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: four confirmation nodes with one hollow; parameter document inside protection boundary with pending node; constraint nodes synchronizing on tracks; calm completed ring with verification; blocked path smoothly rerouting; vacated seat with incoming backfill node.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-05-action-lifecycle.txt"
+  },
+  {
+    "asset_id": "om_state_action_preview",
+    "sheet_id": "sheet-05",
+    "row": 1,
+    "column": 2,
+    "semantic_description": "参数文档、保护边界与待确认节点",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_state_action_preview.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_action_preview@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_action_preview@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_action_preview@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-05-action-lifecycle-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-05-action-lifecycle-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "225a6fd81d3c4bf742e109b1f4614033bfee6c7993935670b2636f131a3425d1",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: four confirmation nodes with one hollow; parameter document inside protection boundary with pending node; constraint nodes synchronizing on tracks; calm completed ring with verification; blocked path smoothly rerouting; vacated seat with incoming backfill node.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-05-action-lifecycle.txt"
+  },
+  {
+    "asset_id": "om_state_executing",
+    "sheet_id": "sheet-05",
+    "row": 1,
+    "column": 3,
+    "semantic_description": "约束节点沿轨道同步运转",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_state_executing.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_executing@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_executing@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_executing@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-05-action-lifecycle-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-05-action-lifecycle-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "dd34425ce5a7c2700dc1d0e5cf8b78d82a7e7cf97e924d65725db33463729023",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: four confirmation nodes with one hollow; parameter document inside protection boundary with pending node; constraint nodes synchronizing on tracks; calm completed ring with verification; blocked path smoothly rerouting; vacated seat with incoming backfill node.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-05-action-lifecycle.txt"
+  },
+  {
+    "asset_id": "om_state_success",
+    "sheet_id": "sheet-05",
+    "row": 2,
+    "column": 1,
+    "semantic_description": "完成环与核验标记",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_state_success.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_success@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_success@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_success@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-05-action-lifecycle-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-05-action-lifecycle-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "cc0da57d9f76c1328460e67ccfc008183832ae4af59b751d8081d062e56930cd",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: four confirmation nodes with one hollow; parameter document inside protection boundary with pending node; constraint nodes synchronizing on tracks; calm completed ring with verification; blocked path smoothly rerouting; vacated seat with incoming backfill node.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-05-action-lifecycle.txt"
+  },
+  {
+    "asset_id": "om_state_needs_adjustment",
+    "sheet_id": "sheet-05",
+    "row": 2,
+    "column": 2,
+    "semantic_description": "路径遇阻后平静绕行",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_state_needs_adjustment.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_needs_adjustment@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_needs_adjustment@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_needs_adjustment@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-05-action-lifecycle-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-05-action-lifecycle-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "569fdd3990dfda4be7afbf2111e069849326fe7ed52bb5a8b2728234809a7839",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: four confirmation nodes with one hollow; parameter document inside protection boundary with pending node; constraint nodes synchronizing on tracks; calm completed ring with verification; blocked path smoothly rerouting; vacated seat with incoming backfill node.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-05-action-lifecycle.txt"
+  },
+  {
+    "asset_id": "om_state_backfill",
+    "sheet_id": "sheet-05",
+    "row": 2,
+    "column": 3,
+    "semantic_description": "空席位与补入节点",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_state_backfill.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_backfill@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_backfill@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_backfill@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-05-action-lifecycle-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-05-action-lifecycle-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "88c8f7b030e03e0439babd7364578ee2d7dd5aadf57327491a66389ad2895f90",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: four confirmation nodes with one hollow; parameter document inside protection boundary with pending node; constraint nodes synchronizing on tracks; calm completed ring with verification; blocked path smoothly rerouting; vacated seat with incoming backfill node.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-05-action-lifecycle.txt"
+  },
+  {
+    "asset_id": "om_collab_group_chat",
+    "sheet_id": "sheet-06",
+    "row": 1,
+    "column": 1,
+    "semantic_description": "群组气泡与三个人形节点",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_collab_group_chat.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_collab_group_chat@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_collab_group_chat@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_collab_group_chat@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-06-collaboration-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-06-collaboration-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "c74ef4d593e71b7b31d229c021845320d4cd825f2530486ff9fc8e62fa451df5",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: group bubble with three anonymous nodes; bubble with sensing star-orbit and no person or @; two tracks around one shared target; two-node recurrence loop; no-number calendar with execution verification; factual multi-node timeline without ratings.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-06-collaboration.txt"
+  },
+  {
+    "asset_id": "om_collab_azou_mention",
+    "sheet_id": "sheet-06",
+    "row": 1,
+    "column": 2,
+    "semantic_description": "对话气泡与感知星环",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_collab_azou_mention.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_collab_azou_mention@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_collab_azou_mention@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_collab_azou_mention@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-06-collaboration-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-06-collaboration-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "0510fbc4dc5e8ce672941ebe11d1ced0f00a0bfdfa3c43f27885c788bc1ae109",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: group bubble with three anonymous nodes; bubble with sensing star-orbit and no person or @; two tracks around one shared target; two-node recurrence loop; no-number calendar with execution verification; factual multi-node timeline without ratings.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-06-collaboration.txt"
+  },
+  {
+    "asset_id": "om_collab_shared_goal",
+    "sheet_id": "sheet-06",
+    "row": 1,
+    "column": 3,
+    "semantic_description": "两条轨道围绕同一目标",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_collab_shared_goal.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_collab_shared_goal@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_collab_shared_goal@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_collab_shared_goal@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-06-collaboration-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-06-collaboration-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "c1fe7e80c81388fe4a9a8532a64f774caa81a0360b297860b470ff1f473c47d9",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: group bubble with three anonymous nodes; bubble with sensing star-orbit and no person or @; two tracks around one shared target; two-node recurrence loop; no-number calendar with execution verification; factual multi-node timeline without ratings.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-06-collaboration.txt"
+  },
+  {
+    "asset_id": "om_collab_recurrence",
+    "sheet_id": "sheet-06",
+    "row": 2,
+    "column": 1,
+    "semantic_description": "双节点复局循环",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_collab_recurrence.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_collab_recurrence@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_collab_recurrence@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_collab_recurrence@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-06-collaboration-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-06-collaboration-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "62db290de73f528bcdde140550bc8936402c1935e1d2a067d2d1c14ccb9662c8",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: group bubble with three anonymous nodes; bubble with sensing star-orbit and no person or @; two tracks around one shared target; two-node recurrence loop; no-number calendar with execution verification; factual multi-node timeline without ratings.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-06-collaboration.txt"
+  },
+  {
+    "asset_id": "om_collab_calendar_commit",
+    "sheet_id": "sheet-06",
+    "row": 2,
+    "column": 2,
+    "semantic_description": "日历与执行核验",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_collab_calendar_commit.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_collab_calendar_commit@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_collab_calendar_commit@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_collab_calendar_commit@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-06-collaboration-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-06-collaboration-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "88b8d56065fa5ae487254bcc51d8e2940b900cabe8448af2ce806aed864ee831",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: group bubble with three anonymous nodes; bubble with sensing star-orbit and no person or @; two tracks around one shared target; two-node recurrence loop; no-number calendar with execution verification; factual multi-node timeline without ratings.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-06-collaboration.txt"
+  },
+  {
+    "asset_id": "om_collab_experience",
+    "sheet_id": "sheet-06",
+    "row": 2,
+    "column": 3,
+    "semantic_description": "事实节点时间线",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_collab_experience.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_collab_experience@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_collab_experience@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_collab_experience@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-06-collaboration-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-06-collaboration-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "4712ef7a9419170696be92e9553d9ea2fdb1e6fa7a4afaae08763875549f2d5a",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: group bubble with three anonymous nodes; bubble with sensing star-orbit and no person or @; two tracks around one shared target; two-node recurrence loop; no-number calendar with execution verification; factual multi-node timeline without ratings.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-06-collaboration.txt"
+  },
+  {
+    "asset_id": "om_settings_trust",
+    "sheet_id": "sheet-07",
+    "row": 1,
+    "column": 1,
+    "semantic_description": "分层信任盾牌",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_settings_trust.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_settings_trust@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_settings_trust@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_settings_trust@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-07-trust-privacy-account-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-07-trust-privacy-account-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "ab43701ab4623f7c155c315a8327992820d7104773052258fe36deb61d6082e1",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: layered trust shield; independent authorization nodes and toggle structure; privacy lock with obscured data nodes; shield interrupting a connection; appeal document with review path and result; account data container with distinct export and deletion boundary.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-07-trust-privacy-account.txt"
+  },
+  {
+    "asset_id": "om_settings_permissions",
+    "sheet_id": "sheet-07",
+    "row": 1,
+    "column": 2,
+    "semantic_description": "独立授权节点与开关结构",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_settings_permissions.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_settings_permissions@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_settings_permissions@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_settings_permissions@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-07-trust-privacy-account-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-07-trust-privacy-account-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "4644e8ede7db84cd4dce49573ea18f7fa445978f10742bbd8dc986469a26142d",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: layered trust shield; independent authorization nodes and toggle structure; privacy lock with obscured data nodes; shield interrupting a connection; appeal document with review path and result; account data container with distinct export and deletion boundary.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-07-trust-privacy-account.txt"
+  },
+  {
+    "asset_id": "om_settings_privacy",
+    "sheet_id": "sheet-07",
+    "row": 1,
+    "column": 3,
+    "semantic_description": "隐私锁与遮蔽数据节点",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_settings_privacy.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_settings_privacy@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_settings_privacy@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_settings_privacy@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-07-trust-privacy-account-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-07-trust-privacy-account-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "bcd2605f666455fc2bcd17b7d5a567ede71db9aca3d4f58061b9a683f1fd1d7b",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: layered trust shield; independent authorization nodes and toggle structure; privacy lock with obscured data nodes; shield interrupting a connection; appeal document with review path and result; account data container with distinct export and deletion boundary.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-07-trust-privacy-account.txt"
+  },
+  {
+    "asset_id": "om_settings_block_report",
+    "sheet_id": "sheet-07",
+    "row": 2,
+    "column": 1,
+    "semantic_description": "保护盾与中止连接",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_settings_block_report.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_settings_block_report@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_settings_block_report@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_settings_block_report@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-07-trust-privacy-account-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-07-trust-privacy-account-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "1d4220e844a85fc57150e9dfb46bf641f6e424b63090fdc6858de227391c3e56",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: layered trust shield; independent authorization nodes and toggle structure; privacy lock with obscured data nodes; shield interrupting a connection; appeal document with review path and result; account data container with distinct export and deletion boundary.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-07-trust-privacy-account.txt"
+  },
+  {
+    "asset_id": "om_settings_appeal",
+    "sheet_id": "sheet-07",
+    "row": 2,
+    "column": 2,
+    "semantic_description": "申诉文档、复核路径与结果节点",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_settings_appeal.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_settings_appeal@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_settings_appeal@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_settings_appeal@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-07-trust-privacy-account-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-07-trust-privacy-account-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "8dbda55627b908a5a9285402e3394d07bf2327be611f5b4ca1832cfa51f1aeef",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: layered trust shield; independent authorization nodes and toggle structure; privacy lock with obscured data nodes; shield interrupting a connection; appeal document with review path and result; account data container with distinct export and deletion boundary.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-07-trust-privacy-account.txt"
+  },
+  {
+    "asset_id": "om_settings_account_data",
+    "sheet_id": "sheet-07",
+    "row": 2,
+    "column": 3,
+    "semantic_description": "数据容器、导出与删除边界",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_settings_account_data.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_settings_account_data@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_settings_account_data@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_settings_account_data@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-07-trust-privacy-account-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-07-trust-privacy-account-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "788ba32fa1a524276be7953f01c245a2967f1af501eef92d24adbc06138346ef",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: layered trust shield; independent authorization nodes and toggle structure; privacy lock with obscured data nodes; shield interrupting a connection; appeal document with review path and result; account data container with distinct export and deletion boundary.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-07-trust-privacy-account.txt"
+  },
+  {
+    "asset_id": "om_organizer_official",
+    "sheet_id": "sheet-08",
+    "row": 1,
+    "column": 1,
+    "semantic_description": "校园官方局控制台与核验",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_organizer_official.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_organizer_official@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_organizer_official@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_organizer_official@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-08-organizer-message-location-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-08-organizer-message-location-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "9ca0bcf273e33ec850655641916629296ad0c892d581b7a65a5502c779197cfc",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: official gathering control console with verification and no crown; dashboard grid with anonymous participation nodes; attendance nodes converging on check-in gate; layered copyable template cards; image frame with upload path and completion node; one map pin with one discrete diffusion ring and no tracking trail.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-08-organizer-message-location.txt"
+  },
+  {
+    "asset_id": "om_organizer_dashboard",
+    "sheet_id": "sheet-08",
+    "row": 1,
+    "column": 2,
+    "semantic_description": "看板网格与匿名参与节点",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_organizer_dashboard.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_organizer_dashboard@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_organizer_dashboard@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_organizer_dashboard@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-08-organizer-message-location-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-08-organizer-message-location-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "14de74d9998e67afc4feb617713dca97a6165d7d3a3972dd0136d04a67d16399",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: official gathering control console with verification and no crown; dashboard grid with anonymous participation nodes; attendance nodes converging on check-in gate; layered copyable template cards; image frame with upload path and completion node; one map pin with one discrete diffusion ring and no tracking trail.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-08-organizer-message-location.txt"
+  },
+  {
+    "asset_id": "om_organizer_attendance",
+    "sheet_id": "sheet-08",
+    "row": 1,
+    "column": 3,
+    "semantic_description": "到场节点与签到核验",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_organizer_attendance.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_organizer_attendance@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_organizer_attendance@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_organizer_attendance@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-08-organizer-message-location-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-08-organizer-message-location-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "3b734bd382be16aabdef7533734078b031561b5d07a3db2d8dd0a6e20aad812c",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: official gathering control console with verification and no crown; dashboard grid with anonymous participation nodes; attendance nodes converging on check-in gate; layered copyable template cards; image frame with upload path and completion node; one map pin with one discrete diffusion ring and no tracking trail.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-08-organizer-message-location.txt"
+  },
+  {
+    "asset_id": "om_organizer_template",
+    "sheet_id": "sheet-08",
+    "row": 2,
+    "column": 1,
+    "semantic_description": "可复制层叠模板卡",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_organizer_template.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_organizer_template@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_organizer_template@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_organizer_template@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-08-organizer-message-location-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-08-organizer-message-location-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "b5d21eb08d799ce16b4dbfef486f4ecbc04961debc6af4db48656a4380e87dc8",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: official gathering control console with verification and no crown; dashboard grid with anonymous participation nodes; attendance nodes converging on check-in gate; layered copyable template cards; image frame with upload path and completion node; one map pin with one discrete diffusion ring and no tracking trail.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-08-organizer-message-location.txt"
+  },
+  {
+    "asset_id": "om_message_image",
+    "sheet_id": "sheet-08",
+    "row": 2,
+    "column": 2,
+    "semantic_description": "图片框、上传路径与完成节点",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_message_image.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_message_image@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_message_image@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_message_image@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-08-organizer-message-location-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-08-organizer-message-location-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "aaa05b9d79025932de9c36ee9d3726f08f5bf183bef4b48f1ff6f1a9cc444a12",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: official gathering control console with verification and no crown; dashboard grid with anonymous participation nodes; attendance nodes converging on check-in gate; layered copyable template cards; image frame with upload path and completion node; one map pin with one discrete diffusion ring and no tracking trail.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-08-organizer-message-location.txt"
+  },
+  {
+    "asset_id": "om_message_location_once",
+    "sheet_id": "sheet-08",
+    "row": 2,
+    "column": 3,
+    "semantic_description": "单次位置 Pin 与一次性扩散环",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_message_location_once.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_message_location_once@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_message_location_once@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/feature/om_message_location_once@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-08-organizer-message-location-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-08-organizer-message-location-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "32dd7593ea8589752e2dfbaaccb936395c11651b353a3eb0a15dd32fcddfe42b",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: official gathering control console with verification and no crown; dashboard grid with anonymous participation nodes; attendance nodes converging on check-in gate; layered copyable template cards; image frame with upload path and completion node; one map pin with one discrete diffusion ring and no tracking trail.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-08-organizer-message-location.txt"
+  },
+  {
+    "asset_id": "om_ornament_gap_ring",
+    "sheet_id": "sheet-09",
+    "row": 1,
+    "column": 1,
+    "semantic_description": "大型未闭合成局环",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_ornament_gap_ring.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/ornament/om_ornament_gap_ring@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/ornament/om_ornament_gap_ring@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/ornament/om_ornament_gap_ring@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-09-ornaments-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-09-ornaments-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "3049734b3296a2bd5d5a88afed0ff8f990880150306052023e9c67bb006dac3f",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: large open gathering ring; calm sensing halo; cyan/magenta geometric card-corner flourish; four-corner QR scanner frame with empty center; no-text verified-source seal; open-ring sharing imprint without a conventional share arrow. Decorative overlays, not buttons.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-09-ornaments.txt"
+  },
+  {
+    "asset_id": "om_ornament_sensing_halo",
+    "sheet_id": "sheet-09",
+    "row": 1,
+    "column": 2,
+    "semantic_description": "闭眼感知语义静态轨道光环",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_ornament_sensing_halo.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/ornament/om_ornament_sensing_halo@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/ornament/om_ornament_sensing_halo@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/ornament/om_ornament_sensing_halo@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-09-ornaments-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-09-ornaments-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "b3a191cebc9467e33ff13f91c7f253c180dff2f85e8f29a08709184865a6f4a1",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: large open gathering ring; calm sensing halo; cyan/magenta geometric card-corner flourish; four-corner QR scanner frame with empty center; no-text verified-source seal; open-ring sharing imprint without a conventional share arrow. Decorative overlays, not buttons.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-09-ornaments.txt"
+  },
+  {
+    "asset_id": "om_ornament_card_corner",
+    "sheet_id": "sheet-09",
+    "row": 1,
+    "column": 3,
+    "semantic_description": "cyan/magenta 几何卡片角花",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_ornament_card_corner.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/ornament/om_ornament_card_corner@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/ornament/om_ornament_card_corner@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/ornament/om_ornament_card_corner@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-09-ornaments-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-09-ornaments-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "fb302fea663e857c55428fc2c2b37c5a03413bb7aeacbb05a97b14dadd30f60e",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: large open gathering ring; calm sensing halo; cyan/magenta geometric card-corner flourish; four-corner QR scanner frame with empty center; no-text verified-source seal; open-ring sharing imprint without a conventional share arrow. Decorative overlays, not buttons.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-09-ornaments.txt"
+  },
+  {
+    "asset_id": "om_ornament_qr_frame",
+    "sheet_id": "sheet-09",
+    "row": 2,
+    "column": 1,
+    "semantic_description": "中部留空的四角扫描框",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_ornament_qr_frame.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/ornament/om_ornament_qr_frame@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/ornament/om_ornament_qr_frame@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/ornament/om_ornament_qr_frame@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-09-ornaments-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-09-ornaments-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "cfcc8b2aefa714db937e1f6e6c5b45cd73d62deab2e883f545e62ff60be237d3",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: large open gathering ring; calm sensing halo; cyan/magenta geometric card-corner flourish; four-corner QR scanner frame with empty center; no-text verified-source seal; open-ring sharing imprint without a conventional share arrow. Decorative overlays, not buttons.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-09-ornaments.txt"
+  },
+  {
+    "asset_id": "om_ornament_verified_source",
+    "sheet_id": "sheet-09",
+    "row": 2,
+    "column": 2,
+    "semantic_description": "无文字来源核验章",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_ornament_verified_source.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/ornament/om_ornament_verified_source@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/ornament/om_ornament_verified_source@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/ornament/om_ornament_verified_source@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-09-ornaments-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-09-ornaments-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "e533cf2b78327193df3e414c5f0d55d68a9374f6f6ebf2b4e79cc7ee3d22381a",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: large open gathering ring; calm sensing halo; cyan/magenta geometric card-corner flourish; four-corner QR scanner frame with empty center; no-text verified-source seal; open-ring sharing imprint without a conventional share arrow. Decorative overlays, not buttons.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-09-ornaments.txt"
+  },
+  {
+    "asset_id": "om_ornament_share_gap",
+    "sheet_id": "sheet-09",
+    "row": 2,
+    "column": 3,
+    "semantic_description": "缺口卡分享印记",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_ornament_share_gap.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/ornament/om_ornament_share_gap@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/ornament/om_ornament_share_gap@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/ornament/om_ornament_share_gap@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-09-ornaments-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-09-ornaments-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "819ea9a5f6dc3c024cc0224b514387d8302e24bf29c3851ebd92e46217ba7932",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: large open gathering ring; calm sensing halo; cyan/magenta geometric card-corner flourish; four-corner QR scanner frame with empty center; no-text verified-source seal; open-ring sharing imprint without a conventional share arrow. Decorative overlays, not buttons.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-09-ornaments.txt"
+  },
+  {
+    "asset_id": "om_spot_deadline_sprint",
+    "sheet_id": "sheet-10",
+    "row": 1,
+    "column": 1,
+    "semantic_description": "桌面、笔记本、倒计时节点与任务卡",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_spot_deadline_sprint.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/spot/om_spot_deadline_sprint@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/spot/om_spot_deadline_sprint@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/spot/om_spot_deadline_sprint@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-10-campus-spots-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-10-campus-spots-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "86b91ca89401a2dfb1927e6adb7ee18abe07cddf1de1a8a2d2cba6500075a518",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order, no people: deadline desk with notebook/countdown nodes/task cards; badminton equipment and campus court; study room with table/chairs/blank board/open seat; prototype device/code-line card/product sketches/competition prism; lecture hall with podium and companion seats; campus shuttle linked to two campus nodes.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-10-campus-spots.txt"
+  },
+  {
+    "asset_id": "om_spot_badminton",
+    "sheet_id": "sheet-10",
+    "row": 1,
+    "column": 2,
+    "semantic_description": "羽毛球拍、球与校园场地",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_spot_badminton.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/spot/om_spot_badminton@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/spot/om_spot_badminton@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/spot/om_spot_badminton@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-10-campus-spots-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-10-campus-spots-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "d05736a2737a019c20dea1a7a445a2bda8905ccc5007a5ac89813b6410502290",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order, no people: deadline desk with notebook/countdown nodes/task cards; badminton equipment and campus court; study room with table/chairs/blank board/open seat; prototype device/code-line card/product sketches/competition prism; lecture hall with podium and companion seats; campus shuttle linked to two campus nodes.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-10-campus-spots.txt"
+  },
+  {
+    "asset_id": "om_spot_study_room",
+    "sheet_id": "sheet-10",
+    "row": 1,
+    "column": 3,
+    "semantic_description": "研讨桌、椅子、白板与空余座位",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_spot_study_room.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/spot/om_spot_study_room@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/spot/om_spot_study_room@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/spot/om_spot_study_room@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-10-campus-spots-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-10-campus-spots-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "3facf032d5902077644554fb16b1c1ed31aeedec09e2c0e71c9c33d2f5c0dfd7",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order, no people: deadline desk with notebook/countdown nodes/task cards; badminton equipment and campus court; study room with table/chairs/blank board/open seat; prototype device/code-line card/product sketches/competition prism; lecture hall with podium and companion seats; campus shuttle linked to two campus nodes.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-10-campus-spots.txt"
+  },
+  {
+    "asset_id": "om_spot_competition_project",
+    "sheet_id": "sheet-10",
+    "row": 2,
+    "column": 1,
+    "semantic_description": "原型设备、代码卡、草图与比赛棱晶",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_spot_competition_project.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/spot/om_spot_competition_project@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/spot/om_spot_competition_project@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/spot/om_spot_competition_project@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-10-campus-spots-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-10-campus-spots-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "c761745393e77355c171f62181c1abc5c5eec701d7375303e8fb8a55eaedcf46",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order, no people: deadline desk with notebook/countdown nodes/task cards; badminton equipment and campus court; study room with table/chairs/blank board/open seat; prototype device/code-line card/product sketches/competition prism; lecture hall with podium and companion seats; campus shuttle linked to two campus nodes.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-10-campus-spots.txt"
+  },
+  {
+    "asset_id": "om_spot_campus_event",
+    "sheet_id": "sheet-10",
+    "row": 2,
+    "column": 2,
+    "semantic_description": "报告厅、讲台与同行席位",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_spot_campus_event.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/spot/om_spot_campus_event@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/spot/om_spot_campus_event@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/spot/om_spot_campus_event@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-10-campus-spots-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-10-campus-spots-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "2fe9bedd0b3639d4cb77799cc52b1cd4d1df84d84826c97e52ce419a9cd133d4",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order, no people: deadline desk with notebook/countdown nodes/task cards; badminton equipment and campus court; study room with table/chairs/blank board/open seat; prototype device/code-line card/product sketches/competition prism; lecture hall with podium and companion seats; campus shuttle linked to two campus nodes.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-10-campus-spots.txt"
+  },
+  {
+    "asset_id": "om_spot_campus_shuttle",
+    "sheet_id": "sheet-10",
+    "row": 2,
+    "column": 3,
+    "semantic_description": "校园班车与两个校区节点",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_spot_campus_shuttle.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/spot/om_spot_campus_shuttle@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/spot/om_spot_campus_shuttle@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/spot/om_spot_campus_shuttle@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-10-campus-spots-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-10-campus-spots-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "0789293b1ad315a3f47a4809557ad4adffc47dc95808d21d8fe38a7756f7509c",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order, no people: deadline desk with notebook/countdown nodes/task cards; badminton equipment and campus court; study room with table/chairs/blank board/open seat; prototype device/code-line card/product sketches/competition prism; lecture hall with podium and companion seats; campus shuttle linked to two campus nodes.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-10-campus-spots.txt"
+  },
+  {
+    "asset_id": "om_empty_today",
+    "sheet_id": "sheet-11",
+    "row": 1,
+    "column": 1,
+    "semantic_description": "平静空时间轨道",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_empty_today.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_empty_today@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_empty_today@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_empty_today@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-11-empty-recovery-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-11-empty-recovery-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "0adb488b22e58a7d13778c16a57b1d56782e37b53999398a13d4af5cd7e85619",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: peaceful empty time orbit; unformed gathering ring with open seat sockets; competition prism with empty result orbit; two quiet unlinked bubbles; temporarily separated recoverable node network; login key/token reconnecting to an empty scan frame, with no QR code.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-11-empty-recovery.txt"
+  },
+  {
+    "asset_id": "om_empty_public_gatherings",
+    "sheet_id": "sheet-11",
+    "row": 1,
+    "column": 2,
+    "semantic_description": "尚未形成的开放席位",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_empty_public_gatherings.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_empty_public_gatherings@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_empty_public_gatherings@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_empty_public_gatherings@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-11-empty-recovery-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-11-empty-recovery-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "207b563be4ea22e156dc9c2dad12569b8fa7798d8027831a64e092b7109f3f07",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: peaceful empty time orbit; unformed gathering ring with open seat sockets; competition prism with empty result orbit; two quiet unlinked bubbles; temporarily separated recoverable node network; login key/token reconnecting to an empty scan frame, with no QR code.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-11-empty-recovery.txt"
+  },
+  {
+    "asset_id": "om_empty_competitions",
+    "sheet_id": "sheet-11",
+    "row": 1,
+    "column": 3,
+    "semantic_description": "比赛棱晶与空结果轨道",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_empty_competitions.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_empty_competitions@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_empty_competitions@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_empty_competitions@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-11-empty-recovery-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-11-empty-recovery-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "fbaea9722d895048bb376fa023bd12848cb8b7eaff1fca692aed6e8085342048",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: peaceful empty time orbit; unformed gathering ring with open seat sockets; competition prism with empty result orbit; two quiet unlinked bubbles; temporarily separated recoverable node network; login key/token reconnecting to an empty scan frame, with no QR code.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-11-empty-recovery.txt"
+  },
+  {
+    "asset_id": "om_empty_messages",
+    "sheet_id": "sheet-11",
+    "row": 2,
+    "column": 1,
+    "semantic_description": "安静且未连接的对话气泡",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_empty_messages.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_empty_messages@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_empty_messages@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_empty_messages@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-11-empty-recovery-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-11-empty-recovery-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "f358110ee25cf7185e2dbb562fac38fd3b6048c74cc016b362eacb15d0e5cbc9",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: peaceful empty time orbit; unformed gathering ring with open seat sockets; competition prism with empty result orbit; two quiet unlinked bubbles; temporarily separated recoverable node network; login key/token reconnecting to an empty scan frame, with no QR code.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-11-empty-recovery.txt"
+  },
+  {
+    "asset_id": "om_state_offline",
+    "sheet_id": "sheet-11",
+    "row": 2,
+    "column": 2,
+    "semantic_description": "可恢复的断开节点网络",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_state_offline.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_offline@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_offline@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_offline@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-11-empty-recovery-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-11-empty-recovery-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "74b34260bc986438f6ebbe6d286731fc7637016094e70fd9981d6f0670f24e81",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: peaceful empty time orbit; unformed gathering ring with open seat sockets; competition prism with empty result orbit; two quiet unlinked bubbles; temporarily separated recoverable node network; login key/token reconnecting to an empty scan frame, with no QR code.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-11-empty-recovery.txt"
+  },
+  {
+    "asset_id": "om_state_session_expired",
+    "sheet_id": "sheet-11",
+    "row": 2,
+    "column": 3,
+    "semantic_description": "登录钥匙与重新连接入口",
+    "state": "single",
+    "master_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/masters/om_state_session_expired.png",
+    "runtime_paths": [
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_session_expired@1x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_session_expired@2x.png",
+      "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/runtime/state/om_state_session_expired@3x.png"
+    ],
+    "chroma_source_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/chroma/sheet-11-empty-recovery-v1.png",
+    "transparent_sheet_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/source-sheets/transparent/sheet-11-empty-recovery-transparent-v1.png",
+    "chroma_key": "#39FF14",
+    "width": 512,
+    "height": 512,
+    "sha256": "f566c96cbc221d13a8fb8f85e9983d42aeecad7873a69f771522c6b5ba36689d",
+    "alpha_corner_check": {
+      "top_left": 0,
+      "top_right": 0,
+      "bottom_left": 0,
+      "bottom_right": 0,
+      "pass": true
+    },
+    "qa_status": "pass",
+    "final_prompt": "Use case: stylized-concept\nAsset type: native iOS custom UI pictogram sheet\nPrimary request: create exactly six distinct assets arranged in a precise 3-column by 2-row grid. Fixed order: peaceful empty time orbit; unformed gathering ring with open seat sockets; competition prism with empty result orbit; two quiet unlinked bubbles; temporarily separated recoverable node network; login key/token reconnecting to an empty scan frame, with no QR code.\nScene/backdrop: perfectly flat solid #39FF14 chroma-key background.\nStyle/medium: precise rounded geometric 2D to subtle 2.5D opaque enamel; premium native iOS finish; restrained campus-future language built from rings, deliberate gaps, nodes, tracks, capsules and small prisms.\nComposition/framing: one isolated asset centered in each invisible equal cell; no overlap, no cross-cell content, no grid lines, generous safety padding, consistent optical size and stroke/corner language.\nColor palette: #00FFE1 cyan, restrained #FF4FD3 magenta, cool white and soft gray; never use #39FF14 inside an asset.\nConstraints: exactly six; fixed order; recognizable at 24pt; opaque highlights only; no cast/contact shadow or outer glow.\nAvoid: text, letters, numbers, labels, watermark, logo wording, new people, faces, mascots, orange character, emojis, clay render, cartoon stickers, generic stock icons, SF Symbols imitation, background gradient, texture, floor or reflection.",
+    "final_prompt_path": "/Users/baihe/Documents/compusone/design/generated/imagegen-custom-ui-v1/prompts/sheet-11-empty-recovery.txt"
+  }
+]

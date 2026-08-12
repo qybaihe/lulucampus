@@ -1,0 +1,316 @@
+{
+  "schema": "open-design.design-manifest.v1",
+  "title": "47fb50b0-b89a-4c43-bd3a-5d489d54729a",
+  "entryFile": "index.html",
+  "sourceFiles": {
+    "all": [
+      "assets/lulu/lulu-motion.v1.json",
+      "assets/lulu/LuluActionExecutingAtlas.png",
+      "assets/lulu/LuluActionPreviewAtlas.png",
+      "assets/lulu/LuluConfirmGatherAtlas.png",
+      "assets/lulu/LuluCookingGuideAtlas.png",
+      "assets/lulu/LuluCoreStatesAtlas.png",
+      "assets/lulu/LuluDeviceConnectAtlas.png",
+      "assets/lulu/LuluExitBowAtlas.png",
+      "assets/lulu/LuluHomeIdleAtlas.png",
+      "assets/lulu/LuluHomeListeningAtlas.png",
+      "assets/lulu/LuluHomeReplyAtlas.png",
+      "assets/lulu/LuluHomeThinkingAtlas.png",
+      "assets/lulu/LuluIntentCardAtlas.png",
+      "assets/lulu/LuluInventoryReviewAtlas.png",
+      "assets/lulu/LuluInventoryScanAtlas.png",
+      "assets/lulu/LuluKitchenRolesAtlas.png",
+      "assets/lulu/LuluPoolWaitingAtlas.png",
+      "assets/lulu/LuluRecipePlanAtlas.png",
+      "assets/lulu/LuluShoppingOrganizeAtlas.png",
+      "assets/stickers/access-card.png",
+      "assets/stickers/alarm-clock.png",
+      "assets/stickers/algorithm-gear.png",
+      "assets/stickers/approval-stamp.png",
+      "assets/stickers/backend-server.png",
+      "assets/stickers/badge.png",
+      "assets/stickers/badminton.png",
+      "assets/stickers/basketball.png",
+      "assets/stickers/books-stack.png",
+      "assets/stickers/cafeteria-tray.png",
+      "assets/stickers/certificate.png",
+      "assets/stickers/chair-empty.png",
+      "assets/stickers/chat-bubble.png",
+      "assets/stickers/data-chart.png",
+      "assets/stickers/design-palette.png",
+      "assets/stickers/desk-calendar.png",
+      "assets/stickers/envelope.png",
+      "assets/stickers/football.png",
+      "assets/stickers/frontend-browser.png",
+      "assets/stickers/hourglass.png",
+      "assets/stickers/laptop-closed.png",
+      "assets/stickers/marker.png",
+      "assets/stickers/nameplate-blank.png",
+      "assets/stickers/notebook-open.png",
+      "assets/stickers/poster-blank.png",
+      "assets/stickers/product-notes.png",
+      "assets/stickers/qr-plaque-blank.png",
+      "assets/stickers/round-table.png",
+      "assets/stickers/running-shoe.png",
+      "assets/stickers/school-bus.png",
+      "assets/stickers/seminar-room-sign.png",
+      "assets/stickers/sports-bottle.png",
+      "assets/stickers/study-lamp.png",
+      "assets/stickers/table-tennis.png",
+      "assets/stickers/teaching-building.png",
+      "assets/stickers/trophy.png",
+      "critique.json",
+      "css/app.css",
+      "css/tokens.css",
+      "design-system.html",
+      "index.html",
+      "js/app.js",
+      "js/lulu.js",
+      "js/screens-1.js",
+      "js/screens-2.js",
+      "js/screens-3.js",
+      "mobile-ios.html"
+    ],
+    "html": [
+      "design-system.html",
+      "index.html",
+      "mobile-ios.html"
+    ],
+    "css": [
+      "css/app.css",
+      "css/tokens.css"
+    ],
+    "scriptsAndComponents": [
+      "js/app.js",
+      "js/lulu.js",
+      "js/screens-1.js",
+      "js/screens-2.js",
+      "js/screens-3.js"
+    ],
+    "assets": [
+      "assets/lulu/lulu-motion.v1.json",
+      "assets/lulu/LuluActionExecutingAtlas.png",
+      "assets/lulu/LuluActionPreviewAtlas.png",
+      "assets/lulu/LuluConfirmGatherAtlas.png",
+      "assets/lulu/LuluCookingGuideAtlas.png",
+      "assets/lulu/LuluCoreStatesAtlas.png",
+      "assets/lulu/LuluDeviceConnectAtlas.png",
+      "assets/lulu/LuluExitBowAtlas.png",
+      "assets/lulu/LuluHomeIdleAtlas.png",
+      "assets/lulu/LuluHomeListeningAtlas.png",
+      "assets/lulu/LuluHomeReplyAtlas.png",
+      "assets/lulu/LuluHomeThinkingAtlas.png",
+      "assets/lulu/LuluIntentCardAtlas.png",
+      "assets/lulu/LuluInventoryReviewAtlas.png",
+      "assets/lulu/LuluInventoryScanAtlas.png",
+      "assets/lulu/LuluKitchenRolesAtlas.png",
+      "assets/lulu/LuluPoolWaitingAtlas.png",
+      "assets/lulu/LuluRecipePlanAtlas.png",
+      "assets/lulu/LuluShoppingOrganizeAtlas.png",
+      "assets/stickers/access-card.png",
+      "assets/stickers/alarm-clock.png",
+      "assets/stickers/algorithm-gear.png",
+      "assets/stickers/approval-stamp.png",
+      "assets/stickers/backend-server.png",
+      "assets/stickers/badge.png",
+      "assets/stickers/badminton.png",
+      "assets/stickers/basketball.png",
+      "assets/stickers/books-stack.png",
+      "assets/stickers/cafeteria-tray.png",
+      "assets/stickers/certificate.png",
+      "assets/stickers/chair-empty.png",
+      "assets/stickers/chat-bubble.png",
+      "assets/stickers/data-chart.png",
+      "assets/stickers/design-palette.png",
+      "assets/stickers/desk-calendar.png",
+      "assets/stickers/envelope.png",
+      "assets/stickers/football.png",
+      "assets/stickers/frontend-browser.png",
+      "assets/stickers/hourglass.png",
+      "assets/stickers/laptop-closed.png",
+      "assets/stickers/marker.png",
+      "assets/stickers/nameplate-blank.png",
+      "assets/stickers/notebook-open.png",
+      "assets/stickers/poster-blank.png",
+      "assets/stickers/product-notes.png",
+      "assets/stickers/qr-plaque-blank.png",
+      "assets/stickers/round-table.png",
+      "assets/stickers/running-shoe.png",
+      "assets/stickers/school-bus.png",
+      "assets/stickers/seminar-room-sign.png",
+      "assets/stickers/sports-bottle.png",
+      "assets/stickers/study-lamp.png",
+      "assets/stickers/table-tennis.png",
+      "assets/stickers/teaching-building.png",
+      "assets/stickers/trophy.png",
+      "critique.json"
+    ]
+  },
+  "screens": [
+    {
+      "file": "design-system.html",
+      "role": "screen",
+      "implementationNote": "Preserve visual hierarchy, responsive behavior, and interactive states from this screen."
+    },
+    {
+      "file": "index.html",
+      "role": "launcher-overview",
+      "implementationNote": "Use this as the navigation/overview entry only; implement each linked screen file as its own route/surface."
+    },
+    {
+      "file": "mobile-ios.html",
+      "role": "screen",
+      "implementationNote": "Preserve visual hierarchy, responsive behavior, and interactive states from this screen."
+    }
+  ],
+  "screenFilePolicy": {
+    "mode": "screen-file-first",
+    "entryFileRole": "launcher-overview",
+    "rules": [
+      "Each distinct user-facing screen or surface must be delivered and implemented as its own file/route.",
+      "If a landing page is present or requested, keep it in landing.html and do not merge it into the product app screen.",
+      "When multiple HTML screens exist, index.html is a launcher/overview only; it must not be treated as the combined final UI.",
+      "Keep product app screens, landing pages, platform screens, and OS widget surfaces separate in production code."
+    ]
+  },
+  "appModules": [
+    "Identify domain-specific in-app modules from the exported UI; do not reduce them to generic cards.",
+    "For each major module, implement purpose, default/loading/empty/error/success states, and responsive behavior.",
+    "Keep app modules separate from OS home-screen widgets in the production component model."
+  ],
+  "osWidgets": [
+    "If the export includes home-screen, lock-screen, Live Activity, tablet glance, or Android widget surfaces, implement them as platform quick-access surfaces outside the app UI.",
+    "If none are present, do not invent OS widgets unless the product requirements request them."
+  ],
+  "landingPage": {
+    "detection": "Inspect files and screen names for a marketing/landing page surface. If present, keep it separate from product app screens.",
+    "requiredSections": [
+      "hero",
+      "value props",
+      "product proof/screenshots",
+      "feature proof",
+      "CTA"
+    ]
+  },
+  "tokens": {
+    "source": [
+      "css/app.css",
+      "css/tokens.css"
+    ],
+    "required": [
+      "background",
+      "surface",
+      "foreground",
+      "muted text",
+      "border",
+      "accent",
+      "radius",
+      "shadow",
+      "spacing",
+      "type scale",
+      "motion"
+    ],
+    "note": "Extract/freeze tokens before framework implementation so coding tools do not substitute default theme colors or typography."
+  },
+  "interactions": {
+    "source": [
+      "js/app.js",
+      "js/lulu.js",
+      "js/screens-1.js",
+      "js/screens-2.js",
+      "js/screens-3.js"
+    ],
+    "requiredStates": [
+      "default",
+      "hover",
+      "focus",
+      "active",
+      "disabled",
+      "loading",
+      "empty",
+      "error",
+      "success"
+    ],
+    "requiredBehaviors": [
+      "forms/validation where present",
+      "tabs/filters where present",
+      "dialogs/sheets/drawers where present",
+      "copy/generate/share actions where present",
+      "player or quick controls where present"
+    ],
+    "note": "If the prototype is static, derive missing behavior from visible controls and document it before coding."
+  },
+  "responsiveViewports": [
+    {
+      "name": "mobile-compact",
+      "width": 360,
+      "height": 800,
+      "category": "mobile",
+      "mustAvoidHorizontalScroll": true
+    },
+    {
+      "name": "mobile-standard",
+      "width": 390,
+      "height": 844,
+      "category": "mobile",
+      "mustAvoidHorizontalScroll": true
+    },
+    {
+      "name": "mobile-large",
+      "width": 430,
+      "height": 932,
+      "category": "mobile",
+      "mustAvoidHorizontalScroll": true
+    },
+    {
+      "name": "foldable-small-tablet",
+      "width": 600,
+      "height": 960,
+      "category": "foldable-tablet",
+      "mustAvoidHorizontalScroll": true
+    },
+    {
+      "name": "tablet-portrait",
+      "width": 820,
+      "height": 1180,
+      "category": "tablet",
+      "mustAvoidHorizontalScroll": true
+    },
+    {
+      "name": "tablet-landscape",
+      "width": 1024,
+      "height": 768,
+      "category": "tablet",
+      "mustAvoidHorizontalScroll": true
+    },
+    {
+      "name": "laptop",
+      "width": 1366,
+      "height": 768,
+      "category": "desktop",
+      "mustAvoidHorizontalScroll": true
+    },
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "category": "desktop",
+      "mustAvoidHorizontalScroll": true
+    },
+    {
+      "name": "wide",
+      "width": 1920,
+      "height": 1080,
+      "category": "wide",
+      "mustAvoidHorizontalScroll": true
+    }
+  ],
+  "implementationChecklist": [
+    "Open entryFile first and map screens, modules, tokens, and interactions.",
+    "Extract tokens before writing framework components.",
+    "Implement app-specific modules with real states instead of generic card grids.",
+    "Preserve or rebuild JS interactions for meaningful UX actions.",
+    "Validate screenshots at desktop/tablet/mobile viewports with no horizontal overflow.",
+    "Keep landing pages, in-app modules, and OS widgets as separate implementation surfaces."
+  ]
+}

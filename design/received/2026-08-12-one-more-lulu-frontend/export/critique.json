@@ -1,0 +1,18 @@
+{
+  "kind": "critique-panel",
+  "score": 4,
+  "axes": {
+    "philosophy":  { "score": 4, "notes": "暖纸底 + 深墨绿黑 + 单一明黄，低刺激编辑感，与「办完就走」的产品性格一致；未漂移到工具冷灰或霓虹科技风。" },
+    "hierarchy":   { "score": 4, "notes": "每屏单一焦点：缺口徽章 / 圆桌缺口席位的明黄脉冲是全屏最高权重；E5 行动预览用 2px 墨描边压住全场，分量高于列表卡。" },
+    "typography":  { "score": 4, "notes": "8 级字号阶梯 + 等宽数字（倒计时、席位比、预约号）；标题字距收紧；正文 17px 基准对齐 Dynamic Type。" },
+    "motion":      { "score": 4, "notes": "Lulu 12 状态全部按 manifest 帧序列播放，once 剪辑停 poster 帧；缺口脉冲 1.6s 是唯一非 Lulu 循环动效；reduced-motion 全局降级静帧。" },
+    "brand":       { "score": 5, "notes": "七色封闭色板零新增（派生色仅 color-mix）；36 张贴纸与 18 张图集全部为 compusone 仓库真实素材；缺口不用红色。" }
+  },
+  "checks": {
+    "nodes": "74/74 节点已定义且全部可达（另加 MSG 消息列表根屏）",
+    "links": "data-go / 按钮目标 0 断链",
+    "assets": "37 贴纸引用 + 11 图集引用全部存在于 assets/",
+    "redlines": "红线词汇扫描通过：命中均为否定/说明语境，无实际违规组件",
+    "render": "守护进程渲染器在本环境不可用（Electron helper 缺失），以静态校验代替"
+  }
+}
