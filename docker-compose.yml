@@ -9,6 +9,7 @@ services:
       ONEMORE_HERMES_MODE: fake
       ONEMORE_ADMIN_TOKEN: local-admin
       ONEMORE_AUTO_CREATE_SCHEMA: "false"
+      ONEMORE_CAST_DRIVER_ENABLED: "true"
     ports:
       - "8000:8000"
     healthcheck:
@@ -32,6 +33,7 @@ services:
       ONEMORE_CELERY_RESULT_BACKEND: redis://redis:6379/2
       ONEMORE_HERMES_MODE: fake
       ONEMORE_ADMIN_TOKEN: local-admin
+      ONEMORE_CAST_DRIVER_ENABLED: "true"
     depends_on:
       api:
         condition: service_healthy

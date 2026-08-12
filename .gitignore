@@ -33,7 +33,9 @@ celerybeat-schedule*
 # Node / Web
 web/node_modules/
 web/dist/
+web/.env.production
 **/node_modules/
+**/.edgeone/
 
 # Xcode local build/test products (source, generated project and evidence remain tracked)
 ios/.derived/

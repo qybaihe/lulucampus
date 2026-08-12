@@ -1,5 +1,7 @@
 # Production deployment (single host, behind nginx path prefix /onemore/api).
 # Secrets live in /opt/onemore/.env on the server — never commit that file.
+# Douyin share-link import: set ONEMORE_DOUYIN_HTTP_COOKIE_B64 in that .env
+# (operator Cookie header, Base64). No extra volume is required.
 #
 # Hermes real mode: host Node + /opt/AnythingSYSU are bind-mounted into api/worker.
 # Campus auth is HTTP-based (no Chromium required for workwechat login).
@@ -19,6 +21,8 @@ services:
     env_file: .env
     environment:
       PATH: /opt/node/bin:/usr/local/bin:/usr/bin:/bin
+      ONEMORE_HERMES_AGENT_MODE: sidecar
+      ONEMORE_HERMES_AGENT_URL: http://hermes-agent:8642
     ports:
       - "127.0.0.1:18100:8000"
     volumes: *hermes-volumes
@@ -69,6 +73,30 @@ services:
       interval: 5s
       timeout: 3s
       retries: 20
+
+  hermes-agent:
+    image: onemore-api:prod
+    command: uv run uvicorn onemore.hermes.agent_server:app --host 0.0.0.0 --port 8642
+    env_file: .env
+    environment:
+      ONEMORE_CAMPUS_MCP_URL: http://api:8000/internal/campus-mcp
+    ports:
+      - "127.0.0.1:8642:8642"
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8642/health', timeout=2)",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+    depends_on:
+      api:
+        condition: service_healthy
 
   redis:
     image: redis:8-alpine
