@@ -13,6 +13,7 @@
 		0396A56AC2A399AD1D631DD4 /* completeness_report.md in Resources */ = {isa = PBXBuildFile; fileRef = D27CC95340E7E22AFBA3DD14 /* completeness_report.md */; };
 		05D925154990C3477F2F6842 /* azou_appear_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D885EA77055B59C41008299 /* azou_appear_01.png */; };
 		09D1193661A5D298E07ADDDF /* qr-plaque-blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 1630933E53B034FC20C86E67 /* qr-plaque-blank.png */; };
+		0A380899463F3056FFD9FEE1 /* HermesProdSmokeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35F5FD70671085A48091E37 /* HermesProdSmokeUITests.swift */; };
 		0AC558769CDCB18DEBFDFA5C /* aliases.v1.json in Resources */ = {isa = PBXBuildFile; fileRef = 947A2357A48381F25D70D881 /* aliases.v1.json */; };
 		0B18C6510B0C94C55F3C7154 /* ContractCoverageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BEB5E896E0B4B64AB1E6F /* ContractCoverageTests.swift */; };
 		0B20FA4BC883B42F68B7F8D3 /* azou_closed_eye_sensing_04.png in Resources */ = {isa = PBXBuildFile; fileRef = 502DC207BAD41A6307237816 /* azou_closed_eye_sensing_04.png */; };
@@ -57,6 +58,7 @@
 		412319E43E52226BB3404C8D /* Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4AB8D7F3FA9843605D1B6 /* Repositories.swift */; };
 		4124209B8AE99144A4BA547C /* marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 433D55D208D7EF3C56E784AC /* marker.png */; };
 		4295562636493B18E37792FD /* azou_idle_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 32234E9218891843752F5353 /* azou_idle_01.png */; };
+		43102C979652485186D4684F /* CampusAuthPendingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02208492D9A820776DFE5FE7 /* CampusAuthPendingUITests.swift */; };
 		435148C9ECE1EF03FC776A54 /* azou_needs_adjustment_01.png in Resources */ = {isa = PBXBuildFile; fileRef = B435C4B46986E1AD614C90D4 /* azou_needs_adjustment_01.png */; };
 		44D09E181042B2C9B95156BB /* trust-t1.png in Resources */ = {isa = PBXBuildFile; fileRef = 95D4C326E7E9266A3FA051FA /* trust-t1.png */; };
 		457484F1C23BA77641BB29E8 /* data-chart.png in Resources */ = {isa = PBXBuildFile; fileRef = 76632049EA4A1DEE4A3BD576 /* data-chart.png */; };
@@ -264,6 +266,7 @@
 		001840EC0D8AB04A9B844FE2 /* shield-check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shield-check.png"; sourceTree = "<group>"; };
 		01C8FCC982578D1447BB5E74 /* SocialMoments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMoments.swift; sourceTree = "<group>"; };
 		0201787949EB406CDFC6789F /* box-export.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box-export.png"; sourceTree = "<group>"; };
+		02208492D9A820776DFE5FE7 /* CampusAuthPendingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusAuthPendingUITests.swift; sourceTree = "<group>"; };
 		029FA6932181E38E5690E8EF /* azou_executing_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = azou_executing_04.png; sourceTree = "<group>"; };
 		03C69548207F8153BE75CED9 /* azou_closed_eye_sensing_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = azou_closed_eye_sensing_03.png; sourceTree = "<group>"; };
 		03F1086B4BFA1510A66F8B0E /* azou_executing_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = azou_executing_05.png; sourceTree = "<group>"; };
@@ -471,6 +474,7 @@
 		D0013731608248FB24BF9EF9 /* tab-today-inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-today-inactive.png"; sourceTree = "<group>"; };
 		D1D78D38AB492B94C46FC4E3 /* azou_needs_adjustment_00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = azou_needs_adjustment_00.png; sourceTree = "<group>"; };
 		D27CC95340E7E22AFBA3DD14 /* completeness_report.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = completeness_report.md; sourceTree = "<group>"; };
+		D35F5FD70671085A48091E37 /* HermesProdSmokeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HermesProdSmokeUITests.swift; sourceTree = "<group>"; };
 		D5CD3B5DD872BDEA9A48E664 /* lulu-motion.v1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "lulu-motion.v1.json"; sourceTree = "<group>"; };
 		D5CE48B97DA4EE721F6FCD21 /* football.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = football.png; sourceTree = "<group>"; };
 		D60A7577FB64004DB58463FB /* trophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trophy.png; sourceTree = "<group>"; };
@@ -743,7 +747,9 @@
 		502F35AB58ABE30EF002B8A6 /* OneMoreUITests */ = {
 			isa = PBXGroup;
 			children = (
+				02208492D9A820776DFE5FE7 /* CampusAuthPendingUITests.swift */,
 				A76A09FC216BCA84FAA8C59F /* FullAppScreenshotTests.swift */,
+				D35F5FD70671085A48091E37 /* HermesProdSmokeUITests.swift */,
 				5395588D3416E54F8A92049C /* OneMoreNavigationUITests.swift */,
 				641400B3AA9DC778E6F238AB /* SocialMomentsScreenshotTests.swift */,
 				E49E0A62AA6435F492FEE009 /* TastePersonaScreenshotTests.swift */,
@@ -1413,7 +1419,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43102C979652485186D4684F /* CampusAuthPendingUITests.swift in Sources */,
 				C60FD52767393F6665AD5211 /* FullAppScreenshotTests.swift in Sources */,
+				0A380899463F3056FFD9FEE1 /* HermesProdSmokeUITests.swift in Sources */,
 				169C0BCCC8079ADCB2CB0BB1 /* OneMoreNavigationUITests.swift in Sources */,
 				8DD5B78A531FDFA91277D1D1 /* SocialMomentsScreenshotTests.swift in Sources */,
 				F9F9BDCAC558F9694F54AB86 /* TastePersonaScreenshotTests.swift in Sources */,

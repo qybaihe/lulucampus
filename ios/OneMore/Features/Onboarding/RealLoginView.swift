@@ -94,9 +94,10 @@ struct RealLoginView: View {
     @StateObject private var model = RealLoginViewModel()
     @EnvironmentObject private var environment: AppEnvironment
     @EnvironmentObject private var router: AppRouter
+
     var body: some View {
         VStack(spacing: 20) {
-            Spacer()
+            Spacer(minLength: 0)
             LuluView(clip: .homeIdle, placement: .empty).frame(height: 205)
             Text(campusGateOnly ? "中大校园认证" : "统一身份认证")
                 .font(OMTheme.TypeToken.hero)
@@ -119,41 +120,9 @@ struct RealLoginView: View {
                 .padding(.horizontal, 24)
                 .accessibilityIdentifier("auth-start-button")
             case .creating:
-                OMCard { OMG5StateView(state: .loading, message: "正在创建认证会话…") }
-                    .padding(.horizontal, 24)
+                CampusAuthQRLoadingSlot(message: "正在创建认证会话…")
             case let .waiting(login):
-                if let image = qr(login.qrImageDataUrl) {
-                    image.resizable().interpolation(.none).scaledToFit()
-                        .frame(width: 220, height: 220)
-                        .padding(12)
-                        .background(OMTheme.ColorToken.card, in: RoundedRectangle(cornerRadius: OMTheme.Radius.large))
-                        .overlay {
-                            RoundedRectangle(cornerRadius: OMTheme.Radius.large)
-                                .stroke(OMTheme.ColorToken.line, lineWidth: OMTheme.Radius.borderWidth)
-                        }
-                } else {
-                    OMQRPattern()
-                        .frame(width: 180, height: 180)
-                        .padding(20)
-                        .background(OMTheme.ColorToken.card, in: RoundedRectangle(cornerRadius: OMTheme.Radius.large))
-                        .overlay {
-                            RoundedRectangle(cornerRadius: OMTheme.Radius.large)
-                                .stroke(OMTheme.ColorToken.line, lineWidth: OMTheme.Radius.borderWidth)
-                        }
-                }
-                OMChip(text: login.status, kind: .solid)
-                #if DEV_AUTH
-                OMButton("开发环境：完成扫码", small: true, fillsWidth: false) {
-                    Task {
-                        if campusGateOnly {
-                            onCampusGateComplete?()
-                        } else {
-                            await model.completeDemo(api: environment.api)
-                        }
-                    }
-                }
-                .accessibilityIdentifier("demo-complete-login")
-                #endif
+                waitingContent(login)
             case let .failed(message):
                 OMCard {
                     OMG5StateView(state: .networkError, message: message, actionTitle: "重试") {
@@ -162,10 +131,134 @@ struct RealLoginView: View {
                 }
                 .padding(.horizontal, 24)
             }
-            Spacer()
+            Spacer(minLength: 0)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(OMPageBackground())
-        .accessibilityElement(children: .contain).accessibilityIdentifier("screen-A3-real-login")
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("screen-A3-real-login")
     }
-    private func qr(_ value: String?) -> Image? { guard let value, let comma = value.firstIndex(of: ","), let data = Data(base64Encoded: String(value[value.index(after: comma)...])), let image = UIImage(data: data) else { return nil }; return Image(uiImage: image) }
+
+    @ViewBuilder
+    private func waitingContent(_ login: LoginSession) -> some View {
+        let ready = Self.isQRReady(login)
+        if ready, let image = qr(login.qrImageDataUrl) {
+            image.resizable().interpolation(.none).scaledToFit()
+                .frame(width: 220, height: 220)
+                .padding(12)
+                .background(OMTheme.ColorToken.card, in: RoundedRectangle(cornerRadius: OMTheme.Radius.large))
+                .overlay {
+                    RoundedRectangle(cornerRadius: OMTheme.Radius.large)
+                        .stroke(OMTheme.ColorToken.line, lineWidth: OMTheme.Radius.borderWidth)
+                }
+                .transition(.opacity.combined(with: .scale(scale: 0.98)))
+            OMChip(text: Self.statusLabel(login.status), kind: .solid)
+            Text("请使用企业微信扫码")
+                .font(OMTheme.TypeToken.callout)
+                .foregroundStyle(OMTheme.ColorToken.mist)
+                .padding(.horizontal, 30)
+        } else {
+            CampusAuthQRLoadingSlot(message: Self.loadingMessage(for: login.status))
+        }
+        #if DEV_AUTH
+        OMButton("开发环境：完成扫码", small: true, fillsWidth: false) {
+            Task {
+                if campusGateOnly {
+                    onCampusGateComplete?()
+                } else {
+                    await model.completeDemo(api: environment.api)
+                }
+            }
+        }
+        .accessibilityIdentifier("demo-complete-login")
+        #endif
+    }
+
+    /// PENDING / 尚无可用二维码时只展示加载态，避免假 QR 误导扫码。
+    private static func isQRReady(_ login: LoginSession) -> Bool {
+        let status = login.status.uppercased()
+        guard status == "WAITING_SCAN" || status == "SCANNED" || status == "SUCCESS" else {
+            return false
+        }
+        guard let url = login.qrImageDataUrl, url.contains(","), url.count > 32 else {
+            return false
+        }
+        return true
+    }
+
+    private static func loadingMessage(for status: String) -> String {
+        switch status.uppercased() {
+        case "PENDING":
+            return "正在生成核验二维码…"
+        case "WAITING_SCAN":
+            return "二维码准备中…"
+        default:
+            return "正在同步认证状态…"
+        }
+    }
+
+    private static func statusLabel(_ status: String) -> String {
+        switch status.uppercased() {
+        case "WAITING_SCAN": return "待扫码"
+        case "SCANNED": return "已扫码，请确认"
+        case "SUCCESS": return "认证成功"
+        case "PENDING": return "准备中"
+        default: return status
+        }
+    }
+
+    private func qr(_ value: String?) -> Image? {
+        guard let value,
+              let comma = value.firstIndex(of: ","),
+              let data = Data(base64Encoded: String(value[value.index(after: comma)...])),
+              let image = UIImage(data: data) else { return nil }
+        return Image(uiImage: image)
+    }
+}
+
+/// PENDING 阶段的二维码占位：脉冲边框 + 进度，不展示可扫的假码。
+private struct CampusAuthQRLoadingSlot: View {
+    let message: String
+    @State private var pulse = false
+
+    var body: some View {
+        VStack(spacing: 16) {
+            ZStack {
+                RoundedRectangle(cornerRadius: OMTheme.Radius.large)
+                    .fill(OMTheme.ColorToken.card)
+                    .frame(width: 244, height: 244)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: OMTheme.Radius.large)
+                            .stroke(OMTheme.ColorToken.line, lineWidth: OMTheme.Radius.borderWidth)
+                    }
+                    .overlay {
+                        RoundedRectangle(cornerRadius: OMTheme.Radius.large)
+                            .stroke(OMTheme.ColorToken.sage.opacity(pulse ? 0.55 : 0.15), lineWidth: 2)
+                            .padding(3)
+                    }
+                    .shadow(color: OMTheme.ColorToken.ink.opacity(pulse ? 0.06 : 0.02), radius: pulse ? 16 : 6, y: 4)
+
+                VStack(spacing: 14) {
+                    ProgressView()
+                        .controlSize(.large)
+                        .tint(OMTheme.ColorToken.ink)
+                    Text(message)
+                        .font(OMTheme.TypeToken.callout.weight(.semibold))
+                        .foregroundStyle(OMTheme.ColorToken.mist)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 20)
+                }
+            }
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel(message)
+            .accessibilityIdentifier("campus-auth-qr-loading")
+
+            OMChip(text: "准备中", kind: .soft)
+        }
+        .onAppear {
+            withAnimation(.easeInOut(duration: 1.1).repeatForever(autoreverses: true)) {
+                pulse = true
+            }
+        }
+    }
 }

@@ -174,6 +174,9 @@ struct AuthenticationFlowView: View {
                 PhoneAuthView()
             }
         }
+        // accessibility contain 会按内容固有宽度收缩；先铺满再挂 identifier。
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(OMPageBackground())
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("screen-A2-auth-intro")
     }
@@ -288,62 +291,119 @@ struct FirstUseSetupView: View {
     @EnvironmentObject private var environment: AppEnvironment
     @EnvironmentObject private var router: AppRouter
     init(repository: IdentityRepository) { _model = StateObject(wrappedValue: FirstUseSetupViewModel(repository: repository)) }
+
+    private static let grantItems: [(title: String, scope: String)] = [
+        ("课表与空闲", "timetable"),
+        ("课程画像", "curriculum"),
+        ("同课匹配", "enrollment"),
+        ("校园预约代理", "agent_booking"),
+    ]
+
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
-                switch model.step {
-                case .grants: grants
-                case .facts: facts
-                case .social: social
-                case .ready: ready
-                }
-                if let error = model.error {
-                    OMCard {
-                        OMG5StateView(state: .networkError, message: error, actionTitle: "重试") {
-                            Task { await retry() }
+        Group {
+            if model.step == .grants {
+                grants
+            } else {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 0) {
+                        switch model.step {
+                        case .grants: EmptyView()
+                        case .facts: facts
+                        case .social: social
+                        case .ready: ready
+                        }
+                        if let error = model.error {
+                            OMCard {
+                                OMG5StateView(state: .networkError, message: error, actionTitle: "重试") {
+                                    Task { await retry() }
+                                }
+                            }
                         }
                     }
+                    .padding(.horizontal, OMTheme.Spacing.pageX)
+                    .padding(.bottom, 44)
                 }
             }
-            .padding(.horizontal, OMTheme.Spacing.pageX)
-            .padding(.bottom, 44)
         }
         .background(OMPageBackground())
     }
+
+    /// 授权页：噜噜居中撑满上半屏，底部 2×2 确认按钮，避免半屏空白。
     private var grants: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            OMHeader(eyebrow: "分项授权", title: "授权由你掌控", lulu: .coreCare)
-            OMCard {
-                grant("课表与空闲", "timetable")
-                grant("课程画像", "curriculum")
-                grant("同课匹配", "enrollment")
-                grant("校园预约代理", "agent_booking")
+        VStack(spacing: 0) {
+            Text("授权由你掌控")
+                .font(OMTheme.TypeToken.title2)
+                .foregroundStyle(OMTheme.ColorToken.ink)
+                .padding(.top, OMTheme.Spacing.s4)
+            Text("点选你愿意开放的数据边界，随时可在设置里撤回")
+                .font(OMTheme.TypeToken.footnote)
+                .foregroundStyle(OMTheme.ColorToken.mist)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 28)
+                .padding(.top, 6)
+
+            Spacer(minLength: 8)
+            LuluView(clip: .coreCare, placement: .hero)
+                .frame(maxWidth: .infinity)
+                .frame(height: 260)
+            Spacer(minLength: 8)
+
+            LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)], spacing: 10) {
+                ForEach(Self.grantItems, id: \.scope) { item in
+                    grantButton(title: item.title, scope: item.scope)
+                }
             }
-            OMButton("保存授权并读取身份事实", loading: model.working) {
+            .padding(.horizontal, OMTheme.Spacing.pageX)
+
+            if let error = model.error {
+                Text(error)
+                    .font(OMTheme.TypeToken.footnote)
+                    .foregroundStyle(Color.red.opacity(0.85))
+                    .padding(.horizontal, OMTheme.Spacing.pageX)
+                    .padding(.top, OMTheme.Spacing.s2)
+            }
+
+            OMButton("确认授权，继续", loading: model.working) {
                 Task { await model.saveGrants() }
             }
+            .padding(.horizontal, OMTheme.Spacing.pageX)
+            .padding(.top, OMTheme.Spacing.s3)
+            .padding(.bottom, 34)
             .accessibilityIdentifier("first-use-save-grants")
         }
         .accessibilityElement(children: .contain).accessibilityIdentifier("screen-A4-grants")
     }
-    private func grant(_ title: String, _ scope: String) -> some View {
-        HStack {
-            Text(title)
-                .font(OMTheme.TypeToken.callout.weight(.semibold))
-                .foregroundStyle(OMTheme.ColorToken.ink)
-            Spacer()
-            OMSwitch(isOn: Binding(
-                get: { model.selectedScopes.contains(scope) },
-                set: { enabled in
-                    if enabled {
-                        model.selectedScopes.insert(scope)
-                    } else {
-                        model.selectedScopes.remove(scope)
-                    }
-                }
-            ))
+
+    private func grantButton(title: String, scope: String) -> some View {
+        let on = model.selectedScopes.contains(scope)
+        return Button {
+            withAnimation(OMTheme.Motion.fast) {
+                if on { model.selectedScopes.remove(scope) }
+                else { model.selectedScopes.insert(scope) }
+            }
+        } label: {
+            HStack(spacing: 8) {
+                Image(systemName: on ? "checkmark.circle.fill" : "circle")
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundStyle(on ? OMTheme.ColorToken.ink : OMTheme.ColorToken.sage)
+                Text(title)
+                    .font(OMTheme.TypeToken.footnote.weight(.semibold))
+                    .foregroundStyle(OMTheme.ColorToken.ink)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.leading)
+                Spacer(minLength: 0)
+            }
+            .padding(.horizontal, 12)
+            .frame(maxWidth: .infinity, minHeight: 52, alignment: .leading)
+            .background(on ? OMTheme.ColorToken.yolk.opacity(0.35) : OMTheme.ColorToken.card)
+            .clipShape(RoundedRectangle(cornerRadius: OMTheme.Radius.medium))
+            .overlay {
+                RoundedRectangle(cornerRadius: OMTheme.Radius.medium)
+                    .stroke(on ? OMTheme.ColorToken.ink : OMTheme.ColorToken.line, lineWidth: on ? 1.5 : OMTheme.Radius.borderWidth)
+            }
         }
-        .padding(.vertical, 6)
+        .buttonStyle(.plain)
+        .accessibilityIdentifier("first-use-grant-\(scope)")
     }
     private var facts: some View {
         VStack(alignment: .leading, spacing: 0) {
