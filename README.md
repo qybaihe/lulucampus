@@ -21,6 +21,8 @@
   ·
   <a href="https://github.com/qybaihe/lulucampus">GitHub</a>
   ·
+  <a href="https://luludrawu.classby.cn">扫码体验兴趣画像</a>
+  ·
   <a href="docs/README.md">工程文档索引</a>
 </p>
 
@@ -37,12 +39,14 @@
 噜噜成局是一个能在用户授权下执行真实校园预约的 **AI 成局智能体**。  
 它把主动表达的目标、课表推导出的真实共同空档和历史成局记录组合起来，匿名凑齐合适的同伴，把场地、活动与日程真正落实，然后退到幕后。
 
-最小产品单元不是「人」，而是「局」——一次羽毛球局、一次比赛筹备会、一次跨校区同行、一次 90 分钟作业冲刺，都是一个局。
+最小产品单元不是「人」，而是「局」。主场是比赛组队（缺前端、缺产品，把队伍凑齐）；日常是羽毛球、冲 DDL、校园活动同行。
 
 **说人话，这套系统干两件事：**
 
 1. **效率像开了挂** — 课表、作业 DDL、体育馆空场、研讨室、宣讲会、岐关车，从查到订再到写进日历，一句话搞定。
-2. **干掉社交最尴尬的部分** — 你只管说想干嘛，噜噜悄悄撮合；凑齐了才叫你确认，见面前把「为什么是你们」讲清楚，连开场白都替你发好。事儿成了，AI 退场。
+2. **干掉组队和社交里最尴尬的部分** — 你说「智能应用开发大赛，我做后端，还差前端和产品」，噜噜按赛道缺口互补撮合；凑齐了才全员确认，研讨室和日历一并落地。打球、冲 DDL、听讲座同行走同一套。事儿成了，AI 退场。
+
+校园社交产品大多死在「想替代微信」。噜噜成局不空降社交：先有校园 AI 助手把事办完，人自然进来办事；没凑齐就不进群，座位满了才亮出这一桌的名字。入口是效率，转化是凑齐，沉淀是轻协作。
 
 ---
 
@@ -65,6 +69,42 @@
 
 ---
 
+## 三个 Skill
+
+噜噜成局不是从零长出来的社交产品，而是校园 AI 助手的一次进化：先帮你高效管理校园生活，再顺手让你认识身边有意思的人。
+
+### Skill 1 · SYSU Anything（校园行动引擎）
+
+把中大校园系统接入 AI：教务课表与请假、雨课堂作业与签到、图书馆研讨室、体育场馆预约、宣讲会报名、组会、勤工助学、假期离返校、岐关车与校区班车、CAS 会话恢复，以及 Apple 日历 / 提醒事项同步。这是 hermes 执行链路的底座。
+
+### Skill 2 · 软工 AI 迎新智能助手
+
+[中山大学软件工程学院](https://hello.classby.cn) 官宣的新生校园问答：官方资料 + 三百余条在校生经验。报到入学、课程学业、宿舍食堂、办事出行，一句问完还能追问。直接用：[hello.classby.cn](https://hello.classby.cn)。它是「校园 AI 助手」底座的一部分：先能把事问清，才谈得上后面的成局。
+
+### Skill 3 · 抖音兴趣画像
+
+扫码或贴抖音主页链接 → 主标签 / 子兴趣 / 人格化描述 / 成局提示。默认仅成局后对成员可见，可一键删除。Cookie 不进响应与日志。
+
+自己体验（贴抖音个人主页链接即可）：**[luludrawu.classby.cn](https://luludrawu.classby.cn)**
+
+<p align="center">
+  <img src="docs/readme-assets/taste-qr.png" alt="扫码体验抖音兴趣画像" width="180" />
+</p>
+
+<p align="center"><sub>扫码打开评委体验页 · 独立 EdgeOne 落地（`onemore-taste-edge/`）</sub></p>
+
+### 演示高光：画像遇上公选课
+
+抖音画像刚导完，对着 Hermes 说「帮我推荐一点适合我的公选课」——它调用校园工具 `elective_match_taste`，按画像捞课，并挂上拥挤程度。兴趣懂你的是画像 Skill，办事落地的是校园行动 Skill：不是陪你聊天选课，是真的认识你，再在真实课表世界里做决定。
+
+<p align="center">
+  <img src="docs/readme-assets/hermes-celebration.png" alt="问问 Hermes 与凑齐了" width="720" />
+</p>
+
+<p align="center"><sub>左：问问 Hermes · 右：凑齐了才进群</sub></p>
+
+---
+
 ## 授权由你掌控
 
 社交与校园能力默认不越权：课表与空闲、课程画像、同课匹配、校园预约代理均为**分项授权**，可随时在设置中单独撤回并级联清除派生数据。边界由用户点选，不是系统默认全开。
@@ -77,20 +117,15 @@
 
 ---
 
-## 核心能力
+## 社交：先有场合，再凑齐进群
 
-### Skill 1 · SYSU Anything（校园行动引擎）
+场合有主次：比赛组队是主场景，打球和冲 DDL 是日常高频，校园活动是最轻的第一局。无论哪一种，规则都一样：**没凑齐，就不进群。**
 
-把中大校园系统接入 AI：教务课表与请假、雨课堂作业与签到、图书馆研讨室、体育场馆预约、宣讲会报名、组会、勤工助学、假期离返校、岐关车与校区班车、CAS 会话恢复，以及 Apple 日历 / 提醒事项同步。
-
-### Skill 2 · 抖音兴趣画像
-
-扫码导入「喜欢」列表 → 主标签 / 子兴趣 / 人格化描述 / 成局提示。默认仅成局后对成员可见，可一键删除。Cookie 不进响应与日志。
-
-### 成局主流程
-
-`Draft → Pooling → Tentative → Confirmed → Previewed → Executed → Active → Completed`  
-（之后可进入 Recurred 或 Archived；凑不齐静默解散，失败由系统承担。）
+| 场合 | 怎么成局 |
+|---|---|
+| 比赛组队 | 按赛道缺口互补匹配，T2 才进比赛池；研讨室和日历落地，报名仍走官方入口 |
+| 打球 / 冲 DDL | 共同空档 + 满员确认；运动搭子是攒信任的主通道，同课冲刺不依赖全校密度 |
+| 活动同行 | 宣讲会、讲座免登录可发现，适合当第一局 |
 
 <p align="center">
   <img src="docs/readme-assets/flow-main.png" alt="核心四步流程" width="900" />
@@ -104,9 +139,31 @@
 
 <p align="center"><sub>比赛雷达 · 「还差 N 个角色」· 局内群聊 · 噜噜招募中</sub></p>
 
+成局状态机：`Draft → Pooling → Tentative → Confirmed → Previewed → Executed → Active → Completed`  
+（之后可进入 Recurred 或 Archived；凑不齐静默解散，失败由系统承担。）
+
+---
+
+## 测试剧组
+
+没有其他真实用户时，组队、凑齐、破冰演不出来。所以仓库里有六个已经注册进系统的中大测试剧组：像真人一样有课表、信任档、成局历史；开发态会按性格上课、发局、确认，不会每分钟刷屏。
+
 <p align="center">
-  <img src="docs/readme-assets/competition-duo.png" alt="活动列表与赛事详情" width="720" />
+  <img src="docs/readme-assets/cast-row.png" alt="测试剧组六人" width="720" />
 </p>
+
+<p align="center"><sub>林予安 · 周衡 · 陈可薇 · 梁景行 · 苏晚宁 · 何屿</sub></p>
+
+`u_demo_1`–`u_demo_6` 已核验、已授权、已开社交。也可用手机号 `13900001001`–`006`、密码 `cast-onemore` 走正式登录。
+
+两场局故意留给真人，剧组自己不会坐满：①「周六英东羽毛球」差 1 个不鸽的；②「数模组队差建模」差一个建模（要 T2）。
+
+开发态打开 `ONEMORE_CAST_DRIVER_ENABLED=true` 后，Celery beat 每 15 分钟走一次真实接口。手动催一次：
+
+```bash
+uv run python -m onemore.scripts.tick_cast_driver
+# 或 POST /internal/cast-driver/tick  （X-Admin-Token）
+```
 
 ---
 
@@ -115,20 +172,21 @@
 ```text
 onemore/                 FastAPI 业务服务 + Hermes 行动代理
   core/                  配置、认证、幂等、锁、HTTP
-  hermes/                Action Schema、Vault、执行器
+  hermes/                Action Schema、Vault、执行器、Campus MCP、Agent sidecar
   modules/               identity / profile / schedule / intent /
                          matching / gathering / trust / collab /
                          competitions / actions / notify /
-                         campus / taste_profile / media
+                         campus / taste_profile / media / cast_driver
   tasks/                 Celery worker + beat
 ios/                     原生 SwiftUI 客户端（XcodeGen）
 web/                     React 19 对齐端（五 Tab · 74 节点）
-onemore-edge-agent/      EdgeOne 编排沙箱（凭证留端）
+onemore-edge-agent/      EdgeOne 校园 Agent 编排沙箱（凭证留端）
+onemore-taste-edge/      EdgeOne 评委画像落地页（luludrawu.classby.cn）
 migrations/              Alembic 迁移
 openapi/                 前端契约 OpenAPI
 fixtures/                赛事快照等可重复摄取数据
 data/                    中大校园参考包、活动数据
-assets/ip/               噜噜 / AIIA 动态 IP 资产
+assets/ip/               噜噜 IP、测试剧组头像
 docs/                    产品与工程文档（含 README 配图）
 tests/                   pytest 全量用例
 ```
@@ -160,7 +218,12 @@ X-User-ID: u_demo_1
 Authorization: Bearer dev:u_demo_1
 ```
 
-`u_demo_1`–`u_demo_4` 均为已授权、开启社交的演示账号。
+Hermes Agent sidecar（可选，公选课等自然语言走 DeepSeek，失败回退关键词规则）：
+
+```bash
+uv run uvicorn onemore.hermes.agent_server:app --port 8642
+# .env: ONEMORE_HERMES_AGENT_MODE=sidecar
+```
 
 ### Docker
 
@@ -168,6 +231,8 @@ Authorization: Bearer dev:u_demo_1
 docker compose up --build
 docker compose exec api uv run onemore-seed
 ```
+
+生产编排见 `docker-compose.prod.yml`（含 `hermes-agent` sidecar）。
 
 ### iOS
 
@@ -187,7 +252,7 @@ cd ios
 cd web && yarn && yarn dev
 ```
 
-PC 以手机框呈现，移动端全宽；与 iOS 共用同一 FastAPI 与响应契约。
+PC 以手机框呈现，移动端全宽；与 iOS 共用同一 FastAPI 与响应契约。公开画像体验页也可走 `web` 的 `/demo/taste` 或独立仓库目录 `onemore-taste-edge/`。
 
 ---
 
@@ -207,7 +272,7 @@ ONEMORE_VAULT_MASTER_KEY="$(openssl rand -hex 32)"
 
 ```text
 自然语言 → LLM 意图编译（只产出结构）
-  → Action Schema 白名单
+  → Action Schema 白名单 / Campus MCP 工具
   → 七道校验（白名单 / 参数 / 授权 / 信任 / 全员确认 / 幂等）
   → argv 转译（shell=False）
   → 用户级串行锁 · 限流 · 熔断
@@ -235,14 +300,15 @@ ONEMORE_VAULT_MASTER_KEY="$(openssl rand -hex 32)"
 | `competitions` | 原子快照摄取、核验闸门、去重、能力映射、过期下架 |
 | `actions` | 预览快照、服务端确认、幂等执行、失败归一化、回滚 |
 | `notify` | 事务通知、日历 DTO、群聊合并推送、提醒任务 |
-| `campus` | 校园工具聚合（只经 Hermes 白名单） |
-| `taste_profile` | 抖音兴趣导入、规则画像、可选 LLM 人格重述 |
+| `campus` | 校园工具聚合 + 公选课画像匹配（只经 Hermes / MCP 白名单） |
+| `taste_profile` | 抖音扫码 / 分享链接导入、规则画像、可选 LLM 人格重述、公开评委入口 |
+| `cast_driver` | 测试剧组按课表与性格走动（开发态） |
 
 附加：T4 主理人台、账号屏蔽、数据导出与注销闭环。
 
 ---
 
-## 完成度（冻结基线 · 2026-08-12）
+## 完成度（冻结基线 · 2026-08-12，此后持续增量）
 
 **不是接近完成，是全部完成。** 全程不用一个 Mock——每个接口、每一屏、每条数据都是真的。
 
@@ -250,7 +316,7 @@ ONEMORE_VAULT_MASTER_KEY="$(openssl rand -hex 32)"
 |---|---|
 | 后端 | 11+ 业务模块 · pytest 全绿 · mypy 零错误 · OpenAPI 118 paths / 204 schemas · Alembic → 0019 |
 | iOS | 原生 SwiftUI · 74 正式节点 · 72 unit + 21 UI · 36 画板还原 · major 缺陷为零 |
-| Web | React 19 · 五 Tab / 74 节点与 iOS 对齐 |
+| Web | React 19 · 五 Tab / 74 节点与 iOS 对齐 · 公开画像体验页 |
 | 数据 | 比赛雷达 24 条人工核验赛事 · 中大参考包 v1.1（5 校区 / 76 地点 / 137 场馆） |
 
 也欢迎来拷打代码：[github.com/qybaihe/lulucampus](https://github.com/qybaihe/lulucampus)
@@ -311,6 +377,7 @@ uv run celery -A onemore.tasks.celery_app:celery_app beat -l INFO
 | [docs/03_行动代理与Hermes设计.md](docs/03_行动代理与Hermes设计.md) | Hermes 设计 |
 | [ios/README.md](ios/README.md) | iOS 交付说明 |
 | [web/README.md](web/README.md) | Web 对齐端说明 |
+| [onemore-taste-edge/README.md](onemore-taste-edge/README.md) | 评委画像 EdgeOne 落地 |
 
 ---
 
@@ -322,6 +389,7 @@ uv run celery -A onemore.tasks.celery_app:celery_app beat -l INFO
 - **静默成局** — 未满员不可见，凑不齐静默解散  
 - **把自己删掉的 AI** — 成局后退场，优化「事成」而非停留时长  
 - **授权由你掌控** — 分项勾选、随时撤回、级联清除  
+- **画像遇上公选课** — 抖音兴趣 × 真实课表拥挤度，两套 Skill 接上  
 - **安全即架构** — LLM 不碰命令行；红灯能力不可达；凭证按人加密隔离  
 
 ---

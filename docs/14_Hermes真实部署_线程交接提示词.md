@@ -50,12 +50,16 @@
 
 ### 1.3 与 EdgeOne Agent 的边界（不要混淆）
 
-| | Hermes（本任务） | EdgeOne Agent（`onemore-edge-agent/`） |
-|---|---|---|
-| 职责 | 真实校园登录与动作执行 | LLM 对话编排 |
-| 是否持有校园 cookie | 是（每用户 vault） | 否（最多本轮 ephemeral 提示） |
-| 订场/拉课表 | 服务端真实执行 | 只返回「请 iOS 本地执行」计划 |
-| 本次是否部署 | **要** | 不要 |
+| | 规则 Hermes（fallback） | Hermes Agent sidecar | EdgeOne Agent（`onemore-edge-agent/`） |
+|---|---|---|---|
+| 职责 | 关键词编译 → Executor | LLM 多轮 tool-calling → Campus MCP → Executor | 无凭证对话编排 |
+| 是否持有校园 cookie | 否（只提交 Action Schema） | 否（sidecar 无 vault） | 否 |
+| 订场/拉课表 | 服务端真实执行 | 绿读 + 黄灯 preview；commit 永不暴露 | 只返回「请 iOS 本地执行」计划 |
+| 入口 | `POST /hermes/ask` 在 sidecar 不可用时 | `POST /hermes/ask` → `hermes-agent:8642` | EdgeOne 对话层 |
+| 本次是否部署 | 保留作 fallback | **要**（`ONEMORE_HERMES_AGENT_MODE=sidecar`） | 不要 |
+
+Campus MCP：`/internal/campus-mcp`（共享密钥 `ONEMORE_CAMPUS_MCP_TOKEN`，nginx 不单独暴露 8642）。  
+`tool_session` 由 API 签发到 Redis（TTL ~10min），绑定 `user_id`，模型不能伪造。
 
 ### 1.4 凭据独立管理（必须保持）
 
@@ -275,8 +279,11 @@ onemore/hermes/vault.py                  # 每用户加密仓
 onemore/hermes/capabilities.json         # 动作目录
 onemore/modules/identity/api.py          # /auth/session*
 onemore/core/config.py                   # 生产校验（real 时要求 CLI 存在）
-docker-compose.prod.yml                  # 线上 compose
+docker-compose.prod.yml                  # 线上 compose（含 hermes-agent sidecar）
 Dockerfile.prod                          # 当前生产镜像（无 Node）
+onemore/hermes/campus_mcp.py             # 校园白名单 MCP
+onemore/hermes/agent_server.py           # sidecar LLM tool loop
+onemore/hermes/agent_gateway.py          # /hermes/ask → sidecar，失败回规则路径
 ```
 
 服务器：
