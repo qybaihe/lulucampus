@@ -1,0 +1,350 @@
+{
+  "ok": true,
+  "source": "taste_elective_match",
+  "persona_signals": 99,
+  "courses_scored": 54,
+  "matched": 37,
+  "competition_summary": {
+    "empty": 37
+  },
+  "items": [
+    {
+      "code": "AHG203",
+      "title": "破解学习密码：脑科学+AI跨学科实践",
+      "category": "学院公选",
+      "credits": 2,
+      "campus": "珠海校区",
+      "college": "附属第五医院",
+      "capacity": 48,
+      "selected": 0,
+      "remaining": 48,
+      "weekday": "星期四",
+      "time": "魏天骐;1-1每周星期四第9节-第10节;珠海校区 教学大楼珠海C210,尹婧;2-2每周星期四第9节-第10节;珠海校区 教学大楼珠海C210,文津明;3-3每周星期四第9节-第10节;珠海校区 教学大楼珠海C210,尹婧;4-4每周星期四第9节-第10节;珠海校区 教学大楼珠海C210,尹婧;5-5每周星期四第9节-第10节;珠海校区 教学大楼珠海C210,唐超刚;6-6每周星期四第9节-第10节;珠海校区 教学大楼珠海C210,陈晓锋;7-7每周星期四第9节-第10节;珠海校区 教学大楼珠海C210,陈晓锋;8-8每周星期四第9节-第10节;珠海校区 教学大楼珠海C210,王佳宁;10-10每周星期四第9节-第10节;珠海校区 教学大楼珠海C210,王佳宁;11-11每周星期四第9节-第10节;珠海校区 教学大楼珠海C210,张雷;12-12每周星期四第9节-第10节;珠海校区 教学大楼珠海C210,文津明;13-13每周星期四第9节-第10节;珠海校区 教学大楼珠海C210,岳计辉;14-14每周星期四第9节-第10节;珠海校区 教学大楼珠海C210,岳计辉;15-15每周星期四第9节-第10节;珠海校区 教学大楼珠海C210,尹婧;16-16每周星期四第9节-第10节;珠海校区 教学大楼珠海C210,尹婧;17-17每周星期四第9节-第10节;珠海校区 教学大楼珠海C210",
+      "tags": [
+        "202612161",
+        "考查"
+      ],
+      "selectable": true,
+      "fill_rate": 0.0,
+      "competition_level": "empty",
+      "competition_label": "几乎没人选",
+      "match_score": 9.75,
+      "match_reasons": [
+        "ai",
+        "实践",
+        "科学",
+        "学习"
+      ]
+    },
+    {
+      "code": "SSE369",
+      "title": "人工智能与大模型（III）",
+      "category": "专业选修",
+      "credits": 2,
+      "campus": "珠海校区",
+      "college": "软件工程学院",
+      "capacity": 150,
+      "selected": 0,
+      "remaining": 150,
+      "weekday": "星期五",
+      "time": "孔树锋;1-8每周星期五第5节-第6节;珠海校区 教学大楼珠海D307,孔树锋;10-17每周星期五第5节-第6节;珠海校区 教学大楼珠海D307",
+      "tags": [
+        "202615667",
+        "考查"
+      ],
+      "selectable": true,
+      "fill_rate": 0.0,
+      "competition_level": "empty",
+      "competition_label": "几乎没人选",
+      "match_score": 9.35,
+      "match_reasons": [
+        "工程",
+        "人工智能",
+        "大模型",
+        "软件"
+      ]
+    },
+    {
+      "code": "SSE337",
+      "title": "3D游戏编程与设计",
+      "category": "专业选修",
+      "credits": 2,
+      "campus": "珠海校区",
+      "college": "软件工程学院",
+      "capacity": 150,
+      "selected": 0,
+      "remaining": 150,
+      "weekday": "星期五",
+      "time": "孔树锋;1-8每周星期五第1节-第2节;珠海校区 教学大楼珠海D307,孔树锋;10-17每周星期五第1节-第2节;珠海校区 教学大楼珠海D307",
+      "tags": [
+        "202615664",
+        "考查"
+      ],
+      "selectable": true,
+      "fill_rate": 0.0,
+      "competition_level": "empty",
+      "competition_label": "几乎没人选",
+      "match_score": 8.25,
+      "match_reasons": [
+        "工程",
+        "编程",
+        "软件",
+        "游戏"
+      ]
+    },
+    {
+      "code": "SSE315",
+      "title": "计算机图形学",
+      "category": "专业选修",
+      "credits": 3,
+      "campus": "珠海校区",
+      "college": "软件工程学院",
+      "capacity": 230,
+      "selected": 1,
+      "remaining": 229,
+      "weekday": "星期四",
+      "time": "陈壮彬;1-8每周星期四第9节-第11节;珠海校区 教学大楼珠海C301,陈壮彬;10-17每周星期四第9节-第11节;珠海校区 教学大楼珠海C301",
+      "tags": [
+        "202614663",
+        "考查"
+      ],
+      "selectable": true,
+      "fill_rate": 0.0043,
+      "competition_level": "empty",
+      "competition_label": "几乎没人选",
+      "match_score": 7.55,
+      "match_reasons": [
+        "工程",
+        "软件",
+        "计算",
+        "图形"
+      ]
+    },
+    {
+      "code": "SSE307",
+      "title": "算法设计与分析",
+      "category": "专业选修",
+      "credits": 2,
+      "campus": "珠海校区",
+      "college": "软件工程学院",
+      "capacity": 150,
+      "selected": 0,
+      "remaining": 150,
+      "weekday": "星期二",
+      "time": "张云灿;1-8每周星期二第1节-第2节;珠海校区 教学大楼珠海D307,张云灿;10-17每周星期二第1节-第2节;珠海校区 教学大楼珠海D307",
+      "tags": [
+        "202614651",
+        "考查"
+      ],
+      "selectable": true,
+      "fill_rate": 0.0,
+      "competition_level": "empty",
+      "competition_label": "几乎没人选",
+      "match_score": 6.45,
+      "match_reasons": [
+        "工程",
+        "软件",
+        "算法",
+        "设计"
+      ]
+    },
+    {
+      "code": "CE1028",
+      "title": "AI探索珠江",
+      "category": "学院公选",
+      "credits": 1,
+      "campus": "珠海校区",
+      "college": "土木工程学院",
+      "capacity": 60,
+      "selected": 0,
+      "remaining": 60,
+      "weekday": "星期三",
+      "time": "赵铜铁钢;1-8每周星期三第9节-第10节;珠海校区 教学大楼珠海F205,赵铜铁钢;10-10每周星期三第9节-第10节;珠海校区 教学大楼珠海F508",
+      "tags": [
+        "202615718",
+        "考查"
+      ],
+      "selectable": true,
+      "fill_rate": 0.0,
+      "competition_level": "empty",
+      "competition_label": "几乎没人选",
+      "match_score": 5.95,
+      "match_reasons": [
+        "ai",
+        "工程"
+      ]
+    },
+    {
+      "code": "CE1030",
+      "title": "数学建模：水文环境AI实战",
+      "category": "学院公选",
+      "credits": 1,
+      "campus": "珠海校区",
+      "college": "土木工程学院",
+      "capacity": 50,
+      "selected": 0,
+      "remaining": 50,
+      "weekday": "星期三",
+      "time": "蔡锡填;1-6每周星期三第9节-第10节;珠海校区 教学大楼珠海C510,蔡锡填;7-7每周星期三第9节-第10节;珠海校区 教学大楼珠海A301,蔡锡填;8-8每周星期三第9节-第10节;珠海校区 教学大楼珠海C510,蔡锡填;10-10每周星期三第9节-第10节;珠海校区 教学大楼珠海C510",
+      "tags": [
+        "202614848",
+        "考查"
+      ],
+      "selectable": true,
+      "fill_rate": 0.0,
+      "competition_level": "empty",
+      "competition_label": "几乎没人选",
+      "match_score": 5.95,
+      "match_reasons": [
+        "ai",
+        "工程"
+      ]
+    },
+    {
+      "code": "SSE317",
+      "title": "数字图像处理",
+      "category": "专业选修",
+      "credits": 3,
+      "campus": "珠海校区",
+      "college": "软件工程学院",
+      "capacity": 230,
+      "selected": 0,
+      "remaining": 230,
+      "weekday": "星期二",
+      "time": "陈建国;1-8每周星期二第9节-第11节;珠海校区 教学大楼珠海C201,陈建国;10-17每周星期二第9节-第11节;珠海校区 教学大楼珠海C201",
+      "tags": [
+        "202615662",
+        "考查"
+      ],
+      "selectable": true,
+      "fill_rate": 0.0,
+      "competition_level": "empty",
+      "competition_label": "几乎没人选",
+      "match_score": 5.75,
+      "match_reasons": [
+        "工程",
+        "软件",
+        "数字图像"
+      ]
+    },
+    {
+      "code": "SSE311",
+      "title": "区块链原理与技术",
+      "category": "专业选修",
+      "credits": 2,
+      "campus": "珠海校区",
+      "college": "软件工程学院",
+      "capacity": 130,
+      "selected": 0,
+      "remaining": 130,
+      "weekday": "星期一",
+      "time": "黄华威;1-8每周星期一第7节-第8节;珠海校区 教学大楼珠海D209,黄华威;10-17每周星期一第7节-第8节;珠海校区 教学大楼珠海D209",
+      "tags": [
+        "202614660",
+        "考试"
+      ],
+      "selectable": true,
+      "fill_rate": 0.0,
+      "competition_level": "empty",
+      "competition_label": "几乎没人选",
+      "match_score": 5.75,
+      "match_reasons": [
+        "工程",
+        "软件",
+        "区块链"
+      ]
+    },
+    {
+      "code": "AS282",
+      "title": "气候与环境：批判思维与国际叙事",
+      "category": "学院公选",
+      "credits": 2,
+      "campus": "珠海校区",
+      "college": "大气科学学院",
+      "capacity": 60,
+      "selected": 0,
+      "remaining": 60,
+      "weekday": "星期四",
+      "time": "覃章才;1-2每周星期四第9节-第11节;珠海校区 教学大楼珠海F403,魏静;3-3每周星期四第9节-第11节;珠海校区 教学大楼珠海F403,王凡;4-4每周星期四第9节-第11节;珠海校区 教学大楼珠海F403,袁乃明;5-5每周星期四第9节-第11节;珠海校区 教学大楼珠海F403,覃章才;6-8每周星期四第9节-第11节;珠海校区 教学大楼珠海F403,覃章才;10-12每周星期四第9节-第11节;珠海校区 教学大楼珠海F403",
+      "tags": [
+        "202614991",
+        "考查"
+      ],
+      "selectable": true,
+      "fill_rate": 0.0,
+      "competition_level": "empty",
+      "competition_label": "几乎没人选",
+      "match_score": 4.75,
+      "match_reasons": [
+        "批判",
+        "思维",
+        "科学"
+      ]
+    },
+    {
+      "code": "CE1026",
+      "title": "数学建模与智慧水利系统",
+      "category": "学院公选",
+      "credits": 2,
+      "campus": "珠海校区",
+      "college": "土木工程学院",
+      "capacity": 40,
+      "selected": 0,
+      "remaining": 40,
+      "weekday": "星期三",
+      "time": "代超;1-8每周星期三第9节-第11节;珠海校区 教学大楼珠海A307,代超;10-13每周星期三第9节-第11节;珠海校区 教学大楼珠海A307",
+      "tags": [
+        "202615726",
+        "考查"
+      ],
+      "selectable": true,
+      "fill_rate": 0.0,
+      "competition_level": "empty",
+      "competition_label": "几乎没人选",
+      "match_score": 4.15,
+      "match_reasons": [
+        "工程",
+        "系统"
+      ]
+    },
+    {
+      "code": "AHG201",
+      "title": "AI让人类更健康",
+      "category": "学院公选",
+      "credits": 2,
+      "campus": "珠海校区",
+      "college": "附属第五医院",
+      "capacity": 50,
+      "selected": 0,
+      "remaining": 50,
+      "weekday": "星期四",
+      "time": "汤育新;1-1每周星期四第9节-第10节;珠海校区 教学大楼珠海C312,王雪鹤;2-2每周星期四第9节-第10节;珠海校区 教学大楼珠海C312,曾丹;3-3每周星期四第9节-第10节;珠海校区 教学大楼珠海C312,张亚琴;4-4每周星期四第9节-第10节;珠海校区 教学大楼珠海C312,方义杰;5-5每周星期四第9节-第10节;珠海校区 教学大楼珠海C312,温欣;6-6每周星期四第9节-第10节;珠海校区 教学大楼珠海C312,张亚琴;7-7每周星期四第9节-第10节;珠海校区 教学大楼珠海C312,温欣;7-7每周星期四第9节-第10节;珠海校区 教学大楼珠海C312,周益红;8-8每周星期四第9节-第10节;珠海校区 教学大楼珠海C312,詹鸿锐;10-10每周星期四第10节-第10节;珠海校区 教学大楼珠海C312,吕海;10-10每周星期四第9节-第9节;珠海校区 教学大楼珠海C312,游滢滢;11-11每周星期四第9节-第10节;珠海校区 教学大楼珠海C312,詹鸿锐;12-12每周星期四第9节-第10节;珠海校区 教学大楼珠海C312,吕海;12-12每周星期四第9节-第10节;珠海校区 教学大楼珠海C312,李曼;13-13每周星期四第9节-第10节;珠海校区 教学大楼珠海C312,赵亮宇;14-14每周星期四第9节-第10节;珠海校区 教学大楼珠海C312,赵亮宇;15-15每周星期四第9节-第10节;珠海校区 教学大楼珠海C312,赵亮宇;16-16每周星期四第9节-第10节;珠海校区 教学大楼珠海C312,汤育新;17-17每周星期四第9节-第10节;珠海校区 教学大楼珠海C312,李曼;17-17每周星期四第9节-第10节;珠海校区 教学大楼珠海C312,赵亮宇;17-17每周星期四第9节-第10节;珠海校区 教学大楼珠海C312",
+      "tags": [
+        "202611634",
+        "考查"
+      ],
+      "selectable": true,
+      "fill_rate": 0.0,
+      "competition_level": "empty",
+      "competition_label": "几乎没人选",
+      "match_score": 4.05,
+      "match_reasons": [
+        "ai"
+      ]
+    }
+  ],
+  "search_hints": [
+    "项目",
+    "ai",
+    "黑客",
+    "实践",
+    "跑步",
+    "康复",
+    "旅行",
+    "创业",
+    "探索型builder",
+    "工程",
+    "创新",
+    "人工智能"
+  ]
+}

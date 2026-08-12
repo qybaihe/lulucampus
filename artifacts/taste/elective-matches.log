@@ -1,0 +1,36 @@
+[live] /Users/baihe/.local/bin/sysu-anything jwxt course-selection list --category 公选 --page 1 --size 40 --json
+[live] category=公选 got 0 window=open
+[live] /Users/baihe/.local/bin/sysu-anything jwxt course-selection list --category 学院公选 --page 1 --size 40 --json
+[live] category=学院公选 got 40 window=open
+[live] /Users/baihe/.local/bin/sysu-anything jwxt course-selection list --category 专选 --page 1 --size 40 --json
+[live] category=专选 got 6 window=open
+[live] /Users/baihe/.local/bin[live] keyword=创业
+[live] keyword=创新
+[live] keyword=心理
+[live] keyword=运动
+[live] keyword=科技
+[live] keyword=媒体
+[live] keyword=编程
+[live] keyword=数据
+[live] keyword=艺术
+wrote artifacts/taste/elective-matches.json
+-page 1 --size 40 --json
+[live] category=体育选修 got 40 window=open
+[live] keyword=人工智能
+[live] keyword=大模型
+[live] keyword=编程
+[live] keyword=创新创业
+[live] keyword=设计
+[live] keyword=摄影
+[live] keyword=旅行
+[live] keyword=体育
+[live] keyword=康复
+[live] keyword=跑步
+[live] keyword=硬件
+[live] keyword=媒体
+[live] keyword=创业
+[live] keyword=科技
+[live] keyword=艺术
+[live] keyword=心理
+[live] keyword=沟通
+wrote artifacts/taste/elective-matches.json
