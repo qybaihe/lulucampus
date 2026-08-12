@@ -447,6 +447,15 @@ def compile_hermes_question(text: str, context: dict) -> tuple[ActionName | None
 
 
 def hermes_ask(db: Session, user_id: str, text: str, context: dict) -> dict:
+    from onemore.hermes.agent_gateway import ask_via_sidecar
+
+    agent_result = ask_via_sidecar(db, user_id, text, context)
+    if agent_result is not None:
+        return agent_result
+    return hermes_ask_rules(db, user_id, text, context)
+
+
+def hermes_ask_rules(db: Session, user_id: str, text: str, context: dict) -> dict:
     action, params, card_type, preview = compile_hermes_question(text, context)
     if action is None and params.get("_elective_match"):
         from onemore.modules.campus.elective_hermes import answer_elective_match
@@ -465,7 +474,7 @@ def hermes_ask(db: Session, user_id: str, text: str, context: dict) -> dict:
             "action": None,
             "card_type": card_type,
             "data": {
-                "message": "hermes 处理课表、DDL、场地、活动、班车，以及按画像推荐公选/选修。",
+                "message": "Lulu Hermes 处理课表、DDL、场地、活动、班车，以及按画像推荐公选/选修。",
                 "capabilities": [
                     "课表",
                     "作业 DDL",

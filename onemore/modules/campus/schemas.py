@@ -13,12 +13,20 @@ class HermesAskRequest(APIModel):
     context: dict[str, Any] = Field(default_factory=dict)
 
 
+class HermesToolTrace(APIModel):
+    name: str
+    ok: bool = True
+    summary: str | None = None
+    card_type: str | None = None
+
+
 class HermesAskResult(APIModel):
     kind: str
     action: str | None = None
     card_type: str
     data: Any
     requires_preview: bool = False
+    tool_trace: list[HermesToolTrace] = Field(default_factory=list)
 
 
 class SceneTriggerIgnore(APIModel):

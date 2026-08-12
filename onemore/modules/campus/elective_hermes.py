@@ -4,14 +4,14 @@ from __future__ import annotations
 
 import json
 import logging
+from pathlib import Path
 from typing import Any
 
 from sqlalchemy.orm import Session
 
-from pathlib import Path
-
 from onemore.core.config import get_settings
 from onemore.core.errors import AppError
+from onemore.db.demo_cast import CAST_TASTE, LIN
 from onemore.hermes.executor import executor_pool
 from onemore.modules.actions import service as action_service
 from onemore.modules.taste_profile import service as taste_service
@@ -40,30 +40,16 @@ ELECTIVE_QUESTION_HINTS = (
 DEFAULT_CATEGORIES = ("学院公选", "专选", "跨专业选修", "体育选修")
 DEFAULT_KEYWORDS = ("人工智能", "大模型", "编程", "创新", "设计", "科技", "创业", "体育")
 
-# Fallback when demo account has no DB taste row yet (matches seed_demo_taste_profile).
+# Fallback when demo account has no DB taste row yet (matches 林予安剧组画像).
 DEMO_PERSONA_FALLBACK: dict[str, Any] = {
-    "primary_tag": {"key": "explorer_builder", "label": "探索型 Builder", "score": 0.2963},
-    "secondary_tags": [
-        {"key": "knowledge_curator", "label": "知识策展人", "score": 0.24},
-        {"key": "aesthetic_observer", "label": "审美观察者", "score": 0.21},
-        {"key": "strategy_player", "label": "策略玩家", "score": 0.18},
-    ],
-    "interest_domains": [
-        {"key": "career_growth", "label": "成长/职业", "score": 0.32},
-        {"key": "knowledge_method", "label": "知识方法", "score": 0.27},
-        {"key": "ai_programming", "label": "AI/编程", "score": 0.24},
-        {"key": "tech_devices", "label": "科技数码", "score": 0.20},
-    ],
-    "interest_facets": [
-        {"label": "黑客松/AI创变"},
-        {"label": "华强北硬件"},
-        {"label": "运动康复"},
-        {"label": "自媒体 IP"},
-    ],
-    "summary": "一个把兴趣当项目来做的探索者：热衷黑客松与AI实践，也享受跑步康复和旅行取景。",
-    "persona": "他是一位自带节奏的实践者。在黑客松里享受极限开发，也把跑步康复和旅行取景当成持续打磨的项目。",
-    "matching_hints": ["组队黑客松", "跑步康复", "编程工具", "逛科技市集"],
-    "calibrated": False,
+    "primary_tag": CAST_TASTE[LIN]["primary_tag"],
+    "secondary_tags": CAST_TASTE[LIN]["secondary_tags"],
+    "interest_domains": CAST_TASTE[LIN]["interest_domains"],
+    "interest_facets": CAST_TASTE[LIN]["interest_facets"],
+    "summary": CAST_TASTE[LIN]["summary"],
+    "persona": CAST_TASTE[LIN]["persona"],
+    "matching_hints": CAST_TASTE[LIN]["matching_hints"],
+    "calibrated": True,
 }
 
 FAKE_CATALOG: list[dict[str, Any]] = [
@@ -151,7 +137,7 @@ def _persona_from_profile(db: Session, user_id: str) -> tuple[dict[str, Any], st
         return dict(DEMO_PERSONA_FALLBACK), "demo_fallback"
     raise AppError(
         "TASTE_PROFILE_REQUIRED",
-        "请先在「我的」导入抖音画像，再问 Hermes 推荐公选",
+        "请先在「我的」导入抖音画像，再问 Lulu Hermes 推荐公选",
         409,
         {"next": "/profile/imports/douyin"},
     )
@@ -365,24 +351,10 @@ def answer_elective_match(
         primary.get("label") if isinstance(primary, dict) else str(primary or "你的画像")
     )
     items = _compact_items(matched.get("items") or [])
-    lines = []
-    for index, row in enumerate(items[:6], start=1):
-        competition = row.get("competition_label") or "名额未知"
-        selected = row.get("selected")
-        capacity = row.get("capacity")
-        seat = (
-            f"已选{selected}/{capacity}"
-            if selected is not None and capacity is not None
-            else competition
-        )
-        lines.append(
-            f"{index}. {row.get('title')}（{row.get('code')} · {row.get('category')}）"
-            f" · {competition} · {seat}"
-        )
-
     message = (
-        f"按「{primary_label}」画像，从当前可选课里为你挑了这些（含竞争度）：\n"
-        + ("\n".join(lines) if lines else "暂时没有足够匹配的课，可换关键词或稍后再问。")
+        f"按「{primary_label}」画像挑了 {len(items)} 门。"
+        if items
+        else "暂时没有足够匹配的课，可换个方向再问。"
     )
 
     return {
@@ -394,5 +366,4 @@ def answer_elective_match(
         "competition_summary": matched.get("competition_summary") or {},
         "items": items,
         "search_hints": matched.get("search_hints") or [],
-        "note": "只读推荐，不会自动选课。正式选课请在教务确认。",
     }
