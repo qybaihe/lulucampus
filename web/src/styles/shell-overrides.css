@@ -1,0 +1,100 @@
+/* Web shell adaptations: mobile full-bleed + keep Lulu tokens */
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+/* Mobile: content is the viewport root — no desktop chrome */
+.mobile-fullbleed {
+  min-height: 100%;
+  height: 100%;
+  max-width: 100%;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-fullbleed .screen-body,
+.phone .screen-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* Desktop stage already defined in app.css; ensure full viewport paint */
+.stage {
+  min-height: 100%;
+  height: 100%;
+}
+
+/* Tab bar sits above home indicator on desktop phone shell;
+   on mobile full-bleed use safe-area padding */
+.mobile-fullbleed .tabbar {
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+  height: auto;
+  min-height: 72px;
+}
+
+.mobile-fullbleed .home-indicator {
+  display: none;
+}
+
+.phone .screen {
+  /* leave room under status bar / island — content manages its own chrome */
+  top: 54px;
+  bottom: 0;
+}
+
+.phone .tabbar {
+  bottom: 0;
+}
+
+/* Nested routes area fills above tab bar when present */
+.app-main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.app-main.has-tabs {
+  padding-bottom: 84px;
+}
+
+.mobile-fullbleed .app-main.has-tabs {
+  padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+}
+
+a.om-btn {
+  text-decoration: none;
+}
+
+a.om-row {
+  text-decoration: none;
+  color: inherit;
+  background: none;
+  border: none;
+  font: inherit;
+}
+
+/* Make Link-based primary buttons look identical */
+a.om-btn.primary {
+  display: flex;
+}
+
+/* Segment control */
+.om-seg button.on {
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: 0 1px 4px color-mix(in oklch, var(--ink) 12%, transparent);
+}
