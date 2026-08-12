@@ -1,0 +1,31 @@
+{
+  "app_name": "噜噜成局",
+  "technical_codename": "ONE MORE",
+  "platform": "iOS",
+  "deployment_target": "17.0",
+  "ui_framework": "SwiftUI",
+  "project_generator": "XcodeGen",
+  "debug_bundle_id": "com.onemore.campus.dev",
+  "release_bundle_id_slot": "com.onemore.campus",
+  "backend_mode": "existing-fastapi",
+  "debug_api_base_url": "http://127.0.0.1:8000",
+  "release_api_base_url_slot": "https://api.onemore.example",
+  "debug_auth": "X-User-ID enabled only under DEV_AUTH compilation condition",
+  "release_auth": "Bearer token from Keychain; no dev-header fallback",
+  "deep_link_scheme": "onemore",
+  "associated_domain_slot": "applinks:onemore.example",
+  "selected_ip": "aiia-pink-girl-business-v1",
+  "selected_ip_frames": 57,
+  "selected_ip_states": 9,
+  "selected_ip_events": 14,
+  "static_reference_strategy": "versioned bundle, fail-closed checksum validation",
+  "static_reference_bundle_version": "sysu-campus-reference-v1.1-south-first",
+  "push_and_universal_link_entitlements": "configured with xcconfig substitution",
+  "external_credentials_pending": [
+    "Apple Development Team / distribution signing",
+    "production API and WebSocket domains",
+    "APNs provider key and production provisioning profile",
+    "apple-app-site-association on production domain",
+    "real enterprise WeChat login handoff"
+  ]
+}
