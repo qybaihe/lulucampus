@@ -69,6 +69,23 @@
         "title": "APIResponse[ChannelScenePolicyView]",
         "type": "object"
       },
+      "APIResponse_CompetitionTeamView_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CompetitionTeamView"
+          },
+          "meta": {
+            "additionalProperties": true,
+            "title": "Meta",
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "APIResponse[CompetitionTeamView]",
+        "type": "object"
+      },
       "APIResponse_CompetitionView_": {
         "properties": {
           "data": {
@@ -84,6 +101,57 @@
           "data"
         ],
         "title": "APIResponse[CompetitionView]",
+        "type": "object"
+      },
+      "APIResponse_DemoTasteFromLinkView_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/DemoTasteFromLinkView"
+          },
+          "meta": {
+            "additionalProperties": true,
+            "title": "Meta",
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "APIResponse[DemoTasteFromLinkView]",
+        "type": "object"
+      },
+      "APIResponse_DemoTasteStartView_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/DemoTasteStartView"
+          },
+          "meta": {
+            "additionalProperties": true,
+            "title": "Meta",
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "APIResponse[DemoTasteStartView]",
+        "type": "object"
+      },
+      "APIResponse_DemoTasteStatusView_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/DemoTasteStatusView"
+          },
+          "meta": {
+            "additionalProperties": true,
+            "title": "Meta",
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "APIResponse[DemoTasteStatusView]",
         "type": "object"
       },
       "APIResponse_GapShareView_": {
@@ -169,6 +237,23 @@
           "data"
         ],
         "title": "APIResponse[HermesAskResult]",
+        "type": "object"
+      },
+      "APIResponse_HermesPeerChatResult_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/HermesPeerChatResult"
+          },
+          "meta": {
+            "additionalProperties": true,
+            "title": "Meta",
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "APIResponse[HermesPeerChatResult]",
         "type": "object"
       },
       "APIResponse_IcebreakerView_": {
@@ -543,6 +628,23 @@
           "data"
         ],
         "title": "APIResponse[OrganizerGatheringStatusView]",
+        "type": "object"
+      },
+      "APIResponse_PhoneAuthView_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PhoneAuthView"
+          },
+          "meta": {
+            "additionalProperties": true,
+            "title": "Meta",
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "APIResponse[PhoneAuthView]",
         "type": "object"
       },
       "APIResponse_PhoneLoginView_": {
@@ -1746,6 +1848,90 @@
         "title": "CampusActionView",
         "type": "object"
       },
+      "CampusEventCreateRequest": {
+        "additionalProperties": false,
+        "description": "用户发布校园活动（T4 门槛）。匿名展示，不携带发布者身份。",
+        "properties": {
+          "description": {
+            "anyOf": [
+              {
+                "maxLength": 500,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "ends_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ends At"
+          },
+          "location": {
+            "anyOf": [
+              {
+                "maxLength": 60,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Location"
+          },
+          "official_url": {
+            "anyOf": [
+              {
+                "maxLength": 500,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Official Url"
+          },
+          "starts_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starts At"
+          },
+          "title": {
+            "maxLength": 60,
+            "minLength": 2,
+            "title": "Title",
+            "type": "string"
+          },
+          "type": {
+            "maxLength": 16,
+            "minLength": 1,
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "type"
+        ],
+        "title": "CampusEventCreateRequest",
+        "type": "object"
+      },
       "CapabilityOptionView": {
         "additionalProperties": false,
         "properties": {
@@ -2004,9 +2190,27 @@
             ],
             "title": "Expires At"
           },
+          "filled_roles": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Filled Roles",
+            "type": "array"
+          },
           "gathering_type": {
             "title": "Gathering Type",
             "type": "string"
+          },
+          "goal": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Goal"
           },
           "id": {
             "title": "Id",
@@ -2027,11 +2231,30 @@
             "title": "Member Count",
             "type": "integer"
           },
+          "missing_count": {
+            "default": 0,
+            "title": "Missing Count",
+            "type": "integer"
+          },
+          "missing_roles": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Missing Roles",
+            "type": "array"
+          },
           "required_roles": {
             "items": {
               "type": "string"
             },
             "title": "Required Roles",
+            "type": "array"
+          },
+          "roster_highlights": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Roster Highlights",
             "type": "array"
           },
           "start_at": {
@@ -2134,6 +2357,25 @@
             "title": "Recommendation Tier",
             "type": "string"
           },
+          "recruit_gap_count": {
+            "default": 0,
+            "title": "Recruit Gap Count",
+            "type": "integer"
+          },
+          "recruit_gap_labels": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Recruit Gap Labels",
+            "type": "array"
+          },
+          "recruit_hints": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Recruit Hints",
+            "type": "array"
+          },
           "registration_deadline": {
             "anyOf": [
               {
@@ -2206,6 +2448,35 @@
               }
             ],
             "title": "Submission Deadline"
+          },
+          "taste_fit": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Taste Fit"
+          },
+          "taste_fit_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Taste Fit Label"
+          },
+          "taste_fit_reasons": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Taste Fit Reasons",
+            "type": "array"
           },
           "team_constraints": {
             "$ref": "#/components/schemas/CompetitionConstraintView"
@@ -2287,6 +2558,251 @@
           }
         },
         "title": "ConfirmGatheringRequest",
+        "type": "object"
+      },
+      "DemoTasteFromLinkRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "collects_limit": {
+            "default": 30,
+            "maximum": 40.0,
+            "minimum": 0.0,
+            "title": "Collects Limit",
+            "type": "integer"
+          },
+          "force": {
+            "default": true,
+            "title": "Force",
+            "type": "boolean"
+          },
+          "likes_limit": {
+            "default": 30,
+            "maximum": 60.0,
+            "minimum": 1.0,
+            "title": "Likes Limit",
+            "type": "integer"
+          },
+          "posts_limit": {
+            "default": 20,
+            "maximum": 40.0,
+            "minimum": 0.0,
+            "title": "Posts Limit",
+            "type": "integer"
+          },
+          "share_url": {
+            "maxLength": 2000,
+            "minLength": 8,
+            "title": "Share Url",
+            "type": "string"
+          },
+          "use_llm": {
+            "default": true,
+            "title": "Use Llm",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "share_url"
+        ],
+        "title": "DemoTasteFromLinkRequest",
+        "type": "object"
+      },
+      "DemoTasteFromLinkView": {
+        "additionalProperties": false,
+        "properties": {
+          "collection": {
+            "additionalProperties": true,
+            "title": "Collection",
+            "type": "object"
+          },
+          "collects_count": {
+            "default": 0,
+            "title": "Collects Count",
+            "type": "integer"
+          },
+          "items_used": {
+            "default": 0,
+            "title": "Items Used",
+            "type": "integer"
+          },
+          "likes_count": {
+            "default": 0,
+            "title": "Likes Count",
+            "type": "integer"
+          },
+          "posts_count": {
+            "default": 0,
+            "title": "Posts Count",
+            "type": "integer"
+          },
+          "profile_url": {
+            "title": "Profile Url",
+            "type": "string"
+          },
+          "result": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TasteProfileResultView"
+              },
+              {
+                "additionalProperties": true,
+                "type": "object"
+              }
+            ],
+            "title": "Result"
+          },
+          "share_url": {
+            "title": "Share Url",
+            "type": "string"
+          },
+          "source": {
+            "default": "douyin_http_link",
+            "title": "Source",
+            "type": "string"
+          },
+          "source_profile": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SourceProfile"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "share_url",
+          "profile_url",
+          "result"
+        ],
+        "title": "DemoTasteFromLinkView",
+        "type": "object"
+      },
+      "DemoTasteStartView": {
+        "additionalProperties": false,
+        "description": "Public demo start payload: ephemeral guest token + Douyin QR.",
+        "properties": {
+          "access_token": {
+            "title": "Access Token",
+            "type": "string"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "guest_user_id": {
+            "title": "Guest User Id",
+            "type": "string"
+          },
+          "import_id": {
+            "title": "Import Id",
+            "type": "string"
+          },
+          "mode": {
+            "default": "fake",
+            "title": "Mode",
+            "type": "string"
+          },
+          "phone_code": {
+            "title": "Phone Code",
+            "type": "string"
+          },
+          "qr_expires_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Qr Expires At"
+          },
+          "qr_image_data_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Qr Image Data Url"
+          },
+          "qr_image_url": {
+            "title": "Qr Image Url",
+            "type": "string"
+          },
+          "qr_version": {
+            "default": 0,
+            "title": "Qr Version",
+            "type": "integer"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "verify": {
+            "title": "Verify",
+            "type": "string"
+          }
+        },
+        "required": [
+          "import_id",
+          "status",
+          "qr_image_url",
+          "phone_code",
+          "verify",
+          "access_token",
+          "guest_user_id"
+        ],
+        "title": "DemoTasteStartView",
+        "type": "object"
+      },
+      "DemoTasteStatusView": {
+        "additionalProperties": false,
+        "properties": {
+          "douyin_import_enabled": {
+            "title": "Douyin Import Enabled",
+            "type": "boolean"
+          },
+          "enabled": {
+            "title": "Enabled",
+            "type": "boolean"
+          },
+          "http_link_import_ready": {
+            "default": false,
+            "title": "Http Link Import Ready",
+            "type": "boolean"
+          },
+          "message": {
+            "default": "",
+            "title": "Message",
+            "type": "string"
+          },
+          "mode": {
+            "title": "Mode",
+            "type": "string"
+          }
+        },
+        "required": [
+          "enabled",
+          "douyin_import_enabled",
+          "mode"
+        ],
+        "title": "DemoTasteStatusView",
         "type": "object"
       },
       "DepartedSafetyContextView": {
@@ -2558,6 +3074,13 @@
             "title": "Joinable",
             "type": "boolean"
           },
+          "looking_for": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Looking For",
+            "type": "array"
+          },
           "missing_count": {
             "title": "Missing Count",
             "type": "integer"
@@ -2810,6 +3333,13 @@
             ],
             "title": "Expires At"
           },
+          "filled_roles": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Filled Roles",
+            "type": "array"
+          },
           "gathering_type": {
             "title": "Gathering Type",
             "type": "string"
@@ -2846,6 +3376,13 @@
               }
             ],
             "title": "Location"
+          },
+          "looking_for": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Looking For",
+            "type": "array"
           },
           "match_reason": {
             "anyOf": [
@@ -2936,6 +3473,13 @@
           "required_trust_level": {
             "title": "Required Trust Level",
             "type": "string"
+          },
+          "roster_highlights": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Roster Highlights",
+            "type": "array"
           },
           "same_gender_only": {
             "title": "Same Gender Only",
@@ -3120,6 +3664,13 @@
             "default": false,
             "title": "Requires Preview",
             "type": "boolean"
+          },
+          "tool_trace": {
+            "items": {
+              "$ref": "#/components/schemas/HermesToolTrace"
+            },
+            "title": "Tool Trace",
+            "type": "array"
           }
         },
         "required": [
@@ -3128,6 +3679,94 @@
           "data"
         ],
         "title": "HermesAskResult",
+        "type": "object"
+      },
+      "HermesPeerChatResult": {
+        "additionalProperties": false,
+        "properties": {
+          "channel_id": {
+            "title": "Channel Id",
+            "type": "string"
+          },
+          "gathering_id": {
+            "title": "Gathering Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "channel_id",
+          "gathering_id"
+        ],
+        "title": "HermesPeerChatResult",
+        "type": "object"
+      },
+      "HermesPeerStartRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "overlap": {
+            "default": "taste",
+            "maxLength": 16,
+            "title": "Overlap",
+            "type": "string"
+          },
+          "peer_user_id": {
+            "maxLength": 36,
+            "minLength": 8,
+            "title": "Peer User Id",
+            "type": "string"
+          },
+          "reason": {
+            "default": "",
+            "maxLength": 200,
+            "title": "Reason",
+            "type": "string"
+          }
+        },
+        "required": [
+          "peer_user_id"
+        ],
+        "title": "HermesPeerStartRequest",
+        "type": "object"
+      },
+      "HermesToolTrace": {
+        "additionalProperties": false,
+        "properties": {
+          "card_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Card Type"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "ok": {
+            "default": true,
+            "title": "Ok",
+            "type": "boolean"
+          },
+          "summary": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Summary"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "HermesToolTrace",
         "type": "object"
       },
       "IcebreakerFactView": {
@@ -4472,6 +5111,24 @@
             },
             "title": "Questions",
             "type": "array"
+          },
+          "recruit_hints": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Recruit Hints",
+            "type": "array"
+          },
+          "taste_fit_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Taste Fit Label"
           }
         },
         "required": [
@@ -5368,6 +6025,17 @@
               }
             ]
           },
+          "sender_display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sender Display Name"
+          },
           "sender_id": {
             "title": "Sender Id",
             "type": "string"
@@ -5457,6 +6125,11 @@
             "title": "Gathering Updates",
             "type": "boolean"
           },
+          "schedule_reminders": {
+            "default": true,
+            "title": "Schedule Reminders",
+            "type": "boolean"
+          },
           "trust_updates": {
             "default": true,
             "title": "Trust Updates",
@@ -5512,6 +6185,17 @@
               }
             ],
             "title": "Gathering Updates"
+          },
+          "schedule_reminders": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Schedule Reminders"
           },
           "trust_updates": {
             "anyOf": [
@@ -5601,6 +6285,11 @@
       "NotificationView": {
         "additionalProperties": false,
         "properties": {
+          "category": {
+            "readOnly": true,
+            "title": "Category",
+            "type": "string"
+          },
           "created_at": {
             "format": "date-time",
             "title": "Created At",
@@ -5627,6 +6316,11 @@
             "title": "Payload",
             "type": "object"
           },
+          "title": {
+            "readOnly": true,
+            "title": "Title",
+            "type": "string"
+          },
           "type": {
             "title": "Type",
             "type": "string"
@@ -5637,7 +6331,9 @@
           "type",
           "payload",
           "created_at",
-          "delivered_at"
+          "delivered_at",
+          "category",
+          "title"
         ],
         "title": "NotificationView",
         "type": "object"
@@ -6423,6 +7119,41 @@
         "title": "PendingActionModificationView",
         "type": "object"
       },
+      "PhoneAuthView": {
+        "additionalProperties": false,
+        "properties": {
+          "access_token": {
+            "title": "Access Token",
+            "type": "string"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "is_new_user": {
+            "default": false,
+            "title": "Is New User",
+            "type": "boolean"
+          },
+          "user_id": {
+            "title": "User Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "access_token",
+          "user_id"
+        ],
+        "title": "PhoneAuthView",
+        "type": "object"
+      },
       "PhoneCodeRequest": {
         "additionalProperties": false,
         "properties": {
@@ -6458,6 +7189,29 @@
           "code"
         ],
         "title": "PhoneCodeSubmit",
+        "type": "object"
+      },
+      "PhoneLogin": {
+        "additionalProperties": false,
+        "properties": {
+          "password": {
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Password",
+            "type": "string"
+          },
+          "phone": {
+            "maxLength": 20,
+            "minLength": 1,
+            "title": "Phone",
+            "type": "string"
+          }
+        },
+        "required": [
+          "phone",
+          "password"
+        ],
+        "title": "PhoneLogin",
         "type": "object"
       },
       "PhoneLoginView": {
@@ -6534,6 +7288,41 @@
           "verify"
         ],
         "title": "PhoneLoginView",
+        "type": "object"
+      },
+      "PhoneRegister": {
+        "additionalProperties": false,
+        "properties": {
+          "display_name": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "password": {
+            "maxLength": 64,
+            "minLength": 6,
+            "title": "Password",
+            "type": "string"
+          },
+          "phone": {
+            "pattern": "^1[3-9]\\d{9}$",
+            "title": "Phone",
+            "type": "string"
+          }
+        },
+        "required": [
+          "phone",
+          "password"
+        ],
+        "title": "PhoneRegister",
         "type": "object"
       },
       "ProfileInitRequest": {
@@ -8784,6 +9573,28 @@
             "title": "Course Name",
             "type": "string"
           },
+          "display_class_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Class Code"
+          },
+          "display_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Code"
+          },
           "end_at": {
             "format": "date-time",
             "title": "End At",
@@ -8804,6 +9615,28 @@
             "format": "date-time",
             "title": "Start At",
             "type": "string"
+          },
+          "time_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Label"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
           }
         },
         "required": [
@@ -8855,6 +9688,34 @@
           "updated_at"
         ],
         "title": "TimetableView",
+        "type": "object"
+      },
+      "ToolCallRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "arguments": {
+            "additionalProperties": true,
+            "title": "Arguments",
+            "type": "object"
+          },
+          "name": {
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "tool_session": {
+            "maxLength": 128,
+            "minLength": 8,
+            "title": "Tool Session",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "tool_session"
+        ],
+        "title": "ToolCallRequest",
         "type": "object"
       },
       "TrustConditionView": {
@@ -9198,7 +10059,7 @@
   },
   "info": {
     "description": "校园成局业务服务。隐私约束由接口与数据模型强制：不下发他人课表、不下发他人等级、不提供用户搜索、共同经历不含评价字段。",
-    "title": "差一个 · ONE MORE API",
+    "title": "噜噜成局 API",
     "version": "0.1.0"
   },
   "openapi": "3.1.0",
@@ -9842,6 +10703,47 @@
         ]
       }
     },
+    "/auth/login": {
+      "post": {
+        "operationId": "login_with_phone_auth_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PhoneLogin"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse_PhoneAuthView_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Login With Phone",
+        "tags": [
+          "identity"
+        ]
+      }
+    },
     "/auth/me": {
       "get": {
         "operationId": "get_my_identity_auth_me_get",
@@ -9902,6 +10804,47 @@
           }
         },
         "summary": "Get My Identity",
+        "tags": [
+          "identity"
+        ]
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "operationId": "register_with_phone_auth_register_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PhoneRegister"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse_PhoneAuthView_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Register With Phone",
         "tags": [
           "identity"
         ]
@@ -10595,6 +11538,38 @@
               "description": "Filter by storage code A|B|C. Prefer labels from GET /competitions/recommendation-tiers.",
               "title": "Recommendation Tier"
             }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "in": "header",
+            "name": "x-user-id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-User-Id"
+            }
           }
         ],
         "responses": {
@@ -10658,6 +11633,38 @@
             "schema": {
               "title": "Competition Id",
               "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "in": "header",
+            "name": "x-user-id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-User-Id"
             }
           }
         ],
@@ -10732,6 +11739,177 @@
         ]
       }
     },
+    "/competitions/{competition_id}/teams/{team_id}": {
+      "get": {
+        "description": "单支招募中队伍的匿名详情（几/几、已有角色、还缺什么）。",
+        "operationId": "competition_team_competitions__competition_id__teams__team_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "competition_id",
+            "required": true,
+            "schema": {
+              "title": "Competition Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "team_id",
+            "required": true,
+            "schema": {
+              "title": "Team Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse_CompetitionTeamView_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Competition Team",
+        "tags": [
+          "competitions"
+        ]
+      }
+    },
+    "/demo/taste/douyin/qr": {
+      "post": {
+        "description": "Mint a guest identity and start Douyin QR login — no prior App auth.",
+        "operationId": "start_demo_taste_qr_demo_taste_douyin_qr_post",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "wait_seconds",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "maximum": 15,
+              "minimum": 0,
+              "title": "Wait Seconds",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse_DemoTasteStartView_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Start Demo Taste Qr",
+        "tags": [
+          "demo_taste"
+        ]
+      }
+    },
+    "/demo/taste/from-link": {
+      "post": {
+        "description": "Public sync import: Douyin share link → recent likes/collects/posts → persona.\n\nUses local operator cookies over HTTP. No Playwright page scrolling.\nRequires the target account's 喜欢 and 收藏 videos to be public.",
+        "operationId": "demo_taste_from_link_demo_taste_from_link_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DemoTasteFromLinkRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse_DemoTasteFromLinkView_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Demo Taste From Link",
+        "tags": [
+          "demo_taste"
+        ]
+      }
+    },
+    "/demo/taste/status": {
+      "get": {
+        "operationId": "demo_taste_status_demo_taste_status_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse_DemoTasteStatusView_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Demo Taste Status",
+        "tags": [
+          "demo_taste"
+        ]
+      }
+    },
     "/events": {
       "get": {
         "operationId": "public_events_events_get",
@@ -10793,6 +11971,79 @@
           }
         },
         "summary": "Public Events",
+        "tags": [
+          "campus-tools"
+        ]
+      },
+      "post": {
+        "operationId": "publish_event_events_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "in": "header",
+            "name": "x-user-id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-User-Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CampusEventCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse_PublicEventView_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Publish Event",
         "tags": [
           "campus-tools"
         ]
@@ -13101,6 +14352,81 @@
         ]
       }
     },
+    "/hermes/peers/start": {
+      "post": {
+        "operationId": "start_hermes_peer_chat_hermes_peers_start_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "in": "header",
+            "name": "x-user-id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-User-Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HermesPeerStartRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse_HermesPeerChatResult_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Start Hermes Peer Chat",
+        "tags": [
+          "campus-tools"
+        ]
+      }
+    },
     "/idempotency/operations/{key}": {
       "get": {
         "operationId": "idempotency_operation_status_idempotency_operations__key__get",
@@ -13703,6 +15029,261 @@
         "summary": "Rollback Action",
         "tags": [
           "actions"
+        ]
+      }
+    },
+    "/internal/campus-mcp/openai-tools": {
+      "get": {
+        "operationId": "openai_tools_internal_campus_mcp_openai_tools_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Campus-MCP-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Campus-Mcp-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse_list_dict__"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Openai Tools",
+        "tags": [
+          "campus-mcp"
+        ]
+      }
+    },
+    "/internal/campus-mcp/tools": {
+      "get": {
+        "operationId": "list_campus_tools_internal_campus_mcp_tools_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Campus-MCP-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Campus-Mcp-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse_list_dict__"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Campus Tools",
+        "tags": [
+          "campus-mcp"
+        ]
+      }
+    },
+    "/internal/campus-mcp/tools/call": {
+      "post": {
+        "operationId": "call_campus_tool_internal_campus_mcp_tools_call_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Campus-MCP-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Campus-Mcp-Token"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ToolCallRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse_dict_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Call Campus Tool",
+        "tags": [
+          "campus-mcp"
+        ]
+      }
+    },
+    "/internal/cast-driver/status": {
+      "get": {
+        "operationId": "driver_status_internal_cast_driver_status_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-admin-token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Admin-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse_dict_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Driver Status",
+        "tags": [
+          "cast-driver"
+        ]
+      }
+    },
+    "/internal/cast-driver/tick": {
+      "post": {
+        "operationId": "driver_tick_internal_cast_driver_tick_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-admin-token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Admin-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse_dict_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Driver Tick",
+        "tags": [
+          "cast-driver"
         ]
       }
     },
@@ -15151,6 +16732,22 @@
               "minimum": 1,
               "title": "Limit",
               "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Category"
             }
           },
           {
@@ -17661,6 +19258,82 @@
         "summary": "Patch Profile Tags",
         "tags": [
           "profile"
+        ]
+      }
+    },
+    "/profile/taste/from-link": {
+      "post": {
+        "description": "Paste a Douyin homepage share link → likes + collects + posts → persist profile.",
+        "operationId": "taste_from_link_profile_taste_from_link_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "in": "header",
+            "name": "x-user-id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-User-Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DemoTasteFromLinkRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse_ImportSessionView_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Taste From Link",
+        "tags": [
+          "taste_profile"
         ]
       }
     },
