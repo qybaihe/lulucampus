@@ -23,9 +23,15 @@
 </p>
 
 <p align="center">
-  <a href="https://hcnr0cwi1n15.feishu.cn/docx/HWhzdpMwAoWB3VxfypFc5Xz9nOg">Product brief (Feishu)</a>
+  <a href="https://github.com/qybaihe/lulucampus/releases/latest"><img alt="GitHub Release" src="https://img.shields.io/github/v/release/qybaihe/lulucampus?label=iOS%20Release&color=E8A0BF" /></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/qybaihe/lulucampus/releases/download/v1.0.0/LuluCampus-1.0.0.ipa"><strong>Download the iOS app (IPA)</strong></a>
   ·
-  <a href="https://github.com/qybaihe/lulucampus">GitHub</a>
+  <a href="https://github.com/qybaihe/lulucampus/releases/latest">All release assets</a>
+  ·
+  <a href="https://hcnr0cwi1n15.feishu.cn/docx/HWhzdpMwAoWB3VxfypFc5Xz9nOg">Product brief (Feishu)</a>
   ·
   <a href="https://luludrawu.classby.cn">Try the taste demo</a>
   ·
@@ -37,6 +43,30 @@
 </p>
 
 <p align="center"><sub>You own every grant · hermes on Today · start with one sentence</sub></p>
+
+---
+
+## Download the iOS app
+
+The first public build is GitHub Release **[v1.0.0](https://github.com/qybaihe/lulucampus/releases/tag/v1.0.0)**.
+
+| Asset | What it is |
+|---|---|
+| **[LuluCampus-1.0.0.ipa](https://github.com/qybaihe/lulucampus/releases/download/v1.0.0/LuluCampus-1.0.0.ipa)** | Device package · iPhone · iOS 17+ · talks to production `lulu.classby.cn` |
+| [LuluCampus-1.0.0-iphonesimulator.zip](https://github.com/qybaihe/lulucampus/releases/download/v1.0.0/LuluCampus-1.0.0-iphonesimulator.zip) | Mac + Xcode Simulator package |
+
+**On a real iPhone:** sideload with [AltStore](https://altstore.io) or Sideloadly using your own Apple ID. A free Apple ID typically needs a re-sign about every 7 days. iOS will not install a tapped IPA by itself.
+
+**Simulator (Mac):**
+
+```bash
+unzip LuluCampus-1.0.0-iphonesimulator.zip
+xcrun simctl boot "iPhone 15 Pro"   # if it is not already running
+xcrun simctl install booted "ONE MORE.app"
+xcrun simctl launch booted com.onemore.campus
+```
+
+Rebuild the same artifacts from source with `ios/Scripts/package_github_release.sh`.
 
 ---
 
@@ -224,17 +254,21 @@ X-User-ID: u_demo_1
 Authorization: Bearer dev:u_demo_1
 ```
 
-Optional Hermes Agent sidecar (natural language such as elective matching via DeepSeek; keyword fallback):
+Hermes Agent sidecar (natural language such as elective matching via DeepSeek; keyword fallback):
 
 ```bash
-uv run uvicorn onemore.hermes.agent_server:app --port 8642
-# .env: ONEMORE_HERMES_AGENT_MODE=sidecar
+make stack          # API :8000 + Hermes Agent :8642
+# or separately:
+make dev
+make hermes
 ```
+
+Keep `ONEMORE_HERMES_MODE=real` and `ONEMORE_HERMES_AGENT_MODE=sidecar` in `.env`. Unit tests still force `fake` / `off`.
 
 ### Docker
 
 ```bash
-docker compose up --build
+docker compose up --build   # api + worker + beat + hermes-agent + postgres + redis
 docker compose exec api uv run onemore-seed
 ```
 
@@ -264,12 +298,13 @@ Phone frame on desktop, full-bleed on mobile. Same FastAPI and response contract
 
 ## Hermes modes
 
-Default `ONEMORE_HERMES_MODE=fake`: full APIs and state machines, no campus systems.
+Default `ONEMORE_HERMES_MODE=real`: campus CLI for timetable/venues, plus the Hermes Agent sidecar.
 
-Live:
+Without a local CLI, `/health/ready` reports `hermes_cli: missing` but the API still starts. Judges/unit tests keep `ONEMORE_HERMES_MODE=fake`.
 
 ```bash
 ONEMORE_HERMES_MODE=real
+ONEMORE_HERMES_AGENT_MODE=sidecar
 ONEMORE_SYSU_CLI="$HOME/.local/bin/sysu-anything"
 ONEMORE_VAULT_MASTER_KEY="$(openssl rand -hex 32)"
 ```

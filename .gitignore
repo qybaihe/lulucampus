@@ -34,12 +34,17 @@ celerybeat-schedule*
 web/node_modules/
 web/dist/
 web/.env.production
+web/.wrangler/
+**/.wrangler/
 **/node_modules/
 **/.edgeone/
 
 # Xcode local build/test products (source, generated project and evidence remain tracked)
 ios/.derived/
 ios/.derived-release/
+ios/.derived-release-device/
+*.ipa
+*.xcarchive/
 ios/build/
 ios/*.xcresult/
 ios/artifacts/**/*.xcresult/
@@ -51,6 +56,10 @@ ios/artifacts/test-results/
 onemore.db
 douyin_demo.db
 test_onemore.db
+
+# Judge submission staging / zips (rebuild with submission/pack.sh)
+submission/stage/
+submission/zips/
 
 # Heavy local-only tooling outputs
 output/

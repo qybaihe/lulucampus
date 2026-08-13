@@ -23,6 +23,12 @@ cd /Users/baihe/Documents/compusone/ios
 
 可用 `SIMULATOR_UDID=<UDID>` 替换设备；`CONFIGURATION=Release ./Scripts/build.sh` 构建 Release。
 
+GitHub Release 安装包（真机 IPA + 模拟器 zip）：
+
+```bash
+./Scripts/package_github_release.sh
+```
+
 ## 结构
 
 - `OneMore/App`：AppEnvironment、SessionGate、Router root、APNs/deep link。

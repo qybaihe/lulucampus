@@ -153,7 +153,7 @@ final class APIContractTests: XCTestCase {
         XCTAssertEqual(team.filledRoles, ["编程", "写作"])
     }
 
-    func testCampusActionCopyTurnsGymPreviewIntoChineseCard() {
+    func testCampusActionCopyTurnsGymPreviewIntoChineseCard() throws {
         let copy = try XCTUnwrap(
             CampusActionCopy.make(
                 actionName: "gym.book_preview",
@@ -172,11 +172,10 @@ final class APIContractTests: XCTestCase {
         XCTAssertEqual(copy.headline, "珠海校区 · 篮球")
         XCTAssertEqual(copy.sticker, "basketball.png")
         XCTAssertEqual(copy.statusLabel, "待确认")
-        XCTAssertEqual(copy.facts.map(\.label), ["项目", "地点", "日期", "时段"])
+        XCTAssertEqual(copy.facts.map(\.label), ["地点", "时段"])
         XCTAssertEqual(copy.facts.first { $0.label == "地点" }?.value, "珠海校区")
         XCTAssertEqual(copy.facts.first { $0.label == "时段" }?.value, "19:00 – 21:00")
-        let dateValue = copy.facts.first { $0.label == "日期" }?.value ?? ""
-        XCTAssertTrue(dateValue == "今晚" || dateValue.contains("8月13日"))
+        XCTAssertTrue(copy.timeLine?.contains("19:00") == true)
         let blob = ([copy.title, copy.headline] + copy.facts.flatMap { [$0.label, $0.value] }).joined()
         XCTAssertFalse(blob.contains("gym.book_preview"))
         XCTAssertFalse(blob.contains("params."))
@@ -184,7 +183,7 @@ final class APIContractTests: XCTestCase {
         XCTAssertFalse(blob.contains("/actions/preview"))
     }
 
-    func testCampusActionCopyReadsHermesPreviewPayload() {
+    func testCampusActionCopyReadsHermesPreviewPayload() throws {
         let result = HermesAskResult(
             kind: "action_preview",
             action: "gym.book_preview",

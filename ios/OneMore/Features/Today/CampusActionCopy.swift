@@ -79,6 +79,13 @@ struct CampusActionCopy: Equatable {
         add("用途", fields["title"])
         add("备注", fields["memo"])
 
+        if venueType != nil {
+            facts.removeAll { $0.label == "项目" }
+        }
+        if timeLine.isEmpty == false {
+            facts.removeAll { $0.label == "日期" }
+        }
+
         guard !facts.isEmpty || title != "校园行动" else { return nil }
 
         return CampusActionCopy(

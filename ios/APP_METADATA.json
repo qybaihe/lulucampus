@@ -8,8 +8,8 @@
   "debug_bundle_id": "com.onemore.campus.dev",
   "release_bundle_id_slot": "com.onemore.campus",
   "backend_mode": "existing-fastapi",
-  "debug_api_base_url": "http://127.0.0.1:8000",
-  "release_api_base_url_slot": "https://api.onemore.example",
+  "debug_api_base_url": "http://42.194.219.172/onemore/api",
+  "release_api_base_url": "https://lulu.classby.cn/onemore/api",
   "debug_auth": "X-User-ID enabled only under DEV_AUTH compilation condition",
   "release_auth": "Bearer token from Keychain; no dev-header fallback",
   "deep_link_scheme": "onemore",
@@ -23,7 +23,6 @@
   "push_and_universal_link_entitlements": "configured with xcconfig substitution",
   "external_credentials_pending": [
     "Apple Development Team / distribution signing",
-    "production API and WebSocket domains",
     "APNs provider key and production provisioning profile",
     "apple-app-site-association on production domain",
     "real enterprise WeChat login handoff"

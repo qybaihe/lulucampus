@@ -56,6 +56,7 @@
 		386B3A0584885631EE5CDFD0 /* azou_waiting_confirmation_00.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B8A158B3EA332E6D2DDB985 /* azou_waiting_confirmation_00.png */; };
 		3C48D39403485CE9E84E998D /* tab-create-inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9EA77AC235B325FF3AED04 /* tab-create-inactive.png */; };
 		401B98FF977C65F74DE91298 /* evidence__user_confirmed_commute_times_2026-08-11.md in Resources */ = {isa = PBXBuildFile; fileRef = 912FDFA9FCA4EDCFDC23D8DB /* evidence__user_confirmed_commute_times_2026-08-11.md */; };
+		40EF46F4A12BA20729590311 /* CampusActionCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3121D3F2A936568899734FEA /* CampusActionCopy.swift */; };
 		412319E43E52226BB3404C8D /* Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4AB8D7F3FA9843605D1B6 /* Repositories.swift */; };
 		4124209B8AE99144A4BA547C /* marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 433D55D208D7EF3C56E784AC /* marker.png */; };
 		4295562636493B18E37792FD /* azou_idle_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 32234E9218891843752F5353 /* azou_idle_01.png */; };
@@ -92,7 +93,6 @@
 		61673D20DC8929A501ECB0AA /* books-stack.png in Resources */ = {isa = PBXBuildFile; fileRef = BF36B8FCC9557AA4DF306C1A /* books-stack.png */; };
 		61D15C1D6DE42E5D080B9731 /* NetworkingBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1FBBB29E3C5430F6773108 /* NetworkingBehaviorTests.swift */; };
 		62F52F0FBFF2C66F96806FDF /* CampusBusSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7246B023675C705DD9D74E8D /* CampusBusSchedule.swift */; };
-		2F8E6C1A4B7D4098A3C5E912 /* CampusActionCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4A91E2B8D64F3A9E1C05B7 /* CampusActionCopy.swift */; };
 		642FAC2600261A317496E0B7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38449F2C372168D15E39C281 /* ProfileView.swift */; };
 		649350B2515A3926C7C9C1C1 /* OMComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61FC8181BE2CDB1567EBFFD /* OMComponents.swift */; };
 		64CC9C150038CDC0EE6DAD52 /* certificate.png in Resources */ = {isa = PBXBuildFile; fileRef = A036F2BB4585646DF58BE325 /* certificate.png */; };
@@ -311,6 +311,7 @@
 		2FF72D357644812B7DCAB0BE /* azou_exit_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = azou_exit_03.png; sourceTree = "<group>"; };
 		3060C09027E3FEB5E0E7EEAF /* azou_executing_00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = azou_executing_00.png; sourceTree = "<group>"; };
 		30CDC482CF3698C67113B4BA /* transit_2026_fall.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = transit_2026_fall.json; sourceTree = "<group>"; };
+		3121D3F2A936568899734FEA /* CampusActionCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusActionCopy.swift; sourceTree = "<group>"; };
 		314719F511DFDC2A9173EB24 /* CompetitionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionsView.swift; sourceTree = "<group>"; };
 		314B56BB50185DFBE8CD7AA3 /* MotionEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionEngineTests.swift; sourceTree = "<group>"; };
 		32234E9218891843752F5353 /* azou_idle_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = azou_idle_01.png; sourceTree = "<group>"; };
@@ -382,7 +383,6 @@
 		707FEE378F0EEC755EC64E42 /* ProfileEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditorView.swift; sourceTree = "<group>"; };
 		721D4B795FEB10473A2AF38C /* PrototypeHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeHostView.swift; sourceTree = "<group>"; };
 		7246B023675C705DD9D74E8D /* CampusBusSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusBusSchedule.swift; sourceTree = "<group>"; };
-		7C4A91E2B8D64F3A9E1C05B7 /* CampusActionCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusActionCopy.swift; sourceTree = "<group>"; };
 		74AEDB96C5BBF8555CDDFDBE /* ActivityDiscoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDiscoveryView.swift; sourceTree = "<group>"; };
 		756EF51CB5061A7C70E0EAE1 /* azou_closed_eye_sensing_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = azou_closed_eye_sensing_02.png; sourceTree = "<group>"; };
 		76632049EA4A1DEE4A3BD576 /* data-chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "data-chart.png"; sourceTree = "<group>"; };
@@ -835,7 +835,7 @@
 		78545FBB200A8EA0DD05CA64 /* Today */ = {
 			isa = PBXGroup;
 			children = (
-				7C4A91E2B8D64F3A9E1C05B7 /* CampusActionCopy.swift */,
+				3121D3F2A936568899734FEA /* CampusActionCopy.swift */,
 				7246B023675C705DD9D74E8D /* CampusBusSchedule.swift */,
 				656D0207417959259EBC7D8E /* CampusToolsViews.swift */,
 				8DE61B8C4CDC22EECB97697F /* GuestDiscoveryView.swift */,
@@ -1449,8 +1449,8 @@
 				5C2AAFB993FCAA356AF31156 /* AppRouter.swift in Sources */,
 				1A4A4D0D1CE74FACDDFCD9AF /* AppSessionController.swift in Sources */,
 				8BC6928033EE1A3A16624574 /* AuthManager.swift in Sources */,
+				40EF46F4A12BA20729590311 /* CampusActionCopy.swift in Sources */,
 				62F52F0FBFF2C66F96806FDF /* CampusBusSchedule.swift in Sources */,
-				2F8E6C1A4B7D4098A3C5E912 /* CampusActionCopy.swift in Sources */,
 				D7462B9B988ED8332BAE3973 /* CampusToolsViews.swift in Sources */,
 				C0FF2868581BF52851C1DEF2 /* ChannelView.swift in Sources */,
 				E3CD04BC5F67B7394E2D90EA /* CompetitionDetailView.swift in Sources */,

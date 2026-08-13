@@ -23,9 +23,15 @@
 </p>
 
 <p align="center">
-  <a href="https://hcnr0cwi1n15.feishu.cn/docx/HWhzdpMwAoWB3VxfypFc5Xz9nOg">产品说明文档（飞书）</a>
+  <a href="https://github.com/qybaihe/lulucampus/releases/latest"><img alt="GitHub Release" src="https://img.shields.io/github/v/release/qybaihe/lulucampus?label=iOS%20Release&color=E8A0BF" /></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/qybaihe/lulucampus/releases/download/v1.0.0/LuluCampus-1.0.0.ipa"><strong>下载 iOS App（IPA）</strong></a>
   ·
-  <a href="https://github.com/qybaihe/lulucampus">GitHub</a>
+  <a href="https://github.com/qybaihe/lulucampus/releases/latest">全部 Release 资源</a>
+  ·
+  <a href="https://hcnr0cwi1n15.feishu.cn/docx/HWhzdpMwAoWB3VxfypFc5Xz9nOg">产品说明文档（飞书）</a>
   ·
   <a href="https://luludrawu.classby.cn">扫码体验兴趣画像</a>
   ·
@@ -37,6 +43,30 @@
 </p>
 
 <p align="center"><sub>授权由你掌控 · hermes「今天」 · 「差一个」发起</sub></p>
+
+---
+
+## 下载 iOS App
+
+第一个公开包在 GitHub Release **[v1.0.0](https://github.com/qybaihe/lulucampus/releases/tag/v1.0.0)**。
+
+| 资源 | 说明 |
+|---|---|
+| **[LuluCampus-1.0.0.ipa](https://github.com/qybaihe/lulucampus/releases/download/v1.0.0/LuluCampus-1.0.0.ipa)** | 真机安装包 · iPhone · iOS 17+ · 连生产 API `lulu.classby.cn` |
+| [LuluCampus-1.0.0-iphonesimulator.zip](https://github.com/qybaihe/lulucampus/releases/download/v1.0.0/LuluCampus-1.0.0-iphonesimulator.zip) | Mac + Xcode 模拟器包 |
+
+**真机：** 用 [AltStore](https://altstore.io) 或 Sideloadly，以你自己的 Apple ID 签名后装到 iPhone。免费账号大约 7 天需要重新签一次。系统不会允许直接点开 IPA 安装。
+
+**模拟器（Mac）：**
+
+```bash
+unzip LuluCampus-1.0.0-iphonesimulator.zip
+xcrun simctl boot "iPhone 15 Pro"   # 若尚未启动
+xcrun simctl install booted "ONE MORE.app"
+xcrun simctl launch booted com.onemore.campus
+```
+
+本地从源码再打一份同样的包：`ios/Scripts/package_github_release.sh`
 
 ---
 
@@ -224,17 +254,21 @@ X-User-ID: u_demo_1
 Authorization: Bearer dev:u_demo_1
 ```
 
-Hermes Agent sidecar（可选，公选课等自然语言走 DeepSeek，失败回退关键词规则）：
+Hermes Agent sidecar（公选课等自然语言走 DeepSeek，失败回退关键词规则）：
 
 ```bash
-uv run uvicorn onemore.hermes.agent_server:app --port 8642
-# .env: ONEMORE_HERMES_AGENT_MODE=sidecar
+make stack          # API :8000 + Hermes Agent :8642
+# 或分开启动：
+make dev
+make hermes
 ```
+
+`.env` 里保持 `ONEMORE_HERMES_MODE=real`、`ONEMORE_HERMES_AGENT_MODE=sidecar`。单元测试仍强制 `fake` / `off`。
 
 ### Docker
 
 ```bash
-docker compose up --build
+docker compose up --build   # api + worker + beat + hermes-agent + postgres + redis
 docker compose exec api uv run onemore-seed
 ```
 
@@ -264,12 +298,13 @@ PC 以手机框呈现，移动端全宽；与 iOS 共用同一 FastAPI 与响应
 
 ## Hermes 模式
 
-默认 `ONEMORE_HERMES_MODE=fake`，接口与状态机可完整联调而不触达校园系统。
+默认 `ONEMORE_HERMES_MODE=real`：走 `sysu-anything` 查课表/场馆，并启动 Hermes Agent sidecar。
 
-真实联调：
+本地无校园 CLI 时，`/health/ready` 会报 `hermes_cli: missing`，接口仍可启动；评委/单测继续用 `ONEMORE_HERMES_MODE=fake`。
 
 ```bash
 ONEMORE_HERMES_MODE=real
+ONEMORE_HERMES_AGENT_MODE=sidecar
 ONEMORE_SYSU_CLI="$HOME/.local/bin/sysu-anything"
 ONEMORE_VAULT_MASTER_KEY="$(openssl rand -hex 32)"
 ```

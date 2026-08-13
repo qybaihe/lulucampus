@@ -16,7 +16,7 @@
   <key>DevAuthEnabled</key><string>NO</string>
   <key>NSAppTransportSecurity</key>
   <dict>
-    <!-- Temporary: production IP is HTTP-only until a TLS domain is attached. -->
+    <!-- Keep the production IP reachable over HTTP for older builds. -->
     <key>NSExceptionDomains</key>
     <dict>
       <key>42.194.219.172</key>

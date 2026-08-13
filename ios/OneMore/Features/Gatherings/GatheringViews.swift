@@ -1136,9 +1136,21 @@ struct GatheringDetailView: View {
             currentUserID = await environment.auth.currentUserID()
             calendarScope = await environment.auth.cacheScope()
             let previousStatus = item?.status
-            let value = try await environment.gatherings.detail(id)
+            var value = try await environment.gatherings.detail(id)
+            var sealedFromPooling = false
+            if shouldSealCompetitionRoster(value) {
+                do {
+                    value = try await environment.gatherings.join(id, role: joinRole(from: value))
+                    sealedFromPooling = value.status == .confirmed
+                } catch {
+                    // Keep the pooling detail; user can retry from this page.
+                }
+            }
             item = value; error = nil
-            celebrateIfJustConfirmed(from: previousStatus, to: value)
+            celebrateIfJustConfirmed(
+                from: sealedFromPooling ? .pooling : previousStatus,
+                to: value
+            )
             await loadIcebreakerIfNeeded(value)
             scheduleStatusRefresh(value)
             backfill = nil
@@ -1229,6 +1241,14 @@ struct GatheringDetailView: View {
     private func joinRole(from item: GatheringSummary?) -> String? {
         guard let roles = item?.requiredRoles, roles.count == 1 else { return nil }
         return roles[0]
+    }
+
+    private func shouldSealCompetitionRoster(_ value: GatheringSummary) -> Bool {
+        guard value.status == .pooling,
+              value.myConfirmation != nil,
+              value.gatheringType.contains("比赛")
+        else { return false }
+        return (value.memberCount ?? 0) >= (value.minSize ?? 2)
     }
     private func claimBackfill() async {
         await run {

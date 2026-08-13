@@ -1,7 +1,6 @@
-// Temporary production slot: shared server over HTTP until a TLS domain is ready.
-// When HTTPS is available, switch both URLs to https/wss and remove the ATS exception.
-API_BASE_URL = http:/$()/42.194.219.172/onemore/api
-WEB_SOCKET_BASE_URL = ws:/$()/42.194.219.172/onemore/api
+// Production API over HTTPS. ATS still allows the old IP for leftover HTTP builds.
+API_BASE_URL = https:/$()/lulu.classby.cn/onemore/api
+WEB_SOCKET_BASE_URL = wss:/$()/lulu.classby.cn/onemore/api
 DEV_AUTH_ENABLED = NO
 DEV_USER_ID =
 ASSOCIATED_DOMAIN = applinks:onemore.example
