@@ -131,6 +131,14 @@ def authorize(
             )
         )
         if row is None:
+            snapshot = action.preview_snapshot if isinstance(action.preview_snapshot, dict) else {}
+            if snapshot.get("source") == "peer_overlap_template" or (
+                action.gathering_id is None and not action.commit_action_name
+            ):
+                raise ConflictError(
+                    "ACTION_NOT_AUTHORIZABLE",
+                    "这是时段参考，不用核对提交",
+                )
             raise ConflictError("ACTION_MEMBERSHIP_CHANGED", "当前成员确认集合已变化")
         if not authorized:
             return _invalidate_for_modification_locked(

@@ -328,6 +328,7 @@ def _team_view(db: Session, gathering, members: list) -> dict:
         "location": gathering.location,
         "campus": gathering.campus,
         "start_at": gathering.start_at,
+        "min_size": int(gathering.min_size or 0),
         "target_size": gathering.target_size,
         "member_count": member_count,
         "required_roles": missing_roles,
@@ -401,10 +402,7 @@ def list_teams(db: Session, competition_id: str) -> list[dict]:
         .order_by(GatheringMember.confirmed_at, GatheringMember.id)
     ):
         members_by_gathering[member.gathering_id].append(member)
-    return [
-        _team_view(db, gathering, members_by_gathering[gathering.id])
-        for gathering in matched
-    ]
+    return [_team_view(db, gathering, members_by_gathering[gathering.id]) for gathering in matched]
 
 
 def get_team(db: Session, competition_id: str, team_id: str) -> dict:

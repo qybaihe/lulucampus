@@ -58,6 +58,7 @@ class GatheringView(APIModel):
     start_at: datetime | None
     end_at: datetime | None
     location: str | None
+    min_size: int
     target_size: int
     required_trust_level: str
     required_roles: list[str]

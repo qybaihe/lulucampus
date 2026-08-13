@@ -167,6 +167,7 @@ class CompetitionTeamView(APIModel):
     location: str | None = None
     campus: str | None = None
     start_at: datetime | None = None
+    min_size: int
     target_size: int
     member_count: int
     required_roles: list[str] = Field(default_factory=list)

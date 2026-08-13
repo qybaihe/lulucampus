@@ -183,7 +183,10 @@ def gap_share_view(db: Session, token: str) -> dict:
         "joinable": joinable,
         "deep_link": f"onemore://g/{token}",
         "universal_link": f"{base}/g/{token}",
-        "looking_for": _looking_for_labels(db, gathering.required_roles or []),
+        "looking_for": _looking_for_labels(
+            db,
+            _remaining_required_roles(gathering, active_members(db, gathering.id)),
+        ),
     }
 
 
@@ -638,6 +641,39 @@ _ROLE_LABELS = {
     "modeling": "建模",
     "programming": "编程",
 }
+_ROLE_KEYS_BY_LABEL = {label: key for key, label in _ROLE_LABELS.items()}
+
+
+def _normalize_role_key(role: str | None) -> str:
+    raw = (role or "").strip()
+    if not raw:
+        return ""
+    if raw in _ROLE_LABELS:
+        return raw
+    return _ROLE_KEYS_BY_LABEL.get(raw, raw)
+
+
+def _remaining_required_roles(
+    gathering: Gathering, members: list[GatheringMember]
+) -> list[str]:
+    """Roles still advertised as gaps, matching Chinese or English member roles."""
+    required = [
+        key
+        for item in (gathering.required_roles or [])
+        if (key := _normalize_role_key(item))
+    ]
+    bag = [
+        key
+        for item in members
+        if (key := _normalize_role_key(item.role))
+    ]
+    remaining: list[str] = []
+    for role in required:
+        if role in bag:
+            bag.remove(role)
+        else:
+            remaining.append(role)
+    return remaining
 
 
 def _looking_for_labels(db: Session, role_keys: list[str]) -> list[str]:
@@ -703,7 +739,8 @@ def to_view(db: Session, gathering: Gathering, viewer_id: str | None) -> dict:
     member = next((item for item in members if item.user_id == viewer_id), None)
     visible_counts = gathering.status != GatheringStatus.POOLING.value
     identity_threshold_satisfied = (
-        gathering.identity_disclosure == "after_confirmed"
+        gathering.status in IDENTITY_VISIBLE_STATES
+        or gathering.identity_disclosure == "after_confirmed"
         or len(members) >= gathering.target_size
     )
     identity_visible = (
@@ -760,11 +797,14 @@ def to_view(db: Session, gathering: Gathering, viewer_id: str | None) -> dict:
         "start_at": gathering.start_at,
         "end_at": gathering.end_at,
         "location": gathering.location,
+        "min_size": gathering.min_size,
         "target_size": gathering.target_size,
         "required_trust_level": gathering.required_trust_level,
         "required_roles": gathering.required_roles,
         "match_reason": gathering.match_reason if member and visible_counts else None,
-        "looking_for": _looking_for_labels(db, gathering.required_roles or []),
+        "looking_for": _looking_for_labels(
+            db, _remaining_required_roles(gathering, members)
+        ),
         "filled_roles": _filled_role_labels(db, members),
         "roster_highlights": (
             _roster_highlights(db, gathering, members)
@@ -1016,32 +1056,80 @@ def _blocked_with_any(db: Session, user_id: str, members: list[GatheringMember])
     )
 
 
+def _is_competition_team(db: Session, gathering: Gathering) -> bool:
+    """赛事组队：人数按 2–3 成局，不占日历时段，满员后直接开群。"""
+    metadata = gathering.official_metadata if isinstance(gathering.official_metadata, dict) else {}
+    if metadata.get("competition_id") or metadata.get("competition_name"):
+        return True
+    if "比赛" in (gathering.gathering_type or ""):
+        return True
+    if gathering.source_intent_id:
+        intent = db.get(IntentCard, gathering.source_intent_id)
+        if intent is not None and intent.competition_id:
+            return True
+    return False
+
+
+def _occupies_timeslot(db: Session, gathering: Gathering) -> bool:
+    """Competition teams are not exclusive calendar bookings.
+
+    A math-modeling roster can be joined while the same person already has
+    badminton or study at that clock time, and sitting on a competition team
+    must not block joining a real timeslot gathering later.
+    """
+    return not _is_competition_team(db, gathering)
+
+
+def _competition_roster_ready(
+    gathering: Gathering, members: list[GatheringMember]
+) -> bool:
+    """CUMCM-style teams form at min_size once advertised gaps are gone, or at target."""
+    count = len(members)
+    if count < gathering.min_size:
+        return False
+    if count >= gathering.target_size:
+        return True
+    return not _remaining_required_roles(gathering, members)
+
+
+def _seal_competition_team(db: Session, gathering: Gathering, actor_user_id: str) -> None:
+    now = utcnow()
+    for member in active_members(db, gathering.id):
+        member.confirmation_status = ConfirmationStatus.CONFIRMED.value
+        if member.confirmed_at is None:
+            member.confirmed_at = now
+    transition(db, gathering, GatheringEvent.ALL_CONFIRMED, actor_user_id=actor_user_id)
+    from onemore.modules.collab.service import open_gathering_channel
+
+    open_gathering_channel(db, gathering.id)
+
+
 def _time_conflict(db: Session, user_id: str, target: Gathering) -> bool:
+    if not _occupies_timeslot(db, target):
+        return False
     if target.start_at is None or target.end_at is None:
         return False
-    return (
-        db.scalar(
-            select(Gathering.id)
-            .join(GatheringMember, GatheringMember.gathering_id == Gathering.id)
-            .where(
-                GatheringMember.user_id == user_id,
-                GatheringMember.left_at.is_(None),
-                Gathering.id != target.id,
-                Gathering.status.in_(
-                    [
-                        GatheringStatus.TENTATIVE.value,
-                        GatheringStatus.CONFIRMED.value,
-                        GatheringStatus.PREVIEWED.value,
-                        GatheringStatus.EXECUTED.value,
-                        GatheringStatus.ACTIVE.value,
-                    ]
-                ),
-                Gathering.start_at < target.end_at,
-                Gathering.end_at > target.start_at,
-            )
+    overlapping = db.scalars(
+        select(Gathering)
+        .join(GatheringMember, GatheringMember.gathering_id == Gathering.id)
+        .where(
+            GatheringMember.user_id == user_id,
+            GatheringMember.left_at.is_(None),
+            Gathering.id != target.id,
+            Gathering.status.in_(
+                [
+                    GatheringStatus.TENTATIVE.value,
+                    GatheringStatus.CONFIRMED.value,
+                    GatheringStatus.PREVIEWED.value,
+                    GatheringStatus.EXECUTED.value,
+                    GatheringStatus.ACTIVE.value,
+                ]
+            ),
+            Gathering.start_at < target.end_at,
+            Gathering.end_at > target.start_at,
         )
-        is not None
-    )
+    ).all()
+    return any(_occupies_timeslot(db, item) for item in overlapping)
 
 
 def _join_trust_capability(gathering: Gathering) -> str | None:
@@ -1085,7 +1173,9 @@ def join(
             raise ConflictError("GATHERING_NOT_JOINABLE", "当前局不在招募状态")
         if not user.social_enabled:
             raise ForbiddenError("请先主动开启社交开关")
-        if gathering.min_size < user.minimum_group_size:
+        if gathering.min_size < user.minimum_group_size and not _is_competition_team(
+            db, gathering
+        ):
             raise ConflictError(
                 "GROUP_SIZE_BELOW_PREFERENCE",
                 "本局最低成局人数低于你的个人设置",
@@ -1114,6 +1204,10 @@ def join(
             )
         if len(members) >= gathering.target_size:
             raise ConflictError("GATHERING_FULL", "本局已满")
+        if not (role or "").strip() and _is_competition_team(db, gathering):
+            remaining = _remaining_required_roles(gathering, members)
+            if len(remaining) == 1:
+                role = remaining[0]
         capability = _join_trust_capability(gathering)
         if capability is not None:
             trust_service.require_unlock(db, user.id, capability)
@@ -1203,25 +1297,32 @@ def join(
             # minimum-size commitment is enough to restart that round.
             gathering.identity_disclosure = "after_confirmed"
         if user.identity_disclosure == "after_full" and backfill_window is None:
-            gathering.identity_disclosure = "after_full"
+            if not _is_competition_team(db, gathering):
+                gathering.identity_disclosure = "after_full"
         if user.same_gender_only:
             gathering.same_gender_only = True
         db.flush()
-        threshold = (
-            gathering.min_size
-            if backfill_window is not None
-            else (
-                gathering.target_size
-                if gathering.is_official
-                or gathering.identity_disclosure == "after_full"
-                else gathering.min_size
+        roster = active_members(db, gathering.id)
+        if _is_competition_team(db, gathering):
+            if _competition_roster_ready(gathering, roster):
+                transition(db, gathering, GatheringEvent.MATCHED, actor_user_id=user.id)
+                _seal_competition_team(db, gathering, user.id)
+        else:
+            threshold = (
+                gathering.min_size
+                if backfill_window is not None
+                else (
+                    gathering.target_size
+                    if gathering.is_official
+                    or gathering.identity_disclosure == "after_full"
+                    else gathering.min_size
+                )
             )
-        )
-        if len(members) + 1 >= threshold:
-            transition(db, gathering, GatheringEvent.MATCHED, actor_user_id=user.id)
-            from onemore.modules.notify.service import notify_confirmation_required
+            if len(roster) >= threshold:
+                transition(db, gathering, GatheringEvent.MATCHED, actor_user_id=user.id)
+                from onemore.modules.notify.service import notify_confirmation_required
 
-            notify_confirmation_required(db, gathering)
+                notify_confirmation_required(db, gathering)
         db.commit()
         return gathering
 
@@ -1258,7 +1359,10 @@ def confirm(db: Session, gathering_id: str, user_id: str, confirmed: bool) -> Ga
         if len(member_users) != len(members) or any(
             current is None
             or not current.social_enabled
-            or gathering.min_size < current.minimum_group_size
+            or (
+                gathering.min_size < current.minimum_group_size
+                and not _is_competition_team(db, gathering)
+            )
             for current in member_users
         ):
             raise ConflictError(
