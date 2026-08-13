@@ -83,7 +83,7 @@ export function capabilityLabel(key: string): string {
     modeling: "建模",
     programming: "编程",
   };
-  return table[key] ?? table[key.toLowerCase()] ?? key;
+  return table[key] ?? key;
 }
 
 export interface GatheringParticipant {
@@ -107,6 +107,7 @@ export interface Gathering {
   member_count?: number;
   confirmed_count?: number;
   filled_count?: number;
+  min_size?: number;
   target_size?: number;
   gap_count?: number;
   start_at?: string | null;
@@ -119,8 +120,6 @@ export interface Gathering {
   competition_id?: string | null;
   required_roles?: string[];
   looking_for?: string[];
-  filled_roles?: string[];
-  roster_highlights?: string[];
   match_reason?: string | null;
   participants?: GatheringParticipant[];
   my_confirmation?: string | null;
@@ -748,6 +747,7 @@ export interface CompetitionTeam {
   location?: string | null;
   campus?: string | null;
   start_at?: string | null;
+  min_size?: number;
   target_size?: number;
   member_count?: number;
   required_roles?: string[];
@@ -756,7 +756,6 @@ export interface CompetitionTeam {
   missing_count?: number;
   missing_roles?: string[];
   filled_roles?: string[];
-  roster_highlights?: string[];
   [key: string]: unknown;
 }
 
@@ -1230,9 +1229,13 @@ export function createRepositories(client: APIClient) {
       ask: (text: string, context?: Record<string, unknown>) =>
         client.post<{
           kind?: string;
+          action?: string;
           card_type?: string;
+          requires_preview?: boolean;
           data?: {
             message?: string;
+            next?: string;
+            params?: Record<string, unknown>;
             peers?: Array<{
               user_id: string;
               display_name: string;

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useApp } from "../../app/AppContext";
 import { AppBrand } from "../../core/brand";
-import type { TodaySummary } from "../../core/api/repositories";
+import type { CampusAction, TodaySummary } from "../../core/api/repositories";
+import { makeCampusActionCopy } from "../../core/campus/actionCopy";
+import { ActionReviewCard } from "../../components/campus/ActionReviewCard";
 import {
   Btn,
   Card,
@@ -313,6 +315,9 @@ export function HermesAskScreen() {
       overlap: string;
     }>
   >([]);
+  const [previewCopy, setPreviewCopy] = useState<ReturnType<
+    typeof makeCampusActionCopy
+  > | null>(null);
   const [busy, setBusy] = useState(false);
   const [startingPeer, setStartingPeer] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -335,11 +340,27 @@ export function HermesAskScreen() {
         ),
       );
       setPeers(Array.isArray(data.peers) ? data.peers : []);
+      if (
+        (res.kind === "action_preview" || res.requires_preview) &&
+        data.params &&
+        typeof data.params === "object"
+      ) {
+        setPreviewCopy(
+          makeCampusActionCopy({
+            action_name: res.action,
+            status: "previewed",
+            params: data.params,
+          }),
+        );
+      } else {
+        setPreviewCopy(null);
+      }
       setQ(value);
     } catch (e) {
       setError(e instanceof Error ? e.message : "提问失败");
       setAnswer(null);
       setPeers([]);
+      setPreviewCopy(null);
     } finally {
       setBusy(false);
     }
@@ -405,6 +426,11 @@ export function HermesAskScreen() {
               {answer}
             </div>
           </Card>
+        ) : null}
+        {previewCopy ? (
+          <div className="mt-3">
+            <ActionReviewCard copy={previewCopy} testId="hermes-action-copy-card" />
+          </div>
         ) : null}
         {peers.length > 0 ? (
           <Card className="mt-3" data-od-id="hermes-peers">
@@ -1090,18 +1116,28 @@ export function SceneTriggerScreen() {
 
 export function PersonalActionPreviewScreen() {
   const { repos } = useApp();
+  const nav = useNavigate();
+  const [search] = useSearchParams();
+  const actionId = search.get("action");
+  const [action, setAction] = useState<CampusAction | null>(null);
   const [preview, setPreview] = useState<Record<string, unknown> | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
-  async function loadPreview() {
+  async function load() {
     setBusy(true);
     setError(null);
     try {
-      const data = await repos.actions.preview({ kind: "personal" });
-      setPreview(data);
+      if (actionId) {
+        setAction(await repos.actions.get(actionId));
+        setPreview(null);
+      } else {
+        setPreview(await repos.actions.preview({ kind: "personal" }));
+        setAction(null);
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : "预览失败");
+      setAction(null);
       setPreview(null);
     } finally {
       setBusy(false);
@@ -1109,12 +1145,30 @@ export function PersonalActionPreviewScreen() {
   }
 
   useEffect(() => {
-    void loadPreview();
-  }, [repos]);
+    void load();
+  }, [repos, actionId]);
+
+  const resolvedAction =
+    action ??
+    (preview && typeof preview.action_name === "string"
+      ? (preview as CampusAction)
+      : null);
+  const copy = resolvedAction ? makeCampusActionCopy(resolvedAction) : null;
+  const auth = resolvedAction?.authorization;
+  const previewed = resolvedAction?.status === "previewed";
 
   return (
-    <Screen id="screen-B11-personal-action-preview">
-      <NavBar title="个人行动预览" backTo="/today" />
+    <Screen
+      id={
+        actionId
+          ? "screen-action-detail"
+          : "screen-B11-personal-action-preview"
+      }
+    >
+      <NavBar
+        title={copy?.title ?? (actionId ? "行动核对" : "个人行动预览")}
+        backTo={actionId ? "/messages" : "/today"}
+      />
       <Scroll>
         {error ? (
           <Card>
@@ -1122,56 +1176,107 @@ export function PersonalActionPreviewScreen() {
               kind="network"
               message={error}
               actionTitle="重试"
-              onAction={() => void loadPreview()}
+              onAction={() => void load()}
             />
           </Card>
-        ) : !preview ? (
+        ) : !resolvedAction && !preview ? (
           <Card>
             <StateView kind="loading" message={busy ? "正在预览…" : undefined} />
           </Card>
+        ) : copy && resolvedAction ? (
+          <ActionReviewCard
+            copy={copy}
+            authorizedCount={
+              auth?.actor_decision === "not_required"
+                ? undefined
+                : auth?.authorized_count
+            }
+            requiredCount={
+              auth?.actor_decision === "not_required"
+                ? undefined
+                : auth?.required_count
+            }
+            testId="campus-action-review"
+          >
+            <div className="t-foot mt-3">
+              {auth?.actor_decision === "not_required"
+                ? "这不是一笔要提交的预约。只是用来找同一时段打球的同学，不用核对。"
+                : "核对的是时间、地点和项目，不是技术参数。"}
+            </div>
+          </ActionReviewCard>
         ) : (
           <Card>
-            <div className="t-t3">
-              {String(preview.label ?? preview.title ?? preview.action ?? "个人行动")}
-            </div>
-            <div className="t-foot mt-2">
-              {String(
-                preview.summary ??
-                  preview.description ??
-                  preview.location ??
-                  "预览来自 /actions/preview",
-              )}
-            </div>
-            <div className="divider" />
-            <div className="t-foot">
-              确认后才会真正执行；你随时可以取消。
-            </div>
+            <div className="t-t3">个人行动</div>
+            <div className="t-foot mt-2">确认后才会真正执行；你随时可以取消。</div>
           </Card>
         )}
-        <Btn
-          kind="primary"
-          disabled={busy || !preview}
-          onClick={() =>
-            void (async () => {
-              setBusy(true);
-              try {
-                await repos.actions.execute(
-                  { ...(preview ?? {}), kind: "personal" },
-                  crypto.randomUUID(),
-                );
-              } catch (e) {
-                setError(e instanceof Error ? e.message : "执行失败");
-              } finally {
-                setBusy(false);
-              }
-            })()
-          }
-        >
-          确认执行
-        </Btn>
-        <Btn kind="text" to="/today">
-          先不了
-        </Btn>
+        {resolvedAction && previewed && auth?.actor_decision === "pending" ? (
+          <Btn
+            kind="primary"
+            disabled={busy}
+            onClick={() =>
+              void (async () => {
+                setBusy(true);
+                try {
+                  setAction(
+                    await repos.actions.authorize(
+                      resolvedAction.id,
+                      resolvedAction.snapshot_hash ?? "",
+                      crypto.randomUUID(),
+                    ),
+                  );
+                } catch (e) {
+                  setError(e instanceof Error ? e.message : "核对失败");
+                } finally {
+                  setBusy(false);
+                }
+              })()
+            }
+          >
+            核对无误，分别确认
+          </Btn>
+        ) : null}
+        {resolvedAction &&
+        previewed &&
+        auth?.actor_decision === "authorized" &&
+        auth?.all_authorized &&
+        !resolvedAction.gathering_id ? (
+          <Btn
+            kind="primary"
+            disabled={busy}
+            onClick={() =>
+              void (async () => {
+                setBusy(true);
+                try {
+                  setAction(
+                    await repos.actions.execute(
+                      { action_id: resolvedAction.id, confirm: true },
+                      crypto.randomUUID(),
+                    ),
+                  );
+                } catch (e) {
+                  setError(e instanceof Error ? e.message : "执行失败");
+                } finally {
+                  setBusy(false);
+                }
+              })()
+            }
+          >
+            执行个人行动
+          </Btn>
+        ) : null}
+        {resolvedAction?.gathering_id ? (
+          <Btn
+            kind="ghost"
+            onClick={() => nav(`/gathering/${resolvedAction.gathering_id}`)}
+          >
+            返回局内继续
+          </Btn>
+        ) : (
+          <Btn kind="text" to={actionId ? "/messages" : "/today"}>
+            先不了
+          </Btn>
+        )}
       </Scroll>
     </Screen>
   );

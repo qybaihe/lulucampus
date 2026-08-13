@@ -173,12 +173,14 @@ export function Card({
   className = "",
   onClick,
   id,
+  "data-od-id": dataOdId,
 }: {
   children: ReactNode;
   tight?: boolean;
   className?: string;
   onClick?: () => void;
   id?: string;
+  "data-od-id"?: string;
 }) {
   return (
     <div
@@ -187,6 +189,7 @@ export function Card({
       role={onClick ? "button" : undefined}
       style={onClick ? { cursor: "pointer" } : undefined}
       id={id}
+      data-od-id={dataOdId}
     >
       {children}
     </div>

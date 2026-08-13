@@ -35,5 +35,8 @@ describe("today attention for messages tab", () => {
     expect(items[0]?.title).toBe("周衡 有一个局等待你确认");
     expect(items[0]?.badge).toBe("差你 1 票");
     expect(pathFromAttentionLink("onemore://gathering/g2")).toBe("/gathering/g2");
+    expect(pathFromAttentionLink("onemore://action/a9")).toBe(
+      "/today/action-preview?action=a9",
+    );
   });
 });

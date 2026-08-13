@@ -157,17 +157,6 @@ img { display: block; }
   min-height: 48px;
 }
 .tab-item svg { width: 25px; height: 25px; }
-.tab-icon-wrap { position: relative; display: grid; place-items: center; }
-.tab-unread {
-  position: absolute;
-  top: -1px;
-  right: -3px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #e24b4a;
-  border: 1.5px solid var(--card);
-}
 .tab-item.active { color: var(--ink); }
 .tab-item.active .tab-dot { opacity: 1; }
 .tab-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--yolk); opacity: 0; }
@@ -879,6 +868,39 @@ textarea.om-input { padding: var(--sp-3) var(--sp-4); min-height: 96px; resize: 
   line-height: 1.55;
 }
 .om-note img { width: 18px; height: 18px; flex: none; margin-top: 1px; }
+
+.action-review-hero {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+}
+.action-review-mark { flex: none; }
+.action-review-time {
+  font-size: var(--fs-call);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+.action-review-fact {
+  padding-top: 8px;
+}
+.action-review-value {
+  font-weight: 650;
+  text-align: right;
+}
+.action-review-actions { display: grid; gap: var(--sp-2); }
+
+.om-celebration {
+  position: absolute;
+  inset: 0;
+  z-index: 80;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px var(--page-x) 34px;
+  text-align: center;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .seat.gap .seat-dot, .seat-strip .s.gap { animation: none; }

@@ -470,6 +470,9 @@ export function CompetitionTableScreen() {
                       <TeamSeatStrip filled={filled} total={team.target_size ?? 0} />
                       <span className="t-foot" style={{ fontWeight: 600 }}>
                         {filled}/{team.target_size ?? 0}
+                        {team.min_size && team.min_size !== team.target_size
+                          ? ` · ${team.min_size}–${team.target_size} 人`
+                          : ""}
                       </span>
                     </span>
                     <Icon name="arrow" size={12} />
@@ -547,7 +550,11 @@ export function CompetitionTeamDetailScreen() {
             </div>
             <div className="t-t1 center mt-2">{team.title}</div>
             <div className="t-foot center mb-3">
-              {filled}/{team.target_size ?? 0} · 正在招人
+              {filled}/{team.target_size ?? 0}
+              {team.min_size && team.min_size !== team.target_size
+                ? ` · ${team.min_size}–${team.target_size} 人`
+                : ""}{" "}
+              · 正在招人
             </div>
             <Card className={hot ? "hot-seat" : undefined}>
               <div className="flex" style={{ alignItems: "center", gap: 10 }}>
@@ -564,21 +571,14 @@ export function CompetitionTeamDetailScreen() {
             </Card>
             {filledRoles.length > 0 ? (
               <Card className="mt-3">
-                <div className="t-t3">桌上已经有谁</div>
+                <div className="t-t3">已经有人覆盖</div>
                 <div className="flex wrap mt-2" style={{ gap: 6 }}>
                   {filledRoles.map((role) => (
                     <Chip key={role} kind="soft">
-                      {capabilityLabel(role)}
+                      {role}
                     </Chip>
                   ))}
                 </div>
-                {(team.roster_highlights ?? []).length > 0 ? (
-                  <div className="flex wrap mt-2" style={{ gap: 6 }}>
-                    {(team.roster_highlights ?? []).map((item) => (
-                      <Chip key={item}>{item}</Chip>
-                    ))}
-                  </div>
-                ) : null}
               </Card>
             ) : null}
             {missing.length > 0 ? (
@@ -591,6 +591,7 @@ export function CompetitionTeamDetailScreen() {
                     </Chip>
                   ))}
                 </div>
+                <div className="t-foot mt-2">席位只显示角色缺口，不显示已就位者是谁。</div>
               </Card>
             ) : null}
             {team.goal ? (

@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useApp } from "../../app/AppContext";
 import {
   asList,
-  capabilityLabel,
   gapCountOf,
   gatheringStatusName,
   seatsFromGathering,
@@ -140,7 +139,7 @@ function GatheringList({
                     <div className="flex wrap mt-2" style={{ gap: 6 }}>
                       {g.looking_for!.slice(0, 3).map((role) => (
                         <Chip key={role} kind="gap">
-                          {capabilityLabel(role)}
+                          {role}
                         </Chip>
                       ))}
                     </div>
@@ -423,9 +422,10 @@ export function GatheringDetailScreen() {
   // 修改提案
   const [modifyReason, setModifyReason] = useState("");
   const [modifyParams, setModifyParams] = useState<Record<string, string>>({});
+  const [celebrate, setCelebrate] = useState(false);
 
-  async function load() {
-    if (!gatheringId) return;
+  async function load(): Promise<Gathering | null> {
+    if (!gatheringId) return null;
     try {
       const detail = await repos.gatherings.get(gatheringId);
       setG(detail);
@@ -462,8 +462,10 @@ export function GatheringDetailScreen() {
       } else {
         setIcebreaker(null);
       }
+      return detail;
     } catch (e) {
       setError(e instanceof Error ? e.message : "加载失败");
+      return null;
     }
   }
 
@@ -479,8 +481,15 @@ export function GatheringDetailScreen() {
   async function run(label: string, fn: () => Promise<unknown>) {
     setBusy(true);
     try {
+      const before = g?.status ?? "";
       await fn();
-      await load();
+      const detail = await load();
+      if (
+        /(Pooling|Tentative)/i.test(before) &&
+        /Confirmed/i.test(detail?.status ?? "")
+      ) {
+        setCelebrate(true);
+      }
     } catch (e) {
       const msg = e instanceof Error ? e.message : `${label}失败`;
       if (/TRUST|门槛/i.test(msg)) {
@@ -574,40 +583,13 @@ export function GatheringDetailScreen() {
               <Note sticker="sparkle-wand.png">{g.match_reason}</Note>
             ) : null}
 
-            {/Pooling/i.test(status) ? (
-              <Card className="mt-3">
-                <div className="between">
-                  <span className="t-t3">桌上已经有谁</span>
-                  <span className="t-foot" style={{ fontWeight: 600 }}>
-                    {filled}/{g.target_size ?? "—"}
-                  </span>
-                </div>
-                {(g.filled_roles ?? []).length > 0 ? (
-                  <div className="flex wrap mt-2" style={{ gap: 6 }}>
-                    {g.filled_roles!.map((role) => (
-                      <Chip key={role} kind="soft">
-                        {capabilityLabel(role)}
-                      </Chip>
-                    ))}
-                  </div>
-                ) : null}
-                {(g.roster_highlights ?? []).length > 0 ? (
-                  <div className="flex wrap mt-2" style={{ gap: 6 }}>
-                    {g.roster_highlights!.map((item) => (
-                      <Chip key={item}>{item}</Chip>
-                    ))}
-                  </div>
-                ) : null}
-              </Card>
-            ) : null}
-
             {(g.looking_for ?? []).length > 0 && /Pooling/i.test(status) ? (
               <Card className="mt-3">
                 <div className="t-t3">这桌还在找</div>
                 <div className="flex wrap mt-2" style={{ gap: 6 }}>
                   {g.looking_for!.map((role) => (
                     <Chip key={role} kind="gap">
-                      {capabilityLabel(role)}
+                      {role}
                     </Chip>
                   ))}
                 </div>
@@ -644,6 +626,11 @@ export function GatheringDetailScreen() {
               <div className="between mb-2">
                 <span className="t-foot">
                   已就位 <b className="mono">{filled}</b> / {g.target_size ?? "—"}
+                  {typeof g.min_size === "number" &&
+                  g.min_size > 0 &&
+                  g.min_size !== g.target_size
+                    ? ` · ${g.min_size}–${g.target_size} 人`
+                    : ""}
                 </span>
                 {gap > 0 ? (
                   <GapBadge n={gap} />
@@ -1078,7 +1065,13 @@ export function GatheringDetailScreen() {
             kind="primary"
             onClick={() =>
               void run("入局", () =>
-                repos.gatherings.join(g.id, {}, crypto.randomUUID()),
+                repos.gatherings.join(
+                  g.id,
+                  (g.required_roles?.length === 1
+                    ? { role: g.required_roles[0] }
+                    : {}),
+                  crypto.randomUUID(),
+                ),
               )
             }
             disabled={busy}
@@ -1391,7 +1384,79 @@ export function GatheringDetailScreen() {
           </Btn>
         </div>
       ) : null}
+      {celebrate && g ? (
+        <GatheringCelebrationOverlay
+          gathering={g}
+          onEnterChat={() => {
+            setCelebrate(false);
+            if (g.channel_id) nav(`/channel/${g.channel_id}`);
+          }}
+          onDismiss={() => setCelebrate(false)}
+        />
+      ) : null}
     </Screen>
+  );
+}
+
+function GatheringCelebrationOverlay({
+  gathering,
+  onEnterChat,
+  onDismiss,
+}: {
+  gathering: Gathering;
+  onEnterChat: () => void;
+  onDismiss: () => void;
+}) {
+  const [stage, setStage] = useState(0);
+  const finished = useRef(false);
+  const seated = gathering.member_count ?? gathering.target_size ?? 0;
+
+  function enterChat() {
+    if (finished.current) return;
+    finished.current = true;
+    onEnterChat();
+  }
+
+  useEffect(() => {
+    const t1 = window.setTimeout(() => setStage(1), 120);
+    const t2 = window.setTimeout(() => setStage(2), 900);
+    const t3 = window.setTimeout(() => setStage(3), 1600);
+    const t4 = window.setTimeout(enterChat, 2800);
+    return () => {
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+      window.clearTimeout(t3);
+      window.clearTimeout(t4);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <div className="om-celebration" data-od-id="gathering-celebration-overlay">
+      <LuluMark placement="confirm" clip="confirm.gather" />
+      <div className="t-t1 mt-3" style={{ opacity: stage >= 2 ? 1 : 0 }}>
+        凑齐了！
+      </div>
+      <div className="t-foot mt-2" style={{ opacity: stage >= 2 ? 1 : 0 }}>
+        {seated} 个人的「{gathering.title ?? "这一局"}」正式成局
+      </div>
+      {stage >= 3 ? (
+        <div className="stack mt-4" style={{ width: "100%", gap: 10 }}>
+          <Btn kind="primary" onClick={enterChat}>
+            {gathering.channel_id ? "进入群聊" : "看看为什么是你们"}
+          </Btn>
+          <Btn
+            kind="text"
+            onClick={() => {
+              finished.current = true;
+              onDismiss();
+            }}
+          >
+            稍后再说
+          </Btn>
+        </div>
+      ) : null}
+    </div>
   );
 }
 
@@ -1872,7 +1937,7 @@ export function ShareLandingScreen() {
               <div className="flex wrap mt-2" style={{ gap: 6 }}>
                 {(payload.looking_for as string[]).map((role) => (
                   <Chip key={role} kind="gap">
-                    {capabilityLabel(role)}
+                    {role}
                   </Chip>
                 ))}
               </div>
