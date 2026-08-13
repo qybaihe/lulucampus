@@ -2,6 +2,8 @@
 
 > 中山大学校园成局智能体
 > **AI 不介绍人，AI 促成事。**
+>
+> 官网：[chengju.cutelulu.me](https://chengju.cutelulu.me)
 
 ## 文档清单
 

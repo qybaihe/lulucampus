@@ -27,7 +27,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/qybaihe/lulucampus/releases/download/v1.0.0/LuluCampus-1.0.0.ipa"><strong>Download the iOS app (IPA)</strong></a>
+  <a href="https://chengju.cutelulu.me"><strong>Website</strong></a>
+  ·
+  <a href="https://github.com/qybaihe/lulucampus/releases/download/v1.0.0/LuluCampus-1.0.0.ipa">Download the iOS app (IPA)</a>
   ·
   <a href="https://github.com/qybaihe/lulucampus/releases/latest">All release assets</a>
   ·
@@ -360,6 +362,7 @@ This is not “almost done.” It is done. No mocks: every API, every screen, ev
 | Web | React 19 · five tabs / 74 nodes aligned with iOS · public taste demo |
 | Data | contest radar: 24 human-verified events · SYSU pack v1.1 (5 campuses / 76 places / 137 venues) |
 
+Website: [chengju.cutelulu.me](https://chengju.cutelulu.me)  
 Poke the code: [github.com/qybaihe/lulucampus](https://github.com/qybaihe/lulucampus)
 
 Longer product narrative:  

@@ -27,7 +27,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/qybaihe/lulucampus/releases/download/v1.0.0/LuluCampus-1.0.0.ipa"><strong>下载 iOS App（IPA）</strong></a>
+  <a href="https://chengju.cutelulu.me"><strong>官网</strong></a>
+  ·
+  <a href="https://github.com/qybaihe/lulucampus/releases/download/v1.0.0/LuluCampus-1.0.0.ipa">下载 iOS App（IPA）</a>
   ·
   <a href="https://github.com/qybaihe/lulucampus/releases/latest">全部 Release 资源</a>
   ·
@@ -360,6 +362,7 @@ ONEMORE_VAULT_MASTER_KEY="$(openssl rand -hex 32)"
 | Web | React 19 · 五 Tab / 74 节点与 iOS 对齐 · 公开画像体验页 |
 | 数据 | 比赛雷达 24 条人工核验赛事 · 中大参考包 v1.1（5 校区 / 76 地点 / 137 场馆） |
 
+官网：[chengju.cutelulu.me](https://chengju.cutelulu.me)  
 也欢迎来拷打代码：[github.com/qybaihe/lulucampus](https://github.com/qybaihe/lulucampus)
 
 更完整的产品叙事、赛题对应、创新点与延展路线，见飞书文档：  
