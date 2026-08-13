@@ -17,6 +17,7 @@ from onemore.core.config import get_settings
 from onemore.core.errors import AppError, ConflictError, NotFoundError
 from onemore.core.time import ensure_utc
 from onemore.db.models import (
+    Assignment,
     Gathering,
     GatheringMember,
     GatheringStatus,
@@ -27,7 +28,11 @@ from onemore.db.models import (
     User,
 )
 from onemore.modules.notify.provider import get_push_provider
-from onemore.modules.notify.schemas import NotificationPreferencesPatch
+from onemore.modules.notify.schemas import (
+    NotificationPreferencesPatch,
+    category_for_type,
+)
+from onemore.modules.schedule.service import iter_current_meetings
 
 ALLOWED_NOTIFICATION_TYPES = {
     "confirmation_required",
@@ -47,6 +52,9 @@ ALLOWED_NOTIFICATION_TYPES = {
     "reschedule_vote_rejected",
     "action_modification_requested",
     "relation_ready",
+    "schedule_reminder",
+    "assignment_reminder",
+    "shared_goal_peer_support",
 }
 
 DEFAULT_NOTIFICATION_PREFERENCES = {
@@ -55,6 +63,7 @@ DEFAULT_NOTIFICATION_PREFERENCES = {
     "chat_messages": True,
     "trust_updates": True,
     "competition_deadlines": True,
+    "schedule_reminders": True,
 }
 SYSTEM_SETTINGS_MANAGED_LOCALLY = [
     "notification_authorization",
@@ -135,6 +144,9 @@ def apns_payload(notification: Notification) -> dict:
             "reschedule_vote_rejected": "本次改约提议未通过",
             "action_modification_requested": "行动预览需要调整",
             "relation_ready": "一段新的搭子关系已建立",
+            "schedule_reminder": "课程快到了",
+            "assignment_reminder": "作业临近截止",
+            "shared_goal_peer_support": "共同目标需要一起跟进",
         }.get(notification.type, "你有一条新通知")
     result: dict = {
         "aps": {
@@ -284,12 +296,19 @@ def _schedule_committed_push_outbox(session: Session) -> None:
         return
 
 
+def _merged_categories(user: User) -> dict[str, bool]:
+    stored = user.notification_preferences or {}
+    return {
+        key: bool(stored.get(key, default))
+        for key, default in DEFAULT_NOTIFICATION_PREFERENCES.items()
+    }
+
+
 def notification_preferences(user: User) -> dict:
-    categories = {**DEFAULT_NOTIFICATION_PREFERENCES, **(user.notification_preferences or {})}
     return {
         "overall_enabled": user.notification_enabled,
         "calendar_sync_enabled": user.calendar_enabled,
-        "categories": categories,
+        "categories": _merged_categories(user),
         "system_settings_managed_locally": SYSTEM_SETTINGS_MANAGED_LOCALLY,
     }
 
@@ -390,17 +409,8 @@ def _enqueue_calendar_preference_reconciliation(
 
 
 def push_delivery_enabled(user: User, notification_type: str) -> bool:
-    category_by_type = {
-        "chat_message": "chat_messages",
-        "trust_level_changed": "trust_updates",
-        "competition_deadline": "competition_deadlines",
-        "execution_succeeded": "action_updates",
-        "authorization_required": "action_updates",
-        "reauthorization_required": "action_updates",
-        "relation_ready": "gathering_updates",
-    }
-    category = category_by_type.get(notification_type, "gathering_updates")
-    categories = {**DEFAULT_NOTIFICATION_PREFERENCES, **(user.notification_preferences or {})}
+    category = category_for_type(notification_type)
+    categories = _merged_categories(user)
     return user.notification_enabled and categories.get(category, True)
 
 
@@ -781,23 +791,50 @@ def deactivate_device(db: Session, user_id: str, token: str) -> int:
     return len(device_ids)
 
 
-def list_notifications(db: Session, user_id: str, limit: int = 50) -> list[Notification]:
-    return list(
-        db.scalars(
-            select(Notification)
-            .where(Notification.user_id == user_id)
-            .order_by(Notification.created_at.desc())
-            .limit(limit)
-        )
+def list_notifications(
+    db: Session,
+    user_id: str,
+    limit: int = 50,
+    category: str | None = None,
+) -> list[Notification]:
+    query = (
+        select(Notification)
+        .where(Notification.user_id == user_id)
+        .order_by(Notification.created_at.desc())
     )
+    if not category:
+        return list(db.scalars(query.limit(limit)))
+    matched: list[Notification] = []
+    for item in db.scalars(query.limit(max(limit * 4, 200))):
+        if category_for_type(item.type) == category:
+            matched.append(item)
+            if len(matched) >= limit:
+                break
+    return matched
+
+
+_REMINDER_SLACK = timedelta(minutes=5)
+_GATHERING_REMINDER_PHRASES = {
+    "T-24h": "明天开始",
+    "T-2h": "还有 2 小时",
+}
+_CLASS_REMINDER_WINDOWS = (
+    (timedelta(hours=24), "T-24h", "明天就要上课"),
+    (timedelta(hours=2), "T-2h", "还有 2 小时就要上课"),
+    (timedelta(minutes=30), "T-30m", "还有 30 分钟就要上课"),
+)
+_ASSIGNMENT_REMINDER_WINDOWS = (
+    (timedelta(hours=24), "T-24h", "明天截止"),
+    (timedelta(hours=2), "T-2h", "还有 2 小时截止"),
+)
 
 
 def schedule_gathering_reminders(db: Session) -> int:
     now = datetime.now(UTC)
     sent = 0
     for delta, label in ((timedelta(hours=24), "T-24h"), (timedelta(hours=2), "T-2h")):
-        lower = now + delta - timedelta(minutes=5)
-        upper = now + delta + timedelta(minutes=5)
+        lower = now + delta - _REMINDER_SLACK
+        upper = now + delta + _REMINDER_SLACK
         gatherings = list(
             db.scalars(
                 select(Gathering).where(
@@ -810,6 +847,8 @@ def schedule_gathering_reminders(db: Session) -> int:
             )
         )
         for gathering in gatherings:
+            phrase = _GATHERING_REMINDER_PHRASES.get(label, "即将开始")
+            summary = f"「{gathering.title}」{phrase}"
             for member in db.scalars(
                 select(GatheringMember).where(
                     GatheringMember.gathering_id == gathering.id,
@@ -824,9 +863,67 @@ def schedule_gathering_reminders(db: Session) -> int:
                         "gathering_id": gathering.id,
                         "label": label,
                         "deep_link": f"onemore://gathering/{gathering.id}/space",
+                        "summary": summary,
                     },
                     dedupe_key=f"reminder:{gathering.id}:{label}",
                 )
                 sent += 1
+    db.commit()
+    return sent
+
+
+def schedule_campus_reminders(db: Session) -> int:
+    now = datetime.now(UTC)
+    sent = 0
+    for enrollment, course, _meeting, start_at, _end_at in iter_current_meetings(db):
+        for delta, label, phrase in _CLASS_REMINDER_WINDOWS:
+            lower = now + delta - _REMINDER_SLACK
+            upper = now + delta + _REMINDER_SLACK
+            if start_at < lower or start_at >= upper:
+                continue
+            push(
+                db,
+                enrollment.user_id,
+                "schedule_reminder",
+                {
+                    "course_id": course.id,
+                    "enrollment_id": enrollment.id,
+                    "label": label,
+                    "screen_id": "B3",
+                    "deep_link": "onemore://screen/B3",
+                    "summary": f"「{course.name}」{phrase}",
+                },
+                dedupe_key=(
+                    f"class:{enrollment.id}:{start_at.isoformat()}:{label}"
+                ),
+            )
+            sent += 1
+    for delta, label, phrase in _ASSIGNMENT_REMINDER_WINDOWS:
+        lower = now + delta - _REMINDER_SLACK
+        upper = now + delta + _REMINDER_SLACK
+        assignments = list(
+            db.scalars(
+                select(Assignment).where(
+                    Assignment.status == "unfinished",
+                    Assignment.due_at >= lower,
+                    Assignment.due_at < upper,
+                )
+            )
+        )
+        for item in assignments:
+            push(
+                db,
+                item.user_id,
+                "assignment_reminder",
+                {
+                    "assignment_id": item.id,
+                    "label": label,
+                    "screen_id": "B4",
+                    "deep_link": "onemore://screen/B4",
+                    "summary": f"「{item.title}」{phrase}",
+                },
+                dedupe_key=f"assignment:{item.id}:{label}",
+            )
+            sent += 1
     db.commit()
     return sent

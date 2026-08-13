@@ -9,6 +9,7 @@ from onemore.core.schemas import APIResponse
 from onemore.db.models import User
 from onemore.modules.notify import service
 from onemore.modules.notify.schemas import (
+    NOTIFICATION_CATEGORIES,
     DeviceDeactivate,
     DeviceInstallationDeactivate,
     DeviceRegister,
@@ -95,12 +96,17 @@ def deactivate_push_installation(
 @router.get("/notifications", response_model=APIResponse[list[NotificationView]])
 def notifications(
     limit: int = Query(default=50, ge=1, le=100),
+    category: str | None = Query(default=None),
     user: User = Depends(current_user),
     db: Session = Depends(get_db),
 ) -> APIResponse[list[NotificationView]]:
+    if category is not None and category not in NOTIFICATION_CATEGORIES:
+        return APIResponse(data=[])
     return APIResponse(
         data=[
             NotificationView.model_validate(item)
-            for item in service.list_notifications(db, user.id, limit)
+            for item in service.list_notifications(
+                db, user.id, limit, category=category
+            )
         ]
     )
