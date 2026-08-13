@@ -1,6 +1,12 @@
 # 噜噜成局 · ONE MORE
 
 <p align="center">
+  <strong>中文</strong>
+  ·
+  <a href="./README.en.md">English</a>
+</p>
+
+<p align="center">
   <img src="docs/readme-assets/app-icon.png" alt="噜噜成局 App Icon" width="120" />
   &nbsp;&nbsp;
   <img src="docs/readme-assets/lulu-ip.png" alt="噜噜 IP" width="120" />
@@ -95,7 +101,7 @@
 
 ### 演示高光：画像遇上公选课
 
-抖音画像刚导完，对着 Hermes 说「帮我推荐一点适合我的公选课」——它调用校园工具 `elective_match_taste`，按画像捞课，并挂上拥挤程度。兴趣懂你的是画像 Skill，办事落地的是校园行动 Skill：不是陪你聊天选课，是真的认识你，再在真实课表世界里做决定。
+抖音画像刚导完，对着 Hermes 说「帮我推荐一点适合我的公选课」——它调用校园工具 `elective_match_taste`，按画像捞课，并挂上拥挤程度。也可以问「这门课还有谁一起上」：开启社交的同学才会出现，点一下就能开两人成局频道（Hermes spark），NetID 永不返回。兴趣懂你的是画像 Skill，办事落地的是校园行动 Skill：不是陪你聊天选课，是真的认识你，再在真实课表世界里做决定。
 
 <p align="center">
   <img src="docs/readme-assets/hermes-celebration.png" alt="问问 Hermes 与凑齐了" width="720" />
@@ -123,7 +129,7 @@
 
 | 场合 | 怎么成局 |
 |---|---|
-| 比赛组队 | 按赛道缺口互补匹配，T2 才进比赛池；研讨室和日历落地，报名仍走官方入口 |
+| 比赛组队 | 按赛道缺口互补匹配，T2 才进比赛池；赛事牌桌展示正在招人的匿名席位与缺口；研讨室和日历落地，报名仍走官方入口 |
 | 打球 / 冲 DDL | 共同空档 + 满员确认；运动搭子是攒信任的主通道，同课冲刺不依赖全校密度 |
 | 活动同行 | 宣讲会、讲座免登录可发现，适合当第一局 |
 
@@ -158,7 +164,7 @@
 
 两场局故意留给真人，剧组自己不会坐满：①「周六英东羽毛球」差 1 个不鸽的；②「数模组队差建模」差一个建模（要 T2）。
 
-开发态打开 `ONEMORE_CAST_DRIVER_ENABLED=true` 后，Celery beat 每 15 分钟走一次真实接口。手动催一次：
+开发态打开 `ONEMORE_CAST_DRIVER_ENABLED=true` 后，Celery beat 每 15 分钟走一次真实接口。真人在局内群聊说话后，在场剧组会用短句回一声（`ONEMORE_CAST_REACTIVE_CHAT_ENABLED`，与主动走动开关独立）。手动催一次：
 
 ```bash
 uv run python -m onemore.scripts.tick_cast_driver
@@ -299,10 +305,10 @@ ONEMORE_VAULT_MASTER_KEY="$(openssl rand -hex 32)"
 | `collab` | 局内群聊、搭子关系、共同经历、共同目标、AI 退场 |
 | `competitions` | 原子快照摄取、核验闸门、去重、能力映射、过期下架 |
 | `actions` | 预览快照、服务端确认、幂等执行、失败归一化、回滚 |
-| `notify` | 事务通知、日历 DTO、群聊合并推送、提醒任务 |
-| `campus` | 校园工具聚合 + 公选课画像匹配（只经 Hermes / MCP 白名单） |
+| `notify` | 事务通知、分类收件箱、日历 DTO、群聊合并推送、提醒任务 |
+| `campus` | 校园工具聚合 + 公选课画像匹配 + 同课/同场社交提示（只经 Hermes / MCP 白名单） |
 | `taste_profile` | 抖音扫码 / 分享链接导入、规则画像、可选 LLM 人格重述、公开评委入口 |
-| `cast_driver` | 测试剧组按课表与性格走动（开发态） |
+| `cast_driver` | 测试剧组按课表与性格走动；真人发言后短句回应 |
 
 附加：T4 主理人台、账号屏蔽、数据导出与注销闭环。
 
@@ -369,6 +375,7 @@ uv run celery -A onemore.tasks.celery_app:celery_app beat -l INFO
 
 | 文档 | 说明 |
 |---|---|
+| [README (English)](README.en.md) | English product + engineering README |
 | [飞书 · 产品说明](https://hcnr0cwi1n15.feishu.cn/docx/HWhzdpMwAoWB3VxfypFc5Xz9nOg) | 对外产品文档（含配图） |
 | [docs/README.md](docs/README.md) | 工程文档索引 |
 | [docs/00_产品方案_V2.1.md](docs/00_产品方案_V2.1.md) | V2.1 产品方案 |
