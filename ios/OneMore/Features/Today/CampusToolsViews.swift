@@ -47,6 +47,19 @@ private func hermesCardData(_ value: JSONValue) -> JSONValue {
     return .object(filtered)
 }
 
+private func hermesPanelEyebrow(_ cardType: String) -> String {
+    switch cardType {
+    case "gym_slots": "场馆空档"
+    case "course_list": "今日课表"
+    case "assignment_list": "未交作业"
+    case "room_slots": "研讨室"
+    case "event_list": "校园活动"
+    case "transit_list": "班车"
+    case "parameter_clarification": "还差几个参数"
+    default: "校园查询"
+    }
+}
+
 private func hermesPeers(from data: JSONValue) -> [HermesPeer] {
     guard case let .object(root) = data, case let .array(items) = root["peers"] else {
         return []
@@ -128,26 +141,79 @@ private struct StructuredResultCard: View {
 
     private var inner: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(title)
-                .font(OMTheme.TypeToken.title3)
-                .foregroundStyle(OMTheme.ColorToken.ink)
-            let rows = jsonRows(value)
-            if rows.isEmpty {
-                OMTextRole.foot("服务端返回空结果")
+            if !title.isEmpty, !title.contains("_"), title != "action_preview" {
+                Text(title)
+                    .font(OMTheme.TypeToken.title3)
+                    .foregroundStyle(OMTheme.ColorToken.ink)
             }
-            ForEach(Array(rows.prefix(16).enumerated()), id: \.offset) { _, row in
-                VStack(alignment: .leading, spacing: 2) {
+            let rows = humanRows(value)
+            if rows.isEmpty {
+                OMTextRole.foot("没有可展示的校园结果")
+            }
+            ForEach(Array(rows.prefix(12).enumerated()), id: \.offset) { _, row in
+                HStack(alignment: .firstTextBaseline, spacing: 12) {
                     Text(row.0)
-                        .font(OMTheme.TypeToken.mono(.caption))
+                        .font(OMTheme.TypeToken.caption)
                         .foregroundStyle(OMTheme.ColorToken.mist)
+                    Spacer(minLength: 8)
                     Text(row.1)
-                        .font(OMTheme.TypeToken.callout)
+                        .font(OMTheme.TypeToken.callout.weight(.semibold))
                         .foregroundStyle(OMTheme.ColorToken.ink)
+                        .multilineTextAlignment(.trailing)
                         .textSelection(.enabled)
                 }
-                OMDivider()
+                .padding(.vertical, 2)
             }
         }
+    }
+}
+
+private let hermesHiddenKeys: Set<String> = [
+    "next", "tool_trace", "message", "peers", "ok", "action", "params",
+    "requires_preview", "preview_snapshot", "snapshot_hash", "idempotency_key",
+    "user_id", "gathering_id", "commit_action_name", "action_name", "source",
+    "hash", "status", "confirm_required", "include_full", "days",
+]
+
+private let hermesFieldLabels: [String: String] = [
+    "date": "日期",
+    "start": "开始",
+    "end": "结束",
+    "venue": "地点",
+    "venue_type": "项目",
+    "room": "房间",
+    "kind": "类型",
+    "lab": "区域",
+    "title": "名称",
+    "memo": "备注",
+    "location": "地点",
+    "count": "人数",
+    "query": "关键词",
+]
+
+private func humanRows(_ value: JSONValue, path: String = "") -> [(String, String)] {
+    switch value {
+    case let .object(object):
+        var combined = object
+        if case let .object(nested) = object["params"] {
+            combined.merge(nested) { current, _ in current }
+            combined.removeValue(forKey: "params")
+        }
+        return combined.keys.sorted().flatMap { key -> [(String, String)] in
+            let leaf = key.split(separator: ".").last.map(String.init) ?? key
+            if hermesHiddenKeys.contains(leaf) || hermesHiddenKeys.contains(key) { return [] }
+            if leaf.contains("id") || leaf.hasSuffix("_at") { return [] }
+            return humanRows(combined[key] ?? .null, path: hermesFieldLabels[leaf] ?? (path.isEmpty ? leaf : path))
+        }.filter { !$0.0.contains("_") && !$0.0.contains("/") && !$0.1.hasPrefix("/") }
+    case let .array(array):
+        return array.prefix(6).enumerated().flatMap { index, item in
+            humanRows(item, path: path.isEmpty ? "第 \(index + 1) 项" : path)
+        }
+    default:
+        let text = jsonText(value)
+        if text == "—" || text.hasPrefix("/") || text.contains("_") && text.contains(".") { return [] }
+        let label = path.isEmpty || path.contains("_") ? "内容" : path
+        return [(label, text)]
     }
 }
 
@@ -663,11 +729,23 @@ struct HermesAskView: View {
                         HermesResultPanel(icon: "sparkles", eyebrow: "匹配结果") {
                             ElectiveMatchCard(data: result.data)
                         }
+                    } else if let copy = CampusActionCopy.make(from: result) {
+                        CampusActionCopyCard(copy: copy) {
+                            if result.requiresPreview,
+                               let action = result.action,
+                               let params = actionParams(from: result) {
+                                OMButton("去核对预约", systemIcon: "checkmark.seal", kind: .ghost, small: true) {
+                                    preview = CampusPreviewRequest(action: action, params: params)
+                                }
+                                .accessibilityIdentifier("hermes-open-action-preview")
+                            }
+                        }
                     } else if result.cardType != "peer_list"
                                 && result.kind != "help"
-                                && result.cardType != "agent_reply" {
-                        HermesResultPanel(icon: "doc.text", eyebrow: "查询结果") {
-                            StructuredResultCard(title: result.cardType, value: hermesCardData(result.data), embedded: true)
+                                && result.cardType != "agent_reply"
+                                && result.kind != "clarification" {
+                        HermesResultPanel(icon: "doc.text", eyebrow: hermesPanelEyebrow(result.cardType)) {
+                            StructuredResultCard(title: "", value: hermesCardData(result.data), embedded: true)
                         }
                     }
                     let peers = hermesPeers(from: result.data)
@@ -690,9 +768,10 @@ struct HermesAskView: View {
                         }
                     }
                     if result.requiresPreview,
+                       CampusActionCopy.make(from: result) == nil,
                        let action = result.action,
                        let params = actionParams(from: result) {
-                        OMButton("进入个人行动预览", systemIcon: "doc.text.magnifyingglass", kind: .ghost, small: true) {
+                        OMButton("去核对预约", systemIcon: "checkmark.seal", kind: .ghost, small: true) {
                             preview = CampusPreviewRequest(action: action, params: params)
                         }
                         .accessibilityIdentifier("hermes-open-action-preview")
@@ -914,24 +993,30 @@ struct PersonalActionPreviewView: View {
         }
     }
     @ViewBuilder private func actionView(_ item: CampusAction) -> some View {
-        OMCard {
-            OMTextRole.t3(item.actionName)
-            OMTextRole.cap("完整参数").padding(.top, OMTheme.Spacing.s3)
-            ForEach(Array(jsonRows(.object(item.params), path: "参数").enumerated()), id: \.offset) { _, row in
-                HStack(alignment: .top) {
-                    Text(row.0)
-                        .font(OMTheme.TypeToken.mono(.caption))
-                        .foregroundStyle(OMTheme.ColorToken.mist)
-                    Spacer()
-                    Text(row.1)
-                        .font(OMTheme.TypeToken.footnote)
-                        .foregroundStyle(OMTheme.ColorToken.ink)
-                        .multilineTextAlignment(.trailing)
+        if let copy = CampusActionCopy.make(
+            actionName: item.actionName,
+            params: item.params,
+            status: item.status == "previewed" ? "previewed" : item.status
+        ) {
+            CampusActionCopyCard(copy: copy)
+        } else {
+            OMCard {
+                OMTextRole.t3("预约预览")
+                ForEach(Array(humanRows(.object(item.params)).enumerated()), id: \.offset) { _, row in
+                    HStack(alignment: .firstTextBaseline, spacing: 12) {
+                        Text(row.0)
+                            .font(OMTheme.TypeToken.caption)
+                            .foregroundStyle(OMTheme.ColorToken.mist)
+                        Spacer()
+                        Text(row.1)
+                            .font(OMTheme.TypeToken.callout.weight(.semibold))
+                            .foregroundStyle(OMTheme.ColorToken.ink)
+                            .multilineTextAlignment(.trailing)
+                    }
+                    .padding(.top, OMTheme.Spacing.s2)
                 }
-                .padding(.top, OMTheme.Spacing.s2)
             }
         }
-        StructuredResultCard(title: "服务端预览快照", value: .object(item.previewSnapshot))
         OMCard {
             HStack(spacing: 10) {
                 OMSticker("shield-check.png", size: .s44)

@@ -106,7 +106,7 @@ struct CompetitionTeamDetailView: View {
                         .frame(maxWidth: .infinity)
                         .multilineTextAlignment(.center)
                         .padding(.top, OMTheme.Spacing.s2)
-                    OMTextRole.foot("\(team.filled)/\(team.targetSize) · 正在招人")
+                    OMTextRole.foot("\(team.filled)/\(team.targetSize) · \(team.sizeRangeLabel) · 正在招人")
                         .frame(maxWidth: .infinity)
                         .padding(.bottom, OMTheme.Spacing.s3)
 
@@ -234,6 +234,11 @@ struct CompetitionTeamSummary: View {
                 Text("\(team.filled)/\(team.targetSize)")
                     .font(OMTheme.TypeToken.footnote.weight(.semibold))
                     .foregroundStyle(OMTheme.ColorToken.ink)
+                if team.minSize != nil {
+                    Text(team.sizeRangeLabel)
+                        .font(OMTheme.TypeToken.caption)
+                        .foregroundStyle(OMTheme.ColorToken.mist)
+                }
                 Spacer()
                 Image(om: .arrow)
                     .font(.system(size: 12, weight: .bold))

@@ -71,7 +71,7 @@ struct SharedGapLandingView: View {
             if let looking = share.lookingFor, !looking.isEmpty {
                 OMFlowLayout {
                     ForEach(looking, id: \.self) { role in
-                        OMChip(text: CapabilityLabel.displayName(for: role), kind: .gap)
+                        OMChip(text: role, kind: .gap)
                     }
                 }
                 .padding(.top, OMTheme.Spacing.s2)

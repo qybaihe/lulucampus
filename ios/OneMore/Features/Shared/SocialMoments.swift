@@ -88,12 +88,17 @@ struct SeatDotsView: View {
 /// 全产品最该砸的 3 秒。Reduce Motion 时静帧呈现，不做步进动画。
 struct GatheringCelebrationOverlay: View {
     let gathering: GatheringSummary
-    let onEnterIcebreaker: () -> Void
+    let onEnterChat: () -> Void
     let onDismiss: () -> Void
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var stage = 0
     @State private var luluClip: LuluClip = .confirmGather
+    @State private var finished = false
+
+    private var seatedCount: Int {
+        gathering.memberCount ?? gathering.targetSize
+    }
 
     var body: some View {
         ZStack {
@@ -119,7 +124,7 @@ struct GatheringCelebrationOverlay: View {
                         .opacity(stage >= 1 ? 1 : 0)
                 }
                 .padding(.top, 26)
-                SeatDotsView(total: gathering.targetSize, filled: gathering.targetSize, animated: !reduceMotion)
+                SeatDotsView(total: max(gathering.targetSize, seatedCount), filled: seatedCount, animated: !reduceMotion)
                     .padding(.top, 22)
                 Text("凑齐了！")
                     .font(.system(size: 40, weight: .heavy))
@@ -127,7 +132,7 @@ struct GatheringCelebrationOverlay: View {
                     .padding(.top, 14)
                     .scaleEffect(stage >= 2 ? 1 : 0.86)
                     .opacity(stage >= 2 ? 1 : 0)
-                Text("\(gathering.targetSize) 个人的「\(gathering.title)」正式成局")
+                Text("\(seatedCount) 个人的「\(gathering.title)」正式成局")
                     .font(OMTheme.TypeToken.callout)
                     .foregroundStyle(OMTheme.ColorToken.mist)
                     .multilineTextAlignment(.center)
@@ -141,10 +146,13 @@ struct GatheringCelebrationOverlay: View {
                 Spacer()
                 if stage >= 3 {
                     VStack(spacing: 10) {
-                        OMButton("看看为什么是你们", systemIcon: "sparkles") {
-                            onEnterIcebreaker()
+                        OMButton(gathering.channelId == nil ? "看看为什么是你们" : "进入群聊", systemIcon: gathering.channelId == nil ? "sparkles" : "message") {
+                            enterChat()
                         }
-                        OMButton("稍后再说", kind: .text) { onDismiss() }
+                        OMButton("稍后再说", kind: .text) {
+                            finished = true
+                            onDismiss()
+                        }
                     }
                     .padding(.horizontal, OMTheme.Spacing.pageX)
                     .padding(.bottom, 30)
@@ -170,20 +178,30 @@ struct GatheringCelebrationOverlay: View {
         }
     }
 
+    private func enterChat() {
+        guard !finished else { return }
+        finished = true
+        onEnterChat()
+    }
+
     private func runSequence() {
         UINotificationFeedbackGenerator().notificationOccurred(.success)
         guard !reduceMotion else {
             stage = 3
             luluClip = .confirmGather
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) { enterChat() }
             return
         }
-        let seatDelay = 0.28 * Double(min(gathering.targetSize, 8)) + 0.2
+        let seatDelay = 0.28 * Double(min(max(gathering.targetSize, seatedCount), 8)) + 0.2
         withAnimation(.spring(response: 0.45, dampingFraction: 0.7).delay(0.1)) { stage = 1 }
         withAnimation(.spring(response: 0.4, dampingFraction: 0.65).delay(seatDelay)) { stage = 2 }
         withAnimation(.easeOut(duration: 0.35).delay(seatDelay + 0.8)) { stage = 3 }
         // 噜噜庆祝完鞠躬退场：成局后 IP 让位给真人（红线 17 的仪式化表达）。
         DispatchQueue.main.asyncAfter(deadline: .now() + seatDelay + 2.4) {
             luluClip = .exitBow
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + seatDelay + 3.0) {
+            enterChat()
         }
     }
 }

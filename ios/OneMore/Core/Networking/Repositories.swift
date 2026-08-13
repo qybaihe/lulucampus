@@ -350,7 +350,15 @@ actor GatheringRepository {
         try await api.get("/gatherings/history/safety")
     }
     func detail(_ id: String) async throws -> GatheringSummary { try await api.get("/gatherings/\(id)") }
-    func join(_ id: String) async throws -> GatheringSummary { try await api.send("/gatherings/\(id)/join", method: .post, body: EmptyRequest(), idempotencyKey: "join-\(UUID().uuidString)") }
+    func join(_ id: String, role: String? = nil) async throws -> GatheringSummary {
+        struct Body: Encodable, Sendable { let role: String? }
+        return try await api.send(
+            "/gatherings/\(id)/join",
+            method: .post,
+            body: Body(role: role),
+            idempotencyKey: "join-\(UUID().uuidString)"
+        )
+    }
     func leave(_ id: String) async throws -> GatheringLeaveResult { try await api.send("/gatherings/\(id)/leave", method: .post, body: EmptyRequest(), idempotencyKey: "leave-\(UUID().uuidString)") }
     func confirm(_ id: String, confirmed: Bool) async throws -> GatheringSummary {
         struct Body: Encodable, Sendable { let confirmed: Bool }

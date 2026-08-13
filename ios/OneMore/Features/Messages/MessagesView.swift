@@ -133,7 +133,7 @@ struct MessagesView: View {
                 VStack(spacing: OMTheme.Spacing.s3) {
                     LuluView(clip: .homeListening, placement: .confirm)
                     OMTextRole.t3("这里还很安静")
-                    OMTextRole.cap("发起或加入一局，成局后的群聊和搭子都会出现在这里。")
+                    OMTextRole.cap("成局后的对话会出现在下面。正在进行的局还是上面那些卡片。")
                         .multilineTextAlignment(.center)
                 }
                 .frame(maxWidth: .infinity)
@@ -170,7 +170,7 @@ struct MessagesView: View {
             .accessibilityIdentifier("messages-ongoing-strip")
         }
         if !content.relations.isEmpty {
-            OMSection(title: "搭子频道")
+            OMSection(title: "对话")
             OMCard(tight: true) {
                 ForEach(content.relations) { item in
                     PartnerChannelRow(item: item) {
@@ -179,6 +179,7 @@ struct MessagesView: View {
                     }
                 }
             }
+            .accessibilityIdentifier("messages-chat-list")
             OMButton("查看全部搭子关系", kind: .ghost) { router.push(.relations) }
                 .padding(.top, OMTheme.Spacing.s2)
         }
@@ -267,7 +268,7 @@ private struct PartnerChannelRow: View {
                 OMSticker("chat-bubble.png", size: .s44)
                 VStack(alignment: .leading, spacing: 3) {
                     HStack(spacing: 6) {
-                        Text(item.participants.map { $0.displayName ?? "同学" }.joined(separator: " · "))
+                        Text(item.peerDisplayName ?? item.participants.map { $0.displayName ?? "同学" }.joined(separator: " · "))
                             .font(OMTheme.TypeToken.callout.weight(.semibold))
                             .foregroundStyle(OMTheme.ColorToken.ink)
                             .lineLimit(1)
@@ -282,7 +283,7 @@ private struct PartnerChannelRow: View {
                 }
                 Spacer(minLength: 0)
                 VStack(alignment: .trailing, spacing: 4) {
-                    if let latest = item.latestExperienceAt {
+                    if let latest = item.lastMessage?.sentAt ?? item.latestExperienceAt {
                         Text(Self.relativeLabel(latest))
                             .font(OMTheme.TypeToken.caption)
                             .foregroundStyle(OMTheme.ColorToken.mist)
@@ -299,10 +300,13 @@ private struct PartnerChannelRow: View {
     }
 
     private var subline: String {
+        if let preview = item.lastMessage?.content, !preview.isEmpty {
+            return preview
+        }
         var parts: [String] = []
         if item.timesTogether > 0 { parts.append("一起 \(item.timesTogether) 次") }
         if let recent = item.experiences.first?.gatheringType { parts.append("上次\(recent)") }
-        if parts.isEmpty { parts.append("搭子关系") }
+        if parts.isEmpty { parts.append("打个招呼吧") }
         return parts.joined(separator: " · ")
     }
 

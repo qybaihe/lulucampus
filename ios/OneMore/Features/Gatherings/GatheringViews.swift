@@ -103,7 +103,7 @@ struct GatheringListView: View {
             if item.status == .pooling, let looking = item.lookingFor, !looking.isEmpty {
                 OMFlowLayout {
                     ForEach(Array(looking.prefix(3)), id: \.self) { role in
-                        OMChip(text: CapabilityLabel.displayName(for: role), kind: .gap)
+                        OMChip(text: role, kind: .gap)
                     }
                 }
                 .padding(.top, OMTheme.Spacing.s2)
@@ -287,7 +287,12 @@ struct GatheringDetailView: View {
             if let item {
                 GatheringCelebrationOverlay(
                     gathering: item,
-                    onEnterIcebreaker: { showsCelebration = false },
+                    onEnterChat: {
+                        showsCelebration = false
+                        if let channel = item.channelId {
+                            router.push(.channel(channel))
+                        }
+                    },
                     onDismiss: { showsCelebration = false }
                 )
             }
@@ -328,45 +333,12 @@ struct GatheringDetailView: View {
                 OMTextRole.foot(reason).padding(.top, OMTheme.Spacing.s2)
             }
         }
-        if item.status == .pooling {
-            OMCard {
-                HStack {
-                    OMTextRole.t3("桌上已经有谁")
-                    Spacer()
-                    if let count = item.memberCount {
-                        Text("\(min(count, item.targetSize))/\(item.targetSize)")
-                            .font(OMTheme.TypeToken.footnote.weight(.semibold))
-                            .foregroundStyle(OMTheme.ColorToken.ink)
-                    }
-                }
-                if let count = item.memberCount {
-                    OMLuluSeatStrip(filled: min(count, item.targetSize), total: item.targetSize)
-                        .padding(.top, OMTheme.Spacing.s2)
-                }
-                if let filled = item.filledRoles, !filled.isEmpty {
-                    OMFlowLayout {
-                        ForEach(filled, id: \.self) { role in
-                            OMChip(text: CapabilityLabel.displayName(for: role), kind: .soft)
-                        }
-                    }
-                    .padding(.top, OMTheme.Spacing.s2)
-                }
-                if let highlights = item.rosterHighlights, !highlights.isEmpty {
-                    OMFlowLayout {
-                        ForEach(highlights, id: \.self) { highlight in
-                            OMChip(text: highlight, kind: .standard)
-                        }
-                    }
-                    .padding(.top, OMTheme.Spacing.s2)
-                }
-            }
-        }
         if item.status == .pooling, let looking = item.lookingFor, !looking.isEmpty {
             OMCard {
                 OMTextRole.t3("这桌还在找")
                 OMFlowLayout {
                     ForEach(looking, id: \.self) { role in
-                        OMChip(text: CapabilityLabel.displayName(for: role), kind: .gap)
+                        OMChip(text: role, kind: .gap)
                     }
                 }
                 .padding(.top, OMTheme.Spacing.s2)
@@ -445,7 +417,10 @@ struct GatheringDetailView: View {
                         LuluView(clip: .poolWaiting, placement: .empty)
                         OMTextRole.t3("噜噜正在翻今晚有空的同学……")
                         if item.targetSize > 0 {
-                            SeatDotsView(total: item.targetSize, filled: 1)
+                            SeatDotsView(
+                                total: item.targetSize,
+                                filled: min(item.memberCount ?? 1, item.targetSize)
+                            )
                                 .padding(.top, OMTheme.Spacing.s3)
                         }
                     }
@@ -891,7 +866,7 @@ struct GatheringDetailView: View {
                 if let looking = gapShare.lookingFor, !looking.isEmpty {
                     OMFlowLayout {
                         ForEach(looking, id: \.self) { role in
-                            OMChip(text: CapabilityLabel.displayName(for: role), kind: .gap)
+                            OMChip(text: role, kind: .gap)
                         }
                     }
                     .padding(.top, OMTheme.Spacing.s2)
@@ -1241,7 +1216,20 @@ struct GatheringDetailView: View {
         }
     }
 
-    private func join() async { await run { item = try await environment.gatherings.join(id) } }
+    private func join() async {
+        await run {
+            let previous = item?.status ?? .pooling
+            let value = try await environment.gatherings.join(id, role: joinRole(from: item))
+            item = value
+            celebrateIfJustConfirmed(from: previous, to: value)
+        }
+        if let value = item { await loadIcebreakerIfNeeded(value) }
+    }
+
+    private func joinRole(from item: GatheringSummary?) -> String? {
+        guard let roles = item?.requiredRoles, roles.count == 1 else { return nil }
+        return roles[0]
+    }
     private func claimBackfill() async {
         await run {
             item = try await environment.gatherings.claimBackfill(id)
@@ -1442,8 +1430,7 @@ struct GatheringDetailView: View {
         parts.append(item.gatheringType)
         parts.append("还差 \(gapShare.missingCount ?? 1) 人")
         if let looking = gapShare.lookingFor, !looking.isEmpty {
-            let labels = looking.prefix(2).map { CapabilityLabel.displayName(for: $0) }
-            parts.append("还缺\(labels.joined(separator: "、"))")
+            parts.append("还缺\(looking.prefix(2).joined(separator: "、"))")
         }
         return parts.joined(separator: " ")
     }

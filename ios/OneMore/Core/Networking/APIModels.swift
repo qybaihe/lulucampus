@@ -541,9 +541,17 @@ struct CompetitionTeam: Codable, Identifiable, Sendable {
     let missingCount: Int?
     let missingRoles: [String]?
     let filledRoles: [String]?
+    var minSize: Int? = nil
     var rosterHighlights: [String]? = nil
 
     var filled: Int { min(memberCount, targetSize) }
+
+    var sizeRangeLabel: String {
+        if let minSize, minSize > 0, minSize != targetSize {
+            return "\(minSize)–\(targetSize) 人"
+        }
+        return "\(targetSize) 人"
+    }
 
     var resolvedMissingCount: Int {
         missingCount ?? max(0, targetSize - memberCount)
@@ -576,9 +584,7 @@ enum CapabilityLabel {
         "operations": "运营", "business_analysis": "商业分析",
         "modeling": "建模", "programming": "编程",
     ]
-    static func displayName(for key: String) -> String {
-        table[key] ?? table[key.lowercased()] ?? key
-    }
+    static func displayName(for key: String) -> String { table[key] ?? key }
 }
 
 struct IntentCompileRequest: Codable, Sendable {
@@ -718,6 +724,13 @@ struct RelationSummary: Codable, Identifiable, Sendable {
     var timeline: [TimelineEntry] = []
     var nextWindow: NextWindow? = nil
     var activeGoal: GoalSummary? = nil
+    var peerDisplayName: String? = nil
+    var lastMessage: LastMessage? = nil
+
+    struct LastMessage: Codable, Sendable {
+        let content: String?
+        var sentAt: Date? = nil
+    }
 }
 
 struct MessagePayload: Codable, Identifiable, Sendable {
@@ -995,13 +1008,12 @@ struct GatheringSummary: Codable, Identifiable, Sendable {
     let startAt: Date?
     let endAt: Date?
     let location: String?
+    var minSize: Int? = nil
     let targetSize: Int
     let requiredTrustLevel: String
     let requiredRoles: [String]
     let matchReason: String?
     var lookingFor: [String]? = nil
-    var filledRoles: [String]? = nil
-    var rosterHighlights: [String]? = nil
     let myConfirmation: String?
     let confirmedCount: Int?
     let memberCount: Int?

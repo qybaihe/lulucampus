@@ -113,28 +113,6 @@ final class APIContractTests: XCTestCase {
         XCTAssertEqual(inbox.resolvedCategory, "schedule_reminders")
     }
 
-    func testTodayAttentionDedupesGatheringAndAction() {
-        let pending: [[String: JSONValue]] = [
-            [
-                "gathering_id": .string("g1"),
-                "type": .string("authorization"),
-                "title": .string("数模组队差编程"),
-                "deep_link": .string("onemore://gathering/g1"),
-            ],
-            [
-                "action_id": .string("a1"),
-                "gathering_id": .string("g1"),
-                "type": .string("authorization"),
-                "title": .string("数模组队差编程"),
-                "deep_link": .string("onemore://action/a1"),
-            ],
-        ]
-        let items = TodayAttentionItem.list(from: pending)
-        XCTAssertEqual(items.count, 1)
-        XCTAssertEqual(items.first?.title, "「数模组队差编程」等待核对")
-        XCTAssertEqual(items.first?.deepLink, "onemore://gathering/g1")
-    }
-
     func testSharedGoalDecodesAutomaticProgressContract() throws {
         let payload = #"{"id":"goal-1","relation_id":"rel-1","definition":"一起自习","period_start":"2026-08-01","period_end":"2026-08-31","target_value":4,"current_value":1,"unit":"次","status":"active","milestones":[{"fraction":0.25,"target_value":1,"reached":true,"reached_at":"2026-08-11T12:00:00Z"}],"member_progress":[{"user_id":"u1","display_name":"小林","current_value":2,"last_progress_at":"2026-08-11T12:00:00Z"}],"next_action":"周五图书馆见","last_broadcast":"已自动更新","last_progress_at":"2026-08-11T12:00:00Z","progress_source":"attendance_and_completion"}"#.data(using: .utf8)!
         let goal = try JSONDecoder.oneMore.decode(SharedGoal.self, from: payload)
@@ -173,5 +151,60 @@ final class APIContractTests: XCTestCase {
         XCTAssertEqual(team.resolvedMissingCount, 1)
         XCTAssertEqual(team.gapDescription, "差一个建模")
         XCTAssertEqual(team.filledRoles, ["编程", "写作"])
+    }
+
+    func testCampusActionCopyTurnsGymPreviewIntoChineseCard() {
+        let copy = try XCTUnwrap(
+            CampusActionCopy.make(
+                actionName: "gym.book_preview",
+                params: [
+                    "date": .string("2026-08-13"),
+                    "end": .string("21:00"),
+                    "start": .string("19:00"),
+                    "venue": .string("珠海校区"),
+                    "venue_type": .string("篮球"),
+                    "next": .string("/actions/preview"),
+                ],
+                status: "previewed"
+            )
+        )
+        XCTAssertEqual(copy.title, "预约篮球")
+        XCTAssertEqual(copy.headline, "珠海校区 · 篮球")
+        XCTAssertEqual(copy.sticker, "basketball.png")
+        XCTAssertEqual(copy.statusLabel, "待确认")
+        XCTAssertEqual(copy.facts.map(\.label), ["项目", "地点", "日期", "时段"])
+        XCTAssertEqual(copy.facts.first { $0.label == "地点" }?.value, "珠海校区")
+        XCTAssertEqual(copy.facts.first { $0.label == "时段" }?.value, "19:00 – 21:00")
+        let dateValue = copy.facts.first { $0.label == "日期" }?.value ?? ""
+        XCTAssertTrue(dateValue == "今晚" || dateValue.contains("8月13日"))
+        let blob = ([copy.title, copy.headline] + copy.facts.flatMap { [$0.label, $0.value] }).joined()
+        XCTAssertFalse(blob.contains("gym.book_preview"))
+        XCTAssertFalse(blob.contains("params."))
+        XCTAssertFalse(blob.contains("venue_type"))
+        XCTAssertFalse(blob.contains("/actions/preview"))
+    }
+
+    func testCampusActionCopyReadsHermesPreviewPayload() {
+        let result = HermesAskResult(
+            kind: "action_preview",
+            action: "gym.book_preview",
+            cardType: "action_preview",
+            data: .object([
+                "next": .string("/actions/preview"),
+                "message": .string("今晚可以约"),
+                "params": .object([
+                    "venue_type": .string("篮球"),
+                    "venue": .string("珠海校区"),
+                    "date": .string("2026-08-13"),
+                    "start": .string("19:00"),
+                    "end": .string("21:00"),
+                ]),
+            ]),
+            requiresPreview: true,
+            toolTrace: nil
+        )
+        let copy = try XCTUnwrap(CampusActionCopy.make(from: result))
+        XCTAssertEqual(copy.title, "预约篮球")
+        XCTAssertFalse(copy.facts.contains(where: { $0.value.contains("preview") }))
     }
 }

@@ -118,7 +118,7 @@ private struct PublicGatheringsContent: View {
             if item.status == .pooling, let looking = item.lookingFor, !looking.isEmpty {
                 OMFlowLayout {
                     ForEach(Array(looking.prefix(3)), id: \.self) { role in
-                        OMChip(text: CapabilityLabel.displayName(for: role), kind: .gap)
+                        OMChip(text: role, kind: .gap)
                     }
                 }
                 .padding(.top, OMTheme.Spacing.s2)
