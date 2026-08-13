@@ -30,6 +30,50 @@ from onemore.modules.campus.schemas import CampusEventCreateRequest, PublicEvent
 from onemore.modules.trust import service as trust_service
 from onemore.modules.schedule import service as schedule_service
 
+# 列表 chip 只出中文。旧种子 / 导入脚本里的英文码在读出时归一。
+EVENT_TYPE_LABELS: dict[str, str] = {
+    "teachin": "宣讲",
+    "seminar": "讲座",
+    "lecture": "讲座",
+    "career_fair": "招聘",
+    "club": "社团",
+    "society": "社团",
+    "recruitment": "招新",
+    "performance": "演出",
+    "宣讲会": "宣讲",
+    "招聘会": "招聘",
+}
+
+
+def public_event_type(source: str | None) -> str:
+    key = (source or "").strip()
+    if not key:
+        return "其他"
+    return EVENT_TYPE_LABELS.get(key, key)
+
+
+def _event_type_match_values(event_type: str) -> set[str]:
+    canonical = public_event_type(event_type)
+    values = {event_type.strip(), canonical}
+    for raw, label in EVENT_TYPE_LABELS.items():
+        if label == canonical or raw == event_type:
+            values.add(raw)
+            values.add(label)
+    return {item for item in values if item}
+
+
+def _event_view(item: ExternalEvent) -> PublicEventView:
+    return PublicEventView(
+        id=item.id,
+        type=public_event_type(item.source),
+        title=item.title,
+        starts_at=ensure_utc(item.starts_at) if item.starts_at else None,
+        ends_at=ensure_utc(item.ends_at) if item.ends_at else None,
+        location=item.location,
+        official_url=item.official_url or None,
+        details=item.details or {},
+    )
+
 
 def list_assignments(db: Session, user_id: str, status: str) -> list[dict]:
     query = select(Assignment).where(Assignment.user_id == user_id)
@@ -94,21 +138,12 @@ def list_events(
 ) -> list[PublicEventView]:
     query = select(ExternalEvent)
     if event_type:
-        query = query.where(ExternalEvent.source == event_type)
+        query = query.where(ExternalEvent.source.in_(_event_type_match_values(event_type)))
     if start:
         start_dt = datetime.combine(start, datetime.min.time(), tzinfo=UTC)
         query = query.where(ExternalEvent.starts_at >= start_dt)
     return [
-        PublicEventView(
-            id=item.id,
-            type=item.source,
-            title=item.title,
-            starts_at=ensure_utc(item.starts_at) if item.starts_at else None,
-            ends_at=ensure_utc(item.ends_at) if item.ends_at else None,
-            location=item.location,
-            official_url=item.official_url,
-            details=item.details,
-        )
+        _event_view(item)
         for item in db.scalars(
             query.order_by(ExternalEvent.starts_at.asc().nulls_last()).limit(100)
         )
@@ -119,16 +154,7 @@ def event_detail(db: Session, event_id: str) -> PublicEventView:
     item = db.get(ExternalEvent, event_id)
     if item is None:
         raise NotFoundError("活动", event_id)
-    return PublicEventView(
-        id=item.id,
-        type=item.source,
-        title=item.title,
-        starts_at=ensure_utc(item.starts_at) if item.starts_at else None,
-        ends_at=ensure_utc(item.ends_at) if item.ends_at else None,
-        location=item.location,
-        official_url=item.official_url,
-        details=item.details,
-    )
+    return _event_view(item)
 
 
 def create_user_event(
@@ -137,7 +163,7 @@ def create_user_event(
     """用户发布校园活动：T4 能力门槛，列表中匿名呈现（不暴露发布者身份）。"""
     trust_service.require_unlock(db, user_id, "campus_event_publish")
     item = ExternalEvent(
-        source=body.type,
+        source=public_event_type(body.type),
         external_key=f"user:{user_id}:{uuid4().hex}",
         title=body.title,
         starts_at=body.starts_at,
@@ -152,16 +178,7 @@ def create_user_event(
     db.add(item)
     db.flush()
     db.commit()
-    return PublicEventView(
-        id=item.id,
-        type=item.source,
-        title=item.title,
-        starts_at=ensure_utc(item.starts_at) if item.starts_at else None,
-        ends_at=ensure_utc(item.ends_at) if item.ends_at else None,
-        location=item.location,
-        official_url=item.official_url or None,
-        details=item.details,
-    )
+    return _event_view(item)
 
 
 def _scene_trigger(db: Session, user_id: str) -> dict | None:
@@ -350,27 +367,34 @@ def today_summary(db: Session, user: User) -> dict:
         else datetime.max.replace(tzinfo=UTC)
     )
 
-    return {
-        "pending": [
-            {
-                "gathering_id": item.id,
-                "type": "confirmation"
-                if item.status == GatheringStatus.TENTATIVE.value
-                else "authorization",
-                "deep_link": f"onemore://gathering/{item.id}",
-                "title": item.title,
-                "from_name": _pending_from_name(db, item.id, user.id),
-            }
-            for item in pending
-        ]
-        + [
+    pending_ids = {item.id for item in pending}
+    pending_rows = [
+        {
+            "gathering_id": item.id,
+            "type": "confirmation"
+            if item.status == GatheringStatus.TENTATIVE.value
+            else "authorization",
+            "deep_link": f"onemore://gathering/{item.id}",
+            "title": item.title,
+            "from_name": _pending_from_name(db, item.id, user.id),
+        }
+        for item in pending
+    ]
+    for item in actions:
+        if item.gathering_id and item.gathering_id in pending_ids:
+            continue
+        gathering = db.get(Gathering, item.gathering_id) if item.gathering_id else None
+        pending_rows.append(
             {
                 "action_id": item.id,
+                "gathering_id": item.gathering_id,
                 "type": "authorization",
                 "deep_link": f"onemore://action/{item.id}",
+                "title": gathering.title if gathering is not None else None,
             }
-            for item in actions
-        ],
+        )
+    return {
+        "pending": pending_rows,
         "timeline": timeline,
         "scene_trigger": trigger,
         "generated_at": now,
@@ -448,14 +472,26 @@ def compile_hermes_question(text: str, context: dict) -> tuple[ActionName | None
 
 def hermes_ask(db: Session, user_id: str, text: str, context: dict) -> dict:
     from onemore.hermes.agent_gateway import ask_via_sidecar
+    from onemore.modules.campus.peers import attach_peers
 
     agent_result = ask_via_sidecar(db, user_id, text, context)
     if agent_result is not None:
-        return agent_result
-    return hermes_ask_rules(db, user_id, text, context)
+        return attach_peers(db, user_id, agent_result, question=text)
+    return attach_peers(db, user_id, hermes_ask_rules(db, user_id, text, context), question=text)
 
 
 def hermes_ask_rules(db: Session, user_id: str, text: str, context: dict) -> dict:
+    from onemore.modules.campus.peers import looks_like_social_query, suggest_peers
+
+    if looks_like_social_query(text):
+        peers = suggest_peers(db, user_id, {**context, "question": text})
+        return {
+            "kind": "result",
+            "action": "campus.peers",
+            "card_type": "peer_list",
+            "data": {"peers": peers, "count": len(peers)},
+            "requires_preview": False,
+        }
     action, params, card_type, preview = compile_hermes_question(text, context)
     if action is None and params.get("_elective_match"):
         from onemore.modules.campus.elective_hermes import answer_elective_match

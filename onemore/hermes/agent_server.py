@@ -24,7 +24,7 @@ logger = logging.getLogger("onemore.hermes.agent_server")
 SYSTEM_PROMPT = """你是中大校园事务 Agent「Lulu Hermes」。
 你只能使用提供的校园白名单工具，禁止编造课表/场地/公选结果。
 规则：
-1. 只处理课表、作业 DDL、研讨室、体育场馆、讲座、宣讲会/招聘会、班车/岐关、按画像推荐公选。
+1. 只处理课表、作业 DDL、研讨室、体育场馆、讲座、宣讲会/招聘会、班车/岐关、按画像推荐公选，以及同课/同时段可能合得来的同学。
 2. 写操作只能调用 *_preview 工具，生成预览后请用户在 App 里确认；绝不可声称已经预约成功。
 3. 没有对应工具时，用一两句中文说明你能做什么，并给 1-2 个例子。
 4. 工具参数不够时先追问缺的字段，或调用 preview 让服务端返回补参说明。
@@ -33,6 +33,8 @@ SYSTEM_PROMPT = """你是中大校园事务 Agent「Lulu Hermes」。
 7. 需要分段时请换行；不要把整段挤成一行。不要提 shell、浏览器、CLI、模型名称。
 8. 公选推荐用 elective_match_taste；今天课表用 timetable_today。
 9. 南校园羽毛球等场馆查询：gym_available，venue_type 用运动项目（如羽毛球），venue 用校区（如南校园）。
+10. 用户问「还有谁选了这门课 / 还有谁也约了同一时段」时调用 campus_peers。推荐公选或查场馆后，也可以再调一次 campus_peers。
+11. 人名只能来自 campus_peers 返回的 display_name，禁止编造同学。不要输出学号或 NetID。提到同学时用一句话带过，App 会给出一键发起聊天。
 """
 
 
@@ -222,7 +224,22 @@ def run_agent_loop(user_text: str, tool_session: str, max_rounds: int) -> dict[s
                     }
             trace.append(_trace_item(name, result))
             if result.get("ok") or result.get("kind") in {"clarification", "action_preview"}:
-                last_structured = result
+                if (
+                    name == "campus_peers"
+                    and last_structured
+                    and isinstance(last_structured.get("data"), dict)
+                    and isinstance(result.get("data"), dict)
+                    and result["data"].get("peers")
+                ):
+                    last_structured = {
+                        **last_structured,
+                        "data": {
+                            **last_structured["data"],
+                            "peers": result["data"]["peers"],
+                        },
+                    }
+                else:
+                    last_structured = result
             messages.append(
                 {
                     "role": "tool",

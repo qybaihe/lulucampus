@@ -29,6 +29,17 @@ class HermesAskResult(APIModel):
     tool_trace: list[HermesToolTrace] = Field(default_factory=list)
 
 
+class HermesPeerStartRequest(APIModel):
+    peer_user_id: str = Field(min_length=8, max_length=36)
+    reason: str = Field(default="", max_length=200)
+    overlap: str = Field(default="taste", max_length=16)
+
+
+class HermesPeerChatResult(APIModel):
+    channel_id: str
+    gathering_id: str
+
+
 class SceneTriggerIgnore(APIModel):
     ignored: bool = True
 

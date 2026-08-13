@@ -44,6 +44,7 @@ CardKind = Literal[
     "transit_list",
     "elective_match",
     "action_preview",
+    "peer_list",
 ]
 
 
@@ -54,7 +55,7 @@ class CampusTool:
     action: ActionName | None
     card_type: CardKind
     is_preview: bool
-    extra: Literal["none", "elective"] = "none"
+    extra: Literal["none", "elective", "peers"] = "none"
 
 
 CAMPUS_TOOLS: tuple[CampusTool, ...] = (
@@ -137,6 +138,16 @@ CAMPUS_TOOLS: tuple[CampusTool, ...] = (
         "elective",
     ),
     CampusTool(
+        "campus_peers",
+        "查找已开启社交、可能合得来的同学：同课、同一场馆时段、或兴趣相近。"
+        "只返回展示名和重叠理由，不含学号/NetID。用户问「还有谁选了这门课」"
+        "「还有谁也约了羽毛球」时必须调用。可选 course_code、venue_type、date、start、question。",
+        None,
+        "peer_list",
+        False,
+        "peers",
+    ),
+    CampusTool(
         "room_reserve_preview",
         "生成研讨室预约预览（不会真正下单）。必填 kind、room、date、start、end；可选 lab、members、title、memo、services。",
         ActionName.ROOM_RESERVE_PREVIEW,
@@ -192,6 +203,27 @@ def openai_tool_schemas() -> list[dict[str, Any]]:
                         "type": "string",
                         "description": "用户原话，可原样传入",
                     }
+                },
+                "additionalProperties": False,
+            }
+        elif tool.extra == "peers":
+            parameters = {
+                "type": "object",
+                "properties": {
+                    "course_code": {
+                        "type": "string",
+                        "description": "课程代码，如 CS2002",
+                    },
+                    "venue_type": {
+                        "type": "string",
+                        "description": "运动项目，如 羽毛球/健身/游泳",
+                    },
+                    "date": {"type": "string", "description": "YYYY-MM-DD"},
+                    "start": {"type": "string", "description": "开始时间 HH:mm"},
+                    "question": {
+                        "type": "string",
+                        "description": "用户原话，可原样传入",
+                    },
                 },
                 "additionalProperties": False,
             }
@@ -416,6 +448,23 @@ def dispatch_tool(
                 "card_type": tool.card_type,
                 "requires_preview": False,
                 "data": data,
+            }
+        if tool.extra == "peers":
+            from onemore.modules.campus.peers import suggest_peers
+
+            session_context = session.get("context") if isinstance(session.get("context"), dict) else {}
+            context = {**session_context, **params}
+            context["question"] = str(params.get("question") or session.get("question") or "")
+            if params.get("course_code"):
+                context["course_codes"] = [str(params["course_code"])]
+            peers = suggest_peers(db, user_id, context)
+            return {
+                "ok": True,
+                "kind": "result",
+                "action": "campus.peers",
+                "card_type": tool.card_type,
+                "requires_preview": False,
+                "data": {"peers": peers, "count": len(peers)},
             }
         assert tool.action is not None
         definition = CATALOG[tool.action]

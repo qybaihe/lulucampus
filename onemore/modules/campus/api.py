@@ -16,6 +16,8 @@ from onemore.modules.campus.schemas import (
     CampusEventCreateRequest,
     HermesAskRequest,
     HermesAskResult,
+    HermesPeerChatResult,
+    HermesPeerStartRequest,
     PublicEventView,
     SceneTriggerIgnore,
 )
@@ -144,5 +146,26 @@ def ask_hermes(
     return APIResponse(
         data=HermesAskResult.model_validate(
             service.hermes_ask(db, user.id, body.text, body.context)
+        )
+    )
+
+
+@router.post("/hermes/peers/start", response_model=APIResponse[HermesPeerChatResult])
+def start_hermes_peer_chat(
+    body: HermesPeerStartRequest,
+    user: User = Depends(current_user),
+    db: Session = Depends(get_db),
+) -> APIResponse[HermesPeerChatResult]:
+    from onemore.modules.campus.peers import start_peer_chat
+
+    return APIResponse(
+        data=HermesPeerChatResult.model_validate(
+            start_peer_chat(
+                db,
+                user,
+                body.peer_user_id,
+                reason=body.reason,
+                overlap=body.overlap,
+            )
         )
     )
