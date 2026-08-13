@@ -9,6 +9,18 @@ import {
   type RecommendationTier,
 } from "../../core/api/repositories";
 import {
+  hotSeatChip,
+  isHotSeat,
+  isHotTeam,
+  rankCompetitionsForYou,
+  spotlightFitLabel,
+} from "../../core/competitions/spotlight";
+import {
+  gapDescription,
+  recruitingHeadline,
+  teamFilled,
+} from "../../core/competitions/teams";
+import {
   Btn,
   Card,
   Chip,
@@ -37,16 +49,6 @@ function formatDeadline(iso: string, style: "short" | "long" = "short"): string 
     return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 ${time}`;
   }
   return `${date.getMonth() + 1}月${date.getDate()}日 ${time}`;
-}
-
-/** 角色缺口文案（对齐 iOS CompetitionTeam.gapDescription）：「差一个算法」。 */
-function gapDescription(team: CompetitionTeam): string | null {
-  const roles = team.required_roles ?? [];
-  if (!roles.length) return null;
-  const labels = roles.map(capabilityLabel);
-  return labels.length === 1
-    ? `差一个${labels[0]}`
-    : `还差 ${labels.length} 个角色：${labels.join("、")}`;
 }
 
 /** B12 · 比赛雷达（Tab 根），对齐 iOS CompetitionsView。 */
@@ -139,8 +141,16 @@ export function CompetitionsScreen() {
                 <StateView kind="empty" message="暂时没有内容，有进展时会告诉你。" />
               </Card>
             ) : (
-              items.map((c) => (
-                <Card key={c.id} onClick={() => nav(`/competition/${c.id}`)}>
+              rankCompetitionsForYou(items).map((c) => {
+                const hot = isHotSeat(c);
+                const jackpot = hotSeatChip(c);
+                const fitLabel = spotlightFitLabel(c);
+                return (
+                <Card
+                  key={c.id}
+                  className={hot ? "hot-seat" : ""}
+                  onClick={() => nav(`/competition/${c.id}`)}
+                >
                   <div className="flex" style={{ alignItems: "flex-start" }}>
                     <Sticker name="trophy.png" size="st-44" />
                     <div style={{ minWidth: 0 }}>
@@ -151,10 +161,11 @@ export function CompetitionsScreen() {
                     </div>
                   </div>
                   <div className="between mt-3">
-                    <span className="flex" style={{ gap: 6 }}>
-                      {c.taste_fit_label ? (
-                        <span className="om-chip gap">{c.taste_fit_label}</span>
+                    <span className="flex wrap" style={{ gap: 6 }}>
+                      {fitLabel ? (
+                        <span className="om-chip gap">{fitLabel}</span>
                       ) : null}
+                      {jackpot ? <span className="om-chip gap">{jackpot}</span> : null}
                       <span
                         className={`om-chip ${c.recommendation_tier === "A" ? "gap" : ""}`}
                       >
@@ -177,7 +188,8 @@ export function CompetitionsScreen() {
                     ) : null}
                   </div>
                 </Card>
-              ))
+                );
+              })
             )}
           </>
         ) : null}
@@ -259,6 +271,9 @@ export function CompetitionDetailScreen() {
   const sizeMax = item?.team_constraints?.team_size_max;
   const sizeLabel =
     sizeMin != null && sizeMax != null ? `${sizeMin}–${sizeMax} 人` : null;
+  const hot = item ? isHotSeat(item) : false;
+  const jackpot = item ? hotSeatChip(item) : null;
+  const fitLabel = item ? spotlightFitLabel(item) : null;
 
   return (
     <Screen id="screen-B12.1-competition-detail">
@@ -279,13 +294,14 @@ export function CompetitionDetailScreen() {
             </div>
             <div className="t-t1 center mt-2">{item.name}</div>
             <div className="t-foot center mb-3">
-              {item.taste_fit_label ? `${item.taste_fit_label} · ` : ""}
+              {fitLabel ? `${fitLabel} · ` : ""}
+              {jackpot ? `${jackpot} · ` : ""}
               {item.recommendation_label ?? "已核验"} · 已核验
               {sizeLabel ? ` · 队伍 ${sizeLabel}` : ""}
             </div>
 
             {item.taste_fit_reasons?.length || item.recruit_hints?.length ? (
-              <Card className="mb-3">
+              <Card className={`mb-3${hot ? " hot-seat" : ""}`}>
                 <div className="t-t3">按你的兴趣画像</div>
                 {(item.taste_fit_reasons ?? []).map((reason) => (
                   <div className="t-foot mt-2" key={reason}>
@@ -300,6 +316,11 @@ export function CompetitionDetailScreen() {
                     {hint}
                   </div>
                 ))}
+                {jackpot ? (
+                  <div className="mt-3">
+                    <Chip kind="gap">{jackpot}</Chip>
+                  </div>
+                ) : null}
               </Card>
             ) : null}
 
@@ -338,49 +359,27 @@ export function CompetitionDetailScreen() {
               </Card>
             ) : null}
 
-            {teams && teams.length > 0 ? (
-              <Card className="mt-3">
-                <div className="between">
-                  <span className="t-t3">正在组队的队伍</span>
-                  <span className="t-foot">{teams.length} 支</span>
+            <button
+              type="button"
+              className="om-row"
+              style={{ display: "block", width: "100%", padding: 0, marginTop: 12 }}
+              onClick={() => nav(`/competition/${item.id}/table`)}
+              data-od-id="competition-recruiting-teams"
+            >
+              <Card>
+                <div className="flex" style={{ gap: 10, alignItems: "center" }}>
+                  <Sticker name="round-table.png" size="st-44" />
+                  <div style={{ flex: 1, textAlign: "left" }}>
+                    <div className="t-t3">{recruitingHeadline(teams?.length ?? null)}</div>
+                    <div className="t-foot">点进去看每队几/几，以及还缺什么</div>
+                  </div>
+                  <Icon name="arrow" size={12} />
                 </div>
-                {teams.map((team) => {
-                  const filled = Math.min(team.member_count ?? 0, team.target_size ?? 0);
-                  const gap = gapDescription(team);
-                  return (
-                    <div key={team.id}>
-                      <Divider />
-                      <button
-                        type="button"
-                        className="om-row"
-                        style={{ display: "block", width: "100%", padding: "6px 0" }}
-                        onClick={() => nav(`/gathering/${team.id}`)}
-                        data-od-id={`competition-team-${team.id}`}
-                      >
-                        <span className="between" style={{ display: "flex" }}>
-                          <span className="flex" style={{ alignItems: "center", gap: 10 }}>
-                            <TeamSeatStrip filled={filled} total={team.target_size ?? 0} />
-                            <span className="t-foot" style={{ fontWeight: 600 }}>
-                              {filled}/{team.target_size ?? 0}
-                            </span>
-                          </span>
-                          <Icon name="arrow" size={12} />
-                        </span>
-                        <span className="flex wrap mt-2" style={{ gap: 6 }}>
-                          {gap ? <Chip kind="gap">{gap}</Chip> : null}
-                          {team.start_at ? (
-                            <Chip kind="soft">{formatDeadline(team.start_at)}</Chip>
-                          ) : null}
-                        </span>
-                      </button>
-                    </div>
-                  );
-                })}
               </Card>
-            ) : null}
+            </button>
 
             <div className="stack mt-3" style={{ gap: 10 }}>
-              <Btn kind="primary" to={`/intent?competition=${item.id}`}>
+              <Btn kind="primary" to={`/competition/${item.id}/table`}>
                 {item.team_forming_supported === false ? "找备赛搭子" : "找队友"}
               </Btn>
               {registrationUrl ? (
@@ -406,24 +405,225 @@ export function CompetitionDetailScreen() {
 
 export function CompetitionTableScreen() {
   const { competitionId } = useParams();
+  const { repos } = useApp();
+  const nav = useNavigate();
+  const [item, setItem] = useState<Competition | null>(null);
+  const [teams, setTeams] = useState<CompetitionTeam[] | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  async function load() {
+    if (!competitionId) return;
+    try {
+      const [c, listed] = await Promise.all([
+        repos.competitions.get(competitionId),
+        repos.competitions.teams(competitionId),
+      ]);
+      setItem(c);
+      setTeams(asList(listed));
+      setError(null);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "加载失败");
+    }
+  }
+
+  useEffect(() => {
+    void load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [competitionId, repos]);
+
+  const count = teams?.length ?? null;
+
   return (
     <Screen id="screen-B12.2-table">
       <NavBar title="赛事牌桌" backTo={`/competition/${competitionId}`} />
       <Scroll>
-        <LargeTitle title="差一个" sub="返回稿组合态 · 不是独立 endpoint" />
-        <Card>
-          <div className="t-foot">
-            牌桌席位与缺口只来自真实局 / 意图发布结果；不在此页硬编码人数。
-          </div>
-          <div className="mt-4">
-            <Btn kind="primary" to={`/intent?competition=${competitionId}`}>
-              发起意图填缺口
-            </Btn>
-            <Btn kind="ghost" to="/gatherings/open">
-              去看公开局
-            </Btn>
-          </div>
-        </Card>
+        <LargeTitle title={recruitingHeadline(count)} sub="点进队伍看几/几和还缺什么" />
+        {error ? (
+          <Card>
+            <StateView kind="network" message={error} actionTitle="重试" onAction={() => void load()} />
+          </Card>
+        ) : teams == null ? (
+          <Card>
+            <StateView kind="loading" message="噜噜正在取数，稍等一下。" />
+          </Card>
+        ) : teams.length === 0 ? (
+          <Card>
+            <StateView kind="empty" message="暂时还没有队伍在招人。你可以自己组一队，发布后会出现在这里。" />
+          </Card>
+        ) : (
+          teams.map((team) => {
+            const filled = teamFilled(team);
+            const gap = gapDescription(team);
+            const teamHot = item ? isHotTeam(item, team) : false;
+            return (
+              <button
+                key={team.id}
+                type="button"
+                className={`om-row${teamHot ? " hot-seat-inline" : ""}`}
+                style={{ display: "block", width: "100%", padding: 0, marginBottom: 12 }}
+                onClick={() => nav(`/competition/${competitionId}/team/${team.id}`)}
+                data-od-id={`competition-team-${team.id}`}
+              >
+                <Card className={teamHot ? "hot-seat" : undefined}>
+                  <div className="between" style={{ display: "flex" }}>
+                    <span className="flex" style={{ alignItems: "center", gap: 10 }}>
+                      <TeamSeatStrip filled={filled} total={team.target_size ?? 0} />
+                      <span className="t-foot" style={{ fontWeight: 600 }}>
+                        {filled}/{team.target_size ?? 0}
+                      </span>
+                    </span>
+                    <Icon name="arrow" size={12} />
+                  </div>
+                  <div className="t-t3 mt-2">{team.title}</div>
+                  <div className="flex wrap mt-2" style={{ gap: 6 }}>
+                    {teamHot && !gap ? <Chip kind="gap">正好差一个</Chip> : null}
+                    {gap ? <Chip kind="gap">{gap}</Chip> : null}
+                    {team.start_at ? <Chip kind="soft">{formatDeadline(team.start_at)}</Chip> : null}
+                  </div>
+                </Card>
+              </button>
+            );
+          })
+        )}
+        <div className="stack mt-3" style={{ gap: 10 }}>
+          <Btn kind="primary" to={`/intent?competition=${competitionId}`}>
+            自己组一队
+          </Btn>
+        </div>
+      </Scroll>
+    </Screen>
+  );
+}
+
+export function CompetitionTeamDetailScreen() {
+  const { competitionId, teamId } = useParams();
+  const { repos } = useApp();
+  const [item, setItem] = useState<Competition | null>(null);
+  const [team, setTeam] = useState<CompetitionTeam | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  async function load() {
+    if (!competitionId || !teamId) return;
+    try {
+      const [c, detail] = await Promise.all([
+        repos.competitions.get(competitionId),
+        repos.competitions.team(competitionId, teamId),
+      ]);
+      setItem(c);
+      setTeam(detail);
+      setError(null);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "加载失败");
+    }
+  }
+
+  useEffect(() => {
+    void load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [competitionId, teamId, repos]);
+
+  const filled = team ? teamFilled(team) : 0;
+  const gap = team ? gapDescription(team) : null;
+  const missing = team?.missing_roles ?? team?.required_roles ?? [];
+  const filledRoles = team?.filled_roles ?? [];
+  const hot = item && team ? isHotTeam(item, team) : false;
+
+  return (
+    <Screen id="screen-B12.2-team-detail">
+      <NavBar title="队伍详情" backTo={`/competition/${competitionId}/table`} />
+      <Scroll>
+        {error ? (
+          <Card>
+            <StateView kind="network" message={error} actionTitle="重试" onAction={() => void load()} />
+          </Card>
+        ) : !team ? (
+          <Card>
+            <StateView kind="loading" message="噜噜正在取数，稍等一下。" />
+          </Card>
+        ) : (
+          <>
+            <div className="center mt-2">
+              <Sticker name="round-table.png" size="st-72" />
+            </div>
+            <div className="t-t1 center mt-2">{team.title}</div>
+            <div className="t-foot center mb-3">
+              {filled}/{team.target_size ?? 0} · 正在招人
+            </div>
+            <Card className={hot ? "hot-seat" : undefined}>
+              <div className="flex" style={{ alignItems: "center", gap: 10 }}>
+                <TeamSeatStrip filled={filled} total={team.target_size ?? 0} />
+                <span className="t-t1">
+                  {filled}/{team.target_size ?? 0}
+                </span>
+              </div>
+              {gap ? (
+                <div className="mt-3">
+                  <Chip kind="gap">{gap}</Chip>
+                </div>
+              ) : null}
+            </Card>
+            {filledRoles.length > 0 ? (
+              <Card className="mt-3">
+                <div className="t-t3">桌上已经有谁</div>
+                <div className="flex wrap mt-2" style={{ gap: 6 }}>
+                  {filledRoles.map((role) => (
+                    <Chip key={role} kind="soft">
+                      {capabilityLabel(role)}
+                    </Chip>
+                  ))}
+                </div>
+                {(team.roster_highlights ?? []).length > 0 ? (
+                  <div className="flex wrap mt-2" style={{ gap: 6 }}>
+                    {(team.roster_highlights ?? []).map((item) => (
+                      <Chip key={item}>{item}</Chip>
+                    ))}
+                  </div>
+                ) : null}
+              </Card>
+            ) : null}
+            {missing.length > 0 ? (
+              <Card className="mt-3">
+                <div className="t-t3">还缺这些</div>
+                <div className="flex wrap mt-2" style={{ gap: 6 }}>
+                  {missing.map((role) => (
+                    <Chip key={role} kind="gap">
+                      {capabilityLabel(role)}
+                    </Chip>
+                  ))}
+                </div>
+              </Card>
+            ) : null}
+            {team.goal ? (
+              <Card className="mt-3">
+                <div className="t-t3">这支队伍在找什么</div>
+                <div className="t-foot mt-2">{team.goal}</div>
+              </Card>
+            ) : null}
+            {team.campus || team.location || team.start_at ? (
+              <Card className="mt-3">
+                {team.campus || team.location ? (
+                  <div className="t-call">
+                    {[team.campus, team.location].filter(Boolean).join(" · ")}
+                  </div>
+                ) : null}
+                {team.start_at ? (
+                  <>
+                    {team.campus || team.location ? <Divider /> : null}
+                    <div className="t-call">{formatDeadline(team.start_at)}</div>
+                  </>
+                ) : null}
+              </Card>
+            ) : null}
+            <div className="stack mt-3" style={{ gap: 10 }}>
+              <Btn kind="primary" to={`/gathering/${team.id}`}>
+                想加入这支队伍
+              </Btn>
+              <Btn kind="ghost" to={`/competition/${competitionId}/table`}>
+                看其他招人队伍
+              </Btn>
+            </div>
+          </>
+        )}
       </Scroll>
     </Screen>
   );

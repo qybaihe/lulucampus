@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useApp } from "../../app/AppContext";
 import {
   asList,
+  capabilityLabel,
   gapCountOf,
   gatheringStatusName,
   seatsFromGathering,
@@ -132,6 +133,16 @@ function GatheringList({
                   {seats.length > 0 ? (
                     <div className="mt-3">
                       <SeatStrip seats={seats} />
+                    </div>
+                  ) : null}
+                  {(g.looking_for ?? []).length > 0 &&
+                  /Pooling/i.test(String(g.status ?? "")) ? (
+                    <div className="flex wrap mt-2" style={{ gap: 6 }}>
+                      {g.looking_for!.slice(0, 3).map((role) => (
+                        <Chip key={role} kind="gap">
+                          {capabilityLabel(role)}
+                        </Chip>
+                      ))}
                     </div>
                   ) : null}
                 </Card>
@@ -563,13 +574,40 @@ export function GatheringDetailScreen() {
               <Note sticker="sparkle-wand.png">{g.match_reason}</Note>
             ) : null}
 
+            {/Pooling/i.test(status) ? (
+              <Card className="mt-3">
+                <div className="between">
+                  <span className="t-t3">桌上已经有谁</span>
+                  <span className="t-foot" style={{ fontWeight: 600 }}>
+                    {filled}/{g.target_size ?? "—"}
+                  </span>
+                </div>
+                {(g.filled_roles ?? []).length > 0 ? (
+                  <div className="flex wrap mt-2" style={{ gap: 6 }}>
+                    {g.filled_roles!.map((role) => (
+                      <Chip key={role} kind="soft">
+                        {capabilityLabel(role)}
+                      </Chip>
+                    ))}
+                  </div>
+                ) : null}
+                {(g.roster_highlights ?? []).length > 0 ? (
+                  <div className="flex wrap mt-2" style={{ gap: 6 }}>
+                    {g.roster_highlights!.map((item) => (
+                      <Chip key={item}>{item}</Chip>
+                    ))}
+                  </div>
+                ) : null}
+              </Card>
+            ) : null}
+
             {(g.looking_for ?? []).length > 0 && /Pooling/i.test(status) ? (
               <Card className="mt-3">
                 <div className="t-t3">这桌还在找</div>
                 <div className="flex wrap mt-2" style={{ gap: 6 }}>
                   {g.looking_for!.map((role) => (
                     <Chip key={role} kind="gap">
-                      {role}
+                      {capabilityLabel(role)}
                     </Chip>
                   ))}
                 </div>
@@ -1830,6 +1868,15 @@ export function ShareLandingScreen() {
             <div className="t-foot mt-1">
               {(payload.goal as string) ?? "匿名缺口 · 认证后可加入"}
             </div>
+            {Array.isArray(payload.looking_for) && payload.looking_for.length > 0 ? (
+              <div className="flex wrap mt-2" style={{ gap: 6 }}>
+                {(payload.looking_for as string[]).map((role) => (
+                  <Chip key={role} kind="gap">
+                    {capabilityLabel(role)}
+                  </Chip>
+                ))}
+              </div>
+            ) : null}
             <div className="mt-4">
               {sessionState.status === "authenticated" ? (
                 <>

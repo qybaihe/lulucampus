@@ -55,6 +55,8 @@ export interface Competition {
   taste_fit_label?: string | null;
   taste_fit_reasons?: string[];
   recruit_hints?: string[];
+  recruit_gap_count?: number;
+  recruit_gap_labels?: string[];
   team_constraints?: { team_size_min?: number; team_size_max?: number };
   required_skills?: Array<{ key?: string; label?: string; [key: string]: unknown }>;
   [key: string]: unknown;
@@ -66,17 +68,22 @@ export function capabilityLabel(key: string): string {
     frontend: "前端",
     backend: "后端",
     design: "设计",
+    visual_design: "视觉",
     product: "产品",
     data_analysis: "数据分析",
     machine_learning: "机器学习",
     algorithm: "算法",
     presentation: "路演",
     writing: "文案",
+    paper_writing: "写作",
     research: "调研",
     video: "视频",
     operations: "运营",
+    business_analysis: "商业分析",
+    modeling: "建模",
+    programming: "编程",
   };
-  return table[key] ?? key;
+  return table[key] ?? table[key.toLowerCase()] ?? key;
 }
 
 export interface GatheringParticipant {
@@ -112,6 +119,8 @@ export interface Gathering {
   competition_id?: string | null;
   required_roles?: string[];
   looking_for?: string[];
+  filled_roles?: string[];
+  roster_highlights?: string[];
   match_reason?: string | null;
   participants?: GatheringParticipant[];
   my_confirmation?: string | null;
@@ -394,6 +403,7 @@ export interface MessagePayload {
   image?: MessageImage | null;
   location?: MessageLocation | null;
   sent_at: string;
+  sender_display_name?: string | null;
   [key: string]: unknown;
 }
 
@@ -579,9 +589,22 @@ export interface NotificationPreferences {
     chat_messages?: boolean;
     trust_updates?: boolean;
     competition_deadlines?: boolean;
+    schedule_reminders?: boolean;
     [key: string]: boolean | undefined;
   };
   system_settings_managed_locally?: string[];
+  [key: string]: unknown;
+}
+
+/** GET /notifications */
+export interface InboxNotification {
+  id: string;
+  type: string;
+  category?: string;
+  title?: string;
+  payload?: Record<string, unknown>;
+  created_at: string;
+  delivered_at?: string | null;
   [key: string]: unknown;
 }
 
@@ -729,6 +752,11 @@ export interface CompetitionTeam {
   member_count?: number;
   required_roles?: string[];
   expires_at?: string | null;
+  goal?: string | null;
+  missing_count?: number;
+  missing_roles?: string[];
+  filled_roles?: string[];
+  roster_highlights?: string[];
   [key: string]: unknown;
 }
 
@@ -999,6 +1027,11 @@ export function createRepositories(client: APIClient) {
         client.get<CompetitionTeam[]>(`/competitions/${id}/teams`, {
           auth: false,
         }),
+      team: (competitionId: string, teamId: string) =>
+        client.get<CompetitionTeam>(
+          `/competitions/${competitionId}/teams/${teamId}`,
+          { auth: false },
+        ),
     },
     intent: {
       compile: (body: {
@@ -1195,9 +1228,32 @@ export function createRepositories(client: APIClient) {
     },
     hermes: {
       ask: (text: string, context?: Record<string, unknown>) =>
-        client.post<{ answer?: string; text?: string; [key: string]: unknown }>(
-          "/hermes/ask",
-          { text, context },
+        client.post<{
+          kind?: string;
+          card_type?: string;
+          data?: {
+            message?: string;
+            peers?: Array<{
+              user_id: string;
+              display_name: string;
+              persona_label?: string | null;
+              reason: string;
+              overlap: string;
+            }>;
+          };
+          answer?: string;
+          text?: string;
+          message?: string;
+        }>("/hermes/ask", { text, context }),
+      startPeerChat: (body: {
+        peer_user_id: string;
+        reason?: string;
+        overlap?: string;
+      }) =>
+        client.post<{ channel_id: string; gathering_id: string }>(
+          "/hermes/peers/start",
+          body,
+          { idempotencyKey: `hermes-peer-${body.peer_user_id}` },
         ),
     },
     channels: {
@@ -1297,6 +1353,10 @@ export function createRepositories(client: APIClient) {
         }),
       notificationPreferences: () =>
         client.get<NotificationPreferences>("/me/notification-preferences"),
+      listNotifications: (limit = 50, category?: string) =>
+        client.get<InboxNotification[]>("/notifications", {
+          query: { limit, category },
+        }),
       patchNotificationPreferences: (
         body: Record<string, unknown>,
         key?: string,

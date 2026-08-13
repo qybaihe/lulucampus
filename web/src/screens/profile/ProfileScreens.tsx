@@ -5,6 +5,7 @@ import type {
   AuthMe,
   BlockEntry,
   GrantScope,
+  InboxNotification,
   MatchingPreferences,
   NotificationPreferences,
   ProfileCapability,
@@ -38,6 +39,13 @@ import {
   Switch,
 } from "../../components/ui/primitives";
 import { resetAuthOnboardingLocal } from "../auth/AuthScreens";
+import {
+  categoryEnabled,
+  categoryLabel,
+  notificationSummary,
+  pathFromNotification,
+  relativeTimeLabel,
+} from "./notificationInbox";
 
 /* ---------- M1 个人中心 ---------- */
 
@@ -1287,10 +1295,11 @@ export function MatchingPreferencesScreen() {
 
 /* ---------- M7 通知偏好（GET/PATCH /me/notification-preferences） ---------- */
 
-const NOTIFICATION_CATEGORIES: Array<{ key: string; label: string }> = [
-  { key: "gathering_updates", label: "局状态" },
-  { key: "action_updates", label: "行动执行" },
+const NOTIFICATION_CATEGORIES: Array<{ key: string; label: string; hint?: string }> = [
+  { key: "gathering_updates", label: "成局", hint: "凑局、确认、改约" },
+  { key: "schedule_reminders", label: "日程", hint: "上课、作业截止" },
   { key: "chat_messages", label: "消息" },
+  { key: "action_updates", label: "行动执行" },
   { key: "trust_updates", label: "信任" },
   { key: "competition_deadlines", label: "赛事截止" },
 ];
@@ -1305,6 +1314,7 @@ const LOCAL_SYSTEM_SETTING_LABELS: Record<string, string> = {
 export function NotificationSettingsScreen() {
   const { repos } = useApp();
   const [value, setValue] = useState<NotificationPreferences | null>(null);
+  const [inbox, setInbox] = useState<InboxNotification[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -1312,7 +1322,12 @@ export function NotificationSettingsScreen() {
   async function load() {
     setLoading(true);
     try {
-      setValue(await repos.profile.notificationPreferences());
+      const [prefs, items] = await Promise.all([
+        repos.profile.notificationPreferences(),
+        repos.profile.listNotifications().catch(() => [] as InboxNotification[]),
+      ]);
+      setValue(prefs);
+      setInbox(items);
       setError(null);
     } catch (e) {
       setError(e instanceof Error ? e.message : "加载失败");
@@ -1344,11 +1359,19 @@ export function NotificationSettingsScreen() {
     }
   }
 
+  const visibleInbox = useMemo(
+    () =>
+      inbox.filter((item) =>
+        categoryEnabled(value?.categories, item.category),
+      ),
+    [inbox, value],
+  );
+
   return (
     <SettingsScaffold
       id="screen-M7-notification-settings"
-      title="通知偏好"
-      eyebrow="跨设备同步"
+      title="通知"
+      eyebrow="提醒与日历"
     >
       {loading || !value ? (
         <Card>
@@ -1381,12 +1404,13 @@ export function NotificationSettingsScreen() {
             />
           </Card>
 
-          <Section title="分类提醒" />
+          <Section title="看哪些提醒" />
           <Card tight>
             {NOTIFICATION_CATEGORIES.map((cat) => (
               <Row
                 key={cat.key}
                 title={cat.label}
+                sub={cat.hint}
                 right={
                   <Switch
                     on={value.categories?.[cat.key] !== false}
@@ -1401,6 +1425,31 @@ export function NotificationSettingsScreen() {
               />
             ))}
           </Card>
+          <Note>关掉的分类不会推送，也不会出现在下面的列表里。保存后同步到其他设备。</Note>
+
+          <Section title="最近提醒" />
+          {visibleInbox.length === 0 ? (
+            <Card>
+              <StateView
+                kind="empty"
+                message="打开上面的分类，这里会列出成局、日程和消息提醒。"
+              />
+            </Card>
+          ) : (
+            <Card tight>
+              {visibleInbox.map((item) => {
+                const path = pathFromNotification(item);
+                return (
+                  <Row
+                    key={item.id}
+                    title={notificationSummary(item.payload, item.title)}
+                    sub={`${categoryLabel(item.category)} · ${relativeTimeLabel(item.created_at)}`}
+                    to={path ?? undefined}
+                  />
+                );
+              })}
+            </Card>
+          )}
 
           <Section title="只在本机系统管理" />
           <Card>

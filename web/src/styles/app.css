@@ -157,6 +157,17 @@ img { display: block; }
   min-height: 48px;
 }
 .tab-item svg { width: 25px; height: 25px; }
+.tab-icon-wrap { position: relative; display: grid; place-items: center; }
+.tab-unread {
+  position: absolute;
+  top: -1px;
+  right: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e24b4a;
+  border: 1.5px solid var(--card);
+}
 .tab-item.active { color: var(--ink); }
 .tab-item.active .tab-dot { opacity: 1; }
 .tab-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--yolk); opacity: 0; }
@@ -198,6 +209,85 @@ img { display: block; }
 }
 .om-card.tight { padding: var(--sp-3); }
 .om-card.flat { background: transparent; }
+
+@property --hot-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* 「很适合你 + 正好差一个」：客户端跑马灯灯环，蛋黄是唯一强调。 */
+.om-card.hot-seat {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  border-color: color-mix(in oklch, var(--ink) 16%, var(--yolk));
+}
+.om-card.hot-seat::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: calc(var(--r-lg) + 3px);
+  padding: 2px;
+  background: conic-gradient(
+    from var(--hot-angle),
+    transparent 0deg,
+    transparent 220deg,
+    color-mix(in oklch, var(--yolk) 18%, transparent) 250deg,
+    var(--yolk) 292deg,
+    var(--card) 312deg,
+    var(--yolk) 332deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: hot-seat-spin 2.2s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+.om-card.hot-seat > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hot-seat-inline {
+  position: relative;
+  isolation: isolate;
+  border-radius: var(--r-md);
+  margin: 0 -8px;
+  padding: 6px 8px;
+}
+.hot-seat-inline::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--hot-angle),
+    transparent 0deg,
+    transparent 220deg,
+    color-mix(in oklch, var(--yolk) 18%, transparent) 250deg,
+    var(--yolk) 292deg,
+    var(--card) 312deg,
+    var(--yolk) 332deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: hot-seat-spin 2.4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes hot-seat-spin {
+  to { --hot-angle: 360deg; }
+}
 
 .om-section {
   font-size: var(--fs-footnote);
@@ -792,4 +882,9 @@ textarea.om-input { padding: var(--sp-3) var(--sp-4); min-height: 96px; resize: 
 
 @media (prefers-reduced-motion: reduce) {
   .seat.gap .seat-dot, .seat-strip .s.gap { animation: none; }
+  .om-card.hot-seat::before,
+  .hot-seat-inline::before {
+    animation: none;
+    --hot-angle: 42deg;
+  }
 }

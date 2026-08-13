@@ -301,9 +301,20 @@ export function TodayScreen() {
 
 export function HermesAskScreen() {
   const { repos } = useApp();
+  const nav = useNavigate();
   const [q, setQ] = useState("");
   const [answer, setAnswer] = useState<string | null>(null);
+  const [peers, setPeers] = useState<
+    Array<{
+      user_id: string;
+      display_name: string;
+      persona_label?: string | null;
+      reason: string;
+      overlap: string;
+    }>
+  >([]);
   const [busy, setBusy] = useState(false);
+  const [startingPeer, setStartingPeer] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   async function ask(text = q) {
@@ -313,15 +324,42 @@ export function HermesAskScreen() {
     setError(null);
     try {
       const res = await repos.hermes.ask(value);
+      const data = res.data ?? {};
       setAnswer(
-        String(res.answer ?? res.text ?? res.message ?? `${AppBrand.agentName} 没有返回文案`),
+        String(
+          data.message ??
+            res.answer ??
+            res.text ??
+            res.message ??
+            `${AppBrand.agentName} 没有返回文案`,
+        ),
       );
+      setPeers(Array.isArray(data.peers) ? data.peers : []);
       setQ(value);
     } catch (e) {
       setError(e instanceof Error ? e.message : "提问失败");
       setAnswer(null);
+      setPeers([]);
     } finally {
       setBusy(false);
+    }
+  }
+
+  async function startChat(peer: (typeof peers)[number]) {
+    if (startingPeer) return;
+    setStartingPeer(peer.user_id);
+    setError(null);
+    try {
+      const opened = await repos.hermes.startPeerChat({
+        peer_user_id: peer.user_id,
+        reason: peer.reason,
+        overlap: peer.overlap,
+      });
+      nav(`/channel/${opened.channel_id}`);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "发起聊天失败");
+    } finally {
+      setStartingPeer(null);
     }
   }
 
@@ -330,7 +368,7 @@ export function HermesAskScreen() {
       <NavBar title={AppBrand.agentName} backTo="/today" />
       <Scroll>
         <div className="center mt-3">
-          <LuluMark placement="header" caption="课表、场地、班车、活动都行" />
+          <LuluMark placement="header" caption="课表、场地、同课/同时段的人" />
         </div>
         <Card className="mt-4">
           <textarea
@@ -349,7 +387,7 @@ export function HermesAskScreen() {
           </Btn>
         </Card>
         <div className="flex wrap mt-3">
-          {["今天有什么课", "今晚羽毛球场", "下一班校车"].map((c) => (
+          {["按我的画像推荐公选", "还有谁也选了机器学习？", "还有谁也约了羽毛球？"].map((c) => (
             <Chip key={c} kind="soft" onClick={() => void ask(c)}>
               {c}
             </Chip>
@@ -363,10 +401,33 @@ export function HermesAskScreen() {
         {answer ? (
           <Card className="mt-3" data-od-id="hermes-answer">
             <div className="t-t3">{AppBrand.agentName}</div>
-            <div className="t-call mt-2">{answer}</div>
+            <div className="t-call mt-2" style={{ whiteSpace: "pre-wrap" }}>
+              {answer}
+            </div>
           </Card>
         ) : null}
-        <Note>{AppBrand.agentName} 只读校园事实，不会替你报名或付款。</Note>
+        {peers.length > 0 ? (
+          <Card className="mt-3" data-od-id="hermes-peers">
+            <div className="t-t3">可能合得来的人</div>
+            {peers.map((peer) => (
+              <div key={peer.user_id} className="mt-3">
+                <div className="t-call">
+                  {peer.display_name}
+                  {peer.persona_label ? ` · ${peer.persona_label}` : ""}
+                </div>
+                <div className="t-cap mt-1">{peer.reason}</div>
+                <Btn
+                  kind="ghost"
+                  disabled={Boolean(startingPeer)}
+                  onClick={() => void startChat(peer)}
+                >
+                  {startingPeer === peer.user_id ? "正在发起…" : "一键发起聊天"}
+                </Btn>
+              </div>
+            ))}
+          </Card>
+        ) : null}
+        <Note>{AppBrand.agentName} 只读校园事实，预约仍需你在 App 里确认。</Note>
       </Scroll>
     </Screen>
   );
@@ -850,7 +911,7 @@ export function ResearchScreen() {
           return [
             {
               title: `${AppBrand.agentName} 摘要`,
-              summary: ans.answer ?? ans.text ?? "无摘要",
+              summary: ans.data?.message ?? ans.answer ?? ans.text ?? "无摘要",
             },
           ];
         } catch {
@@ -877,7 +938,7 @@ export function TransitScreen() {
           return [
             {
               title: "班车与节次",
-              summary: ans.answer ?? ans.text ?? "暂无数据",
+              summary: ans.data?.message ?? ans.answer ?? ans.text ?? "暂无数据",
             },
           ];
         } catch {

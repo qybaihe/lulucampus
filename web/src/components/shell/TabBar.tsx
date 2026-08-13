@@ -1,5 +1,8 @@
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useApp } from "../../app/AppContext";
 import { FIVE_TAB_LABELS, TAB_ROOTS, type TabId } from "../../core/routing/formalNodes";
+import { attentionItems } from "../../core/today/attention";
 import { Icon } from "../ui/primitives";
 
 const TAB_ORDER: TabId[] = [
@@ -18,6 +21,28 @@ const ICONS: Record<Exclude<TabId, "create">, string> = {
 };
 
 export function TabBar() {
+  const { repos, sessionState } = useApp();
+  const [hasAttention, setHasAttention] = useState(false);
+
+  useEffect(() => {
+    if (sessionState.status !== "authenticated") {
+      setHasAttention(false);
+      return;
+    }
+    let cancelled = false;
+    repos.today
+      .summary()
+      .then((summary) => {
+        if (!cancelled) setHasAttention(attentionItems(summary.pending).length > 0);
+      })
+      .catch(() => {
+        if (!cancelled) setHasAttention(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [repos, sessionState]);
+
   return (
     <nav className="tabbar" data-od-id="tabbar" aria-label="主导航">
       {TAB_ORDER.map((id) => {
@@ -49,7 +74,12 @@ export function TabBar() {
             data-tab={id}
             end={id === "today" || id === "me"}
           >
-            <Icon name={ICONS[id]} size={24} />
+            <span className="tab-icon-wrap">
+              <Icon name={ICONS[id]} size={24} />
+              {id === "messages" && hasAttention ? (
+                <span className="tab-unread" aria-label="有待处理提醒" />
+              ) : null}
+            </span>
             <span>{tab.label}</span>
             <span className="tab-dot" />
           </NavLink>

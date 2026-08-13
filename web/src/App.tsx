@@ -31,6 +31,7 @@ import {
 import {
   CompetitionDetailScreen,
   CompetitionTableScreen,
+  CompetitionTeamDetailScreen,
   CompetitionsScreen,
 } from "./screens/competitions/CompetitionsScreens";
 import {
@@ -206,6 +207,10 @@ export default function App() {
           <Route
             path="/competition/:competitionId/table"
             element={<CompetitionTableScreen />}
+          />
+          <Route
+            path="/competition/:competitionId/team/:teamId"
+            element={<CompetitionTeamDetailScreen />}
           />
 
           <Route path="/intent" element={<IntentComposerScreen />} />

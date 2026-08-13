@@ -185,6 +185,7 @@ describe("screen coverage vs SCREEN_MAP production surfaces", () => {
   it("Hermes and campus tools call real repository endpoints", () => {
     expect(todaySource.includes("repos.hermes.ask")).toBe(true);
     expect(reposSource.includes('"/hermes/ask"')).toBe(true);
+    expect(reposSource.includes('"/hermes/peers/start"')).toBe(true);
     expect(todaySource.includes("repos.campus.assignments") || todaySource.includes("campus.assignments")).toBe(
       true,
     );

@@ -7,6 +7,7 @@ import {
   type MessagePayload,
   type RelationSummary,
 } from "../../core/api/repositories";
+import { attentionItems, pathFromAttentionLink, type AttentionItem } from "../../core/today/attention";
 import { openChannelSocket, type ChannelSocketHandle } from "../../core/api/ws";
 import {
   Btn,
@@ -26,14 +27,19 @@ export function MessagesScreen() {
   const { repos } = useApp();
   const nav = useNavigate();
   const [items, setItems] = useState<RelationSummary[]>([]);
+  const [attention, setAttention] = useState<AttentionItem[]>([]);
   const [phase, setPhase] = useState<"loading" | "loaded" | "failed">("loading");
   const [error, setError] = useState<string | null>(null);
 
   async function load() {
     setPhase("loading");
     try {
-      const raw = await repos.relations.list();
+      const [raw, summary] = await Promise.all([
+        repos.relations.list(),
+        repos.today.summary().catch(() => null),
+      ]);
       setItems(asList(raw));
+      setAttention(attentionItems(summary?.pending));
       setPhase("loaded");
     } catch (e) {
       setError(e instanceof Error ? e.message : "加载失败");
@@ -65,10 +71,28 @@ export function MessagesScreen() {
             />
           </Card>
         ) : null}
-        {phase === "loaded" && items.length === 0 ? (
+        {phase === "loaded" && items.length === 0 && attention.length === 0 ? (
           <Card>
             <StateView kind="empty" message="只有已成局的人会出现在这里。" />
           </Card>
+        ) : null}
+        {phase === "loaded" && attention.length > 0 ? (
+          <>
+            <div className="t-t3 mt-3">需要你处理</div>
+            <Card tight className="mt-2" data-od-id="messages-attention">
+              {attention.map((item) => (
+                <Row
+                  key={item.id}
+                  title={item.title}
+                  sub={item.badge}
+                  onClick={() => {
+                    const path = pathFromAttentionLink(item.deepLink);
+                    if (path) nav(path);
+                  }}
+                />
+              ))}
+            </Card>
+          </>
         ) : null}
         {phase === "loaded" && items.length > 0 ? (
           <Card tight>
@@ -221,7 +245,11 @@ function MessageBubble({
     return <SystemGatheringCard content={message.content ?? "成局卡"} />;
   }
   const isAzou = message.sender_type === "azou";
-  const senderLabel = isMe ? null : isAzou ? "噜噜" : "同学";
+  const senderLabel = isMe
+    ? null
+    : isAzou
+      ? "噜噜"
+      : message.sender_display_name || "同学";
   return (
     <div className={`bubble-group ${isMe ? "me" : ""}`}>
       {senderLabel ? <span className="bubble-sender">{senderLabel}</span> : null}
