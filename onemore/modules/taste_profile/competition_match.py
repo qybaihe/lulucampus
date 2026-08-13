@@ -136,6 +136,8 @@ def score_competition(persona: dict[str, Any] | None, competition: dict[str, Any
         "taste_fit_label": None,
         "taste_fit_reasons": [],
         "recruit_hints": [],
+        "recruit_gap_count": 0,
+        "recruit_gap_labels": [],
     }
     if not persona:
         return empty
@@ -194,13 +196,13 @@ def score_competition(persona: dict[str, Any] | None, competition: dict[str, Any
         label = "和你有点像"
 
     missing = [key for key in required if key not in covered]
+    gap_labels = [SKILL_LABELS.get(key, key) for key in missing[:3]]
     hints: list[str] = []
     if missing:
-        names = [SKILL_LABELS.get(key, key) for key in missing[:3]]
-        if len(names) == 1:
-            hints.append(f"组队时建议再找会{names[0]}的人")
+        if len(gap_labels) == 1:
+            hints.append(f"组队时建议再找会{gap_labels[0]}的人")
         else:
-            hints.append(f"组队时建议补上：{'、'.join(names)}")
+            hints.append(f"组队时建议补上：{'、'.join(gap_labels)}")
     elif required:
         hints.append("你的兴趣已经覆盖这赛的核心角色，找作息相近的人即可")
     for hint in (persona.get("matching_hints") or [])[:1]:
@@ -213,6 +215,8 @@ def score_competition(persona: dict[str, Any] | None, competition: dict[str, Any
         "taste_fit_label": label,
         "taste_fit_reasons": reasons[:3],
         "recruit_hints": hints[:3],
+        "recruit_gap_count": len(missing),
+        "recruit_gap_labels": gap_labels,
     }
 
 

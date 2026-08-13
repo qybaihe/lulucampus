@@ -619,12 +619,32 @@ def _action_id(db: Session, gathering_id: str) -> str | None:
     )
 
 
+_ROLE_LABELS = {
+    "frontend": "前端",
+    "backend": "后端",
+    "design": "设计",
+    "visual_design": "视觉",
+    "product": "产品",
+    "data_analysis": "数据分析",
+    "machine_learning": "机器学习",
+    "algorithm": "算法",
+    "presentation": "路演",
+    "writing": "文案",
+    "paper_writing": "写作",
+    "research": "调研",
+    "video": "视频",
+    "operations": "运营",
+    "business_analysis": "商业分析",
+    "modeling": "建模",
+    "programming": "编程",
+}
+
+
 def _looking_for_labels(db: Session, role_keys: list[str]) -> list[str]:
     """Identity-free recruit copy: capability labels the table still needs."""
     if not role_keys:
         return []
     from onemore.db.models import CapabilityTag
-    from onemore.modules.taste_profile.competition_match import SKILL_LABELS
 
     rows = {
         row.key: row.label
@@ -632,12 +652,50 @@ def _looking_for_labels(db: Session, role_keys: list[str]) -> list[str]:
     }
     labels: list[str] = []
     for key in role_keys:
-        label = rows.get(key) or SKILL_LABELS.get(key) or key
+        mapped = _ROLE_LABELS.get(key)
+        label = rows.get(key) or mapped or key
         if label.startswith("taste:"):
             continue
+        if mapped and label.isascii():
+            label = mapped
         if label and label not in labels:
             labels.append(label)
     return labels[:6]
+
+
+def _filled_role_labels(db: Session, members: list[GatheringMember]) -> list[str]:
+    ordered = sorted(
+        members,
+        key=lambda item: (0 if item.joined_via == "owner" else 1, item.id),
+    )
+    return _looking_for_labels(
+        db,
+        [item.role for item in ordered if (item.role or "").strip()],
+    )
+
+
+def _roster_highlights(db: Session, gathering: Gathering, members: list[GatheringMember]) -> list[str]:
+    """Anonymous table flavor: experience and mode, never names or colleges."""
+    from onemore.db.models import TrustProfile
+
+    highlights: list[str] = []
+    trust = db.get(TrustProfile, gathering.owner_user_id)
+    if trust is not None:
+        completed = int(trust.completed_gatherings or 0)
+        initiated = int(trust.initiated_gatherings or 0)
+        if trust.level in {TrustLevel.T3.value, TrustLevel.T4.value} or completed >= 6:
+            highlights.append("高手带队")
+        elif completed >= 3 or initiated >= 1:
+            highlights.append("有人带过队")
+        if completed >= 3 and float(trust.on_time_confirm_rate or 0) >= 0.95:
+            highlights.append("到场稳")
+    if gathering.mode == "complementary":
+        highlights.append("按角色互补")
+    seen: list[str] = []
+    for item in highlights:
+        if item not in seen:
+            seen.append(item)
+    return seen[:3]
 
 
 def to_view(db: Session, gathering: Gathering, viewer_id: str | None) -> dict:
@@ -707,6 +765,12 @@ def to_view(db: Session, gathering: Gathering, viewer_id: str | None) -> dict:
         "required_roles": gathering.required_roles,
         "match_reason": gathering.match_reason if member and visible_counts else None,
         "looking_for": _looking_for_labels(db, gathering.required_roles or []),
+        "filled_roles": _filled_role_labels(db, members),
+        "roster_highlights": (
+            _roster_highlights(db, gathering, members)
+            if gathering.status == GatheringStatus.POOLING.value
+            else []
+        ),
         "my_confirmation": member.confirmation_status if member else None,
         "confirmed_count": (
             sum(item.confirmation_status == ConfirmationStatus.CONFIRMED.value for item in members)
@@ -1070,9 +1134,7 @@ def join(
             current for item in members if (current := db.get(User, item.user_id)) is not None
         ]
         if len(member_users) != len(members) or any(
-            not current.social_enabled
-            or gathering.min_size < current.minimum_group_size
-            for current in member_users
+            not current.social_enabled for current in member_users
         ):
             raise ConflictError(
                 "GATHERING_PRIVACY_CHANGED",
@@ -2631,7 +2693,9 @@ def icebreaker_view(db: Session, gathering_id: str, user_id: str) -> dict:
         f"地点：{gathering.location}" if gathering.location else "还没定地点，先在群里定个碰头点"
     )
     if gathering.required_roles:
-        checklist.append(f"待认领角色：{'、'.join(gathering.required_roles)}")
+        role_labels = _looking_for_labels(db, gathering.required_roles)
+        if role_labels:
+            checklist.append(f"待认领角色：{'、'.join(role_labels)}")
 
     return {
         "gathering_id": gathering.id,

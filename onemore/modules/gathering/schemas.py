@@ -63,6 +63,8 @@ class GatheringView(APIModel):
     required_roles: list[str]
     match_reason: str | None = None
     looking_for: list[str] = Field(default_factory=list)
+    filled_roles: list[str] = Field(default_factory=list)
+    roster_highlights: list[str] = Field(default_factory=list)
     my_confirmation: str | None = None
     confirmed_count: int | None = None
     member_count: int | None = None

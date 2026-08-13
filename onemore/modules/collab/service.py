@@ -277,9 +277,41 @@ def generate_opener(db: Session, gathering_id: str) -> str:
     if gathering is None:
         raise NotFoundError("局", gathering_id)
     context = recall_for_opener(db, gathering_id)
-    common = context.get("common_grounds", [])
-    common_text = f"你们的共同点是：{'、'.join(common)}。" if common else "你们有兼容的时间和目标。"
-    return f"{common_text}第一次先确认目标、分工与下一步即可。"
+    return _lulu_opener(gathering, context.get("common_grounds") or [])
+
+
+def _lulu_opener(gathering: Gathering, common: list[str]) -> str:
+    """水豚噜噜进群只说一句：圆、慢半拍、把人交给彼此，然后趴下。"""
+
+    kind = gathering.gathering_type or ""
+    course = next((item for item in common if item.startswith("同上")), None)
+    prior = any("共同经历" in item for item in common)
+    if course:
+        head = f"咦，你们{course}。"
+    elif prior:
+        head = "你们好像一起做过几回了。"
+    elif kind in {"看展", "活动同行", "讲座"}:
+        head = "人凑齐啦。"
+    elif kind in {"羽毛球", "运动搭子"}:
+        head = "场对上了。"
+    elif kind in {"比赛组队", "项目组队"}:
+        head = "缺口补上了。"
+    elif kind in {"DDL冲刺", "自习搭子"}:
+        head = "座位凑齐了。"
+    else:
+        head = "局成了。"
+    exits = {
+        "看展": "到了门口挥一下就认得，我去旁边趴会儿。",
+        "活动同行": "到了门口挥一下就认得，我去旁边趴会儿。",
+        "讲座": "门口见就行，我去外面晒太阳。",
+        "羽毛球": "到了说一声，我就不跟着满场跑了。",
+        "运动搭子": "到了说一声，我就不跟着满场跑了。",
+        "比赛组队": "先对一下谁干什么就行，剩下的交给你们。",
+        "项目组队": "先对一下谁干什么就行，剩下的交给你们。",
+        "DDL冲刺": "各自赶就行，我去角落睡觉。",
+        "自习搭子": "各自赶就行，我去角落睡觉。",
+    }
+    return head + exits.get(kind, "时间地点在上面那张卡里，剩下的交给你们。")
 
 
 def require_channel_member(db: Session, channel_id: str, user_id: str) -> Channel:
@@ -392,7 +424,7 @@ def prepare_message_content(
     raise AppError("MESSAGE_PAYLOAD_INVALID", "消息载荷无效", 422)
 
 
-def message_view_data(message: Message) -> dict:
+def message_view_data(message: Message, db: Session | None = None) -> dict:
     data = {
         "id": message.id,
         "channel_id": message.channel_id,
@@ -403,6 +435,7 @@ def message_view_data(message: Message) -> dict:
         "image": None,
         "location": None,
         "sent_at": message.sent_at,
+        "sender_display_name": None,
     }
     if message.content_type == "text":
         data["content"] = message.content
@@ -411,7 +444,31 @@ def message_view_data(message: Message) -> dict:
             data[message.content_type] = json.loads(message.content)
         except json.JSONDecodeError:
             data["content"] = message.content
+    if db is not None:
+        data["sender_display_name"] = _visible_sender_name(db, message)
     return data
+
+
+def _visible_sender_name(db: Session, message: Message) -> str | None:
+    if message.sender_type != "human":
+        return None
+    from onemore.modules.gathering.service import IDENTITY_VISIBLE_STATES
+
+    user = db.get(User, message.sender_id)
+    name = user.display_name if user else None
+    if not name:
+        return None
+    channel = db.get(Channel, message.channel_id)
+    if channel is None:
+        return None
+    if channel.relation_id:
+        return name
+    if not channel.gathering_id:
+        return None
+    gathering = db.get(Gathering, channel.gathering_id)
+    if gathering is None or gathering.status not in IDENTITY_VISIBLE_STATES:
+        return None
+    return name
 
 
 def list_messages(
@@ -491,8 +548,8 @@ def exit_protocol(db: Session, gathering_id: str) -> Message:
         sender_type="azou",
         content_type="text",
         content=(
-            f"{gathering.location or '集合地点'}已确认。第一次建议先确认目标和分工。"
-            "剩下的交给你们，我只在提醒、改约、补位或被 @ 时再出现。"
+            f"{gathering.location or '集合地点'}定好了。"
+            "剩下的交给你们，改约或补位再叫我。"
         ),
     )
     db.add(message)

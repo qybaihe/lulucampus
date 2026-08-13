@@ -26,12 +26,17 @@ from onemore.modules.collab.schemas import (
     SharedGoalView,
 )
 from onemore.modules.gathering import service as gathering_service
+from onemore.modules.cast_driver.reactive_chat import (
+    catch_up_if_needed,
+    schedule_cast_replies,
+    should_schedule,
+)
 
 router = APIRouter(tags=["collab"])
 
 
-def _message_view(message) -> MessageView:
-    return MessageView.model_validate(service.message_view_data(message))
+def _message_view(message, db=None) -> MessageView:
+    return MessageView.model_validate(service.message_view_data(message, db=db))
 
 
 async def _broadcast_authorized(channel_id: str, payload: dict) -> None:
@@ -41,7 +46,7 @@ async def _broadcast_authorized(channel_id: str, payload: dict) -> None:
 
 
 @router.get("/channels/{channel_id}/messages", response_model=APIResponse[list[MessageView]])
-def channel_messages(
+async def channel_messages(
     channel_id: str,
     before: datetime | None = Query(default=None),
     limit: int = Query(default=50, ge=1, le=100),
@@ -49,7 +54,8 @@ def channel_messages(
     db: Session = Depends(get_db),
 ) -> APIResponse[list[MessageView]]:
     items = service.list_messages(db, channel_id, user.id, before=before, limit=limit)
-    return APIResponse(data=[_message_view(item) for item in items])
+    catch_up_if_needed(channel_id)
+    return APIResponse(data=[_message_view(item, db) for item in items])
 
 
 @router.get(
@@ -81,8 +87,10 @@ async def post_channel_message(
 ) -> APIResponse[MessageView]:
     content = service.prepare_message_content(db, channel_id, user.id, body)
     message = service.send_message(db, channel_id, user.id, content, body.content_type)
-    view = _message_view(message)
+    view = _message_view(message, db)
     await _broadcast_authorized(channel_id, view.model_dump(mode="json"))
+    if should_schedule(user.id, body.content_type):
+        schedule_cast_replies(channel_id, message.id, user.id)
     return APIResponse(data=view)
 
 
@@ -97,7 +105,7 @@ async def mention_azou(
     db: Session = Depends(get_db),
 ) -> APIResponse[MentionAzouResult]:
     message, hint = service.mention_azou(db, channel_id, user.id, body.text)
-    view = _message_view(message)
+    view = _message_view(message, db)
     await _broadcast_authorized(channel_id, view.model_dump(mode="json"))
     return APIResponse(data=MentionAzouResult(message=view, action_hint=hint))
 
@@ -165,11 +173,13 @@ async def channel_socket(websocket: WebSocket, channel_id: str):
                     message = service.send_message(
                         db, channel_id, user_id, content, body.content_type
                     )
-                    view = _message_view(message)
+                    view = _message_view(message, db)
             except AppError:
                 await websocket.close(code=4403)
                 break
             await _broadcast_authorized(channel_id, view.model_dump(mode="json"))
+            if should_schedule(user_id, body.content_type):
+                schedule_cast_replies(channel_id, view.id, user_id)
     except WebSocketDisconnect:
         hub.disconnect(channel_id, websocket)
 

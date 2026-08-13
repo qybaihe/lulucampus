@@ -61,6 +61,7 @@ class MessageView(APIModel):
     image: ImageMessagePayload | None = None
     location: LocationMessagePayload | None = None
     sent_at: datetime
+    sender_display_name: str | None = None
 
 
 class MentionAzouRequest(APIModel):

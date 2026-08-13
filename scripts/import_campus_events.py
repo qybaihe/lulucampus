@@ -25,9 +25,20 @@ from onemore.core.database import SessionLocal  # noqa: E402
 from onemore.db.models import ExternalEvent  # noqa: E402
 
 ALLOWED_SOURCES = frozenset(
-    {"讲座", "演出", "赛事", "社团", "招新", "宣讲会", "招聘会", "其他"}
+    {"讲座", "演出", "赛事", "社团", "招新", "宣讲", "宣讲会", "招聘", "招聘会", "其他"}
 )
-DEMO_EXTERNAL_KEYS = frozenset({"demo-teachin-1", "demo-seminar-1"})
+DEMO_EXTERNAL_KEYS = frozenset(
+    {
+        "demo-teachin-1",
+        "demo-seminar-1",
+        "demo-club-dance-1",
+        "demo-club-photo-1",
+        "demo-club-recruit-1",
+        "demo-club-drama-1",
+        "demo-club-frisbee-1",
+        "demo-talk-baoyan-1",
+    }
+)
 
 
 def _to_naive_utc(value: str | None) -> datetime | None:

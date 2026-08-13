@@ -158,12 +158,15 @@ def _entry_dict(
     }
 
 
-def _iter_meeting_entries(db: Session, user_id: str):
-    rows = db.execute(
+def iter_current_meetings(db: Session, user_id: str | None = None):
+    query = (
         select(Enrollment, Course)
         .join(Course, Course.id == Enrollment.course_id)
-        .where(Enrollment.user_id == user_id, Enrollment.status == "current")
-    ).all()
+        .where(Enrollment.status == "current")
+    )
+    if user_id is not None:
+        query = query.where(Enrollment.user_id == user_id)
+    rows = db.execute(query).all()
     for enrollment, course in rows:
         for meeting in enrollment.meeting_windows or []:
             if not isinstance(meeting, dict):
@@ -178,6 +181,10 @@ def _iter_meeting_entries(db: Session, user_id: str):
             except ValueError:
                 continue
             yield enrollment, course, meeting, start_at, end_at
+
+
+def _iter_meeting_entries(db: Session, user_id: str):
+    yield from iter_current_meetings(db, user_id)
 
 
 def timetable_entries(db: Session, user_id: str, week: int) -> list[dict]:

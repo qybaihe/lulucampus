@@ -152,6 +152,7 @@ class User(TimestampMixin, Base):
             "chat_messages": True,
             "trust_updates": True,
             "competition_deadlines": True,
+            "schedule_reminders": True,
         },
     )
     identity_disclosure: Mapped[str] = mapped_column(String(32), default="after_confirmed")
