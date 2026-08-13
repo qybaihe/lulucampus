@@ -99,6 +99,9 @@ class Settings(BaseSettings):
     taste_llm_model: str = "deepseek-v4-flash"
     taste_llm_api_key: str = ""
     taste_llm_timeout_seconds: float = 45.0
+    # Real testers speaking in a gathering chat get one in-character reply
+    # from a seeded cast member. Independent of ONEMORE_CAST_DRIVER_ENABLED.
+    cast_reactive_chat_enabled: bool = True
 
     # Hermes Agent sidecar (LLM tool loop). Rule compiler remains the fallback.
     hermes_agent_mode: Literal["off", "sidecar"] = "sidecar"

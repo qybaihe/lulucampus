@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -22,6 +23,7 @@ from onemore.db.models import (
     Assignment,
     AuthorizationGrant,
     CapabilityTag,
+    CompetitionEvent,
     Course,
     Enrollment,
     ExternalEvent,
@@ -41,6 +43,8 @@ from onemore.db.models import (
     User,
 )
 from onemore.modules.competitions.service import ingest_snapshot_path
+
+_SHANGHAI = ZoneInfo("Asia/Shanghai")
 
 CAPABILITY_TAGS = [
     ("backend", "后端开发", "computer_science"),
@@ -88,14 +92,37 @@ def seed_reference_data(db: Session) -> None:
     db.commit()
 
 
+def _as_shanghai(now: datetime) -> datetime:
+    if now.tzinfo is None:
+        now = now.replace(tzinfo=UTC)
+    return now.astimezone(_SHANGHAI)
+
+
 def _next_weekday(now: datetime, weekday: int, hour: int) -> datetime:
-    days = (weekday - now.weekday()) % 7
-    candidate = (now + timedelta(days=days)).replace(
+    local = _as_shanghai(now)
+    days = (weekday - local.weekday()) % 7
+    candidate = (local + timedelta(days=days)).replace(
         hour=hour, minute=0, second=0, microsecond=0
     )
-    if candidate <= now:
+    if candidate <= local:
         candidate += timedelta(days=7)
     return candidate
+
+
+def _gathering_bounds(spec: CastGathering, now: datetime) -> tuple[datetime, datetime]:
+    local_now = _as_shanghai(now)
+    if spec.start_days_ago is not None:
+        start_local = (local_now - timedelta(days=spec.start_days_ago)).replace(
+            hour=spec.start_hour, minute=0, second=0, microsecond=0
+        )
+    elif spec.start_weekday is not None:
+        start_local = _next_weekday(local_now, spec.start_weekday, spec.start_hour)
+    else:
+        start_local = (local_now + timedelta(days=2)).replace(
+            hour=spec.start_hour, minute=0, second=0, microsecond=0
+        )
+    start = start_local.astimezone(UTC)
+    return start, start + timedelta(hours=spec.duration_hours)
 
 
 def _ensure_session_health(db: Session, user_id: str, now: datetime) -> None:
@@ -277,24 +304,24 @@ def _seed_taste(db: Session, now: datetime) -> None:
     db.commit()
 
 
-def _gathering_bounds(spec: CastGathering, now: datetime) -> tuple[datetime, datetime]:
-    if spec.start_days_ago is not None:
-        start = (now - timedelta(days=spec.start_days_ago)).replace(
-            hour=spec.start_hour, minute=0, second=0, microsecond=0
-        )
-    elif spec.start_weekday is not None:
-        start = _next_weekday(now, spec.start_weekday, spec.start_hour)
-    else:
-        start = (now + timedelta(days=2)).replace(
-            hour=spec.start_hour, minute=0, second=0, microsecond=0
-        )
-    return start, start + timedelta(hours=spec.duration_hours)
+def _attach_competition_id(db: Session, metadata: dict) -> dict:
+    """把 competition_name 解析成当前快照里的赛事 id，方便 /competitions/{id}/teams 关联。"""
+    name = metadata.get("competition_name")
+    if not name or metadata.get("competition_id"):
+        return dict(metadata)
+    event = db.scalar(select(CompetitionEvent).where(CompetitionEvent.name == name))
+    if event is None:
+        return dict(metadata)
+    attached = dict(metadata)
+    attached["competition_id"] = event.id
+    return attached
 
 
 def _seed_gathering(db: Session, spec: CastGathering, now: datetime) -> Gathering:
     gathering = db.scalar(select(Gathering).where(Gathering.title == spec.title))
     start_at, end_at = _gathering_bounds(spec, now)
     created = gathering is None
+    metadata = _attach_competition_id(db, dict(spec.official_metadata))
     if gathering is None:
         intent = None
         # Pooling gap cards must not enter the matching pool, or test runs
@@ -332,7 +359,7 @@ def _seed_gathering(db: Session, spec: CastGathering, now: datetime) -> Gatherin
             end_at=end_at,
             location=spec.location,
             required_roles=list(spec.required_roles),
-            official_metadata=dict(spec.official_metadata),
+            official_metadata=metadata,
             expires_at=(
                 None
                 if spec.status == GatheringStatus.COMPLETED.value
@@ -354,6 +381,15 @@ def _seed_gathering(db: Session, spec: CastGathering, now: datetime) -> Gatherin
                     completion_confirmed=spec.status == GatheringStatus.COMPLETED.value,
                 )
             )
+    else:
+        gathering.start_at = start_at
+        gathering.end_at = end_at
+        gathering.location = spec.location
+        gathering.required_roles = list(spec.required_roles)
+        if spec.status == GatheringStatus.POOLING.value and gathering.status == GatheringStatus.POOLING.value:
+            gathering.status = spec.status
+            gathering.expires_at = now + timedelta(days=7)
+            gathering.official_metadata = metadata
     db.flush()
     if created and spec.messages and spec.status == GatheringStatus.COMPLETED.value:
         from onemore.modules.collab.service import open_gathering_channel
@@ -387,6 +423,10 @@ def seed_demo_data(db: Session, root: Path | None = None) -> None:
     for spec in CAST_USERS:
         init_profile(db, spec.id)
     _seed_taste(db, now)
+    from onemore.db.peer_overlap import attach_live_test_users, seed_cast_gym_slots
+
+    seed_cast_gym_slots(db)
+    attach_live_test_users(db)
 
     completed: list[Gathering] = []
     for spec in COMPLETED_GATHERINGS:
@@ -433,22 +473,32 @@ def seed_demo_data(db: Session, root: Path | None = None) -> None:
         )
 
     for event in EXTERNAL_EVENTS:
-        if db.scalar(
-            select(ExternalEvent.id).where(ExternalEvent.external_key == event["external_key"])
-        ):
-            continue
-        db.add(
-            ExternalEvent(
-                source=event["source"],
-                external_key=event["external_key"],
-                title=event["title"],
-                starts_at=now + timedelta(days=event["days"]),
-                ends_at=now + timedelta(days=event["days"], hours=2),
-                location=event["location"],
-                official_url=event["official_url"],
-                details=event["details"],
-            )
+        starts_at = now + timedelta(days=event["days"])
+        ends_at = starts_at + timedelta(hours=2)
+        existing = db.scalar(
+            select(ExternalEvent).where(ExternalEvent.external_key == event["external_key"])
         )
+        if existing is None:
+            db.add(
+                ExternalEvent(
+                    source=event["source"],
+                    external_key=event["external_key"],
+                    title=event["title"],
+                    starts_at=starts_at,
+                    ends_at=ends_at,
+                    location=event["location"],
+                    official_url=event["official_url"],
+                    details=event["details"],
+                )
+            )
+            continue
+        existing.source = event["source"]
+        existing.title = event["title"]
+        existing.starts_at = starts_at
+        existing.ends_at = ends_at
+        existing.location = event["location"]
+        existing.official_url = event["official_url"]
+        existing.details = event["details"]
     db.commit()
     fixture = (root or Path.cwd()) / "fixtures/competition_snapshot_2026-08-11_v1.1.json"
     if fixture.exists():

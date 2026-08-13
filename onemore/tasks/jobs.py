@@ -32,6 +32,7 @@ from onemore.modules.matching.service import run_matching
 from onemore.modules.notify.service import (
     drain_push_outbox,
     push,
+    schedule_campus_reminders,
     schedule_gathering_reminders,
 )
 from onemore.modules.profile.service import init_profile
@@ -86,7 +87,13 @@ def confirmation_timeout() -> dict:
 @celery_app.task(name="onemore.notify.reminders")
 def reminders() -> dict:
     with SessionLocal() as db:
-        return {"sent": schedule_gathering_reminders(db)}
+        gathering = schedule_gathering_reminders(db)
+        campus = schedule_campus_reminders(db)
+        return {
+            "sent": gathering + campus,
+            "gathering": gathering,
+            "campus": campus,
+        }
 
 
 @celery_app.task(name="onemore.notify.deliver_outbox")
@@ -186,6 +193,7 @@ def competition_deadline_reminders() -> dict:
                         "competition_id": competition.id,
                         "deadline": competition.registration_deadline.isoformat(),
                         "deep_link": f"onemore://competition/{competition.id}",
+                        "summary": f"「{competition.name}」报名即将截止",
                     },
                     dedupe_key=f"competition-deadline:{competition.id}",
                 )
