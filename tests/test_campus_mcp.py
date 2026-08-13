@@ -51,6 +51,30 @@ def test_dispatch_preview_does_not_commit(client, auth_headers):
     assert result["data"]["params"]["venue_type"] == "羽毛球"
 
 
+def test_dispatch_gym_book_preview_fills_tonight_basketball(client, auth_headers):
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+
+    today = datetime.now(ZoneInfo("Asia/Shanghai")).date().isoformat()
+    with SessionLocal() as db:
+        token = mint_tool_session(db, "u_demo_1", question="今晚想打篮球帮我预约体育馆")
+        result = dispatch_tool(
+            "gym_book_preview",
+            {"venue_type": "篮球"},
+            tool_session=token,
+            db=db,
+        )
+    assert result["ok"] is True
+    assert result["kind"] == "action_preview"
+    params = result["data"]["params"]
+    assert params["venue_type"] == "篮球"
+    assert params["date"] == today
+    assert params["start"] == "19:00"
+    assert params["end"] == "21:00"
+    assert params["venue"] == "珠海校区"
+    assert "可以约" in (result["data"].get("message") or "")
+
+
 def test_dispatch_timetable_today_fake(client, auth_headers):
     with SessionLocal() as db:
         token = mint_tool_session(db, "u_demo_1", question="今天有什么课")

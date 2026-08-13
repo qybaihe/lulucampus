@@ -154,6 +154,37 @@ def test_overlap_template_badminton_uses_seeded_slots():
     assert all("机器学习" not in (item["reason"] or "") for item in peers)
 
 
+def test_overlap_template_basketball_tonight():
+    with SessionLocal() as db:
+        peers = suggest_peers(db, "u_demo_1", {"question": "今晚有谁也约了篮球？"})
+    gym = [item for item in peers if item["overlap"] == "gym"]
+    names = {item["display_name"] for item in gym}
+    assert {"梁景行", "何屿"} <= names
+    assert all("今晚同一时段也约了篮球" in (item["reason"] or "") for item in gym)
+
+
+def test_hermes_ask_books_basketball_and_attaches_cast_peers(client, auth_headers):
+    response = client.post(
+        "/hermes/ask",
+        headers=auth_headers,
+        json={"text": "今晚想打篮球，帮我预约体育馆，看看有没有人也约了、兴趣相同的"},
+    )
+    assert response.status_code == 200, response.text
+    body = response.json()["data"]
+    assert body["kind"] == "action_preview"
+    assert body["action"] == "gym.book_preview"
+    params = body["data"]["params"]
+    assert params["venue_type"] == "篮球"
+    assert params["start"] == "19:00"
+    assert params["end"] == "21:00"
+    peers = body["data"]["peers"]
+    names = {item["display_name"] for item in peers if item.get("overlap") == "gym"}
+    assert {"梁景行", "何屿"} <= names
+    message = body["data"].get("message") or ""
+    assert "何屿" in message or "梁景行" in message
+    assert "确认后才会真正下单" in message
+
+
 def test_overlap_template_attaches_extra_user():
     from sqlalchemy import select
 

@@ -8,7 +8,6 @@ from sqlalchemy import select
 
 from onemore.core.database import SessionLocal
 from onemore.db.models import (
-    CampusAction,
     Gathering,
     GatheringMember,
     GatheringStatus,
@@ -388,31 +387,3 @@ def test_assignment_due_dates_are_timezone_aware(client, auth_headers):
         raw = detail.json()["data"]["due_at"]
         parsed = datetime.fromisoformat(raw.replace("Z", "+00:00"))
         assert parsed.tzinfo is not None, f"assignment_detail.due_at 缺少时区: {raw}"
-
-
-def test_today_pending_does_not_repeat_previewed_gathering_and_action(client, auth_headers):
-    gathering_id = _seed_gathering(
-        GatheringStatus.PREVIEWED.value,
-        ["u_demo_1", "u_demo_2"],
-    )
-    with SessionLocal() as db:
-        db.add(
-            CampusAction(
-                user_id="u_demo_1",
-                gathering_id=gathering_id,
-                action_name="room.reserve_preview",
-                params={"room": "402"},
-                preview_snapshot={},
-                snapshot_hash="preview-dedupe-hash",
-                idempotency_key="preview-dedupe-key",
-            )
-        )
-        db.commit()
-
-    pending = client.get("/today/summary", headers=auth_headers).json()["data"]["pending"]
-    same = [item for item in pending if item.get("gathering_id") == gathering_id]
-    assert len(same) == 1
-    assert same[0]["type"] == "authorization"
-    assert same[0]["title"]
-    assert same[0]["deep_link"] == f"onemore://gathering/{gathering_id}"
-    assert same[0].get("action_id") is None

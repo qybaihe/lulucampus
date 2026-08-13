@@ -228,3 +228,30 @@ def test_authorization_decline_is_a_real_preview_modification_not_a_stuck_vote(c
         f"/gatherings/{gathering_id}", headers={"X-User-ID": "u_demo_4"}
     ).json()["data"]
     assert gathering["status"] == "Confirmed"
+
+
+def test_overlap_template_authorization_explains_it_is_not_a_booking(client):
+    from onemore.core.database import SessionLocal
+    from onemore.db.models import CampusAction
+
+    with SessionLocal() as db:
+        action = CampusAction(
+            user_id="u_demo_1",
+            action_name="gym.book_preview",
+            params={"venue_type": "羽毛球", "venue": "南校园"},
+            preview_snapshot={"source": "peer_overlap_template"},
+            snapshot_hash="d" * 64,
+            idempotency_key="overlap-auth-not-booking",
+        )
+        db.add(action)
+        db.commit()
+        action_id = action.id
+        snapshot_hash = action.snapshot_hash
+    response = client.post(
+        f"/actions/{action_id}/authorization",
+        headers={"X-User-ID": "u_demo_1"},
+        json={"authorized": True, "snapshot_hash": snapshot_hash},
+    )
+    assert response.status_code == 409, response.text
+    assert response.json()["error"]["code"] == "ACTION_NOT_AUTHORIZABLE"
+    assert "时段参考" in response.json()["error"]["message"]
