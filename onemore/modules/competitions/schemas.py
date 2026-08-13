@@ -145,6 +145,8 @@ class CompetitionView(APIModel):
     taste_fit_label: str | None = None
     taste_fit_reasons: list[str] = Field(default_factory=list)
     recruit_hints: list[str] = Field(default_factory=list)
+    recruit_gap_count: int = 0
+    recruit_gap_labels: list[str] = Field(default_factory=list)
 
 
 class IngestResult(APIModel):
@@ -169,3 +171,8 @@ class CompetitionTeamView(APIModel):
     member_count: int
     required_roles: list[str] = Field(default_factory=list)
     expires_at: datetime | None = None
+    goal: str | None = None
+    missing_count: int = 0
+    missing_roles: list[str] = Field(default_factory=list)
+    filled_roles: list[str] = Field(default_factory=list)
+    roster_highlights: list[str] = Field(default_factory=list)

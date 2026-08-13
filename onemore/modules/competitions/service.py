@@ -4,7 +4,7 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 
-from sqlalchemy import delete, func, or_, select
+from sqlalchemy import delete, or_, select
 from sqlalchemy.orm import Session
 
 from onemore.core.config import get_settings
@@ -299,50 +299,119 @@ def get_actionable(
     return views[0]
 
 
+def _gap_roles(required: list[str], target_size: int, missing_count: int) -> list[str]:
+    """required_roles 既可能是缺口，也可能被写成整支队伍的能力清单。"""
+    if missing_count <= 0 or not required:
+        return []
+    if len(required) <= missing_count:
+        return required
+    if len(required) == target_size:
+        return []
+    return required[:missing_count]
+
+
+def _team_view(db: Session, gathering, members: list) -> dict:
+    from onemore.modules.gathering.service import _filled_role_labels, _roster_highlights
+
+    member_count = len(members)
+    missing_count = max(0, int(gathering.target_size or 0) - member_count)
+    missing_roles = _gap_roles(
+        list(gathering.required_roles or []),
+        int(gathering.target_size or 0),
+        missing_count,
+    )
+    return {
+        "id": gathering.id,
+        "title": gathering.title,
+        "gathering_type": gathering.gathering_type,
+        "status": gathering.status,
+        "location": gathering.location,
+        "campus": gathering.campus,
+        "start_at": gathering.start_at,
+        "target_size": gathering.target_size,
+        "member_count": member_count,
+        "required_roles": missing_roles,
+        "expires_at": gathering.expires_at,
+        "goal": gathering.goal,
+        "missing_count": missing_count,
+        "missing_roles": missing_roles,
+        "filled_roles": _filled_role_labels(db, members),
+        "roster_highlights": _roster_highlights(db, gathering, members),
+    }
+
+
+def _gathering_matches_competition(gathering, event, intent_competition_id: str | None) -> bool:
+    meta = gathering.official_metadata or {}
+    if meta.get("competition_id") == event.id:
+        return True
+    if meta.get("competition_name") == event.name:
+        return True
+    return intent_competition_id == event.id
+
+
 def list_teams(db: Session, competition_id: str) -> list[dict]:
-    """招募中的赛事队伍：经 source_intent_id 关联到赛事，只暴露匿名结构
-    （规模 / 池内人数 / 角色缺口），不含任何成员身份。"""
+    """招募中的赛事队伍：IntentCard.competition_id 或局上的赛事 metadata 均可关联。
+    只暴露匿名结构（规模 / 池内人数 / 角色缺口），不含任何成员身份。"""
+    from collections import defaultdict
+
     from onemore.db.models import Gathering, GatheringMember, GatheringStatus, IntentCard
 
+    event = db.get(CompetitionEvent, competition_id)
+    if event is None:
+        return []
+
     now = datetime.now(UTC)
-    rows = list(
+    pooling = list(
         db.scalars(
             select(Gathering)
-            .join(IntentCard, Gathering.source_intent_id == IntentCard.id)
             .where(
-                IntentCard.competition_id == competition_id,
                 Gathering.status == GatheringStatus.POOLING.value,
                 or_(Gathering.expires_at.is_(None), Gathering.expires_at > now),
             )
             .order_by(Gathering.created_at.desc())
         )
     )
-    teams: list[dict] = []
-    for gathering in rows:
-        member_count = db.scalar(
-            select(func.count())
-            .select_from(GatheringMember)
-            .where(
-                GatheringMember.gathering_id == gathering.id,
-                GatheringMember.left_at.is_(None),
-            )
+    intent_ids = [item.source_intent_id for item in pooling if item.source_intent_id]
+    intent_competition = {}
+    if intent_ids:
+        intent_competition = {
+            card.id: card.competition_id
+            for card in db.scalars(select(IntentCard).where(IntentCard.id.in_(intent_ids)))
+        }
+
+    matched = [
+        gathering
+        for gathering in pooling
+        if _gathering_matches_competition(
+            gathering,
+            event,
+            intent_competition.get(gathering.source_intent_id or ""),
         )
-        teams.append(
-            {
-                "id": gathering.id,
-                "title": gathering.title,
-                "gathering_type": gathering.gathering_type,
-                "status": gathering.status,
-                "location": gathering.location,
-                "campus": gathering.campus,
-                "start_at": gathering.start_at,
-                "target_size": gathering.target_size,
-                "member_count": int(member_count or 0),
-                "required_roles": list(gathering.required_roles or []),
-                "expires_at": gathering.expires_at,
-            }
+    ]
+    if not matched:
+        return []
+
+    members_by_gathering: dict[str, list] = defaultdict(list)
+    for member in db.scalars(
+        select(GatheringMember)
+        .where(
+            GatheringMember.gathering_id.in_([item.id for item in matched]),
+            GatheringMember.left_at.is_(None),
         )
-    return teams
+        .order_by(GatheringMember.confirmed_at, GatheringMember.id)
+    ):
+        members_by_gathering[member.gathering_id].append(member)
+    return [
+        _team_view(db, gathering, members_by_gathering[gathering.id])
+        for gathering in matched
+    ]
+
+
+def get_team(db: Session, competition_id: str, team_id: str) -> dict:
+    for item in list_teams(db, competition_id):
+        if item["id"] == team_id:
+            return item
+    raise NotFoundError("赛事队伍", team_id)
 
 
 def expire_sweep(db: Session) -> int:

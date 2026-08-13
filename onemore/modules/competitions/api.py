@@ -93,6 +93,21 @@ def competition_teams(
     )
 
 
+@router.get(
+    "/competitions/{competition_id}/teams/{team_id}",
+    response_model=APIResponse[CompetitionTeamView],
+)
+def competition_team(
+    competition_id: str, team_id: str, db: Session = Depends(get_db)
+) -> APIResponse[CompetitionTeamView]:
+    """单支招募中队伍的匿名详情（几/几、已有角色、还缺什么）。"""
+    return APIResponse(
+        data=CompetitionTeamView.model_validate(
+            service.get_team(db, competition_id, team_id)
+        )
+    )
+
+
 @router.post(
     "/internal/competitions/ingest",
     response_model=APIResponse[IngestResult],
