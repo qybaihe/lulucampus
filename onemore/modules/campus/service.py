@@ -26,7 +26,11 @@ from onemore.db.models import (
 from onemore.hermes.catalog import CATALOG
 from onemore.hermes.schemas import ActionName
 from onemore.modules.actions import service as action_service
-from onemore.modules.campus.schemas import CampusEventCreateRequest, PublicEventView
+from onemore.modules.campus.gym_intent import (
+    infer_gym_book_params,
+    is_gym_booking_intent,
+    gym_preview_message,
+)
 from onemore.modules.trust import service as trust_service
 from onemore.modules.schedule import service as schedule_service
 
@@ -367,34 +371,27 @@ def today_summary(db: Session, user: User) -> dict:
         else datetime.max.replace(tzinfo=UTC)
     )
 
-    pending_ids = {item.id for item in pending}
-    pending_rows = [
-        {
-            "gathering_id": item.id,
-            "type": "confirmation"
-            if item.status == GatheringStatus.TENTATIVE.value
-            else "authorization",
-            "deep_link": f"onemore://gathering/{item.id}",
-            "title": item.title,
-            "from_name": _pending_from_name(db, item.id, user.id),
-        }
-        for item in pending
-    ]
-    for item in actions:
-        if item.gathering_id and item.gathering_id in pending_ids:
-            continue
-        gathering = db.get(Gathering, item.gathering_id) if item.gathering_id else None
-        pending_rows.append(
+    return {
+        "pending": [
+            {
+                "gathering_id": item.id,
+                "type": "confirmation"
+                if item.status == GatheringStatus.TENTATIVE.value
+                else "authorization",
+                "deep_link": f"onemore://gathering/{item.id}",
+                "title": item.title,
+                "from_name": _pending_from_name(db, item.id, user.id),
+            }
+            for item in pending
+        ]
+        + [
             {
                 "action_id": item.id,
-                "gathering_id": item.gathering_id,
                 "type": "authorization",
                 "deep_link": f"onemore://action/{item.id}",
-                "title": gathering.title if gathering is not None else None,
             }
-        )
-    return {
-        "pending": pending_rows,
+            for item in actions
+        ],
         "timeline": timeline,
         "scene_trigger": trigger,
         "generated_at": now,
@@ -438,7 +435,12 @@ def compile_hermes_question(text: str, context: dict) -> tuple[ActionName | None
         if "研讨室" in text:
             return ActionName.ROOM_RESERVE_PREVIEW, context, "action_preview", True
         if any(word in text for word in gym_words):
-            return ActionName.GYM_BOOK_PREVIEW, context, "action_preview", True
+            return (
+                ActionName.GYM_BOOK_PREVIEW,
+                infer_gym_book_params(text, context),
+                "action_preview",
+                True,
+            )
     if any(
         word in text
         for word in (
@@ -483,7 +485,7 @@ def hermes_ask(db: Session, user_id: str, text: str, context: dict) -> dict:
 def hermes_ask_rules(db: Session, user_id: str, text: str, context: dict) -> dict:
     from onemore.modules.campus.peers import looks_like_social_query, suggest_peers
 
-    if looks_like_social_query(text):
+    if looks_like_social_query(text) and not is_gym_booking_intent(text):
         peers = suggest_peers(db, user_id, {**context, "question": text})
         return {
             "kind": "result",
@@ -493,6 +495,11 @@ def hermes_ask_rules(db: Session, user_id: str, text: str, context: dict) -> dic
             "requires_preview": False,
         }
     action, params, card_type, preview = compile_hermes_question(text, context)
+    if action == ActionName.GYM_BOOK_PREVIEW:
+        user = db.get(User, user_id)
+        campus = ((user.campus if user else None) or "").strip()
+        if campus and not params.get("venue"):
+            params = {**params, "venue": campus}
     if action is None and params.get("_elective_match"):
         from onemore.modules.campus.elective_hermes import answer_elective_match
 
@@ -569,11 +576,14 @@ def hermes_ask_rules(db: Session, user_id: str, text: str, context: dict) -> dic
         }
     canonical_params = validated.model_dump(mode="json")
     if preview:
+        data: dict = {"params": canonical_params, "next": "/actions/preview"}
+        if action == ActionName.GYM_BOOK_PREVIEW:
+            data["message"] = gym_preview_message(canonical_params)
         return {
             "kind": "action_preview",
             "action": action.value,
             "card_type": card_type,
-            "data": {"params": canonical_params, "next": "/actions/preview"},
+            "data": data,
             "requires_preview": True,
         }
     data = action_service.execute_read_action(db, user_id, action, canonical_params)

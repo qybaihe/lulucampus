@@ -385,6 +385,8 @@ def _seed_gathering(db: Session, spec: CastGathering, now: datetime) -> Gatherin
         gathering.start_at = start_at
         gathering.end_at = end_at
         gathering.location = spec.location
+        gathering.min_size = spec.min_size
+        gathering.target_size = spec.target_size
         gathering.required_roles = list(spec.required_roles)
         if spec.status == GatheringStatus.POOLING.value and gathering.status == GatheringStatus.POOLING.value:
             gathering.status = spec.status

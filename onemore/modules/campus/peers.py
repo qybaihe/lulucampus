@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from datetime import UTC, datetime, timedelta
 from typing import Any
+from zoneinfo import ZoneInfo
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -31,6 +32,7 @@ from onemore.modules.taste_profile.service import public_interest_tags, taste_fe
 
 MAX_PEERS = 6
 SPORTS = ("羽毛球", "健身", "游泳", "网球", "乒乓球", "篮球", "排球")
+SHANGHAI = ZoneInfo("Asia/Shanghai")
 SOCIAL_QUERY_MARKERS = (
     "还有谁",
     "同课",
@@ -40,9 +42,12 @@ SOCIAL_QUERY_MARKERS = (
     "约了",
     "预约了",
     "同一时段",
+    "这个时间点",
     "感兴趣的人",
+    "兴趣相同",
     "搭子",
     "一起去",
+    "一起打",
 )
 SOCIAL_CARDS = {
     "elective_match",
@@ -151,6 +156,8 @@ def suggest_peers(
     day = str(context.get("date") or "").strip()
     start = str(context.get("start") or "").strip()
     if venue_type:
+        today = datetime.now(SHANGHAI).date().isoformat()
+        when = "今晚" if (not day or day == today) else day
         cutoff = datetime.now(UTC) - timedelta(days=14)
         actions = db.scalars(
             select(CampusAction).where(
@@ -165,13 +172,12 @@ def suggest_peers(
                 continue
             if day and str(params.get("date") or "") != day:
                 continue
-            if start and str(params.get("start") or "") != start:
-                continue
+            same_start = (not start) or str(params.get("start") or "") == start
             consider(
                 action.user_id,
                 "gym",
-                f"同一时段也想去{venue_type}",
-                3.2,
+                f"{when}同一时段也约了{venue_type}",
+                3.4 if same_start else 3.1,
             )
 
     if len(ranked) < MAX_PEERS:
@@ -299,10 +305,17 @@ def _with_peer_blurb(result: dict[str, Any], peers: list[dict[str, Any]]) -> dic
     names = [str(item.get("display_name") or "") for item in peers if item.get("display_name")]
     if names and any(name and name in message for name in names):
         return result
-    bits = [f"{item['display_name']}（{item['reason']}）" for item in peers[:3] if item.get("display_name")]
-    if not bits:
+    gym_peers = [item for item in peers if item.get("overlap") == "gym" and item.get("display_name")]
+    featured = gym_peers[:3] or [item for item in peers[:3] if item.get("display_name")]
+    if not featured:
         return result
-    blurb = "可能合得来的人：" + "、".join(bits) + "。可以一键发起聊天。"
+    if gym_peers:
+        names = "、".join(str(item["display_name"]) for item in featured)
+        reason = str(featured[0].get("reason") or "同一时段也约了")
+        blurb = f"{names}{reason}，兴趣也比较接近。可以一键发起聊天。"
+    else:
+        bits = [f"{item['display_name']}（{item['reason']}）" for item in featured]
+        blurb = "可能合得来的人：" + "、".join(bits) + "。可以一键发起聊天。"
     merged = (message.rstrip() + "\n\n" + blurb) if message.strip() else blurb
     return {**result, "data": {**data, "message": merged}}
 
@@ -332,6 +345,8 @@ def _enrich_context(db: Session, me: User, context: dict[str, Any]) -> dict[str,
                 if sport in question:
                     enriched["venue_type"] = sport
                     break
+        if not enriched.get("date") and any(marker in question for marker in ("今晚", "今天", "今日", "晚上")):
+            enriched["date"] = datetime.now(SHANGHAI).date().isoformat()
     venue_type = str(enriched.get("venue_type") or "").strip()
     if venue_type:
         for course in db.scalars(select(Course)):

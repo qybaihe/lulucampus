@@ -141,7 +141,8 @@ CAMPUS_TOOLS: tuple[CampusTool, ...] = (
         "campus_peers",
         "查找已开启社交、可能合得来的同学：同课、同一场馆时段、或兴趣相近。"
         "只返回展示名和重叠理由，不含学号/NetID。用户问「还有谁选了这门课」"
-        "「还有谁也约了羽毛球」时必须调用。可选 course_code、venue_type、date、start、question。",
+        "「还有谁也约了羽毛球/篮球」或订场后问同一时段还有谁时必须调用。"
+        "可选 course_code、venue_type、date、start、question。",
         None,
         "peer_list",
         False,
@@ -156,7 +157,9 @@ CAMPUS_TOOLS: tuple[CampusTool, ...] = (
     ),
     CampusTool(
         "gym_book_preview",
-        "生成体育场馆预约预览（不会真正下单）。必填 venue_type、date、start、end；可选 venue。",
+        "生成体育场馆预约预览（不会真正下单）。必填 venue_type（羽毛球/篮球等）。"
+        "今晚打篮球可只传 venue_type=篮球；缺省 date=当天、start=19:00、end=21:00。"
+        "可选 venue（校区，如 珠海校区）。用户同时问还有谁约了同一时段时，接着调用 campus_peers。",
         ActionName.GYM_BOOK_PREVIEW,
         "action_preview",
         True,
@@ -468,19 +471,34 @@ def dispatch_tool(
             }
         assert tool.action is not None
         definition = CATALOG[tool.action]
+        if tool.action == ActionName.GYM_BOOK_PREVIEW:
+            from onemore.db.models import User
+            from onemore.modules.campus.gym_intent import infer_gym_book_params
+
+            question = str(session.get("question") or "")
+            params = infer_gym_book_params(question, params)
+            user = db.get(User, user_id)
+            campus = ((user.campus if user else None) or "").strip()
+            if campus and not params.get("venue"):
+                params["venue"] = campus
         try:
             validated = definition.params_type.model_validate(params)
         except ValidationError as exc:
             return _validation_payload(tool.action, params, exc)
         canonical = validated.model_dump(mode="json")
         if tool.is_preview:
+            data: dict[str, Any] = {"params": canonical, "next": "/actions/preview"}
+            if tool.action == ActionName.GYM_BOOK_PREVIEW:
+                from onemore.modules.campus.gym_intent import gym_preview_message
+
+                data["message"] = gym_preview_message(canonical)
             return {
                 "ok": True,
                 "kind": "action_preview",
                 "action": tool.action.value,
                 "card_type": tool.card_type,
                 "requires_preview": True,
-                "data": {"params": canonical, "next": "/actions/preview"},
+                "data": data,
             }
         data = action_service.execute_read_action(db, user_id, tool.action, canonical)
         return {

@@ -45,9 +45,16 @@ class CastGymSlot:
     days_ahead: tuple[int, ...] = (0, 1, 2)
 
 
-# Hermes「可能合得来的人」演示重叠：多人同课 + 同一时段羽毛球。
+# Hermes「可能合得来的人」演示重叠：多人同课 + 同一时段羽毛球 / 今晚篮球。
 PEER_OVERLAP_COURSE_CODES: tuple[str, ...] = ("CS2002", "GE4101", "PE1204")
 PEER_OVERLAP_GYM = CastGymSlot()
+PEER_OVERLAP_BASKETBALL = CastGymSlot(
+    venue_type="篮球",
+    start="19:00",
+    end="21:00",
+    venue="珠海校区",
+    days_ahead=(0,),
+)
 LIVE_TEST_PHONES: tuple[str, ...] = ("15522668322",)
 
 
@@ -96,7 +103,7 @@ CAST_USERS: tuple[CastUser, ...] = (
         sport_level="intermediate",
         study_intensity="focused",
         course_codes=("SE1001", "CS2002", "SE2104", "GE4101", "PE1204"),
-        gym_slots=(PEER_OVERLAP_GYM,),
+        gym_slots=(PEER_OVERLAP_GYM, PEER_OVERLAP_BASKETBALL),
         assignment=("SE1001", "软件工程迭代作业"),
         netid_index=0,
     ),
@@ -162,7 +169,7 @@ CAST_USERS: tuple[CastUser, ...] = (
         sport_level="casual",
         study_intensity="balanced",
         course_codes=("BA2001", "GE2208", "CS2002", "PE1204"),
-        gym_slots=(PEER_OVERLAP_GYM,),
+        gym_slots=(PEER_OVERLAP_GYM, PEER_OVERLAP_BASKETBALL),
         assignment=("BA2001", "商业模式案例报告"),
         netid_index=3,
     ),
@@ -207,7 +214,7 @@ CAST_USERS: tuple[CastUser, ...] = (
         sport_level="advanced",
         study_intensity="balanced",
         course_codes=("BIO2101", "PE1203", "CS2002", "PE1204"),
-        gym_slots=(PEER_OVERLAP_GYM,),
+        gym_slots=(PEER_OVERLAP_GYM, PEER_OVERLAP_BASKETBALL),
         assignment=("BIO2101", "细胞生物学实验报告"),
         netid_index=5,
     ),
@@ -612,7 +619,7 @@ OPEN_GATHERINGS: tuple[CastGathering, ...] = (
             CastMember(ZHOU, role="编程", joined_via="owner"),
             CastMember(LIN, role="写作"),
         ),
-        min_size=3,
+        min_size=2,
         target_size=3,
         start_weekday=6,
         start_hour=19,
@@ -635,7 +642,7 @@ OPEN_GATHERINGS: tuple[CastGathering, ...] = (
             CastMember(CHEN, role="建模", joined_via="owner"),
             CastMember(LIANG, role="写作"),
         ),
-        min_size=3,
+        min_size=2,
         target_size=3,
         start_weekday=4,
         start_hour=20,
@@ -657,7 +664,7 @@ OPEN_GATHERINGS: tuple[CastGathering, ...] = (
         members=(
             CastMember(HE, role="编程", joined_via="owner"),
         ),
-        min_size=3,
+        min_size=2,
         target_size=3,
         start_weekday=2,
         start_hour=19,
