@@ -124,6 +124,7 @@ def test_cross_device_notification_preferences_keep_system_boundary(client, auth
     initial = client.get("/me/notification-preferences", headers=auth_headers)
     assert initial.status_code == 200
     assert initial.json()["data"]["categories"]["chat_messages"] is True
+    assert initial.json()["data"]["categories"]["schedule_reminders"] is True
     updated = client.patch(
         "/me/notification-preferences",
         headers=auth_headers,
@@ -143,6 +144,7 @@ def test_cross_device_notification_preferences_keep_system_boundary(client, auth
     data = client.get("/me/notification-preferences", headers=auth_headers).json()["data"]
     assert data["calendar_sync_enabled"] is True
     assert data["categories"]["chat_messages"] is False
+    assert data["categories"]["schedule_reminders"] is True
     assert data["system_settings_managed_locally"] == [
         "notification_authorization",
         "calendar_authorization",

@@ -40,6 +40,8 @@ def test_score_competition_prefers_matching_tracks():
     sports_score = score_competition(persona, sports_comp)
     assert ai_score["taste_fit"] > sports_score["taste_fit"]
     assert ai_score["taste_fit_label"] in {"很适合你", "和你有点像"}
+    assert ai_score["recruit_gap_count"] == 1
+    assert ai_score["recruit_gap_labels"] == ["设计"]
     assert any("设计" in hint for hint in ai_score["recruit_hints"])
 
 
@@ -61,7 +63,11 @@ def test_logged_in_competition_list_uses_seeded_taste(client, auth_headers):
     assert top["taste_fit_label"] in {"很适合你", "和你有点像"}
     detail = client.get(f"/competitions/{top['id']}", headers=auth_headers).json()["data"]
     assert detail["taste_fit"] == top["taste_fit"]
-    assert detail["recruit_hints"]
+    ai = next(item for item in personalized if "智能应用" in item["name"])
+    assert ai["taste_fit_label"] in {"很适合你", "和你有点像"}
+    ai_detail = client.get(f"/competitions/{ai['id']}", headers=auth_headers).json()["data"]
+    assert ai_detail["recruit_hints"]
+    assert any("设计" in hint or "招" in hint or "找" in hint for hint in ai_detail["recruit_hints"])
 
 
 def test_intent_compile_returns_recruit_hints_for_competition(client, auth_headers):
@@ -124,3 +130,19 @@ def test_gathering_looking_for_is_identity_free(client, auth_headers):
     assert page.status_code == 200
     assert "这桌还缺" in page.text
     assert "林予安" not in page.text
+
+
+def test_match_reason_cites_shared_taste():
+    from onemore.core.database import SessionLocal
+    from onemore.modules.matching.service import _taste_aware_match_reason
+
+    with SessionLocal() as db:
+        similar = _taste_aware_match_reason(
+            db, ["u_demo_1", "u_demo_2"], complementary=False
+        )
+        complementary = _taste_aware_match_reason(
+            db, ["u_demo_1", "u_demo_3"], complementary=True
+        )
+    assert "兴趣画像相近" in similar
+    assert any(token in similar for token in ("AI", "编程", "Builder", "知识"))
+    assert "兴趣上也对上了" in complementary

@@ -74,5 +74,33 @@ def test_user_event_publish_requires_t4(client, auth_headers) -> None:
     assert listed.status_code == 200
     row = next(item for item in listed.json()["data"] if item["id"] == data["id"])
     assert row["details"]["publisher"] == "user"
+    assert row["type"] == "体育"
 
     set_level("T1")
+
+
+def test_legacy_event_sources_surface_as_chinese(client) -> None:
+    event = ExternalEvent(
+        id="legacy-teachin-event",
+        source="teachin",
+        external_key="legacy-teachin-event",
+        title="旧码宣讲",
+        starts_at=datetime(2026, 8, 20, 12, 0, 0),
+        ends_at=datetime(2026, 8, 20, 14, 0, 0),
+        location="南校园",
+        official_url="https://example.edu.cn/events/legacy-teachin",
+        details={},
+    )
+    with SessionLocal() as db:
+        db.add(event)
+        db.commit()
+
+    listed = client.get("/events")
+    assert listed.status_code == 200
+    row = next(item for item in listed.json()["data"] if item["id"] == event.id)
+    assert row["type"] == "宣讲"
+    assert "teachin" not in row["type"]
+
+    filtered = client.get("/events", params={"type": "宣讲"})
+    assert filtered.status_code == 200
+    assert any(item["id"] == event.id for item in filtered.json()["data"])

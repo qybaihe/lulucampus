@@ -4,8 +4,11 @@ from __future__ import annotations
 
 from datetime import UTC, datetime, timedelta
 
+from sqlalchemy import select
+
 from onemore.core.database import SessionLocal
 from onemore.db.models import (
+    CampusAction,
     Gathering,
     GatheringMember,
     GatheringStatus,
@@ -155,6 +158,26 @@ def test_icebreaker_requires_membership_and_confirmed_state(client, auth_headers
     assert 1 <= len(data["first_lines"]) <= 3
     assert data["next_steps"]["location"] == "珠海校区综合馆"
     assert any("时间" in item for item in data["next_steps"]["checklist"])
+
+
+def test_icebreaker_checklist_uses_chinese_role_labels(client, auth_headers):
+    gathering_id = _seed_gathering(
+        GatheringStatus.CONFIRMED.value,
+        ["u_demo_1", "u_demo_2", "u_demo_4"],
+        roles={"u_demo_1": "后端", "u_demo_2": "前端", "u_demo_4": "产品"},
+        mode="complementary",
+    )
+    with SessionLocal() as db:
+        gathering = db.get(Gathering, gathering_id)
+        gathering.required_roles = ["visual_design", "frontend"]
+        db.commit()
+    response = client.get(f"/gatherings/{gathering_id}/icebreaker", headers=auth_headers)
+    assert response.status_code == 200, response.text
+    checklist = " ".join(response.json()["data"]["next_steps"]["checklist"])
+    assert "visual_design" not in checklist
+    assert "frontend" not in checklist
+    assert "视觉" in checklist
+    assert "前端" in checklist
 
 
 def test_relation_profile_translates_facts_into_warm_narrative(client, auth_headers):
@@ -309,6 +332,24 @@ def test_channel_opens_with_system_gathering_card(client, auth_headers):
     assert "地点：珠海校区综合馆" in first["content"]
     assert "分工：组织 / 记录" in first["content"]
     assert data[1]["sender_type"] == "azou"
+    opener = data[1]["content"]
+    assert "共同点是" not in opener
+    assert "确认目标" not in opener
+    assert "分工与下一步" not in opener
+    assert len(opener) <= 48
+
+
+def test_lulu_opener_for_museum_visit_sounds_like_capybara():
+    from onemore.modules.collab.service import generate_opener
+
+    with SessionLocal() as db:
+        gathering = db.scalar(select(Gathering).where(Gathering.title == "校博看展"))
+        assert gathering is not None
+        text = generate_opener(db, gathering.id)
+    assert "共同点" not in text
+    assert "分工" not in text
+    assert "趴" in text or "门口" in text
+    assert len(text) <= 48
 
 
 def test_today_timeline_datetimes_are_timezone_aware(client, auth_headers):
@@ -347,3 +388,31 @@ def test_assignment_due_dates_are_timezone_aware(client, auth_headers):
         raw = detail.json()["data"]["due_at"]
         parsed = datetime.fromisoformat(raw.replace("Z", "+00:00"))
         assert parsed.tzinfo is not None, f"assignment_detail.due_at 缺少时区: {raw}"
+
+
+def test_today_pending_does_not_repeat_previewed_gathering_and_action(client, auth_headers):
+    gathering_id = _seed_gathering(
+        GatheringStatus.PREVIEWED.value,
+        ["u_demo_1", "u_demo_2"],
+    )
+    with SessionLocal() as db:
+        db.add(
+            CampusAction(
+                user_id="u_demo_1",
+                gathering_id=gathering_id,
+                action_name="room.reserve_preview",
+                params={"room": "402"},
+                preview_snapshot={},
+                snapshot_hash="preview-dedupe-hash",
+                idempotency_key="preview-dedupe-key",
+            )
+        )
+        db.commit()
+
+    pending = client.get("/today/summary", headers=auth_headers).json()["data"]["pending"]
+    same = [item for item in pending if item.get("gathering_id") == gathering_id]
+    assert len(same) == 1
+    assert same[0]["type"] == "authorization"
+    assert same[0]["title"]
+    assert same[0]["deep_link"] == f"onemore://gathering/{gathering_id}"
+    assert same[0].get("action_id") is None

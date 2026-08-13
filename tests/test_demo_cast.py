@@ -61,6 +61,27 @@ def test_cast_has_history_and_open_gaps_for_real_users(client):
         badminton_count = _member_count(db, badminton.id)
         math_count = _member_count(db, math_team.id)
 
+    assert len(pooling) >= 8
+    assert {item.title for item in pooling} >= {
+        "周六英东羽毛球",
+        "数模组队差建模",
+        "数模组队差编程",
+        "数模组队差两人",
+        "传设海报赶工",
+        "商赛差调研",
+        "逸夫讲座结伴",
+        "东校夜场羽毛球",
+        "黑客松差设计",
+        "英语角试水",
+        "生科报告互盯",
+        "校博看展",
+        "南校夜跑三公里",
+        "东校篮球半场",
+        "珠海咖啡店赶作业",
+        "学一晚饭搭子",
+        "周末桌游局",
+    }
+
     assert any(item.title == "英东周三羽毛球" for item in completed)
     assert any(item.title == "智能应用开发大赛筹备" for item in completed)
     assert badminton.target_size - badminton_count == 1
@@ -70,3 +91,45 @@ def test_cast_has_history_and_open_gaps_for_real_users(client):
     assert relations
     taste = client.get("/profile/taste/me", headers={"X-User-ID": LIN}).json()["data"]
     assert taste["primary_tag"]["label"] == "探索型 Builder"
+
+
+def test_campus_events_use_chinese_types_and_club_catalog(client):
+    events = client.get("/events").json()["data"]
+    types = {item["type"] for item in events}
+    titles = {item["title"] for item in events}
+    assert "teachin" not in types
+    assert "seminar" not in types
+    assert {"宣讲", "讲座", "社团", "招新"} <= types
+    assert "互联网校招宣讲" in titles
+    assert "街舞社周五夜练" in titles
+    assert "志愿者协会招新" in titles
+
+
+def test_open_gatherings_use_shanghai_daytime_hours():
+    from zoneinfo import ZoneInfo
+
+    from onemore.core.time import ensure_utc
+
+    shanghai = ZoneInfo("Asia/Shanghai")
+    with SessionLocal() as db:
+        rows = list(
+            db.scalars(
+                select(Gathering).where(
+                    Gathering.title.in_(
+                        ("黑客松差设计", "校博看展", "东校夜场羽毛球", "传设海报赶工")
+                    )
+                )
+            )
+        )
+    by_title = {item.title: item for item in rows}
+    hackathon = ensure_utc(by_title["黑客松差设计"].start_at).astimezone(shanghai)
+    museum = ensure_utc(by_title["校博看展"].start_at).astimezone(shanghai)
+    night = ensure_utc(by_title["东校夜场羽毛球"].start_at).astimezone(shanghai)
+    poster = ensure_utc(by_title["传设海报赶工"].start_at).astimezone(shanghai)
+    assert hackathon.hour == 14
+    assert museum.hour == 15
+    assert night.hour == 20
+    assert poster.hour == 19
+    for item in rows:
+        hour = ensure_utc(item.start_at).astimezone(shanghai).hour
+        assert 10 <= hour <= 21, (item.title, hour)
