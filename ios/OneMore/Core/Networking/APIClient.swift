@@ -380,6 +380,7 @@ actor APIClient {
                    key: cacheKey(url: url, scope: scope),
                    maxAge: cacheMaxAge(path)
                ),
+               !isEmptyJSONArrayEnvelope(cached),
                let value = try? decoder.decode(APIEnvelope<Response>.self, from: cached).data {
                 await diagnostics.record(requestID: "offline-cache", path: path)
                 return value
@@ -388,6 +389,7 @@ actor APIClient {
         }
         var finalError: Error = APIClientError.invalidResponse
         for attempt in 0..<attempts {
+            try Task.checkCancellation()
             do {
                 var request = URLRequest(url: url)
                 request.cachePolicy = .reloadIgnoringLocalCacheData
@@ -420,18 +422,23 @@ actor APIClient {
                 }
                 do {
                     let value = try decoder.decode(APIEnvelope<Response>.self, from: data).data
-                    if method == .get, isDiskCacheAllowed(path) {
+                    if method == .get, isDiskCacheAllowed(path), !isEmptyJSONArrayEnvelope(data) {
                         await cache.put(data, key: cacheKey(url: url, scope: scope))
                     }
                     return value
                 }
                 catch { throw APIClientError.decoding(error.localizedDescription, requestID: requestID) }
+            } catch is CancellationError {
+                throw CancellationError()
+            } catch let error as URLError where error.code == .cancelled {
+                throw CancellationError()
             } catch let error as APIClientError {
                 finalError = error
                 if case .sessionExpired = error { throw error }
                 if case .server = error { throw error }
                 if case .decoding = error { throw error }
             } catch {
+                if error.isCancellation { throw CancellationError() }
                 if let urlError = error as? URLError,
                    [.notConnectedToInternet, .networkConnectionLost, .dataNotAllowed,
                     .internationalRoamingOff].contains(urlError.code) {
@@ -441,11 +448,13 @@ actor APIClient {
                 }
             }
             if attempt + 1 < attempts {
+                try Task.checkCancellation()
                 try await Task.sleep(for: .milliseconds(250 * (attempt + 1)))
             }
         }
         if method == .get, isDiskCacheAllowed(path),
            let cached = await cache.get(key: cacheKey(url: url, scope: scope), maxAge: cacheMaxAge(path)),
+           !isEmptyJSONArrayEnvelope(cached),
            let value = try? decoder.decode(APIEnvelope<Response>.self, from: cached).data {
             await diagnostics.record(requestID: "offline-cache", path: path)
             return value
@@ -544,6 +553,13 @@ actor APIClient {
 
     private func cacheMaxAge(_ path: String) -> TimeInterval {
         path.hasPrefix("/competitions") || path.hasPrefix("/events") ? 15 * 60 : 5 * 60
+    }
+
+    /// 空列表不落盘：灌库前的 `[]` 不能把之后的真实目录挡住。
+    private func isEmptyJSONArrayEnvelope(_ data: Data) -> Bool {
+        guard let obj = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+              let arr = obj["data"] as? [Any] else { return false }
+        return arr.isEmpty
     }
 
     private func cacheKey(url: URL, scope: String) -> String { "\(scope)|\(url.absoluteString)" }

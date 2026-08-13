@@ -469,26 +469,34 @@ struct OMSection: View {
 
 struct OMSwitch: View {
     @Binding var isOn: Bool
+    /// 嵌在整行可点的 `OMRow` 里时关掉，避免按钮套按钮连点两次。
+    var interactive: Bool = true
 
     var body: some View {
-        Button {
-            withAnimation(OMTheme.Motion.fast) { isOn.toggle() }
-        } label: {
-            ZStack(alignment: isOn ? .trailing : .leading) {
-                Capsule()
-                    .fill(isOn ? OMTheme.ColorToken.ink : OMTheme.ColorToken.sage)
-                    .frame(width: 50, height: 30)
-                Circle()
-                    .fill(OMTheme.ColorToken.card)
-                    .frame(width: 24, height: 24)
-                    .padding(3)
-            }
-            .frame(width: 50, height: 30)
+        let knob = ZStack(alignment: isOn ? .trailing : .leading) {
+            Capsule()
+                .fill(isOn ? OMTheme.ColorToken.ink : OMTheme.ColorToken.sage)
+                .frame(width: 50, height: 30)
+            Circle()
+                .fill(OMTheme.ColorToken.card)
+                .frame(width: 24, height: 24)
+                .padding(3)
         }
-        .buttonStyle(.plain)
-        .accessibilityLabel("开关")
-        .accessibilityValue(isOn ? "已开启" : "已关闭")
-        .accessibilityAddTraits(.isButton)
+        .frame(width: 50, height: 30)
+
+        if interactive {
+            Button {
+                withAnimation(OMTheme.Motion.fast) { isOn.toggle() }
+            } label: {
+                knob
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel("开关")
+            .accessibilityValue(isOn ? "已开启" : "已关闭")
+            .accessibilityAddTraits(.isButton)
+        } else {
+            knob.accessibilityHidden(true)
+        }
     }
 }
 

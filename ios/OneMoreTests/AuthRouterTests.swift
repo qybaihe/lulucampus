@@ -96,6 +96,14 @@ final class AuthRouterTests: XCTestCase {
             AppRoute.parse(URL(string: "onemore://screen/E11")!),
             .formal(.e11)
         )
+        XCTAssertEqual(
+            AppRoute.parse(URL(string: "onemore://competition/c-1/table")!),
+            .competitionTable("c-1")
+        )
+        XCTAssertEqual(
+            AppRoute.parse(URL(string: "onemore://competition/c-1/team/t-9")!),
+            .competitionTeam(competitionID: "c-1", teamID: "t-9")
+        )
     }
 
     @MainActor func testColdStartNotificationAndCalendarEventsDrainAfterRootInstallsHandlers() {
@@ -210,6 +218,8 @@ final class AuthRouterTests: XCTestCase {
 
     func testAPNsPayloadsResolveAndParseEverySupportedBusinessDestination() {
         let cases: [([AnyHashable: Any], String, AppRoute)] = [
+            (["screen_id": "B3"], "onemore://screen/B3", .formal(.b3)),
+            (["screen_id": "B4"], "onemore://screen/B4", .formal(.b4)),
             (["screen_id": "E3"], "onemore://screen/E3", .formal(.e3)),
             (["screen_id": "E5"], "onemore://screen/E5", .formal(.e5)),
             (["screen_id": "E6"], "onemore://screen/E6", .formal(.e6)),

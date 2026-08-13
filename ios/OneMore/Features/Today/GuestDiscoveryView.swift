@@ -9,9 +9,15 @@ final class GuestEventsViewModel: ObservableObject {
     init(repository: CampusEventRepository) { self.repository = repository }
 
     func load(force: Bool = false) async {
-        phase = .loading
-        do { phase = .loaded(try await repository.list(force: force)) }
-        catch { phase = .failed(error.localizedDescription) }
+        if case .loaded = phase {} else { phase = .loading }
+        do {
+            let items = try await repository.list(force: force)
+            guard !Task.isCancelled else { return }
+            phase = .loaded(items)
+        } catch {
+            guard !error.isCancellation, !Task.isCancelled else { return }
+            phase = .failed(error.localizedDescription)
+        }
     }
 }
 
@@ -59,7 +65,7 @@ struct GuestDiscoveryView: View {
                     ForEach(events) { event in
                         OMCard {
                             HStack {
-                                OMChip(text: event.type, kind: .soft)
+                                OMChip(text: event.displayType, kind: .soft)
                                 Spacer()
                             }
                             OMTextRole.t3(event.title).padding(.top, OMTheme.Spacing.s2)

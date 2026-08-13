@@ -102,6 +102,7 @@ enum OMTheme {
         static let empty: CGFloat = 170     // 空态 / 错误态 140–190
         static let confirm: CGFloat = 84    // 确认卡 72–96
         static let avatar: CGFloat = 44     // 消息头像 36–48
+        static let chat: CGFloat = 56       // 局内噜噜出镜
     }
 }
 

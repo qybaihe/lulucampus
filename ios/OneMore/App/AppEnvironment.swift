@@ -33,6 +33,7 @@ final class AppEnvironment: ObservableObject {
     let session: AppSessionController
     @Published private(set) var referenceDataError: String?
     @Published private(set) var calendarReconciliationError: String?
+    @Published private(set) var attentionItems: [TodayAttentionItem] = []
     private var cancellables: Set<AnyCancellable> = []
 
     init(bundle: Bundle = .main) {
@@ -241,5 +242,18 @@ final class AppEnvironment: ObservableObject {
     func cacheCalendarPreference(_ enabled: Bool) async {
         let scope = await auth.cacheScope()
         await calendarPreferenceStore.set(enabled, scope: scope)
+    }
+
+    func refreshAttention(force: Bool = false) async {
+        guard session.isAuthenticated else {
+            if !attentionItems.isEmpty { attentionItems = [] }
+            return
+        }
+        do {
+            let summary = try await today.summary(force: force)
+            attentionItems = TodayAttentionItem.list(from: summary.pending)
+        } catch {
+            // Keep the last known set; the messages tab can retry on appear.
+        }
     }
 }

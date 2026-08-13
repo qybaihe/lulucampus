@@ -43,7 +43,34 @@ private func hermesCardData(_ value: JSONValue) -> JSONValue {
     var filtered = root
     filtered.removeValue(forKey: "tool_trace")
     filtered.removeValue(forKey: "message")
+    filtered.removeValue(forKey: "peers")
     return .object(filtered)
+}
+
+private func hermesPeers(from data: JSONValue) -> [HermesPeer] {
+    guard case let .object(root) = data, case let .array(items) = root["peers"] else {
+        return []
+    }
+    return items.compactMap { item in
+        guard case let .object(object) = item,
+              case let .string(userId) = object["user_id"],
+              case let .string(displayName) = object["display_name"] else {
+            return nil
+        }
+        let persona: String?
+        if case let .string(value) = object["persona_label"] { persona = value } else { persona = nil }
+        let reason: String
+        if case let .string(value) = object["reason"] { reason = value } else { reason = "可能合得来" }
+        let overlap: String
+        if case let .string(value) = object["overlap"] { overlap = value } else { overlap = "taste" }
+        return HermesPeer(
+            userId: userId,
+            displayName: displayName,
+            personaLabel: persona,
+            reason: reason,
+            overlap: overlap
+        )
+    }
 }
 
 private struct HermesResultPanel<Content: View>: View {
@@ -254,6 +281,61 @@ private struct ElectiveMatchCard: View {
     }
 }
 
+private struct HermesPeerList: View {
+    let peers: [HermesPeer]
+    var startingPeerID: String?
+    var error: String?
+    let onStart: (HermesPeer) -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("已开启社交的同学")
+                .font(OMTheme.TypeToken.title3)
+                .foregroundStyle(OMTheme.ColorToken.ink)
+            ForEach(Array(peers.enumerated()), id: \.element.id) { index, peer in
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack(alignment: .firstTextBaseline, spacing: 8) {
+                        Text(peer.displayName)
+                            .font(OMTheme.TypeToken.callout.weight(.semibold))
+                            .foregroundStyle(OMTheme.ColorToken.ink)
+                        if let label = peer.personaLabel, !label.isEmpty {
+                            Text(label)
+                                .font(OMTheme.TypeToken.caption.weight(.semibold))
+                                .foregroundStyle(OMTheme.ColorToken.ink)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 3)
+                                .background(OMTheme.ColorToken.yolk.opacity(0.55))
+                                .clipShape(Capsule())
+                        }
+                        Spacer(minLength: 0)
+                    }
+                    Text(peer.reason)
+                        .font(OMTheme.TypeToken.caption)
+                        .foregroundStyle(OMTheme.ColorToken.mist)
+                    OMButton(
+                        "一键发起聊天",
+                        systemIcon: "bubble.left.and.bubble.right",
+                        kind: .ghost,
+                        small: true,
+                        loading: startingPeerID == peer.userId
+                    ) {
+                        onStart(peer)
+                    }
+                    .accessibilityIdentifier("hermes-start-peer-chat-\(peer.userId)")
+                }
+                if index < peers.count - 1 {
+                    OMDivider()
+                }
+            }
+            if let error, !error.isEmpty {
+                Text(error)
+                    .font(OMTheme.TypeToken.footnote)
+                    .foregroundStyle(OMTheme.ColorToken.mist)
+            }
+        }
+    }
+}
+
 private enum HermesMessageKind {
     case user
     case thinking
@@ -289,12 +371,14 @@ private struct HermesChatMessage: Identifiable, Equatable {
     @Published var working = false
     @Published var error: String?
     @Published var scrollToken = UUID()
+    @Published var startingPeerID: String?
+    @Published var peerError: String?
 
     static let suggestions = [
         "按我的画像推荐公选",
         "今天有什么课？",
-        "南校园羽毛球还有场吗？",
-        "本周有哪些讲座？",
+        "还有谁也选了机器学习？",
+        "还有谁也约了羽毛球？",
     ]
 
     private let repository: TodayRepository
@@ -362,6 +446,24 @@ private struct HermesChatMessage: Identifiable, Equatable {
             )
         }
         working = false
+        bumpScroll()
+    }
+
+    func startChat(with peer: HermesPeer, router: AppRouter) async {
+        guard startingPeerID == nil else { return }
+        startingPeerID = peer.userId
+        peerError = nil
+        defer { startingPeerID = nil }
+        do {
+            let opened = try await repository.startHermesPeerChat(
+                peerUserID: peer.userId,
+                reason: peer.reason,
+                overlap: peer.overlap
+            )
+            router.push(.channel(opened.channelId))
+        } catch {
+            peerError = error.localizedDescription
+        }
         bumpScroll()
     }
 
@@ -522,7 +624,7 @@ struct HermesAskView: View {
                 }
                 Spacer(minLength: 0)
             }
-            OMSysBubble(text: "课表 · DDL · 场地 · 公选匹配 · 班车")
+            OMSysBubble(text: "课表 · DDL · 场地 · 公选 · 同课/同时段的人")
         }
     }
 
@@ -561,9 +663,23 @@ struct HermesAskView: View {
                         HermesResultPanel(icon: "sparkles", eyebrow: "匹配结果") {
                             ElectiveMatchCard(data: result.data)
                         }
-                    } else if result.kind != "help" && result.cardType != "agent_reply" {
+                    } else if result.cardType != "peer_list"
+                                && result.kind != "help"
+                                && result.cardType != "agent_reply" {
                         HermesResultPanel(icon: "doc.text", eyebrow: "查询结果") {
                             StructuredResultCard(title: result.cardType, value: hermesCardData(result.data), embedded: true)
+                        }
+                    }
+                    let peers = hermesPeers(from: result.data)
+                    if !peers.isEmpty {
+                        HermesResultPanel(icon: "person.2.fill", eyebrow: "可能合得来的人") {
+                            HermesPeerList(
+                                peers: peers,
+                                startingPeerID: model.startingPeerID,
+                                error: model.peerError
+                            ) { peer in
+                                Task { await model.startChat(with: peer, router: router) }
+                            }
                         }
                     }
                     if result.kind == "clarification", let action = result.action {
@@ -2202,20 +2318,20 @@ struct CampusEventsContent: View {
                 OMCard { OMG5StateView(state: .empty, message: "暂时没有内容，有进展时会告诉你。") }
             }
             let types = items.reduce(into: [String]()) { acc, item in
-                if !acc.contains(item.type) { acc.append(item.type) }
+                if !acc.contains(item.displayType) { acc.append(item.displayType) }
             }
             if types.count >= 2 {
                 typeFilterRow(types)
                     .padding(.bottom, OMTheme.Spacing.s3)
             }
-            let visible = typeFilter.map { f in items.filter { $0.type == f } } ?? items
+            let visible = typeFilter.map { f in items.filter { $0.displayType == f } } ?? items
             if visible.isEmpty {
                 OMCard { OMG5StateView(state: .empty, message: "这个分类暂时没有活动。") }
             }
             ForEach(visible) { item in
                 OMCard {
                     HStack {
-                        OMChip(text: item.type, kind: .soft)
+                        OMChip(text: item.displayType, kind: .soft)
                         if item.details["publisher"]?.stringValue == "user" {
                             OMChip(text: "同学发布", kind: .standard)
                         }
@@ -2315,7 +2431,7 @@ struct CampusEventDetailSheet: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     HStack {
-                        OMChip(text: item.type, kind: .soft)
+                        OMChip(text: item.displayType, kind: .soft)
                         if item.details["publisher"]?.stringValue == "user" {
                             OMChip(text: "同学发布", kind: .standard)
                         }
@@ -2642,7 +2758,7 @@ struct CampusEventPublishView: View {
     @State private var working = false
     @State private var error: String?
 
-    private let types = ["讲座", "演出", "赛事", "社团", "招新", "其他"]
+    private let types = ["讲座", "宣讲", "演出", "赛事", "社团", "招新", "其他"]
     private var canPublish: Bool { (trust?.level ?? "T0") >= "T4" }
     private var formValid: Bool {
         title.trimmingCharacters(in: .whitespaces).count >= 2 && !working

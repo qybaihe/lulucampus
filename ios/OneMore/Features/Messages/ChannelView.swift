@@ -40,8 +40,20 @@ import UIKit
     func send() async -> Bool {
         let value = draft.trimmingCharacters(in: .whitespacesAndNewlines); guard !value.isEmpty, !sending else { return false }
         sending = true; defer { sending = false }
-        do { let message = try await social.sendText(channelID: channelID, text: value); if !messages.contains(where: { $0.id == message.id }) { messages.append(message) }; draft = ""; error = nil; return true }
+        do { let message = try await social.sendText(channelID: channelID, text: value); if !messages.contains(where: { $0.id == message.id }) { messages.append(message) }; draft = ""; error = nil; Task { await self.pullCastReplies() }; return true }
         catch { self.error = error.localizedDescription; return false }
+    }
+    /// 演示人物回消息有 3–11 秒延迟；WebSocket 漏了就再拉几次。
+    private func pullCastReplies() async {
+        for delay in [5.0, 7.0, 10.0] {
+            try? await Task.sleep(for: .seconds(delay))
+            guard !Task.isCancelled else { return }
+            guard let latest = try? await social.messages(channelID: channelID) else { continue }
+            for item in latest where !messages.contains(where: { $0.id == item.id }) {
+                messages.append(item)
+            }
+            messages.sort { $0.sentAt < $1.sentAt }
+        }
     }
     func mentionAzou() async -> Bool {
         let value = draft.trimmingCharacters(in: .whitespacesAndNewlines); guard !value.isEmpty, !sending else { return false }
@@ -65,7 +77,7 @@ import UIKit
     }
 }
 
-/// E14 · 局内群聊。无已读回执、无在线状态；Lulu 不以常驻形象出场。
+/// E14 · 局内群聊。无已读回执、无在线状态；噜噜只在自己开口时出镜，不常驻。
 struct ChannelView: View {
     @StateObject private var model: ChannelViewModel
     @EnvironmentObject private var environment: AppEnvironment
@@ -193,9 +205,55 @@ struct ChannelView: View {
     @ViewBuilder private func bubble(_ message: MessagePayload) -> some View {
         if message.senderType == "system" {
             systemCard(message)
+        } else if message.senderType == "azou" {
+            luluBubble(message)
         } else {
             humanBubble(message)
         }
+    }
+
+    /// 水豚噜噜站在左边，旁边跟一条开口气泡。
+    private func luluBubble(_ message: MessagePayload) -> some View {
+        HStack(alignment: .top, spacing: 4) {
+            LuluView(clip: .homeReply, placement: .chat)
+                .accessibilityHidden(true)
+                .padding(.top, 2)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(AppBrand.mascotName)
+                    .font(OMTheme.TypeToken.caption.weight(.semibold))
+                    .foregroundStyle(OMTheme.ColorToken.mist)
+                    .padding(.leading, 6)
+                HStack(alignment: .top, spacing: 0) {
+                    LuluChatBubbleTail()
+                        .fill(OMTheme.ColorToken.gapSoft)
+                        .frame(width: 8, height: 10)
+                        .padding(.top, 12)
+                        .offset(x: 1)
+                    VStack(alignment: .leading, spacing: 5) {
+                        if let content = message.content {
+                            Text(content)
+                                .font(OMTheme.TypeToken.callout)
+                                .lineSpacing(3)
+                        }
+                        Text(message.sentAt.formatted(date: .omitted, time: .shortened))
+                            .font(OMTheme.TypeToken.caption)
+                            .foregroundStyle(OMTheme.ColorToken.mist)
+                    }
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 10)
+                    .foregroundStyle(OMTheme.ColorToken.ink)
+                    .background(OMTheme.ColorToken.gapSoft)
+                    .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 18, style: .continuous)
+                            .stroke(OMTheme.ColorToken.yolkBorder, lineWidth: OMTheme.Radius.borderWidth)
+                    }
+                }
+            }
+            Spacer(minLength: 36)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("channel-lulu-bubble")
     }
 
     /// G · 入群第一眼的「成局卡」：系统一次性事实摘要，之后 AI 闭嘴。
@@ -234,12 +292,11 @@ struct ChannelView: View {
 
     private func humanBubble(_ message: MessagePayload) -> some View {
         let isMine = message.senderType == "human" && message.senderId == currentUserID
-        let isAssistant = message.senderType == "azou"
         return HStack(alignment: .top, spacing: 0) {
             if isMine { Spacer(minLength: 44) }
             VStack(alignment: .leading, spacing: 5) {
                 if !isMine {
-                    Text(isAssistant ? AppBrand.mascotName : "同学")
+                    Text(message.senderDisplayName ?? "同学")
                         .font(OMTheme.TypeToken.caption.weight(.semibold))
                         .foregroundStyle(OMTheme.ColorToken.mist)
                 }
@@ -262,7 +319,7 @@ struct ChannelView: View {
             .padding(.horizontal, 14)
             .padding(.vertical, 10)
             .foregroundStyle(isMine ? OMTheme.ColorToken.paper : OMTheme.ColorToken.ink)
-            .background(isMine ? OMTheme.ColorToken.ink : (isAssistant ? OMTheme.ColorToken.gapSoft : OMTheme.ColorToken.card))
+            .background(isMine ? OMTheme.ColorToken.ink : OMTheme.ColorToken.card)
             .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
             .overlay {
                 RoundedRectangle(cornerRadius: 18, style: .continuous)
@@ -271,6 +328,23 @@ struct ChannelView: View {
             if !isMine { Spacer(minLength: 44) }
         }
         .accessibilityElement(children: .combine)
+    }
+}
+
+private struct LuluChatBubbleTail: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint(x: rect.maxX, y: 0))
+        path.addQuadCurve(
+            to: CGPoint(x: rect.minX, y: rect.midY),
+            control: CGPoint(x: rect.midX, y: rect.midY - 1)
+        )
+        path.addQuadCurve(
+            to: CGPoint(x: rect.maxX, y: rect.maxY),
+            control: CGPoint(x: rect.midX, y: rect.midY + 1)
+        )
+        path.closeSubpath()
+        return path
     }
 }
 

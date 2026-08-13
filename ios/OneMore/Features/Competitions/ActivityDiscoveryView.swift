@@ -28,6 +28,15 @@ struct ActivityDiscoveryView: View {
         _eventsModel = StateObject(wrappedValue: GuestEventsViewModel(repository: events))
     }
 
+    /// 切分段或比赛档时重拉；取消旧请求，避免「全部」被 CancellationError 盖住。
+    private var activityTaskID: String {
+        switch segment {
+        case .competitions: "c-\(competitionsModel.tier ?? "all")"
+        case .gatherings: "g"
+        case .events: "e"
+        }
+    }
+
     var body: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 0) {
@@ -47,9 +56,13 @@ struct ActivityDiscoveryView: View {
             .padding(.bottom, 44)
         }
         .background(OMPageBackground())
-        .task { await competitionsModel.load() }
-        .task { await gatheringsModel.load() }
-        .task { await eventsModel.load() }
+        .task(id: activityTaskID) {
+            switch segment {
+            case .competitions: await competitionsModel.load()
+            case .gatherings: await gatheringsModel.load()
+            case .events: await eventsModel.load()
+            }
+        }
         .refreshable {
             await competitionsModel.load(force: true)
             await gatheringsModel.load()
@@ -101,6 +114,14 @@ private struct PublicGatheringsContent: View {
                 OMTextRole.foot(item.goal)
                     .padding(.top, 4)
                     .lineLimit(2)
+            }
+            if item.status == .pooling, let looking = item.lookingFor, !looking.isEmpty {
+                OMFlowLayout {
+                    ForEach(Array(looking.prefix(3)), id: \.self) { role in
+                        OMChip(text: CapabilityLabel.displayName(for: role), kind: .gap)
+                    }
+                }
+                .padding(.top, OMTheme.Spacing.s2)
             }
             HStack(spacing: 12) {
                 if let location = item.location ?? item.campus {

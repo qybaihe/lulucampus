@@ -68,6 +68,14 @@ struct SharedGapLandingView: View {
             OMTextRole.call(share.goal)
                 .foregroundStyle(OMTheme.ColorToken.mist)
                 .padding(.top, OMTheme.Spacing.s2)
+            if let looking = share.lookingFor, !looking.isEmpty {
+                OMFlowLayout {
+                    ForEach(looking, id: \.self) { role in
+                        OMChip(text: CapabilityLabel.displayName(for: role), kind: .gap)
+                    }
+                }
+                .padding(.top, OMTheme.Spacing.s2)
+            }
             if let campus = share.campus {
                 HStack(spacing: 6) {
                     Image(om: .pin).font(.system(size: 13))

@@ -806,7 +806,7 @@ final class OneMoreNavigationUITests: XCTestCase {
         competition.tap()
         XCTAssertTrue(any("screen-B12.1-competition-detail").waitForExistence(timeout: 8))
         tapButton("找队友", swipes: 10)
-        XCTAssertTrue(any("screen-D1-intent").waitForExistence(timeout: 6))
+        XCTAssertTrue(any("screen-B12.2-table").waitForExistence(timeout: 6))
 
         let scenario = createMatchedScenario(
             text: "数智链比赛组队，4人",

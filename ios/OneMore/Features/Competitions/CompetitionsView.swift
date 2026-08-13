@@ -8,9 +8,19 @@ import SwiftUI
     private let repository: CompetitionRepository
     init(repository: CompetitionRepository) { self.repository = repository }
     func load(force: Bool = false) async {
-        phase = .loading
-        do { phase = .loaded(try await repository.list(force: force, tier: tier)) } catch { phase = .failed(error.localizedDescription) }
-        if let catalog = await repository.tiers() { tierCatalog = catalog.sorted { $0.sortOrder < $1.sortOrder } }
+        if case .loaded = phase {} else { phase = .loading }
+        do {
+            let items = try await repository.list(force: force, tier: tier)
+            guard !Task.isCancelled else { return }
+            phase = .loaded(items)
+        } catch {
+            guard !error.isCancellation, !Task.isCancelled else { return }
+            phase = .failed(error.localizedDescription)
+        }
+        if let catalog = await repository.tiers() {
+            guard !Task.isCancelled else { return }
+            tierCatalog = catalog.sorted { $0.sortOrder < $1.sortOrder }
+        }
     }
     /// 筛选 chip 的可见文案：目录 label 优先，缺目录时按稳定码兜底。
     func tierLabel(_ code: String?) -> String {
@@ -34,7 +44,7 @@ struct CompetitionsView: View {
             .padding(.bottom, 44)
         }
         .background(OMPageBackground())
-        .task { await model.load() }
+        .task(id: model.tier ?? "all") { await model.load() }
         .refreshable { await model.load(force: true) }
         .accessibilityElement(children: .contain).accessibilityIdentifier("screen-B12-competitions")
     }
@@ -47,7 +57,6 @@ struct CompetitionsListContent: View {
     var body: some View {
         OMSeg(items: [String?.none, "A", "B", "C"], label: { model.tierLabel($0) }, selection: $model.tier)
             .padding(.bottom, OMTheme.Spacing.s3)
-            .onChange(of: model.tier) { _, _ in Task { await model.load() } }
         switch model.phase {
                 case .loading:
                     OMCard { OMG5StateView(state: .loading, message: AppBrand.loadingMessage) }
@@ -66,9 +75,9 @@ struct CompetitionsListContent: View {
                     if items.isEmpty {
                         OMCard { OMG5StateView(state: .empty, message: "暂时没有内容，有进展时会告诉你。") }
                     }
-                    ForEach(items) { item in
+                    ForEach(CompetitionSpotlight.rank(items)) { item in
                         Button { router.push(.competition(item.id)) } label: {
-                            OMCard {
+                            OMCard(hotSeat: CompetitionSpotlight.isHotSeat(item)) {
                                 HStack {
                                     HStack(spacing: 10) {
                                         OMSticker(item.sticker, size: .s44)
@@ -79,13 +88,16 @@ struct CompetitionsListContent: View {
                                         }
                                     }
                                     Spacer()
-                                    if let fit = item.tasteFitLabel {
+                                    if let fit = CompetitionSpotlight.fitLabel(item) {
                                         OMChip(text: fit, kind: .gap)
                                     }
                                     OMChip(text: item.recommendationLabel, kind: .standard)
                                 }
                                 HStack {
                                     OMChip(text: item.teamFormingSupported ? "官方组队" : "备赛搭子", kind: .soft)
+                                    if let jackpot = CompetitionSpotlight.chip(item) {
+                                        OMChip(text: jackpot, kind: .gap)
+                                    }
                                     Spacer()
                                     if let deadline = item.registrationDeadline {
                                         deadlineBadge(deadline)

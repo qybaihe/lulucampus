@@ -51,7 +51,6 @@ struct TodayView: View {
                     phase: model.phase,
                     onRetry: { Task { await model.load(force: true) } },
                     onIgnoreScene: { key in Task { await model.ignoreScene(key) } },
-                    onOpenPending: openPending,
                     onOpenTimeline: openTimeline,
                     onOpenTimetable: { router.push(.formal(.b3)) },
                     onOpenSceneDetail: { router.push(.formal(.b10)) }
@@ -99,8 +98,14 @@ struct TodayView: View {
             .padding(.bottom, 44)
         }
         .background(OMPageBackground())
-        .task { await model.load() }
-        .refreshable { await model.load(force: true) }
+        .task {
+            await model.load()
+            await environment.refreshAttention()
+        }
+        .refreshable {
+            await model.load(force: true)
+            await environment.refreshAttention(force: true)
+        }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("screen-B1-today")
     }
@@ -153,16 +158,6 @@ struct TodayView: View {
         formatter.dateFormat = "M 月 d 日 · EEEE"
         return formatter.string(from: .now)
     }
-
-    private func pendingString(_ value: [String: JSONValue], _ key: String) -> String? {
-        guard case let .string(text)? = value[key] else { return nil }
-        return text
-    }
-
-    private func openPending(_ pending: [String: JSONValue]) {
-        guard let raw = pendingString(pending, "deep_link"), let url = URL(string: raw) else { return }
-        router.handle(url: url, isAuthenticated: environment.session.isAuthenticated)
-    }
 }
 
 /// 首屏数据区：独立子视图，避免 LazyVStack 内 switch 不刷新的布局问题。
@@ -170,7 +165,6 @@ private struct TodayPhaseContent: View {
     let phase: TodayViewModel.Phase
     let onRetry: () -> Void
     let onIgnoreScene: (String) -> Void
-    let onOpenPending: ([String: JSONValue]) -> Void
     let onOpenTimeline: (TodaySummary.TimelineItem) -> Void
     let onOpenTimetable: () -> Void
     let onOpenSceneDetail: () -> Void
@@ -205,29 +199,6 @@ private struct TodayPhaseContent: View {
                 .accessibilityIdentifier("today-scene-trigger")
             }
 
-            if !summary.pending.isEmpty {
-                OMCard(tight: true) {
-                    ForEach(Array(summary.pending.enumerated()), id: \.offset) { index, pending in
-                        let isLast = index == summary.pending.count - 1
-                        if Self.string(pending, "type") == "confirmation" {
-                            TodayPendingRow(
-                                title: Self.confirmationTitle(pending),
-                                badge: "差你 1 票",
-                                showsDivider: !isLast,
-                                onTap: { onOpenPending(pending) }
-                            )
-                        } else {
-                            TodayPendingRow(
-                                title: "有一份行动预览等待核对",
-                                badge: nil,
-                                showsDivider: !isLast,
-                                onTap: { onOpenPending(pending) }
-                            )
-                        }
-                    }
-                }
-            }
-
             OMSection(title: "今日日程", more: ("周历", onOpenTimetable))
             if summary.timeline.isEmpty {
                 OMCard {
@@ -246,49 +217,6 @@ private struct TodayPhaseContent: View {
     private static func string(_ value: [String: JSONValue], _ key: String) -> String? {
         guard case let .string(text)? = value[key] else { return nil }
         return text
-    }
-
-    /// 「阿衡 有一个局等待你确认」；无对方名字时退回通用文案。
-    private static func confirmationTitle(_ pending: [String: JSONValue]) -> String {
-        if let name = string(pending, "from_name")?.trimmingCharacters(in: .whitespaces), !name.isEmpty {
-            return "\(name) 有一个局等待你确认"
-        }
-        return "有一个局等待你确认"
-    }
-}
-
-/// 首屏待办行：无左侧图标，文案 + 细胶囊徽章 + ›。
-private struct TodayPendingRow: View {
-    let title: String
-    let badge: String?
-    let showsDivider: Bool
-    let onTap: () -> Void
-
-    var body: some View {
-        Button(action: onTap) {
-            HStack(spacing: 8) {
-                Text(title)
-                    .font(OMTheme.TypeToken.callout.weight(.semibold))
-                    .foregroundStyle(OMTheme.ColorToken.ink)
-                    .lineLimit(2)
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                if let badge {
-                    OMGapBadge(text: badge, compact: true)
-                }
-                Text("›")
-                    .font(.system(size: 14, weight: .bold))
-                    .foregroundStyle(OMTheme.ColorToken.sage)
-            }
-            .padding(.vertical, 10)
-            .contentShape(Rectangle())
-        }
-        .buttonStyle(.plain)
-        .overlay(alignment: .bottom) {
-            if showsDivider {
-                Rectangle().fill(OMTheme.ColorToken.line).frame(height: OMTheme.Radius.borderWidth)
-            }
-        }
     }
 }
 

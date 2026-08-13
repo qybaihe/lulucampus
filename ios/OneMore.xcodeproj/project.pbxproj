@@ -15,6 +15,7 @@
 		09D1193661A5D298E07ADDDF /* qr-plaque-blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 1630933E53B034FC20C86E67 /* qr-plaque-blank.png */; };
 		0A380899463F3056FFD9FEE1 /* HermesProdSmokeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35F5FD70671085A48091E37 /* HermesProdSmokeUITests.swift */; };
 		0AC558769CDCB18DEBFDFA5C /* aliases.v1.json in Resources */ = {isa = PBXBuildFile; fileRef = 947A2357A48381F25D70D881 /* aliases.v1.json */; };
+		0ACDB4B35F056C5D231CFB8E /* CompetitionSpotlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BA6949C0E4F74DBA0801BD /* CompetitionSpotlight.swift */; };
 		0B18C6510B0C94C55F3C7154 /* ContractCoverageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BEB5E896E0B4B64AB1E6F /* ContractCoverageTests.swift */; };
 		0B20FA4BC883B42F68B7F8D3 /* azou_closed_eye_sensing_04.png in Resources */ = {isa = PBXBuildFile; fileRef = 502DC207BAD41A6307237816 /* azou_closed_eye_sensing_04.png */; };
 		0D8808E52BCFD728D42C295A /* ScreensB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBF48ECFB75258FBF35EC58 /* ScreensB.swift */; };
@@ -215,6 +216,7 @@
 		E31174A5E17C756E8EDD66BB /* APIModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F6814DA72B95BE288BA8E8 /* APIModels.swift */; };
 		E3A93E050DCD9FFF2F53791C /* TrustRequirementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF00A4BBDCE6032CB8B3CEC /* TrustRequirementView.swift */; };
 		E3CD04BC5F67B7394E2D90EA /* CompetitionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BC1C5F42422D3901435D7A /* CompetitionDetailView.swift */; };
+		C8F3A12B9E7D4056A4C1B390 /* CompetitionTeamBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E2C91A4D5F6083B1A0C4E8 /* CompetitionTeamBoardView.swift */; };
 		E44755E2F9DB9704650F0B45 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22D7FCB52F8B021E329B2FD /* AppEnvironment.swift */; };
 		E4E5007EC3BAF93393A4563E /* trust-t4.png in Resources */ = {isa = PBXBuildFile; fileRef = 262FC6944524F16727B56193 /* trust-t4.png */; };
 		E6069BB6280741E09A0FD046 /* azou_appear_05.png in Resources */ = {isa = PBXBuildFile; fileRef = CB06D7D45FCC8F7475E013D6 /* azou_appear_05.png */; };
@@ -330,6 +332,7 @@
 		45DE59EC02B8DD737FA6C790 /* alarm-clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alarm-clock.png"; sourceTree = "<group>"; };
 		469E09B85AD8E15E6488C97A /* tab-messages-inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-messages-inactive.png"; sourceTree = "<group>"; };
 		46BC1C5F42422D3901435D7A /* CompetitionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionDetailView.swift; sourceTree = "<group>"; };
+		B7E2C91A4D5F6083B1A0C4E8 /* CompetitionTeamBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionTeamBoardView.swift; sourceTree = "<group>"; };
 		4748FFFB4A0E9F4A952307A8 /* venues.v1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = venues.v1.json; sourceTree = "<group>"; };
 		4A27DFF861B04BA060BEDCF0 /* lulu-face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lulu-face.png"; sourceTree = "<group>"; };
 		4CFA2F81A99398E2CD6D2D55 /* OneMoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneMoreApp.swift; sourceTree = "<group>"; };
@@ -382,6 +385,7 @@
 		756EF51CB5061A7C70E0EAE1 /* azou_closed_eye_sensing_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = azou_closed_eye_sensing_02.png; sourceTree = "<group>"; };
 		76632049EA4A1DEE4A3BD576 /* data-chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "data-chart.png"; sourceTree = "<group>"; };
 		76EC9A84B2D60B3B21E1BAEB /* block-sign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "block-sign.png"; sourceTree = "<group>"; };
+		77BA6949C0E4F74DBA0801BD /* CompetitionSpotlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionSpotlight.swift; sourceTree = "<group>"; };
 		7805F5B79FA3438B8C07B60E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79662F9F52D180E0AFF05D0E /* sliders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliders.png; sourceTree = "<group>"; };
 		79F10EE46DE79AC6773C0F4D /* azou_appear_00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = azou_appear_00.png; sourceTree = "<group>"; };
@@ -943,6 +947,8 @@
 			children = (
 				74AEDB96C5BBF8555CDDFDBE /* ActivityDiscoveryView.swift */,
 				46BC1C5F42422D3901435D7A /* CompetitionDetailView.swift */,
+				B7E2C91A4D5F6083B1A0C4E8 /* CompetitionTeamBoardView.swift */,
+				77BA6949C0E4F74DBA0801BD /* CompetitionSpotlight.swift */,
 				314719F511DFDC2A9173EB24 /* CompetitionsView.swift */,
 			);
 			path = Competitions;
@@ -1444,6 +1450,8 @@
 				D7462B9B988ED8332BAE3973 /* CampusToolsViews.swift in Sources */,
 				C0FF2868581BF52851C1DEF2 /* ChannelView.swift in Sources */,
 				E3CD04BC5F67B7394E2D90EA /* CompetitionDetailView.swift in Sources */,
+				C8F3A12B9E7D4056A4C1B390 /* CompetitionTeamBoardView.swift in Sources */,
+				0ACDB4B35F056C5D231CFB8E /* CompetitionSpotlight.swift in Sources */,
 				5F38D465E9D62B7D56C293FD /* CompetitionsView.swift in Sources */,
 				5655C6B62D5A527783A59F6B /* FormalNodeRegistry.swift in Sources */,
 				5A8AB641F8F662DE92A148D4 /* FunctionalSettingsViews.swift in Sources */,

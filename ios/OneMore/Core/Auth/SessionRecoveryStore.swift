@@ -33,6 +33,9 @@ private struct RecoveryRoute: Codable, Equatable, Sendable {
         case .myGatherings: kind = "mine"; value = nil
         case .relations: kind = "relations"; value = nil
         case let .competition(value): kind = "competition"; self.value = value
+        case let .competitionTable(value): kind = "competition-table"; self.value = value
+        case let .competitionTeam(competitionID, teamID):
+            kind = "competition-team"; self.value = "\(competitionID)/\(teamID)"
         case let .intent(value): kind = "intent"; self.value = value
         case let .intentPreset(value): kind = "intent-preset"; self.value = value.rawValue
         case let .gathering(value): kind = "gathering"; self.value = value
@@ -70,6 +73,15 @@ private struct RecoveryRoute: Codable, Equatable, Sendable {
         case "mine": .myGatherings
         case "relations": .relations
         case "competition": value.map(AppRoute.competition)
+        case "competition-table": value.map(AppRoute.competitionTable)
+        case "competition-team":
+            value.flatMap { raw -> AppRoute? in
+                guard let slash = raw.firstIndex(of: "/") else { return nil }
+                let competitionID = String(raw[..<slash])
+                let teamID = String(raw[raw.index(after: slash)...])
+                guard !competitionID.isEmpty, !teamID.isEmpty else { return nil }
+                return .competitionTeam(competitionID: competitionID, teamID: teamID)
+            }
         case "intent": .intent(competitionID: value)
         case "intent-preset": value.flatMap(IntentPreset.init(rawValue:)).map(AppRoute.intentPreset)
         case "gathering": value.map(AppRoute.gathering)

@@ -8,6 +8,7 @@ struct OMCard<Content: View>: View {
     var background: Color? = nil
     var borderColor: Color? = nil
     var borderWidth: CGFloat? = nil
+    var hotSeat = false
     let content: Content
 
     init(
@@ -16,6 +17,7 @@ struct OMCard<Content: View>: View {
         background: Color? = nil,
         borderColor: Color? = nil,
         borderWidth: CGFloat? = nil,
+        hotSeat: Bool = false,
         @ViewBuilder content: () -> Content
     ) {
         self.tight = tight
@@ -23,6 +25,7 @@ struct OMCard<Content: View>: View {
         self.background = background
         self.borderColor = borderColor
         self.borderWidth = borderWidth
+        self.hotSeat = hotSeat
         self.content = content()
     }
 
@@ -34,9 +37,51 @@ struct OMCard<Content: View>: View {
             .clipShape(RoundedRectangle(cornerRadius: OMTheme.Radius.large))
             .overlay {
                 RoundedRectangle(cornerRadius: OMTheme.Radius.large)
-                    .stroke(borderColor ?? OMTheme.ColorToken.line, lineWidth: borderWidth ?? OMTheme.Radius.borderWidth)
+                    .stroke(
+                        hotSeat ? OMTheme.ColorToken.yolkBorder : (borderColor ?? OMTheme.ColorToken.line),
+                        lineWidth: borderWidth ?? OMTheme.Radius.borderWidth
+                    )
+            }
+            .overlay {
+                if hotSeat {
+                    OMMarqueeRing(cornerRadius: OMTheme.Radius.large)
+                }
             }
             .padding(.bottom, OMTheme.Spacing.s3)
+    }
+}
+
+/// 跑马灯灯环：蛋黄追光绕卡一周。Reduce Motion 时停在固定角度。
+struct OMMarqueeRing: View {
+    var cornerRadius: CGFloat = OMTheme.Radius.large
+    var lineWidth: CGFloat = 2.5
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    var body: some View {
+        TimelineView(.animation(minimumInterval: reduceMotion ? 120 : 1.0 / 30.0)) { context in
+            let turns = reduceMotion ? 0.12 : context.date.timeIntervalSinceReferenceDate / 2.2
+            let angle = Angle.degrees(turns.truncatingRemainder(dividingBy: 1) * 360)
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .strokeBorder(
+                        AngularGradient(
+                            gradient: Gradient(stops: [
+                                .init(color: .clear, location: 0),
+                                .init(color: .clear, location: 0.58),
+                                .init(color: OMTheme.ColorToken.yolk.opacity(0.18), location: 0.7),
+                                .init(color: OMTheme.ColorToken.yolk, location: 0.84),
+                                .init(color: OMTheme.ColorToken.card, location: 0.9),
+                                .init(color: OMTheme.ColorToken.yolk, location: 0.96),
+                                .init(color: .clear, location: 1),
+                            ]),
+                            center: .center,
+                            angle: angle
+                        ),
+                    lineWidth: lineWidth
+                )
+        }
+        .padding(-2)
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
     }
 }
 
@@ -93,61 +138,75 @@ struct OMRow: View {
     }
 
     var body: some View {
-        Button {
-            onTap?()
-        } label: {
-            HStack(spacing: OMTheme.Spacing.s3) {
-                if let sticker {
-                    LuluStickerImage(sticker)
-                        .frame(width: 26, height: 26)
-                        .frame(width: 38, height: 38)
-                        .background(OMTheme.ColorToken.readySoft)
-                        .clipShape(RoundedRectangle(cornerRadius: OMTheme.Radius.small))
-                } else if let icon {
-                    Image(om: icon)
-                        .font(.system(size: 17))
-                        .foregroundStyle(OMTheme.ColorToken.ink)
-                        .frame(width: 38, height: 38)
-                        .background(OMTheme.ColorToken.readySoft)
-                        .clipShape(RoundedRectangle(cornerRadius: OMTheme.Radius.small))
-                }
-                VStack(alignment: .leading, spacing: 1) {
-                    Text(title)
-                        .font(OMTheme.TypeToken.callout.weight(.semibold))
-                        .foregroundStyle(OMTheme.ColorToken.ink)
-                    if let sub {
-                        Text(sub)
-                            .font(OMTheme.TypeToken.footnote)
-                            .foregroundStyle(OMTheme.ColorToken.mist)
+        Group {
+            if let onTap, toggle == nil {
+                Button(action: onTap) { rowContent }
+                    .buttonStyle(.plain)
+            } else if let toggle {
+                rowContent
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        withAnimation(OMTheme.Motion.fast) { toggle.wrappedValue.toggle() }
                     }
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                if let toggle {
-                    OMSwitch(isOn: toggle)
-                } else if let trailing {
-                    trailing
-                } else if let right {
-                    Text(right)
-                        .font(OMTheme.TypeToken.footnote)
-                        .foregroundStyle(OMTheme.ColorToken.mist)
-                }
-                if onTap != nil && toggle == nil {
-                    Text("›")
-                        .font(.system(size: 15, weight: .bold))
-                        .foregroundStyle(OMTheme.ColorToken.sage)
-                }
+                    .accessibilityAddTraits(.isButton)
+                    .accessibilityValue(toggle.wrappedValue ? "已开启" : "已关闭")
+                    .accessibilityHint("轻点以切换")
+            } else {
+                rowContent
             }
-            .padding(.vertical, 13)
-            .frame(minHeight: 48)
-            .contentShape(Rectangle())
         }
-        .buttonStyle(.plain)
-        .disabled(onTap == nil)
         .overlay(alignment: .bottom) {
             if showsDivider {
                 Rectangle().fill(OMTheme.ColorToken.line).frame(height: OMTheme.Radius.borderWidth)
             }
         }
+    }
+
+    private var rowContent: some View {
+        HStack(spacing: OMTheme.Spacing.s3) {
+            if let sticker {
+                LuluStickerImage(sticker)
+                    .frame(width: 26, height: 26)
+                    .frame(width: 38, height: 38)
+                    .background(OMTheme.ColorToken.readySoft)
+                    .clipShape(RoundedRectangle(cornerRadius: OMTheme.Radius.small))
+            } else if let icon {
+                Image(om: icon)
+                    .font(.system(size: 17))
+                    .foregroundStyle(OMTheme.ColorToken.ink)
+                    .frame(width: 38, height: 38)
+                    .background(OMTheme.ColorToken.readySoft)
+                    .clipShape(RoundedRectangle(cornerRadius: OMTheme.Radius.small))
+            }
+            VStack(alignment: .leading, spacing: 1) {
+                Text(title)
+                    .font(OMTheme.TypeToken.callout.weight(.semibold))
+                    .foregroundStyle(OMTheme.ColorToken.ink)
+                if let sub {
+                    Text(sub)
+                        .font(OMTheme.TypeToken.footnote)
+                        .foregroundStyle(OMTheme.ColorToken.mist)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            if let toggle {
+                OMSwitch(isOn: toggle, interactive: false)
+            } else if let trailing {
+                trailing
+            } else if let right {
+                Text(right)
+                    .font(OMTheme.TypeToken.footnote)
+                    .foregroundStyle(OMTheme.ColorToken.mist)
+            }
+            if onTap != nil && toggle == nil {
+                Text("›")
+                    .font(.system(size: 15, weight: .bold))
+                    .foregroundStyle(OMTheme.ColorToken.sage)
+            }
+        }
+        .padding(.vertical, 13)
+        .frame(minHeight: 48)
+        .contentShape(Rectangle())
     }
 }
 

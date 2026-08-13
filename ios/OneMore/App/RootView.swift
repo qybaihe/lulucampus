@@ -97,6 +97,7 @@ struct RootView: View {
                                 }
                                     .tag(RootTab.messages)
                                     .tabItem { tabItemLabel(.messages) }
+                                    .badge(environment.attentionItems.count)
                                 authenticatedTab { ProfileView() }
                                     .tag(RootTab.profile)
                                     .tabItem { tabItemLabel(.profile) }
@@ -104,6 +105,20 @@ struct RootView: View {
                             .tint(OMTheme.ColorToken.ink)
                             .toolbarBackground(OMTheme.ColorToken.card.opacity(0.92), for: .tabBar)
                             .toolbarBackground(.visible, for: .tabBar)
+                            .task {
+                                if environment.session.isAuthenticated {
+                                    await environment.refreshAttention()
+                                }
+                            }
+                            .onChange(of: environment.session.isAuthenticated) { _, authenticated in
+                                Task {
+                                    if authenticated {
+                                        await environment.refreshAttention(force: true)
+                                    } else {
+                                        await environment.refreshAttention()
+                                    }
+                                }
+                            }
                         }
                     }
                     // Always register typed destinations *inside* the stack,
@@ -174,6 +189,9 @@ struct RootView: View {
         case .myGatherings: authenticatedDestination(route) { socialGate { GatheringListView(mine: true, repository: environment.gatherings) } }
         case .relations: authenticatedDestination(route) { socialGate { RelationsView(repository: environment.social) } }
         case let .competition(id): CompetitionDetailView(id: id)
+        case let .competitionTable(id): CompetitionTeamBoardView(competitionID: id)
+        case let .competitionTeam(competitionID, teamID):
+            CompetitionTeamDetailView(competitionID: competitionID, teamID: teamID)
         case let .intent(id): authenticatedDestination(route) { socialGate { IntentComposerView(repository: environment.intents, competitionID: id) } }
         case let .intentPreset(preset): authenticatedDestination(route) { socialGate { IntentComposerView(repository: environment.intents, preset: preset) } }
         case let .gathering(id): authenticatedDestination(route) { GatheringDetailView(id: id) }

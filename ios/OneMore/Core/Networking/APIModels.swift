@@ -85,6 +85,16 @@ enum APIClientError: LocalizedError, Equatable, Sendable {
     }
 }
 
+extension Error {
+    /// SwiftUI `.task` / 切 Tab 会取消进行中的请求；这不是网络故障。
+    var isCancellation: Bool {
+        if self is CancellationError { return true }
+        if let url = self as? URLError, url.code == .cancelled { return true }
+        let ns = self as NSError
+        return ns.domain == NSURLErrorDomain && ns.code == NSURLErrorCancelled
+    }
+}
+
 enum HTTPMethod: String, Sendable { case get = "GET", post = "POST", patch = "PATCH", delete = "DELETE" }
 
 struct EmptyRequest: Encodable, Sendable {}
@@ -195,6 +205,49 @@ struct TodaySummary: Codable, Sendable {
     let sceneTrigger: [String: JSONValue]?
 }
 
+/// 今天接口里的待处理项：确认局 / 行动预览。展示在消息 Tab，不堆在今天首页。
+struct TodayAttentionItem: Identifiable, Equatable, Sendable {
+    let id: String
+    let title: String
+    let badge: String?
+    let deepLink: String
+
+    static func list(from pending: [[String: JSONValue]]) -> [TodayAttentionItem] {
+        var seen = Set<String>()
+        var items: [TodayAttentionItem] = []
+        for raw in pending {
+            let gatheringID = raw["gathering_id"]?.stringValue
+            let actionID = raw["action_id"]?.stringValue
+            let link = raw["deep_link"]?.stringValue
+            let key = gatheringID ?? actionID ?? link
+            guard let key, let link, seen.insert(key).inserted else { continue }
+            items.append(
+                TodayAttentionItem(
+                    id: key,
+                    title: title(for: raw),
+                    badge: raw["type"]?.stringValue == "confirmation" ? "差你 1 票" : nil,
+                    deepLink: link
+                )
+            )
+        }
+        return items
+    }
+
+    private static func title(for raw: [String: JSONValue]) -> String {
+        if raw["type"]?.stringValue == "confirmation" {
+            if let name = raw["from_name"]?.stringValue?.trimmingCharacters(in: .whitespaces),
+               !name.isEmpty {
+                return "\(name) 有一个局等待你确认"
+            }
+            return "有一个局等待你确认"
+        }
+        if let title = raw["title"]?.stringValue?.trimmingCharacters(in: .whitespaces), !title.isEmpty {
+            return "「\(title)」等待核对"
+        }
+        return "有一份行动预览等待核对"
+    }
+}
+
 struct Timetable: Codable, Sendable {
     struct Entry: Codable, Identifiable, Sendable {
         var id: String { "\(courseId)-\(classCode)-\(startAt.timeIntervalSince1970)" }
@@ -283,6 +336,20 @@ struct HermesAskResult: Codable, Sendable {
     let toolTrace: [HermesToolTrace]?
 }
 
+struct HermesPeer: Identifiable, Sendable, Equatable {
+    let userId: String
+    let displayName: String
+    let personaLabel: String?
+    let reason: String
+    let overlap: String
+    var id: String { userId }
+}
+
+struct HermesPeerChatResult: Codable, Sendable {
+    let channelId: String
+    let gatheringId: String
+}
+
 struct UserProfilePayload: Codable, Sendable {
     struct Capability: Codable, Identifiable, Sendable {
         var id: String { key }
@@ -336,6 +403,19 @@ struct CampusEvent: Codable, Identifiable, Sendable {
     let officialUrl: URL?
     let details: [String: JSONValue]
     let registrationMode: String
+
+    /// 列表 chip 用中文；兼容旧快照里的 teachin / seminar。
+    var displayType: String {
+        switch type {
+        case "teachin", "宣讲会": "宣讲"
+        case "seminar", "lecture": "讲座"
+        case "club", "society": "社团"
+        case "recruitment": "招新"
+        case "career_fair", "招聘会": "招聘"
+        case "performance": "演出"
+        default: type
+        }
+    }
 }
 
 struct Competition: Codable, Identifiable, Sendable {
@@ -370,6 +450,8 @@ struct Competition: Codable, Identifiable, Sendable {
     var tasteFitLabel: String? = nil
     var tasteFitReasons: [String] = []
     var recruitHints: [String] = []
+    var recruitGapCount: Int = 0
+    var recruitGapLabels: [String] = []
     var teamSizeMin: Int { teamConstraints.teamSizeMin }
     var teamSizeMax: Int { teamConstraints.teamSizeMax }
 
@@ -420,6 +502,8 @@ struct Competition: Codable, Identifiable, Sendable {
         tasteFitLabel = try c.decodeIfPresent(String.self, forKey: .tasteFitLabel)
         tasteFitReasons = try c.decodeIfPresent([String].self, forKey: .tasteFitReasons) ?? []
         recruitHints = try c.decodeIfPresent([String].self, forKey: .recruitHints) ?? []
+        recruitGapCount = try c.decodeIfPresent(Int.self, forKey: .recruitGapCount) ?? 0
+        recruitGapLabels = try c.decodeIfPresent([String].self, forKey: .recruitGapLabels) ?? []
     }
 
     private static let fallbackLabels = ["A": "优先推荐", "B": "可报名", "C": "补充参考"]
@@ -453,14 +537,32 @@ struct CompetitionTeam: Codable, Identifiable, Sendable {
     let memberCount: Int
     let requiredRoles: [String]
     let expiresAt: Date?
+    let goal: String?
+    let missingCount: Int?
+    let missingRoles: [String]?
+    let filledRoles: [String]?
+    var rosterHighlights: [String]? = nil
+
+    var filled: Int { min(memberCount, targetSize) }
+
+    var resolvedMissingCount: Int {
+        missingCount ?? max(0, targetSize - memberCount)
+    }
+
+    var resolvedMissingRoles: [String] {
+        if let missingRoles, !missingRoles.isEmpty { return missingRoles }
+        return requiredRoles
+    }
 
     /// 角色缺口文案：「差一个算法」。
     var gapDescription: String? {
-        guard !requiredRoles.isEmpty else { return nil }
-        let labels = requiredRoles.map(CapabilityLabel.displayName(for:))
-        return labels.count == 1
-            ? "差一个\(labels[0])"
-            : "还差 \(labels.count) 个角色：\(labels.joined(separator: "、"))"
+        let labels = resolvedMissingRoles.map(CapabilityLabel.displayName(for:))
+        if labels.count == 1 { return "差一个\(labels[0])" }
+        if labels.count > 1 {
+            return "还差 \(labels.count) 个角色：\(labels.joined(separator: "、"))"
+        }
+        if resolvedMissingCount > 0 { return "还差 \(resolvedMissingCount) 人" }
+        return nil
     }
 }
 
@@ -468,11 +570,15 @@ struct CompetitionTeam: Codable, Identifiable, Sendable {
 enum CapabilityLabel {
     private static let table: [String: String] = [
         "frontend": "前端", "backend": "后端", "design": "设计",
-        "product": "产品", "data_analysis": "数据分析", "machine_learning": "机器学习",
-        "algorithm": "算法", "presentation": "路演", "writing": "文案",
-        "research": "调研", "video": "视频", "operations": "运营",
+        "visual_design": "视觉", "product": "产品", "data_analysis": "数据分析",
+        "machine_learning": "机器学习", "algorithm": "算法", "presentation": "路演",
+        "writing": "文案", "paper_writing": "写作", "research": "调研", "video": "视频",
+        "operations": "运营", "business_analysis": "商业分析",
+        "modeling": "建模", "programming": "编程",
     ]
-    static func displayName(for key: String) -> String { table[key] ?? key }
+    static func displayName(for key: String) -> String {
+        table[key] ?? table[key.lowercased()] ?? key
+    }
 }
 
 struct IntentCompileRequest: Codable, Sendable {
@@ -640,6 +746,7 @@ struct MessagePayload: Codable, Identifiable, Sendable {
     let image: Image?
     let location: Location?
     let sentAt: Date
+    var senderDisplayName: String? = nil
 }
 
 struct ChannelScenePolicy: Codable, Sendable {
@@ -739,12 +846,95 @@ struct TrustProgress: Codable, Sendable {
 
 struct NotificationPreferences: Codable, Sendable {
     struct Categories: Codable, Sendable {
-        var gatheringUpdates, actionUpdates, chatMessages, trustUpdates, competitionDeadlines: Bool
+        var gatheringUpdates: Bool
+        var actionUpdates: Bool
+        var chatMessages: Bool
+        var trustUpdates: Bool
+        var competitionDeadlines: Bool
+        var scheduleReminders: Bool
+
+        init(
+            gatheringUpdates: Bool = true,
+            actionUpdates: Bool = true,
+            chatMessages: Bool = true,
+            trustUpdates: Bool = true,
+            competitionDeadlines: Bool = true,
+            scheduleReminders: Bool = true
+        ) {
+            self.gatheringUpdates = gatheringUpdates
+            self.actionUpdates = actionUpdates
+            self.chatMessages = chatMessages
+            self.trustUpdates = trustUpdates
+            self.competitionDeadlines = competitionDeadlines
+            self.scheduleReminders = scheduleReminders
+        }
+
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            gatheringUpdates = try container.decodeIfPresent(Bool.self, forKey: .gatheringUpdates) ?? true
+            actionUpdates = try container.decodeIfPresent(Bool.self, forKey: .actionUpdates) ?? true
+            chatMessages = try container.decodeIfPresent(Bool.self, forKey: .chatMessages) ?? true
+            trustUpdates = try container.decodeIfPresent(Bool.self, forKey: .trustUpdates) ?? true
+            competitionDeadlines = try container.decodeIfPresent(Bool.self, forKey: .competitionDeadlines) ?? true
+            scheduleReminders = try container.decodeIfPresent(Bool.self, forKey: .scheduleReminders) ?? true
+        }
     }
     var overallEnabled: Bool
     var calendarSyncEnabled: Bool
     var categories: Categories
     let systemSettingsManagedLocally: [String]
+}
+
+struct InboxNotification: Codable, Identifiable, Sendable {
+    let id: String
+    let type: String
+    let category: String?
+    let title: String?
+    let payload: [String: JSONValue]
+    let createdAt: Date
+    let deliveredAt: Date?
+
+    var summary: String {
+        payload["summary"]?.stringValue ?? title ?? "你有一条新提醒"
+    }
+
+    var resolvedCategory: String {
+        if let category, !category.isEmpty { return category }
+        switch type {
+        case "schedule_reminder", "assignment_reminder": return "schedule_reminders"
+        case "chat_message": return "chat_messages"
+        case "trust_level_changed": return "trust_updates"
+        case "competition_deadline": return "competition_deadlines"
+        case "execution_succeeded", "authorization_required", "reauthorization_required",
+             "action_modification_requested", "calendar_revoked":
+            return "action_updates"
+        default: return "gathering_updates"
+        }
+    }
+
+    var categoryLabel: String {
+        switch resolvedCategory {
+        case "schedule_reminders": "日程"
+        case "gathering_updates": "成局"
+        case "chat_messages": "消息"
+        case "action_updates": "行动"
+        case "trust_updates": "信任"
+        case "competition_deadlines": "赛事"
+        default: "提醒"
+        }
+    }
+
+    var routingUserInfo: [AnyHashable: Any] {
+        var values: [AnyHashable: Any] = ["type": type]
+        for (key, value) in payload {
+            if let string = value.stringValue {
+                values[key] = string
+            } else if case let .bool(flag) = value {
+                values[key] = flag
+            }
+        }
+        return values
+    }
 }
 
 struct SocialPreferences: Codable, Sendable {
@@ -810,6 +1000,8 @@ struct GatheringSummary: Codable, Identifiable, Sendable {
     let requiredRoles: [String]
     let matchReason: String?
     var lookingFor: [String]? = nil
+    var filledRoles: [String]? = nil
+    var rosterHighlights: [String]? = nil
     let myConfirmation: String?
     let confirmedCount: Int?
     let memberCount: Int?

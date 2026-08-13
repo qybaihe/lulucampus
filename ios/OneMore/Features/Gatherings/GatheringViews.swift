@@ -33,7 +33,17 @@ enum CampusActionExecutionDisposition: Equatable {
     @Published var phase: Phase = .loading
     let mine: Bool; let repository: GatheringRepository
     init(mine: Bool, repository: GatheringRepository) { self.mine = mine; self.repository = repository }
-    func load() async { phase = .loading; do { phase = .loaded(try await (mine ? repository.mine() : repository.open())) } catch { phase = .failed(error.localizedDescription) } }
+    func load() async {
+        if case .loaded = phase {} else { phase = .loading }
+        do {
+            let items = try await (mine ? repository.mine() : repository.open())
+            guard !Task.isCancelled else { return }
+            phase = .loaded(items)
+        } catch {
+            guard !error.isCancellation, !Task.isCancelled else { return }
+            phase = .failed(error.localizedDescription)
+        }
+    }
 }
 
 /// E1 我的局 / C1 公开局。视觉对齐 mobile-ios.html#/s/E1 与 #/s/C1。
@@ -90,6 +100,14 @@ struct GatheringListView: View {
             }
             OMTextRole.t3(item.title).padding(.top, OMTheme.Spacing.s2)
             OMTextRole.foot(item.goal).padding(.top, 4)
+            if item.status == .pooling, let looking = item.lookingFor, !looking.isEmpty {
+                OMFlowLayout {
+                    ForEach(Array(looking.prefix(3)), id: \.self) { role in
+                        OMChip(text: CapabilityLabel.displayName(for: role), kind: .gap)
+                    }
+                }
+                .padding(.top, OMTheme.Spacing.s2)
+            }
             if item.status != .pooling, let memberCount = item.memberCount {
                 Text("\(memberCount) 人")
                     .font(OMTheme.TypeToken.footnote)
@@ -310,12 +328,45 @@ struct GatheringDetailView: View {
                 OMTextRole.foot(reason).padding(.top, OMTheme.Spacing.s2)
             }
         }
+        if item.status == .pooling {
+            OMCard {
+                HStack {
+                    OMTextRole.t3("桌上已经有谁")
+                    Spacer()
+                    if let count = item.memberCount {
+                        Text("\(min(count, item.targetSize))/\(item.targetSize)")
+                            .font(OMTheme.TypeToken.footnote.weight(.semibold))
+                            .foregroundStyle(OMTheme.ColorToken.ink)
+                    }
+                }
+                if let count = item.memberCount {
+                    OMLuluSeatStrip(filled: min(count, item.targetSize), total: item.targetSize)
+                        .padding(.top, OMTheme.Spacing.s2)
+                }
+                if let filled = item.filledRoles, !filled.isEmpty {
+                    OMFlowLayout {
+                        ForEach(filled, id: \.self) { role in
+                            OMChip(text: CapabilityLabel.displayName(for: role), kind: .soft)
+                        }
+                    }
+                    .padding(.top, OMTheme.Spacing.s2)
+                }
+                if let highlights = item.rosterHighlights, !highlights.isEmpty {
+                    OMFlowLayout {
+                        ForEach(highlights, id: \.self) { highlight in
+                            OMChip(text: highlight, kind: .standard)
+                        }
+                    }
+                    .padding(.top, OMTheme.Spacing.s2)
+                }
+            }
+        }
         if item.status == .pooling, let looking = item.lookingFor, !looking.isEmpty {
             OMCard {
                 OMTextRole.t3("这桌还在找")
                 OMFlowLayout {
                     ForEach(looking, id: \.self) { role in
-                        OMChip(text: role, kind: .gap)
+                        OMChip(text: CapabilityLabel.displayName(for: role), kind: .gap)
                     }
                 }
                 .padding(.top, OMTheme.Spacing.s2)
@@ -836,6 +887,14 @@ struct GatheringDetailView: View {
                 if let mood = gapShare.moodNote, !mood.isEmpty {
                     MoodNoteQuote(text: mood)
                         .padding(.top, OMTheme.Spacing.s2)
+                }
+                if let looking = gapShare.lookingFor, !looking.isEmpty {
+                    OMFlowLayout {
+                        ForEach(looking, id: \.self) { role in
+                            OMChip(text: CapabilityLabel.displayName(for: role), kind: .gap)
+                        }
+                    }
+                    .padding(.top, OMTheme.Spacing.s2)
                 }
                 Text(gapShare.universalLink.absoluteString)
                     .font(OMTheme.TypeToken.mono(.caption))
@@ -1382,6 +1441,10 @@ struct GatheringDetailView: View {
         if let campus = gapShare.campus { parts.append(campus) }
         parts.append(item.gatheringType)
         parts.append("还差 \(gapShare.missingCount ?? 1) 人")
+        if let looking = gapShare.lookingFor, !looking.isEmpty {
+            let labels = looking.prefix(2).map { CapabilityLabel.displayName(for: $0) }
+            parts.append("还缺\(labels.joined(separator: "、"))")
+        }
         return parts.joined(separator: " ")
     }
 

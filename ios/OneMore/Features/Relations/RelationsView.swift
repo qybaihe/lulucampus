@@ -249,6 +249,11 @@ struct RelationDetailView: View {
                     OMChip(text: title, kind: .soft)
                 }
             }
+            let tags = Array(Set(relation.participants.flatMap(\.interestTags))).prefix(6)
+            if !tags.isEmpty {
+                OMTextRole.cap(tags.joined(separator: " · "))
+                    .padding(.top, OMTheme.Spacing.s2)
+            }
             HStack(spacing: 0) {
                 statBlock("\(relation.timesTogether)", "次同局")
                 statBlock("\(relation.recurCount)", "次复局")

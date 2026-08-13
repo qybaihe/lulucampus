@@ -254,7 +254,7 @@ extension LuluMotionContract {
 }
 
 enum LuluPlacement {
-    case hero, header, empty, confirm, avatar
+    case hero, header, empty, confirm, avatar, chat
 
     var size: CGFloat {
         switch self {
@@ -263,6 +263,7 @@ enum LuluPlacement {
         case .empty: OMTheme.LuluSize.empty
         case .confirm: OMTheme.LuluSize.confirm
         case .avatar: OMTheme.LuluSize.avatar
+        case .chat: OMTheme.LuluSize.chat
         }
     }
 }

@@ -88,6 +88,7 @@ import SwiftUI
 struct MessagesView: View {
     @StateObject private var model: MessagesViewModel
     @EnvironmentObject private var router: AppRouter
+    @EnvironmentObject private var environment: AppEnvironment
 
     init(repository: SocialRepository, gatherings: GatheringRepository) {
         _model = StateObject(wrappedValue: MessagesViewModel(social: repository, gatherings: gatherings))
@@ -114,13 +115,20 @@ struct MessagesView: View {
             .padding(.bottom, 44)
         }
         .background(OMPageBackground())
-        .task { await model.load() }
-        .refreshable { await model.load() }
+        .task {
+            await model.load()
+            await environment.refreshAttention()
+        }
+        .refreshable {
+            await model.load()
+            await environment.refreshAttention(force: true)
+        }
         .accessibilityElement(children: .contain).accessibilityIdentifier("screen-MSG-messages")
     }
 
     @ViewBuilder private func loaded(_ content: MessagesViewModel.Content) -> some View {
-        if content.isEmpty {
+        let attention = environment.attentionItems
+        if content.isEmpty && attention.isEmpty {
             OMCard {
                 VStack(spacing: OMTheme.Spacing.s3) {
                     LuluView(clip: .homeListening, placement: .confirm)
@@ -132,6 +140,22 @@ struct MessagesView: View {
             }
             OMButton("去差一个，说一句", icon: .spark) { router.selectedTab = .create }
                 .padding(.top, OMTheme.Spacing.s2)
+        }
+        if !attention.isEmpty {
+            OMSection(title: "需要你处理")
+            OMCard(tight: true) {
+                ForEach(Array(attention.enumerated()), id: \.element.id) { index, item in
+                    AttentionRow(
+                        title: item.title,
+                        badge: item.badge,
+                        showsDivider: index < attention.count - 1
+                    ) {
+                        guard let url = URL(string: item.deepLink) else { return }
+                        router.handle(url: url, isAuthenticated: environment.session.isAuthenticated)
+                    }
+                }
+            }
+            .accessibilityIdentifier("messages-attention")
         }
         if !content.ongoing.isEmpty {
             OMSection(title: "正在进行")
@@ -287,5 +311,39 @@ private struct PartnerChannelRow: View {
         formatter.locale = Locale(identifier: "zh_CN")
         formatter.unitsStyle = .short
         return formatter.localizedString(for: date, relativeTo: Date())
+    }
+}
+
+private struct AttentionRow: View {
+    let title: String
+    let badge: String?
+    let showsDivider: Bool
+    let onTap: () -> Void
+
+    var body: some View {
+        Button(action: onTap) {
+            HStack(spacing: 8) {
+                Text(title)
+                    .font(OMTheme.TypeToken.callout.weight(.semibold))
+                    .foregroundStyle(OMTheme.ColorToken.ink)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                if let badge {
+                    OMGapBadge(text: badge, compact: true)
+                }
+                Text("›")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundStyle(OMTheme.ColorToken.sage)
+            }
+            .padding(.vertical, 10)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .overlay(alignment: .bottom) {
+            if showsDivider {
+                Rectangle().fill(OMTheme.ColorToken.line).frame(height: OMTheme.Radius.borderWidth)
+            }
+        }
     }
 }

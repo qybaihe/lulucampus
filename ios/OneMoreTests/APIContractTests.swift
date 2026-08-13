@@ -52,6 +52,13 @@ final class APIContractTests: XCTestCase {
         XCTAssertNil(event.startsAt)
         XCTAssertNil(event.endsAt)
         XCTAssertEqual(event.title, "时间待定活动")
+        XCTAssertEqual(event.displayType, "讲座")
+    }
+
+    func testCampusEventMapsLegacyEnglishTypesToChinese() throws {
+        let json = #"{"id":"e-teachin","type":"teachin","title":"校招宣讲","starts_at":null,"ends_at":null,"location":null,"official_url":null,"details":{},"registration_mode":"official_link_only"}"#
+        let event = try JSONDecoder.oneMore.decode(CampusEvent.self, from: Data(json.utf8))
+        XCTAssertEqual(event.displayType, "宣讲")
     }
 
     func testLeaveEndpointMinimalAuthoritativeResultDecodes() throws {
@@ -87,13 +94,45 @@ final class APIContractTests: XCTestCase {
         let value = NotificationPreferences(
             overallEnabled: true,
             calendarSyncEnabled: false,
-            categories: .init(gatheringUpdates: true, actionUpdates: false, chatMessages: true, trustUpdates: true, competitionDeadlines: false),
+            categories: .init(gatheringUpdates: true, actionUpdates: false, chatMessages: true, trustUpdates: true, competitionDeadlines: false, scheduleReminders: true),
             systemSettingsManagedLocally: ["focus_mode"]
         )
         let data = try JSONEncoder.oneMore.encode(value)
         let string = String(decoding: data, as: UTF8.self)
         XCTAssertTrue(string.contains("calendar_sync_enabled"))
         XCTAssertEqual(try JSONDecoder.oneMore.decode(NotificationPreferences.self, from: data).categories.actionUpdates, false)
+        XCTAssertEqual(try JSONDecoder.oneMore.decode(NotificationPreferences.self, from: data).categories.scheduleReminders, true)
+        let legacy = #"{"overall_enabled":true,"calendar_sync_enabled":false,"categories":{"gathering_updates":true,"action_updates":true,"chat_messages":true,"trust_updates":true,"competition_deadlines":true},"system_settings_managed_locally":[]}"#.data(using: .utf8)!
+        XCTAssertEqual(try JSONDecoder.oneMore.decode(NotificationPreferences.self, from: legacy).categories.scheduleReminders, true)
+        let inbox = try JSONDecoder.oneMore.decode(
+            InboxNotification.self,
+            from: Data(#"{"id":"n1","type":"schedule_reminder","category":"schedule_reminders","title":"课表快到了","payload":{"summary":"「高数」还有 30 分钟就要上课","deep_link":"onemore://screen/B3"},"created_at":"2026-08-13T01:00:00Z","delivered_at":null}"#.utf8)
+        )
+        XCTAssertEqual(inbox.summary.contains("高数"), true)
+        XCTAssertEqual(inbox.categoryLabel, "日程")
+        XCTAssertEqual(inbox.resolvedCategory, "schedule_reminders")
+    }
+
+    func testTodayAttentionDedupesGatheringAndAction() {
+        let pending: [[String: JSONValue]] = [
+            [
+                "gathering_id": .string("g1"),
+                "type": .string("authorization"),
+                "title": .string("数模组队差编程"),
+                "deep_link": .string("onemore://gathering/g1"),
+            ],
+            [
+                "action_id": .string("a1"),
+                "gathering_id": .string("g1"),
+                "type": .string("authorization"),
+                "title": .string("数模组队差编程"),
+                "deep_link": .string("onemore://action/a1"),
+            ],
+        ]
+        let items = TodayAttentionItem.list(from: pending)
+        XCTAssertEqual(items.count, 1)
+        XCTAssertEqual(items.first?.title, "「数模组队差编程」等待核对")
+        XCTAssertEqual(items.first?.deepLink, "onemore://gathering/g1")
     }
 
     func testSharedGoalDecodesAutomaticProgressContract() throws {
@@ -123,5 +162,16 @@ final class APIContractTests: XCTestCase {
         XCTAssertEqual(decision.decision, "partial")
         XCTAssertEqual(decision.keptUserIds, ["u1", "u2"])
         XCTAssertEqual(decision.cloneGatheringId, "g-next")
+    }
+
+    func testCompetitionTeamGapCopyUsesMissingRolesAndSeatCount() throws {
+        let json = """
+        {"id":"t-1","title":"数模组队差建模","gathering_type":"比赛组队","status":"Pooling","location":null,"campus":"东校园","start_at":null,"target_size":3,"member_count":2,"required_roles":["modeling"],"expires_at":null,"goal":"差一个建模","missing_count":1,"missing_roles":["modeling"],"filled_roles":["编程","写作"]}
+        """
+        let team = try JSONDecoder.oneMore.decode(CompetitionTeam.self, from: Data(json.utf8))
+        XCTAssertEqual(team.filled, 2)
+        XCTAssertEqual(team.resolvedMissingCount, 1)
+        XCTAssertEqual(team.gapDescription, "差一个建模")
+        XCTAssertEqual(team.filledRoles, ["编程", "写作"])
     }
 }

@@ -15,6 +15,19 @@ actor TodayRepository {
         struct Body: Encodable, Sendable { let text: String; let context: [String: JSONValue] }
         return try await api.send("/hermes/ask", method: .post, body: Body(text: text, context: context))
     }
+    func startHermesPeerChat(peerUserID: String, reason: String, overlap: String) async throws -> HermesPeerChatResult {
+        struct Body: Encodable, Sendable {
+            let peerUserId: String
+            let reason: String
+            let overlap: String
+        }
+        return try await api.send(
+            "/hermes/peers/start",
+            method: .post,
+            body: Body(peerUserId: peerUserID, reason: reason, overlap: overlap),
+            idempotencyKey: "hermes-peer-\(peerUserID)"
+        )
+    }
     func timetable(week: Int) async throws -> Timetable {
         try await api.get(
             "/schedule/timetable",
@@ -103,10 +116,11 @@ actor CompetitionRepository {
     private var cache: [Competition]?
     init(api: APIClient) { self.api = api }
     func list(force: Bool = false, tier: String? = nil) async throws -> [Competition] {
-        if !force, tier == nil, let cache { return cache }
+        if !force, tier == nil, let cache, !cache.isEmpty { return cache }
         let query = tier.map { [URLQueryItem(name: "recommendation_tier", value: $0)] } ?? []
         let value: [Competition] = try await api.get("/competitions", query: query)
-        if tier == nil { cache = value }; return value
+        if tier == nil { cache = value.isEmpty ? nil : value }
+        return value
     }
     /// 推荐档筛选目录；失败时返回 nil，由 UI 用稳定码兜底渲染。
     func tiers() async -> [RecommendationTierMeta]? {
@@ -115,6 +129,9 @@ actor CompetitionRepository {
     /// 招募中的赛事队伍；失败时返回 nil，UI 隐藏该区块。
     func teams(competitionID: String) async -> [CompetitionTeam]? {
         try? await api.get("/competitions/\(competitionID)/teams")
+    }
+    func team(competitionID: String, teamID: String) async throws -> CompetitionTeam {
+        try await api.get("/competitions/\(competitionID)/teams/\(teamID)")
     }
     func invalidate() { cache = nil }
 }
@@ -274,6 +291,9 @@ actor SocialRepository {
         return try await api.send("/trust/appeal", method: .post, body: Body(reason: reason), idempotencyKey: "appeal-\(UUID().uuidString)")
     }
     func notificationPreferences() async throws -> NotificationPreferences { try await api.get("/me/notification-preferences") }
+    func notifications() async throws -> [InboxNotification] {
+        try await api.get("/notifications", query: [URLQueryItem(name: "limit", value: "50")])
+    }
     func updatePreferences(_ value: NotificationPreferences) async throws -> NotificationPreferences {
         struct Body: Encodable, Sendable { let overallEnabled: Bool; let calendarSyncEnabled: Bool; let categories: NotificationPreferences.Categories }
         return try await api.send("/me/notification-preferences", method: .patch, body: Body(overallEnabled: value.overallEnabled, calendarSyncEnabled: value.calendarSyncEnabled, categories: value.categories), idempotencyKey: "notification-preferences-full-state")

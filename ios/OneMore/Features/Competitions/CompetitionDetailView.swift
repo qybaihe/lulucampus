@@ -22,7 +22,8 @@ struct CompetitionDetailView: View {
                         .padding(.top, OMTheme.Spacing.s2)
                     OMTextRole.foot(
                         [
-                            item.tasteFitLabel,
+                            CompetitionSpotlight.fitLabel(item),
+                            CompetitionSpotlight.chip(item),
                             "\(item.recommendationLabel) · 已核验",
                             "队伍 \(item.teamSizeMin)–\(item.teamSizeMax) 人",
                         ]
@@ -34,7 +35,7 @@ struct CompetitionDetailView: View {
                         .padding(.bottom, OMTheme.Spacing.s3)
 
                     if !item.tasteFitReasons.isEmpty || !item.recruitHints.isEmpty {
-                        OMCard {
+                        OMCard(hotSeat: CompetitionSpotlight.isHotSeat(item)) {
                             OMTextRole.t3("按你的兴趣画像")
                             ForEach(item.tasteFitReasons, id: \.self) { reason in
                                 OMTextRole.foot(reason).padding(.top, OMTheme.Spacing.s2)
@@ -44,6 +45,10 @@ struct CompetitionDetailView: View {
                                 ForEach(item.recruitHints, id: \.self) { hint in
                                     OMTextRole.foot(hint).padding(.top, 4)
                                 }
+                            }
+                            if let jackpot = CompetitionSpotlight.chip(item) {
+                                OMChip(text: jackpot, kind: .gap)
+                                    .padding(.top, OMTheme.Spacing.s3)
                             }
                         }
                     }
@@ -77,49 +82,26 @@ struct CompetitionDetailView: View {
                         }
                     }
 
-                    if let teams, !teams.isEmpty {
+                    Button { router.push(.competitionTable(item.id)) } label: {
                         OMCard {
-                            HStack {
-                                OMTextRole.t3("正在组队的队伍")
-                                Spacer()
-                                OMTextRole.foot("\(teams.count) 支")
-                            }
-                            ForEach(teams) { team in
-                                OMDivider()
-                                Button { router.push(.gathering(team.id)) } label: {
-                                    VStack(alignment: .leading, spacing: 8) {
-                                        HStack(spacing: 10) {
-                                            OMLuluSeatStrip(
-                                                filled: min(team.memberCount, team.targetSize),
-                                                total: team.targetSize
-                                            )
-                                            Text("\(min(team.memberCount, team.targetSize))/\(team.targetSize)")
-                                                .font(OMTheme.TypeToken.footnote.weight(.semibold))
-                                                .foregroundStyle(OMTheme.ColorToken.ink)
-                                            Spacer()
-                                            Image(om: .arrow)
-                                                .font(.system(size: 12, weight: .bold))
-                                                .foregroundStyle(OMTheme.ColorToken.mist)
-                                        }
-                                        HStack(spacing: 6) {
-                                            if let gap = team.gapDescription {
-                                                OMChip(text: gap, kind: .gap)
-                                            }
-                                            if let startAt = team.startAt {
-                                                OMChip(text: startAt.formatted(date: .abbreviated, time: .shortened), kind: .soft)
-                                            }
-                                        }
-                                    }
-                                    .padding(.vertical, 6)
+                            HStack(spacing: 10) {
+                                OMSticker("round-table.png", size: .s44)
+                                VStack(alignment: .leading, spacing: 2) {
+                                    OMTextRole.t3(recruitingHeadline)
+                                    OMTextRole.foot("点进去看每队几/几，以及还缺什么")
                                 }
-                                .buttonStyle(.plain)
-                                .accessibilityIdentifier("competition-team-\(team.id)")
+                                Spacer()
+                                Image(om: .arrow)
+                                    .font(.system(size: 12, weight: .bold))
+                                    .foregroundStyle(OMTheme.ColorToken.mist)
                             }
                         }
                     }
+                    .buttonStyle(.plain)
+                    .accessibilityIdentifier("competition-recruiting-teams")
 
                     OMButton(item.teamFormingSupported ? "找队友" : "找备赛搭子", systemIcon: "person.badge.plus") {
-                        router.push(.intent(competitionID: item.id))
+                        router.push(.competitionTable(item.id))
                     }
                     OMButton("打开官方报名页面", systemIcon: "safari", kind: .ghost) {
                         openURL(item.registrationUrl)
@@ -160,5 +142,11 @@ struct CompetitionDetailView: View {
             self.error = error.localizedDescription
         }
         teams = await environment.competitions.teams(competitionID: id)
+    }
+
+    private var recruitingHeadline: String {
+        guard let teams else { return "正在招人的队伍" }
+        if teams.isEmpty { return "暂时还没有队伍在招人" }
+        return "有 \(teams.count) 支队伍正在招人"
     }
 }

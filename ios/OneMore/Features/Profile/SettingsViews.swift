@@ -535,11 +535,25 @@ struct TrustAppealsView: View {
 
 @MainActor final class NotificationPreferencesViewModel: ObservableObject {
     @Published var value: NotificationPreferences?
+    @Published var inbox: [InboxNotification] = []
     @Published var error: String?
     @Published var saving = false
     let repository: SocialRepository
     init(repository: SocialRepository) { self.repository = repository }
-    func load() async { do { value = try await repository.notificationPreferences() } catch { self.error = error.localizedDescription } }
+    func load() async {
+        do {
+            value = try await repository.notificationPreferences()
+            error = nil
+        } catch {
+            self.error = error.localizedDescription
+            return
+        }
+        do {
+            inbox = try await repository.notifications()
+        } catch {
+            if self.error == nil { self.error = error.localizedDescription }
+        }
+    }
     @discardableResult
     func save() async -> NotificationPreferences? {
         guard let value, !saving else { return nil }
@@ -555,29 +569,71 @@ struct TrustAppealsView: View {
             return nil
         }
     }
+
+    var visibleInbox: [InboxNotification] {
+        guard let categories = value?.categories else { return inbox }
+        return inbox.filter { item in
+            switch item.resolvedCategory {
+            case "schedule_reminders": categories.scheduleReminders
+            case "gathering_updates": categories.gatheringUpdates
+            case "chat_messages": categories.chatMessages
+            case "action_updates": categories.actionUpdates
+            case "trust_updates": categories.trustUpdates
+            case "competition_deadlines": categories.competitionDeadlines
+            default: categories.gatheringUpdates
+            }
+        }
+    }
 }
 
 /// M7 · 通知与日历
 struct NotificationPreferencesView: View {
     @StateObject private var model: NotificationPreferencesViewModel
     @EnvironmentObject private var environment: AppEnvironment
+    @EnvironmentObject private var router: AppRouter
     init(repository: SocialRepository) { _model = StateObject(wrappedValue: NotificationPreferencesViewModel(repository: repository)) }
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                OMHeader(eyebrow: "跨设备同步", title: "通知偏好", lulu: .homeListening)
-                if let value = model.value {
+                OMHeader(eyebrow: "提醒与日历", title: "通知", lulu: .homeListening)
+                if model.value != nil {
                     OMCard(tight: true) {
                         OMRow(sticker: "bell.png", title: "业务通知总开关", toggle: binding(\.overallEnabled))
-                        OMRow(sticker: "desk-calendar.png", title: "执行成功后同步日历", toggle: binding(\.calendarSyncEnabled))
+                        OMRow(sticker: "desk-calendar.png", title: "执行成功后同步日历", toggle: binding(\.calendarSyncEnabled), showsDivider: false)
                     }
-                    OMSection(title: "分类提醒")
+                    OMSection(title: "看哪些提醒")
                     OMCard(tight: true) {
-                        OMRow(icon: .flag, title: "局状态", toggle: category(\.gatheringUpdates))
-                        OMRow(icon: .doc, title: "行动执行", toggle: category(\.actionUpdates))
+                        OMRow(icon: .flag, title: "成局", sub: "凑局、确认、改约", toggle: category(\.gatheringUpdates))
+                        OMRow(icon: .cal, title: "日程", sub: "上课、作业截止", toggle: category(\.scheduleReminders))
                         OMRow(icon: .chat, title: "消息", toggle: category(\.chatMessages))
+                        OMRow(icon: .doc, title: "行动执行", toggle: category(\.actionUpdates))
                         OMRow(icon: .shield, title: "信任", toggle: category(\.trustUpdates))
-                        OMRow(icon: .trophy, title: "赛事截止", toggle: category(\.competitionDeadlines))
+                        OMRow(icon: .trophy, title: "赛事截止", toggle: category(\.competitionDeadlines), showsDivider: false)
+                    }
+                    OMNote(text: "关掉的分类不会推送，也不会出现在下面的列表里。保存后同步到其他设备。")
+                        .padding(.top, OMTheme.Spacing.s3)
+                    OMSection(title: "最近提醒")
+                    if model.visibleInbox.isEmpty {
+                        OMCard {
+                            OMG5StateView(
+                                state: .empty,
+                                message: "打开上面的分类，这里会列出成局、日程和消息提醒。"
+                            )
+                        }
+                    } else {
+                        OMCard(tight: true) {
+                            ForEach(Array(model.visibleInbox.enumerated()), id: \.element.id) { index, item in
+                                OMRow(
+                                    icon: icon(for: item.resolvedCategory),
+                                    title: item.summary,
+                                    sub: "\(item.categoryLabel) · \(Self.relativeLabel(item.createdAt))",
+                                    showsDivider: index < model.visibleInbox.count - 1,
+                                    onTap: { open(item) }
+                                )
+                                .accessibilityIdentifier("notification-row-\(item.id)")
+                            }
+                        }
+                        .accessibilityIdentifier("notification-inbox")
                     }
                     if let error = model.error {
                         OMCard { OMG5StateView(state: .networkError, message: error) }
@@ -608,8 +664,47 @@ struct NotificationPreferencesView: View {
         }
         .accessibilityElement(children: .contain).accessibilityIdentifier("screen-M7-notification-settings")
     }
-    private func binding(_ path: WritableKeyPath<NotificationPreferences, Bool>) -> Binding<Bool> { Binding { model.value?[keyPath: path] ?? false } set: { model.value?[keyPath: path] = $0 } }
-    private func category(_ path: WritableKeyPath<NotificationPreferences.Categories, Bool>) -> Binding<Bool> { Binding { model.value?.categories[keyPath: path] ?? false } set: { model.value?.categories[keyPath: path] = $0 } }
+    private func binding(_ path: WritableKeyPath<NotificationPreferences, Bool>) -> Binding<Bool> {
+        Binding(
+            get: { model.value?[keyPath: path] ?? false },
+            set: { newValue in
+                guard var current = model.value else { return }
+                current[keyPath: path] = newValue
+                model.value = current
+            }
+        )
+    }
+    private func category(_ path: WritableKeyPath<NotificationPreferences.Categories, Bool>) -> Binding<Bool> {
+        Binding(
+            get: { model.value?.categories[keyPath: path] ?? false },
+            set: { newValue in
+                guard var current = model.value else { return }
+                current.categories[keyPath: path] = newValue
+                model.value = current
+            }
+        )
+    }
+    private func icon(for category: String) -> OMIcon {
+        switch category {
+        case "schedule_reminders": .cal
+        case "chat_messages": .chat
+        case "action_updates": .doc
+        case "trust_updates": .shield
+        case "competition_deadlines": .trophy
+        default: .flag
+        }
+    }
+    private func open(_ item: InboxNotification) {
+        if let url = NotificationDeepLinkParser.url(from: item.routingUserInfo) {
+            router.handle(url: url, isAuthenticated: true)
+        }
+    }
+    private static func relativeLabel(_ date: Date) -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.locale = Locale(identifier: "zh_CN")
+        formatter.unitsStyle = .short
+        return formatter.localizedString(for: date, relativeTo: Date())
+    }
 }
 
 /// DEBUG · 联调诊断

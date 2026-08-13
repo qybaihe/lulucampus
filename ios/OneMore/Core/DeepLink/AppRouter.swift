@@ -21,7 +21,7 @@ enum IntentPreset: String, Hashable, CaseIterable, Sendable {
         switch self {
         case .sport: "周六晚上珠海校区一起打羽毛球，4人"
         case .courseDDL: "今晚一起完成软件工程迭代作业，3人"
-        case .event: "周五一起参加可信人工智能前沿讲座，3人"
+        case .event: "周五一起去听可信 AI 公开课，3人"
         }
     }
 }
@@ -89,7 +89,8 @@ struct TrustRequirementContext: Hashable, Codable, Sendable {
 
 enum AppRoute: Hashable {
     case onboarding(String), formal(FormalNodeID), screen(String), publicGatherings, myGatherings, relations
-    case competition(String), intent(competitionID: String?), intentPreset(IntentPreset)
+    case competition(String), competitionTable(String), competitionTeam(competitionID: String, teamID: String)
+    case intent(competitionID: String?), intentPreset(IntentPreset)
     case gathering(String), action(String), channel(String), relation(String), share(String)
     case trust, organizer, tasteImport, accountData, diagnostics, departedSafety
     case grants, matchingPreferences, blocks, initiateGathering
@@ -118,7 +119,12 @@ enum AppRoute: Hashable {
         case "channel" where parts.count > 1: return .channel(parts[1])
         case "relation" where parts.count > 1: return .relation(parts[1])
         case "goal" where parts.count > 1: return .sharedGoals(parts[1])
-        case "competition" where parts.count > 1: return .competition(parts[1])
+        case "competition" where parts.count > 1:
+            if parts.count >= 3, parts[2] == "table" { return .competitionTable(parts[1]) }
+            if parts.count >= 4, parts[2] == "team" {
+                return .competitionTeam(competitionID: parts[1], teamID: parts[3])
+            }
+            return .competition(parts[1])
         case "intent": return .intent(competitionID: parts.dropFirst().first)
         case "relations": return .relations
         case "trust": return .trust

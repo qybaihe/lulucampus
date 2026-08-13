@@ -31,6 +31,8 @@ final class IntentComposerViewModel: ObservableObject {
     @Published var operationError: String?
     @Published var saving = false
     @Published private(set) var pendingPublishKey: String?
+    @Published var recruitHints: [String] = []
+    @Published var tasteFitLabel: String?
     private let repository: IntentRepository
     let competitionID: String?
 
@@ -573,6 +575,16 @@ struct IntentComposerView: View {
             if !roleChips.isEmpty {
                 OMDivider()
                 chipsRow(title: "还需要", items: roleChips)
+            }
+            if let fit = model.tasteFitLabel, !fit.isEmpty {
+                OMChip(text: fit, kind: .gap).padding(.top, OMTheme.Spacing.s3)
+            }
+            if !model.recruitHints.isEmpty {
+                OMDivider()
+                OMTextRole.t3("招什么样的人")
+                ForEach(model.recruitHints, id: \.self) { hint in
+                    OMTextRole.foot(hint).padding(.top, 4)
+                }
             }
         }
         .accessibilityIdentifier("intent-summary-card")
