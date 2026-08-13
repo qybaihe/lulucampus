@@ -2231,6 +2231,10 @@
             "title": "Member Count",
             "type": "integer"
           },
+          "min_size": {
+            "title": "Min Size",
+            "type": "integer"
+          },
           "missing_count": {
             "default": 0,
             "title": "Missing Count",
@@ -2287,6 +2291,7 @@
           "title",
           "gathering_type",
           "status",
+          "min_size",
           "target_size",
           "member_count"
         ],
@@ -3406,6 +3411,10 @@
             ],
             "title": "Member Count"
           },
+          "min_size": {
+            "title": "Min Size",
+            "type": "integer"
+          },
           "mode": {
             "title": "Mode",
             "type": "string"
@@ -3523,6 +3532,7 @@
           "start_at",
           "end_at",
           "location",
+          "min_size",
           "target_size",
           "required_trust_level",
           "required_roles",
