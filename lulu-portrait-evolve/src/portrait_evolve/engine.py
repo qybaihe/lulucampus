@@ -89,6 +89,9 @@ class LivingPortraitEngine:
         self._decay_layer(portrait.academic, now, HALF_LIFE_DAYS["academic"])
         self._decay_layer(portrait.taste, now, HALF_LIFE_DAYS["taste"])
         self._decay_layer(portrait.lived, now, HALF_LIFE_DAYS["lived"])
+        for item in portrait.peers.values():
+            item.score = decay(item.score, item.as_of or item.last_at, now, HALF_LIFE_DAYS["lived"])
+            item.as_of = now.isoformat()
 
         if event.type == "seed_academic":
             self._seed(portrait.academic, event, now)
@@ -98,6 +101,10 @@ class LivingPortraitEngine:
             self._nudge_lived_from_seed(portrait.lived, event, now, scale=0.22)
         else:
             self._learn_lived(portrait.lived, event, now)
+
+        for peer_id in event.peer_ids:
+            if peer_id and peer_id != event.user_id:
+                _learn(portrait.peers, peer_id, event.strength * 0.55, 1.0, now.isoformat())
 
         self._recompute(portrait, now.isoformat(), event.event_id)
         after = _fingerprint(portrait)
@@ -178,6 +185,16 @@ class LivingPortraitEngine:
 
         if event.competition or event.tracks:
             _learn(lived.signals, "competitive", strength * 0.20, polarity, stamp)
+
+        if event.type == "book_gym":
+            _learn(lived.domains, "health_sports", strength, polarity, stamp)
+            _learn(lived.scenes, "运动搭子", strength * 0.6, polarity, stamp)
+        elif event.type == "enroll_elective":
+            _learn(lived.signals, "action_oriented", strength * 0.35, polarity, stamp)
+        elif event.type == "ask_hermes":
+            _learn(lived.signals, "action_oriented", strength * 0.2, polarity, stamp)
+        elif event.type == "share_gap":
+            _learn(lived.signals, "competitive", strength * 0.2, polarity, stamp)
 
     def _decay_layer(self, layer: Layer, now: datetime, half_life: float) -> None:
         for bag in (

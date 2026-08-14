@@ -151,6 +151,12 @@ TEXT_DOMAIN_KEYWORDS: tuple[tuple[str, str], ...] = (
     ("创业", "career_growth"),
     ("商业", "finance_consumption"),
     ("金融", "finance_consumption"),
+    ("公选", "knowledge_method"),
+    ("选修", "knowledge_method"),
+    ("hermes", "career_growth"),
+    ("场馆", "health_sports"),
+    ("订场", "health_sports"),
+    ("英东", "health_sports"),
 )
 
 SKILL_TO_DOMAIN: dict[str, str] = {

@@ -29,6 +29,22 @@
       }
     },
     {
+      "event_id": "ask-hermes-elective",
+      "user_id": "u_demo_1",
+      "type": "ask_hermes",
+      "occurred_at": "2026-06-22T21:40:00+08:00",
+      "text": "按我的画像推荐几门有意思的公选",
+      "domains": ["ai_programming"]
+    },
+    {
+      "event_id": "enroll-ge4101",
+      "user_id": "u_demo_1",
+      "type": "enroll_elective",
+      "occurred_at": "2026-06-23T10:00:00+08:00",
+      "domains": ["knowledge_method"],
+      "text": "选了跨校区公选 GE4101"
+    },
+    {
       "event_id": "browse-aiia",
       "user_id": "u_demo_1",
       "type": "browse_competition",
@@ -69,7 +85,16 @@
       "scene": "比赛组队",
       "mode": "complementary",
       "competition": "智能应用开发大赛",
-      "roles_offered": ["backend", "data_analysis"]
+      "roles_offered": ["backend", "data_analysis"],
+      "peer_ids": ["u_demo_2", "u_demo_3"]
+    },
+    {
+      "event_id": "book-gym-yingdong",
+      "user_id": "u_demo_1",
+      "type": "book_gym",
+      "occurred_at": "2026-07-16T17:40:00+08:00",
+      "scene": "运动搭子",
+      "text": "Hermes 代订南校园英东羽毛球场"
     },
     {
       "event_id": "intent-badminton",
@@ -87,7 +112,8 @@
       "occurred_at": "2026-07-16T21:10:00+08:00",
       "scene": "运动搭子",
       "mode": "similar",
-      "text": "英东羽毛球成局"
+      "text": "英东羽毛球成局",
+      "peer_ids": ["u_demo_2", "u_demo_6"]
     },
     {
       "event_id": "recur-badminton",
@@ -96,7 +122,8 @@
       "occurred_at": "2026-07-23T21:05:00+08:00",
       "scene": "运动搭子",
       "mode": "similar",
-      "text": "同一桌人又打了一场"
+      "text": "同一桌人又打了一场",
+      "peer_ids": ["u_demo_2", "u_demo_6"]
     },
     {
       "event_id": "browse-cumcm",
@@ -127,7 +154,8 @@
       "scene": "比赛组队",
       "mode": "complementary",
       "competition": "2026高教社杯全国大学生数学建模竞赛（广东赛区）",
-      "roles_offered": ["data_analysis", "backend"]
+      "roles_offered": ["data_analysis", "backend"],
+      "peer_ids": ["u_demo_2"]
     }
   ]
 }

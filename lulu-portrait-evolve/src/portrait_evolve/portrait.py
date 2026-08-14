@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field
 from typing import Any
 
-MODEL_VERSION = "evolve-v1"
+MODEL_VERSION = "evolve-v2"
 
 
 @dataclass
@@ -115,6 +115,7 @@ class Portrait:
     confidence: float = 0.0
     summary: str = ""
     last_event_id: str | None = None
+    peers: dict[str, Evidence] = field(default_factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -130,6 +131,7 @@ class Portrait:
             "confidence": self.confidence,
             "summary": self.summary,
             "last_event_id": self.last_event_id,
+            "peers": _dump_bag(self.peers),
         }
 
     def public_view(self) -> dict[str, Any]:
@@ -155,6 +157,7 @@ class Portrait:
                 self.lived.scores("roles_sought"), labels_from="skill"
             ),
             "summary": self.summary,
+            "stage": _stage_of(self),
         }
 
     @classmethod
@@ -176,7 +179,14 @@ class Portrait:
             confidence=float(raw.get("confidence") or 0.0),
             summary=str(raw.get("summary") or ""),
             last_event_id=raw.get("last_event_id"),
+            peers=_bag(raw.get("peers")),
         )
+
+
+def _stage_of(portrait: Portrait) -> str:
+    from portrait_evolve.metrics import infer_stage
+
+    return infer_stage(portrait)
 
 
 def _blend_scores(portrait: Portrait, field_name: str) -> dict[str, float]:

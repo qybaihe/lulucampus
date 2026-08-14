@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lulu-portrait-evolve"
-version = "0.1.0"
+version = "0.2.0"
 description = "噜噜自进化画像：用平台行为持续校准、永不过时的用户画像引擎"
 readme = "README.md"
 requires-python = ">=3.11"

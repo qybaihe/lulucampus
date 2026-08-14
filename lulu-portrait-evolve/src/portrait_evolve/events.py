@@ -10,6 +10,10 @@ EVENT_TYPES = (
     "seed_taste",
     "browse_competition",
     "open_competition",
+    "ask_hermes",
+    "enroll_elective",
+    "book_gym",
+    "share_gap",
     "post_intent",
     "seek_teammate",
     "join_team",
@@ -27,6 +31,10 @@ STRENGTH: dict[str, float] = {
     "seed_taste": 0.85,
     "browse_competition": 0.08,
     "open_competition": 0.12,
+    "ask_hermes": 0.10,
+    "enroll_elective": 0.50,
+    "book_gym": 0.30,
+    "share_gap": 0.25,
     "post_intent": 0.35,
     "seek_teammate": 0.40,
     "join_team": 0.55,
@@ -58,6 +66,7 @@ class BehaviorEvent:
     roles_sought: tuple[str, ...] = ()
     roles_offered: tuple[str, ...] = ()
     domains: tuple[str, ...] = ()
+    peer_ids: tuple[str, ...] = ()
     text: str = ""
     payload: dict[str, Any] = field(default_factory=dict)
 
@@ -101,6 +110,7 @@ class BehaviorEvent:
             roles_sought=_tuple("roles_sought"),
             roles_offered=_tuple("roles_offered"),
             domains=_tuple("domains"),
+            peer_ids=_tuple("peer_ids"),
             text=str(raw.get("text") or ""),
             payload=dict(raw.get("payload") or {}),
         )
