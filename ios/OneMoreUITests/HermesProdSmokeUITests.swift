@@ -50,6 +50,13 @@ final class HermesProdSmokeUITests: XCTestCase {
         } else if app.buttons.containing(NSPredicate(format: "label CONTAINS %@", "跳过")).firstMatch.waitForExistence(timeout: 2) {
             app.buttons.containing(NSPredicate(format: "label CONTAINS %@", "跳过")).firstMatch.tap()
         }
+        if any("first-use-skip-taste").waitForExistence(timeout: 8) {
+            any("first-use-skip-taste").tap()
+        } else if any("first-use-taste-continue").waitForExistence(timeout: 2) {
+            any("first-use-taste-continue").tap()
+        } else if app.buttons.containing(NSPredicate(format: "label CONTAINS %@", "稍后再贴")).firstMatch.waitForExistence(timeout: 2) {
+            app.buttons.containing(NSPredicate(format: "label CONTAINS %@", "稍后再贴")).firstMatch.tap()
+        }
         if any("first-use-finish").waitForExistence(timeout: 8) {
             any("first-use-finish").tap()
         } else if app.buttons.containing(NSPredicate(format: "label CONTAINS %@", "进入今天")).firstMatch.waitForExistence(timeout: 4) {

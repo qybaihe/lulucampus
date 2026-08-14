@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { LuluSprite } from "../../components/lulu/LuluSprite";
 import { assetURL } from "../../core/assets";
 import { AppBrand } from "../../core/brand";
+import { WebAppLink } from "./WebAppLink";
 
 /**
  * 营销首页（Landing）。全宽文档流，不进 PhoneFrame。
@@ -150,9 +151,7 @@ export function LandingScreen() {
             <a href="#faq">常见问题</a>
           </nav>
           <div className="lp-header-cta">
-            <Link className="lp-btn primary sm" to="/app">
-              打开网页版
-            </Link>
+            <WebAppLink className="lp-btn primary sm">打开网页版</WebAppLink>
           </div>
         </div>
       </header>
@@ -177,9 +176,9 @@ export function LandingScreen() {
                 <strong>AI 不介绍人，AI 促成事</strong>，局成了就安静退场。
               </p>
               <div className="lp-hero-ctas">
-                <Link className="lp-btn primary lg" to="/app" data-od-id="landing-cta-open-app">
+                <WebAppLink className="lp-btn primary lg" data-od-id="landing-cta-open-app">
                   打开噜噜成局
-                </Link>
+                </WebAppLink>
                 <a className="lp-btn ghost lg" href="#how">
                   看看噜噜怎么工作
                 </a>
@@ -572,9 +571,9 @@ export function LandingScreen() {
             <div className="lp-cta-band">
               <h2>差一个？现在就发。</h2>
               <p>下一次「三缺一」的时候，别再挨个问了——告诉噜噜，等它叫你。</p>
-              <Link className="lp-btn lg" to="/app" data-od-id="landing-cta-bottom">
+              <WebAppLink className="lp-btn lg" data-od-id="landing-cta-bottom">
                 打开噜噜成局
-              </Link>
+              </WebAppLink>
             </div>
           </div>
         </section>
@@ -599,7 +598,7 @@ export function LandingScreen() {
               <h4>产品</h4>
               <ul>
                 <li>
-                  <Link to="/app">打开网页版</Link>
+                  <WebAppLink>打开网页版</WebAppLink>
                 </li>
                 <li>
                   <a href="#story">前情提要</a>
@@ -625,7 +624,7 @@ export function LandingScreen() {
                   <Link to="/legal/terms">用户协议</Link>
                 </li>
                 <li>
-                  <Link to="/app">应用内反馈（我 → 申诉）</Link>
+                  <WebAppLink path="/me">应用内反馈（我 → 申诉）</WebAppLink>
                 </li>
               </ul>
             </div>

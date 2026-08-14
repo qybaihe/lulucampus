@@ -56,7 +56,22 @@ private func hermesPanelEyebrow(_ cardType: String) -> String {
     case "event_list": "校园活动"
     case "transit_list": "班车"
     case "parameter_clarification": "还差几个参数"
+    case "knowledge_answer": "校园知识库"
     default: "校园查询"
+    }
+}
+
+private func hermesKnowledgeHits(from data: JSONValue) -> [(title: String, snippet: String)] {
+    guard case let .object(root) = data, case let .array(items) = root["hits"] else {
+        return []
+    }
+    return items.compactMap { item in
+        guard case let .object(object) = item else { return nil }
+        let title: String
+        if case let .string(value) = object["title"] { title = value } else { return nil }
+        var snippet = ""
+        if case let .string(value) = object["snippet"] { snippet = value }
+        return (title, snippet)
     }
 }
 
@@ -443,6 +458,7 @@ private struct HermesChatMessage: Identifiable, Equatable {
     static let suggestions = [
         "按我的画像推荐公选",
         "今天有什么课？",
+        "宿舍晚上会断电吗？",
         "还有谁也选了机器学习？",
         "还有谁也约了羽毛球？",
     ]
@@ -565,7 +581,7 @@ private struct HermesChatMessage: Identifiable, Equatable {
         }
         switch result.kind {
         case "help":
-            return "我主要处理课表、DDL、场地、活动、班车，以及按画像推荐公选。"
+            return "我主要处理课表、DDL、场地、活动、班车、校园日常知识，以及按画像推荐公选。"
         case "clarification":
             return "还差几个参数，补齐后我就能继续查。"
         case "action_preview":
@@ -743,9 +759,28 @@ struct HermesAskView: View {
                     } else if result.cardType != "peer_list"
                                 && result.kind != "help"
                                 && result.cardType != "agent_reply"
+                                && result.cardType != "knowledge_answer"
                                 && result.kind != "clarification" {
                         HermesResultPanel(icon: "doc.text", eyebrow: hermesPanelEyebrow(result.cardType)) {
                             StructuredResultCard(title: "", value: hermesCardData(result.data), embedded: true)
+                        }
+                    }
+                    let knowledgeHits = hermesKnowledgeHits(from: result.data)
+                    if !knowledgeHits.isEmpty {
+                        HermesResultPanel(icon: "books.vertical.fill", eyebrow: "依据校园知识库") {
+                            VStack(alignment: .leading, spacing: 8) {
+                                ForEach(Array(knowledgeHits.enumerated()), id: \.offset) { _, hit in
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text(hit.title)
+                                            .font(OMTheme.TypeToken.callout)
+                                        if !hit.snippet.isEmpty {
+                                            Text(hit.snippet)
+                                                .font(OMTheme.TypeToken.caption)
+                                                .foregroundStyle(OMTheme.ColorToken.mist)
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                     let peers = hermesPeers(from: result.data)
@@ -996,7 +1031,8 @@ struct PersonalActionPreviewView: View {
         if let copy = CampusActionCopy.make(
             actionName: item.actionName,
             params: item.params,
-            status: item.status == "previewed" ? "previewed" : item.status
+            status: item.status == "previewed" ? "previewed" : item.status,
+            previewSnapshot: item.previewSnapshot
         ) {
             CampusActionCopyCard(copy: copy)
         } else {
@@ -1045,6 +1081,13 @@ struct PersonalActionPreviewView: View {
             }
         } else if item.status == "failed" {
             actionFailureView(item)
+        } else if item.isReferencePreview {
+            OMCard {
+                OMTextRole.t3("这是找球友的时段参考")
+                OMTextRole.foot("不是要提交的预约，不用核对。")
+                    .padding(.top, 4)
+            }
+            OMButton("知道了") { dismiss() }
         } else if item.authorization.actorDecision != "authorized" {
             OMButton("我已核对，授权此预览", systemIcon: "checkmark.shield", loading: model.working) {
                 preserveRecovery(for: item.id)
@@ -2696,6 +2739,7 @@ private extension Dictionary where Key == String, Value == JSONValue {
 /// 行动核对（深链 onemore://action/<id>）
 struct CampusActionDetailView: View {
     @StateObject private var model: CampusActionDetailModel
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var router: AppRouter
     @EnvironmentObject private var environment: AppEnvironment
     init(id: String, repository: ActionRepository) { _model = StateObject(wrappedValue: CampusActionDetailModel(id: id, repository: repository)) }
@@ -2713,25 +2757,36 @@ struct CampusActionDetailView: View {
                         }
                     }
                 case let .loaded(item):
-                    OMCard {
-                        OMTextRole.t3(item.actionName)
-                        ForEach(Array(jsonRows(.object(item.params), path: "参数").enumerated()), id: \.offset) { _, row in
-                            HStack(alignment: .top) {
-                                Text(row.0)
-                                    .font(OMTheme.TypeToken.mono(.caption))
-                                    .foregroundStyle(OMTheme.ColorToken.mist)
-                                Spacer()
-                                Text(row.1)
-                                    .font(OMTheme.TypeToken.footnote)
-                                    .foregroundStyle(OMTheme.ColorToken.ink)
-                                    .multilineTextAlignment(.trailing)
+                    if let copy = CampusActionCopy.make(
+                        actionName: item.actionName,
+                        params: item.params,
+                        status: item.status,
+                        previewSnapshot: item.previewSnapshot
+                    ) {
+                        CampusActionCopyCard(copy: copy)
+                    } else {
+                        OMCard {
+                            OMTextRole.t3(item.actionName)
+                            ForEach(Array(jsonRows(.object(item.params), path: "参数").enumerated()), id: \.offset) { _, row in
+                                HStack(alignment: .top) {
+                                    Text(row.0)
+                                        .font(OMTheme.TypeToken.mono(.caption))
+                                        .foregroundStyle(OMTheme.ColorToken.mist)
+                                    Spacer()
+                                    Text(row.1)
+                                        .font(OMTheme.TypeToken.footnote)
+                                        .foregroundStyle(OMTheme.ColorToken.ink)
+                                        .multilineTextAlignment(.trailing)
+                                }
+                                .padding(.top, OMTheme.Spacing.s2)
                             }
-                            .padding(.top, OMTheme.Spacing.s2)
                         }
                     }
-                    StructuredResultCard(title: "服务端预览快照", value: .object(item.previewSnapshot))
-                    OMCard {
-                        OMTextRole.t3("\(item.authorization.authorizedCount) / \(item.authorization.requiredCount) 位已核对")
+                    if !item.isReferencePreview {
+                        StructuredResultCard(title: "服务端预览快照", value: .object(item.previewSnapshot))
+                        OMCard {
+                            OMTextRole.t3("\(item.authorization.authorizedCount) / \(item.authorization.requiredCount) 位已核对")
+                        }
                     }
                     if item.status == "succeeded" {
                         OMCard {
@@ -2744,6 +2799,16 @@ struct CampusActionDetailView: View {
                         if item.gatheringId == nil { PersonalActionCalendarControls(item: item) }
                     } else if item.status == "failed" {
                         failedAction(item)
+                    } else if item.isReferencePreview {
+                        OMCard {
+                            OMTextRole.t3("这是找球友的时段参考")
+                            OMTextRole.foot("不是要提交的预约，不用核对。看过就可以回去了。")
+                                .padding(.top, 4)
+                        }
+                        OMButton("知道了") {
+                            Task { await environment.refreshAttention(force: true) }
+                            dismiss()
+                        }
                     } else if item.authorization.actorDecision != "authorized" {
                         OMButton("核对无误，分别确认", systemIcon: "checkmark.shield", loading: model.working) {
                             preserveRecovery(for: item.id)

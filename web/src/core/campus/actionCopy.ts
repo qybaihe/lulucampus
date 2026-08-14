@@ -76,7 +76,7 @@ export function makeCampusActionCopy(input: {
   };
   add("项目", venueType);
   add("类型", kind);
-  add("校区", venue);
+  add("地点", venue);
   add("房间", room);
   add("区域", fields.lab);
   add("日期", date);

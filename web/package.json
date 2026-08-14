@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:pages": "tsc -b && vite build --mode pages",
+    "deploy:pages": "wrangler pages deploy dist --project-name=lulu-chengju",
     "lint": "oxlint",
     "preview": "vite preview",
     "test": "vitest run",
@@ -29,6 +31,7 @@
     "oxlint": "^1.75.0",
     "typescript": "~6.0.2",
     "vite": "^8.2.0",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "wrangler": "^4.122.0"
   }
 }

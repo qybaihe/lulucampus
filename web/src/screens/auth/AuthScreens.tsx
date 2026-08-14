@@ -10,6 +10,7 @@ import type {
   AuthMe,
   GrantScope,
   LoginSession,
+  TasteProfileResult,
 } from "../../core/api/repositories";
 import { getOrCreateDeviceInstallId } from "../../core/api/repositories";
 import {
@@ -27,6 +28,7 @@ import {
 
 const ONBOARDING_SEEN_KEY = "onemore.onboarding.seen.v1";
 const FIRST_USE_DONE_KEY = "onemore.firstuse.done.v1";
+const FIRST_USE_TASTE_PENDING_KEY = "onemore.firstuse.tastePending.v1";
 const SCHOOL_KEY = "onemore.school.affiliation.v1";
 const CAMPUS_GATE_KEY = "onemore.school.campusGate.v1";
 
@@ -59,6 +61,23 @@ function isFirstUseDone(): boolean {
 export function markFirstUseDone() {
   try {
     localStorage.setItem(FIRST_USE_DONE_KEY, "1");
+    localStorage.removeItem(FIRST_USE_TASTE_PENDING_KEY);
+  } catch {
+    /* ignore */
+  }
+}
+
+function isTastePending(): boolean {
+  try {
+    return localStorage.getItem(FIRST_USE_TASTE_PENDING_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function markTastePending() {
+  try {
+    localStorage.setItem(FIRST_USE_TASTE_PENDING_KEY, "1");
   } catch {
     /* ignore */
   }
@@ -103,6 +122,7 @@ export function resetAuthOnboardingLocal() {
   try {
     localStorage.removeItem(ONBOARDING_SEEN_KEY);
     localStorage.removeItem(FIRST_USE_DONE_KEY);
+    localStorage.removeItem(FIRST_USE_TASTE_PENDING_KEY);
     localStorage.removeItem(SCHOOL_KEY);
     localStorage.removeItem(CAMPUS_GATE_KEY);
   } catch {
@@ -151,6 +171,10 @@ export function BootScreen() {
               nav("/auth/grants", { replace: true });
               return;
             }
+            if (isTastePending()) {
+              nav("/auth/taste", { replace: true });
+              return;
+            }
           } catch {
             /* fall through to today / re-auth handled by 401 */
           }
@@ -161,7 +185,7 @@ export function BootScreen() {
         if (!hasSeenOnboarding()) {
           nav("/onboarding", { replace: true });
         } else {
-          nav("/auth", { replace: true });
+          nav("/today", { replace: true });
         }
       })();
     }, 400);
@@ -1024,9 +1048,12 @@ export function AuthSocialScreen() {
     setBusy(true);
     setError(null);
     try {
-      await repos.auth.setSocialEnabled(enabled);
-      markFirstUseDone();
-      nav("/today", { replace: true });
+      await repos.auth.setSocialEnabled(
+        enabled,
+        `first-use-social-${enabled ? "on" : "off"}`,
+      );
+      markTastePending();
+      nav("/auth/taste", { replace: true });
     } catch (e) {
       setError(e instanceof Error ? e.message : "保存失败");
     } finally {
@@ -1058,6 +1085,145 @@ export function AuthSocialScreen() {
           </Btn>
         </div>
       </Stage>
+    </Screen>
+  );
+}
+
+/** 新手引导 · 粘贴抖音主页链接生成兴趣画像（可跳过） */
+export function AuthTasteScreen() {
+  const { repos } = useApp();
+  const nav = useNavigate();
+  const [shareText, setShareText] = useState("");
+  const [checking, setChecking] = useState(true);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<TasteProfileResult | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    void (async () => {
+      try {
+        const existing = await repos.taste.me();
+        if (!cancelled && existing) setResult(existing);
+      } catch {
+        /* 没有画像就走粘贴 */
+      } finally {
+        if (!cancelled) setChecking(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [repos]);
+
+  function finish() {
+    markFirstUseDone();
+    nav("/today", { replace: true });
+  }
+
+  async function analyze() {
+    const text = shareText.trim();
+    if (text.length < 8 || busy) return;
+    setBusy(true);
+    setError(null);
+    try {
+      const snap = await repos.taste.fromLink({ share_url: text, force: true });
+      if (snap.result) {
+        setResult(snap.result);
+        return;
+      }
+      if (snap.status === "READY") {
+        const existing = await repos.taste.me();
+        if (existing) {
+          setResult(existing);
+          return;
+        }
+      }
+      setError(snap.error?.message || "这次没看成，可以换条链接或先跳过");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "这次没看成，可以换条链接或先跳过");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <Screen id="screen-first-use-taste">
+      <Scroll>
+        <div className="center">
+          <LuluMark placement="header" clip="home.listening" />
+        </div>
+        <div className="t-t2 center mt-2">导入抖音兴趣画像</div>
+        <div className="t-foot center mt-1">
+          粘贴自己的抖音主页分享链接，噜噜会生成兴趣画像，成局时更准。之后仍可在「我的」里补。
+        </div>
+
+        {result ? (
+          <>
+            <Card tight className="mt-3" data-od-id="taste-profile-result">
+              <div className="t-t3">兴趣画像已就绪</div>
+              <div className="t-t2 mt-1">{result.primary_tag.label}</div>
+              {result.summary ? (
+                <div className="t-foot mt-1">{result.summary}</div>
+              ) : null}
+            </Card>
+            <div className="mt-3" data-od-id="first-use-taste-continue">
+              <Btn kind="primary" onClick={finish}>
+                继续
+              </Btn>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="mt-3" data-od-id="first-use-skip-taste">
+              <Btn kind="ghost" disabled={busy} onClick={finish}>
+                暂时跳过，稍后再贴
+              </Btn>
+            </div>
+            {checking ? (
+              <div className="t-foot center mt-3">噜噜正在取数，稍等一下。</div>
+            ) : (
+              <>
+                <Card tight className="mt-3">
+                  <div className="t-t3">粘贴主页分享链接</div>
+                  <div className="t-foot mt-1">
+                    噜噜会一起看你最近的喜欢和收藏。把「喜欢」和收藏里的「视频」设为公开后再贴。
+                  </div>
+                  <ol className="share-howto">
+                    <li>打开抖音，点底部「我」</li>
+                    <li>点自己的抖音号，进入抖音码页面</li>
+                    <li>点右上角分享箭头，再选「复制链接」</li>
+                    <li>打开「设置 → 隐私与政策 → 收藏」，把里面的「视频」设为公开</li>
+                    <li>把主页「喜欢」也设为公开，然后粘贴到下面</li>
+                  </ol>
+                </Card>
+                <textarea
+                  className="om-input mt-3"
+                  rows={4}
+                  value={shareText}
+                  onChange={(e) => setShareText(e.target.value)}
+                  placeholder="粘贴整段分享卡片也可以，例如：长按复制此条消息… https://v.douyin.com/xxxx/"
+                  data-od-id="first-use-taste-input"
+                />
+                {error ? (
+                  <div className="t-foot mt-2" role="alert" style={{ color: "#c0392b" }}>
+                    {error}
+                  </div>
+                ) : null}
+                <div className="mt-3" data-od-id="first-use-taste-import">
+                  <Btn
+                    kind="primary"
+                    disabled={busy || shareText.trim().length < 8}
+                    onClick={() => void analyze()}
+                  >
+                    {busy ? "噜噜正在看…" : "让噜噜看看"}
+                  </Btn>
+                </div>
+              </>
+            )}
+          </>
+        )}
+      </Scroll>
     </Screen>
   );
 }

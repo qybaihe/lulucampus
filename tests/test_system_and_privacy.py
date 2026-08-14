@@ -16,6 +16,10 @@ from tests.cast_helpers import publish_aligned_intent
 
 def test_health_and_required_routes(client):
     assert client.get("/health/live").json() == {"status": "ok"}
+    ready = client.get("/health/ready").json()
+    assert ready["status"] == "ready"
+    assert ready["hermes_mode"] == "fake"
+    assert ready["hermes_agent"] == "off"
     paths = client.get("/openapi.json").json()["paths"]
     required = {
         "/auth/session",
@@ -25,6 +29,7 @@ def test_health_and_required_routes(client):
         "/gatherings/mine",
         "/trust/me",
         "/channels/{channel_id}/messages",
+        "/channels/{channel_id}",
         "/relations",
         "/competitions",
         "/actions/preview",

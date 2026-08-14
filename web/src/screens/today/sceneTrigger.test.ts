@@ -78,4 +78,52 @@ describe("B10 scene_trigger data path", () => {
       calls.some((c) => c.includes("/today/triggers/lib-slot/ignore")),
     ).toBe(true);
   });
+
+  it("normalizes FastAPI scene_key/text/context into key/title/body", async () => {
+    const mem: Record<string, string> = {};
+    const session = createSessionStore({
+      getItem: (k) => mem[k] ?? null,
+      setItem: (k, v) => {
+        mem[k] = v;
+      },
+      removeItem: (k) => {
+        delete mem[k];
+      },
+    } as Storage);
+    session.setSession("tok");
+    const fetchImpl = async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes("/today/summary")) {
+        return new Response(
+          JSON.stringify({
+            data: {
+              scene_trigger: {
+                scene_key: "assignment:a1",
+                kind: "ddl_sprint",
+                text: "今晚开一个 90 分钟冲刺局吗？",
+                context: { assignment_id: "a1", title: "软件工程迭代作业" },
+              },
+            },
+            meta: {},
+          }),
+          { status: 200, headers: { "Content-Type": "application/json" } },
+        );
+      }
+      return new Response(JSON.stringify({ error: { code: "X", message: "no" } }), {
+        status: 404,
+      });
+    };
+    const client = new APIClient({
+      baseURL: "http://example.test",
+      session,
+      fetchImpl: fetchImpl as unknown as typeof fetch,
+    });
+    const summary = await createRepositories(client).today.summary();
+    expect(summary.scene_trigger).toEqual({
+      key: "assignment:a1",
+      title: "软件工程迭代作业",
+      body: "今晚开一个 90 分钟冲刺局吗？",
+      cta_label: undefined,
+    });
+  });
 });

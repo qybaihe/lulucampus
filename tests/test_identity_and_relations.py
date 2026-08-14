@@ -34,6 +34,7 @@ def test_async_login_session_and_read_only_identity(client):
     paths = client.get("/openapi.json").json()["paths"]
     assert "/auth/identity" not in paths
     assert "patch" not in paths["/auth/me"]
+    assert "patch" in paths["/me/display-name"]
 
 
 def test_identity_session_health_datetimes_are_rfc3339_utc(client, auth_headers):

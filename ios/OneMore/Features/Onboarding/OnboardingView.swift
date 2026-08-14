@@ -222,7 +222,7 @@ struct AuthenticationFlowView: View {
 
 @MainActor
 final class FirstUseSetupViewModel: ObservableObject {
-    enum Step { case campusBind, grants, facts, social, ready }
+    enum Step { case campusBind, grants, facts, social, taste, ready }
     @Published var step: Step = SchoolAffiliation.current == .sysu ? .campusBind : .grants
     @Published var selectedScopes: Set<String> = ["timetable", "curriculum", "enrollment", "agent_booking"]
     @Published var facts: IdentityFacts?
@@ -267,20 +267,25 @@ final class FirstUseSetupViewModel: ObservableObject {
     }
     func enableSocial() async {
         guard !working else { return }; working = true; defer { working = false }
-        do { _ = try await repository.enableSocial(); error = nil; step = .ready }
-        catch { self.error = error.localizedDescription }
+        do {
+            _ = try await repository.enableSocial()
+            error = nil
+            step = .taste
+            NotificationCenter.default.post(name: .oneMoreSocialPreferencesDidChange, object: nil)
+        } catch { self.error = error.localizedDescription }
     }
     func keepSocialOff() async {
         guard !working else { return }; working = true; defer { working = false }
         do {
             _ = try await repository.setSocialEnabled(false)
             error = nil
-            step = .ready
+            step = .taste
+            NotificationCenter.default.post(name: .oneMoreSocialPreferencesDidChange, object: nil)
         } catch { self.error = error.localizedDescription }
     }
 }
 
-/// A4–A7 · 首次设置（中大可先绑定校园 → 授权 → 身份事实 → 社交 → 就绪）
+/// A4–A7 · 首次设置（中大可先绑定校园 → 授权 → 身份事实 → 社交 → 抖音画像 → 就绪）
 struct FirstUseSetupView: View {
     @StateObject private var model: FirstUseSetupViewModel
     @EnvironmentObject private var environment: AppEnvironment
@@ -309,6 +314,10 @@ struct FirstUseSetupView: View {
                 social
             case .facts:
                 facts
+            case .taste:
+                FirstUseTasteImportView(repository: environment.tasteImport) {
+                    model.step = .ready
+                }
             case .ready:
                 ready
             }
@@ -441,7 +450,146 @@ struct FirstUseSetupView: View {
         case .grants: await model.saveGrants()
         case .facts: await model.refreshFacts()
         case .social: await model.enableSocial()
-        case .ready: break
+        case .taste, .ready: break
+        }
+    }
+}
+
+/// 新手引导里的抖音画像：复用 `POST /profile/taste/from-link`，可跳过。
+private struct FirstUseTasteImportView: View {
+    let repository: TasteImportRepository
+    let onContinue: () -> Void
+
+    @State private var shareText = ""
+    @State private var checking = true
+    @State private var working = false
+    @State private var error: String?
+    @State private var result: TasteProfileResult?
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                OMHeader(title: "导入抖音兴趣画像", lulu: .homeListening)
+                Text("粘贴自己的抖音主页分享链接，噜噜会生成兴趣画像，成局时更准。之后仍可在「我的」里补。")
+                    .font(OMTheme.TypeToken.footnote)
+                    .foregroundStyle(OMTheme.ColorToken.mist)
+                    .padding(.bottom, OMTheme.Spacing.s3)
+
+                if result == nil {
+                    OMButton("暂时跳过，稍后再贴", kind: .ghost, action: onContinue)
+                        .accessibilityIdentifier("first-use-skip-taste")
+                        .padding(.bottom, OMTheme.Spacing.s3)
+                }
+
+                if let result {
+                    compactResult(result)
+                    OMButton("继续", icon: .arrow, action: onContinue)
+                        .padding(.top, OMTheme.Spacing.s3)
+                        .accessibilityIdentifier("first-use-taste-continue")
+                } else if checking {
+                    OMTextRole.foot(AppBrand.loadingMessage)
+                } else {
+                    pasteForm
+                }
+            }
+            .padding(.horizontal, OMTheme.Spacing.pageX)
+            .padding(.bottom, 44)
+        }
+        .background(OMPageBackground())
+        .task { await bootstrap() }
+        .accessibilityIdentifier("screen-first-use-taste")
+    }
+
+    @ViewBuilder private var pasteForm: some View {
+        OMCard {
+            OMTextRole.t3("粘贴主页分享链接")
+            OMTextRole.foot("噜噜会一起看你最近的喜欢和收藏。把「喜欢」和收藏里的「视频」设为公开后再贴。")
+                .padding(.top, OMTheme.Spacing.s2)
+            VStack(alignment: .leading, spacing: 6) {
+                Text("1. 打开抖音，点底部「我」")
+                Text("2. 点自己的抖音号，进入抖音码页面")
+                Text("3. 点右上角分享箭头，再选「复制链接」")
+                Text("4. 打开「设置 → 隐私与政策 → 收藏」，把里面的「视频」设为公开")
+                Text("5. 把主页「喜欢」也设为公开，然后粘贴到下面")
+            }
+            .font(OMTheme.TypeToken.footnote)
+            .foregroundStyle(OMTheme.ColorToken.mist)
+            .padding(.top, OMTheme.Spacing.s3)
+        }
+        TextEditor(text: $shareText)
+            .omInputStyle(multiline: true)
+            .frame(minHeight: 96)
+            .padding(.top, OMTheme.Spacing.s3)
+            .accessibilityIdentifier("first-use-taste-input")
+        if let error {
+            Text(error)
+                .font(OMTheme.TypeToken.footnote)
+                .foregroundStyle(Color.red.opacity(0.85))
+                .padding(.top, OMTheme.Spacing.s2)
+        }
+        OMButton(
+            working ? "噜噜正在看…" : "让噜噜看看",
+            systemIcon: "sparkles",
+            loading: working,
+            disabledReason: shareText.trimmingCharacters(in: .whitespacesAndNewlines).count < 8
+                ? "先粘贴主页分享链接"
+                : nil
+        ) {
+            Task { await analyze() }
+        }
+        .padding(.top, OMTheme.Spacing.s3)
+        .accessibilityIdentifier("first-use-taste-import")
+    }
+
+    @ViewBuilder private func compactResult(_ result: TasteProfileResult) -> some View {
+        OMCard {
+            OMTextRole.t3("兴趣画像已就绪")
+            Text(result.primaryTag.label)
+                .font(OMTheme.TypeToken.title1)
+                .foregroundStyle(OMTheme.ColorToken.ink)
+                .padding(.top, OMTheme.Spacing.s2)
+            if !result.summary.isEmpty {
+                Text(result.summary)
+                    .font(OMTheme.TypeToken.callout)
+                    .foregroundStyle(OMTheme.ColorToken.ink60)
+                    .lineSpacing(3)
+                    .lineLimit(4)
+                    .padding(.top, OMTheme.Spacing.s2)
+            }
+        }
+        .accessibilityIdentifier("taste-profile-result")
+    }
+
+    private func bootstrap() async {
+        checking = true
+        defer { checking = false }
+        result = try? await repository.currentProfile()
+    }
+
+    private func analyze() async {
+        let text = shareText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard text.count >= 8, !working else { return }
+        working = true
+        error = nil
+        defer { working = false }
+        do {
+            let value = try await repository.fromLink(text, force: true)
+            if value.status == "READY" {
+                if let ready = value.result {
+                    result = ready
+                } else {
+                    result = try await repository.currentProfile()
+                }
+                if result == nil {
+                    error = "画像已生成，可继续；之后也能在「我的」里查看"
+                }
+            } else {
+                error = value.error?["message"].flatMap { message in
+                    message.isEmpty ? nil : message
+                } ?? "这次没看成，可以换条链接或先跳过"
+            }
+        } catch {
+            self.error = error.localizedDescription
         }
     }
 }

@@ -21,11 +21,11 @@ final class GuestEventsViewModel: ObservableObject {
     }
 }
 
-/// T0 remains a real browsing mode: official events and the 24 verified
-/// competitions are public; joining or forming a team crosses the auth gate.
+/// T0 remains a real browsing mode: official events are public;
+/// joining, campus tools, and the 活动 tab cross the auth gate.
 struct GuestDiscoveryView: View {
     @StateObject private var model: GuestEventsViewModel
-    @EnvironmentObject private var environment: AppEnvironment
+    @EnvironmentObject private var router: AppRouter
     @Environment(\.openURL) private var openURL
 
     init(repository: CampusEventRepository) {
@@ -41,14 +41,26 @@ struct GuestDiscoveryView: View {
                             .font(OMTheme.TypeToken.footnote.weight(.bold))
                             .tracking(2)
                             .foregroundStyle(OMTheme.ColorToken.mist)
-                        OMTextRole.hero("先逛校园，\n再决定加入")
+                        OMTextRole.hero("先看看校园，\n登录后再加入")
                     }
                     Spacer()
                     LuluView(clip: .homeIdle, placement: .confirm)
                 }
                 .padding(.top, 8)
 
-                OMSection(title: "校园活动")
+                OMCard {
+                    OMTextRole.t3("登录后，噜噜才能帮你成局")
+                    OMTextRole.foot("课表、订场、找搭子和组队比赛都需要先登录。访客只能看看公开活动。")
+                        .padding(.top, OMTheme.Spacing.s2)
+                }
+                .padding(.top, OMTheme.Spacing.s3)
+                OMButton("去登录", icon: .person) {
+                    router.push(.onboarding("A2"))
+                }
+                .padding(.top, OMTheme.Spacing.s3)
+                .accessibilityIdentifier("guest-login-cta")
+
+                OMSection(title: "公开活动预览")
                 switch model.phase {
                 case .loading:
                     OMCard { OMG5StateView(state: .loading, message: AppBrand.loadingMessage) }

@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useApp } from "../../app/AppContext";
 import { APIClientError } from "../../core/api/client";
@@ -8,6 +8,12 @@ import type {
   IntentPublishResult,
 } from "../../core/api/repositories";
 import {
+  clearIntentDraft,
+  intentDraftScope,
+  loadIntentDraft,
+  saveIntentDraft,
+} from "../../core/intent/sessionRecovery";
+import {
   Btn,
   Card,
   Chip,
@@ -16,6 +22,7 @@ import {
   LuluMark,
   NavBar,
   Note,
+  PageHeader,
   Screen,
   Scroll,
   Section,
@@ -204,6 +211,71 @@ export function IntentComposerScreen() {
     ],
     [],
   );
+  const restored = useRef(false);
+  const scope = intentDraftScope(competitionId);
+
+  useEffect(() => {
+    if (restored.current) return;
+    restored.current = true;
+    const preset = params.get("preset");
+    const presetText =
+      preset === "sport"
+        ? "周六晚上珠海校区一起打羽毛球，4人"
+        : preset === "courseDDL"
+          ? "今晚一起完成软件工程迭代作业，3人"
+          : preset === "event"
+            ? "周五一起去听可信 AI 公开课，3人"
+            : null;
+    if (presetText) {
+      setText(presetText);
+      return;
+    }
+    const draft = loadIntentDraft(scope);
+    if (!draft) return;
+    setText(draft.text);
+    setMoodNote(draft.moodNote);
+    if (draft.goal) {
+      setEditor({
+        goal: draft.goal,
+        moodNote: draft.moodNote,
+        capabilitiesText: draft.capabilitiesText,
+        rolesText: draft.rolesText,
+        campus: draft.campus,
+        intensity: draft.intensity,
+        socialMode: draft.socialMode,
+        sameGenderOnly: draft.sameGenderOnly,
+        minimumSize: draft.minimumSize,
+        targetSize: draft.targetSize,
+        startAt: draft.startAt,
+        endAt: draft.endAt,
+      });
+    }
+  }, [params, scope]);
+
+  useEffect(() => {
+    if (!restored.current) return;
+    if (phase.kind === "published") {
+      clearIntentDraft(scope);
+      return;
+    }
+    saveIntentDraft(scope, {
+      text,
+      moodNote,
+      goal: editor?.goal ?? "",
+      capabilitiesText: editor?.capabilitiesText ?? "",
+      rolesText: editor?.rolesText ?? "",
+      campus: editor?.campus ?? "",
+      intensity: editor?.intensity ?? "balanced",
+      socialMode: editor?.socialMode ?? "after_full",
+      sameGenderOnly: editor?.sameGenderOnly ?? false,
+      minimumSize: editor?.minimumSize ?? 2,
+      targetSize: editor?.targetSize ?? 3,
+      startAt: editor?.startAt ?? "",
+      endAt: editor?.endAt ?? "",
+      competitionID: competitionId,
+      cardID: phase.kind === "preview" || phase.kind === "publishing" ? phase.card.id : undefined,
+    });
+  }, [text, moodNote, editor, scope, competitionId, phase]);
 
   async function compile(round = 0, answers: Record<string, string> = {}) {
     const value = text.trim();
@@ -405,7 +477,6 @@ export function IntentComposerScreen() {
   );
 
   function summaryCard(card: IntentCard, state: EditorState) {
-    const capabilityChips = displayTags(state.capabilitiesText);
     const roleChips = displayTags(state.rolesText);
     return (
       <Card id="intent-summary-card">
@@ -439,17 +510,10 @@ export function IntentComposerScreen() {
           />
           {state.sameGenderOnly ? <FactRow icon="shield" text="只匹配同性成员" /> : null}
         </div>
-        {capabilityChips.length || roleChips.length ? (
+        {roleChips.length ? (
           <>
             <Divider />
-            {capabilityChips.length ? (
-              <ChipsRow title="我能带来" items={capabilityChips} />
-            ) : null}
-            {roleChips.length ? (
-              <div className={capabilityChips.length ? "mt-2" : undefined}>
-                <ChipsRow title="还需要" items={roleChips} />
-              </div>
-            ) : null}
+            <ChipsRow title="还需要" items={roleChips} />
           </>
         ) : null}
         {tasteFitLabel || recruitHints.length ? (
@@ -771,11 +835,12 @@ export function IntentComposerScreen() {
 
   return (
     <Screen id="screen-D1-intent">
-      <NavBar
-        title={competitionId ? "赛事组队" : "差一个，就说一句"}
-        backTo={competitionId ? "/competitions" : undefined}
-      />
+      {competitionId ? <NavBar backTo="/competitions" /> : null}
       <Scroll>
+        <PageHeader
+          eyebrow={competitionId ? "赛事组队" : "一句话发起"}
+          title="差一个，就说一句"
+        />
         {phase.kind === "editing" || phase.kind === "clarifying" ? inputPanel : null}
         {content}
         {operationError ? (

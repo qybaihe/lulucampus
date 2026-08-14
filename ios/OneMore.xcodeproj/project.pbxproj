@@ -24,6 +24,7 @@
 		125C1B0302E0848DEB73D009 /* running-shoe.png in Resources */ = {isa = PBXBuildFile; fileRef = AE76E22AFC0A463BBD477405 /* running-shoe.png */; };
 		130AF3B0B375C6E715C19D10 /* bell.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C18A41C68AF4FB4FC778C65 /* bell.png */; };
 		143793AD0F26805DC79D25E8 /* PhoneAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EE8574889D24CE0F7626B /* PhoneAuthView.swift */; };
+		143D75537CBFBA3DE27839A8 /* DisplayNameEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287E3376D7BE5A0718599A56 /* DisplayNameEditorView.swift */; };
 		152CD5D2FAA97963FBF9ACC2 /* LuluCoreStatesAtlas.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EBB0A3D558B2DAFFC5EF9C /* LuluCoreStatesAtlas.png */; };
 		169C0BCCC8079ADCB2CB0BB1 /* OneMoreNavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5395588D3416E54F8A92049C /* OneMoreNavigationUITests.swift */; };
 		171837793A4C26A7B4A874AF /* ViewModelBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148BC1EADA1AE3861C6FACB8 /* ViewModelBehaviorTests.swift */; };
@@ -304,6 +305,7 @@
 		27236A3263609B175B893DB7 /* ScreensD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreensD.swift; sourceTree = "<group>"; };
 		27F3F9D05D3D782A52536657 /* azou_appear_06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = azou_appear_06.png; sourceTree = "<group>"; };
 		2839CB394E77EFB72784A6B0 /* azou_appear_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = azou_appear_02.png; sourceTree = "<group>"; };
+		287E3376D7BE5A0718599A56 /* DisplayNameEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayNameEditorView.swift; sourceTree = "<group>"; };
 		28BB9C388C614FE9251AA680 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		2906E80EC25BD47716149689 /* LuluIntentCardAtlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LuluIntentCardAtlas.png; sourceTree = "<group>"; };
 		29F60B11B7DB8AD0555337C2 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
@@ -1103,6 +1105,7 @@
 			isa = PBXGroup;
 			children = (
 				12E52C3E83B8D2022B9DDE7D /* AccountDataView.swift */,
+				287E3376D7BE5A0718599A56 /* DisplayNameEditorView.swift */,
 				F2C62B2859D89A22D62AFBAE /* FunctionalSettingsViews.swift */,
 				707FEE378F0EEC755EC64E42 /* ProfileEditorView.swift */,
 				38449F2C372168D15E39C281 /* ProfileView.swift */,
@@ -1457,6 +1460,7 @@
 				0ACDB4B35F056C5D231CFB8E /* CompetitionSpotlight.swift in Sources */,
 				7685A8F6E824925362C891DA /* CompetitionTeamBoardView.swift in Sources */,
 				5F38D465E9D62B7D56C293FD /* CompetitionsView.swift in Sources */,
+				143D75537CBFBA3DE27839A8 /* DisplayNameEditorView.swift in Sources */,
 				5655C6B62D5A527783A59F6B /* FormalNodeRegistry.swift in Sources */,
 				5A8AB641F8F662DE92A148D4 /* FunctionalSettingsViews.swift in Sources */,
 				704CB2605353E0F1410160C8 /* GatheringViews.swift in Sources */,

@@ -119,6 +119,9 @@ struct MessagesView: View {
             await model.load()
             await environment.refreshAttention()
         }
+        .onAppear {
+            Task { await environment.refreshAttention(force: true) }
+        }
         .refreshable {
             await model.load()
             await environment.refreshAttention(force: true)

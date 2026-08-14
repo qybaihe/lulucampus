@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from contextlib import asynccontextmanager
 from pathlib import Path
+from urllib.error import URLError
+from urllib.request import urlopen
 
 import uvicorn
 from fastapi import FastAPI
@@ -150,15 +152,28 @@ def create_app() -> FastAPI:
             cli_status = "ok" if Path(settings.sysu_cli).is_file() else "missing"
             if settings.is_production and cli_status == "missing":
                 raise AppError("HERMES_CLI_MISSING", "Lulu Hermes 未就绪", 503)
+        agent_status = "off"
+        if settings.hermes_agent_mode == "sidecar":
+            agent_status = _hermes_agent_status(settings.hermes_agent_url)
         return {
             "status": "ready",
             "database": "ok",
             "redis": redis_status,
             "hermes_mode": settings.hermes_mode,
             "hermes_cli": cli_status,
+            "hermes_agent": agent_status,
         }
 
     return app
+
+
+def _hermes_agent_status(base_url: str) -> str:
+    url = base_url.rstrip("/") + "/health"
+    try:
+        with urlopen(url, timeout=0.4) as response:
+            return "ok" if getattr(response, "status", 200) < 400 else "down"
+    except (URLError, TimeoutError, OSError):
+        return "down"
 
 
 app = create_app()

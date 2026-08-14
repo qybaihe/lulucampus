@@ -559,6 +559,33 @@ def cascade_purge(db: Session, user_id: str, scope: str) -> None:
         )
 
 
+RESERVED_DISPLAY_NAMES = {"已注销同学"}
+DISPLAY_NAME_MAX_LENGTH = 20
+
+
+def normalize_display_name(raw: str) -> str:
+    value = unicodedata.normalize("NFC", (raw or "").strip())
+    value = " ".join(value.split())
+    if not value:
+        raise AppError("INVALID_DISPLAY_NAME", "请填写昵称", 422)
+    if len(value) > DISPLAY_NAME_MAX_LENGTH:
+        raise AppError(
+            "INVALID_DISPLAY_NAME",
+            f"昵称最多 {DISPLAY_NAME_MAX_LENGTH} 个字",
+            422,
+        )
+    if value in RESERVED_DISPLAY_NAMES:
+        raise AppError("INVALID_DISPLAY_NAME", "请换一个昵称", 422)
+    return value
+
+
+def update_display_name(db: Session, user: User, display_name: str) -> User:
+    user.display_name = normalize_display_name(display_name)
+    db.commit()
+    db.refresh(user)
+    return user
+
+
 def identity_facts(db: Session, user_id: str) -> tuple[User, list, list]:
     user = db.get(User, user_id)
     if user is None:

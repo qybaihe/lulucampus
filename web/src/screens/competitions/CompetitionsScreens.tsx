@@ -4,10 +4,17 @@ import { useApp } from "../../app/AppContext";
 import {
   asList,
   capabilityLabel,
+  gatheringStatusName,
   type Competition,
   type CompetitionTeam,
+  type Gathering,
   type RecommendationTier,
 } from "../../core/api/repositories";
+import {
+  campusEventDisplayType,
+  campusEventLocation,
+  campusEventTime,
+} from "../../core/campus/events";
 import {
   hotSeatChip,
   isHotSeat,
@@ -15,6 +22,11 @@ import {
   rankCompetitionsForYou,
   spotlightFitLabel,
 } from "../../core/competitions/spotlight";
+import {
+  competitionSticker,
+  competitionTitleClass,
+  deadlineBadge,
+} from "../../core/competitions/card";
 import {
   gapDescription,
   recruitingHeadline,
@@ -26,10 +38,12 @@ import {
   Chip,
   Divider,
   Icon,
-  LargeTitle,
   NavBar,
+  PageHeader,
   Screen,
   Scroll,
+  LuluSeatStrip,
+  Seg,
   StateView,
   Sticker,
 } from "../../components/ui/primitives";
@@ -51,8 +65,34 @@ function formatDeadline(iso: string, style: "short" | "long" = "short"): string 
   return `${date.getMonth() + 1}月${date.getDate()}日 ${time}`;
 }
 
-/** B12 · 比赛雷达（Tab 根），对齐 iOS CompetitionsView。 */
+/** 活动 Tab 根：比赛 / 组局 / 校园活动，对齐 iOS ActivityDiscoveryView。 */
 export function CompetitionsScreen() {
+  const [segment, setSegment] = useState<"比赛" | "组局" | "校园活动">("比赛");
+
+  return (
+    <Screen id="screen-activity-discovery">
+      <Scroll>
+        <PageHeader eyebrow="发现" title="活动" clip="core.celebrate" />
+        <Seg
+          options={[
+            { value: "比赛", label: "比赛" },
+            { value: "组局", label: "组局" },
+            { value: "校园活动", label: "校园活动" },
+          ]}
+          value={segment}
+          onChange={setSegment}
+        />
+        <div className="mt-3" id="screen-B12-competitions">
+          {segment === "比赛" ? <CompetitionsListContent /> : null}
+          {segment === "组局" ? <PublicGatheringsContent /> : null}
+          {segment === "校园活动" ? <CampusEventsContent /> : null}
+        </div>
+      </Scroll>
+    </Screen>
+  );
+}
+
+function CompetitionsListContent() {
   const { repos } = useApp();
   const nav = useNavigate();
   const [tier, setTier] = useState<string | null>(null);
@@ -100,123 +140,388 @@ export function CompetitionsScreen() {
   ];
 
   return (
-    <Screen id="screen-B12-competitions">
-      <Scroll>
-        <LargeTitle title="比赛" sub="已核验赛事 · 看出哪桌还差人" />
-        <div className="om-seg mb-3">
-          {tierCodes.map((code) => (
-            <button
-              key={code ?? "all"}
-              type="button"
-              className={tier === code ? "on" : ""}
-              onClick={() => setTier(code)}
-            >
-              {tierLabel(code)}
-            </button>
-          ))}
-        </div>
+    <>
+      <div className="om-seg mb-3">
+        {tierCodes.map((code) => (
+          <button
+            key={code ?? "all"}
+            type="button"
+            className={tier === code ? "on" : ""}
+            onClick={() => setTier(code)}
+          >
+            {tierLabel(code)}
+          </button>
+        ))}
+      </div>
 
-        {phase === "loading" ? (
-          <Card>
-            <StateView kind="loading" />
-          </Card>
-        ) : null}
-        {phase === "failed" ? (
-          <Card>
-            <StateView
-              kind="network"
-              message={error ?? undefined}
-              actionTitle="重试"
-              onAction={() => void load()}
-            />
-          </Card>
-        ) : null}
-        {phase === "loaded" ? (
-          <>
-            <div className="t-foot mb-3" data-od-id="competition-count">
-              {items.length} 场可行动赛事
-            </div>
-            {items.length === 0 ? (
-              <Card>
-                <StateView kind="empty" message="暂时没有内容，有进展时会告诉你。" />
-              </Card>
-            ) : (
-              rankCompetitionsForYou(items).map((c) => {
-                const hot = isHotSeat(c);
-                const jackpot = hotSeatChip(c);
-                const fitLabel = spotlightFitLabel(c);
-                return (
+      {phase === "loading" ? (
+        <Card>
+          <StateView kind="loading" />
+        </Card>
+      ) : null}
+      {phase === "failed" ? (
+        <Card>
+          <StateView
+            kind="network"
+            message={error ?? undefined}
+            actionTitle="重试"
+            onAction={() => void load()}
+          />
+        </Card>
+      ) : null}
+      {phase === "loaded" ? (
+        <>
+          <div className="t-foot mb-3" data-od-id="competition-count">
+            {items.length} 场可行动赛事
+          </div>
+          {items.length === 0 ? (
+            <Card>
+              <StateView kind="empty" message="暂时没有内容，有进展时会告诉你。" />
+            </Card>
+          ) : (
+            rankCompetitionsForYou(items).map((c) => {
+              const hot = isHotSeat(c);
+              const jackpot = hotSeatChip(c);
+              const fitLabel = spotlightFitLabel(c);
+              const due = c.registration_deadline
+                ? deadlineBadge(c.registration_deadline)
+                : null;
+              return (
                 <Card
                   key={c.id}
                   className={hot ? "hot-seat" : ""}
                   onClick={() => nav(`/competition/${c.id}`)}
                 >
                   <div className="flex" style={{ alignItems: "flex-start" }}>
-                    <Sticker name="trophy.png" size="st-44" />
+                    <Sticker name={competitionSticker(c)} size="st-44" />
                     <div style={{ minWidth: 0 }}>
-                      <div className="t-t3">{c.name}</div>
+                      <div
+                        className={competitionTitleClass(c.name)}
+                        style={{ fontWeight: 700 }}
+                      >
+                        {c.name}
+                      </div>
                       <div className="t-foot mt-1">
-                        {(c.tracks ?? []).slice(0, 3).join(" · ") || c.summary || "已核验赛事"}
+                        {(c.tracks ?? []).slice(0, 3).join(" · ") ||
+                          c.summary ||
+                          "已核验赛事"}
                       </div>
                     </div>
                   </div>
-                  <div className="between mt-3">
-                    <span className="flex wrap" style={{ gap: 6 }}>
-                      {fitLabel ? (
-                        <span className="om-chip gap">{fitLabel}</span>
-                      ) : null}
-                      {jackpot ? <span className="om-chip gap">{jackpot}</span> : null}
-                      <span
-                        className={`om-chip ${c.recommendation_tier === "A" ? "gap" : ""}`}
-                      >
-                        {c.recommendation_label ??
-                          FALLBACK_TIER_LABELS[c.recommendation_tier ?? ""] ??
-                          "已核验"}
-                      </span>
-                      <Chip kind="soft">
-                        {c.team_forming_supported === false ? "备赛搭子" : "官方组队"}
-                      </Chip>
-                    </span>
-                    {c.registration_deadline ? (
-                      <span
-                        className="t-foot flex"
-                        style={{ alignItems: "center", gap: 4, flex: "none" }}
-                      >
-                        <Icon name="clock" size={12} />
-                        {formatDeadline(c.registration_deadline)}
-                      </span>
+                  <div className="flex wrap mt-3" style={{ gap: 6 }}>
+                    {fitLabel ? (
+                      <span className="om-chip gap">{fitLabel}</span>
                     ) : null}
+                    {jackpot ? <span className="om-chip gap">{jackpot}</span> : null}
+                    <span
+                      className={`om-chip ${c.recommendation_tier === "A" ? "gap" : ""}`}
+                    >
+                      {c.recommendation_label ??
+                        FALLBACK_TIER_LABELS[c.recommendation_tier ?? ""] ??
+                        "已核验"}
+                    </span>
+                    <Chip kind="soft">
+                      {c.team_forming_supported === false ? "备赛搭子" : "官方组队"}
+                    </Chip>
                   </div>
+                  {due ? (
+                    due.kind === "gap" ? (
+                      <div className="mt-2">
+                        <Chip kind="gap">{due.label}</Chip>
+                      </div>
+                    ) : (
+                      <div className="t-foot mt-2 flex" style={{ alignItems: "center", gap: 4 }}>
+                        <Icon name="clock" size={12} />
+                        {due.label}
+                      </div>
+                    )
+                  ) : null}
                 </Card>
-                );
-              })
-            )}
-          </>
-        ) : null}
-      </Scroll>
-    </Screen>
+              );
+            })
+          )}
+        </>
+      ) : null}
+    </>
   );
 }
 
-/** 队伍席位条（对齐 iOS OMLuluSeatStrip：实心已就位 / 虚位待补）。 */
-function TeamSeatStrip({ filled, total }: { filled: number; total: number }) {
-  const seats = Array.from({ length: Math.max(total, 0) }, (_, i) => i < filled);
-  return (
-    <span style={{ display: "inline-flex", gap: 4 }}>
-      {seats.map((on, i) => (
-        <span
-          key={i}
-          style={{
-            width: 14,
-            height: 14,
-            borderRadius: "50%",
-            background: on ? "var(--yolk)" : "transparent",
-            border: on ? "1px solid var(--yolk-border)" : "1px dashed var(--mist)",
-          }}
-        />
-      ))}
-    </span>
+function seatCaption(item: Gathering): string {
+  const target = item.target_size ?? 0;
+  const filled = Math.min(
+    item.member_count ?? item.confirmed_count ?? item.filled_count ?? 0,
+    target || Infinity,
   );
+  const status = String(item.status ?? "");
+  const state = /Pooling/i.test(status)
+    ? "焦灼等待中"
+    : /Tentative/i.test(status)
+      ? "待确认"
+      : /Confirmed/i.test(status)
+        ? "已就位"
+        : gatheringStatusName(item.status);
+  if (!target) return state;
+  return `${filled}/${target} · ${state}`;
+}
+
+function formatGatheringWhen(iso?: string | null): string | null {
+  if (!iso) return null;
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return null;
+  return date.toLocaleString("zh-CN", {
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+}
+
+function PublicGatheringsContent() {
+  const { repos } = useApp();
+  const nav = useNavigate();
+  const [phase, setPhase] = useState<"loading" | "loaded" | "failed">("loading");
+  const [items, setItems] = useState<Gathering[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  async function load() {
+    setPhase("loading");
+    try {
+      setItems(asList(await repos.gatherings.open()));
+      setPhase("loaded");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "加载失败");
+      setPhase("failed");
+    }
+  }
+
+  useEffect(() => {
+    void load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [repos]);
+
+  if (phase === "loading") {
+    return (
+      <Card>
+        <StateView kind="loading" />
+      </Card>
+    );
+  }
+  if (phase === "failed") {
+    return (
+      <Card>
+        <StateView
+          kind="network"
+          message={error ?? undefined}
+          actionTitle="重试"
+          onAction={() => void load()}
+        />
+      </Card>
+    );
+  }
+  if (items.length === 0) {
+    return (
+      <Card>
+        <StateView kind="empty" message="暂时没有招募中的局，有进展时会告诉你。" />
+      </Card>
+    );
+  }
+
+  return (
+    <>
+      {items.map((item) => {
+        const target = item.target_size ?? 0;
+        const filled = Math.min(
+          item.member_count ?? item.confirmed_count ?? item.filled_count ?? 0,
+          target || filledFallback(item),
+        );
+        const when = formatGatheringWhen(item.start_at ?? item.starts_at);
+        const place = item.location ?? item.location_label ?? item.campus;
+        return (
+          <Card
+            key={item.id}
+            onClick={() => nav(`/gathering/${item.id}`)}
+            id={`public-gathering-${item.id}`}
+          >
+            <div className="between">
+              {item.gathering_type ? (
+                <Chip kind="soft">{item.gathering_type}</Chip>
+              ) : (
+                <span />
+              )}
+              <Chip kind="solid">{gatheringStatusName(item.status)}</Chip>
+            </div>
+            <div className="t-t3 mt-2">{item.title ?? "未命名局"}</div>
+            {item.goal ? (
+              <div className="t-foot mt-1" style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                {item.goal}
+              </div>
+            ) : null}
+            {/Pooling/i.test(String(item.status ?? "")) &&
+            (item.looking_for ?? []).length > 0 ? (
+              <div className="flex wrap mt-2" style={{ gap: 6 }}>
+                {item.looking_for!.slice(0, 3).map((role) => (
+                  <Chip key={role} kind="gap">
+                    {role}
+                  </Chip>
+                ))}
+              </div>
+            ) : null}
+            <div className="t-foot mt-2">
+              {[place, when].filter(Boolean).join(" · ")}
+            </div>
+            {target > 0 ? (
+              <div className="flex mt-2" style={{ alignItems: "center", gap: 10 }}>
+                <LuluSeatStrip filled={filled} total={Math.min(target, 8)} />
+                <span className="t-foot" style={{ fontWeight: 600 }}>
+                  {seatCaption(item)}
+                </span>
+              </div>
+            ) : null}
+          </Card>
+        );
+      })}
+    </>
+  );
+}
+
+function filledFallback(item: Gathering): number {
+  return item.member_count ?? item.confirmed_count ?? item.filled_count ?? 0;
+}
+
+function CampusEventsContent() {
+  const { repos } = useApp();
+  const nav = useNavigate();
+  const [phase, setPhase] = useState<"loading" | "loaded" | "failed">("loading");
+  const [items, setItems] = useState<Record<string, unknown>[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [typeFilter, setTypeFilter] = useState<string | null>(null);
+
+  async function load() {
+    setPhase("loading");
+    try {
+      setItems(asList(await repos.campus.events()) as Record<string, unknown>[]);
+      setPhase("loaded");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "加载失败");
+      setPhase("failed");
+    }
+  }
+
+  useEffect(() => {
+    void load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [repos]);
+
+  if (phase === "loading") {
+    return (
+      <Card>
+        <StateView kind="loading" />
+      </Card>
+    );
+  }
+  if (phase === "failed") {
+    return (
+      <Card>
+        <StateView
+          kind="network"
+          message={error ?? undefined}
+          actionTitle="重试"
+          onAction={() => void load()}
+        />
+      </Card>
+    );
+  }
+  if (items.length === 0) {
+    return (
+      <>
+        <Card>
+          <StateView kind="empty" message="暂时没有内容，有进展时会告诉你。" />
+        </Card>
+        <div className="mt-2">
+          <Btn kind="ghost" sm to="/intent">
+            找活动同行
+          </Btn>
+        </div>
+      </>
+    );
+  }
+
+  const types = items.reduce<string[]>((acc, item) => {
+    const t = campusEventDisplayType(String(item.type ?? item.display_type ?? ""));
+    if (!acc.includes(t)) acc.push(t);
+    return acc;
+  }, []);
+  const visible = typeFilter
+    ? items.filter(
+        (item) =>
+          campusEventDisplayType(String(item.type ?? item.display_type ?? "")) ===
+          typeFilter,
+      )
+    : items;
+
+  return (
+    <>
+      {types.length >= 2 ? (
+        <div className="om-seg mb-3">
+          <button
+            type="button"
+            className={typeFilter == null ? "on" : ""}
+            onClick={() => setTypeFilter(null)}
+          >
+            全部
+          </button>
+          {types.map((t) => (
+            <button
+              key={t}
+              type="button"
+              className={typeFilter === t ? "on" : ""}
+              onClick={() => setTypeFilter(t)}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
+      ) : null}
+      {visible.length === 0 ? (
+        <Card>
+          <StateView kind="empty" message="这个分类暂时没有活动。" />
+        </Card>
+      ) : (
+        visible.map((item, i) => {
+          const id = String(item.id ?? i);
+          const publisher =
+            item.publisher ??
+            (item.details as { publisher?: string } | undefined)?.publisher;
+          return (
+            <Card key={id} onClick={() => nav(`/today/event/${id}`)}>
+              <div className="flex wrap" style={{ gap: 6 }}>
+                <Chip kind="soft">
+                  {campusEventDisplayType(String(item.type ?? ""))}
+                </Chip>
+                {publisher === "user" ? <Chip kind="solid">同学发布</Chip> : null}
+              </div>
+              <div className="t-t3 mt-2">
+                {String(item.title ?? item.name ?? "活动")}
+              </div>
+              <div className="t-call mt-1">{campusEventTime(item)}</div>
+              <div className="t-foot mt-1">{campusEventLocation(item)}</div>
+            </Card>
+          );
+        })
+      )}
+      <div className="mt-2">
+        <Btn kind="ghost" sm to="/intent">
+          找活动同行
+        </Btn>
+      </div>
+    </>
+  );
+}
+
+/** 队伍席位条（对齐 iOS OMLuluSeatStrip：噜噜脸已就位 / 虚位待补）。 */
+function TeamSeatStrip({ filled, total }: { filled: number; total: number }) {
+  return <LuluSeatStrip filled={filled} total={total} />;
 }
 
 /** B12.1 · 赛事详情，对齐 iOS CompetitionDetailView。 */
@@ -277,7 +582,7 @@ export function CompetitionDetailScreen() {
 
   return (
     <Screen id="screen-B12.1-competition-detail">
-      <NavBar title="赛事详情" backTo="/competitions" />
+      <NavBar backTo="/competitions" />
       <Scroll>
         {error ? (
           <Card>
@@ -290,7 +595,7 @@ export function CompetitionDetailScreen() {
         ) : (
           <>
             <div className="center mt-2">
-              <Sticker name="trophy.png" size="st-72" />
+              <Sticker name={competitionSticker(item)} size="st-72" />
             </div>
             <div className="t-t1 center mt-2">{item.name}</div>
             <div className="t-foot center mb-3">
@@ -435,9 +740,13 @@ export function CompetitionTableScreen() {
 
   return (
     <Screen id="screen-B12.2-table">
-      <NavBar title="赛事牌桌" backTo={`/competition/${competitionId}`} />
+      <NavBar backTo={`/competition/${competitionId}`} />
       <Scroll>
-        <LargeTitle title={recruitingHeadline(count)} sub="点进队伍看几/几和还缺什么" />
+        <PageHeader
+          eyebrow="赛事牌桌"
+          title={recruitingHeadline(count)}
+          clip="confirm.gather"
+        />
         {error ? (
           <Card>
             <StateView kind="network" message={error} actionTitle="重试" onAction={() => void load()} />
@@ -533,7 +842,7 @@ export function CompetitionTeamDetailScreen() {
 
   return (
     <Screen id="screen-B12.2-team-detail">
-      <NavBar title="队伍详情" backTo={`/competition/${competitionId}/table`} />
+      <NavBar backTo={`/competition/${competitionId}/table`} />
       <Scroll>
         {error ? (
           <Card>

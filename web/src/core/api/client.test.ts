@@ -96,10 +96,12 @@ describe("APIClient", () => {
     expect(isLocalAPIBase("http://127.0.0.1:8000")).toBe(true);
     expect(isLocalAPIBase("http://localhost:8000")).toBe(true);
     expect(isLocalAPIBase("http://42.194.219.172/onemore/api")).toBe(false);
+    expect(isLocalAPIBase("https://lulu.classby.cn/onemore/api")).toBe(false);
     expect(isLocalAPIBase("/onemore/api")).toBe(false);
   });
 
   it("defaults to the shared production API", () => {
-    expect(defaultBaseURL()).toContain("42.194.219.172");
+    expect(defaultBaseURL()).toContain("onemore/api");
+    expect(isLocalAPIBase(defaultBaseURL())).toBe(false);
   });
 });

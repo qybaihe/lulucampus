@@ -471,6 +471,167 @@ def _visible_sender_name(db: Session, message: Message) -> str | None:
     return name
 
 
+def _message_preview(message: Message) -> str:
+    if message.content_type == "image":
+        return "[图片]"
+    if message.content_type == "location":
+        try:
+            payload = json.loads(message.content)
+            label = str(payload.get("label") or "").strip()
+            return label or "[位置]"
+        except json.JSONDecodeError:
+            return "[位置]"
+    text = (message.content or "").strip().replace("\n", " ")
+    if not text:
+        return ""
+    return text[:40] + ("…" if len(text) > 40 else "")
+
+
+def _channel_last_message(db: Session, channel_id: str | None) -> dict | None:
+    if not channel_id:
+        return None
+    message = db.scalar(
+        select(Message).where(Message.channel_id == channel_id).order_by(Message.sent_at.desc())
+    )
+    if message is None:
+        return None
+    return {"content": _message_preview(message), "sent_at": message.sent_at}
+
+
+def _compose_subtitle(*chunks: str | None) -> str | None:
+    parts = [item.strip() for item in chunks if item and str(item).strip()]
+    if not parts:
+        return None
+    line = " · ".join(parts)
+    if len(line) <= 48:
+        return line
+    return " · ".join(parts[:2]) if len(parts) > 1 else parts[0][:48]
+
+
+def _relation_subtitle(view: dict) -> str | None:
+    times = int(view.get("times_together") or 0)
+    experiences = view.get("experiences") or []
+    last = experiences[0] if experiences else None
+    last_type = getattr(last, "gathering_type", None) if last is not None else None
+    grounds = list(getattr(last, "common_grounds", None) or []) if last is not None else []
+    timeline = view.get("timeline") or []
+    location = None
+    if timeline:
+        first = timeline[0]
+        location = first.get("location") if isinstance(first, dict) else None
+    partner_title = view.get("partner_title")
+    return _compose_subtitle(
+        f"一起 {times} 次" if times else None,
+        f"上次{last_type}" if last_type else None,
+        "、".join(str(item) for item in grounds[:2] if item) or None,
+        location if not last_type else None,
+        partner_title if times == 0 else None,
+    )
+
+
+def _peer_payloads(db: Session, user_ids: list[str]) -> list[dict]:
+    peers: list[dict] = []
+    for user_id in user_ids:
+        user = db.get(User, user_id)
+        peers.append(
+            {
+                "user_id": user_id,
+                "display_name": user.display_name if user else None,
+            }
+        )
+    return peers
+
+
+def _pair_user_ids(user_a: str, user_b: str) -> tuple[str, str]:
+    return (user_a, user_b) if user_a < user_b else (user_b, user_a)
+
+
+def _relation_between(db: Session, user_a: str, user_b: str) -> Relation | None:
+    left, right = _pair_user_ids(user_a, user_b)
+    return db.scalar(
+        select(Relation).where(
+            Relation.participant_a_id == left,
+            Relation.participant_b_id == right,
+        )
+    )
+
+
+def channel_header(db: Session, channel_id: str, user_id: str) -> dict:
+    channel = require_channel_member(db, channel_id, user_id)
+    peer_ids = [
+        item
+        for item in db.scalars(
+            select(ChannelParticipant.user_id).where(ChannelParticipant.channel_id == channel_id)
+        )
+        if item != user_id
+    ]
+    peers = _peer_payloads(db, peer_ids)
+    named = [item["display_name"] for item in peers if item["display_name"]]
+
+    if channel.relation_id:
+        relation = db.get(Relation, channel.relation_id)
+        view = (
+            relation_view(db, relation, viewer_id=user_id)
+            if relation is not None
+            else None
+        )
+        title = (view or {}).get("peer_display_name") or (named[0] if named else "搭子")
+        return {
+            "id": channel.id,
+            "kind": "relation",
+            "title": title,
+            "subtitle": _relation_subtitle(view) if view else None,
+            "gathering_id": None,
+            "relation_id": channel.relation_id,
+            "peers": peers,
+        }
+
+    gathering = db.get(Gathering, channel.gathering_id) if channel.gathering_id else None
+    shared = None
+    if len(peer_ids) == 1:
+        linked = _relation_between(db, user_id, peer_ids[0])
+        if linked is not None:
+            shared = _relation_subtitle(relation_view(db, linked, viewer_id=user_id))
+    if gathering is not None and not shared:
+        shared = _compose_subtitle(gathering.gathering_type, gathering.location)
+
+    if gathering is not None and len(peers) == 1:
+        title = named[0] if named else (gathering.title or gathering.gathering_type or "对话")
+        subtitle = _compose_subtitle(
+            shared,
+            gathering.title if gathering.title and gathering.title != title else None,
+        )
+        return {
+            "id": channel.id,
+            "kind": "gathering",
+            "title": title,
+            "subtitle": subtitle,
+            "gathering_id": gathering.id,
+            "relation_id": None,
+            "peers": peers,
+        }
+
+    title = (
+        (gathering.title if gathering is not None else None)
+        or (gathering.gathering_type if gathering is not None else None)
+        or ("、".join(named[:3]) if named else None)
+        or "局内群聊"
+    )
+    subtitle = _compose_subtitle(
+        "、".join(named[:3]) if named and title not in named else None,
+        shared,
+    )
+    return {
+        "id": channel.id,
+        "kind": "gathering",
+        "title": title,
+        "subtitle": subtitle,
+        "gathering_id": gathering.id if gathering is not None else None,
+        "relation_id": None,
+        "peers": peers,
+    }
+
+
 def list_messages(
     db: Session,
     channel_id: str,
@@ -705,7 +866,13 @@ def _relation_milestone(times_together: int) -> dict:
     }
 
 
-def relation_view(db: Session, relation: Relation, *, include_insights: bool = False) -> dict:
+def relation_view(
+    db: Session,
+    relation: Relation,
+    *,
+    viewer_id: str | None = None,
+    include_insights: bool = False,
+) -> dict:
     experiences = list(
         db.scalars(
             select(SharedExperience)
@@ -783,7 +950,17 @@ def relation_view(db: Session, relation: Relation, *, include_insights: bool = F
         "partner_title": _partner_title(times_together, recur_count),
         "milestone": _relation_milestone(times_together),
         "timeline": timeline,
+        "peer_display_name": None,
+        "last_message": _channel_last_message(db, channel_id),
     }
+    if viewer_id:
+        peer_id = (
+            relation.participant_b_id
+            if relation.participant_a_id == viewer_id
+            else relation.participant_a_id
+        )
+        peer = db.get(User, peer_id)
+        view["peer_display_name"] = peer.display_name if peer else None
 
     if include_insights:
         from onemore.modules.schedule.service import intersect_windows
@@ -830,20 +1007,30 @@ def list_relations(db: Session, user_id: str) -> list[dict]:
             )
         )
     )
-    views = [relation_view(db, relation) for relation in relations]
+    views = [relation_view(db, relation, viewer_id=user_id) for relation in relations]
     return sorted(
         views,
-        key=lambda item: (
-            ensure_utc(item["latest_experience_at"])
-            if item["latest_experience_at"]
-            else datetime.min.replace(tzinfo=UTC)
-        ),
+        key=lambda item: _relation_activity_at(item),
         reverse=True,
     )
 
 
+def _relation_activity_at(item: dict) -> datetime:
+    last = item.get("last_message") or {}
+    stamp = last.get("sent_at") if isinstance(last, dict) else None
+    stamp = stamp or item.get("latest_experience_at")
+    if stamp is None:
+        return datetime.min.replace(tzinfo=UTC)
+    return ensure_utc(stamp)
+
+
 def get_relation(db: Session, relation_id: str, user_id: str) -> dict:
-    return relation_view(db, _relation_or_404(db, relation_id, user_id), include_insights=True)
+    return relation_view(
+        db,
+        _relation_or_404(db, relation_id, user_id),
+        viewer_id=user_id,
+        include_insights=True,
+    )
 
 
 def dissolve_relation(db: Session, relation_id: str, user_id: str) -> None:

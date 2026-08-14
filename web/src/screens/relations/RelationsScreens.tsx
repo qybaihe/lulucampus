@@ -12,8 +12,8 @@ import {
   Card,
   Chip,
   Divider,
-  LargeTitle,
   NavBar,
+  PageHeader,
   Progress,
   Screen,
   Scroll,
@@ -200,9 +200,9 @@ export function RelationsScreen() {
 
   return (
     <Screen id="screen-E15-relations">
-      <NavBar title="搭子关系" backTo="/messages" />
+      <NavBar backTo="/messages" />
       <Scroll>
-        <LargeTitle title="搭子关系" sub="共同经历事实" />
+        <PageHeader eyebrow="共同经历事实" title="搭子关系" />
         {phase === "loading" ? (
           <Card>
             <StateView kind="loading" />
@@ -285,7 +285,9 @@ export function RelationsScreen() {
                         sm
                         onClick={() =>
                           nav(`/channel/${relation.channel_id}`, {
-                            state: { title: "搭子会话" },
+                            state: {
+                              title: relation.peer_display_name ?? participantsLine(relation),
+                            },
                           })
                         }
                         id="relation-open-chat"
@@ -450,9 +452,9 @@ export function RelationDetailScreen() {
 
   return (
     <Screen id="screen-E16-relation-detail">
-      <NavBar title="共同经历" backTo="/relations" />
+      <NavBar backTo="/relations" />
       <Scroll>
-        <LargeTitle title="共同经历" sub="事实记录" />
+        <PageHeader eyebrow="事实记录" title="共同经历" />
         {phase.kind === "loading" ? (
           <Card>
             <StateView kind="loading" />
@@ -609,7 +611,9 @@ function RelationDetailContent({
             sm
             onClick={() =>
               nav(`/channel/${relation.channel_id}`, {
-                state: { title: "搭子会话" },
+                state: {
+                  title: relation.peer_display_name ?? participantsLine(relation),
+                },
               })
             }
           >
@@ -970,9 +974,9 @@ export function SharedGoalsScreen() {
 
   return (
     <Screen id="screen-E11-shared-goals">
-      <NavBar title="共同目标" backTo={`/relation/${relationId}`} />
+      <NavBar backTo={`/relation/${relationId}`} />
       <Scroll>
-        <LargeTitle title="共同目标" sub="长期共同目标" />
+        <PageHeader eyebrow="长期共同目标" title="共同目标" />
         {showsCreate ? (
           <GoalCreateCard
             working={working}

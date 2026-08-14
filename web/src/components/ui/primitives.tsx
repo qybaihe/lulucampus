@@ -62,10 +62,12 @@ export function LuluMark({
 
 export function NavBar({
   title,
+  sub,
   backTo,
   right,
 }: {
-  title: string;
+  title?: string;
+  sub?: string;
   backTo?: string;
   right?: ReactNode;
 }) {
@@ -78,7 +80,10 @@ export function NavBar({
       ) : (
         <span style={{ width: 36 }} />
       )}
-      <div className="nav-title">{title}</div>
+      <div className="nav-title-block">
+        {title ? <div className="nav-title">{title}</div> : null}
+        {sub ? <div className="nav-sub">{sub}</div> : null}
+      </div>
       <div className="nav-right">{right}</div>
     </div>
   );
@@ -93,31 +98,46 @@ export function LargeTitle({ title, sub }: { title: string; sub?: string }) {
   );
 }
 
-/** 稀疏确认页公式：上标题 → 中间大噜噜 → 底部选项（对齐 iOS OMStage） */
-/** 稀疏确认页：上标题、中噜噜（或自定义 hero）、下操作区。 */
+/** 对齐 iOS OMHeader：eyebrow + 大标题 + 可选噜噜，不含横向 padding。 */
+export function PageHeader({
+  eyebrow,
+  title,
+  clip,
+}: {
+  eyebrow?: string;
+  title?: string;
+  clip?: LuluClip;
+}) {
+  return (
+    <div className="om-header">
+      <div className="om-header-text">
+        {eyebrow ? <div className="om-header-eyebrow">{eyebrow}</div> : null}
+        {title ? <div className="om-header-title">{title}</div> : null}
+      </div>
+      {clip ? <LuluMark placement="avatar" clip={clip} /> : null}
+    </div>
+  );
+}
+
+/** 稀疏确认页：上标题、中噜噜（或自定义 hero）、下操作区。gate 用于 Tab 登录墙，噜噜更小。 */
 export function Stage({
   title,
   subtitle,
   clip = "home.reply",
   hero,
+  density = "default",
   children,
 }: {
   title?: string;
   subtitle?: string;
   clip?: LuluClip;
   hero?: ReactNode;
+  density?: "default" | "gate";
   children?: ReactNode;
 }) {
+  const gate = density === "gate";
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        flex: 1,
-        minHeight: 0,
-        padding: "12px 20px 28px",
-      }}
-    >
+    <div className={`om-stage${gate ? " gate" : ""}`}>
       {title ? (
         <div className="t-t2 center" style={{ marginTop: 8 }}>
           {title}
@@ -131,17 +151,10 @@ export function Stage({
           {subtitle}
         </div>
       ) : null}
-      <div
-        style={{
-          flex: 1,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: 220,
-          padding: "12px 0",
-        }}
-      >
-        {hero ?? <LuluMark placement="hero" clip={clip} />}
+      <div className="om-stage-hero">
+        {hero ?? (
+          <LuluMark placement={gate ? "empty" : "hero"} clip={clip} />
+        )}
       </div>
       {children}
     </div>
@@ -653,6 +666,44 @@ export function SeatStrip({
           <img src={`${ST}${s.sticker}`} alt={s.role} />
         </span>
       ))}
+    </span>
+  );
+}
+
+/** 匿名人数席位条，对齐 iOS OMLuluSeatStrip：已就位用噜噜脸，空位虚线圈。 */
+export function LuluSeatStrip({
+  filled,
+  total,
+  size = 26,
+}: {
+  filled: number;
+  total: number;
+  size?: number;
+}) {
+  const n = Math.max(0, Math.min(total, 12));
+  const f = Math.min(Math.max(filled, 0), n);
+  return (
+    <span
+      className="lulu-seat-strip"
+      aria-label={`已进 ${f} 人，共 ${n} 人局`}
+    >
+      {Array.from({ length: n }, (_, i) =>
+        i < f ? (
+          <span
+            key={i}
+            className="lulu-seat filled"
+            style={{ width: size, height: size }}
+          >
+            <img src={`${ST}lulu-face.png`} alt="" />
+          </span>
+        ) : (
+          <span
+            key={i}
+            className="lulu-seat gap"
+            style={{ width: size, height: size }}
+          />
+        ),
+      )}
     </span>
   );
 }

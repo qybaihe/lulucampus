@@ -1,0 +1,2 @@
+# Only rewrite missing legal routes. Do not splat-rewrite /assets/*.
+/legal/*  /index.html  200

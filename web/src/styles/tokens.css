@@ -22,6 +22,7 @@
   --ink-06: color-mix(in oklch, var(--ink) 6%, var(--card));
   --yolk-30: color-mix(in oklch, var(--yolk) 30%, var(--card));
   --yolk-14: color-mix(in oklch, var(--yolk) 14%, var(--card));
+  --yolk-border: color-mix(in oklch, var(--ink) 18%, var(--yolk));
   --mist-40: color-mix(in oklch, var(--mist) 40%, var(--paper));
 
   /* — 语义别名 — */

@@ -180,6 +180,15 @@ actor IdentityRepository {
         )
     }
     func facts() async throws -> IdentityFacts { try await api.get("/auth/me") }
+    func updateDisplayName(_ displayName: String) async throws -> IdentityFacts {
+        struct Body: Encodable, Sendable { let displayName: String }
+        return try await api.send(
+            "/me/display-name",
+            method: .patch,
+            body: Body(displayName: displayName),
+            idempotencyKey: "display-name-\(UUID().uuidString)"
+        )
+    }
     func profile() async throws -> UserProfilePayload { try await api.get("/profile/me") }
     func updateProfileTags(
         selfReported: [String], hiddenVerified: [String]
@@ -211,7 +220,7 @@ actor IdentityRepository {
                 socialEnabled: enabled,
                 courseMatchingEnabled: enabled
             ),
-            idempotencyKey: "first-use-social-\(enabled ? "on" : "off")"
+            idempotencyKey: "first-use-social-\(enabled ? "on" : "off")-\(UUID().uuidString)"
         )
     }
     func enableSocial() async throws -> SocialPreferences { try await setSocialEnabled(true) }
@@ -234,7 +243,7 @@ actor IdentityRepository {
                 sameGenderOnly: value.sameGenderOnly,
                 minimumGroupSize: value.minimumGroupSize
             ),
-            idempotencyKey: "privacy-full-state"
+            idempotencyKey: "privacy-\(UUID().uuidString)"
         )
     }
     func matchingPreferences() async throws -> MatchingPreferences {
@@ -245,7 +254,7 @@ actor IdentityRepository {
             "/me/matching-preferences",
             method: .patch,
             body: value,
-            idempotencyKey: "matching-preferences-full-state"
+            idempotencyKey: "matching-preferences-\(UUID().uuidString)"
         )
     }
     func blocks() async throws -> [BlockedUser] { try await api.get("/me/blocks") }
@@ -268,6 +277,9 @@ actor SocialRepository {
     func relations() async throws -> [RelationSummary] { try await api.get("/relations") }
     func relation(_ id: String) async throws -> RelationSummary { try await api.get("/relations/\(id)") }
     func messages(channelID: String) async throws -> [MessagePayload] { try await api.get("/channels/\(channelID)/messages") }
+    func channelHeader(channelID: String) async throws -> ChannelHeader {
+        try await api.get("/channels/\(channelID)")
+    }
     func channelScenePolicy(channelID: String) async throws -> ChannelScenePolicy {
         try await api.get("/channels/\(channelID)/scene-policy")
     }
@@ -296,7 +308,7 @@ actor SocialRepository {
     }
     func updatePreferences(_ value: NotificationPreferences) async throws -> NotificationPreferences {
         struct Body: Encodable, Sendable { let overallEnabled: Bool; let calendarSyncEnabled: Bool; let categories: NotificationPreferences.Categories }
-        return try await api.send("/me/notification-preferences", method: .patch, body: Body(overallEnabled: value.overallEnabled, calendarSyncEnabled: value.calendarSyncEnabled, categories: value.categories), idempotencyKey: "notification-preferences-full-state")
+        return try await api.send("/me/notification-preferences", method: .patch, body: Body(overallEnabled: value.overallEnabled, calendarSyncEnabled: value.calendarSyncEnabled, categories: value.categories), idempotencyKey: "notification-preferences-\(UUID().uuidString)")
     }
     func goals(relationID: String) async throws -> [SharedGoal] {
         try await api.get("/relations/\(relationID)/goals")

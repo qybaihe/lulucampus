@@ -18,7 +18,7 @@
   <key>NSAppTransportSecurity</key>
   <dict>
     <key>NSAllowsLocalNetworking</key><true/>
-    <!-- Temporary: production IP is HTTP-only until a TLS domain is attached. -->
+    <!-- Leftover HTTP IP allowlist; Debug now uses https://lulu.classby.cn. -->
     <key>NSExceptionDomains</key>
     <dict>
       <key>42.194.219.172</key>

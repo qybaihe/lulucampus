@@ -441,8 +441,28 @@ final class OneMoreNavigationUITests: XCTestCase {
         tapButton("身份事实无误", swipes: 8)
         XCTAssertTrue(any("screen-A7-social").waitForExistence(timeout: 6))
         tapButton("开启并继续", swipes: 8)
+        skipFirstUseTasteIfPresented()
         XCTAssertTrue(any("screen-A7-ready").waitForExistence(timeout: 12))
         tapButton("进入今天", swipes: 8)
+    }
+
+    /// Optional Douyin taste import sits between social opt-in and ready.
+    private func skipFirstUseTasteIfPresented() {
+        XCTAssertTrue(any("screen-first-use-taste").waitForExistence(timeout: 12), "first-use taste step missing")
+        if any("first-use-skip-taste").waitForExistence(timeout: 6) {
+            let skip = any("first-use-skip-taste")
+            for _ in 0..<8 where !skip.isHittable {
+                app.swipeUp()
+                Thread.sleep(forTimeInterval: 0.08)
+            }
+            skip.tap()
+            return
+        }
+        if any("first-use-taste-continue").waitForExistence(timeout: 4) {
+            any("first-use-taste-continue").tap()
+            return
+        }
+        tapButton("暂时跳过，稍后再贴", swipes: 8)
     }
 
     /// Creates an isolated, verified T1 account through the same fake-CAS
@@ -784,6 +804,7 @@ final class OneMoreNavigationUITests: XCTestCase {
         tapButton("身份事实无误", swipes: 8)
         XCTAssertTrue(any("screen-A7-social").waitForExistence(timeout: 5))
         tapButton("开启并继续", swipes: 8)
+        skipFirstUseTasteIfPresented()
         XCTAssertTrue(any("screen-A7-ready").waitForExistence(timeout: 10))
         tapButton("进入今天", swipes: 8)
         XCTAssertTrue(app.tabBars.buttons["今天"].waitForExistence(timeout: 10), "A7 did not finish at B1")

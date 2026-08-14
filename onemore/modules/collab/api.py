@@ -14,6 +14,7 @@ from onemore.db.models import User
 from onemore.modules.collab import service
 from onemore.modules.collab.realtime import hub
 from onemore.modules.collab.schemas import (
+    ChannelHeaderView,
     ChannelScenePolicyView,
     MentionAzouRequest,
     MentionAzouResult,
@@ -71,6 +72,17 @@ def channel_scene_policy(
         data=ChannelScenePolicyView.model_validate(
             service.channel_scene_policy(db, channel_id, user.id)
         )
+    )
+
+
+@router.get("/channels/{channel_id}", response_model=APIResponse[ChannelHeaderView])
+def get_channel_header(
+    channel_id: str,
+    user: User = Depends(current_user),
+    db: Session = Depends(get_db),
+) -> APIResponse[ChannelHeaderView]:
+    return APIResponse(
+        data=ChannelHeaderView.model_validate(service.channel_header(db, channel_id, user.id))
     )
 
 

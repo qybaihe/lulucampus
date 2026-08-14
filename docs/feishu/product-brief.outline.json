@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "identity": "user",
+  "data": {
+    "document": {
+      "content": "<fragment mode=\"outline\"><outline><h1 id=\"doxcn8ftt8ON29DZMsV5Htw5DMg\">一、产品概览</h1><h2 id=\"doxcnb6k3FCNrGFILclPYuaohqe\">一句话定义</h2><h2 id=\"doxcnkQH99rRuN1hqPtUYKxOknd\">开始使用</h2><h2 id=\"doxcngCHrg630sqmupUn8hkO9bd\">为什么这套社交能成</h2><h1 id=\"doxcnjKd5PqIRErozzqeniRX62e\">前情提要：三个 Skill</h1><h2 id=\"doxcnwRKza9Oj9TopCwJPr1Wc0b\">Skill 1 · SYSU Anything</h2><h2 id=\"doxcnY5suIxqtPUhe0mW5CVY7Kc\">Skill 2 · 软工 AI 迎新智能助手：一站式校园问答</h2><h2 id=\"doxcnFJL4P3nvgQ6y7yi99lYfCe\">Skill 3 · 抖音兴趣画像：让 AI 懂你是谁</h2><h2 id=\"doxcnQOeflhMzibIJ5LMwQkulAd\">要不结合一下看看有什么玩法？：画像遇上公选课，再遇上人</h2><h1 id=\"doxcnq6OZphTfgM5XwxfD19K5oh\">社交：先有场合，再凑齐进群</h1><h2 id=\"doxcnuJ54QVzWkEE2ElEOHh5JFd\">主场合：比赛组队</h2><h2 id=\"doxcnf2SGzAcWjmxZ5leLvgnx0d\">高频场合：打球、冲 DDL</h2><h2 id=\"doxcnGhrT9wKI2fd9xh1Xv8kqJh\">轻场合：校园活动同行</h2><h2 id=\"doxcnERF1uD0pEfq9GoS8fuJeEh\">贯穿：画像帮你找对味的人</h2><h2 id=\"doxcnheQxEk1pAXJ3Cxig5lXBee\">凑齐了，才进群</h2><h2 id=\"doxcn9cI1uKQSrCNqpd20A3mEWd\">产品不是什么</h2><h1 id=\"doxcnohdR3vIBbiOWL63ko1Rnub\">二、目标用户与核心问题</h1><h2 id=\"doxcnJr1fU5JJwqxlBB7zYGgqAd\">核心问题</h2><h2 id=\"doxcnXTaMz6Ci1f3qI6sk32aKoc\">目标用户</h2><h2 id=\"doxcngdnDI2udIA2fOGBTBYDJeW\">用户任务与北极星指标</h2><h1 id=\"doxcnPJnAgRIIpEslw1rZUdoSlh\">三、方案与赛题的对应关系</h1><h1 id=\"doxcnXdZPKkwPuPKUQdmTyztpqb\">四、核心功能与流程</h1><h2 id=\"doxcnPHW2uq3jYoZuG2dtNQNrWb\">四层架构</h2><h2 id=\"doxcn2Body6GdZDGxwWCY69J76e\">功能模块总览</h2><h2 id=\"doxcnQsk4gBBBP7YLg5DkgAAH8b\">成局主流程</h2><h2 id=\"doxcnuMyH6EqT54fluoMX9UWFxo\">四条英雄场景</h2><h1 id=\"doxcnmhH0wTu97piUnbSyUEzxfg\">五、AI 承担的关键任务与实现链路</h1><h2 id=\"doxcnlXt9Ryn2ZYJvKPYkihktFe\">AI 做什么、不做什么</h2><h2 id=\"doxcnlxAAdfLBnkISZNc4M9e0iT\">LLM 的出口与禁区</h2><h2 id=\"doxcnBvBHP3tx3vD4ztgF3qIW5c\">Lulu Hermes 执行链路</h2><h2 id=\"doxcnT5VeU5eKD1zte4dODKnywe\">凭证隔离与数据边界</h2><h1 id=\"doxcnIouMLPmIP3XCBEnnhVWpuf\">六、当前完成度与可演示范围</h1><h2 id=\"doxcng4Utj5a7Fubx98kzVPV2Fg\">完成度：不是接近完成，是全部完成</h2><h2 id=\"doxcnfzpBmifzItzKcAAuZ47RPe\">可演示范围</h2><h2 id=\"doxcnlG9UUAeWuGz8H4DjqcOlGd\">测试剧组：没有别的用户时，怎么演示社交</h2><h2 id=\"doxcn3rY2GiDQpbzNBwENpIMrzd\">当前边界</h2><h1 id=\"doxcnsGubfXvS0uH4mMBc7Dl7hh\">七、创新点</h1><h1 id=\"doxcny5ChGWRiXNBWHR4tkXt4ne\">八、后续延展空间</h1></outline></fragment>",
+      "document_id": "HWhzdpMwAoWB3VxfypFc5Xz9nOg",
+      "revision_id": 876
+    }
+  },
+  "_notice": {
+    "update": {
+      "command": "lark-cli update",
+      "current": "1.0.72",
+      "latest": "1.0.86",
+      "message": "lark-cli 1.0.86 available, current 1.0.72, run: lark-cli update"
+    }
+  }
+}

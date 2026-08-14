@@ -1,7 +1,7 @@
-// Debug builds talk to the production ONE MORE API on the shared server.
+// Debug builds talk to the production ONE MORE API on the shared HTTPS domain.
 // Hermes is real there; phone auth + campus QR both hit the same Postgres.
-API_BASE_URL = http:/$()/42.194.219.172/onemore/api
-WEB_SOCKET_BASE_URL = ws:/$()/42.194.219.172/onemore/api
+API_BASE_URL = https:/$()/lulu.classby.cn/onemore/api
+WEB_SOCKET_BASE_URL = wss:/$()/lulu.classby.cn/onemore/api
 DEV_AUTH_ENABLED = NO
 DEV_USER_ID =
 ASSOCIATED_DOMAIN = applinks:dev.onemore.example

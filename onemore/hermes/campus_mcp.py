@@ -45,6 +45,7 @@ CardKind = Literal[
     "elective_match",
     "action_preview",
     "peer_list",
+    "knowledge_answer",
 ]
 
 
@@ -55,7 +56,7 @@ class CampusTool:
     action: ActionName | None
     card_type: CardKind
     is_preview: bool
-    extra: Literal["none", "elective", "peers"] = "none"
+    extra: Literal["none", "elective", "peers", "knowledge"] = "none"
 
 
 CAMPUS_TOOLS: tuple[CampusTool, ...] = (
@@ -149,6 +150,15 @@ CAMPUS_TOOLS: tuple[CampusTool, ...] = (
         "peers",
     ),
     CampusTool(
+        "campus_knowledge_search",
+        "检索中大校园日常知识库（迎新、宿舍、食堂、校园卡、军训、奖学金、教务常识等）并作答。"
+        "课表、订场、找搭子不要用这个工具。参数 question 传用户原话。",
+        None,
+        "knowledge_answer",
+        False,
+        "knowledge",
+    ),
+    CampusTool(
         "room_reserve_preview",
         "生成研讨室预约预览（不会真正下单）。必填 kind、room、date、start、end；可选 lab、members、title、memo、services。",
         ActionName.ROOM_RESERVE_PREVIEW,
@@ -228,6 +238,18 @@ def openai_tool_schemas() -> list[dict[str, Any]]:
                         "description": "用户原话，可原样传入",
                     },
                 },
+                "additionalProperties": False,
+            }
+        elif tool.extra == "knowledge":
+            parameters = {
+                "type": "object",
+                "properties": {
+                    "question": {
+                        "type": "string",
+                        "description": "用户原话，可原样传入",
+                    }
+                },
+                "required": ["question"],
                 "additionalProperties": False,
             }
         elif tool.action is None:
@@ -469,6 +491,27 @@ def dispatch_tool(
                 "requires_preview": False,
                 "data": {"peers": peers, "count": len(peers)},
             }
+        if tool.extra == "knowledge":
+            from onemore.modules.campus.ima_kb import ima_configured, search_campus_knowledge
+
+            question = str(params.get("question") or session.get("question") or "")
+            if not ima_configured():
+                data = {"message": "校园知识库未配置。", "hits": [], "count": 0}
+            else:
+                data = search_campus_knowledge(question)
+                if not data.get("hits"):
+                    data = {
+                        **data,
+                        "message": "知识库里暂时没找到直接对应的说明，可以换个说法再问。",
+                    }
+            return {
+                "ok": True,
+                "kind": "result",
+                "action": "campus.knowledge",
+                "card_type": tool.card_type,
+                "requires_preview": False,
+                "data": data,
+            }
         assert tool.action is not None
         definition = CATALOG[tool.action]
         if tool.action == ActionName.GYM_BOOK_PREVIEW:
@@ -477,6 +520,16 @@ def dispatch_tool(
 
             question = str(session.get("question") or "")
             params = infer_gym_book_params(question, params)
+            user = db.get(User, user_id)
+            campus = ((user.campus if user else None) or "").strip()
+            if campus and not params.get("venue"):
+                params["venue"] = campus
+        elif tool.action == ActionName.GYM_AVAILABLE:
+            from onemore.db.models import User
+            from onemore.modules.campus.gym_intent import infer_gym_available_params
+
+            question = str(session.get("question") or "")
+            params = infer_gym_available_params(question, params)
             user = db.get(User, user_id)
             campus = ((user.campus if user else None) or "").strip()
             if campus and not params.get("venue"):

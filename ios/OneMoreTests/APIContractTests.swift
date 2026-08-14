@@ -77,6 +77,15 @@ final class APIContractTests: XCTestCase {
         XCTAssertEqual(envelope.meta["source"], .string("live"))
     }
 
+    func testChannelHeaderDecodesPeerNameAndSharedHistory() throws {
+        let data = #"{"id":"c1","kind":"relation","title":"陈可薇","subtitle":"一起 1 次 · 上次DDL冲刺","gathering_id":null,"relation_id":"r1","peers":[{"user_id":"u_demo_3","display_name":"陈可薇"}]}"#.data(using: .utf8)!
+        let header = try JSONDecoder.oneMore.decode(ChannelHeader.self, from: data)
+        XCTAssertEqual(header.title, "陈可薇")
+        XCTAssertEqual(header.subtitle, "一起 1 次 · 上次DDL冲刺")
+        XCTAssertEqual(header.relationId, "r1")
+        XCTAssertEqual(header.peers.first?.displayName, "陈可薇")
+    }
+
     func testErrorEnvelopePreservesRequestIDAndDetails() throws {
         let data = #"{"error":{"code":"INTENT_NOT_EDITABLE","message":"当前意图不可编辑","details":{"status":"Pooling"},"request_id":"req-123"}}"#.data(using: .utf8)!
         let value = try JSONDecoder.oneMore.decode(APIErrorEnvelope.self, from: data).error
@@ -181,6 +190,24 @@ final class APIContractTests: XCTestCase {
         XCTAssertFalse(blob.contains("params."))
         XCTAssertFalse(blob.contains("venue_type"))
         XCTAssertFalse(blob.contains("/actions/preview"))
+    }
+
+    func testCampusActionCopyMarksOverlapTemplateAsReference() throws {
+        let copy = try XCTUnwrap(
+            CampusActionCopy.make(
+                actionName: "gym.book_preview",
+                params: [
+                    "date": .string("2026-08-13"),
+                    "end": .string("21:00"),
+                    "start": .string("19:00"),
+                    "venue": .string("南校园"),
+                    "venue_type": .string("羽毛球"),
+                ],
+                status: "previewed",
+                previewSnapshot: ["source": .string("peer_overlap_template")]
+            )
+        )
+        XCTAssertEqual(copy.statusLabel, "时段参考")
     }
 
     func testCampusActionCopyReadsHermesPreviewPayload() throws {

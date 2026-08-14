@@ -70,17 +70,22 @@ TERMINAL_GATHERING_STATES = {
 }
 
 
+def _has_competition_marker(gathering: Gathering) -> bool:
+    metadata = gathering.official_metadata if isinstance(gathering.official_metadata, dict) else {}
+    if metadata.get("competition_id") or metadata.get("competition_name"):
+        return True
+    return "比赛" in (gathering.gathering_type or "")
+
+
 def is_expired(gathering: Gathering, now: datetime | None = None) -> bool:
     current = now or datetime.now(UTC)
-    return bool(
-        (
-            gathering.expires_at is not None
-            and ensure_utc(gathering.expires_at) <= current
-        )
-        or (
-            gathering.end_at is not None
-            and ensure_utc(gathering.end_at) <= current
-        )
+    expired_by_deadline = bool(
+        gathering.expires_at is not None and ensure_utc(gathering.expires_at) <= current
+    )
+    if _has_competition_marker(gathering):
+        return expired_by_deadline
+    return expired_by_deadline or bool(
+        gathering.end_at is not None and ensure_utc(gathering.end_at) <= current
     )
 
 
@@ -802,8 +807,12 @@ def to_view(db: Session, gathering: Gathering, viewer_id: str | None) -> dict:
         "required_trust_level": gathering.required_trust_level,
         "required_roles": gathering.required_roles,
         "match_reason": gathering.match_reason if member and visible_counts else None,
-        "looking_for": _looking_for_labels(
-            db, _remaining_required_roles(gathering, members)
+        "looking_for": (
+            _looking_for_labels(
+                db, _remaining_required_roles(gathering, members)
+            )
+            if gathering.status == GatheringStatus.POOLING.value
+            else []
         ),
         "filled_roles": _filled_role_labels(db, members),
         "roster_highlights": (
@@ -1058,10 +1067,7 @@ def _blocked_with_any(db: Session, user_id: str, members: list[GatheringMember])
 
 def _is_competition_team(db: Session, gathering: Gathering) -> bool:
     """赛事组队：人数按 2–3 成局，不占日历时段，满员后直接开群。"""
-    metadata = gathering.official_metadata if isinstance(gathering.official_metadata, dict) else {}
-    if metadata.get("competition_id") or metadata.get("competition_name"):
-        return True
-    if "比赛" in (gathering.gathering_type or ""):
+    if _has_competition_marker(gathering):
         return True
     if gathering.source_intent_id:
         intent = db.get(IntentCard, gathering.source_intent_id)
@@ -1080,16 +1086,60 @@ def _occupies_timeslot(db: Session, gathering: Gathering) -> bool:
     return not _is_competition_team(db, gathering)
 
 
+def _cross_college_roster_blocked(
+    db: Session, gathering: Gathering, people: list[User]
+) -> bool:
+    """普通局跨院系要全员 T2；赛事组队按角色互补，不把已在桌上的 T1 当成门槛。"""
+    if _is_competition_team(db, gathering):
+        return False
+    colleges = {
+        college
+        for person in people
+        if person is not None and (college := (person.college or "").strip())
+    }
+    if len(colleges) <= 1:
+        return False
+    return any(
+        person is not None
+        and not trust_service.check_unlock(db, person.id, "cross_college_matching")
+        for person in people
+    )
+
+
+def _has_app_joiner(members: list[GatheringMember]) -> bool:
+    """Seed cast sits as owner/matching; a live join from the app uses open/share/backfill."""
+    return any(
+        (member.joined_via or "matching") not in {"owner", "matching"}
+        for member in members
+    )
+
+
 def _competition_roster_ready(
     gathering: Gathering, members: list[GatheringMember]
 ) -> bool:
-    """CUMCM-style teams form at min_size once advertised gaps are gone, or at target."""
+    """2–3 人赛事队：满员、缺口填完，或真人加入后达到最低人数，都可以成局。"""
     count = len(members)
     if count < gathering.min_size:
         return False
     if count >= gathering.target_size:
         return True
-    return not _remaining_required_roles(gathering, members)
+    if not _remaining_required_roles(gathering, members):
+        return True
+    return _has_app_joiner(members)
+
+
+def _try_seal_competition_roster(
+    db: Session, gathering: Gathering, actor_user_id: str
+) -> bool:
+    if gathering.status != GatheringStatus.POOLING.value:
+        return False
+    if not _is_competition_team(db, gathering):
+        return False
+    if not _competition_roster_ready(gathering, active_members(db, gathering.id)):
+        return False
+    transition(db, gathering, GatheringEvent.MATCHED, actor_user_id=actor_user_id)
+    _seal_competition_team(db, gathering, actor_user_id)
+    return True
 
 
 def _seal_competition_team(db: Session, gathering: Gathering, actor_user_id: str) -> None:
@@ -1184,6 +1234,17 @@ def join(
         members = active_members(db, gathering_id)
         existing = next((member for member in members if member.user_id == user.id), None)
         if existing:
+            if _is_competition_team(db, gathering):
+                chosen = (role or existing.role or "").strip()
+                if not chosen:
+                    remaining = _remaining_required_roles(gathering, members)
+                    if len(remaining) == 1:
+                        chosen = remaining[0]
+                if chosen and (existing.role or "") != chosen:
+                    existing.role = chosen
+                    db.flush()
+                _try_seal_competition_roster(db, gathering, user.id)
+                db.commit()
             return gathering
         backfill_window = _backfill_window(gathering)
         backfill_intent: IntentCard | None = None
@@ -1249,23 +1310,12 @@ def join(
                 or any(gender != user_gender for gender in member_genders)
             ):
                 raise ForbiddenError("本局启用了同性成员偏好")
-        colleges = {
-            college
-            for current in [user, *member_users]
-            if (college := (current.college or "").strip())
-        }
-        if len(colleges) > 1:
+        if _cross_college_roster_blocked(db, gathering, [user, *member_users]):
             trust_service.require_unlock(db, user.id, "cross_college_matching")
-            if any(
-                not trust_service.check_unlock(
-                    db, current.id, "cross_college_matching"
-                )
-                for current in member_users
-            ):
-                raise ConflictError(
-                    "CROSS_COLLEGE_TRUST_CHANGED",
-                    "跨院系局要求全体成员达到 T2",
-                )
+            raise ConflictError(
+                "CROSS_COLLEGE_TRUST_CHANGED",
+                "跨院系局要求全体成员达到 T2",
+            )
         if _time_conflict(db, user.id, gathering):
             raise ConflictError("TIME_CONFLICT", "该时段已有其他局")
         prior = db.scalar(
@@ -1304,9 +1354,7 @@ def join(
         db.flush()
         roster = active_members(db, gathering.id)
         if _is_competition_team(db, gathering):
-            if _competition_roster_ready(gathering, roster):
-                transition(db, gathering, GatheringEvent.MATCHED, actor_user_id=user.id)
-                _seal_competition_team(db, gathering, user.id)
+            _try_seal_competition_roster(db, gathering, user.id)
         else:
             threshold = (
                 gathering.min_size
@@ -1379,17 +1427,7 @@ def confirm(db: Session, gathering_id: str, user_id: str, confirmed: bool) -> Ga
                 "GATHERING_TRUST_CHANGED",
                 "成员当前等级不再满足本局门槛",
             )
-        colleges = {
-            college
-            for current in current_users
-            if (college := (current.college or "").strip())
-        }
-        if len(colleges) > 1 and any(
-            not trust_service.check_unlock(
-                db, current.id, "cross_college_matching"
-            )
-            for current in current_users
-        ):
+        if _cross_college_roster_blocked(db, gathering, current_users):
             raise ConflictError(
                 "CROSS_COLLEGE_TRUST_CHANGED",
                 "跨院系局要求全体成员达到 T2",
@@ -1920,17 +1958,7 @@ def apply_backfill_fallback(
                 "BACKFILL_FALLBACK_TRUST_CONFLICT",
                 "成员当前信任等级不再满足本局门槛",
             )
-        colleges = {
-            college
-            for current in current_users
-            if (college := (current.college or "").strip())
-        }
-        if len(colleges) > 1 and any(
-            not trust_service.check_unlock(
-                db, current.id, "cross_college_matching"
-            )
-            for current in current_users
-        ):
+        if _cross_college_roster_blocked(db, gathering, current_users):
             raise ConflictError(
                 "BACKFILL_FALLBACK_TRUST_CONFLICT",
                 "跨院系局要求全体成员达到 T2",

@@ -37,7 +37,7 @@ class Settings(BaseSettings):
     access_token_ttl_seconds: int = 2_592_000
     public_web_base_url: str = "https://onemore.example"
 
-    hermes_mode: Literal["fake", "real"] = "fake"
+    hermes_mode: Literal["fake", "real"] = "real"
     sysu_cli: str = str(Path.home() / ".local/bin/sysu-anything")
     vault_root: Path = Path("./vaults")
     vault_master_key: str | None = None
@@ -115,6 +115,13 @@ class Settings(BaseSettings):
     campus_mcp_url: str = "http://127.0.0.1:8000/internal/campus-mcp"
     campus_mcp_token: str = ""
     tool_session_ttl_seconds: int = 600
+
+    # Tencent IMA campus knowledge (Hermes FAQ). Keys live in server .env only.
+    ima_openapi_client_id: str = ""
+    ima_openapi_api_key: str = ""
+    ima_openapi_base_url: str = "https://ima.qq.com"
+    ima_knowledge_base_id: str = ""
+    ima_kb_timeout_seconds: float = 15.0
 
     @field_validator("database_url")
     @classmethod

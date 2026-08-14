@@ -255,3 +255,76 @@ def test_overlap_template_authorization_explains_it_is_not_a_booking(client):
     assert response.status_code == 409, response.text
     assert response.json()["error"]["code"] == "ACTION_NOT_AUTHORIZABLE"
     assert "时段参考" in response.json()["error"]["message"]
+
+
+def test_today_summary_hides_overlap_templates_from_pending(client, auth_headers):
+    from sqlalchemy import select
+
+    from onemore.core.database import SessionLocal
+    from onemore.db.models import CampusAction
+
+    with SessionLocal() as db:
+        templates = [
+            item
+            for item in db.scalars(
+                select(CampusAction).where(CampusAction.user_id == "u_demo_1")
+            )
+            if (item.preview_snapshot or {}).get("source") == "peer_overlap_template"
+        ]
+        assert templates, "demo seed should attach gym overlap templates to 林予安"
+        template_ids = {item.id for item in templates}
+
+    pending = client.get("/today/summary", headers=auth_headers).json()["data"]["pending"]
+    pending_ids = {item.get("action_id") for item in pending}
+    assert template_ids.isdisjoint(pending_ids)
+
+
+def test_today_summary_pending_drops_action_after_self_authorize(client):
+    gathering_id = _confirmed_gathering(client)
+    from datetime import UTC, datetime, timedelta
+
+    from onemore.core.database import SessionLocal
+    from onemore.db.models import Gathering
+
+    with SessionLocal() as db:
+        gathering = db.get(Gathering, gathering_id)
+        assert gathering is not None
+        gathering.gathering_type = "DDL冲刺"
+        gathering.location = "图书馆研讨室 15-401"
+        gathering.start_at = datetime.now(UTC) + timedelta(days=3)
+        gathering.end_at = gathering.start_at + timedelta(hours=2)
+        db.commit()
+
+    owner = {"X-User-ID": "u_demo_1"}
+    capability = client.get(
+        f"/gatherings/{gathering_id}/action-capability", headers=owner
+    ).json()["data"]
+    preview = client.post(
+        "/actions/preview",
+        headers=owner,
+        json={
+            "action": capability["action"],
+            "params": capability["params"],
+            "gathering_id": gathering_id,
+        },
+    )
+    assert preview.status_code == 200, preview.text
+    action = preview.json()["data"]
+    action_id = action["id"]
+
+    pending = client.get("/today/summary", headers=owner).json()["data"]["pending"]
+    assert any(item.get("action_id") == action_id for item in pending)
+
+    authorized = client.post(
+        f"/actions/{action_id}/authorization",
+        headers=owner,
+        json={"authorized": True, "snapshot_hash": action["snapshot_hash"]},
+    )
+    assert authorized.status_code == 200, authorized.text
+    pending_after = client.get("/today/summary", headers=owner).json()["data"]["pending"]
+    assert all(item.get("action_id") != action_id for item in pending_after)
+
+    peer_pending = client.get(
+        "/today/summary", headers={"X-User-ID": "u_demo_2"}
+    ).json()["data"]["pending"]
+    assert any(item.get("action_id") == action_id for item in peer_pending)

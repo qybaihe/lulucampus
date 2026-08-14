@@ -104,9 +104,9 @@ final class NetworkingBehaviorTests: XCTestCase {
         StubURLProtocol.handler = { request in
             XCTAssertEqual(request.url?.path, "/me/privacy")
             XCTAssertEqual(request.httpMethod, "PATCH")
-            XCTAssertEqual(
-                request.value(forHTTPHeaderField: "Idempotency-Key"),
-                "first-use-social-off"
+            XCTAssertTrue(
+                (request.value(forHTTPHeaderField: "Idempotency-Key") ?? "")
+                    .hasPrefix("first-use-social-off-")
             )
             let body = String(decoding: self.requestBody(request), as: UTF8.self)
             XCTAssertTrue(body.contains(#""social_enabled":false"#))
@@ -118,7 +118,7 @@ final class NetworkingBehaviorTests: XCTestCase {
         let model = FirstUseSetupViewModel(repository: IdentityRepository(api: client))
         model.step = .social
         await model.keepSocialOff()
-        if case .ready = model.step {} else { XCTFail("Skip must reach ready") }
+        if case .taste = model.step {} else { XCTFail("Skip social must reach Douyin taste import") }
         XCTAssertNil(model.error)
     }
 

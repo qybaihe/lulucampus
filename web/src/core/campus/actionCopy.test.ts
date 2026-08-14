@@ -32,7 +32,7 @@ describe("campus action copy", () => {
     expect(copy.sticker).toBe("badminton.png");
     expect(copy.facts.map((fact) => fact.label)).toEqual([
       "项目",
-      "校区",
+      "地点",
       "日期",
       "时段",
     ]);

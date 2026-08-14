@@ -58,6 +58,8 @@ export interface RequestOptions {
   signal?: AbortSignal;
   /** Abort the request after this many milliseconds. */
   timeoutMs?: number;
+  /** Override the generic timeout copy (taste import uses a longer analysis hint). */
+  timeoutMessage?: string;
 }
 
 function buildURL(
@@ -174,7 +176,10 @@ export class APIClient {
       const message = err instanceof Error ? err.message : String(err);
       const name = err instanceof Error ? err.name : "";
       if (name === "AbortError" || name === "TimeoutError" || /aborted|timeout/i.test(message)) {
-        throw new APIClientError("transport", "分析时间有点长，请稍后再试");
+        throw new APIClientError(
+          "transport",
+          options.timeoutMessage ?? "请求超时，请稍后再试",
+        );
       }
       if (/Failed to fetch|NetworkError|offline/i.test(message)) {
         throw new APIClientError("offline", "当前离线，写操作将在联网后恢复");
@@ -355,7 +360,7 @@ export function defaultBaseURL(): string {
   if (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_BASE) {
     return String(import.meta.env.VITE_API_BASE);
   }
-  return "http://42.194.219.172/onemore/api";
+  return "https://lulu.classby.cn/onemore/api";
 }
 
 /** 仅本机 FastAPI 才注入 DEV_AUTH；连线上接口时必须走真实登录。 */

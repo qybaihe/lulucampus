@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useApp } from "../../app/AppContext";
 import {
   asList,
@@ -15,16 +15,24 @@ import {
   type RescheduleProposal,
 } from "../../core/api/repositories";
 import {
+  isTrustRequirementContext,
+  parseTrustRequirement,
+  trustCapabilityTitle,
+  trustLevelRank,
+  trustRecoveryTitle,
+  type TrustRequirementContext,
+} from "../../core/campus/trustRequirement";
+import {
   Btn,
   Card,
   Chip,
   Footer,
   GapBadge,
   Icon,
-  LargeTitle,
   LuluMark,
   NavBar,
   Note,
+  PageHeader,
   Progress,
   Row,
   Screen,
@@ -40,12 +48,10 @@ import {
 function GatheringList({
   id,
   title,
-  sub,
   mode,
 }: {
   id: string;
   title: string;
-  sub: string;
   mode: "open" | "mine";
 }) {
   const { repos } = useApp();
@@ -76,8 +82,13 @@ function GatheringList({
 
   return (
     <Screen id={id}>
+      <NavBar backTo={mode === "mine" ? "/today" : "/competitions"} />
       <Scroll>
-        <LargeTitle title={title} sub={sub} />
+        <PageHeader
+          eyebrow={mode === "mine" ? "我发起的" : "正在招募"}
+          title={title}
+          clip="pool.waiting"
+        />
         {phase === "loading" ? (
           <Card>
             <StateView kind="loading" />
@@ -158,7 +169,6 @@ export function OpenGatheringsScreen() {
     <GatheringList
       id="screen-C1-public-gatherings"
       title="公开局"
-      sub="匿名招募中 · 门槛由服务端判定"
       mode="open"
     />
   );
@@ -169,7 +179,6 @@ export function MyGatheringsScreen() {
     <GatheringList
       id="screen-E1-my-gatherings"
       title="我的局"
-      sub="进行中与已完成"
       mode="mine"
     />
   );
@@ -320,7 +329,9 @@ function CampusActionCard({
 
       {previewed ? (
         <>
-          {myDecision !== "authorized" ? (
+          {myDecision === "not_required" ? (
+            <div className="t-foot mt-2">这是找球友的时段参考，不用核对提交。</div>
+          ) : myDecision !== "authorized" ? (
             <Btn kind="primary" disabled={busy} onClick={onAuthorize}>
               核对无误，分别确认
             </Btn>
@@ -397,6 +408,8 @@ export function GatheringDetailScreen() {
     "leave" | "report" | "recur" | "recurring" | "modify" | null
   >(null);
   const [reportReason, setReportReason] = useState("");
+  const [reportTargetId, setReportTargetId] = useState<string | null>(null);
+  const [reportAndBlock, setReportAndBlock] = useState(false);
   const [reschedule, setReschedule] = useState<RescheduleProposal | null>(null);
   const [timeOptions, setTimeOptions] = useState<Array<Record<string, unknown>>>(
     [],
@@ -427,7 +440,29 @@ export function GatheringDetailScreen() {
   async function load(): Promise<Gathering | null> {
     if (!gatheringId) return null;
     try {
-      const detail = await repos.gatherings.get(gatheringId);
+      let detail = await repos.gatherings.get(gatheringId);
+      if (
+        /Pooling/i.test(detail.status ?? "") &&
+        detail.my_confirmation != null &&
+        /比赛/.test(detail.gathering_type ?? "") &&
+        (detail.member_count ?? 0) >= (detail.min_size ?? 2)
+      ) {
+        try {
+          const sealed = await repos.gatherings.join(
+            gatheringId,
+            detail.required_roles?.length === 1
+              ? { role: detail.required_roles[0] }
+              : {},
+            crypto.randomUUID(),
+          );
+          if (/Confirmed/i.test(sealed.status ?? "")) {
+            setCelebrate(true);
+          }
+          detail = sealed;
+        } catch {
+          /* stay on pooling detail */
+        }
+      }
       setG(detail);
       setError(null);
       // Side loads — soft: surface only when server has data / allows
@@ -491,10 +526,15 @@ export function GatheringDetailScreen() {
         setCelebrate(true);
       }
     } catch (e) {
-      const msg = e instanceof Error ? e.message : `${label}失败`;
-      if (/TRUST|门槛/i.test(msg)) {
-        nav(`/gathering/${gatheringId}/trust`);
-      } else setError(msg);
+      const trust = parseTrustRequirement(e, {
+        kind: "gathering",
+        id: gatheringId ?? "",
+      });
+      if (trust) {
+        nav(`/gathering/${gatheringId}/trust`, { state: trust });
+      } else {
+        setError(e instanceof Error ? e.message : `${label}失败`);
+      }
     } finally {
       setBusy(false);
     }
@@ -533,7 +573,6 @@ export function GatheringDetailScreen() {
   return (
     <Screen id="screen-E3-gathering-detail">
       <NavBar
-        title="局详情"
         backTo="/gatherings/mine"
         right={
           <button
@@ -562,25 +601,26 @@ export function GatheringDetailScreen() {
           </Card>
         ) : (
           <>
-            <div className="flex">
-              <Sticker name="round-table.png" size="st-56" />
-              <div>
-                <div className="t-t2">{g.title ?? "未命名局"}</div>
-                <div className="t-foot mt-1">
-                  {gatheringStatusName(status)}
-                  {g.location || g.location_label
-                    ? ` · ${g.location ?? g.location_label}`
-                    : ""}
-                </div>
+            <PageHeader
+              eyebrow={`${g.gathering_type ? `${g.gathering_type} · ` : ""}${gatheringStatusName(status)}`}
+              title={g.title ?? "未命名局"}
+              clip="confirm.gather"
+            />
+            {g.location || g.location_label ? (
+              <div className="t-foot" style={{ marginTop: -4, marginBottom: 12 }}>
+                {g.location ?? g.location_label}
               </div>
-            </div>
+            ) : null}
 
             {typeof g.mood_note === "string" && g.mood_note ? (
               <Note sticker="chat-bubble.png">{g.mood_note}</Note>
             ) : null}
 
             {typeof g.match_reason === "string" && g.match_reason ? (
-              <Note sticker="sparkle-wand.png">{g.match_reason}</Note>
+              <Card>
+                <div className="t-t3">为什么是你们</div>
+                <div className="t-foot mt-2">{g.match_reason}</div>
+              </Card>
             ) : null}
 
             {(g.looking_for ?? []).length > 0 && /Pooling/i.test(status) ? (
@@ -691,6 +731,17 @@ export function GatheringDetailScreen() {
                   }
                 >
                   确认参加
+                </Btn>
+                <Btn
+                  kind="ghost"
+                  disabled={busy}
+                  onClick={() =>
+                    void run("暂不参加", () =>
+                      repos.gatherings.confirm(g.id, false, crypto.randomUUID()),
+                    )
+                  }
+                >
+                  暂不参加
                 </Btn>
               </Card>
             ) : null}
@@ -965,19 +1016,60 @@ export function GatheringDetailScreen() {
             {/* E9 完成 */}
             {/Executed|Active/i.test(status) ? (
               <Card data-od-id="gathering-completion-actions">
-                <div className="t-t3">完成确认</div>
-                <div className="t-foot mt-1">结束后可发起复局</div>
-                <Btn
-                  kind="primary"
-                  disabled={busy}
-                  onClick={() =>
-                    void run("完成", () =>
-                      repos.gatherings.complete(g.id, true, crypto.randomUUID()),
-                    )
+                {(() => {
+                  const endAt = g.end_at ?? g.ends_at;
+                  const ended = endAt ? new Date(endAt).getTime() <= Date.now() : false;
+                  if (!ended) {
+                    return (
+                      <>
+                        <div className="flex">
+                          <Sticker name="alarm-clock.png" size="st-44" />
+                          <div style={{ marginLeft: 10 }}>
+                            <div className="t-t3">
+                              {/Active/i.test(status)
+                                ? "这次局正在进行"
+                                : "预约已完成，等待开始"}
+                            </div>
+                            <div className="t-foot mt-1">
+                              服务端记录的结束时间到达后，才会开放完成确认。
+                            </div>
+                          </div>
+                        </div>
+                        <Btn kind="primary" disabled disabledReason="尚未到服务端结束时间">
+                          结束后确认完成
+                        </Btn>
+                      </>
+                    );
                   }
-                >
-                  确认完成
-                </Btn>
+                  return (
+                    <>
+                      <div className="t-t3">完成确认</div>
+                      <div className="t-foot mt-1">结束后可发起复局</div>
+                      <Btn
+                        kind="primary"
+                        disabled={busy}
+                        onClick={() =>
+                          void run("完成", () =>
+                            repos.gatherings.complete(g.id, true, crypto.randomUUID()),
+                          )
+                        }
+                      >
+                        确认本次已完成
+                      </Btn>
+                      <Btn
+                        kind="ghost"
+                        disabled={busy}
+                        onClick={() =>
+                          void run("未完成", () =>
+                            repos.gatherings.complete(g.id, false, crypto.randomUUID()),
+                          )
+                        }
+                      >
+                        这次没有完成
+                      </Btn>
+                    </>
+                  );
+                })()}
               </Card>
             ) : null}
 
@@ -1048,18 +1140,28 @@ export function GatheringDetailScreen() {
                   })
                 }
               />
-              <Row
-                icon={<Icon name="exit" size={20} />}
-                title="退出此局"
-                sub="安静离开"
-                onClick={() => setSheet("leave")}
-              />
+              {g.my_confirmation && !terminal && !completed ? (
+                <Row
+                  icon={<Icon name="exit" size={20} />}
+                  title="退出这个局…"
+                  sub={
+                    typeof g.leave_capability?.message === "string"
+                      ? g.leave_capability.message
+                      : "确定退出这个局？"
+                  }
+                  onClick={
+                    g.leave_capability?.enabled === false
+                      ? undefined
+                      : () => setSheet("leave")
+                  }
+                />
+              ) : null}
             </Card>
           </>
         )}
       </Scroll>
 
-      {g && !terminal && !completed && !/Tentative|Confirmed|Active|Executed/i.test(status) ? (
+      {g && /Pooling/i.test(status) && !g.my_confirmation ? (
         <Footer>
           <Btn
             kind="primary"
@@ -1076,7 +1178,7 @@ export function GatheringDetailScreen() {
             }
             disabled={busy}
           >
-            申请入局
+            加入这个局
           </Btn>
         </Footer>
       ) : null}
@@ -1086,7 +1188,9 @@ export function GatheringDetailScreen() {
           <div className="sheet-grab" />
           <div className="t-t3">确认退出？</div>
           <div className="t-foot mt-2">
-            退出后缺口会重新打开，对方不会收到评价。
+            {typeof g?.leave_capability?.message === "string"
+              ? g.leave_capability.message
+              : "确定退出这个局？"}
           </div>
           <Btn
             kind="primary"
@@ -1110,13 +1214,50 @@ export function GatheringDetailScreen() {
       {sheet === "report" && g ? (
         <div className="om-sheet" data-od-id="gathering-safety-report">
           <div className="sheet-grab" />
-          <div className="t-t3">举报与拉黑</div>
+          <div className="t-t3">举报本局 / 拉黑成员</div>
+          {(g.participants ?? []).length > 0 ? (
+            <>
+              <div className="t-cap mt-2">举报对象</div>
+              <div className="flex wrap mt-1">
+                <Chip
+                  kind={reportTargetId === null ? "gap" : "soft"}
+                  onClick={() => {
+                    setReportTargetId(null);
+                    setReportAndBlock(false);
+                  }}
+                >
+                  只举报本局
+                </Chip>
+                {(g.participants ?? []).map((p, i) => {
+                  const uid = String(p.user_id ?? i);
+                  return (
+                    <Chip
+                      key={uid}
+                      kind={reportTargetId === uid ? "gap" : "soft"}
+                      onClick={() => {
+                        setReportTargetId(uid);
+                        setReportAndBlock(true);
+                      }}
+                    >
+                      {p.display_name || "已披露成员"}
+                    </Chip>
+                  );
+                })}
+              </div>
+            </>
+          ) : null}
           <textarea
             className="om-input mt-2"
             placeholder="说明事实经过"
             value={reportReason}
             onChange={(e) => setReportReason(e.target.value)}
           />
+          {reportTargetId ? (
+            <div className="between mt-2">
+              <span className="t-call">同时拉黑该成员</span>
+              <Switch on={reportAndBlock} onChange={setReportAndBlock} />
+            </div>
+          ) : null}
           <Btn
             kind="primary"
             disabled={busy || !reportReason.trim()}
@@ -1124,11 +1265,17 @@ export function GatheringDetailScreen() {
               void run("举报", async () => {
                 await repos.gatherings.report(
                   g.id,
-                  { reason: reportReason.trim(), block: false },
+                  {
+                    reason: reportReason.trim(),
+                    reported_user_id: reportTargetId ?? undefined,
+                    block: Boolean(reportTargetId) && reportAndBlock,
+                  },
                   crypto.randomUUID(),
                 );
                 setSheet(null);
                 setReportReason("");
+                setReportTargetId(null);
+                setReportAndBlock(false);
               })
             }
           >
@@ -1538,11 +1685,9 @@ export function InitiateGatheringScreen() {
 
   return (
     <Screen id="screen-E2-self-initiate">
-      <NavBar title="直接发起局" backTo="/me" />
+      <NavBar backTo="/me" />
       <Scroll>
-        <div className="t-cap" style={{ letterSpacing: 1 }}>
-          自行发起
-        </div>
+        <PageHeader eyebrow="自行发起" title="直接发起局" clip="confirm.gather" />
         <Section title="局信息" />
         <Card>
           <input
@@ -1704,11 +1849,9 @@ export function SafetyHistoryScreen() {
 
   return (
     <Screen id="screen-E13-departed-safety-history">
-      <NavBar title="历史局安全与举报" backTo="/me" />
+      <NavBar backTo="/me" />
       <Scroll>
-        <div className="t-cap" style={{ letterSpacing: 1 }}>
-          安全与举报
-        </div>
+        <PageHeader eyebrow="安全与举报" title="历史局安全与举报" clip="core.care" />
         {message ? (
           <Card>
             <div className="t-foot">{message}</div>
@@ -1823,25 +1966,175 @@ export function SafetyHistoryScreen() {
 }
 
 export function TrustRequirementScreen() {
+  const { gatheringId } = useParams();
+  const location = useLocation();
+  const nav = useNavigate();
+  const { repos } = useApp();
+  const passed = isTrustRequirementContext(location.state)
+    ? location.state
+    : null;
+  const context: TrustRequirementContext = passed ?? {
+    requiredLevel: "—",
+    serverMessage: "该局要求更高的信任等级。完成更多成局可解锁。",
+    recoveryKind: "gathering",
+    recoveryId: gatheringId ?? "",
+  };
+  const [trust, setTrust] = useState<Awaited<
+    ReturnType<typeof repos.profile.trust>
+  > | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  async function load() {
+    setLoading(true);
+    try {
+      setTrust(await repos.profile.trust());
+      setError(null);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "加载失败");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    void load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [repos]);
+
+  const currentLevel = trust?.level ?? "—";
+  const satisfied =
+    trust != null &&
+    trustLevelRank(currentLevel) >= trustLevelRank(context.requiredLevel);
+  const resumeTo =
+    context.recoveryKind === "share"
+      ? `/g/${context.recoveryId}`
+      : `/gathering/${context.recoveryId}`;
+  const rows =
+    trust?.conditions && trust.conditions.length > 0
+      ? trust.conditions.map((c) => ({
+          label: c.label,
+          met: c.met,
+          detail: c.detail,
+        }))
+      : (trust?.gaps ?? []).map((gap) => ({
+          label: gap,
+          met: false,
+          detail: undefined as string | undefined,
+        }));
+  const progress = trust?.overall_progress ?? trust?.progress ?? 0;
+
   return (
     <Screen id="screen-C3-trust-requirement">
-      <NavBar title="准入门槛" backTo="/gatherings/open" />
+      <NavBar backTo="/gatherings/open" />
       <Scroll>
-        <div className="center mt-4">
-          <LuluMark placement="header" />
-        </div>
-        <div className="t-t2 center mt-3">信任等级还不够</div>
-        <div className="t-foot center mt-2">
-          该局要求更高的信任等级。完成更多成局可解锁。
-        </div>
-        <Card className="mt-4">
-          <Btn kind="primary" to="/me/trust">
-            查看信任进度
-          </Btn>
-          <Btn kind="ghost" to="/me/appeals">
-            信任申诉
-          </Btn>
+        <PageHeader eyebrow="信任门槛" title="先积累一次可靠履约" clip="core.care" />
+        <Card>
+          <div className="t-t3">这次操作由服务端暂缓</div>
+          <div className="t-foot mt-1">{context.serverMessage}</div>
+          <div className="between mt-3">
+            <div data-od-id="trust-current-level">
+              <div className="t-cap">当前</div>
+              <div className="t-t1 mono">{currentLevel}</div>
+            </div>
+            <Icon name="arrow" size={18} />
+            <div data-od-id="trust-required-level">
+              <div className="t-cap">要求</div>
+              <div
+                className="t-t1 mono"
+                style={{
+                  background: "var(--yolk)",
+                  borderRadius: 8,
+                  padding: "2px 8px",
+                }}
+              >
+                {context.requiredLevel}
+              </div>
+            </div>
+          </div>
+          <div className="t-call mt-3" style={{ fontWeight: 700 }} data-od-id="trust-capability">
+            能力：{trustCapabilityTitle(context.capability)}
+          </div>
         </Card>
+        {loading && !trust ? (
+          <Card>
+            <StateView kind="loading" />
+          </Card>
+        ) : null}
+        {trust && satisfied ? (
+          <>
+            <Card>
+              <div className="flex">
+                <Sticker name="medal.png" size="st-44" />
+                <div style={{ marginLeft: 10 }}>
+                  <div className="t-t3">服务端已确认门槛满足</div>
+                  <div className="t-foot mt-1">
+                    原任务仍保留，可从这里继续，不必重新寻找。
+                  </div>
+                </div>
+              </div>
+            </Card>
+            <Btn
+              kind="primary"
+              id="trust-resume-original"
+              onClick={() => nav(resumeTo)}
+            >
+              {trustRecoveryTitle(context.recoveryKind)}
+            </Btn>
+          </>
+        ) : null}
+        {trust && !satisfied ? (
+          <>
+            <Section title="先从低风险公开局开始" />
+            <Card>
+              <div className="between">
+                <span className="t-t3">
+                  {trust.next_level
+                    ? `升到 ${trust.next_level} 还需`
+                    : "只展示你自己的升级条件"}
+                </span>
+                {trust.next_level ? (
+                  <span className="mono" style={{ fontWeight: 700 }}>
+                    {Math.round(progress * 100)}%
+                  </span>
+                ) : null}
+              </div>
+              {trust.next_level ? <Progress value={progress * 100} /> : null}
+              {rows.map((row, i) => (
+                <div key={i} className="flex mt-2" data-od-id="trust-gap-item">
+                  <span style={{ marginRight: 8 }}>{row.met ? "✓" : "○"}</span>
+                  <div>
+                    <div className="t-call">{row.label}</div>
+                    {!row.met && row.detail && row.detail !== row.label ? (
+                      <div className="t-foot">{row.detail}</div>
+                    ) : null}
+                  </div>
+                </div>
+              ))}
+            </Card>
+            <Btn kind="primary" to="/gatherings/open" id="trust-open-low-risk">
+              去参加低风险公开局
+            </Btn>
+          </>
+        ) : null}
+        {error && !trust ? (
+          <Card>
+            <StateView
+              kind="network"
+              message={error}
+              actionTitle="重试"
+              onAction={() => void load()}
+            />
+          </Card>
+        ) : null}
+        {trust || error ? (
+          <Btn kind="ghost" disabled={loading} onClick={() => void load()} id="trust-refresh">
+            {loading ? "正在刷新…" : "刷新信任进度"}
+          </Btn>
+        ) : null}
+        <Btn kind="text" to="/me/trust">
+          查看完整 T0–T4 说明
+        </Btn>
       </Scroll>
     </Screen>
   );
@@ -1885,13 +2178,19 @@ export function ShareLandingScreen() {
       );
       nav(`/gathering/${gathering.id}`, { replace: true });
     } catch (e) {
-      const msg = e instanceof Error ? e.message : "加入失败";
-      if (/TRUST|门槛/i.test(msg)) {
-        const gid = payload?.gathering_id as string | undefined;
-        if (gid) nav(`/gathering/${gid}/trust`);
-        else setError(msg);
+      const trust = parseTrustRequirement(e, {
+        kind: "share",
+        id: shareToken,
+      });
+      if (trust) {
+        const gid =
+          (typeof payload?.gathering_id === "string" && payload.gathering_id) ||
+          undefined;
+        nav(gid ? `/gathering/${gid}/trust` : "/gatherings/open", {
+          state: trust,
+        });
       } else {
-        setError(msg);
+        setError(e instanceof Error ? e.message : "加入失败");
       }
     } finally {
       setJoining(false);

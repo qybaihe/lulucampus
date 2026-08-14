@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from onemore.db.demo_cast import CUMCM_GD_2026, LIN
+from onemore.db.demo_cast import CUMCM_GD_2026, CUMCM_RECRUITING_TITLES, LIN
 from onemore.db.models import Gathering, GatheringMember, GatheringStatus
 
 
@@ -55,11 +55,11 @@ def _math_modeling(client) -> dict:
     )
 
 
-def test_math_modeling_lists_three_recruiting_teams(client):
+def test_math_modeling_lists_recruiting_teams(client):
     competition = _math_modeling(client)
     teams = client.get(f"/competitions/{competition['id']}/teams").json()["data"]
     titles = {item["title"] for item in teams}
-    assert titles == {"数模组队差建模", "数模组队差编程", "数模组队差两人"}
+    assert titles == set(CUMCM_RECRUITING_TITLES)
     by_title = {item["title"]: item for item in teams}
 
     modeling = by_title["数模组队差建模"]
@@ -88,6 +88,54 @@ def test_math_modeling_lists_three_recruiting_teams(client):
     assert two_gaps["missing_count"] == 2
     assert two_gaps["missing_roles"] == ["modeling", "paper_writing"]
     assert two_gaps["filled_roles"] == ["编程"]
+
+    paper = by_title["数模组队差论文"]
+    assert paper["member_count"] == 2
+    assert paper["missing_roles"] == ["paper_writing"]
+    assert paper["filled_roles"] == ["编程", "建模"]
+
+    solo = by_title["数模组队招两人"]
+    assert solo["member_count"] == 1
+    assert solo["missing_count"] == 2
+    assert solo["missing_roles"] == ["programming", "paper_writing"]
+    assert solo["campus"] == "南校园"
+
+    from_scratch = by_title["数模组队从零招人"]
+    assert from_scratch["member_count"] == 1
+    assert from_scratch["missing_roles"] == ["modeling", "programming"]
+    assert from_scratch["filled_roles"] == ["写作"]
+
+    zhuhai = by_title["数模组队珠海差写作"]
+    assert zhuhai["campus"] == "珠海校区"
+    assert zhuhai["member_count"] == 2
+    assert zhuhai["missing_roles"] == ["paper_writing"]
+
+
+def test_competition_team_stays_listed_after_work_session_ends(client):
+    from datetime import UTC, datetime, timedelta
+
+    from sqlalchemy import select
+
+    from onemore.core.database import SessionLocal
+    from onemore.db.models import Gathering
+    from onemore.modules.gathering.service import dissolve_expired, is_expired
+
+    with SessionLocal() as db:
+        gathering = db.scalar(select(Gathering).where(Gathering.title == "数模组队差论文"))
+        assert gathering is not None
+        gathering.end_at = datetime.now(UTC) - timedelta(hours=1)
+        gathering.expires_at = datetime.now(UTC) + timedelta(days=7)
+        db.commit()
+        db.refresh(gathering)
+        assert is_expired(gathering) is False
+        dissolve_expired(db)
+
+    competition = _math_modeling(client)
+    titles = {
+        item["title"]
+        for item in client.get(f"/competitions/{competition['id']}/teams").json()["data"]
+    }
+    assert "数模组队差论文" in titles
 
 
 def test_competition_team_detail_is_anonymous_and_scoped(client):
@@ -314,7 +362,7 @@ def test_join_two_person_competition_team_seals_and_opens_channel(client, auth_h
     assert data["participants"]
 
 
-def test_join_one_person_competition_team_stays_pooling(client, auth_headers):
+def test_join_one_person_competition_team_seals_at_min_size(client, auth_headers):
     from sqlalchemy import select
 
     from onemore.core.database import SessionLocal
@@ -328,10 +376,66 @@ def test_join_one_person_competition_team_stays_pooling(client, auth_headers):
     joined = client.post(f"/gatherings/{gathering_id}/join", headers=auth_headers, json={})
     assert joined.status_code == 200, joined.text
     data = joined.json()["data"]
-    assert data["status"] == "Pooling"
+    assert data["status"] == "Confirmed"
     assert data["member_count"] == 2
-    assert data["channel_id"] is None
-    assert data["looking_for"]
+    assert data["my_confirmation"] == "confirmed"
+    assert data["channel_id"]
+    assert data["looking_for"] == []
+
+
+def test_join_competition_team_ignores_t1_teammate_cross_college(client, auth_headers):
+    from sqlalchemy import select
+
+    from onemore.core.database import SessionLocal
+    from onemore.db.demo_cast import SU
+    from onemore.db.models import Gathering, TrustProfile, User
+
+    with SessionLocal() as db:
+        gathering = db.scalar(select(Gathering).where(Gathering.title == "数模组队差建模手"))
+        assert gathering is not None
+        su = db.get(User, SU)
+        trust = db.get(TrustProfile, SU)
+        assert su is not None and trust is not None
+        assert su.college == "外国语学院"
+        assert trust.level == "T1"
+        gathering_id = gathering.id
+
+    joined = client.post(
+        f"/gatherings/{gathering_id}/join",
+        headers=auth_headers,
+        json={"role": "modeling"},
+    )
+    assert joined.status_code == 200, joined.text
+    data = joined.json()["data"]
+    assert data["status"] == "Confirmed"
+    assert data["member_count"] == 3
+    assert data["channel_id"]
+    from sqlalchemy import select
+
+    from onemore.core.database import SessionLocal
+    from onemore.db.models import Gathering, GatheringMember
+
+    with SessionLocal() as db:
+        gathering = db.scalar(select(Gathering).where(Gathering.title == "数模组队差建模"))
+        assert gathering is not None
+        gathering_id = gathering.id
+        member = db.scalar(
+            select(GatheringMember).where(
+                GatheringMember.gathering_id == gathering_id,
+                GatheringMember.user_id == LIN,
+            )
+        )
+        assert member is not None
+        member.joined_via = "open"
+        db.commit()
+
+    joined = client.post(f"/gatherings/{gathering_id}/join", headers=auth_headers, json={})
+    assert joined.status_code == 200, joined.text
+    data = joined.json()["data"]
+    assert data["status"] == "Confirmed"
+    assert data["member_count"] == 2
+    assert data["channel_id"]
+    assert data["looking_for"] == []
 
 
 def test_regular_join_stays_tentative_until_confirm(client):

@@ -6,7 +6,10 @@ services:
       ONEMORE_REDIS_URL: redis://redis:6379/0
       ONEMORE_CELERY_BROKER_URL: redis://redis:6379/1
       ONEMORE_CELERY_RESULT_BACKEND: redis://redis:6379/2
-      ONEMORE_HERMES_MODE: fake
+      ONEMORE_HERMES_MODE: real
+      ONEMORE_HERMES_AGENT_MODE: sidecar
+      ONEMORE_HERMES_AGENT_URL: http://hermes-agent:8642
+      ONEMORE_CAMPUS_MCP_URL: http://api:8000/internal/campus-mcp
       ONEMORE_ADMIN_TOKEN: local-admin
       ONEMORE_AUTO_CREATE_SCHEMA: "false"
       ONEMORE_CAST_DRIVER_ENABLED: "true"
@@ -31,7 +34,10 @@ services:
       ONEMORE_REDIS_URL: redis://redis:6379/0
       ONEMORE_CELERY_BROKER_URL: redis://redis:6379/1
       ONEMORE_CELERY_RESULT_BACKEND: redis://redis:6379/2
-      ONEMORE_HERMES_MODE: fake
+      ONEMORE_HERMES_MODE: real
+      ONEMORE_HERMES_AGENT_MODE: sidecar
+      ONEMORE_HERMES_AGENT_URL: http://hermes-agent:8642
+      ONEMORE_CAMPUS_MCP_URL: http://api:8000/internal/campus-mcp
       ONEMORE_ADMIN_TOKEN: local-admin
       ONEMORE_CAST_DRIVER_ENABLED: "true"
     depends_on:
@@ -44,6 +50,29 @@ services:
     environment: *backend-env
     depends_on:
       - worker
+
+  hermes-agent:
+    build: .
+    command: uv run uvicorn onemore.hermes.agent_server:app --host 0.0.0.0 --port 8642
+    environment:
+      <<: *backend-env
+      ONEMORE_CAMPUS_MCP_URL: http://api:8000/internal/campus-mcp
+    ports:
+      - "8642:8642"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8642/health', timeout=2)",
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    depends_on:
+      api:
+        condition: service_healthy
 
   postgres:
     image: postgres:17-alpine

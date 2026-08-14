@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>06 · 我是谁 · 噜噜成局</title>
+  <style>
+    :root {
+      --paper: #f6f4ec;
+      --ink: #1f2d25;
+      --yolk: #f6c945;
+      --card: #fffdf8;
+      --mist: #5d6b63;
+      --line: #dce3d9;
+      --sage: #cbd4cc;
+      --font: system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB", "Segoe UI", "Microsoft YaHei", sans-serif;
+      --mono: ui-monospace, "SF Mono", Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: #1a211c;
+      font-family: var(--font);
+      color: var(--ink);
+    }
+
+    .stage {
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 24px 24px 40px;
+    }
+
+    .slide {
+      width: min(100vw - 48px, 177.78vh - 48px, 1440px);
+      aspect-ratio: 16 / 9;
+      background: var(--paper);
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      padding: 5.2% 5.6% 4.8%;
+      display: grid;
+      grid-template-rows: auto 1fr auto auto;
+      gap: 3.2%;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .kicker {
+      font-family: var(--mono);
+      font-size: clamp(12px, 1.15vw, 18px);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mist);
+      font-weight: 600;
+    }
+
+    .brand {
+      font-size: clamp(12px, 1.15vw, 18px);
+      color: var(--mist);
+      font-weight: 500;
+    }
+
+    .headline {
+      font-size: clamp(36px, 4.6vw, 72px);
+      font-weight: 650;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .identity {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 4%;
+      align-items: stretch;
+    }
+
+    .name-block .name {
+      font-size: clamp(28px, 3.2vw, 52px);
+      font-weight: 650;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+
+    .name-block .meta {
+      margin-top: 10px;
+      font-size: clamp(15px, 1.35vw, 22px);
+      color: var(--mist);
+      line-height: 1.45;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      font-size: clamp(12px, 1.05vw, 16px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      background: var(--card);
+    }
+
+    .now {
+      background: var(--yolk);
+      border-radius: 18px;
+      padding: 6.5% 7.5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 0;
+    }
+
+    .now .now-kicker {
+      font-family: var(--mono);
+      font-size: clamp(11px, 1vw, 15px);
+      letter-spacing: 0.16em;
+      font-weight: 700;
+      color: var(--ink);
+      opacity: 0.7;
+    }
+
+    .now .now-org {
+      margin-top: 8px;
+      font-size: clamp(22px, 2.1vw, 34px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .now .now-role {
+      margin-top: 6px;
+      font-size: clamp(14px, 1.25vw, 20px);
+      font-weight: 500;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.1%;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12% 8% 14%;
+      min-height: 0;
+    }
+
+    .card .ck {
+      font-family: var(--mono);
+      font-size: clamp(10px, 0.82vw, 13px);
+      letter-spacing: 0.06em;
+      color: var(--mist);
+      font-weight: 600;
+    }
+
+    .card h3 {
+      margin-top: 8px;
+      font-size: clamp(14px, 1.22vw, 20px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.18;
+    }
+
+    .card p {
+      margin-top: 6px;
+      font-size: clamp(12px, 0.95vw, 15px);
+      color: var(--mist);
+      line-height: 1.3;
+    }
+
+    .slogan {
+      border-top: 1px dashed var(--sage);
+      padding-top: 2.2%;
+      font-size: clamp(14px, 1.2vw, 18px);
+      color: var(--sage);
+      letter-spacing: 0.04em;
+    }
+
+    .notes {
+      width: min(100vw - 48px, 177.78vh - 48px, 1440px);
+      margin-top: 18px;
+      color: #d7ddd8;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .notes h2 {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #9aa79f;
+      margin-bottom: 8px;
+    }
+
+    .notes li { margin: 0 0 6px 1.2em; }
+
+    @media (max-aspect-ratio: 16/9) {
+      .slide { width: min(100vw - 32px, 100%); }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <section class="slide" aria-label="我是谁">
+      <div class="top">
+        <div class="kicker">06 · Who I am</div>
+        <div class="brand">噜噜成局</div>
+      </div>
+
+      <div class="identity">
+        <div class="name-block">
+          <div class="headline">我是谁</div>
+          <div class="name" style="margin-top: 4.2%;">张少谦</div>
+          <div class="meta">白鹤 · 中山大学软件工程 2024 级</div>
+          <div class="chips">
+            <span class="chip">黄埔班第九期</span>
+            <span class="chip">BlueHub 科创班班长</span>
+          </div>
+        </div>
+        <div class="now">
+          <div class="now-kicker">NOW</div>
+          <div class="now-org">字节跳动</div>
+          <div class="now-role">AI 研发实习生 · 剪映</div>
+        </div>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="ck">2026 · 香港</div>
+          <h3>Physical AI 冠军</h3>
+          <p>Zettlab · Lulu’s Fridge</p>
+        </article>
+        <article class="card">
+          <div class="ck">2026 · 北京</div>
+          <h3>AI Agent 冠军</h3>
+          <p>探月计划 · MoonCut</p>
+        </article>
+        <article class="card">
+          <div class="ck">2026 · 杭州</div>
+          <h3>赛道冠军</h3>
+          <p>进化酒馆黑客松</p>
+        </article>
+        <article class="card">
+          <div class="ck">2026 · 深圳</div>
+          <h3>赛道亚军</h3>
+          <p>AttraX 春潮黑客松</p>
+        </article>
+        <article class="card">
+          <div class="ck">抖音</div>
+          <h3>决赛选手</h3>
+          <p>AI 创变者计划</p>
+        </article>
+      </div>
+
+      <div class="slogan">人生 slogan · 想到了再写在这里</div>
+    </section>
+
+    <aside class="notes">
+      <h2>台上这一页怎么讲 · 约 60 秒</h2>
+      <ol>
+        <li>先报身份：「我是张少谦，中大软工，黄埔班第九期，BlueHub 科创班班长。现在在字节跳动剪映做 AI 研发实习。」</li>
+        <li>奖牌墙扫一眼，不要五块都念。开：「这几场都是把能跑的东西交上去的。」然后只点两块：香港 Physical AI、探月计划当队长。</li>
+        <li>杭州进化酒馆、深圳春潮各半句带过，都说「赛道」冠军/亚军，不说总冠军。</li>
+        <li>创变者只说「决赛选手」，接到抖音标签。实习不要编职责。slogan 仍空着。</li>
+      </ol>
+    </aside>
+  </div>
+</body>
+</html>

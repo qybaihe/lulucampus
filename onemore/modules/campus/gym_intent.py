@@ -21,6 +21,7 @@ def is_gym_booking_intent(text: str) -> bool:
 
 
 _GYM_BOOK_FIELDS = ("venue_type", "venue", "date", "start", "end")
+_GYM_AVAILABLE_FIELDS = ("venue_type", "venue", "date", "days", "include_full")
 
 
 def infer_gym_book_params(text: str, context: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -59,6 +60,20 @@ def infer_gym_book_params(text: str, context: dict[str, Any] | None = None) -> d
             if campus:
                 params["venue"] = campus
     return params
+
+
+def infer_gym_available_params(text: str, context: dict[str, Any] | None = None) -> dict[str, Any]:
+    """gym.available 禁止 start/end 等预约字段，只保留查询用的键。"""
+    booked = infer_gym_book_params(text, context)
+    raw = dict(context or {})
+    params: dict[str, Any] = {}
+    for key in ("venue_type", "venue", "date"):
+        if booked.get(key) not in (None, "", []):
+            params[key] = booked[key]
+    for key in ("days", "include_full"):
+        if raw.get(key) not in (None, "", []):
+            params[key] = raw[key]
+    return {key: params[key] for key in _GYM_AVAILABLE_FIELDS if key in params}
 
 
 def gym_preview_message(params: dict[str, Any]) -> str:

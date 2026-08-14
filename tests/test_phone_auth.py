@@ -89,3 +89,39 @@ def test_phone_register_starts_at_t0_until_campus_verified(client):
     me = client.get("/auth/me", headers=headers)
     assert me.status_code == 200
     assert me.json()["data"]["verified"] is False
+
+
+def test_user_can_update_display_name(client):
+    token = _register(client, display_name="旧昵称").json()["data"]["access_token"]
+    headers = {"Authorization": f"Bearer {token}"}
+    response = client.patch(
+        "/me/display-name",
+        headers=headers,
+        json={"display_name": "  白鹤  "},
+    )
+    assert response.status_code == 200, response.text
+    assert response.json()["data"]["display_name"] == "白鹤"
+    me = client.get("/auth/me", headers=headers)
+    assert me.json()["data"]["display_name"] == "白鹤"
+
+
+def test_display_name_rejects_blank_or_too_long(client):
+    token = _register(client, phone="13800006666").json()["data"]["access_token"]
+    headers = {"Authorization": f"Bearer {token}"}
+    blank = client.patch(
+        "/me/display-name", headers=headers, json={"display_name": "   "}
+    )
+    assert blank.status_code == 422
+    too_long = client.patch(
+        "/me/display-name",
+        headers=headers,
+        json={"display_name": "一二三四五六七八九十一二三四五六七八九十一"},
+    )
+    assert too_long.status_code == 422
+    reserved = client.patch(
+        "/me/display-name",
+        headers=headers,
+        json={"display_name": "已注销同学"},
+    )
+    assert reserved.status_code == 422
+    assert reserved.json()["error"]["code"] == "INVALID_DISPLAY_NAME"

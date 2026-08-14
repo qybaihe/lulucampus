@@ -38,6 +38,10 @@ function mockFetchOk() {
       body = { data: [], meta: {} };
     } else if (url.includes("/gatherings")) {
       body = { data: [], meta: {} };
+    } else if (url.includes("/events")) {
+      body = { data: [], meta: {} };
+    } else if (url.includes("/me/privacy")) {
+      body = { data: { social_enabled: true }, meta: {} };
     } else if (url.includes("/auth/me") || url.includes("/trust/me")) {
       body = { data: { display_name: "测试同学", level: "2" }, meta: {} };
     } else if (url.includes("/relations")) {
@@ -93,10 +97,10 @@ describe("mounted shell DOM evidence", () => {
       '[data-od-id="tabbar"]',
     ) as HTMLElement | null;
     expect(tabbar).toBeTruthy();
-    for (const label of ["今天", "比赛", "差一个", "消息", "我"]) {
+    for (const label of ["今天", "活动", "差一个", "消息", "我"]) {
       expect(within(tabbar!).getByText(label)).toBeTruthy();
     }
-    expect(tabbar!.textContent).toContain("⊕");
+    expect(tabbar!.querySelector('[data-tab="create"] img.tab-png-create')).toBeTruthy();
     expect(
       container.querySelector('[data-screen="screen-B1-today"]') ||
         container.querySelector('[data-accessibility-id="screen-B1-today"]'),

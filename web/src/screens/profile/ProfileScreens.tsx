@@ -23,10 +23,10 @@ import {
   Card,
   Chip,
   Icon,
-  LargeTitle,
   LuluMark,
   NavBar,
   Note,
+  PageHeader,
   Progress,
   Row,
   Screen,
@@ -39,6 +39,7 @@ import {
   Switch,
 } from "../../components/ui/primitives";
 import { resetAuthOnboardingLocal } from "../auth/AuthScreens";
+import { appHref } from "../../core/assets";
 import {
   categoryEnabled,
   categoryLabel,
@@ -51,9 +52,9 @@ import {
 
 export function ProfileScreen() {
   const { repos, session } = useApp();
+  const nav = useNavigate();
   const [me, setMe] = useState<AuthMe | null>(null);
   const [taste, setTaste] = useState<TasteProfileSummary | null>(null);
-  const [trustLevel, setTrustLevel] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -61,15 +62,13 @@ export function ProfileScreen() {
     let cancelled = false;
     (async () => {
       try {
-        const [facts, profile, trust] = await Promise.all([
+        const [facts, profile] = await Promise.all([
           repos.profile.me(),
           repos.profile.profileMe().catch(() => null),
-          repos.profile.trust().catch(() => null),
         ]);
         if (!cancelled) {
           setMe(facts);
           setTaste(profile?.taste_profile ?? null);
-          setTrustLevel(trust?.level ?? null);
           setError(null);
         }
       } catch (e) {
@@ -97,7 +96,7 @@ export function ProfileScreen() {
   return (
     <Screen id="screen-M1-profile">
       <Scroll>
-        <LargeTitle title="我" />
+        <PageHeader eyebrow="噜噜成局 · 我" />
         {loading ? (
           <Card>
             <StateView kind="loading" />
@@ -107,20 +106,22 @@ export function ProfileScreen() {
             <StateView kind="network" message={error} />
           </Card>
         ) : (
-          <Card>
+          <Card
+            onClick={() => nav("/me/nickname")}
+            data-od-id="profile-edit-display-name"
+          >
             <div className="flex" style={{ gap: 14, alignItems: "center" }}>
-              <LuluMark placement="avatar" clip="home.idle" />
+              <div className="profile-identity-mark">
+                <LuluMark placement="avatar" clip="home.idle" />
+              </div>
               <div className="grow">
                 <div className="t-t2">{me?.display_name ?? "已认证同学"}</div>
                 <div className="t-foot mt-1">
                   {[me?.campus, me?.major].filter(Boolean).join(" · ")}
                 </div>
+                <div className="t-cap mt-1">修改昵称</div>
               </div>
-              {trustLevel ? (
-                <Chip kind="gap" sticker="badge.png">
-                  {trustLevel}
-                </Chip>
-              ) : null}
+              <span className="chevron">›</span>
             </div>
           </Card>
         )}
@@ -130,15 +131,8 @@ export function ProfileScreen() {
             <Section title="我的兴趣画像" />
             <Card id="profile-taste-summary">
               {taste?.primary_tag ? (
-                <div className="between">
-                  <span className="t-call" style={{ fontWeight: 700 }}>
-                    {taste.primary_tag.label ?? taste.primary_tag.key}
-                  </span>
-                  {typeof taste.confidence === "number" ? (
-                    <span className="t-foot" style={{ color: "var(--mist)" }}>
-                      置信度 {Math.round(taste.confidence * 100)}%
-                    </span>
-                  ) : null}
+                <div className="t-call" style={{ fontWeight: 700 }}>
+                  {taste.primary_tag.label ?? taste.primary_tag.key}
                 </div>
               ) : null}
               {tasteTagsLine ? (
@@ -159,17 +153,17 @@ export function ProfileScreen() {
         <Section title="局与关系" />
         <Card tight>
           <Row
-            icon={<Sticker name="round-table.png" size="st-24" />}
+            icon={<Sticker name="table-people.png" size="st-24" />}
             title="我的局"
             to="/gatherings/mine"
           />
           <Row
-            icon={<Sticker name="badge.png" size="st-24" />}
+            icon={<Sticker name="handshake.png" size="st-24" />}
             title="搭子关系"
             to="/relations"
           />
           <Row
-            icon={<Sticker name="chair-empty.png" size="st-24" />}
+            icon={<Sticker name="table-plus.png" size="st-24" />}
             title="直接发起局"
             to="/gatherings/initiate"
           />
@@ -183,22 +177,22 @@ export function ProfileScreen() {
         <Section title="画像与信任" />
         <Card tight>
           <Row
-            icon={<Sticker name="nameplate-blank.png" size="st-24" />}
+            icon={<Sticker name="id-card.png" size="st-24" />}
             title="画像与能力"
             to="/me/profile"
           />
           <Row
-            icon={<Sticker name="badge.png" size="st-24" />}
+            icon={<Sticker name="medal.png" size="st-24" />}
             title="信任进度"
             to="/me/trust"
           />
           <Row
-            icon={<Sticker name="access-card.png" size="st-24" />}
+            icon={<Sticker name="key.png" size="st-24" />}
             title="授权管理"
             to="/me/grants"
           />
           <Row
-            icon={<Sticker name="data-chart.png" size="st-24" />}
+            icon={<Sticker name="sparkle-wand.png" size="st-24" />}
             title="抖音兴趣画像"
             sub="粘贴主页链接即可，不用扫码"
             to="/me/taste"
@@ -208,27 +202,27 @@ export function ProfileScreen() {
         <Section title="隐私与安全" />
         <Card tight>
           <Row
-            icon={<Icon name="shield" size={20} />}
+            icon={<Sticker name="shield-check.png" size="st-24" />}
             title="隐私与安全"
             to="/me/privacy"
           />
           <Row
-            icon={<Sticker name="chair-empty.png" size="st-24" />}
+            icon={<Sticker name="sliders.png" size="st-24" />}
             title="匹配偏好"
             to="/me/preferences"
           />
           <Row
-            icon={<Icon name="exit" size={20} />}
+            icon={<Sticker name="block-sign.png" size="st-24" />}
             title="黑名单"
             to="/me/blocks"
           />
           <Row
-            icon={<Icon name="warn" size={20} />}
+            icon={<Sticker name="flag.png" size="st-24" />}
             title="历史局安全与举报"
             to="/me/safety-history"
           />
           <Row
-            icon={<Sticker name="envelope.png" size="st-24" />}
+            icon={<Sticker name="megaphone.png" size="st-24" />}
             title="信任申诉"
             to="/me/appeals"
           />
@@ -237,17 +231,17 @@ export function ProfileScreen() {
         <Section title="偏好与数据" />
         <Card tight>
           <Row
-            icon={<Icon name="bell" size={20} />}
+            icon={<Sticker name="bell.png" size="st-24" />}
             title="通知与日历"
             to="/me/notifications"
           />
           <Row
-            icon={<Sticker name="certificate.png" size="st-24" />}
+            icon={<Sticker name="clipboard-whistle.png" size="st-24" />}
             title="主理人控制台"
             to="/organizer"
           />
           <Row
-            icon={<Icon name="gear" size={20} />}
+            icon={<Sticker name="box-export.png" size="st-24" />}
             title="数据导出与注销"
             to="/me/account"
           />
@@ -256,7 +250,7 @@ export function ProfileScreen() {
             title="重新查看新手引导"
             onClick={() => {
               resetAuthOnboardingLocal();
-              window.location.href = "/onboarding";
+              window.location.href = appHref("/onboarding");
             }}
           />
         </Card>
@@ -267,12 +261,110 @@ export function ProfileScreen() {
             title="退出登录"
             onClick={() => {
               session.clear();
-              window.location.href = "/auth";
+              window.location.href = appHref("/auth");
             }}
           />
         </Card>
       </Scroll>
     </Screen>
+  );
+}
+
+/* ---------- 修改昵称 ---------- */
+
+export function DisplayNameScreen() {
+  const { repos, session } = useApp();
+  const nav = useNavigate();
+  const [name, setName] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const me = await repos.profile.me();
+        if (!cancelled) {
+          setName(me.display_name ?? "");
+          setError(null);
+        }
+      } catch (e) {
+        if (!cancelled) setError(e instanceof Error ? e.message : "加载失败");
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [repos]);
+
+  const trimmed = name.trim();
+  const canSave = trimmed.length >= 1 && trimmed.length <= 20 && !saving;
+
+  async function save() {
+    if (!canSave) return;
+    setSaving(true);
+    setError(null);
+    try {
+      const updated = await repos.profile.updateDisplayName(trimmed);
+      const state = session.getState();
+      if (state.status === "authenticated") {
+        session.setSession(state.token, {
+          ...state.user,
+          display_name: updated.display_name ?? trimmed,
+          user_id: updated.user_id,
+        });
+      }
+      nav("/me", { replace: true });
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "保存失败");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <SettingsScaffold id="screen-display-name-editor" title="修改昵称">
+      {loading ? (
+        <Card>
+          <StateView kind="loading" />
+        </Card>
+      ) : (
+        <>
+          <Card>
+            <div className="t-foot">这个名字会出现在消息、局和搭子里</div>
+            <label className="t-cap mt-3" htmlFor="display-name-field" style={{ display: "block" }}>
+              昵称
+            </label>
+            <input
+              id="display-name-field"
+              className="om-input mt-1"
+              type="text"
+              maxLength={20}
+              placeholder="1–20 个字"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") void save();
+              }}
+            />
+            <div className="t-cap mt-1" style={{ textAlign: "right" }}>
+              {trimmed.length}/20
+            </div>
+          </Card>
+          {error ? (
+            <Card>
+              <StateView kind="network" message={error} />
+            </Card>
+          ) : null}
+          <Btn kind="primary" disabled={!canSave} onClick={() => void save()}>
+            {saving ? "保存中…" : "保存昵称"}
+          </Btn>
+        </>
+      )}
+    </SettingsScaffold>
   );
 }
 
@@ -293,13 +385,9 @@ function SettingsScaffold({
 }) {
   return (
     <Screen id={id}>
-      <NavBar title={title} backTo={backTo} />
+      <NavBar backTo={backTo} />
       <Scroll>
-        {eyebrow ? (
-          <div className="t-cap" style={{ letterSpacing: 1 }}>
-            {eyebrow}
-          </div>
-        ) : null}
+        <PageHeader eyebrow={eyebrow} title={title} />
         {children}
       </Scroll>
     </Screen>
@@ -766,9 +854,9 @@ export function TrustScreen() {
 
   return (
     <Screen id="screen-M3-trust">
-      <NavBar title="信任进度" backTo="/me" />
+      <NavBar backTo="/me" />
       <Scroll>
-        <LargeTitle title="信任进度" sub="信任等级" />
+        <PageHeader eyebrow="信任等级" title="信任进度" />
         {!trust && !error ? (
           <Card>
             <StateView kind="loading" />
@@ -1005,7 +1093,7 @@ export function GrantsScreen() {
   }
 
   return (
-    <SettingsScaffold id="screen-M4-grants" title="授权管理">
+    <SettingsScaffold id="screen-M4-grants" title="授权管理" eyebrow="分项授权">
       {loading ? (
         <Card>
           <StateView kind="loading" />
@@ -1088,6 +1176,24 @@ export function PrivacyScreen() {
   const set = (patch: Partial<SocialPreferences>) =>
     setValue((prev) => (prev ? { ...prev, ...patch } : prev));
 
+  async function setSocial(enabled: boolean) {
+    set({ social_enabled: enabled, course_matching_enabled: enabled });
+    setSaving(true);
+    try {
+      const saved = await repos.auth.setSocialEnabled(
+        enabled,
+        `privacy-social-${enabled ? "on" : "off"}-${Date.now()}`,
+      );
+      setValue(saved);
+      setError(null);
+    } catch (e) {
+      set({ social_enabled: !enabled, course_matching_enabled: !enabled });
+      setError(e instanceof Error ? e.message : "保存失败");
+    } finally {
+      setSaving(false);
+    }
+  }
+
   return (
     <SettingsScaffold id="screen-M5-privacy" title="隐私与安全">
       {loading ? (
@@ -1113,7 +1219,7 @@ export function PrivacyScreen() {
               right={
                 <Switch
                   on={value.social_enabled}
-                  onChange={(on) => set({ social_enabled: on })}
+                  onChange={(on) => void setSocial(on)}
                 />
               }
             />
@@ -1853,8 +1959,9 @@ export function RecapScreen() {
 
   return (
     <Screen id="screen-recap">
-      <NavBar title="学期回忆录" backTo="/me" />
+      <NavBar backTo="/me" />
       <Scroll>
+        <PageHeader title="学期回忆录" clip="home.idle" />
         {error ? (
           <Card>
             <StateView

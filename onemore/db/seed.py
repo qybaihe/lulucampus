@@ -7,6 +7,7 @@ from zoneinfo import ZoneInfo
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from onemore.core.time import ensure_utc
 from onemore.db.demo_cast import (
     CAST_BY_ID,
     CAST_PASSWORD_HASH,
@@ -317,6 +318,49 @@ def _attach_competition_id(db: Session, metadata: dict) -> dict:
     return attached
 
 
+def _recruitment_expires_at(db: Session, metadata: dict, now: datetime) -> datetime:
+    """赛事招人卡跟报名截止走；普通缺口局默认两周。"""
+    event = None
+    event_id = metadata.get("competition_id")
+    if event_id:
+        event = db.get(CompetitionEvent, event_id)
+    if event is None and metadata.get("competition_name"):
+        event = db.scalar(
+            select(CompetitionEvent).where(CompetitionEvent.name == metadata["competition_name"])
+        )
+    deadline = None
+    if event is not None:
+        deadline = event.registration_deadline or event.submission_deadline
+    if deadline is not None:
+        deadline = ensure_utc(deadline)
+        if deadline > now:
+            return deadline
+    return now + timedelta(days=14)
+
+
+def _ensure_seed_members(db: Session, gathering: Gathering, spec: CastGathering, start_at: datetime) -> None:
+    existing = db.scalar(
+        select(GatheringMember.id).where(
+            GatheringMember.gathering_id == gathering.id,
+            GatheringMember.left_at.is_(None),
+        )
+    )
+    if existing is not None:
+        return
+    for member in spec.members:
+        db.add(
+            GatheringMember(
+                gathering_id=gathering.id,
+                user_id=member.user_id,
+                role=member.role,
+                confirmation_status=member.confirmation,
+                joined_via=member.joined_via,
+                confirmed_at=start_at - timedelta(hours=24),
+                completion_confirmed=spec.status == GatheringStatus.COMPLETED.value,
+            )
+        )
+
+
 def _seed_gathering(db: Session, spec: CastGathering, now: datetime) -> Gathering:
     gathering = db.scalar(select(Gathering).where(Gathering.title == spec.title))
     start_at, end_at = _gathering_bounds(spec, now)
@@ -363,7 +407,7 @@ def _seed_gathering(db: Session, spec: CastGathering, now: datetime) -> Gatherin
             expires_at=(
                 None
                 if spec.status == GatheringStatus.COMPLETED.value
-                else now + timedelta(days=7)
+                else _recruitment_expires_at(db, metadata, now)
             ),
             completed_at=end_at if spec.status == GatheringStatus.COMPLETED.value else None,
         )
@@ -388,10 +432,17 @@ def _seed_gathering(db: Session, spec: CastGathering, now: datetime) -> Gatherin
         gathering.min_size = spec.min_size
         gathering.target_size = spec.target_size
         gathering.required_roles = list(spec.required_roles)
-        if spec.status == GatheringStatus.POOLING.value and gathering.status == GatheringStatus.POOLING.value:
-            gathering.status = spec.status
-            gathering.expires_at = now + timedelta(days=7)
+        if spec.status == GatheringStatus.POOLING.value and gathering.status in {
+            GatheringStatus.POOLING.value,
+            GatheringStatus.DISSOLVED.value,
+        }:
+            gathering.status = GatheringStatus.POOLING.value
+            gathering.expires_at = _recruitment_expires_at(db, metadata, now)
             gathering.official_metadata = metadata
+            gathering.goal = spec.goal
+            gathering.mode = spec.mode
+            gathering.campus = spec.campus
+            _ensure_seed_members(db, gathering, spec, start_at)
     db.flush()
     if created and spec.messages and spec.status == GatheringStatus.COMPLETED.value:
         from onemore.modules.collab.service import open_gathering_channel

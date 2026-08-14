@@ -80,7 +80,9 @@ struct RootView: View {
                                 }
                                 .tag(RootTab.today)
                                 .tabItem { tabItemLabel(.today) }
-                                ActivityDiscoveryView(competitions: environment.competitions, gatherings: environment.gatherings, events: environment.campusEvents)
+                                authenticatedTab {
+                                    ActivityDiscoveryView(competitions: environment.competitions, gatherings: environment.gatherings, events: environment.campusEvents)
+                                }
                                     .tag(RootTab.competitions)
                                     .tabItem { tabItemLabel(.competitions) }
                                 authenticatedTab {
@@ -108,6 +110,11 @@ struct RootView: View {
                             .task {
                                 if environment.session.isAuthenticated {
                                     await environment.refreshAttention()
+                                }
+                            }
+                            .onChange(of: router.selectedTab) { _, tab in
+                                if tab == .messages, environment.session.isAuthenticated {
+                                    Task { await environment.refreshAttention(force: true) }
                                 }
                             }
                             .onChange(of: environment.session.isAuthenticated) { _, authenticated in
@@ -188,10 +195,10 @@ struct RootView: View {
         case .publicGatherings: authenticatedDestination(route) { socialGate { GatheringListView(mine: false, repository: environment.gatherings) } }
         case .myGatherings: authenticatedDestination(route) { socialGate { GatheringListView(mine: true, repository: environment.gatherings) } }
         case .relations: authenticatedDestination(route) { socialGate { RelationsView(repository: environment.social) } }
-        case let .competition(id): CompetitionDetailView(id: id)
-        case let .competitionTable(id): CompetitionTeamBoardView(competitionID: id)
+        case let .competition(id): authenticatedDestination(route) { CompetitionDetailView(id: id) }
+        case let .competitionTable(id): authenticatedDestination(route) { CompetitionTeamBoardView(competitionID: id) }
         case let .competitionTeam(competitionID, teamID):
-            CompetitionTeamDetailView(competitionID: competitionID, teamID: teamID)
+            authenticatedDestination(route) { CompetitionTeamDetailView(competitionID: competitionID, teamID: teamID) }
         case let .intent(id): authenticatedDestination(route) { socialGate { IntentComposerView(repository: environment.intents, competitionID: id) } }
         case let .intentPreset(preset): authenticatedDestination(route) { socialGate { IntentComposerView(repository: environment.intents, preset: preset) } }
         case let .gathering(id): authenticatedDestination(route) { GatheringDetailView(id: id) }
@@ -301,6 +308,10 @@ private struct SocialAccessGate<Content: View>: View {
             }
         }
         .task { await load() }
+        .onAppear { Task { await load() } }
+        .onReceive(NotificationCenter.default.publisher(for: .oneMoreSocialPreferencesDidChange)) { _ in
+            Task { await load() }
+        }
     }
 
     private func load() async {
@@ -308,6 +319,8 @@ private struct SocialAccessGate<Content: View>: View {
             let value = try await repository.privacy()
             phase = value.socialEnabled ? .enabled : .disabled
         } catch {
+            if error.isCancellation { return }
+            if case .enabled = phase { return }
             phase = .failed(error.localizedDescription)
         }
     }

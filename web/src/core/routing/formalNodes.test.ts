@@ -36,9 +36,9 @@ describe("formal node registry", () => {
   });
 
   it("five-tab labels match iOS verbatim", () => {
-    expect([...FIVE_TAB_LABELS]).toEqual(["今天", "比赛", "差一个", "消息", "我"]);
+    expect([...FIVE_TAB_LABELS]).toEqual(["今天", "活动", "差一个", "消息", "我"]);
     expect(TAB_ROOTS.today.label).toBe("今天");
-    expect(TAB_ROOTS.competitions.label).toBe("比赛");
+    expect(TAB_ROOTS.competitions.label).toBe("活动");
     expect(TAB_ROOTS.create.label).toBe("差一个");
     expect(TAB_ROOTS.messages.label).toBe("消息");
     expect(TAB_ROOTS.me.label).toBe("我");

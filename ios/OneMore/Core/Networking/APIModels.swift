@@ -733,6 +733,21 @@ struct RelationSummary: Codable, Identifiable, Sendable {
     }
 }
 
+struct ChannelHeader: Codable, Identifiable, Sendable {
+    struct Peer: Codable, Identifiable, Sendable {
+        var id: String { userId }
+        let userId: String
+        let displayName: String?
+    }
+    let id: String
+    let kind: String
+    let title: String
+    var subtitle: String? = nil
+    var gatheringId: String? = nil
+    var relationId: String? = nil
+    var peers: [Peer] = []
+}
+
 struct MessagePayload: Codable, Identifiable, Sendable {
     struct Location: Codable, Sendable {
         let latitude: Double
@@ -1517,6 +1532,14 @@ struct CampusAction: Codable, Identifiable, Sendable {
     let modification: Modification?
     let executionResult: [String: JSONValue]?
     let errorCategory: String?
+
+    /// 找球友时段模板：没有授权行，也不能提交预约。
+    var isReferencePreview: Bool {
+        if previewSnapshot["source"]?.stringValue == "peer_overlap_template" {
+            return true
+        }
+        return gatheringId == nil && authorization.actorDecision == "not_required"
+    }
 }
 
 struct MentionAzouResult: Codable, Sendable {

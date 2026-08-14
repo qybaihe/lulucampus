@@ -10,9 +10,11 @@ from sqlalchemy.orm import Session
 from onemore.core.errors import NotFoundError
 from onemore.core.time import ensure_utc
 from onemore.db.models import (
+    ActionAuthorization,
     ActionStatus,
     Assignment,
     CampusAction,
+    ConfirmationStatus,
     Course,
     Enrollment,
     ExternalEvent,
@@ -27,10 +29,12 @@ from onemore.hermes.catalog import CATALOG
 from onemore.hermes.schemas import ActionName
 from onemore.modules.actions import service as action_service
 from onemore.modules.campus.gym_intent import (
+    gym_preview_message,
+    infer_gym_available_params,
     infer_gym_book_params,
     is_gym_booking_intent,
-    gym_preview_message,
 )
+from onemore.modules.campus.schemas import PublicEventView
 from onemore.modules.trust import service as trust_service
 from onemore.modules.schedule import service as schedule_service
 
@@ -239,6 +243,85 @@ def ignore_scene_trigger(db: Session, user_id: str, scene_key: str) -> dict:
     }
 
 
+def _is_reference_action(action: CampusAction) -> bool:
+    snapshot = action.preview_snapshot if isinstance(action.preview_snapshot, dict) else {}
+    if snapshot.get("source") == "peer_overlap_template":
+        return True
+    return action.gathering_id is None and not action.commit_action_name
+
+
+def _action_attention_title(db: Session, action: CampusAction) -> str | None:
+    if action.gathering_id:
+        gathering = db.get(Gathering, action.gathering_id)
+        title = (gathering.title if gathering else None) or ""
+        if title.strip():
+            return title.strip()
+    params = action.params if isinstance(action.params, dict) else {}
+    venue = str(params.get("venue") or params.get("venue_type") or "").strip()
+    return f"{venue}预约" if venue else None
+
+
+def _pending_action_attention(db: Session, user_id: str) -> list[dict]:
+    """Only items this person can still complete: pending auth, or personal execute."""
+    items: list[dict] = []
+    seen: set[str] = set()
+    rows = list(
+        db.scalars(
+            select(ActionAuthorization).where(
+                ActionAuthorization.user_id == user_id,
+                ActionAuthorization.decision == "pending",
+            )
+        )
+    )
+    for row in rows:
+        action = db.get(CampusAction, row.action_id)
+        if action is None or action.status != ActionStatus.PREVIEWED.value:
+            continue
+        if row.snapshot_hash != action.snapshot_hash:
+            continue
+        if _is_reference_action(action) or action.id in seen:
+            continue
+        seen.add(action.id)
+        items.append(
+            {
+                "action_id": action.id,
+                "gathering_id": action.gathering_id,
+                "type": "authorization",
+                "deep_link": (
+                    f"onemore://gathering/{action.gathering_id}"
+                    if action.gathering_id
+                    else f"onemore://action/{action.id}"
+                ),
+                "title": _action_attention_title(db, action) or "行动预览待核对",
+            }
+        )
+    personal = list(
+        db.scalars(
+            select(CampusAction).where(
+                CampusAction.user_id == user_id,
+                CampusAction.gathering_id.is_(None),
+                CampusAction.status == ActionStatus.PREVIEWED.value,
+            )
+        )
+    )
+    for action in personal:
+        if action.id in seen or _is_reference_action(action):
+            continue
+        view = action_service.authorization_view(db, action, user_id)
+        if view.get("actor_decision") != "authorized":
+            continue
+        seen.add(action.id)
+        items.append(
+            {
+                "action_id": action.id,
+                "type": "authorization",
+                "deep_link": f"onemore://action/{action.id}",
+                "title": _action_attention_title(db, action) or "个人预约待执行",
+            }
+        )
+    return items
+
+
 def _local_day_bounds(now: datetime | None = None) -> tuple[datetime, datetime]:
     """Asia/Shanghai calendar day in UTC [start, end)."""
 
@@ -262,20 +345,12 @@ def today_summary(db: Session, user: User) -> dict:
             .where(
                 GatheringMember.user_id == user.id,
                 GatheringMember.left_at.is_(None),
-                Gathering.status.in_(
-                    [GatheringStatus.TENTATIVE.value, GatheringStatus.PREVIEWED.value]
-                ),
+                GatheringMember.confirmation_status != ConfirmationStatus.CONFIRMED.value,
+                Gathering.status == GatheringStatus.TENTATIVE.value,
             )
         )
     )
-    actions = list(
-        db.scalars(
-            select(CampusAction).where(
-                CampusAction.user_id == user.id,
-                CampusAction.status == ActionStatus.PREVIEWED.value,
-            )
-        )
-    )
+    actionable = _pending_action_attention(db, user.id)
     # Gatherings/activities scheduled for today (confirmed and in-progress).
     active_today = list(
         db.scalars(
@@ -384,14 +459,7 @@ def today_summary(db: Session, user: User) -> dict:
             }
             for item in pending
         ]
-        + [
-            {
-                "action_id": item.id,
-                "type": "authorization",
-                "deep_link": f"onemore://action/{item.id}",
-            }
-            for item in actions
-        ],
+        + actionable,
         "timeline": timeline,
         "scene_trigger": trigger,
         "generated_at": now,
@@ -473,10 +541,17 @@ def compile_hermes_question(text: str, context: dict) -> tuple[ActionName | None
 
 
 def hermes_ask(db: Session, user_id: str, text: str, context: dict) -> dict:
-    from onemore.hermes.agent_gateway import ask_via_sidecar
-    from onemore.modules.campus.peers import attach_peers
+    from onemore.modules.campus.peers import attach_peers, looks_like_social_query
 
-    agent_result = ask_via_sidecar(db, user_id, text, context)
+    # 「找搭子 / 一起打篮球」走同伴匹配，不要被 sidecar 误当成查场馆去补参。
+    if looks_like_social_query(text) and not is_gym_booking_intent(text):
+        return attach_peers(db, user_id, hermes_ask_rules(db, user_id, text, context), question=text)
+    try:
+        from onemore.hermes.agent_gateway import ask_via_sidecar
+    except ImportError:
+        ask_via_sidecar = None  # type: ignore[assignment]
+
+    agent_result = ask_via_sidecar(db, user_id, text, context) if ask_via_sidecar else None
     if agent_result is not None:
         return attach_peers(db, user_id, agent_result, question=text)
     return attach_peers(db, user_id, hermes_ask_rules(db, user_id, text, context), question=text)
@@ -500,6 +575,12 @@ def hermes_ask_rules(db: Session, user_id: str, text: str, context: dict) -> dic
         campus = ((user.campus if user else None) or "").strip()
         if campus and not params.get("venue"):
             params = {**params, "venue": campus}
+    elif action == ActionName.GYM_AVAILABLE:
+        params = infer_gym_available_params(text, params)
+        user = db.get(User, user_id)
+        campus = ((user.campus if user else None) or "").strip()
+        if campus and not params.get("venue"):
+            params = {**params, "venue": campus}
     if action is None and params.get("_elective_match"):
         from onemore.modules.campus.elective_hermes import answer_elective_match
 
@@ -512,12 +593,17 @@ def hermes_ask_rules(db: Session, user_id: str, text: str, context: dict) -> dic
             "requires_preview": False,
         }
     if action is None:
+        from onemore.modules.campus.ima_kb import answer_campus_knowledge
+
+        knowledge = answer_campus_knowledge(text)
+        if knowledge is not None:
+            return knowledge
         return {
             "kind": "help",
             "action": None,
             "card_type": card_type,
             "data": {
-                "message": "Lulu Hermes 处理课表、DDL、场地、活动、班车，以及按画像推荐公选/选修。",
+                "message": "Lulu Hermes 处理课表、DDL、场地、活动、班车、校园日常知识，以及按画像推荐公选/选修。",
                 "capabilities": [
                     "课表",
                     "作业 DDL",
@@ -525,10 +611,12 @@ def hermes_ask_rules(db: Session, user_id: str, text: str, context: dict) -> dic
                     "体育场馆",
                     "活动",
                     "班车",
+                    "校园日常知识",
                     "公选/画像匹配",
                 ],
                 "examples": [
                     "今天有什么课？",
+                    "宿舍晚上会断电吗？",
                     "按我的画像推荐公选",
                     "南校园羽毛球还有吗？",
                 ],

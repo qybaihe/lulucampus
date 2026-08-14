@@ -604,7 +604,10 @@ struct GatheringDetailView: View {
             }
             .accessibilityIdentifier(campusAction.status == "succeeded" || campusAction.status == "failed" ? "gathering-action-result" : "gathering-action-preview")
             if campusAction.status == "previewed" {
-                if campusAction.authorization.actorDecision != "authorized" {
+                if campusAction.isReferencePreview {
+                    OMTextRole.foot("这是找球友的时段参考，不用核对提交。")
+                        .padding(.top, OMTheme.Spacing.s2)
+                } else if campusAction.authorization.actorDecision != "authorized" {
                     OMButton("核对无误，分别确认", systemIcon: "checkmark.shield", loading: working) {
                         Task { await authorize(campusAction) }
                     }
@@ -621,12 +624,14 @@ struct GatheringDetailView: View {
                     OMButton("已完成分别确认", disabledReason: "等待本局发起人的授权代理提交") {}
                         .padding(.top, OMTheme.Spacing.s2)
                 }
-                OMButton("提议修改预览…", kind: .ghost) {
-                    prepareActionModification(campusAction)
-                    showsActionModification = true
+                if !campusAction.isReferencePreview {
+                    OMButton("提议修改预览…", kind: .ghost) {
+                        prepareActionModification(campusAction)
+                        showsActionModification = true
+                    }
+                    .padding(.top, OMTheme.Spacing.s2)
+                    .disabled(working)
                 }
-                .padding(.top, OMTheme.Spacing.s2)
-                .disabled(working)
             } else {
                 HStack(spacing: 8) {
                     Image(systemName: campusAction.status == "succeeded" ? "checkmark.seal.fill" : "exclamationmark.triangle.fill")

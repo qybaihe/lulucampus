@@ -83,6 +83,28 @@ class ChannelScenePolicyView(APIModel):
     source: Literal["server_scene_policy"]
 
 
+class ChannelPeerView(APIModel):
+    user_id: str
+    display_name: str | None = None
+
+
+class ChannelHeaderView(APIModel):
+    """对话页顶栏：对方是谁，以及一句共同经历。"""
+
+    id: str
+    kind: Literal["relation", "gathering"]
+    title: str
+    subtitle: str | None = None
+    gathering_id: str | None = None
+    relation_id: str | None = None
+    peers: list[ChannelPeerView] = Field(default_factory=list)
+
+
+class RelationLastMessageView(APIModel):
+    content: str | None = None
+    sent_at: datetime | None = None
+
+
 class SharedExperienceView(APIModel):
     id: str
     participants: list[str]
@@ -143,6 +165,8 @@ class RelationView(APIModel):
     timeline: list[RelationTimelineEntryView] = Field(default_factory=list)
     next_window: RelationNextWindowView | None = None
     active_goal: RelationGoalSummaryView | None = None
+    peer_display_name: str | None = None
+    last_message: RelationLastMessageView | None = None
 
 
 class RecurRelationRequest(APIModel):

@@ -10,6 +10,7 @@ from onemore.core.schemas import APIResponse
 from onemore.db.models import User
 from onemore.modules.identity import service
 from onemore.modules.identity.schemas import (
+    DisplayNameChange,
     GrantChange,
     GrantView,
     IdentityFactsView,
@@ -233,31 +234,43 @@ def update_grant(
     return APIResponse(data=GrantView.model_validate(grant))
 
 
+def _identity_facts_view(db: Session, user: User) -> IdentityFactsView:
+    current, grants, health = service.identity_facts(db, user.id)
+    return IdentityFactsView(
+        user_id=current.id,
+        display_name=current.display_name,
+        verified=current.verified_at is not None,
+        college=current.college,
+        major=current.major,
+        grade_year=current.grade_year,
+        campus=current.campus,
+        gender_code=current.gender_code,
+        social_enabled=current.social_enabled,
+        course_matching_enabled=current.course_matching_enabled,
+        identity_disclosure=current.identity_disclosure,
+        same_gender_only=current.same_gender_only,
+        minimum_group_size=current.minimum_group_size,
+        scene_sensitive_policy="mute_onsite",
+        grants=[GrantView.model_validate(item) for item in grants],
+        session_health=[SessionHealthView.model_validate(item) for item in health],
+    )
+
+
 @router.get("/auth/me", response_model=APIResponse[IdentityFactsView])
 def get_my_identity(
     user: User = Depends(current_user), db: Session = Depends(get_db)
 ) -> APIResponse[IdentityFactsView]:
-    current, grants, health = service.identity_facts(db, user.id)
-    return APIResponse(
-        data=IdentityFactsView(
-            user_id=current.id,
-            display_name=current.display_name,
-            verified=current.verified_at is not None,
-            college=current.college,
-            major=current.major,
-            grade_year=current.grade_year,
-            campus=current.campus,
-            gender_code=current.gender_code,
-            social_enabled=current.social_enabled,
-            course_matching_enabled=current.course_matching_enabled,
-            identity_disclosure=current.identity_disclosure,
-            same_gender_only=current.same_gender_only,
-            minimum_group_size=current.minimum_group_size,
-            scene_sensitive_policy="mute_onsite",
-            grants=[GrantView.model_validate(item) for item in grants],
-            session_health=[SessionHealthView.model_validate(item) for item in health],
-        )
-    )
+    return APIResponse(data=_identity_facts_view(db, user))
+
+
+@router.patch("/me/display-name", response_model=APIResponse[IdentityFactsView])
+def update_my_display_name(
+    body: DisplayNameChange,
+    user: User = Depends(current_user),
+    db: Session = Depends(get_db),
+) -> APIResponse[IdentityFactsView]:
+    service.update_display_name(db, user, body.display_name)
+    return APIResponse(data=_identity_facts_view(db, user))
 
 
 @router.get("/me/privacy", response_model=APIResponse[SocialPreferenceView])

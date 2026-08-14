@@ -1,39 +1,161 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useApp } from "../../app/AppContext";
 import {
   asList,
+  gatheringStatusName,
+  type ChannelHeader,
   type ChannelScenePolicy,
+  type Gathering,
   type MessagePayload,
   type RelationSummary,
 } from "../../core/api/repositories";
 import { openChannelSocket, type ChannelSocketHandle } from "../../core/api/ws";
 import {
+  attentionItems,
+  pathFromAttentionLink,
+} from "../../core/today/attention";
+import {
   Btn,
   Card,
+  Chip,
   Icon,
-  LargeTitle,
+  LuluMark,
+  LuluSeatStrip,
   NavBar,
+  PageHeader,
   Row,
   Screen,
   Scroll,
+  Section,
   StateView,
   Sticker,
 } from "../../components/ui/primitives";
+import { relativeTimeLabel } from "../profile/notificationInbox";
 
-/** MSG · 消息（Tab 根）。数据源与 iOS 一致：搭子关系列表。 */
+const ONGOING_STATUSES = new Set([
+  "Pooling",
+  "Tentative",
+  "Confirmed",
+  "Previewed",
+  "Executed",
+  "Active",
+]);
+
+function needsMyConfirmation(item: Gathering): boolean {
+  return (
+    String(item.status) === "Tentative" && item.my_confirmation !== "confirmed"
+  );
+}
+
+function ongoingGatherings(items: Gathering[]): Gathering[] {
+  const now = Date.now();
+  const seen = new Set<string>();
+  return items
+    .filter((item) => {
+      if (!ONGOING_STATUSES.has(String(item.status))) return false;
+      const end = item.end_at ?? item.ends_at;
+      if (end) {
+        const t = new Date(end).getTime();
+        if (!Number.isNaN(t) && t < now - 2 * 3600 * 1000) return false;
+      }
+      const start = item.start_at ?? item.starts_at;
+      const slot = start
+        ? String(Math.floor(new Date(start).getTime() / 1800000))
+        : "-";
+      const key = `${item.title ?? ""}|${item.status}|${slot}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .sort((a, b) => {
+      const aNeed = needsMyConfirmation(a);
+      const bNeed = needsMyConfirmation(b);
+      if (aNeed !== bNeed) return aNeed ? -1 : 1;
+      const at = new Date(a.start_at ?? a.starts_at ?? "").getTime();
+      const bt = new Date(b.start_at ?? b.starts_at ?? "").getTime();
+      return (Number.isNaN(at) ? Infinity : at) - (Number.isNaN(bt) ? Infinity : bt);
+    });
+}
+
+function ongoingStatusLabel(item: Gathering): string {
+  if (needsMyConfirmation(item)) return "待你确认";
+  const target = item.target_size ?? 0;
+  const filled = Math.min(
+    item.member_count ?? item.confirmed_count ?? item.filled_count ?? 0,
+    target || Infinity,
+  );
+  const status = String(item.status);
+  if (status === "Pooling") return `还差 ${Math.max(0, target - filled)} 人`;
+  if (status === "Tentative") return "等大家确认";
+  if (status === "Confirmed" || status === "Previewed") return "已成局";
+  if (status === "Executed" || status === "Active") return "进行中";
+  return gatheringStatusName(item.status);
+}
+
+function shortStartLabel(iso?: string | null): string | null {
+  if (!iso) return null;
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return null;
+  const now = new Date();
+  const sameDay = (a: Date, b: Date) =>
+    a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate();
+  const tomorrow = new Date(now);
+  tomorrow.setDate(now.getDate() + 1);
+  const time = date.toLocaleTimeString("zh-CN", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+  if (sameDay(date, now)) return `今天 ${time}`;
+  if (sameDay(date, tomorrow)) return `明天 ${time}`;
+  return date.toLocaleString("zh-CN", {
+    month: "numeric",
+    day: "numeric",
+    weekday: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+}
+
+function partnerChannelSubline(item: RelationSummary): string {
+  const preview = item.last_message?.content?.trim();
+  if (preview) return preview;
+  const parts: string[] = [];
+  if ((item.times_together ?? 0) > 0) parts.push(`一起 ${item.times_together} 次`);
+  const recent = item.experiences?.[0]?.gathering_type;
+  if (recent) parts.push(`上次${recent}`);
+  if (parts.length === 0) parts.push("打个招呼吧");
+  return parts.join(" · ");
+}
+
+/** MSG · 消息（Tab 根）：待办 + 进行中的局 + 搭子频道。 */
 export function MessagesScreen() {
   const { repos } = useApp();
   const nav = useNavigate();
+  const location = useLocation();
   const [items, setItems] = useState<RelationSummary[]>([]);
+  const [ongoing, setOngoing] = useState<Gathering[]>([]);
+  const [attention, setAttention] = useState<
+    ReturnType<typeof attentionItems>
+  >([]);
   const [phase, setPhase] = useState<"loading" | "loaded" | "failed">("loading");
   const [error, setError] = useState<string | null>(null);
 
   async function load() {
     setPhase("loading");
     try {
-      const raw = await repos.relations.list();
-      setItems(asList(raw));
+      const [rawRelations, mine, summary] = await Promise.all([
+        repos.relations.list(),
+        repos.gatherings.mine().catch(() => [] as Gathering[]),
+        repos.today.summary().catch(() => null),
+      ]);
+      setItems(asList(rawRelations));
+      setOngoing(ongoingGatherings(asList(mine)));
+      setAttention(attentionItems(summary?.pending));
       setPhase("loaded");
     } catch (e) {
       setError(e instanceof Error ? e.message : "加载失败");
@@ -44,12 +166,18 @@ export function MessagesScreen() {
   useEffect(() => {
     void load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [repos]);
+  }, [repos, location.key]);
+
+  const empty =
+    phase === "loaded" &&
+    items.length === 0 &&
+    ongoing.length === 0 &&
+    attention.length === 0;
 
   return (
     <Screen id="screen-MSG-messages">
       <Scroll>
-        <LargeTitle title="消息与搭子" />
+        <PageHeader title="消息与搭子" clip="home.listening" />
         {phase === "loading" ? (
           <Card>
             <StateView kind="loading" />
@@ -65,35 +193,122 @@ export function MessagesScreen() {
             />
           </Card>
         ) : null}
-        {phase === "loaded" && items.length === 0 ? (
-          <Card>
-            <StateView kind="empty" message="只有已成局的人会出现在这里。" />
-          </Card>
+        {empty ? (
+          <>
+            <Card>
+              <div className="center">
+                <LuluMark placement="confirm" clip="home.listening" />
+                <div className="t-t3 mt-3">这里还很安静</div>
+                <div className="t-cap mt-1">
+                  成局后的对话会出现在下面。正在进行的局还是上面那些卡片。
+                </div>
+              </div>
+            </Card>
+            <div className="mt-2">
+              <Btn kind="primary" to="/intent">
+                去差一个，说一句
+              </Btn>
+            </div>
+          </>
+        ) : null}
+        {phase === "loaded" && attention.length > 0 ? (
+          <>
+            <Section title="需要你处理" />
+            <Card tight data-od-id="messages-attention">
+              {attention.map((item) => (
+                <Row
+                  key={item.id}
+                  icon={<Sticker name="alarm-clock.png" size="st-24" />}
+                  title={item.title}
+                  right={
+                    item.badge ? <Chip kind="gap">{item.badge}</Chip> : undefined
+                  }
+                  onClick={() => {
+                    const path = pathFromAttentionLink(item.deepLink);
+                    if (path) nav(path);
+                  }}
+                />
+              ))}
+            </Card>
+          </>
+        ) : null}
+        {phase === "loaded" && ongoing.length > 0 ? (
+          <>
+            <Section title="正在进行" />
+            <div className="ongoing-strip" data-od-id="messages-ongoing-strip">
+              {ongoing.map((item) => {
+                const needsMe = needsMyConfirmation(item);
+                const target = item.target_size ?? 0;
+                const filled = Math.min(
+                  item.member_count ??
+                    item.confirmed_count ??
+                    item.filled_count ??
+                    0,
+                  target || Infinity,
+                );
+                const start = shortStartLabel(item.start_at ?? item.starts_at);
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    className={`ongoing-card ${needsMe ? "needs-me" : ""}`}
+                    onClick={() => nav(`/gathering/${item.id}`)}
+                  >
+                    <Chip kind={needsMe ? "gap" : "soft"}>
+                      {ongoingStatusLabel(item)}
+                    </Chip>
+                    <div className="ongoing-card-title">{item.title ?? "未命名局"}</div>
+                    {String(item.status) === "Pooling" && target > 0 ? (
+                      <LuluSeatStrip filled={filled} total={Math.min(target, 8)} />
+                    ) : start ? (
+                      <div className="t-cap mt-1">{start}</div>
+                    ) : null}
+                  </button>
+                );
+              })}
+            </div>
+          </>
         ) : null}
         {phase === "loaded" && items.length > 0 ? (
-          <Card tight>
-            {items.map((item) => (
-              <Row
-                key={item.id}
-                icon={<Sticker name="chat-bubble.png" size="st-24" />}
-                title={item.participants
-                  .map((p) => p.display_name ?? "同学")
-                  .join(" · ")}
-                sub={
-                  item.experiences?.length
-                    ? `共同完成 · ${item.experiences[0].gathering_type}`
-                    : "搭子关系"
-                }
-                onClick={() => {
-                  if (item.channel_id) {
-                    nav(`/channel/${item.channel_id}`, {
-                      state: { title: "搭子会话" },
-                    });
-                  } else nav("/relations");
-                }}
-              />
-            ))}
-          </Card>
+          <>
+            <Section title="对话" />
+            <Card tight data-od-id="messages-chat-list">
+              {items.map((item) => {
+                const title =
+                  item.peer_display_name ??
+                  item.participants
+                    .map((p) => p.display_name ?? "同学")
+                    .join(" · ");
+                const latest =
+                  item.last_message?.sent_at ?? item.latest_experience_at ?? null;
+                return (
+                  <Row
+                    key={item.id}
+                    icon={<Sticker name="chat-bubble.png" size="st-44" />}
+                    title={title}
+                    sub={partnerChannelSubline(item)}
+                    right={
+                      <span className="flex" style={{ flexDirection: "column", alignItems: "flex-end", gap: 4 }}>
+                        {item.is_fixed_partner && item.partner_title ? (
+                          <Chip kind="gap">{item.partner_title}</Chip>
+                        ) : null}
+                        {latest ? (
+                          <span className="t-cap">{relativeTimeLabel(latest)}</span>
+                        ) : null}
+                      </span>
+                    }
+                    onClick={() => {
+                      if (item.channel_id) {
+                        nav(`/channel/${item.channel_id}`, {
+                          state: { title: title || "对话" },
+                        });
+                      } else nav("/relations");
+                    }}
+                  />
+                );
+              })}
+            </Card>
+          </>
         ) : null}
         {phase === "loaded" ? (
           <div className="mt-2">
@@ -249,9 +464,10 @@ function MessageBubble({
 export function ChannelScreen() {
   const { channelId } = useParams();
   const location = useLocation();
-  const channelTitle =
-    (location.state as { title?: string } | null)?.title ?? "局内群聊";
+  const optimisticTitle =
+    (location.state as { title?: string } | null)?.title ?? "对话";
   const { repos, client, session, baseURL } = useApp();
+  const [header, setHeader] = useState<ChannelHeader | null>(null);
   const [messages, setMessages] = useState<MessagePayload[]>([]);
   const [policy, setPolicy] = useState<ChannelScenePolicy | null>(null);
   const [draft, setDraft] = useState("");
@@ -264,6 +480,7 @@ export function ChannelScreen() {
   const listEndRef = useRef<HTMLDivElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const policyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pullGen = useRef(0);
 
   const appendUnique = (incoming: MessagePayload) => {
     setMessages((prev) =>
@@ -273,14 +490,18 @@ export function ChannelScreen() {
 
   async function connect() {
     if (!channelId) return;
+    const gen = ++pullGen.current;
     setLoading(true);
     try {
-      const [scenePolicy, raw] = await Promise.all([
+      const [scenePolicy, raw, channelHeader] = await Promise.all([
         repos.channels.scenePolicy(channelId),
         repos.channels.messages(channelId),
+        repos.channels.header(channelId).catch(() => null),
       ]);
+      if (gen !== pullGen.current) return;
       setPolicy(scenePolicy);
       setMessages(asList(raw));
+      setHeader(channelHeader);
       setError(null);
       schedulePolicyBoundary(scenePolicy);
       if (scenePolicy.live_connection_enabled) {
@@ -298,9 +519,10 @@ export function ChannelScreen() {
         });
       }
     } catch (e) {
+      if (gen !== pullGen.current) return;
       setError(e instanceof Error ? e.message : "加载失败");
     } finally {
-      setLoading(false);
+      if (gen === pullGen.current) setLoading(false);
     }
   }
 
@@ -329,6 +551,7 @@ export function ChannelScreen() {
       socketRef.current?.close();
       socketRef.current = null;
       if (policyTimerRef.current) clearTimeout(policyTimerRef.current);
+      pullGen.current += 1;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channelId, repos]);
@@ -338,6 +561,21 @@ export function ChannelScreen() {
   }, [messages.length]);
 
   const sendingEnabled = policy?.sending_enabled !== false;
+
+  async function pullCastReplies() {
+    if (!channelId) return;
+    const gen = ++pullGen.current;
+    for (const delay of [5000, 7000, 10000]) {
+      await new Promise((resolve) => setTimeout(resolve, delay));
+      if (gen !== pullGen.current) return;
+      try {
+        const latest = asList(await repos.channels.messages(channelId));
+        for (const item of latest) appendUnique(item);
+      } catch {
+        /* keep current list */
+      }
+    }
+  }
 
   async function sendDraft() {
     if (!channelId || sending) return;
@@ -359,6 +597,7 @@ export function ChannelScreen() {
       }
       setDraft("");
       setError(null);
+      void pullCastReplies();
     } catch (e) {
       setError(e instanceof Error ? e.message : "发送失败");
     } finally {
@@ -432,14 +671,35 @@ export function ChannelScreen() {
     );
   }
 
+  const channelTitle = header?.title ?? optimisticTitle;
   const nextChangeLabel = useMemo(
     () => shortTime(policy?.next_change_at),
     [policy?.next_change_at],
   );
 
+  const sharedTarget = header?.relation_id
+    ? `/relation/${header.relation_id}`
+    : header?.gathering_id
+      ? `/gathering/${header.gathering_id}`
+      : null;
+
   return (
     <Screen id="screen-E14-channel">
       <NavBar title={channelTitle} backTo="/messages" />
+      {header?.subtitle ? (
+        sharedTarget ? (
+          <Link
+            className="chat-shared-strip"
+            to={sharedTarget}
+            data-od-id="channel-shared-history"
+          >
+            <span>{header.subtitle}</span>
+            <span className="chat-shared-link">共同经历 ›</span>
+          </Link>
+        ) : (
+          <div className="chat-shared-strip">{header.subtitle}</div>
+        )
+      ) : null}
       <Scroll padBottom={false}>
         {error ? (
           <Card>
@@ -533,7 +793,7 @@ export function ChannelScreen() {
           </button>
           <input
             className="om-input"
-            placeholder="说点什么…"
+            placeholder="消息（无已读/在线/输入中）"
             value={draft}
             data-od-id="channel-message-input"
             onChange={(e) => setDraft(e.target.value)}

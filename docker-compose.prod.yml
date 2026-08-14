@@ -21,6 +21,7 @@ services:
     env_file: .env
     environment:
       PATH: /opt/node/bin:/usr/local/bin:/usr/bin:/bin
+      ONEMORE_HERMES_MODE: real
       ONEMORE_HERMES_AGENT_MODE: sidecar
       ONEMORE_HERMES_AGENT_URL: http://hermes-agent:8642
     ports:
@@ -45,6 +46,7 @@ services:
     env_file: .env
     environment:
       PATH: /opt/node/bin:/usr/local/bin:/usr/bin:/bin
+      ONEMORE_HERMES_MODE: real
     volumes: *hermes-volumes
     restart: unless-stopped
     depends_on:

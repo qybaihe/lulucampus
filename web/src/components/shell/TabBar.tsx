@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useApp } from "../../app/AppContext";
+import { assetURL } from "../../core/assets";
 import { FIVE_TAB_LABELS, TAB_ROOTS, type TabId } from "../../core/routing/formalNodes";
 import { attentionItems } from "../../core/today/attention";
-import { Icon } from "../ui/primitives";
 
 const TAB_ORDER: TabId[] = [
   "today",
@@ -13,11 +13,12 @@ const TAB_ORDER: TabId[] = [
   "me",
 ];
 
-const ICONS: Record<Exclude<TabId, "create">, string> = {
-  today: "sun",
-  competitions: "trophy",
-  messages: "chat",
-  me: "person",
+const TAB_ASSET: Record<TabId, string> = {
+  today: "tab-today",
+  competitions: "tab-activity",
+  create: "tab-create",
+  messages: "tab-messages",
+  me: "tab-profile",
 };
 
 export function TabBar() {
@@ -47,41 +48,36 @@ export function TabBar() {
     <nav className="tabbar" data-od-id="tabbar" aria-label="主导航">
       {TAB_ORDER.map((id) => {
         const tab = TAB_ROOTS[id];
-        if (id === "create") {
-          return (
-            <NavLink
-              key={id}
-              to={tab.path}
-              className={({ isActive }) =>
-                `tab-item ${isActive ? "active" : ""}`
-              }
-              aria-label={FIVE_TAB_LABELS[2]}
-              data-tab="create"
-            >
-              <span className="tab-create">⊕</span>
-              <span className="tab-create-label">差一个</span>
-              <span className="tab-dot" />
-            </NavLink>
-          );
-        }
         return (
           <NavLink
             key={id}
             to={tab.path}
-            className={({ isActive }) =>
-              `tab-item ${isActive ? "active" : ""}`
-            }
+            className={({ isActive }) => `tab-item ${isActive ? "active" : ""}`}
+            aria-label={id === "create" ? FIVE_TAB_LABELS[2] : tab.label}
             data-tab={id}
             end={id === "today" || id === "me"}
           >
-            <span className="tab-icon-wrap">
-              <Icon name={ICONS[id]} size={24} />
-              {id === "messages" && hasAttention ? (
-                <span className="tab-unread" aria-label="有待处理提醒" />
-              ) : null}
-            </span>
-            <span>{tab.label}</span>
-            <span className="tab-dot" />
+            {({ isActive }) => (
+              <>
+                <span className="tab-icon-wrap">
+                  <img
+                    src={assetURL(
+                      `/assets/tab/${TAB_ASSET[id]}-${isActive ? "active" : "inactive"}.png`,
+                    )}
+                    alt=""
+                    className={id === "create" ? "tab-png-create" : "tab-png"}
+                    draggable={false}
+                  />
+                  {id === "messages" && hasAttention ? (
+                    <span className="tab-unread" aria-label="有待处理提醒" />
+                  ) : null}
+                </span>
+                <span className={id === "create" ? "tab-create-label" : undefined}>
+                  {tab.label}
+                </span>
+                <span className="tab-dot" />
+              </>
+            )}
           </NavLink>
         );
       })}
@@ -92,7 +88,7 @@ export function TabBar() {
 export function tabLabelsMatch(): boolean {
   return (
     FIVE_TAB_LABELS[0] === "今天" &&
-    FIVE_TAB_LABELS[1] === "比赛" &&
+    FIVE_TAB_LABELS[1] === "活动" &&
     FIVE_TAB_LABELS[2] === "差一个" &&
     FIVE_TAB_LABELS[3] === "消息" &&
     FIVE_TAB_LABELS[4] === "我"

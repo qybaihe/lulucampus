@@ -606,7 +606,10 @@ actor APIClient {
     }
 }
 
-extension Notification.Name { static let oneMoreSessionExpired = Notification.Name("OneMoreSessionExpired") }
+extension Notification.Name {
+    static let oneMoreSessionExpired = Notification.Name("OneMoreSessionExpired")
+    static let oneMoreSocialPreferencesDidChange = Notification.Name("OneMoreSocialPreferencesDidChange")
+}
 
 extension JSONDecoder {
     static var oneMore: JSONDecoder {

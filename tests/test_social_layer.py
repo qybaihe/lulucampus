@@ -338,6 +338,29 @@ def test_channel_opens_with_system_gathering_card(client, auth_headers):
     assert len(opener) <= 48
 
 
+def test_gathering_channel_header_names_the_other_person(client, auth_headers):
+    gathering_id = _seed_gathering(
+        GatheringStatus.CONFIRMED.value,
+        ["u_demo_1", "u_demo_2"],
+        roles={"u_demo_1": "组织", "u_demo_2": "记录"},
+    )
+    with SessionLocal() as db:
+        from onemore.modules.collab.service import open_gathering_channel
+
+        channel = open_gathering_channel(db, gathering_id)
+        db.commit()
+        channel_id = channel.id
+
+    header = client.get(f"/channels/{channel_id}", headers=auth_headers)
+    assert header.status_code == 200, header.text
+    data = header.json()["data"]
+    assert data["kind"] == "gathering"
+    assert data["title"] == "周衡"
+    assert data["gathering_id"] == gathering_id
+    assert data["peers"][0]["display_name"] == "周衡"
+    assert client.get(f"/channels/{channel_id}", headers={"X-User-ID": "u_demo_3"}).status_code == 403
+
+
 def test_lulu_opener_for_museum_visit_sounds_like_capybara():
     from onemore.modules.collab.service import generate_opener
 

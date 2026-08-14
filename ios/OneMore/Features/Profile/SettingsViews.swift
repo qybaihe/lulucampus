@@ -13,14 +13,38 @@ final class PrivacySettingsViewModel: ObservableObject {
         loading = true
         defer { loading = false }
         do { value = try await repository.privacy(); error = nil }
-        catch { self.error = error.localizedDescription }
+        catch {
+            if error.isCancellation { return }
+            self.error = error.localizedDescription
+        }
     }
     func save() async {
         guard let value, !saving else { return }
         saving = true
         defer { saving = false }
-        do { self.value = try await repository.updatePrivacy(value); error = nil }
-        catch { self.error = error.localizedDescription }
+        do {
+            self.value = try await repository.updatePrivacy(value)
+            error = nil
+            NotificationCenter.default.post(name: .oneMoreSocialPreferencesDidChange, object: nil)
+        } catch {
+            if error.isCancellation { return }
+            self.error = error.localizedDescription
+        }
+    }
+    func saveSocial(enabled: Bool) async {
+        guard !saving else { return }
+        saving = true
+        defer { saving = false }
+        do {
+            self.value = try await repository.setSocialEnabled(enabled)
+            error = nil
+            NotificationCenter.default.post(name: .oneMoreSocialPreferencesDidChange, object: nil)
+        } catch {
+            if error.isCancellation { return }
+            value?.socialEnabled = !enabled
+            value?.courseMatchingEnabled = !enabled
+            self.error = error.localizedDescription
+        }
     }
 }
 
@@ -37,7 +61,7 @@ struct PrivacySettingsView: View {
                 if model.value != nil {
                     OMSection(title: "进入匹配")
                     OMCard(tight: true) {
-                        OMRow(sticker: "shield-check.png", title: "社交总开关", toggle: binding(\.socialEnabled))
+                        OMRow(sticker: "shield-check.png", title: "社交总开关", toggle: socialEnabledBinding)
                         OMRow(sticker: "books-stack.png", title: "允许基于课程匹配", toggle: binding(\.courseMatchingEnabled))
                     }
                     OMSection(title: "见面边界")
@@ -67,7 +91,10 @@ struct PrivacySettingsView: View {
                     }
 
                     if let error = model.error {
-                        OMCard { OMG5StateView(state: .networkError, message: error) }
+                        Text(error)
+                            .font(OMTheme.TypeToken.footnote)
+                            .foregroundStyle(OMTheme.ColorToken.ink)
+                            .padding(.top, OMTheme.Spacing.s3)
                     }
                     OMButton(model.saving ? "保存中…" : "保存隐私设置", icon: .shield, loading: model.saving) {
                         Task { await model.save() }
@@ -90,6 +117,17 @@ struct PrivacySettingsView: View {
         .task { await model.load() }
         .accessibilityElement(children: .contain).accessibilityIdentifier("screen-M5-privacy")
     }
+
+    private var socialEnabledBinding: Binding<Bool> {
+        Binding {
+            model.value?.socialEnabled ?? false
+        } set: { enabled in
+            model.value?.socialEnabled = enabled
+            model.value?.courseMatchingEnabled = enabled
+            Task { await model.saveSocial(enabled: enabled) }
+        }
+    }
+
     private func binding<Value>(
         _ path: WritableKeyPath<SocialPreferences, Value>
     ) -> Binding<Value> {

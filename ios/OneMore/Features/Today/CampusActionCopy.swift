@@ -32,7 +32,8 @@ struct CampusActionCopy: Equatable {
     static func make(
         actionName: String?,
         params: [String: JSONValue],
-        status: String? = nil
+        status: String? = nil,
+        previewSnapshot: [String: JSONValue]? = nil
     ) -> CampusActionCopy? {
         let fields = flattenedFields(params)
         let venueType = fields["venue_type"]
@@ -88,12 +89,13 @@ struct CampusActionCopy: Equatable {
 
         guard !facts.isEmpty || title != "校园行动" else { return nil }
 
+        let isReference = previewSnapshot?["source"]?.stringValue == "peer_overlap_template"
         return CampusActionCopy(
             title: title,
             headline: headline,
             timeLine: timeLine.isEmpty ? nil : timeLine,
             sticker: stickerFor(actionName, venueType: venueType),
-            statusLabel: statusLabel(for: status),
+            statusLabel: isReference ? "时段参考" : statusLabel(for: status),
             facts: facts
         )
     }

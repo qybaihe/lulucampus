@@ -84,6 +84,7 @@ describe("screen coverage vs SCREEN_MAP production surfaces", () => {
       "/organizer",
       "/auth",
       "/auth/scan",
+      "/auth/taste",
       "/me/taste",
       "/states",
     ];
@@ -109,6 +110,8 @@ describe("screen coverage vs SCREEN_MAP production surfaces", () => {
       "screen-E15-relations",
       "screen-O1-organizer",
       "screen-taste-import",
+      "screen-first-use-taste",
+      "guest-login-cta",
       "runtime-state-library",
     ];
     for (const id of must) {
@@ -226,10 +229,25 @@ describe("screen coverage vs SCREEN_MAP production surfaces", () => {
   });
 
   it("five-tab labels remain verbatim", () => {
-    expect([...FIVE_TAB_LABELS]).toEqual(["今天", "比赛", "差一个", "消息", "我"]);
+    expect([...FIVE_TAB_LABELS]).toEqual(["今天", "活动", "差一个", "消息", "我"]);
   });
 
   it("keeps 74 formal nodes", () => {
     expect(FORMAL_NODES).toHaveLength(74);
+  });
+
+  it("prompts login on activity and other tabs, not only 差一个", () => {
+    const gate = readFileSync(
+      join(process.cwd(), "src/components/shell/SocialAccessGate.tsx"),
+      "utf8",
+    );
+    expect(gate).toContain("GuestLoginWall");
+    expect(gate).toContain("screen-guest-login");
+    expect(appTsx).toContain("登录后才能看活动");
+    expect(appTsx).toContain("登录后才能发布意图");
+    expect(appTsx).toContain("登录后才能看消息");
+    expect(appTsx).toContain("登录后打开「我的」");
+    expect(todaySource).toContain("guest-login-cta");
+    expect(todaySource).toContain("登录后，噜噜才能帮你成局");
   });
 });

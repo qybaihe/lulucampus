@@ -9,28 +9,39 @@ struct ProfileView: View {
     @State private var factsError: String?
     @State private var signOutError: String?
     @State private var showsRecap = false
+    @State private var showsDisplayNameEditor = false
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 OMHeader(eyebrow: "\(AppBrand.displayName) · 我")
                 if let facts {
-                    OMCard {
-                        HStack(spacing: 14) {
-                            LuluView(clip: .homeIdle, placement: .avatar)
-                                .frame(width: 62, height: 62)
-                                .background {
-                                    Circle().fill(OMTheme.ColorToken.gapSoft)
+                    Button {
+                        showsDisplayNameEditor = true
+                    } label: {
+                        OMCard {
+                            HStack(spacing: 14) {
+                                LuluView(clip: .homeIdle, placement: .avatar)
+                                    .frame(width: 62, height: 62)
+                                    .background {
+                                        Circle().fill(OMTheme.ColorToken.gapSoft)
+                                    }
+                                    .clipShape(Circle())
+                                    .accessibilityHidden(true)
+                                VStack(alignment: .leading, spacing: 3) {
+                                    OMTextRole.t2(facts.displayName ?? "已认证同学")
+                                    OMTextRole.foot([facts.campus, facts.major].compactMap { $0 }.joined(separator: " · "))
+                                    OMTextRole.cap("修改昵称")
                                 }
-                                .clipShape(Circle())
-                                .accessibilityHidden(true)
-                            VStack(alignment: .leading, spacing: 3) {
-                                OMTextRole.t2(facts.displayName ?? "已认证同学")
-                                OMTextRole.foot([facts.campus, facts.major].compactMap { $0 }.joined(separator: " · "))
+                                Spacer()
+                                Text("›")
+                                    .font(.system(size: 18, weight: .bold))
+                                    .foregroundStyle(OMTheme.ColorToken.sage)
                             }
-                            Spacer()
                         }
                     }
+                    .buttonStyle(.plain)
+                    .accessibilityIdentifier("profile-edit-display-name")
                 } else if let factsError {
                     OMCard {
                         OMG5StateView(state: .networkError, message: factsError, actionTitle: "重试") {
@@ -138,6 +149,14 @@ struct ProfileView: View {
         .background(OMPageBackground())
         .task { await loadFacts() }
         .sheet(isPresented: $showsRecap) { SemesterRecapView() }
+        .sheet(isPresented: $showsDisplayNameEditor) {
+            DisplayNameEditorView(
+                repository: environment.identity,
+                currentName: facts?.displayName ?? ""
+            ) { updated in
+                facts = updated
+            }
+        }
         .accessibilityElement(children: .contain).accessibilityIdentifier("screen-M1-profile")
     }
 

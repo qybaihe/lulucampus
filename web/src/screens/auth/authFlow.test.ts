@@ -61,6 +61,11 @@ describe("auth flow — iOS-aligned FastAPI contract", () => {
     expect(src).toContain("agent_booking");
     expect(src).toContain("setGrant");
     expect(src).toContain("setSocialEnabled");
+    expect(src).toContain("/auth/taste");
+    expect(src).toContain("first-use-skip-taste");
+    expect(src).toContain("repos.taste.fromLink");
+    expect(src).toContain("暂时跳过，稍后再贴");
+    expect(src).toContain("onemore.firstuse.tastePending.v1");
     // 选校引导
     expect(src).toContain("中山大学");
     expect(src).toContain("onboarding-school-");

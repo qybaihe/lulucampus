@@ -3,6 +3,7 @@ import UIKit
 
 @MainActor final class ChannelViewModel: ObservableObject {
     @Published var messages: [MessagePayload] = []
+    @Published var header: ChannelHeader?
     @Published var draft = ""
     @Published var error: String?
     @Published var sending = false
@@ -10,10 +11,15 @@ import UIKit
     private var boundaryTask: Task<Void, Never>?
     private let channelID: String; private let social: SocialRepository; private let socket: WebSocketClient
     init(channelID: String, social: SocialRepository, socket: WebSocketClient) { self.channelID = channelID; self.social = social; self.socket = socket }
+    var title: String { header?.title ?? "对话" }
     func connect() async {
         do {
-            scenePolicy = try await social.channelScenePolicy(channelID: channelID)
-            messages = try await social.messages(channelID: channelID)
+            async let headerTask = social.channelHeader(channelID: channelID)
+            async let policyTask = social.channelScenePolicy(channelID: channelID)
+            async let messagesTask = social.messages(channelID: channelID)
+            header = try? await headerTask
+            scenePolicy = try await policyTask
+            messages = try await messagesTask
         } catch {
             self.error = error.localizedDescription
             return
@@ -81,12 +87,16 @@ import UIKit
 struct ChannelView: View {
     @StateObject private var model: ChannelViewModel
     @EnvironmentObject private var environment: AppEnvironment
+    @EnvironmentObject private var router: AppRouter
     @State private var showPhotos = false
     @State private var currentUserID: String?
     init(channelID: String, social: SocialRepository, socket: WebSocketClient) { _model = StateObject(wrappedValue: ChannelViewModel(channelID: channelID, social: social, socket: socket)) }
 
     var body: some View {
         VStack(spacing: 0) {
+            if let subtitle = model.header?.subtitle, !subtitle.isEmpty {
+                sharedHistoryBanner(subtitle)
+            }
             if let error = model.error {
                 Text(error)
                     .font(OMTheme.TypeToken.footnote)
@@ -146,6 +156,8 @@ struct ChannelView: View {
                 .padding(.horizontal, OMTheme.Spacing.pageX)
         }
         .background(OMPageBackground())
+        .navigationTitle(model.title)
+        .navigationBarTitleDisplayMode(.inline)
         .task {
             currentUserID = await environment.auth.currentUserID()
             await model.connect()
@@ -157,6 +169,41 @@ struct ChannelView: View {
             }
         }
         .accessibilityElement(children: .contain).accessibilityIdentifier("screen-E14-channel")
+    }
+
+    private func sharedHistoryBanner(_ subtitle: String) -> some View {
+        Button {
+            if let relationID = model.header?.relationId {
+                router.push(.relation(relationID))
+            } else if let gatheringID = model.header?.gatheringId {
+                router.push(.gathering(gatheringID))
+            }
+        } label: {
+            HStack(spacing: 8) {
+                Text(subtitle)
+                    .font(OMTheme.TypeToken.caption)
+                    .foregroundStyle(OMTheme.ColorToken.ink)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                if model.header?.relationId != nil || model.header?.gatheringId != nil {
+                    Text("共同经历")
+                        .font(OMTheme.TypeToken.caption.weight(.semibold))
+                        .foregroundStyle(OMTheme.ColorToken.sage)
+                    Text("›")
+                        .font(.system(size: 12, weight: .bold))
+                        .foregroundStyle(OMTheme.ColorToken.sage)
+                }
+            }
+            .padding(.horizontal, OMTheme.Spacing.pageX)
+            .padding(.vertical, 10)
+            .background(OMTheme.ColorToken.gapSoft)
+            .overlay(alignment: .bottom) {
+                Rectangle().fill(OMTheme.ColorToken.line).frame(height: OMTheme.Radius.borderWidth)
+            }
+        }
+        .buttonStyle(.plain)
+        .accessibilityIdentifier("channel-shared-history")
     }
 
     private var inputBar: some View {

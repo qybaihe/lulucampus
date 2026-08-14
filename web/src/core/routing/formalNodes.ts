@@ -223,11 +223,11 @@ export const TASTE_IMPORT_ROUTE = {
   area: "taste" as const,
 };
 
-export const FIVE_TAB_LABELS = ["今天", "比赛", "差一个", "消息", "我"] as const;
+export const FIVE_TAB_LABELS = ["今天", "活动", "差一个", "消息", "我"] as const;
 
 export const TAB_ROOTS = {
   today: { label: "今天", path: "/today", formalId: "B1" },
-  competitions: { label: "比赛", path: "/competitions", formalId: "B12" },
+  competitions: { label: "活动", path: "/competitions", formalId: "B12" },
   create: { label: "差一个", path: "/intent", formalId: "D1" },
   messages: { label: "消息", path: "/messages", formalId: "MSG" },
   me: { label: "我", path: "/me", formalId: "M1" },

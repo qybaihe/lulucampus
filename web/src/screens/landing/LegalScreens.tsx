@@ -1,6 +1,7 @@
 import { useEffect, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { assetURL } from "../../core/assets";
+import { WebAppLink } from "./WebAppLink";
 
 /**
  * 法律文档页（隐私政策 / 用户协议）。
@@ -41,9 +42,7 @@ function LegalLayout({
             <Link className="lp-btn ghost sm" to="/">
               返回首页
             </Link>
-            <Link className="lp-btn primary sm" to="/app">
-              打开网页版
-            </Link>
+            <WebAppLink className="lp-btn primary sm">打开网页版</WebAppLink>
           </div>
         </div>
       </header>

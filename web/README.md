@@ -15,7 +15,7 @@ yarn
 yarn dev
 ```
 
-默认连线上接口：`http://42.194.219.172/onemore/api`（与 iOS / 线上 Web 同一套 Postgres）。
+默认连线上接口：`https://lulu.classby.cn/onemore/api`（与 iOS / 线上 Web 同一套 Postgres）。
 
 若要改连本机 FastAPI，在 `web/.env` 里设 `VITE_API_BASE=http://127.0.0.1:8000`。
 
@@ -25,6 +25,17 @@ yarn dev
 yarn test
 yarn build
 ```
+
+## Cloudflare Pages（营销落地页）
+
+Landing 与法律文档部署到 Pages；「打开网页版」跳到源站 `https://lulu.classby.cn/onemore/app`。
+
+```bash
+yarn build:pages
+yarn deploy:pages
+```
+
+本地联调仍走同域 `/app`（不要设 `VITE_WEB_APP_ORIGIN`）。
 
 ## 结构
 

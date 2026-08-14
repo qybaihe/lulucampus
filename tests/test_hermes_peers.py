@@ -94,6 +94,23 @@ def test_start_peer_chat_opens_channel(client, auth_headers):
     assert again.json()["data"]["channel_id"] == opened["channel_id"]
 
 
+def test_hermes_ask_find_basketball_partner_returns_peers(client, auth_headers):
+    response = client.post(
+        "/hermes/ask",
+        headers=auth_headers,
+        json={"text": "我想打篮球 帮我找找搭子"},
+    )
+    assert response.status_code == 200, response.text
+    body = response.json()["data"]
+    assert body["card_type"] == "peer_list"
+    assert body["kind"] in {"result", "agent"}
+    assert body.get("action") == "campus.peers"
+    peers = body["data"]["peers"]
+    assert peers
+    gym = [item for item in peers if item.get("overlap") == "gym"]
+    assert {"梁景行", "何屿"} <= {item["display_name"] for item in gym}
+
+
 def test_hermes_ask_social_question_returns_peers(client, auth_headers):
     response = client.post(
         "/hermes/ask",

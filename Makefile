@@ -1,4 +1,4 @@
-.PHONY: install migrate capabilities openapi seed dev test lint worker beat competitions-validate competitions-ingest sysu-reference-build sysu-reference-validate
+.PHONY: install migrate capabilities openapi seed dev hermes stack test lint worker beat competitions-validate competitions-ingest sysu-reference-build sysu-reference-validate
 
 COMPETITION_SNAPSHOT ?= fixtures/competition_snapshot_2026-08-11_v1.1.json
 
@@ -18,7 +18,13 @@ openapi:
 	uv run onemore-export-openapi
 
 dev:
-	uv run uvicorn onemore.main:app --reload
+	uv run uvicorn onemore.main:app --reload --host 0.0.0.0 --port 8000
+
+hermes:
+	uv run uvicorn onemore.hermes.agent_server:app --host 127.0.0.1 --port 8642
+
+stack:
+	$(MAKE) -j2 dev hermes
 
 test:
 	uv run pytest

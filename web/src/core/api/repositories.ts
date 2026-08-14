@@ -4,17 +4,16 @@
  */
 
 import type { APIClient } from "./client";
+import {
+  normalizeSceneTrigger,
+  type SceneTriggerView,
+} from "../campus/sceneTrigger";
 
 export interface TodaySummary {
   date?: string;
   greeting?: string;
   hermes_hint?: string;
-  scene_trigger?: {
-    key?: string;
-    title?: string;
-    body?: string;
-    cta_label?: string;
-  } | null;
+  scene_trigger?: SceneTriggerView | null;
   pending?: Array<Record<string, unknown>>;
   timeline?: Array<{
     id?: string;
@@ -120,6 +119,9 @@ export interface Gathering {
   competition_id?: string | null;
   required_roles?: string[];
   looking_for?: string[];
+  goal?: string;
+  gathering_type?: string;
+  campus?: string | null;
   match_reason?: string | null;
   participants?: GatheringParticipant[];
   my_confirmation?: string | null;
@@ -294,7 +296,7 @@ export function seatsFromGathering(g: Gathering): Array<{
       return {
         role,
         state,
-        sticker: state === "gap" ? "chair-empty.png" : "badge.png",
+        sticker: state === "gap" ? "chair-empty.png" : "lulu-face.png",
       };
     });
   }
@@ -305,7 +307,7 @@ export function seatsFromGathering(g: Gathering): Array<{
       return {
         role: state === "gap" ? "空位" : "已就位",
         state,
-        sticker: state === "gap" ? "chair-empty.png" : "badge.png",
+        sticker: state === "gap" ? "chair-empty.png" : "lulu-face.png",
       };
     });
   }
@@ -421,6 +423,16 @@ export interface ChannelScenePolicy {
   source?: string;
 }
 
+export interface ChannelHeader {
+  id: string;
+  kind: "relation" | "gathering" | string;
+  title: string;
+  subtitle?: string | null;
+  gathering_id?: string | null;
+  relation_id?: string | null;
+  peers?: Array<{ user_id: string; display_name?: string | null }>;
+}
+
 export interface MentionAzouResult {
   message: MessagePayload;
   action_hint?: Record<string, unknown> | null;
@@ -501,6 +513,8 @@ export interface RelationSummary {
   timeline?: RelationTimelineEntry[];
   next_window?: { start_at: string; end_at: string } | null;
   active_goal?: RelationGoalSummary | null;
+  peer_display_name?: string | null;
+  last_message?: { content?: string | null; sent_at?: string | null } | null;
   [key: string]: unknown;
 }
 
@@ -1002,15 +1016,61 @@ export interface TasteQRLogin {
   error?: TasteImportError | null;
 }
 
+export interface HermesPeer {
+  user_id: string;
+  display_name: string;
+  persona_label?: string | null;
+  reason: string;
+  overlap: string;
+}
+
+export interface HermesToolTrace {
+  name: string;
+  ok?: boolean;
+  summary?: string;
+  card_type?: string;
+}
+
+export interface HermesAskResult {
+  kind?: string;
+  action?: string;
+  card_type?: string;
+  requires_preview?: boolean;
+  data?: {
+    message?: string;
+    next?: string;
+    params?: Record<string, unknown>;
+    peers?: HermesPeer[];
+    items?: Array<Record<string, unknown>>;
+    tool_trace?: HermesToolTrace[];
+    persona_label?: string;
+    [key: string]: unknown;
+  };
+  tool_trace?: HermesToolTrace[];
+  answer?: string;
+  text?: string;
+  message?: string;
+}
+
 export function createRepositories(client: APIClient) {
   return {
     today: {
-      summary: (force = false) =>
-        client.get<TodaySummary>("/today/summary", {
+      summary: async (force = false) => {
+        const data = await client.get<TodaySummary>("/today/summary", {
           query: force ? { force: 1 } : undefined,
-        }),
+          timeoutMs: 20_000,
+        });
+        return {
+          ...data,
+          scene_trigger: normalizeSceneTrigger(data.scene_trigger),
+        };
+      },
       ignoreSceneTrigger: (sceneKey: string) =>
-        client.post(`/today/triggers/${sceneKey}/ignore`, {}),
+        client.post(
+          `/today/triggers/${encodeURIComponent(sceneKey)}/ignore`,
+          {},
+          { idempotencyKey: `ignore-scene-${sceneKey}` },
+        ),
     },
     competitions: {
       list: (tier?: string | null) =>
@@ -1227,27 +1287,11 @@ export function createRepositories(client: APIClient) {
     },
     hermes: {
       ask: (text: string, context?: Record<string, unknown>) =>
-        client.post<{
-          kind?: string;
-          action?: string;
-          card_type?: string;
-          requires_preview?: boolean;
-          data?: {
-            message?: string;
-            next?: string;
-            params?: Record<string, unknown>;
-            peers?: Array<{
-              user_id: string;
-              display_name: string;
-              persona_label?: string | null;
-              reason: string;
-              overlap: string;
-            }>;
-          };
-          answer?: string;
-          text?: string;
-          message?: string;
-        }>("/hermes/ask", { text, context }),
+        client.post<HermesAskResult>(
+          "/hermes/ask",
+          { text, context },
+          { timeoutMs: 60_000 },
+        ),
       startPeerChat: (body: {
         peer_user_id: string;
         reason?: string;
@@ -1260,6 +1304,8 @@ export function createRepositories(client: APIClient) {
         ),
     },
     channels: {
+      header: (channelId: string) =>
+        client.get<ChannelHeader>(`/channels/${channelId}`),
       messages: (channelId: string) =>
         client.get<MessagePayload[] | { items: MessagePayload[] }>(
           `/channels/${channelId}/messages`,
@@ -1330,6 +1376,12 @@ export function createRepositories(client: APIClient) {
       trust: () => client.get<TrustMe>("/trust/me"),
       /** M2 · 画像编辑：GET /profile/me（写入走 updateProfileTags，后端无 PATCH /profile/me） */
       profileMe: () => client.get<UserProfile>("/profile/me"),
+      updateDisplayName: (displayName: string, key?: string) =>
+        client.patch<AuthMe>(
+          "/me/display-name",
+          { display_name: displayName },
+          { idempotencyKey: key ?? `display-name-${crypto.randomUUID()}` },
+        ),
       updateProfileTags: (
         tags: string[],
         hiddenVerifiedTags: string[] = [],
@@ -1343,7 +1395,7 @@ export function createRepositories(client: APIClient) {
       privacy: () => client.get<SocialPreferences>("/me/privacy"),
       patchPrivacy: (body: Record<string, unknown>, key?: string) =>
         client.patch<SocialPreferences>("/me/privacy", body, {
-          idempotencyKey: key ?? "privacy-full-state",
+          idempotencyKey: key ?? `privacy-${crypto.randomUUID()}`,
         }),
       matchingPreferences: () =>
         client.get<MatchingPreferences>("/me/matching-preferences"),
@@ -1352,7 +1404,7 @@ export function createRepositories(client: APIClient) {
         key?: string,
       ) =>
         client.patch<MatchingPreferences>("/me/matching-preferences", body, {
-          idempotencyKey: key ?? "matching-preferences-full-state",
+          idempotencyKey: key ?? `matching-preferences-${crypto.randomUUID()}`,
         }),
       notificationPreferences: () =>
         client.get<NotificationPreferences>("/me/notification-preferences"),
@@ -1367,7 +1419,7 @@ export function createRepositories(client: APIClient) {
         client.patch<NotificationPreferences>(
           "/me/notification-preferences",
           body,
-          { idempotencyKey: key ?? "notification-preferences-full-state" },
+          { idempotencyKey: key ?? `notification-preferences-${crypto.randomUUID()}` },
         ),
       blocks: () => client.get<BlockEntry[]>("/me/blocks"),
       unblock: (blockedUserId: string, key?: string) =>
@@ -1450,14 +1502,17 @@ export function createRepositories(client: APIClient) {
           { idempotencyKey: key ?? `grant-${scope}-${granted}` },
         ),
       setSocialEnabled: (enabled: boolean, key?: string) =>
-        client.patch(
+        client.patch<SocialPreferences>(
           "/me/privacy",
           {
             social_enabled: enabled,
             course_matching_enabled: enabled,
             identity_disclosure: "after_confirmed",
           },
-          { idempotencyKey: key ?? `first-use-social-${enabled ? "on" : "off"}` },
+          {
+            idempotencyKey:
+              key ?? `first-use-social-${enabled ? "on" : "off"}`,
+          },
         ),
       me: () => client.get<AuthMe>("/auth/me"),
     },
@@ -1554,7 +1609,10 @@ export function createRepositories(client: APIClient) {
             force: true,
             ...body,
           },
-          { timeoutMs: 120_000 },
+          {
+            timeoutMs: 120_000,
+            timeoutMessage: "分析时间有点长，请稍后再试",
+          },
         ),
       importDouyin: (body: Record<string, unknown>) =>
         client.post("/profile/imports/douyin", body),
@@ -1625,6 +1683,7 @@ export function createRepositories(client: APIClient) {
             week != null
               ? { week: Math.min(30, Math.max(1, week)) }
               : undefined,
+          timeoutMs: 20_000,
         }),
       /** 202 accepted → 稍候再拉 timetable（meta.poll） */
       refreshSchedule: () =>
@@ -1639,10 +1698,34 @@ export function createRepositories(client: APIClient) {
         }),
       assignment: (id: string) =>
         client.get<Record<string, unknown>>(`/assignments/${id}`),
-      gymAvailable: () =>
-        client.get<unknown[] | { items: unknown[] }>("/venues/gym/available"),
-      roomAvailable: () =>
-        client.get<unknown[] | { items: unknown[] }>("/venues/room/available"),
+      gymAvailable: (opts?: {
+        venueType?: string;
+        date?: string;
+        venue?: string;
+        days?: number;
+      }) =>
+        client.get<Record<string, unknown>>("/venues/gym/available", {
+          query: {
+            venue_type: opts?.venueType ?? "羽毛球",
+            date: opts?.date,
+            days: opts?.days ?? 1,
+            venue: opts?.venue,
+          },
+        }),
+      roomAvailable: (opts?: {
+        kind?: string;
+        date?: string;
+        lab?: string;
+        room?: string;
+      }) =>
+        client.get<Record<string, unknown>>("/venues/room/available", {
+          query: {
+            kind: opts?.kind ?? "15",
+            date: opts?.date ?? localDayString(1),
+            lab: opts?.lab,
+            room: opts?.room,
+          },
+        }),
       events: () =>
         client.get<unknown[] | { items: unknown[] }>("/events"),
       event: (id: string) =>
@@ -1652,6 +1735,13 @@ export function createRepositories(client: APIClient) {
 }
 
 export type Repositories = ReturnType<typeof createRepositories>;
+
+function localDayString(offsetDays = 0): string {
+  const date = new Date();
+  date.setDate(date.getDate() + offsetDays);
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+}
 
 /** Normalize list-or-wrapped list payloads from FastAPI. */
 export function asList<T>(payload: T[] | { items?: T[] } | null | undefined): T[] {

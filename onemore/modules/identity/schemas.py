@@ -89,6 +89,10 @@ class IdentityFactsView(APIModel):
     session_health: list[SessionHealthView]
 
 
+class DisplayNameChange(APIModel):
+    display_name: str = Field(min_length=1, max_length=20)
+
+
 class SocialPreferenceChange(APIModel):
     social_enabled: bool | None = None
     course_matching_enabled: bool | None = None
