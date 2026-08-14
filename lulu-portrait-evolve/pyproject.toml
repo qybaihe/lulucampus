@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lulu-portrait-evolve"
+version = "0.1.0"
+description = "噜噜自进化画像：用平台行为持续校准、永不过时的用户画像引擎"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "qybaihe" }]
+keywords = ["portrait", "user-modeling", "campus", "self-evolving"]
+dependencies = []
+
+[project.optional-dependencies]
+api = ["fastapi>=0.115", "uvicorn[standard]>=0.32"]
+dev = ["pytest>=8.3"]
+
+[project.scripts]
+portrait-evolve = "portrait_evolve.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/qybaihe/lulucampus/tree/feat/lulu-portrait-evolve/lulu-portrait-evolve"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
